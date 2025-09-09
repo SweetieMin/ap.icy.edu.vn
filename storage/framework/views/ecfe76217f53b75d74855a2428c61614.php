@@ -1,7 +1,7 @@
 <div
     class="flex aspect-square size-8 items-center justify-center rounded-md bg-transparent ring-1 ring-pink-500 dark:ring-white dark:bg-zinc-800 ">
     
-    <img src="/favicon.svg" alt="ICY Logo" class="w-6 h-6 md:hidden" />
+    <img src="/favicon.svg" alt="ICY Logo" class="w-8 h-8 md:hidden" />
     
     
     <?php if (isset($component)) { $__componentOriginal159d6670770cb479b1921cea6416c26c = $component; } ?>

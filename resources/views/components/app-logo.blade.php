@@ -1,7 +1,7 @@
 <div
     class="flex aspect-square size-8 items-center justify-center rounded-md bg-transparent ring-1 ring-pink-500 dark:ring-white dark:bg-zinc-800 ">
     {{-- Mobile: Hiển thị ảnh SVG --}}
-    <img src="/favicon.svg" alt="ICY Logo" class="w-6 h-6 md:hidden" />
+    <img src="/favicon.svg" alt="ICY Logo" class="w-8 h-8 md:hidden" />
     
     {{-- Desktop: Hiển thị icon SVG --}}
     <x-app-logo-icon class="hidden md:block" />
