@@ -4,8 +4,10 @@ namespace App\Livewire\Back\Finance\Tuition;
 
 use Livewire\Component;
 use Livewire\Attributes\On;
+use Livewire\Attributes\Url;
 use Livewire\Attributes\Title;
 use App\Support\Bank\BankHelper;
+use Illuminate\Support\Facades\Auth;
 use App\Support\Tuition\TuitionHelper;
 use App\Repositories\Contracts\BankRepositoryInterface;
 use App\Repositories\Contracts\SeasonRepositoryInterface;
@@ -13,7 +15,6 @@ use App\Repositories\Contracts\ProgramRepositoryInterface;
 use App\Repositories\Contracts\StudentRepositoryInterface;
 use App\Repositories\Contracts\TuitionRepositoryInterface;
 use App\Repositories\Contracts\ProgramLocationPriceRepositoryInterface;
-use Illuminate\Support\Facades\Auth;
 
 #[Title('Thanh toán học phí')]
 class TuitionsPayment extends Component
@@ -50,12 +51,18 @@ class TuitionsPayment extends Component
     public $note = '';
     public $paymentMethod = 'cash';
 
+    #[Url]
+    public $student;
+
     public function mount()
     {
         $this->loadPrograms();
         $this->loadStudents();
         $this->loadSeasons();
         $this->loadBanks();
+        if ($this->student) {
+            $this->selectStudent($this->student);
+        }
     }
 
     #[On('turnOnBankTransfer')]
