@@ -63,6 +63,8 @@ class TuitionsPayment extends Component
         $this->loadBanks();
         if ($this->student) {
             $this->selectStudent($this->student);
+        }else{
+            $this->student = '';
         }
     }
 
