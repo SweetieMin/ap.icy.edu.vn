@@ -72,6 +72,72 @@ unset($__split);
 if (isset($__slots)) unset($__slots);
 ?>
 
+    <!-- Search and Filter Section -->
+    <div class="mt-6">
+        <div class="theme-card-pink mb-6">
+            <div class="p-6">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                    <!-- Search -->
+                    <div>
+                        <label for="search" class="card-label">Tìm kiếm</label>
+                        <input 
+                            wire:model.live="search" 
+                            type="text" 
+                            id="search"
+                            placeholder="Tìm theo tên lớp học, cơ sở, học kỳ..."
+                            class="card-input"
+                        >
+                    </div>
+                    
+                    <!-- Location Filter -->
+                    <div>
+                        <label for="locationFilter" class="card-label">Lọc theo cơ sở</label>
+                        <select 
+                            wire:model.live="locationFilter" 
+                            id="locationFilter"
+                            class="card-input"
+                        >
+                            <option value="">Tất cả cơ sở</option>
+                            <!--[if BLOCK]><![endif]--><?php $__currentLoopData = $locations; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $location): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <option value="<?php echo e($location->id); ?>"><?php echo e($location->name); ?></option>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><!--[if ENDBLOCK]><![endif]-->
+                        </select>
+                    </div>
+                    
+                    <!-- Season Filter -->
+                    <div>
+                        <label for="seasonFilter" class="card-label">Lọc theo học kỳ</label>
+                        <select 
+                            wire:model.live="seasonFilter" 
+                            id="seasonFilter"
+                            class="card-input"
+                        >
+                            <option value="">Tất cả học kỳ</option>
+                            <!--[if BLOCK]><![endif]--><?php $__currentLoopData = $seasons; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $season): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <option value="<?php echo e($season->id); ?>"><?php echo e($season->name); ?></option>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><!--[if ENDBLOCK]><![endif]-->
+                        </select>
+                    </div>
+                    
+                    <!-- Per Page -->
+                    <div>
+                        <label for="perPage" class="card-label">Số dòng mỗi trang</label>
+                        <select 
+                            wire:model.live="perPage" 
+                            id="perPage"
+                            class="card-input"
+                        >
+                            <option value="10">10</option>
+                            <option value="25">25</option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     
     <div class="mt-6">
         <div x-data="{

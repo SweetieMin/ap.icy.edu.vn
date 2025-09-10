@@ -4,8 +4,8 @@ namespace App\Repositories\Eloquent;
 
 use App\Models\Course;
 use App\Support\Course\CourseHelper;
-use App\Repositories\Contracts\UserRepositoryInterface;
 use App\Repositories\Contracts\CourseRepositoryInterface;
+use App\Repositories\Contracts\UserRepositoryInterface;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 class CourseRepository implements CourseRepositoryInterface
@@ -17,6 +17,43 @@ class CourseRepository implements CourseRepositoryInterface
             ->with(['location', 'season', 'subject'])
             ->orderBy('ordering')
             ->paginate($perPage);
+    }
+
+    public function getAllWithFilters(array $filters, int $perPage = 10): LengthAwarePaginator
+    {
+        $locations = app(UserRepositoryInterface::class)->getCurrentUserLocations();
+        $query = Course::whereIn('location_id', $locations->pluck('id'))
+            ->with(['location', 'season', 'subject']);
+
+        // Lọc theo tên lớp học
+        if (!empty($filters['search'])) {
+            $search = $filters['search'];
+            $query->where(function ($q) use ($search) {
+                $q->where('name', 'like', '%' . $search . '%')
+                  ->orWhere('description', 'like', '%' . $search . '%')
+                  ->orWhereHas('location', function ($locationQuery) use ($search) {
+                      $locationQuery->where('name', 'like', '%' . $search . '%');
+                  })
+                  ->orWhereHas('season', function ($seasonQuery) use ($search) {
+                      $seasonQuery->where('name', 'like', '%' . $search . '%');
+                  })
+                  ->orWhereHas('subject', function ($subjectQuery) use ($search) {
+                      $subjectQuery->where('name', 'like', '%' . $search . '%');
+                  });
+            });
+        }
+
+        // Lọc theo location
+        if (!empty($filters['location_id'])) {
+            $query->where('location_id', $filters['location_id']);
+        }
+
+        // Lọc theo season
+        if (!empty($filters['season_id'])) {
+            $query->where('season_id', $filters['season_id']);
+        }
+
+        return $query->orderBy('ordering')->paginate($perPage);
     }
 
     public function getCoursesBySeasonAndProgram(int $seasonId, int $programId)

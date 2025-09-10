@@ -208,7 +208,7 @@
                         <div class="max-h-64 overflow-y-auto space-y-2">
                             <!--[if BLOCK]><![endif]--><?php $__currentLoopData = $filteredPrograms; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $program): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <div
-                                    class="bg-gray-50 dark:bg-gray-700 rounded-lg p-3 hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors duration-200">
+                                    class="bg-gray-50 dark:bg-gray-700 rounded-lg p-3 hover:bg-gray-100 dark:hover:bg-gray-600 ">
                                     <button wire:click="addProgram(<?php echo e($program['id']); ?>)"
                                         class="w-full flex items-center justify-between text-left">
                                         <div class="flex-1">
@@ -483,7 +483,7 @@
                                     </div>
                                 </div>
                                 <button wire:click="clearStudentSelection"
-                                    class="cursor-pointer text-red-600 hover:text-red-700 dark:text-red-400 dark:hover:text-red-300 transition-colors duration-200 p-1">
+                                    class="cursor-pointer text-red-600 hover:text-red-700 dark:text-red-400 dark:hover:text-red-300 p-1">
                                     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                                         <path fill-rule="evenodd"
                                             d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
@@ -503,7 +503,7 @@
                                 <div class="max-h-35 overflow-y-auto space-y-2">
                                     <!--[if BLOCK]><![endif]--><?php $__currentLoopData = $filteredStudents; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $student): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                         <div
-                                            class=" bg-gray-50 dark:bg-gray-700 rounded-lg p-3 hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors duration-200">
+                                            class=" bg-gray-50 dark:bg-gray-700 rounded-lg p-3 hover:bg-gray-100 dark:hover:bg-gray-600 ">
                                             <button wire:click="selectStudent(<?php echo e($student['id']); ?>)"
                                                 class="cursor-pointer w-full flex items-center space-x-3 text-left">
                                                 <div

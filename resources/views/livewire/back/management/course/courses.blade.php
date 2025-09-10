@@ -38,6 +38,72 @@
 
     <livewire:back.management.course.actions-course />
 
+    <!-- Search and Filter Section -->
+    <div class="mt-6">
+        <div class="theme-card-pink mb-6">
+            <div class="p-6">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                    <!-- Search -->
+                    <div>
+                        <label for="search" class="card-label">Tìm kiếm</label>
+                        <input 
+                            wire:model.live="search" 
+                            type="text" 
+                            id="search"
+                            placeholder="Tìm theo tên lớp học, cơ sở, học kỳ..."
+                            class="card-input"
+                        >
+                    </div>
+                    
+                    <!-- Location Filter -->
+                    <div>
+                        <label for="locationFilter" class="card-label">Lọc theo cơ sở</label>
+                        <select 
+                            wire:model.live="locationFilter" 
+                            id="locationFilter"
+                            class="card-input"
+                        >
+                            <option value="">Tất cả cơ sở</option>
+                            @foreach($locations as $location)
+                                <option value="{{ $location->id }}">{{ $location->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    
+                    <!-- Season Filter -->
+                    <div>
+                        <label for="seasonFilter" class="card-label">Lọc theo học kỳ</label>
+                        <select 
+                            wire:model.live="seasonFilter" 
+                            id="seasonFilter"
+                            class="card-input"
+                        >
+                            <option value="">Tất cả học kỳ</option>
+                            @foreach($seasons as $season)
+                                <option value="{{ $season->id }}">{{ $season->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    
+                    <!-- Per Page -->
+                    <div>
+                        <label for="perPage" class="card-label">Số dòng mỗi trang</label>
+                        <select 
+                            wire:model.live="perPage" 
+                            id="perPage"
+                            class="card-input"
+                        >
+                            <option value="10">10</option>
+                            <option value="25">25</option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     {{-- Main content area --}}
     <div class="mt-6">
         <div x-data="{

@@ -88,7 +88,7 @@
                                 @forelse ($programs as $program)
                                     <div wire:key="program-{{ $program->id }}" class="group">
                                         <button wire:click="selectProgram({{ $program->id }})"
-                                            class="w-full text-left px-4 py-3 rounded-xl text-sm transition-all duration-300 transform hover:scale-[1.02] {{ (int) $selectedProgramId === (int) $program->id ? 'bg-pink-50 dark:bg-pink-900/20 text-pink-600 dark:text-white border border-pink-200 dark:border-pink-800 shadow-lg' : 'text-zinc-600 dark:text-zinc-400 hover:text-pink-600 dark:hover:text-pink-400 hover:bg-pink-100 dark:hover:bg-zinc-800 border border-transparent hover:border-zinc-200 dark:hover:border-zinc-700' }}">
+                                            class="w-full text-left px-4 py-3 rounded-xl text-sm  hover:scale-[1.02] {{ (int) $selectedProgramId === (int) $program->id ? 'bg-pink-50 dark:bg-pink-900/20 text-pink-600 dark:text-white border border-pink-200 dark:border-pink-800 shadow-lg' : 'text-zinc-600 dark:text-zinc-400 hover:text-pink-600 dark:hover:text-pink-400 hover:bg-pink-100 dark:hover:bg-zinc-800 border border-transparent hover:border-zinc-200 dark:hover:border-zinc-700' }}">
                                             <div class="flex items-center space-x-3">
                                                 <div class="w-8 h-8 rounded-lg flex items-center justify-center {{ (int) $selectedProgramId === (int) $program->id ? 'bg-pink-100 dark:bg-pink-800/30' : 'bg-zinc-200 dark:bg-zinc-700' }}">
                                                     <svg class="w-4 h-4 {{ (int) $selectedProgramId === (int) $program->id ? 'text-pink-600 dark:text-white' : 'text-zinc-600 dark:text-zinc-400' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -130,7 +130,7 @@
                     <div id="sortable-subject" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6" wire:key="subjects-grid-{{ $selectedProgramId }}">
                         @forelse ($subjects as $subject)
                             <div wire:key="subject-{{ $subject->id }}" data-id="{{ $subject->id }}"
-                                class="group bg-white dark:bg-zinc-900 rounded-2xl border border-zinc-200 dark:border-zinc-700 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-[1.02]  overflow-hidden">
+                                class="group bg-white dark:bg-zinc-900 rounded-2xl border border-zinc-200 dark:border-zinc-700 shadow-lg hover:shadow-2xl  hover:scale-[1.02]  overflow-hidden">
                                 
                                 {{-- Card Header --}}
                                 <div class="bg-pink-100 dark:bg-zinc-800 p-4">

@@ -79,7 +79,7 @@ class Subjects extends Component
             $orderedIds
         );
         session()->flash('success', 'Sắp xếp môn học thành công.');
-        $this->redirectRoute('admin.management.subjects', navigate: true);
+        $this->redirectRoute('admin.management.subjects', ['program' => $this->selectedProgramId], navigate: true);
     }
 
     public function render()
