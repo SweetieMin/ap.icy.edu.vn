@@ -536,8 +536,8 @@
 
     {{-- Transaction History Section - Separate from payment section --}}
     @if ($selectedStudent)
-        <div class="mt-8 theme-card-pink flex-shrink-0">
-            <div class="card-header">
+
+            <div class="card-header my-4">
                 <div class="flex items-center space-x-3">
                     <div class="w-8 h-8 bg-pink-200 dark:bg-pink-800/30 rounded-lg flex items-center justify-center">
                         <flux:icon.document-text class="w-4 h-4 text-pink-600 dark:text-pink-400" />
@@ -549,7 +549,7 @@
                     </div>
                 </div>
             </div>
-            <div class="p-6">
+
 
                 @if (count($transactionHistory) > 0)
                     <div class="table-full-width">
@@ -636,8 +636,8 @@
                         </div>
                     </div>
                 @endif
-            </div>
-        </div>
+
+
     @endif
 
 </div>

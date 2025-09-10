@@ -681,8 +681,8 @@
 
     
     <!--[if BLOCK]><![endif]--><?php if($selectedStudent): ?>
-        <div class="mt-8 theme-card-pink flex-shrink-0">
-            <div class="card-header">
+
+            <div class="card-header my-4">
                 <div class="flex items-center space-x-3">
                     <div class="w-8 h-8 bg-pink-200 dark:bg-pink-800/30 rounded-lg flex items-center justify-center">
                         <?php if (isset($component)) { $__componentOriginal74697c151ccb8418c53b50a995b31225 = $component; } ?>
@@ -713,7 +713,7 @@
                     </div>
                 </div>
             </div>
-            <div class="p-6">
+
 
                 <!--[if BLOCK]><![endif]--><?php if(count($transactionHistory) > 0): ?>
                     <div class="table-full-width">
@@ -838,8 +838,8 @@
                         </div>
                     </div>
                 <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
-            </div>
-        </div>
+
+
     <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
 
 </div>

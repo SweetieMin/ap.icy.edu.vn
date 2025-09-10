@@ -13,6 +13,7 @@ use App\Repositories\Contracts\ProgramRepositoryInterface;
 use App\Repositories\Contracts\StudentRepositoryInterface;
 use App\Repositories\Contracts\TuitionRepositoryInterface;
 use App\Repositories\Contracts\ProgramLocationPriceRepositoryInterface;
+use Illuminate\Support\Facades\Auth;
 
 #[Title('Thanh toán học phí')]
 class TuitionsPayment extends Component
@@ -250,7 +251,7 @@ class TuitionsPayment extends Component
                 'price' => (float) $price,
                 'season_id' => null, // Sẽ được chọn sau
                 'season_name' => null,
-                'type' => 'program'
+                'type' => 'program',
             ];
             
             $this->selectedItems[] = $newItem;
@@ -274,7 +275,7 @@ class TuitionsPayment extends Component
             'price' => 100000,
             'season_id' => null,
             'season_name' => null,
-            'type' => 'uniform'
+            'type' => 'uniform',
         ];
         
         $this->calculateTotal();
@@ -467,6 +468,7 @@ class TuitionsPayment extends Component
                     'payment_method' => $this->paymentMethod,
                     'bank_id' => $this->selectedBankId,
                     'note' => $note,
+                    'created_by' => Auth::user()->id,
                     'created_at' => now(),
                     'updated_at' => now(),
                 ];
@@ -477,7 +479,7 @@ class TuitionsPayment extends Component
             
             $count = count($createdTuitions);
             session()->flash('success', "Tạo thành công {$count} bản ghi thanh toán.");
-            $this->redirect(route('admin.finance.tuitions-payment'));
+            $this->redirectRoute('admin.finance.tuitions-payment', ['student' => $this->selectedStudent['id']], navigate: true);
             
         } catch (\Exception $e) {
             session()->flash('error', 'Có lỗi xảy ra khi tạo thanh toán: ' . $e->getMessage());

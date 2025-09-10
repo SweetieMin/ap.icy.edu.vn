@@ -20,6 +20,7 @@ class Tuition extends Model
         'payment_method',
         'bank_id',
         'note',
+        'created_by',
     ];
 
     protected $appends = ['price_formatted', 'created_at_formatted'];
@@ -38,6 +39,12 @@ class Tuition extends Model
             get: fn () => number_format($this->price, 0, ',', '.')
         );
     }
+
+    public function createdBy()
+    {
+        return $this->belongsTo(User::class, 'created_by');
+    }
+
 
     protected function createdAtFormatted(): Attribute
     {

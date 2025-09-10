@@ -22,6 +22,7 @@ return new class extends Migration
             $table->enum('payment_method', ['cash', 'bank_transfer'])->default('cash');
             $table->foreignId('bank_id')->nullable()->constrained('banks')->nullOnDelete();
             $table->string('note')->nullable();
+            $table->foreignId('created_by')->constrained('users')->cascadeOnDelete();
             $table->timestamps();
             $table->softDeletes();
         });
