@@ -104,8 +104,8 @@ if (isset($__slots)) unset($__slots);
                         <tbody id="sortable-program">
                             <!--[if BLOCK]><![endif]--><?php $__empty_1 = true; $__currentLoopData = $programs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $program): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                                 <tr wire:key="program-<?php echo e($program->id); ?>" data-id="<?php echo e($program->id); ?>"
-                                    class="cursor-move drag-handle">
-                                    <td class="whitespace-nowrap text-center">
+                                    class=" table-row">
+                                    <td class="whitespace-nowrap text-center table-cell cursor-move drag-handle">
                                         <?php echo e($program->ordering); ?>
 
                                     </td>

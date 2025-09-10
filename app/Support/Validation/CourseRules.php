@@ -11,6 +11,7 @@ class CourseRules
             'location_id' => ['required', 'exists:locations,id'],
             'season_id' => ['required', 'exists:seasons,id'],
             'subject_id' => ['required', 'exists:subjects,id'],
+            'ordering' => ['nullable', 'integer', 'min:1'],
             'description' => ['nullable', 'string', 'max:500'],
         ];
     }
@@ -19,10 +20,15 @@ class CourseRules
     {
         return [
             'name.required' => 'Tên lớp học là bắt buộc.',
+            'name.max' => 'Tên lớp học không được vượt quá 255 ký tự.',
             'location_id.required' => 'Cơ sở học là bắt buộc.',
-            'season_id.required' => 'Mùa là bắt buộc.',
+            'location_id.exists' => 'Cơ sở học không tồn tại.',
+            'season_id.required' => 'Học kỳ là bắt buộc.',
+            'season_id.exists' => 'Học kỳ không tồn tại.',
             'subject_id.required' => 'Môn học là bắt buộc.',
-            'ordering.required' => 'Thứ tự là bắt buộc.',
+            'subject_id.exists' => 'Môn học không tồn tại.',
+            'ordering.integer' => 'Thứ tự phải là số nguyên.',
+            'ordering.min' => 'Thứ tự phải lớn hơn 0.',
             'description.max' => 'Mô tả không được vượt quá 500 ký tự.',
         ];
     }

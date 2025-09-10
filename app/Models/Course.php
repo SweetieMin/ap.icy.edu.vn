@@ -12,6 +12,7 @@ class Course extends Model
         'season_id',
         'subject_id',
         'name',
+        'code',
         'description',
     ];
 

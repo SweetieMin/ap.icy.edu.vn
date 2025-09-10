@@ -70,8 +70,8 @@
                         <tbody id="sortable-program">
                             @forelse ($programs as $program)
                                 <tr wire:key="program-{{ $program->id }}" data-id="{{ $program->id }}"
-                                    class="cursor-move drag-handle">
-                                    <td class="whitespace-nowrap text-center">
+                                    class=" table-row">
+                                    <td class="whitespace-nowrap text-center table-cell cursor-move drag-handle">
                                         {{ $program->ordering }}
                                     </td>
                                     <td class="whitespace-nowrap">

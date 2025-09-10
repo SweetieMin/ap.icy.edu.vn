@@ -130,7 +130,7 @@
                     <div id="sortable-subject" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6" wire:key="subjects-grid-{{ $selectedProgramId }}">
                         @forelse ($subjects as $subject)
                             <div wire:key="subject-{{ $subject->id }}" data-id="{{ $subject->id }}"
-                                class="group bg-white dark:bg-zinc-900 rounded-2xl border border-zinc-200 dark:border-zinc-700 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-[1.02] cursor-move drag-handle overflow-hidden">
+                                class="group bg-white dark:bg-zinc-900 rounded-2xl border border-zinc-200 dark:border-zinc-700 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-[1.02]  overflow-hidden">
                                 
                                 {{-- Card Header --}}
                                 <div class="bg-pink-100 dark:bg-zinc-800 p-4">
@@ -146,7 +146,7 @@
                                                 @endif
                                             </div>
                                         </div>
-                                        <div class="flex items-center space-x-2">
+                                        <div class="flex items-center space-x-2 cursor-move drag-handle">
                                             <svg class="w-5 h-5 text-pink-600 dark:text-pink-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16"></path>
                                             </svg>

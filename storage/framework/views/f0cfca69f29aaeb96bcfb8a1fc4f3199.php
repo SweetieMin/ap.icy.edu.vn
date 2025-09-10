@@ -74,35 +74,57 @@ if (isset($__slots)) unset($__slots);
 
     
     <div class="mt-6">
-        <div class="theme-table-pink">
-            <div class="overflow-x-auto">
-                <table>
-                    <thead>
-                        <tr>
-                            <th class="text-center w-16">STT</th>
-                            <th class="text-center">Lớp học</th>
-                            <th class="text-center hidden sm:table-cell">Mô tả</th>
-                            <th class="text-center">Thao tác</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!--[if BLOCK]><![endif]--><?php $__empty_1 = true; $__currentLoopData = $courses; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $course): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
-                            <tr wire:key="course-<?php echo e($course->id); ?>" class="table-row">
-                                <td class="table-cell text-center">
-                                    <?php echo e($course->ordering); ?>
+        <div x-data="{
+            initSortable() {
+                const el = document.getElementById('sortable-courses');
+                if (el && !el.sortableInstance) {
+                    el.sortableInstance = new Sortable(el, {
+                        animation: 150,
+                        handle: '.drag-handle',
+                        onEnd: function() {
+                            let orderedIds = [];
+                            el.querySelectorAll('[data-id]').forEach(item => {
+                                orderedIds.push(item.getAttribute('data-id'));
+                            });
+                            $wire.updateCourseOrdering(orderedIds);
+                        }
+                    });
+                }
+            }
+        }" 
+        x-init="initSortable()">
+            
+            <div class="theme-table-pink">
+                <div class="overflow-x-auto">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class="text-center w-16">STT</th>
 
-                                </td>
-                                <td class="table-cell">
-                                    <?php echo e($course->name); ?>
+                                <th class="text-center w-30">Lớp học</th>
+                                <th class="text-center hidden sm:table-cell">Mô tả</th>
+                                <th class="text-center">Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody id="sortable-courses">
+                            <!--[if BLOCK]><![endif]--><?php $__empty_1 = true; $__currentLoopData = $courses; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $course): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                                <tr wire:key="course-<?php echo e($course->id); ?>" data-id="<?php echo e($course->id); ?>" class="table-row ">
+                                    <td class="table-cell text-center drag-handle cursor-move w-16">
+                                        <?php echo e($course->ordering); ?>
 
-                                </td>
-                                <td class="table-cell hidden sm:table-cell">
-                                    <?php echo e($course->description); ?>
+                                    </td>
 
-                                </td>
-                                <td class="table-cell text-center">
-                                    <div class="flex items-center justify-center gap-2">
-                                        <?php if (isset($component)) { $__componentOriginalc04b147acd0e65cc1a77f86fb0e81580 = $component; } ?>
+                                    <td class="table-cell whitespace-nowrap text-center w-30">
+                                        <?php echo e($course->name); ?>
+
+                                    </td>
+                                    <td class="table-cell hidden sm:table-cell">
+                                        <?php echo e($course->description); ?>
+
+                                    </td>
+                                    <td class="table-cell text-center">
+                                        <div class="flex items-center justify-center gap-2">
+                                            <?php if (isset($component)) { $__componentOriginalc04b147acd0e65cc1a77f86fb0e81580 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginalc04b147acd0e65cc1a77f86fb0e81580 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::button.index','data' => ['size' => 'sm','variant' => 'primary','icon' => 'square-pen','wire:click' => 'editCourse('.e($course->id).')','class' => 'cursor-pointer']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('flux::button'); ?>
@@ -112,8 +134,8 @@ if (isset($__slots)) unset($__slots);
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
 <?php $component->withAttributes(['size' => 'sm','variant' => 'primary','icon' => 'square-pen','wire:click' => 'editCourse('.e($course->id).')','class' => 'cursor-pointer']); ?>
-                                            Sửa
-                                         <?php echo $__env->renderComponent(); ?>
+                                                Sửa
+                                             <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php if (isset($__attributesOriginalc04b147acd0e65cc1a77f86fb0e81580)): ?>
 <?php $attributes = $__attributesOriginalc04b147acd0e65cc1a77f86fb0e81580; ?>
@@ -123,7 +145,7 @@ if (isset($__slots)) unset($__slots);
 <?php $component = $__componentOriginalc04b147acd0e65cc1a77f86fb0e81580; ?>
 <?php unset($__componentOriginalc04b147acd0e65cc1a77f86fb0e81580); ?>
 <?php endif; ?>
-                                        <?php if (isset($component)) { $__componentOriginalc04b147acd0e65cc1a77f86fb0e81580 = $component; } ?>
+                                            <?php if (isset($component)) { $__componentOriginalc04b147acd0e65cc1a77f86fb0e81580 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginalc04b147acd0e65cc1a77f86fb0e81580 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::button.index','data' => ['size' => 'sm','variant' => 'danger','icon' => 'trash','wire:click' => 'deleteCourse('.e($course->id).')','class' => 'cursor-pointer']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('flux::button'); ?>
@@ -133,8 +155,8 @@ if (isset($__slots)) unset($__slots);
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
 <?php $component->withAttributes(['size' => 'sm','variant' => 'danger','icon' => 'trash','wire:click' => 'deleteCourse('.e($course->id).')','class' => 'cursor-pointer']); ?>
-                                            Xóa
-                                         <?php echo $__env->renderComponent(); ?>
+                                                Xóa
+                                             <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php if (isset($__attributesOriginalc04b147acd0e65cc1a77f86fb0e81580)): ?>
 <?php $attributes = $__attributesOriginalc04b147acd0e65cc1a77f86fb0e81580; ?>
@@ -144,14 +166,14 @@ if (isset($__slots)) unset($__slots);
 <?php $component = $__componentOriginalc04b147acd0e65cc1a77f86fb0e81580; ?>
 <?php unset($__componentOriginalc04b147acd0e65cc1a77f86fb0e81580); ?>
 <?php endif; ?>
-                                    </div>
-                                </td>
-                            </tr>
-                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
-                            <tr>
-                                <td colspan="4" class="table-cell">
-                                    <div class="empty-state flex flex-col items-center">
-                                        <?php if (isset($component)) { $__componentOriginale0880cb6488d85d9ca54288aa080a834 = $component; } ?>
+                                        </div>
+                                    </td>
+                                </tr>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+                                <tr>
+                                    <td colspan="5" class="table-cell">
+                                        <div class="empty-state flex flex-col items-center">
+                                            <?php if (isset($component)) { $__componentOriginale0880cb6488d85d9ca54288aa080a834 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginale0880cb6488d85d9ca54288aa080a834 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::icon.academic-cap','data' => ['class' => 'w-8 h-8 mb-2']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('flux::icon.academic-cap'); ?>
@@ -171,21 +193,22 @@ if (isset($__slots)) unset($__slots);
 <?php $component = $__componentOriginale0880cb6488d85d9ca54288aa080a834; ?>
 <?php unset($__componentOriginale0880cb6488d85d9ca54288aa080a834); ?>
 <?php endif; ?>
-                                        <div class="text-sm">Không có Lớp học nào</div>
-                                    </div>
-                                </td>
-                            </tr>
-                        <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
-                    </tbody>
-                </table>
-            </div>
-            
-            <!--[if BLOCK]><![endif]--><?php if($courses->hasPages()): ?>
-                <div class="pagination-container">
-                    <?php echo e($courses->links()); ?>
-
+                                            <div class="text-sm">Không có Lớp học nào</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                        </tbody>
+                    </table>
                 </div>
-            <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                
+                <!--[if BLOCK]><![endif]--><?php if($courses->hasPages()): ?>
+                    <div class="pagination-container">
+                        <?php echo e($courses->links()); ?>
+
+                    </div>
+                <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+            </div>
         </div>
     </div>
 </div>

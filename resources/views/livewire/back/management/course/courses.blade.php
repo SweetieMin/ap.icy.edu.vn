@@ -40,61 +40,84 @@
 
     {{-- Main content area --}}
     <div class="mt-6">
-        <div class="theme-table-pink">
-            <div class="overflow-x-auto">
-                <table>
-                    <thead>
-                        <tr>
-                            <th class="text-center w-16">STT</th>
-                            <th class="text-center">Lớp học</th>
-                            <th class="text-center hidden sm:table-cell">Mô tả</th>
-                            <th class="text-center">Thao tác</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @forelse ($courses as $course)
-                            <tr wire:key="course-{{ $course->id }}" class="table-row">
-                                <td class="table-cell text-center">
-                                    {{ $course->ordering }}
-                                </td>
-                                <td class="table-cell">
-                                    {{ $course->name }}
-                                </td>
-                                <td class="table-cell hidden sm:table-cell">
-                                    {{ $course->description }}
-                                </td>
-                                <td class="table-cell text-center">
-                                    <div class="flex items-center justify-center gap-2">
-                                        <flux:button size="sm" variant="primary" icon="square-pen"
-                                            wire:click="editCourse({{ $course->id }})" class="cursor-pointer">
-                                            Sửa
-                                        </flux:button>
-                                        <flux:button size="sm" variant="danger" icon="trash"
-                                            wire:click="deleteCourse({{ $course->id }})" class="cursor-pointer">
-                                            Xóa
-                                        </flux:button>
-                                    </div>
-                                </td>
-                            </tr>
-                        @empty
-                            <tr>
-                                <td colspan="4" class="table-cell">
-                                    <div class="empty-state flex flex-col items-center">
-                                        <flux:icon.academic-cap class="w-8 h-8 mb-2" />
-                                        <div class="text-sm">Không có Lớp học nào</div>
-                                    </div>
-                                </td>
-                            </tr>
-                        @endforelse
-                    </tbody>
-                </table>
-            </div>
+        <div x-data="{
+            initSortable() {
+                const el = document.getElementById('sortable-courses');
+                if (el && !el.sortableInstance) {
+                    el.sortableInstance = new Sortable(el, {
+                        animation: 150,
+                        handle: '.drag-handle',
+                        onEnd: function() {
+                            let orderedIds = [];
+                            el.querySelectorAll('[data-id]').forEach(item => {
+                                orderedIds.push(item.getAttribute('data-id'));
+                            });
+                            $wire.updateCourseOrdering(orderedIds);
+                        }
+                    });
+                }
+            }
+        }" 
+        x-init="initSortable()">
             
-            @if($courses->hasPages())
-                <div class="pagination-container">
-                    {{ $courses->links() }}
+            <div class="theme-table-pink">
+                <div class="overflow-x-auto">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class="text-center w-16">STT</th>
+
+                                <th class="text-center w-30">Lớp học</th>
+                                <th class="text-center hidden sm:table-cell">Mô tả</th>
+                                <th class="text-center">Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody id="sortable-courses">
+                            @forelse ($courses as $course)
+                                <tr wire:key="course-{{ $course->id }}" data-id="{{ $course->id }}" class="table-row ">
+                                    <td class="table-cell text-center drag-handle cursor-move w-16">
+                                        {{ $course->ordering }}
+                                    </td>
+
+                                    <td class="table-cell whitespace-nowrap text-center w-30">
+                                        {{ $course->name }}
+                                    </td>
+                                    <td class="table-cell hidden sm:table-cell">
+                                        {{ $course->description }}
+                                    </td>
+                                    <td class="table-cell text-center">
+                                        <div class="flex items-center justify-center gap-2">
+                                            <flux:button size="sm" variant="primary" icon="square-pen"
+                                                wire:click="editCourse({{ $course->id }})" class="cursor-pointer">
+                                                Sửa
+                                            </flux:button>
+                                            <flux:button size="sm" variant="danger" icon="trash"
+                                                wire:click="deleteCourse({{ $course->id }})" class="cursor-pointer">
+                                                Xóa
+                                            </flux:button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="5" class="table-cell">
+                                        <div class="empty-state flex flex-col items-center">
+                                            <flux:icon.academic-cap class="w-8 h-8 mb-2" />
+                                            <div class="text-sm">Không có Lớp học nào</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
                 </div>
-            @endif
+                
+                @if($courses->hasPages())
+                    <div class="pagination-container">
+                        {{ $courses->links() }}
+                    </div>
+                @endif
+            </div>
         </div>
     </div>
 </div>

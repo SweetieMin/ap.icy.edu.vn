@@ -2,39 +2,71 @@
 
 namespace App\Repositories\Eloquent;
 
-use App\Repositories\Contracts\CourseRepositoryInterface;
 use App\Models\Course;
+use App\Support\Course\CourseHelper;
+use App\Repositories\Contracts\CourseRepositoryInterface;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 class CourseRepository implements CourseRepositoryInterface
 {
     public function getAll(int $perPage = 10): LengthAwarePaginator
     {
-        return Course::paginate($perPage);
+        return Course::with(['location', 'season', 'subject'])
+            ->orderBy('ordering')
+            ->paginate($perPage);
     }
 
     public function getCoursesBySeasonAndProgram(int $seasonId, int $programId)
     {
         return Course::where('season_id', $seasonId)
-            ->where('program_id', $programId)
-            ->with(['program', 'season'])
+            ->whereHas('subject', function($query) use ($programId) {
+                $query->where('program_id', $programId);
+            })
+            ->with(['location', 'season', 'subject'])
             ->get();
     }
 
     public function getCourseById(int $id)
     {
-        return Course::with(['program', 'season'])->find($id);
+        return Course::with(['location', 'season', 'subject'])->find($id);
     }
 
     public function getAvailableCoursesForStudent(int $studentId, int $seasonId, int $programId)
     {
         return Course::where('season_id', $seasonId)
-            ->where('program_id', $programId)
-            ->whereDoesntHave('tuitions', function($query) use ($studentId) {
-                $query->where('user_id', $studentId)
-                      ->where('status', 'paid');
+            ->whereHas('subject', function($query) use ($programId) {
+                $query->where('program_id', $programId);
             })
-            ->with(['program', 'season'])
+            ->with(['location', 'season', 'subject'])
             ->get();
+    }
+
+    public function create(array $data)
+    {
+        $course = Course::create($data);
+        CourseHelper::updateCourseOrdering();
+        return $course;
+    }
+
+    public function update(int $id, array $data)
+    {
+        $course = Course::findOrFail($id);
+        $course->update($data);
+        CourseHelper::updateCourseOrdering();
+        return $course;
+    }
+
+    public function delete(int $id)
+    {
+        $course = Course::findOrFail($id);
+        $course->delete();
+        return $course->delete();
+    }
+
+    public function updateOrdering(array $orderedIds): void
+    {
+        foreach ($orderedIds as $index => $id) {
+            Course::where('id', $id)->update(['ordering' => $index + 1]);
+        }
     }
 }
