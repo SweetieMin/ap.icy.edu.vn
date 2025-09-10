@@ -1,36 +1,31 @@
 <div class="relative mb-4 w-full">
 
     {{-- Header Section --}}
-    <div class="bg-gray-900 dark:bg-gray-900 rounded-2xl p-8 mb-8 shadow-2xl">
+    <div class="theme-header-pink">
         <div class="flex items-center justify-between">
-            <div class="text-white">
+            <div class="header-content">
                 <div class="flex items-center space-x-3 mb-2">
-                    <div class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center">
-                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
-                        </svg>
+                    <div class="header-icon">
+                        <flux:icon.book-open class="size-12" />
                     </div>
                     <div>
-                        <h1 class="text-3xl font-bold">Môn học</h1>
-                        <p class="text-white text-sm">Quản lý các môn học trong hệ thống</p>
+                        <h1 class="header-title">Môn học</h1>
+                        <p class="header-subtitle">Quản lý các môn học trong hệ thống</p>
                     </div>
                 </div>
-                <div class="flex items-center space-x-2 text-sm text-white">
-                    <a href="{{ route('dashboard') }}" class="hover:text-white transition-colors">Bảng điều khiển</a>
-                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                <div class="header-breadcrumbs">
+                    <a href="{{ route('dashboard') }}">Bảng điều khiển</a>
+                    <svg fill="currentColor" viewBox="0 0 20 20">
                         <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
                     </svg>
                     <span>Các môn học</span>
                 </div>
             </div>
             <div class="flex items-center space-x-3">
-                <div class="bg-white/10 backdrop-blur-sm rounded-xl px-4 py-2">
-                    <span class="text-white text-sm font-medium">
-                        {{ $subjects->total() ?? 0 }} môn học
-                    </span>
+                <div class="header-counter">
+                    <span>{{ $subjects->total() ?? 0 }} môn học</span>
                 </div>
-                <button wire:click="addSubject" 
-                    class="bg-white text-gray-900 hover:bg-gray-100 px-6 py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center space-x-2">
+                <button wire:click="addSubject" class="header-button">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
                     </svg>
@@ -74,17 +69,17 @@
             <div class="flex flex-col lg:flex-row gap-8">
                 {{-- Enhanced Sidebar with programs --}}
                 <div class="lg:w-80 flex-shrink-0" wire:key="programs-sidebar">
-                    <div class="bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 shadow-xl overflow-hidden">
-                        <div class="bg-gray-800 dark:bg-gray-800 px-6 py-4">
+                    <div class="bg-white dark:bg-zinc-800 rounded-2xl border border-zinc-200 dark:border-zinc-700 shadow-xl overflow-hidden">
+                        <div class="bg-pink-100 dark:bg-zinc-800 px-6 py-4">
                             <div class="flex items-center space-x-3">
-                                <div class="w-8 h-8 bg-white/20 rounded-lg flex items-center justify-center">
-                                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <div class="w-8 h-8 bg-pink-200 dark:bg-pink-800/30 rounded-lg flex items-center justify-center">
+                                    <svg class="w-4 h-4 text-pink-600 dark:text-pink-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
                                     </svg>
                                 </div>
                                 <div>
-                                    <h3 class="text-lg font-bold text-white">Chương trình</h3>
-                                    <p class="text-white text-xs">{{ $programs->count() }} chương trình</p>
+                                    <h3 class="text-lg font-bold text-pink-600 dark:text-pink-400">Chương trình</h3>
+                                    <p class="text-pink-600 dark:text-pink-400 text-xs">{{ $programs->count() }} chương trình</p>
                                 </div>
                             </div>
                         </div>
@@ -93,10 +88,10 @@
                                 @forelse ($programs as $program)
                                     <div wire:key="program-{{ $program->id }}" class="group">
                                         <button wire:click="selectProgram({{ $program->id }})"
-                                            class="w-full text-left px-4 py-3 rounded-xl text-sm transition-all duration-300 transform hover:scale-[1.02] {{ (int) $selectedProgramId === (int) $program->id ? 'bg-gray-700 dark:bg-gray-700 text-pink-500 shadow-lg' : 'text-white dark:text-white hover:bg-gray-800 dark:hover:bg-gray-800 border border-transparent hover:border-gray-600 dark:hover:border-gray-600' }}">
+                                            class="w-full text-left px-4 py-3 rounded-xl text-sm transition-all duration-300 transform hover:scale-[1.02] {{ (int) $selectedProgramId === (int) $program->id ? 'bg-pink-50 dark:bg-pink-900/20 text-pink-600 dark:text-pink-400 border border-pink-200 dark:border-pink-800 shadow-lg' : 'text-zinc-600 dark:text-zinc-400 hover:text-pink-600 dark:hover:text-pink-400 hover:bg-pink-100 dark:hover:bg-zinc-800 border border-transparent hover:border-zinc-200 dark:hover:border-zinc-700' }}">
                                             <div class="flex items-center space-x-3">
-                                                <div class="w-8 h-8 rounded-lg flex items-center justify-center {{ (int) $selectedProgramId === (int) $program->id ? 'bg-white/20' : 'bg-gray-700 dark:bg-gray-700' }}">
-                                                    <svg class="w-4 h-4 {{ (int) $selectedProgramId === (int) $program->id ? 'text-pink-500' : 'text-white dark:text-white' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <div class="w-8 h-8 rounded-lg flex items-center justify-center {{ (int) $selectedProgramId === (int) $program->id ? 'bg-pink-100 dark:bg-pink-800/30' : 'bg-zinc-200 dark:bg-zinc-700' }}">
+                                                    <svg class="w-4 h-4 {{ (int) $selectedProgramId === (int) $program->id ? 'text-pink-600 dark:text-pink-400' : 'text-zinc-600 dark:text-zinc-400' }}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
                                                     </svg>
                                                 </div>
@@ -107,19 +102,19 @@
                                                     @endif
                                                 </div>
                                                 @if((int) $selectedProgramId === (int) $program->id)
-                                                    <div class="w-2 h-2 bg-white rounded-full"></div>
+                                                    <div class="w-2 h-2 bg-pink-400 dark:bg-pink-800/30 rounded-full"></div>
                                                 @endif
                                             </div>
                                         </button>
                                     </div>
                                 @empty
                                     <div class="text-center py-8">
-                                        <div class="w-16 h-16 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center mx-auto mb-3">
+                                        <div class="w-16 h-16 bg-zinc-100 dark:bg-zinc-800 rounded-full flex items-center justify-center mx-auto mb-3">
                                             <svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
                                             </svg>
                                         </div>
-                                        <p class="text-sm text-gray-500 dark:text-gray-400">Không có chương trình nào</p>
+                                        <p class="text-sm text-zinc-500 dark:text-zinc-400">Không có chương trình nào</p>
                                     </div>
                                 @endforelse
                             </div>
@@ -135,24 +130,24 @@
                     <div id="sortable-subject" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6" wire:key="subjects-grid-{{ $selectedProgramId }}">
                         @forelse ($subjects as $subject)
                             <div wire:key="subject-{{ $subject->id }}" data-id="{{ $subject->id }}"
-                                class="group bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-[1.02] cursor-move drag-handle overflow-hidden">
+                                class="group bg-white dark:bg-zinc-900 rounded-2xl border border-zinc-200 dark:border-zinc-700 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-[1.02] cursor-move drag-handle overflow-hidden">
                                 
                                 {{-- Card Header --}}
-                                <div class="bg-gray-800 dark:bg-gray-800 p-4">
+                                <div class="bg-pink-100 dark:bg-zinc-800 p-4">
                                     <div class="flex items-center justify-between">
                                         <div class="flex items-center space-x-3">
-                                            <div class="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center">
-                                                <span class="text-white font-bold text-lg">{{ $subject->ordering }}</span>
+                                            <div class="w-10 h-10 bg-pink-200 dark:bg-pink-800/30 rounded-xl flex items-center justify-center">
+                                                <span class="text-pink-600 dark:text-pink-400 font-bold text-lg">{{ $subject->ordering }}</span>
                                             </div>
                                             <div>
-                                                <h3 class="text-lg font-bold text-white truncate">{{ $subject->name }}</h3>
+                                                <h3 class="text-lg font-bold text-pink-600 dark:text-pink-400 truncate">{{ $subject->name }}</h3>
                                                 @if($subject->code)
-                                                    <p class="text-white text-sm">{{ $subject->code }}</p>
+                                                    <p class="text-pink-600 dark:text-pink-400 text-sm">{{ $subject->code }}</p>
                                                 @endif
                                             </div>
                                         </div>
                                         <div class="flex items-center space-x-2">
-                                            <svg class="w-5 h-5 text-white/80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <svg class="w-5 h-5 text-pink-600 dark:text-pink-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16"></path>
                                             </svg>
                                         </div>
@@ -163,17 +158,17 @@
                                 <div class="p-6">
                                     @if($subject->description)
                                         <div class="mb-4">
-                                            <p class="text-gray-600 dark:text-gray-300 text-sm line-clamp-3">
+                                            <p class="text-zinc-600 dark:text-zinc-300 text-sm line-clamp-3">
                                                 {{ $subject->description }}
                                             </p>
                                         </div>
                                     @endif
 
                                     {{-- Actions --}}
-                                    <div class="flex items-center justify-between pt-4 border-t border-gray-100 dark:border-gray-800">
+                                    <div class="flex items-center justify-between pt-4 border-t border-zinc-100 dark:border-zinc-700">
                                         <div class="flex items-center space-x-2">
-                                            <div class="w-2 h-2 bg-green-500 rounded-full"></div>
-                                            <span class="text-xs text-gray-500 dark:text-gray-400">Hoạt động</span>
+                                            <div class="w-2 h-2 bg-pink-400 rounded-full"></div>
+                                            <span class="text-xs text-zinc-500 dark:text-zinc-400">Hoạt động</span>
                                         </div>
                                         <div class="flex items-center space-x-2">
                                             <button wire:click="editSubject({{ $subject->id }})"
@@ -194,16 +189,16 @@
                             </div>
                         @empty
                             <div class="col-span-full">
-                                <div class="bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 shadow-lg p-12 text-center">
-                                    <div class="w-24 h-24 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center mx-auto mb-6">
+                                <div class="bg-white dark:bg-zinc-900 rounded-2xl border border-zinc-200 dark:border-zinc-700 shadow-lg p-12 text-center">
+                                    <div class="w-24 h-24 bg-zinc-100 dark:bg-zinc-800 rounded-full flex items-center justify-center mx-auto mb-6">
                                         <svg class="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
                                         </svg>
                                     </div>
-                                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">Chưa có môn học nào</h3>
-                                    <p class="text-gray-500 dark:text-gray-400 mb-6">Hãy thêm môn học đầu tiên cho chương trình này</p>
+                                    <h3 class="text-xl font-semibold text-zinc-900 dark:text-white mb-2">Chưa có môn học nào</h3>
+                                    <p class="text-zinc-500 dark:text-zinc-400 mb-6">Hãy thêm môn học đầu tiên cho chương trình này</p>
                                     <button wire:click="addSubject" 
-                                        class="bg-gray-800 dark:bg-gray-800 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center space-x-2 mx-auto">
+                                        class="bg-zinc-800 dark:bg-zinc-800 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center space-x-2 mx-auto">
                                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
                                         </svg>
@@ -217,7 +212,7 @@
                     {{-- Pagination --}}
                     @if ($subjects->hasPages())
                         <div class="mt-8 flex justify-center" wire:key="pagination-{{ $selectedProgramId }}">
-                            <div class="bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 shadow-lg p-4">
+                            <div class="bg-white dark:bg-zinc-900 rounded-2xl border border-zinc-200 dark:border-zinc-700 shadow-lg p-4">
                                 {{ $subjects->links() }}
                             </div>
                         </div>

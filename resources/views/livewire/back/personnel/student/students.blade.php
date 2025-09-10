@@ -1,80 +1,92 @@
 <div class="relative mb-4 w-full">
 
+    {{-- Header Section --}}
+    <div class="theme-header-pink">
+        <div class="flex items-center justify-between">
+            <div class="header-content">
+                <div class="flex items-center space-x-3 mb-2">
+                    <div class="header-icon">
+                        <flux:icon.academic-cap class="size-12" />
+                    </div>
+                    <div>
+                        <h1 class="header-title">Học viên</h1>
+                        <p class="header-subtitle">Quản lý thông tin học viên trong hệ thống</p>
+                    </div>
+                </div>
+                <div class="header-breadcrumbs">
+                    <a href="{{ route('dashboard') }}">Bảng điều khiển</a>
+                    <svg fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+                    </svg>
+                    <span>Danh sách học viên</span>
+                </div>
+            </div>
+            <div class="flex items-center space-x-3">
+                <div class="header-counter">
+                    <span>{{ $students->count() }} học viên</span>
+                </div>
+                <div class="flex gap-2">
+                    <a href="/admin/finance/tuitions-payment" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg font-medium transition-all duration-300 flex items-center space-x-2">
+                        <flux:icon.credit-card class="w-4 h-4" />
+                        <span>Thanh toán học phí</span>
+                    </a>
+                    <button wire:click="addStudent()" class="header-button">
+                        <flux:icon.plus class="w-5 h-5" />
+                        <span>Thêm học viên</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <livewire:back.personnel.student.actions-student />
 
-    <div class="flex items-center justify-between mb-6">
-        <div>
-            <flux:heading size="xl" level="1">{{ __('Học viên') }}</flux:heading>
-            <flux:breadcrumbs class="mt-2">
-                <flux:breadcrumbs.item href="{{ route('dashboard') }}">Bảng điều khiển</flux:breadcrumbs.item>
-                <flux:breadcrumbs.item>Danh sách học viên</flux:breadcrumbs.item>
-            </flux:breadcrumbs>
-        </div>
-
-        <div class="flex items-center gap-3">
-            <flux:button href="/admin/finance/tuitions-payment" color="green" variant="primary" icon="credit-card" class="cursor-pointer">Thanh toán học phí</flux:button>
-            <flux:button wire:click="addStudent()" icon="plus-circle" class="cursor-pointer">Thêm học viên</flux:button>
-        </div>
-
-    </div>
-
-    <flux:separator variant="subtle" />
-
-    <div class="mt-4 mb-4">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
-            <div>
-                <flux:input wire:model.live="search" placeholder="Tìm theo họ và tên hoặc Account code..."
-                    icon="magnifying-glass" class="w-full" clearable />
-            </div>
-            @if ($locations->count() > 1)
+    <!-- Bộ lọc -->
+    <div class="theme-card-pink mt-4 mb-4">
+        <div class="p-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
                 <div>
-                    <flux:select wire:model.live="filterLocationId" placeholder="Lọc theo cơ sở">
-                        <flux:select.option :value='null' label="Tất cả cơ sở" />
-                        @foreach ($locations as $location)
-                            <flux:select.option :value="$location->id" label="{{ $location->name }}" />
-                        @endforeach
-                    </flux:select>
+                    <label class="card-label">Tìm kiếm</label>
+                    <input type="text" wire:model.live="search" placeholder="Tìm theo họ và tên hoặc Account code..."
+                        class="card-input">
                 </div>
-            @endif
+                @if ($locations->count() > 1)
+                    <div>
+                        <label class="card-label">Cơ sở</label>
+                        <select wire:model.live="filterLocationId" class="card-input">
+                            <option value="">Tất cả cơ sở</option>
+                            @foreach ($locations as $location)
+                                <option value="{{ $location->id }}">{{ $location->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                @endif
+            </div>
         </div>
     </div>
 
-
-    <flux:separator variant="subtle" />
 
     <div class="mt-6">
-        <div
-            class="bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-800 overflow-hidden shadow-sm">
-            <div class="overflow-x-auto">
-                <table class="w-full divide-y divide-gray-200 dark:divide-gray-800">
-                    <thead class="bg-gray-50 dark:bg-gray-800">
-                        <tr>
-                            <th
-                                class="px-3 py-3 text-center text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider w-16">
-                                STT</th>
-                            <th
-                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider">
-                                Họ và tên</th>
-                            <th
-                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider hidden md:table-cell">
-                                Số điện thoại</th>
-                            <th
-                                class="px-6 py-3 text-center text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider">
-                                Cơ sở</th>
-                            <th
-                                class="px-6 py-3 text-center text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider">
-                                Thao tác</th>
-                        </tr>
-                    </thead>
-                    <tbody class="bg-white dark:bg-gray-900 divide-y divide-gray-200 dark:divide-gray-800">
+        <div class="table-full-width">
+            <div class="theme-table-pink">
+                <div class="overflow-x-auto">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class="text-center w-16">STT</th>
+                                <th>Họ và tên</th>
+                                <th class="hidden md:table-cell">Số điện thoại</th>
+                                <th class="text-center">Cơ sở</th>
+                                <th class="text-center">Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody>
                         @forelse ($students as $index => $student)
-                            <tr wire:key="student-{{ $student->id }}"
-                                class="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors duration-200">
-                                <td
-                                    class="px-3 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100 text-center font-medium">
+                            <tr wire:key="student-{{ $student->id }}">
+                                <td class="text-center font-medium">
                                     {{ $loop->iteration }}
                                 </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100">
+                                <td>
                                     <div class="flex items-center gap-3">
                                         <img class="h-8 w-8 rounded-full object-cover"
                                             src="{{ $student->detail?->avatar ?? asset('images/default-avatar.png') }}"
@@ -86,11 +98,10 @@
                                         </div>
                                     </div>
                                 </td>
-                                <td
-                                    class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-300 hidden md:table-cell">
+                                <td class="hidden md:table-cell">
                                     {{ $student->detail?->phone ?? 'Chưa cập nhật' }}
                                 </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-center">
+                                <td class="text-center">
                                     @if ($student->locations->count() > 0)
                                         @foreach ($student->locations as $location)
                                             <flux:badge color="blue" size="sm" class="mb-1">
@@ -104,7 +115,7 @@
                                         <span class="text-gray-500 dark:text-gray-400 text-xs">Chưa có cơ sở</span>
                                     @endif
                                 </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-center">
+                                <td class="text-center">
                                     <div class="flex items-center justify-center gap-2">
                                         <flux:button size="sm" variant="primary" icon="pencil"
                                             wire:click="editStudent({{ $student->id }})" class="cursor-pointer">
@@ -120,13 +131,15 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="5" class="px-6 py-8 text-center text-gray-500 dark:text-gray-400">
-                                    <div class="flex flex-col items-center">
-                                        <flux:icon.users class="w-8 h-8 text-gray-400 dark:text-gray-600 mb-2" />
-                                        <div class="text-sm">Không có học viên nào</div>
-                                        <div class="text-xs text-gray-400 dark:text-gray-500 mt-1">
+                                <td colspan="5" class="text-center py-12">
+                                    <div class="empty-state flex flex-col items-center">
+                                        <flux:icon.academic-cap class="w-12 h-12 mb-4" />
+                                        <h3 class="text-lg font-medium mb-2">
+                                            Không có học viên nào
+                                        </h3>
+                                        <p>
                                             Hiện tại không có học viên nào trong các cơ sở của bạn
-                                        </div>
+                                        </p>
                                     </div>
                                 </td>
                             </tr>
@@ -136,10 +149,11 @@
             </div>
             {{-- Pagination if needed --}}
             {{-- @if ($students->hasPages())
-                <div class="px-6 py-4 border-t border-gray-200 dark:border-gray-800">
+                <div class="pagination-container">
                     {{ $students->links() }}
                 </div>
             @endif --}}
+            </div>
         </div>
     </div>
 

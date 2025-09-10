@@ -68,8 +68,6 @@ $strokeWidth = match ($variant) {
     aria-hidden="true"
     data-slot="icon"
 >
-  <path d="M11.5 15H7a4 4 0 0 0-4 4v2" />
-  <path d="M21.378 16.626a1 1 0 0 0-3.004-3.004l-4.01 4.012a2 2 0 0 0-.506.854l-.837 2.87a.5.5 0 0 0 .62.62l2.87-.837a2 2 0 0 0 .854-.506z" />
-  <circle cx="10" cy="7" r="4" />
+  <path d="M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z" />
 </svg>
-<?php /**PATH /Users/smyth/Herd/ap.icy.edu.vn/resources/views/flux/icon/user-pen.blade.php ENDPATH**/ ?>
+<?php /**PATH /Users/smyth/Herd/ap.icy.edu.vn/resources/views/flux/icon/shirt.blade.php ENDPATH**/ ?>

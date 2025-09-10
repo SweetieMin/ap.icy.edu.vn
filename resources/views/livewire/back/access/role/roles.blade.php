@@ -1,15 +1,36 @@
 <div class="relative mb-4 w-full">
 
-    <div class="flex items-center justify-between mb-6">
-        <div>
-            <flux:heading size="xl" level="1">{{ __('Vai trò ') }}</flux:heading>
-            <flux:breadcrumbs class="mt-2">
-                <flux:breadcrumbs.item href="{{ route('dashboard') }}">Bảng điều khiển</flux:breadcrumbs.item>
-                <flux:breadcrumbs.item>Vai trò</flux:breadcrumbs.item>
-            </flux:breadcrumbs>
+    {{-- Header Section --}}
+    <div class="theme-header-pink">
+        <div class="flex items-center justify-between">
+            <div class="header-content">
+                <div class="flex items-center space-x-3 mb-2">
+                    <div class="header-icon">
+                        <flux:icon.user-lock class="size-12" />
+                    </div>
+                    <div>
+                        <h1 class="header-title">Vai trò</h1>
+                        <p class="header-subtitle">Quản lý vai trò và quyền hạn trong hệ thống</p>
+                    </div>
+                </div>
+                <div class="header-breadcrumbs">
+                    <a href="{{ route('dashboard') }}">Bảng điều khiển</a>
+                    <svg fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+                    </svg>
+                    <span>Vai trò</span>
+                </div>
+            </div>
+            <div class="flex items-center space-x-3">
+                <div class="header-counter">
+                    <span>{{ $roles->count() }} vai trò</span>
+                </div>
+                <button wire:click='addRole' class="header-button">
+                    <flux:icon.plus class="w-5 h-5" />
+                    <span>Thêm vai trò</span>
+                </button>
+            </div>
         </div>
-
-        <flux:button wire:click='addRole' icon="plus-circle" class="cursor-pointer">Thêm vai trò</flux:button>
     </div>
 
     <flux:separator variant="subtle" />
@@ -18,40 +39,41 @@
 
     {{-- Main content area --}}
     <div class="mt-6">
-        <div class="bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-800 overflow-hidden shadow-sm">
-            <div class="overflow-x-auto">
-                <table class="w-full divide-y divide-gray-200 dark:divide-gray-800">
-                    <thead class="bg-gray-50 dark:bg-gray-800">
-                        <tr>
-                            <th class="px-3 py-3 text-center text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider w-16">ID</th>
-                            <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider ">Tên vai trò</th>
-                            <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider hidden sm:table-cell">Mô tả</th>
-                            <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider">Loại</th>
-                            <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider hidden sm:table-cell">Người tạo</th>
-                            <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider">Thao tác</th>
-                        </tr>
-                    </thead>
-                    <tbody class="bg-white dark:bg-gray-900 divide-y divide-gray-200 dark:divide-gray-800">
+        <div class="table-full-width">
+            <div class="theme-table-pink">
+                <div class="overflow-x-auto">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class="text-center w-16">ID</th>
+                                <th>Tên vai trò</th>
+                                <th class="hidden sm:table-cell">Mô tả</th>
+                                <th class="text-center">Loại</th>
+                                <th class="text-center hidden sm:table-cell">Người tạo</th>
+                                <th class="text-center">Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody>
                         @forelse ($roles as $role)
-                            <tr wire:key="role-{{ $role->id }}" class="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors duration-200">
-                                <td class="px-3 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100 text-center font-medium">
+                            <tr wire:key="role-{{ $role->id }}">
+                                <td class="text-center font-medium">
                                     {{ $role->id }}
                                 </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100 ">
+                                <td>
                                     {{ $role->name }}
                                 </td>
-                                <td class="px-6 py-4 text-sm text-gray-900 dark:text-gray-100 hidden sm:table-cell">
+                                <td class="hidden sm:table-cell">
                                     {{ Str::limit($role->description, 70) }}
                                 </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-center">
+                                <td class="text-center">
                                     <flux:badge variant="solid" color="{{ $role->type === 'system' ? 'green' : 'zinc' }}">
                                         {{ $role->type }}
                                     </flux:badge>
                                 </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100 text-center hidden sm:table-cell">
+                                <td class="text-center hidden sm:table-cell">
                                     {{ $role->createdBy->name ?? 'Hệ thống' }}
                                 </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-center">
+                                <td class="text-center">
                                     @if ($role->type === 'custom')
                                     <div class="flex items-center justify-center gap-2">
                                         <flux:button size="sm" variant="primary" icon="square-pen"
@@ -68,10 +90,15 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="6" class="px-6 py-8 text-center text-gray-500 dark:text-gray-400">
-                                    <div class="flex flex-col items-center">
-                                        <x-flux::icon.user-lock class="w-8 h-8 text-gray-400 dark:text-gray-600 mb-2" />
-                                        <div class="text-sm">Không có vai trò nào</div>
+                                <td colspan="6" class="text-center py-12">
+                                    <div class="empty-state flex flex-col items-center">
+                                        <flux:icon.user-lock class="w-12 h-12 mb-4" />
+                                        <h3 class="text-lg font-medium mb-2">
+                                            Không có vai trò nào
+                                        </h3>
+                                        <p>
+                                            Chưa có vai trò nào được tạo trong hệ thống
+                                        </p>
                                     </div>
                                 </td>
                             </tr>
@@ -81,10 +108,11 @@
             </div>
             
             @if($roles->hasPages())
-                <div class="px-6 py-4 border-t border-gray-200 dark:border-gray-800">
+                <div class="pagination-container">
                     {{ $roles->links() }}
                 </div>
             @endif
+            </div>
         </div>
     </div>
 </div>

@@ -1,6 +1,47 @@
-<div class=" h-full">
+<div class="relative mb-4 w-full">
 
-
+    {{-- Header Section --}}
+    <div class="theme-header-pink">
+        <div class="flex items-center justify-between">
+            <div class="header-content">
+                <div class="flex items-center space-x-3 mb-2">
+                    <div class="header-icon">
+                        <flux:icon.credit-card class="size-12" />
+                    </div>
+                    <div>
+                        <h1 class="header-title">Thanh toán học phí</h1>
+                        <p class="header-subtitle">Quản lý thanh toán học phí cho học sinh</p>
+                    </div>
+                </div>
+                <div class="header-breadcrumbs">
+                    <a href="{{ route('dashboard') }}">Bảng điều khiển</a>
+                    <svg fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd"
+                            d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                            clip-rule="evenodd"></path>
+                    </svg>
+                    <span>Thanh toán học phí</span>
+                </div>
+            </div>
+            <div class="flex items-center space-x-3">
+                <div class="header-counter">
+                    <span>{{ count($selectedItems) }} mục đã chọn</span>
+                </div>
+                <div class="flex gap-2">
+                    <button wire:click="mainMenuQRCode"
+                        class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg font-medium transition-all duration-300 flex items-center space-x-2">
+                        <flux:icon.qr-code class="w-4 h-4" />
+                        <span>Main Menu QR</span>
+                    </button>
+                    <button wire:click="turnOffQRCode"
+                        class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg font-medium transition-all duration-300 flex items-center space-x-2">
+                        <flux:icon.x-mark class="w-4 h-4" />
+                        <span>Turn Off QR</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     @if (session()->has('error'))
         <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4 mx-6 mt-4">
@@ -16,46 +57,45 @@
     @endif
 
 
-        <div class="flex items-center justify-start ml-6 gap-2">
-            <flux:button icon="bookmark-square" wire:click="mainMenuQRCode" color="green" variant="primary">
-                Main Menu QR
-            </flux:button>
-            <flux:button icon="bookmark-slash" wire:click="turnOffQRCode" color="red" variant="primary">
-                Turn Off QR
-            </flux:button>
-        </div>
-
-
     {{-- Main Content --}}
-    <div class="p-6">
-        
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 h-full">
 
-            {{-- Left Side - Programs and Selection --}}
-            <div class="lg:col-span-2 space-y-4 flex flex-col">
 
-                {{-- Program Search Section --}}
-                <div class="bg-white dark:bg-gray-800 rounded-lg p-4 shadow-sm flex-shrink-0">
-                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4 flex items-center">
-                        📚 Tìm kiếm chương trình
-                    </h3>
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 h-full">
+
+        {{-- Left Side - Programs and Selection --}}
+        <div class="lg:col-span-2 space-y-4 flex flex-col">
+
+            {{-- Program Search Section --}}
+            <div class="theme-card-pink flex-shrink-0">
+                <div class="card-header">
+                    <div class="flex items-center space-x-3">
+                        <div
+                            class="w-8 h-8 bg-pink-200 dark:bg-pink-800/30 rounded-lg flex items-center justify-center">
+                            <flux:icon.magnifying-glass class="w-4 h-4 text-pink-600 dark:text-pink-400" />
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold text-pink-600 dark:text-pink-400">Tìm kiếm chương trình</h3>
+                            <p class="text-pink-600 dark:text-pink-400 text-xs">Tìm và chọn chương trình học</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-6">
 
                     {{-- Search Program and Uniform Button --}}
                     <div class="mb-4 flex gap-3">
                         {{-- Search Program --}}
                         <div class="flex-1">
                             <input type="text" wire:model.live="searchProgram" clearable
-                                wire:focus="onProgramSearchFocus"
-                                wire:blur="onProgramSearchBlur"
-                                placeholder="Tìm kiếm chương trình theo tên..."
-                                class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300">
+                                wire:focus="onProgramSearchFocus" wire:blur="onProgramSearchBlur"
+                                placeholder="Tìm kiếm chương trình theo tên..." class="card-input">
                         </div>
-                        
+
                         {{-- Uniform Button --}}
                         <div class="w-1/5">
                             <button wire:click="addUniform"
                                 class="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-4 rounded-lg transition-all duration-300 flex items-center justify-center">
-                                👕 Thêm đồng phục
+                                <flux:icon.shirt class="w-4 h-4 mr-2" />
+                                Thêm đồng phục
                             </button>
                         </div>
                     </div>
@@ -65,7 +105,8 @@
                         {{-- Chưa chọn học sinh --}}
                         <div class="text-center py-8">
                             <div class="text-gray-500 dark:text-gray-400 text-lg">Vui lòng chọn học sinh trước</div>
-                            <div class="text-gray-400 dark:text-gray-500 text-sm mt-1">Sau khi chọn học sinh, danh sách chương trình sẽ hiển thị</div>
+                            <div class="text-gray-400 dark:text-gray-500 text-sm mt-1">Sau khi chọn học sinh, danh sách
+                                chương trình sẽ hiển thị</div>
                         </div>
                     @elseif (count($filteredPrograms) > 0)
                         <div class="max-h-64 overflow-y-auto space-y-2">
@@ -82,14 +123,15 @@
                                                 @php
                                                     $locationId = $selectedStudent['location_id'] ?? null;
                                                     if ($locationId) {
-                                                        $price = app(\App\Repositories\Contracts\ProgramLocationPriceRepositoryInterface::class)
-                                                            ->getPriceByProgramAndLocation($program['id'], $locationId);
+                                                        $price = app(
+                                                            \App\Repositories\Contracts\ProgramLocationPriceRepositoryInterface::class,
+                                                        )->getPriceByProgramAndLocation($program['id'], $locationId);
                                                         $displayPrice = $price ? $price->price : 0;
                                                     } else {
                                                         $displayPrice = 0;
                                                     }
                                                 @endphp
-                                                @if($displayPrice > 0)
+                                                @if ($displayPrice > 0)
                                                     {{ number_format($displayPrice, 0, ',', '.') }} VNĐ
                                                 @else
                                                     Chưa có giá
@@ -132,13 +174,23 @@
                         </div>
                     @endif
                 </div>
+            </div>
 
-                {{-- Selected Items Section --}}
-                <div class="bg-white dark:bg-gray-800 rounded-lg p-4 shadow-sm flex-1 flex flex-col">
-                    <h3
-                        class="text-lg font-semibold text-gray-900 dark:text-white mb-4 flex items-center flex-shrink-0">
-                        🛒 Đơn hàng đã chọn
-                    </h3>
+            {{-- Selected Items Section --}}
+            <div class="theme-card-pink flex-1 flex flex-col">
+                <div class="card-header">
+                    <div class="flex items-center space-x-3">
+                        <div
+                            class="w-8 h-8 bg-pink-200 dark:bg-pink-800/30 rounded-lg flex items-center justify-center">
+                            <flux:icon.shopping-cart class="w-4 h-4 text-pink-600 dark:text-pink-400" />
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold text-pink-600 dark:text-pink-400">Đơn hàng đã chọn</h3>
+                            <p class="text-pink-600 dark:text-pink-400 text-xs">Danh sách chương trình đã chọn</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-6 flex-1 flex flex-col">
 
                     @if (count($selectedItems) > 0)
                         <div class="space-y-2 overflow-y-auto flex-1">
@@ -171,7 +223,8 @@
                                         {{-- Season Selection --}}
                                         <div class="w-32">
                                             @if ($item['type'] === 'uniform')
-                                                <div class="w-full px-2 py-1 text-xs text-gray-500 dark:text-gray-400 text-center">
+                                                <div
+                                                    class="w-full px-2 py-1 text-xs text-gray-500 dark:text-gray-400 text-center">
                                                     --
                                                 </div>
                                             @else
@@ -246,12 +299,22 @@
                     @endif
                 </div>
             </div>
+        </div>
 
-            {{-- Right Side - Payment --}}
-            <div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm flex flex-col h-full">
-                <h2 class="text-xl font-semibold text-gray-900 dark:text-white mb-6 flex items-center flex-shrink-0">
-                    💳 Thanh toán
-                </h2>
+        {{-- Right Side - Payment --}}
+        <div class="theme-card-pink flex flex-col h-full">
+            <div class="card-header">
+                <div class="flex items-center space-x-3">
+                    <div class="w-8 h-8 bg-pink-200 dark:bg-pink-800/30 rounded-lg flex items-center justify-center">
+                        <flux:icon.credit-card class="w-4 h-4 text-pink-600 dark:text-pink-400" />
+                    </div>
+                    <div>
+                        <h2 class="text-xl font-bold text-pink-600 dark:text-pink-400">Thanh toán</h2>
+                        <p class="text-pink-600 dark:text-pink-400 text-xs">Xử lý thanh toán học phí</p>
+                    </div>
+                </div>
+            </div>
+            <div class="p-6 flex flex-col h-full">
 
                 {{-- Student Selection --}}
                 <div class="mb-6 flex-shrink-0">
@@ -292,8 +355,7 @@
                         {{-- Student Search --}}
                         <div class="space-y-3">
                             <input type="text" wire:model.live="searchStudent"
-                                placeholder="Tìm kiếm học sinh theo tên hoặc mã số..."
-                                class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300">
+                                placeholder="Tìm kiếm học sinh theo tên hoặc mã số..." class="card-input">
 
                             {{-- Students List --}}
                             @if (count($filteredStudents) > 0)
@@ -397,8 +459,7 @@
                 <div class="mb-6">
                     <label class="block text-gray-700 dark:text-gray-300 font-medium mb-3">💳 Phương thức thanh
                         toán</label>
-                    <select wire:model="paymentMethod" wire:change="paymentMethodChanged"
-                        class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300">
+                    <select wire:model="paymentMethod" wire:change="paymentMethodChanged" class="card-input">
                         <option value="cash">💵 Tiền mặt</option>
                         <option value="bank_transfer">🏦 Chuyển khoản</option>
                     </select>
@@ -413,7 +474,8 @@
                             @foreach ($banks as $bank)
                                 <label
                                     class="flex items-center p-3 rounded-lg cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200 {{ $selectedBankId == $bank['id'] ? 'bg-blue-50 dark:bg-blue-900/20' : '' }}">
-                                    <input type="radio" wire:model="selectedBankId" value="{{ $bank['id'] }}" wire:change="selectedBankChanged"
+                                    <input type="radio" wire:model="selectedBankId" value="{{ $bank['id'] }}"
+                                        wire:change="selectedBankChanged"
                                         class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                                     <div class="ml-3 flex-1">
                                         <div class="flex items-center justify-between">
@@ -443,8 +505,7 @@
                 {{-- Note --}}
                 <div class="mb-6">
                     <label class="block text-gray-700 dark:text-gray-300 font-medium mb-3">📝 Ghi chú</label>
-                    <textarea wire:model="note" rows="3" placeholder="Nhập ghi chú (tùy chọn)..."
-                        class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300 resize-none"></textarea>
+                    <textarea wire:model="note" rows="3" placeholder="Nhập ghi chú (tùy chọn)..." class="card-input resize-none"></textarea>
                 </div>
 
                 {{-- Action Buttons --}}
@@ -473,123 +534,103 @@
         </div>
     </div>
 
-        {{-- Transaction History Section - Separate from payment section --}}
-        @if ($selectedStudent)
-        <div class="mt-8 bg-white dark:bg-gray-800 rounded-lg p-4 shadow-sm flex-shrink-0">
-            <div class="bg-white dark:bg-gray-800 rounded-lg p-6">
-                <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-6 flex items-center">
-                    <svg class="w-5 h-5 mr-2 text-blue-600 dark:text-blue-400" fill="currentColor" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd"
-                            d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-                            clip-rule="evenodd"></path>
-                    </svg>
-                    📋 Lịch sử giao dịch của {{ $selectedStudent['name'] }}
-                </h3>
+    {{-- Transaction History Section - Separate from payment section --}}
+    @if ($selectedStudent)
+        <div class="mt-8 theme-card-pink flex-shrink-0">
+            <div class="card-header">
+                <div class="flex items-center space-x-3">
+                    <div class="w-8 h-8 bg-pink-200 dark:bg-pink-800/30 rounded-lg flex items-center justify-center">
+                        <flux:icon.document-text class="w-4 h-4 text-pink-600 dark:text-pink-400" />
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-pink-600 dark:text-pink-400">Lịch sử giao dịch</h3>
+                        <p class="text-pink-600 dark:text-pink-400 text-xs">Lịch sử giao dịch của
+                            {{ $selectedStudent['name'] }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="p-6">
 
                 @if (count($transactionHistory) > 0)
-                    <div class="overflow-x-auto">
-                        <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-600">
-                            <thead class="bg-gray-50 dark:bg-gray-700">
-                                <tr>
-                                    <th
-                                        class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
-                                        Chương trình
-                                    </th>
-                                    <th
-                                        class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
-                                        Mùa học
-                                    </th>
-                                    <th
-                                        class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
-                                        Số tiền
-                                    </th>
-                                    <th
-                                        class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
-                                        Phương thức
-                                    </th>
-                                    <th
-                                        class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
-                                        Trạng thái
-                                    </th>
-                                    <th
-                                        class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
-                                        Ngày tạo
-                                    </th>
-                                    <th
-                                        class="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
-                                        QR thanh toán
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-600">
-                                @foreach ($transactionHistory as $transaction)
-                                    <tr class="hover:bg-gray-50 dark:hover:bg-gray-700">
-                                        <td class="px-4 py-3 text-sm text-gray-900 dark:text-white">
-                                            {{ $transaction['program']['name'] ?? 'Đồng phục' }}
-                                        </td>
-                                        <td class="px-4 py-3 text-sm text-gray-900 dark:text-white">
-                                            {{ $transaction['season']['name'] ?? '--' }}
-                                        </td>
-                                        <td class="px-4 py-3 text-sm font-medium text-gray-900 dark:text-white">
-                                            {{ number_format($transaction['price'], 0, ',', '.') }} VNĐ
-                                        </td>
-                                        <td class="px-4 py-3 text-sm text-gray-900 dark:text-white">
-                                            @if ($transaction['payment_method'] === 'cash')
-                                                <span
-                                                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
-                                                    💵 Tiền mặt
-                                                </span>
-                                            @else
-                                                <span
-                                                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200">
-                                                    🏦 Chuyển khoản
-                                                </span>
-                                            @endif
-                                        </td>
-                                        <td class="px-4 py-3 text-sm">
-                                            @if ($transaction['status'] === 'pending')
-                                                <span
-                                                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200">
-                                                    ⏳ Chờ xử lý
-                                                </span>
-                                            @elseif($transaction['status'] === 'paid')
-                                                <span
-                                                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
-                                                    ✅ Hoàn thành
-                                                </span>
-                                            @else
-                                                <span
-                                                    class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200">
-                                                    ❌ Hủy bỏ
-                                                </span>
-                                            @endif
-                                        </td>
-                                        <td class="px-4 py-3 text-sm text-gray-500 dark:text-gray-400">
-                                            {{ $transaction['created_at_formatted'] }}
-                                        </td>
-                                        <td class="px-4 py-3 text-sm text-gray-500 dark:text-gray-400">
-                                            @if ($transaction['payment_method'] === 'bank_transfer')
-                                                <flux:button size="sm" variant="primary" icon="qr-code"
-                                                    wire:click="showQrCode({{ $transaction['id'] }})"
-                                                    class="cursor-pointer">
-                                                    QR Code
-                                                </flux:button>
-                                            @endif
-                                        </td>
+                    <div class="table-full-width">
+                        <div class="theme-table-pink">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Chương trình</th>
+                                        <th>Mùa học</th>
+                                        <th>Số tiền</th>
+                                        <th>Phương thức</th>
+                                        <th>Trạng thái</th>
+                                        <th>Ngày tạo</th>
+                                        <th>QR thanh toán</th>
                                     </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                    @foreach ($transactionHistory as $transaction)
+                                        <tr>
+                                            <td>
+                                                {{ $transaction['program']['name'] ?? 'Đồng phục' }}
+                                            </td>
+                                            <td>
+                                                {{ $transaction['season']['name'] ?? '--' }}
+                                            </td>
+                                            <td>
+                                                {{ number_format($transaction['price'], 0, ',', '.') }} VNĐ
+                                            </td>
+                                            <td>
+                                                @if ($transaction['payment_method'] === 'cash')
+                                                    <span
+                                                        class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
+                                                        💵 Tiền mặt
+                                                    </span>
+                                                @else
+                                                    <span
+                                                        class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200">
+                                                        🏦 Chuyển khoản
+                                                    </span>
+                                                @endif
+                                            </td>
+                                            <td>
+                                                @if ($transaction['status'] === 'pending')
+                                                    <span
+                                                        class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200">
+                                                        ⏳ Chờ xử lý
+                                                    </span>
+                                                @elseif($transaction['status'] === 'paid')
+                                                    <span
+                                                        class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
+                                                        ✅ Hoàn thành
+                                                    </span>
+                                                @else
+                                                    <span
+                                                        class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200">
+                                                        ❌ Hủy bỏ
+                                                    </span>
+                                                @endif
+                                            </td>
+                                            <td>
+                                                {{ $transaction['created_at_formatted'] }}
+                                            </td>
+                                            <td>
+                                                @if ($transaction['payment_method'] === 'bank_transfer' && $transaction['status'] !== 'paid')
+                                                    <flux:button size="sm" variant="primary" icon="qr-code"
+                                                        wire:click="showQrCode({{ $transaction['id'] }})"
+                                                        class="cursor-pointer">
+                                                        QR Code
+                                                    </flux:button>
+                                                @endif
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 @else
                     <div class="text-center py-2">
                         <div class="text-gray-500 dark:text-gray-400">
-                            <svg class="w-12 h-12 mx-auto mb-4 text-gray-400" fill="none" stroke="currentColor"
-                                viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
-                                </path>
-                            </svg>
+                            <flux:icon.document-text class="w-12 h-12 mx-auto mb-4 text-gray-400" />
                             <p class="text-lg font-medium">Chưa có giao dịch nào</p>
                             <p class="text-sm">Học sinh này chưa có lịch sử giao dịch nào trong hệ thống.</p>
                         </div>
@@ -620,6 +661,5 @@
         document.addEventListener('turnOffQRCode', function() {
             window.serialPortManager.turnOffQRCode();
         });
-
     </script>
 @endpush

@@ -1,249 +1,154 @@
 <div class="relative mb-4 w-full">
 
-    <div class="flex items-center justify-between mb-6">
-        <div>
-            <?php if (isset($component)) { $__componentOriginale0fd5b6a0986beffac17a0a103dfd7b9 = $component; } ?>
-<?php if (isset($attributes)) { $__attributesOriginale0fd5b6a0986beffac17a0a103dfd7b9 = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::heading','data' => ['size' => 'xl','level' => '1']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
-<?php $component->withName('flux::heading'); ?>
+    
+    <div class="theme-header-pink">
+        <div class="flex items-center justify-between">
+            <div class="header-content">
+                <div class="flex items-center space-x-3 mb-2">
+                    <div class="header-icon">
+                        <?php if (isset($component)) { $__componentOriginal970eea507e21d10a438cf9d4525d45dc = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal970eea507e21d10a438cf9d4525d45dc = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::icon.currency-dollar','data' => ['class' => 'size-12']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('flux::icon.currency-dollar'); ?>
 <?php if ($component->shouldRender()): ?>
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>
 <?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
-<?php $component->withAttributes(['size' => 'xl','level' => '1']); ?>💰 Quản lý giá tiền chương trình <?php echo $__env->renderComponent(); ?>
-<?php endif; ?>
-<?php if (isset($__attributesOriginale0fd5b6a0986beffac17a0a103dfd7b9)): ?>
-<?php $attributes = $__attributesOriginale0fd5b6a0986beffac17a0a103dfd7b9; ?>
-<?php unset($__attributesOriginale0fd5b6a0986beffac17a0a103dfd7b9); ?>
-<?php endif; ?>
-<?php if (isset($__componentOriginale0fd5b6a0986beffac17a0a103dfd7b9)): ?>
-<?php $component = $__componentOriginale0fd5b6a0986beffac17a0a103dfd7b9; ?>
-<?php unset($__componentOriginale0fd5b6a0986beffac17a0a103dfd7b9); ?>
-<?php endif; ?>
-            <?php if (isset($component)) { $__componentOriginalbbbea167ab072e3e3621cf7b736152aa = $component; } ?>
-<?php if (isset($attributes)) { $__attributesOriginalbbbea167ab072e3e3621cf7b736152aa = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::breadcrumbs.index','data' => ['class' => 'mt-2']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
-<?php $component->withName('flux::breadcrumbs'); ?>
-<?php if ($component->shouldRender()): ?>
-<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
-<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
-<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
-<?php endif; ?>
-<?php $component->withAttributes(['class' => 'mt-2']); ?>
-                <?php if (isset($component)) { $__componentOriginalced986e8ff6641d3797206c3198c2b83 = $component; } ?>
-<?php if (isset($attributes)) { $__attributesOriginalced986e8ff6641d3797206c3198c2b83 = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::breadcrumbs.item','data' => ['href' => ''.e(route('dashboard')).'']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
-<?php $component->withName('flux::breadcrumbs.item'); ?>
-<?php if ($component->shouldRender()): ?>
-<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
-<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
-<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
-<?php endif; ?>
-<?php $component->withAttributes(['href' => ''.e(route('dashboard')).'']); ?>Bảng điều khiển <?php echo $__env->renderComponent(); ?>
-<?php endif; ?>
-<?php if (isset($__attributesOriginalced986e8ff6641d3797206c3198c2b83)): ?>
-<?php $attributes = $__attributesOriginalced986e8ff6641d3797206c3198c2b83; ?>
-<?php unset($__attributesOriginalced986e8ff6641d3797206c3198c2b83); ?>
-<?php endif; ?>
-<?php if (isset($__componentOriginalced986e8ff6641d3797206c3198c2b83)): ?>
-<?php $component = $__componentOriginalced986e8ff6641d3797206c3198c2b83; ?>
-<?php unset($__componentOriginalced986e8ff6641d3797206c3198c2b83); ?>
-<?php endif; ?>
-                <?php if (isset($component)) { $__componentOriginalced986e8ff6641d3797206c3198c2b83 = $component; } ?>
-<?php if (isset($attributes)) { $__attributesOriginalced986e8ff6641d3797206c3198c2b83 = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::breadcrumbs.item','data' => ['href' => ''.e(route('admin.management.programs')).'']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
-<?php $component->withName('flux::breadcrumbs.item'); ?>
-<?php if ($component->shouldRender()): ?>
-<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
-<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
-<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
-<?php endif; ?>
-<?php $component->withAttributes(['href' => ''.e(route('admin.management.programs')).'']); ?>Chương trình học <?php echo $__env->renderComponent(); ?>
-<?php endif; ?>
-<?php if (isset($__attributesOriginalced986e8ff6641d3797206c3198c2b83)): ?>
-<?php $attributes = $__attributesOriginalced986e8ff6641d3797206c3198c2b83; ?>
-<?php unset($__attributesOriginalced986e8ff6641d3797206c3198c2b83); ?>
-<?php endif; ?>
-<?php if (isset($__componentOriginalced986e8ff6641d3797206c3198c2b83)): ?>
-<?php $component = $__componentOriginalced986e8ff6641d3797206c3198c2b83; ?>
-<?php unset($__componentOriginalced986e8ff6641d3797206c3198c2b83); ?>
-<?php endif; ?>
-                <?php if (isset($component)) { $__componentOriginalced986e8ff6641d3797206c3198c2b83 = $component; } ?>
-<?php if (isset($attributes)) { $__attributesOriginalced986e8ff6641d3797206c3198c2b83 = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::breadcrumbs.item','data' => []] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
-<?php $component->withName('flux::breadcrumbs.item'); ?>
-<?php if ($component->shouldRender()): ?>
-<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
-<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
-<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
-<?php endif; ?>
-<?php $component->withAttributes([]); ?>Quản lý giá tiền <?php echo $__env->renderComponent(); ?>
-<?php endif; ?>
-<?php if (isset($__attributesOriginalced986e8ff6641d3797206c3198c2b83)): ?>
-<?php $attributes = $__attributesOriginalced986e8ff6641d3797206c3198c2b83; ?>
-<?php unset($__attributesOriginalced986e8ff6641d3797206c3198c2b83); ?>
-<?php endif; ?>
-<?php if (isset($__componentOriginalced986e8ff6641d3797206c3198c2b83)): ?>
-<?php $component = $__componentOriginalced986e8ff6641d3797206c3198c2b83; ?>
-<?php unset($__componentOriginalced986e8ff6641d3797206c3198c2b83); ?>
-<?php endif; ?>
-             <?php echo $__env->renderComponent(); ?>
-<?php endif; ?>
-<?php if (isset($__attributesOriginalbbbea167ab072e3e3621cf7b736152aa)): ?>
-<?php $attributes = $__attributesOriginalbbbea167ab072e3e3621cf7b736152aa; ?>
-<?php unset($__attributesOriginalbbbea167ab072e3e3621cf7b736152aa); ?>
-<?php endif; ?>
-<?php if (isset($__componentOriginalbbbea167ab072e3e3621cf7b736152aa)): ?>
-<?php $component = $__componentOriginalbbbea167ab072e3e3621cf7b736152aa; ?>
-<?php unset($__componentOriginalbbbea167ab072e3e3621cf7b736152aa); ?>
-<?php endif; ?>
-        </div>
-
-        <div class="flex gap-3">
-            <!--[if BLOCK]><![endif]--><?php if(!$bulkUpdateMode): ?>
-                <?php if (isset($component)) { $__componentOriginalc04b147acd0e65cc1a77f86fb0e81580 = $component; } ?>
-<?php if (isset($attributes)) { $__attributesOriginalc04b147acd0e65cc1a77f86fb0e81580 = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::button.index','data' => ['wire:click' => 'toggleBulkUpdate','variant' => 'primary','class' => 'cursor-pointer']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
-<?php $component->withName('flux::button'); ?>
-<?php if ($component->shouldRender()): ?>
-<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
-<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
-<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
-<?php endif; ?>
-<?php $component->withAttributes(['wire:click' => 'toggleBulkUpdate','variant' => 'primary','class' => 'cursor-pointer']); ?>
-                    Chỉnh sửa hàng loạt
-                 <?php echo $__env->renderComponent(); ?>
-<?php endif; ?>
-<?php if (isset($__attributesOriginalc04b147acd0e65cc1a77f86fb0e81580)): ?>
-<?php $attributes = $__attributesOriginalc04b147acd0e65cc1a77f86fb0e81580; ?>
-<?php unset($__attributesOriginalc04b147acd0e65cc1a77f86fb0e81580); ?>
-<?php endif; ?>
-<?php if (isset($__componentOriginalc04b147acd0e65cc1a77f86fb0e81580)): ?>
-<?php $component = $__componentOriginalc04b147acd0e65cc1a77f86fb0e81580; ?>
-<?php unset($__componentOriginalc04b147acd0e65cc1a77f86fb0e81580); ?>
-<?php endif; ?>
-            <?php else: ?>
-                <?php if (isset($component)) { $__componentOriginalc04b147acd0e65cc1a77f86fb0e81580 = $component; } ?>
-<?php if (isset($attributes)) { $__attributesOriginalc04b147acd0e65cc1a77f86fb0e81580 = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::button.index','data' => ['wire:click' => 'startBulkEdit','variant' => 'primary','class' => 'cursor-pointer']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
-<?php $component->withName('flux::button'); ?>
-<?php if ($component->shouldRender()): ?>
-<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
-<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
-<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
-<?php endif; ?>
-<?php $component->withAttributes(['wire:click' => 'startBulkEdit','variant' => 'primary','class' => 'cursor-pointer']); ?>
-                    Bắt đầu chỉnh sửa
-                 <?php echo $__env->renderComponent(); ?>
-<?php endif; ?>
-<?php if (isset($__attributesOriginalc04b147acd0e65cc1a77f86fb0e81580)): ?>
-<?php $attributes = $__attributesOriginalc04b147acd0e65cc1a77f86fb0e81580; ?>
-<?php unset($__attributesOriginalc04b147acd0e65cc1a77f86fb0e81580); ?>
-<?php endif; ?>
-<?php if (isset($__componentOriginalc04b147acd0e65cc1a77f86fb0e81580)): ?>
-<?php $component = $__componentOriginalc04b147acd0e65cc1a77f86fb0e81580; ?>
-<?php unset($__componentOriginalc04b147acd0e65cc1a77f86fb0e81580); ?>
-<?php endif; ?>
-                <?php if (isset($component)) { $__componentOriginalc04b147acd0e65cc1a77f86fb0e81580 = $component; } ?>
-<?php if (isset($attributes)) { $__attributesOriginalc04b147acd0e65cc1a77f86fb0e81580 = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::button.index','data' => ['wire:click' => 'saveBulkPrices','color' => 'green','variant' => 'primary','class' => 'cursor-pointer']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
-<?php $component->withName('flux::button'); ?>
-<?php if ($component->shouldRender()): ?>
-<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
-<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
-<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
-<?php endif; ?>
-<?php $component->withAttributes(['wire:click' => 'saveBulkPrices','color' => 'green','variant' => 'primary','class' => 'cursor-pointer']); ?>
-                    Lưu tất cả
-                 <?php echo $__env->renderComponent(); ?>
-<?php endif; ?>
-<?php if (isset($__attributesOriginalc04b147acd0e65cc1a77f86fb0e81580)): ?>
-<?php $attributes = $__attributesOriginalc04b147acd0e65cc1a77f86fb0e81580; ?>
-<?php unset($__attributesOriginalc04b147acd0e65cc1a77f86fb0e81580); ?>
-<?php endif; ?>
-<?php if (isset($__componentOriginalc04b147acd0e65cc1a77f86fb0e81580)): ?>
-<?php $component = $__componentOriginalc04b147acd0e65cc1a77f86fb0e81580; ?>
-<?php unset($__componentOriginalc04b147acd0e65cc1a77f86fb0e81580); ?>
-<?php endif; ?>
-                <?php if (isset($component)) { $__componentOriginalc04b147acd0e65cc1a77f86fb0e81580 = $component; } ?>
-<?php if (isset($attributes)) { $__attributesOriginalc04b147acd0e65cc1a77f86fb0e81580 = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::button.index','data' => ['wire:click' => 'toggleBulkUpdate','color' => 'red','variant' => 'primary','class' => 'cursor-pointer']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
-<?php $component->withName('flux::button'); ?>
-<?php if ($component->shouldRender()): ?>
-<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
-<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
-<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
-<?php endif; ?>
-<?php $component->withAttributes(['wire:click' => 'toggleBulkUpdate','color' => 'red','variant' => 'primary','class' => 'cursor-pointer']); ?>
-                    Hủy
-                 <?php echo $__env->renderComponent(); ?>
-<?php endif; ?>
-<?php if (isset($__attributesOriginalc04b147acd0e65cc1a77f86fb0e81580)): ?>
-<?php $attributes = $__attributesOriginalc04b147acd0e65cc1a77f86fb0e81580; ?>
-<?php unset($__attributesOriginalc04b147acd0e65cc1a77f86fb0e81580); ?>
-<?php endif; ?>
-<?php if (isset($__componentOriginalc04b147acd0e65cc1a77f86fb0e81580)): ?>
-<?php $component = $__componentOriginalc04b147acd0e65cc1a77f86fb0e81580; ?>
-<?php unset($__componentOriginalc04b147acd0e65cc1a77f86fb0e81580); ?>
-<?php endif; ?>
-            <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
-        </div>
-    </div>
-
-    <?php if (isset($component)) { $__componentOriginalc481942d30cc0ab06077963cf20a45e8 = $component; } ?>
-<?php if (isset($attributes)) { $__attributesOriginalc481942d30cc0ab06077963cf20a45e8 = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::separator','data' => ['variant' => 'subtle']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
-<?php $component->withName('flux::separator'); ?>
-<?php if ($component->shouldRender()): ?>
-<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
-<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
-<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
-<?php endif; ?>
-<?php $component->withAttributes(['variant' => 'subtle']); ?>
+<?php $component->withAttributes(['class' => 'size-12']); ?>
 <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
-<?php if (isset($__attributesOriginalc481942d30cc0ab06077963cf20a45e8)): ?>
-<?php $attributes = $__attributesOriginalc481942d30cc0ab06077963cf20a45e8; ?>
-<?php unset($__attributesOriginalc481942d30cc0ab06077963cf20a45e8); ?>
+<?php if (isset($__attributesOriginal970eea507e21d10a438cf9d4525d45dc)): ?>
+<?php $attributes = $__attributesOriginal970eea507e21d10a438cf9d4525d45dc; ?>
+<?php unset($__attributesOriginal970eea507e21d10a438cf9d4525d45dc); ?>
 <?php endif; ?>
-<?php if (isset($__componentOriginalc481942d30cc0ab06077963cf20a45e8)): ?>
-<?php $component = $__componentOriginalc481942d30cc0ab06077963cf20a45e8; ?>
-<?php unset($__componentOriginalc481942d30cc0ab06077963cf20a45e8); ?>
+<?php if (isset($__componentOriginal970eea507e21d10a438cf9d4525d45dc)): ?>
+<?php $component = $__componentOriginal970eea507e21d10a438cf9d4525d45dc; ?>
+<?php unset($__componentOriginal970eea507e21d10a438cf9d4525d45dc); ?>
 <?php endif; ?>
+                    </div>
+                    <div>
+                        <h1 class="header-title">Quản lý giá tiền chương trình</h1>
+                        <p class="header-subtitle">Quản lý giá tiền cho các chương trình học tại các cơ sở</p>
+                    </div>
+                </div>
+                <div class="header-breadcrumbs">
+                    <a href="<?php echo e(route('dashboard')); ?>">Bảng điều khiển</a>
+                    <svg fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+                    </svg>
+                    <a href="<?php echo e(route('admin.management.programs')); ?>">Chương trình học</a>
+                    <svg fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+                    </svg>
+                    <span>Quản lý giá tiền</span>
+                </div>
+            </div>
+            <div class="flex items-center space-x-3">
+                <div class="header-counter">
+                    <span><?php echo e($programs->count()); ?> chương trình × <?php echo e($locations->count()); ?> cơ sở</span>
+                </div>
+                <div class="flex gap-3">
+                    <!--[if BLOCK]><![endif]--><?php if(!$bulkUpdateMode): ?>
+                        <button wire:click="toggleBulkUpdate" class="header-button">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+                            </svg>
+                            <span>Chỉnh sửa hàng loạt</span>
+                        </button>
+                    <?php else: ?>
+                        <button wire:click="startBulkEdit" class="header-button">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+                            </svg>
+                            <span>Bắt đầu chỉnh sửa</span>
+                        </button>
+                        <button wire:click="saveBulkPrices" class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center space-x-2">
+                            <?php if (isset($component)) { $__componentOriginal9c2dfd6cb98f4df18e26d1694500af11 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal9c2dfd6cb98f4df18e26d1694500af11 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::icon.check','data' => ['class' => 'w-5 h-5']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('flux::icon.check'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['class' => 'w-5 h-5']); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal9c2dfd6cb98f4df18e26d1694500af11)): ?>
+<?php $attributes = $__attributesOriginal9c2dfd6cb98f4df18e26d1694500af11; ?>
+<?php unset($__attributesOriginal9c2dfd6cb98f4df18e26d1694500af11); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal9c2dfd6cb98f4df18e26d1694500af11)): ?>
+<?php $component = $__componentOriginal9c2dfd6cb98f4df18e26d1694500af11; ?>
+<?php unset($__componentOriginal9c2dfd6cb98f4df18e26d1694500af11); ?>
+<?php endif; ?>
+                            <span>Lưu tất cả</span>
+                        </button>
+                        <button wire:click="toggleBulkUpdate" class="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center space-x-2">
+                            <?php if (isset($component)) { $__componentOriginal155e76c41fe51242bc25d269fabf82f5 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal155e76c41fe51242bc25d269fabf82f5 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::icon.x-mark','data' => ['class' => 'w-5 h-5']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('flux::icon.x-mark'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['class' => 'w-5 h-5']); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal155e76c41fe51242bc25d269fabf82f5)): ?>
+<?php $attributes = $__attributesOriginal155e76c41fe51242bc25d269fabf82f5; ?>
+<?php unset($__attributesOriginal155e76c41fe51242bc25d269fabf82f5); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal155e76c41fe51242bc25d269fabf82f5)): ?>
+<?php $component = $__componentOriginal155e76c41fe51242bc25d269fabf82f5; ?>
+<?php unset($__componentOriginal155e76c41fe51242bc25d269fabf82f5); ?>
+<?php endif; ?>
+                            <span>Hủy</span>
+                        </button>
+                    <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                </div>
+            </div>
+        </div>
+    </div>
 
 
     <!-- Bảng quản lý giá tiền -->
     <div class="mt-6">
-        <div class="bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-800 overflow-hidden shadow-sm">
+        <div class="theme-table-pink">
             <div class="overflow-x-auto max-h-[calc(100vh-300px)]">
-                <table class="w-full divide-y divide-gray-200 dark:divide-gray-800">
-                    <thead class="bg-gray-50 dark:bg-gray-800 sticky top-0 z-10 shadow-sm">
+                <table>
+                    <thead class="sticky top-0 z-10">
                         <tr>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider bg-gray-50 dark:bg-gray-800">
+                            <th>
                                 Chương trình
                             </th>
                             <!--[if BLOCK]><![endif]--><?php $__currentLoopData = $locations; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $location): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                <th class="px-4 py-3 text-center text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider bg-gray-50 dark:bg-gray-800">
+                                <th class="text-center">
                                     <?php echo e($location->name); ?>
 
                                 </th>
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><!--[if ENDBLOCK]><![endif]-->
-                            <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider bg-gray-50 dark:bg-gray-800">
+                            <th class="text-center">
                                 Thao tác
                             </th>
                         </tr>
                     </thead>
-                    <tbody class="bg-white dark:bg-gray-900 divide-y divide-gray-200 dark:divide-gray-800">
+                    <tbody>
                         <!--[if BLOCK]><![endif]--><?php $__empty_1 = true; $__currentLoopData = $programs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $program): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
-                            <tr wire:key="program-<?php echo e($program->id); ?>" class="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors duration-200">
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100">
-                                    <div>
-                                        <div class="font-medium"><?php echo e($program->name); ?></div>
-                                        <div class="text-xs text-gray-500 dark:text-gray-400">
-                                            <?php echo e($program->english_name); ?>
+                            <tr wire:key="program-<?php echo e($program->id); ?>">
+                                <td class="whitespace-nowrap">
+                                    <div class="space-y-1">
+                                        <div class="font-semibold text-pink-900 dark:text-pink-100"><?php echo e($program->name); ?></div>
+                                        <!--[if BLOCK]><![endif]--><?php if($program->english_name): ?>
+                                            <div class="text-xs text-pink-600 dark:text-pink-400 font-medium bg-pink-50 dark:bg-pink-900/20 px-2 py-1 rounded-md inline-block">
+                                                <?php echo e($program->english_name); ?>
 
-                                        </div>
+                                            </div>
+                                        <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
                                     </div>
                                 </td>
                             
@@ -251,16 +156,14 @@
                                 <?php
                                     $price = $filteredPrices->where('program_id', $program->id)->where('location_id', $location->id)->first();
                                 ?>
-                                <td class="px-4 py-4 whitespace-nowrap text-center">
+                                <td class="whitespace-nowrap text-center">
                                     <!--[if BLOCK]><![endif]--><?php if($price): ?>
                                         <!--[if BLOCK]><![endif]--><?php if(isset($editingPrices[$price['id']])): ?>
                                             
-                                            <div class="flex items-center justify-center space-x-1">
-                                                <input type="number" 
-                                                    wire:model="editingPrices.<?php echo e($price['id']); ?>.price"
-                                                    class="w-24 px-2 py-1 text-xs border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-800 text-gray-900 dark:text-white text-center focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
-                                                <span class="text-xs text-gray-500 dark:text-gray-400">đ</span>
-                                            </div>
+                                            <input type="number" 
+                                                wire:model="editingPrices.<?php echo e($price['id']); ?>.price"
+                                                class="price-input"
+                                                placeholder="Nhập giá">
                                             <!--[if BLOCK]><![endif]--><?php $__errorArgs = ["editingPrices.{$price['id']}.price"];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -273,7 +176,7 @@ endif;
 unset($__errorArgs, $__bag); ?><!--[if ENDBLOCK]><![endif]-->
                                         <?php else: ?>
                                             
-                                            <div class="text-sm font-bold text-green-600 dark:text-green-400">
+                                            <div class="price-display">
                                                 <?php echo e(number_format($price['price'], 0, ',', '.')); ?> VNĐ
                                             </div>
                                         <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
@@ -285,13 +188,10 @@ unset($__errorArgs, $__bag); ?><!--[if ENDBLOCK]><![endif]-->
                                         
                                         <!--[if BLOCK]><![endif]--><?php if($isEditingProgram): ?>
                                             
-                                            <div class="flex items-center justify-center space-x-1">
-                                                <input type="number" 
-                                                    wire:model="newPrices.<?php echo e($program->id); ?>.<?php echo e($location->id); ?>"
-                                                    placeholder="0"
-                                                    class="w-24 px-2 py-1 text-xs border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-800 text-gray-900 dark:text-white text-center focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
-                                                <span class="text-xs text-gray-500 dark:text-gray-400">đ</span>
-                                            </div>
+                                            <input type="number" 
+                                                wire:model="newPrices.<?php echo e($program->id); ?>.<?php echo e($location->id); ?>"
+                                                placeholder="Nhập giá"
+                                                class="price-input">
                                             <!--[if BLOCK]><![endif]--><?php $__errorArgs = ["newPrices.{$program->id}.{$location->id}"];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -306,15 +206,15 @@ unset($__errorArgs, $__bag); ?><!--[if ENDBLOCK]><![endif]-->
                                             
                                             <button type="button"
                                                 wire:click="startProgramEdit(<?php echo e($program->id); ?>)"
-                                                class="text-xs text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200 underline">
-                                                Thêm giá
+                                                class="bg-pink-100 dark:bg-pink-900/20 hover:bg-pink-200 dark:hover:bg-pink-900/30 text-pink-700 dark:text-pink-300 text-xs font-medium px-3 py-2 rounded-lg border border-pink-200 dark:border-pink-800 transition-all duration-200 hover:scale-105">
+                                                + Thêm giá
                                             </button>
                                         <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
                                     <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
                                 </td>
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><!--[if ENDBLOCK]><![endif]-->
 
-                                <td class="px-6 py-4 whitespace-nowrap text-center">
+                                <td class="whitespace-nowrap text-center">
                                     <?php
                                         $programPrices = $filteredPrices->where('program_id', $program->id);
                                         $isEditing = $programPrices->whereIn('id', array_keys($editingPrices))->count() > 0;
@@ -394,11 +294,28 @@ unset($__errorArgs, $__bag); ?><!--[if ENDBLOCK]><![endif]-->
                         </tr>
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
                             <tr>
-                                <td colspan="<?php echo e(count($locations) + 2); ?>" class="px-6 py-8 text-center text-gray-500 dark:text-gray-400">
-                                    <div class="flex flex-col items-center">
-                                        <svg class="w-12 h-12 text-gray-400 dark:text-gray-600 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path>
-                                        </svg>
+                                <td colspan="<?php echo e(count($locations) + 2); ?>" class="table-cell">
+                                    <div class="empty-state flex flex-col items-center">
+                                        <?php if (isset($component)) { $__componentOriginal970eea507e21d10a438cf9d4525d45dc = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal970eea507e21d10a438cf9d4525d45dc = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::icon.currency-dollar','data' => ['class' => 'w-12 h-12 mb-4']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('flux::icon.currency-dollar'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['class' => 'w-12 h-12 mb-4']); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal970eea507e21d10a438cf9d4525d45dc)): ?>
+<?php $attributes = $__attributesOriginal970eea507e21d10a438cf9d4525d45dc; ?>
+<?php unset($__attributesOriginal970eea507e21d10a438cf9d4525d45dc); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal970eea507e21d10a438cf9d4525d45dc)): ?>
+<?php $component = $__componentOriginal970eea507e21d10a438cf9d4525d45dc; ?>
+<?php unset($__componentOriginal970eea507e21d10a438cf9d4525d45dc); ?>
+<?php endif; ?>
                                         <div class="text-lg font-medium">Không có dữ liệu chương trình</div>
                                         <div class="text-sm">Hãy thêm chương trình và chạy seeder</div>
                                     </div>
@@ -412,19 +329,51 @@ unset($__errorArgs, $__bag); ?><!--[if ENDBLOCK]><![endif]-->
 
     
     <!--[if BLOCK]><![endif]--><?php if($programs->count() > 0): ?>
-        <div class="mt-6 bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4">
-            <div class="flex items-center justify-between">
-                <div class="text-sm text-blue-800 dark:text-blue-200">
-                    <span class="font-medium">Tổng số chương trình:</span> <?php echo e($programs->count()); ?>
-
+        <div class="mt-6 theme-card-pink">
+            <div class="card-header">
+                <div class="flex items-center space-x-3">
+                    <div class="w-8 h-8 bg-pink-200 dark:bg-pink-800/30 rounded-lg flex items-center justify-center">
+                        <?php if (isset($component)) { $__componentOriginal82067727c95f13dc4198f80e35cb9c11 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal82067727c95f13dc4198f80e35cb9c11 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::icon.chart-bar','data' => ['class' => 'w-4 h-4 text-pink-600 dark:text-pink-400']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('flux::icon.chart-bar'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['class' => 'w-4 h-4 text-pink-600 dark:text-pink-400']); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal82067727c95f13dc4198f80e35cb9c11)): ?>
+<?php $attributes = $__attributesOriginal82067727c95f13dc4198f80e35cb9c11; ?>
+<?php unset($__attributesOriginal82067727c95f13dc4198f80e35cb9c11); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal82067727c95f13dc4198f80e35cb9c11)): ?>
+<?php $component = $__componentOriginal82067727c95f13dc4198f80e35cb9c11; ?>
+<?php unset($__componentOriginal82067727c95f13dc4198f80e35cb9c11); ?>
+<?php endif; ?>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-pink-600 dark:text-pink-400">Thống kê</h3>
+                        <p class="text-pink-600 dark:text-pink-400 text-xs">Tổng quan dữ liệu giá tiền</p>
+                    </div>
                 </div>
-                <div class="text-sm text-blue-800 dark:text-blue-200">
-                    <span class="font-medium">Tổng số cơ sở:</span> <?php echo e($locations->count()); ?>
-
-                </div>
-                <div class="text-sm text-blue-800 dark:text-blue-200">
-                    <span class="font-medium">Tổng bản ghi giá:</span> <?php echo e($filteredPrices->count()); ?>
-
+            </div>
+            <div class="p-6">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="text-center">
+                        <div class="text-2xl font-bold text-pink-600 dark:text-pink-400"><?php echo e($programs->count()); ?></div>
+                        <div class="text-sm text-zinc-600 dark:text-zinc-400">Chương trình</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-2xl font-bold text-pink-600 dark:text-pink-400"><?php echo e($locations->count()); ?></div>
+                        <div class="text-sm text-zinc-600 dark:text-zinc-400">Cơ sở</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-2xl font-bold text-pink-600 dark:text-pink-400"><?php echo e($filteredPrices->count()); ?></div>
+                        <div class="text-sm text-zinc-600 dark:text-zinc-400">Bản ghi giá</div>
+                    </div>
                 </div>
             </div>
         </div>

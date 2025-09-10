@@ -14,6 +14,7 @@
             'outline' => '[:where(&)]:size-6',
             'mini' => '[:where(&)]:size-5',
             'micro' => '[:where(&)]:size-4',
+            'large' => '[:where(&)]:size-12',
             default => '[:where(&)]:size-6',
         },
     );
@@ -22,6 +23,7 @@
         'outline' => 2,
         'mini' => 2.25,
         'micro' => 2.5,
+        'large' => 1.5,
         default => 2,
     };
 @endphp

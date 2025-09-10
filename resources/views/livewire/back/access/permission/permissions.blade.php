@@ -1,15 +1,36 @@
 <div class="relative mb-4 w-full">
 
-    <div class="flex items-center justify-between mb-6">
-        <div>
-            <flux:heading size="xl" level="1">{{ __('Permission') }}</flux:heading>
-            <flux:breadcrumbs class="mt-2">
-                <flux:breadcrumbs.item href="{{ route('dashboard') }}">Bảng điều khiển</flux:breadcrumbs.item>
-                <flux:breadcrumbs.item>Permission</flux:breadcrumbs.item>
-            </flux:breadcrumbs>
+    {{-- Header Section --}}
+    <div class="theme-header-pink">
+        <div class="flex items-center justify-between">
+            <div class="header-content">
+                <div class="flex items-center space-x-3 mb-2">
+                    <div class="header-icon">
+                        <flux:icon.shield-check class="size-12" />
+                    </div>
+                    <div>
+                        <h1 class="header-title">Quyền hạn</h1>
+                        <p class="header-subtitle">Quản lý quyền hạn và phân quyền trong hệ thống</p>
+                    </div>
+                </div>
+                <div class="header-breadcrumbs">
+                    <a href="{{ route('dashboard') }}">Bảng điều khiển</a>
+                    <svg fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+                    </svg>
+                    <span>Quyền hạn</span>
+                </div>
+            </div>
+            <div class="flex items-center space-x-3">
+                <div class="header-counter">
+                    <span>{{ $permissions->count() }} quyền hạn</span>
+                </div>
+                <button wire:click='addPermission' class="header-button">
+                    <flux:icon.plus class="w-5 h-5" />
+                    <span>Thêm quyền hạn</span>
+                </button>
+            </div>
         </div>
-
-        <flux:button wire:click='addPermission' icon="plus-circle" class="cursor-pointer">Thêm Permission</flux:button>
     </div>
 
     <flux:separator variant="subtle" />
@@ -18,32 +39,33 @@
 
     {{-- Main content area --}}
     <div class="mt-6">
-        <div class="bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-800 overflow-hidden shadow-sm">
-            <div class="overflow-x-auto">
-                <table class="w-full divide-y divide-gray-200 dark:divide-gray-800">
-                    <thead class="bg-gray-50 dark:bg-gray-800">
-                        <tr>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider">Router</th>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider">Tên hiển thị</th>
-                            <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider">Hiển thị</th>
-                            <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider">Thao tác</th>
-                        </tr>
-                    </thead>
-                    <tbody class="bg-white dark:bg-gray-900 divide-y divide-gray-200 dark:divide-gray-800">
+        <div class="table-full-width">
+            <div class="theme-table-pink">
+                <div class="overflow-x-auto">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Router</th>
+                                <th>Tên hiển thị</th>
+                                <th class="text-center">Hiển thị</th>
+                                <th class="text-center">Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody>
                         @forelse ($permissions as $permission)
-                            <tr wire:key="permission-{{ $permission->id }}" class="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors duration-200">
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100">
+                            <tr wire:key="permission-{{ $permission->id }}">
+                                <td>
                                     {{ $permission->router }}
                                 </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100">
+                                <td>
                                     {{ $permission->displayName }}
                                 </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-center">
+                                <td class="text-center">
                                     <flux:badge variant="solid" color="{{ $permission->isShow ? 'green' : 'zinc' }}">
                                         {{ $permission->isShow ? 'Có' : 'Không' }}
                                     </flux:badge>
                                 </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-center">
+                                <td class="text-center">
                                     <div class="flex items-center justify-center gap-2">
                                         <flux:button size="sm" variant="primary" icon="square-pen"
                                             wire:click="editPermission({{ $permission->id }})" class="cursor-pointer">
@@ -58,10 +80,15 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="5" class="px-6 py-8 text-center text-gray-500 dark:text-gray-400">
-                                    <div class="flex flex-col items-center">
-                                        <x-flux::icon.shield-check class="w-8 h-8 text-gray-400 dark:text-gray-600 mb-2" />
-                                        <div class="text-sm">Không có permission nào</div>
+                                <td colspan="4" class="text-center py-12">
+                                    <div class="empty-state flex flex-col items-center">
+                                        <flux:icon.shield-check class="w-12 h-12 mb-4" />
+                                        <h3 class="text-lg font-medium mb-2">
+                                            Không có quyền hạn nào
+                                        </h3>
+                                        <p>
+                                            Chưa có quyền hạn nào được tạo trong hệ thống
+                                        </p>
                                     </div>
                                 </td>
                             </tr>
@@ -71,10 +98,11 @@
             </div>
             
             @if($permissions->hasPages())
-                <div class="px-6 py-4 border-t border-gray-200 dark:border-gray-800">
+                <div class="pagination-container">
                     {{ $permissions->links() }}
                 </div>
             @endif
+            </div>
         </div>
     </div>
 </div>

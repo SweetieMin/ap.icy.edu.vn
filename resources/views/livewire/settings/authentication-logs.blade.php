@@ -5,162 +5,164 @@
         <!-- Statistics Cards -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
             <!-- Total Logins -->
-            <div class="bg-white dark:bg-gray-900 rounded-2xl shadow-xl border-0 overflow-hidden backdrop-blur-sm p-6">
-                <div class="flex items-center">
-                    <div class="flex-shrink-0">
-                        <div
-                            class="w-12 h-12 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center">
-                            <svg class="w-6 h-6 text-green-600 dark:text-green-400" fill="none" stroke="currentColor"
-                                viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                            </svg>
+            <div class="theme-card-pink">
+                <div class="card-header">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-8 h-8 bg-pink-200 dark:bg-pink-800/30 rounded-lg flex items-center justify-center">
+                            <flux:icon.check-circle class="w-4 h-4 text-pink-600 dark:text-pink-400" />
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold text-pink-600 dark:text-pink-400">Đăng nhập thành công</h3>
+                            <p class="text-pink-600 dark:text-pink-400 text-xs">Số lần đăng nhập thành công</p>
                         </div>
                     </div>
-                    <div class="ml-4">
-                        <p class="text-sm font-medium text-gray-600 dark:text-gray-400">Đăng nhập thành công</p>
-                        <p class="text-2xl font-bold text-gray-900 dark:text-white">{{ $stats['total_logins'] }}</p>
+                </div>
+                <div class="p-6">
+                    <div class="text-center">
+                        <div class="text-4xl font-bold text-pink-600 dark:text-pink-400 mb-2">{{ $stats['total_logins'] }}</div>
                     </div>
                 </div>
             </div>
 
             <!-- Failed Attempts -->
-            <div class="bg-white dark:bg-gray-900 rounded-2xl shadow-xl border-0 overflow-hidden backdrop-blur-sm p-6">
-                <div class="flex items-center">
-                    <div class="flex-shrink-0">
-                        <div
-                            class="w-12 h-12 bg-red-100 dark:bg-red-900/30 rounded-full flex items-center justify-center">
-                            <svg class="w-6 h-6 text-red-600 dark:text-red-400" fill="none" stroke="currentColor"
-                                viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z">
-                                </path>
-                            </svg>
+            <div class="theme-card-pink">
+                <div class="card-header">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-8 h-8 bg-pink-200 dark:bg-pink-800/30 rounded-lg flex items-center justify-center">
+                            <flux:icon.x-circle class="w-4 h-4 text-pink-600 dark:text-pink-400" />
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold text-pink-600 dark:text-pink-400">Thất bại</h3>
+                            <p class="text-pink-600 dark:text-pink-400 text-xs">Số lần đăng nhập thất bại</p>
                         </div>
                     </div>
-                    <div class="ml-4">
-                        <p class="text-sm font-medium text-gray-600 dark:text-gray-400">Thất bại</p>
-                        <p class="text-2xl font-bold text-gray-900 dark:text-white">{{ $stats['failed_attempts'] }}</p>
+                </div>
+                <div class="p-6">
+                    <div class="text-center">
+                        <div class="text-4xl font-bold text-pink-600 dark:text-pink-400 mb-2">{{ $stats['failed_attempts'] }}</div>
                     </div>
                 </div>
             </div>
 
             <!-- Unique Devices -->
-            <div class="bg-white dark:bg-gray-900 rounded-2xl shadow-xl border-0 overflow-hidden backdrop-blur-sm p-6">
-                <div class="flex items-center">
-                    <div class="flex-shrink-0">
-                        <div
-                            class="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center">
-                            <svg class="w-6 h-6 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor"
-                                viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z">
-                                </path>
-                            </svg>
+            <div class="theme-card-pink">
+                <div class="card-header">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-8 h-8 bg-pink-200 dark:bg-pink-800/30 rounded-lg flex items-center justify-center">
+                            <flux:icon.device-phone-mobile class="w-4 h-4 text-pink-600 dark:text-pink-400" />
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold text-pink-600 dark:text-pink-400">Thiết bị</h3>
+                            <p class="text-pink-600 dark:text-pink-400 text-xs">Số thiết bị đã sử dụng</p>
                         </div>
                     </div>
-                    <div class="ml-4">
-                        <p class="text-sm font-medium text-gray-600 dark:text-gray-400">Thiết bị</p>
-                        <p class="text-2xl font-bold text-gray-900 dark:text-white">{{ $stats['unique_devices'] }}</p>
+                </div>
+                <div class="p-6">
+                    <div class="text-center">
+                        <div class="text-4xl font-bold text-pink-600 dark:text-pink-400 mb-2">{{ $stats['unique_devices'] }}</div>
                     </div>
                 </div>
             </div>
 
             <!-- Unique IPs -->
-            <div class="bg-white dark:bg-gray-900 rounded-2xl shadow-xl border-0 overflow-hidden backdrop-blur-sm p-6">
-                <div class="flex items-center">
-                    <div class="flex-shrink-0">
-                        <div
-                            class="w-12 h-12 bg-purple-100 dark:bg-purple-900/30 rounded-full flex items-center justify-center">
-                            <svg viewBox="0 0 98 96" fill="none" xmlns="http://www.w3.org/2000/svg"
-                                class="w-7 h-7 text-purple-600 dark:text-purple-400">
-                                <g>
-                                    <circle cx="49" cy="42" r="28" stroke="currentColor"
-                                        stroke-width="3" />
-                                    <circle cx="49" cy="42" r="20" stroke="currentColor"
-                                        stroke-width="3" />
-                                    <path
-                                        d="M49 92c23-26 32-41 32-54 0-17.673-14.327-32-32-32S17 20.327 17 38c0 13 9 28 32 54z"
-                                        stroke="currentColor" stroke-width="3" fill="none" />
-                                    <text x="49" y="48" text-anchor="middle" font-size="14"
-                                        font-family="Arial, sans-serif" fill="currentColor" font-weight="bold"
-                                        dominant-baseline="middle">IP</text>
-                                </g>
-                            </svg>
+            <div class="theme-card-pink">
+                <div class="card-header">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-8 h-8 bg-pink-200 dark:bg-pink-800/30 rounded-lg flex items-center justify-center">
+                            <flux:icon.globe-alt class="w-4 h-4 text-pink-600 dark:text-pink-400" />
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold text-pink-600 dark:text-pink-400">Địa chỉ IP</h3>
+                            <p class="text-pink-600 dark:text-pink-400 text-xs">Số địa chỉ IP khác nhau</p>
                         </div>
                     </div>
-                    <div class="ml-4">
-                        <p class="text-sm font-medium text-gray-600 dark:text-gray-400">Địa chỉ IP</p>
-                        <p class="text-2xl font-bold text-gray-900 dark:text-white">{{ $stats['unique_ips'] }}</p>
+                </div>
+                <div class="p-6">
+                    <div class="text-center">
+                        <div class="text-4xl font-bold text-pink-600 dark:text-pink-400 mb-2">{{ $stats['unique_ips'] }}</div>
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- Filters -->
-        <div class="bg-white dark:bg-gray-900 rounded-2xl shadow-xl border-0 overflow-hidden backdrop-blur-sm p-6 mb-6">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <!-- Search -->
-                <div>
-                    <flux:input wire:model.live="search" :label="__('Tìm kiếm')" placeholder="IP, thiết bị, vị trí..."
-                        class="w-full rounded-xl border-gray-200 dark:border-gray-700 focus:border-pink-500 focus:ring-pink-500" />
+        <div class="theme-card-pink mb-6">
+            <div class="card-header">
+                <div class="flex items-center space-x-3">
+                    <div class="w-8 h-8 bg-pink-200 dark:bg-pink-800/30 rounded-lg flex items-center justify-center">
+                        <flux:icon.funnel class="w-4 h-4 text-pink-600 dark:text-pink-400" />
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-pink-600 dark:text-pink-400">Bộ lọc tìm kiếm</h3>
+                        <p class="text-pink-600 dark:text-pink-400 text-xs">Lọc và tìm kiếm nhật ký đăng nhập</p>
+                    </div>
                 </div>
+            </div>
+            <div class="p-6">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <!-- Search -->
+                    <div>
+                        <label class="card-label">Tìm kiếm</label>
+                        <input type="text" wire:model.live="search" placeholder="IP, thiết bị, vị trí..."
+                            class="card-input">
+                    </div>
 
-                <!-- Status Filter -->
-                <div>
-                    <flux:select wire:model.live="filterStatus" :label="__('Trạng thái')" class="w-full rounded-xl">
-                        <option value="">Tất cả</option>
-                        <option value="success">Thành công</option>
-                        <option value="failed">Thất bại</option>
-                        <option value="blocked">Bị chặn</option>
-                        <option value="logout">Đăng xuất</option>
-                    </flux:select>
-                </div>
+                    <!-- Status Filter -->
+                    <div>
+                        <label class="card-label">Trạng thái</label>
+                        <select wire:model.live="filterStatus" class="card-input">
+                            <option value="">Tất cả</option>
+                            <option value="success">Thành công</option>
+                            <option value="failed">Thất bại</option>
+                            <option value="blocked">Bị chặn</option>
+                            <option value="logout">Đăng xuất</option>
+                        </select>
+                    </div>
 
-                <!-- Days Filter -->
-                <div>
-                    <flux:select wire:model.live="filterDays" :label="__('Thời gian')" class="w-full rounded-xl">
-                        <option value="7">7 ngày qua</option>
-                        <option value="30">30 ngày qua</option>
-                        <option value="90">90 ngày qua</option>
-                        <option value="">Tất cả</option>
-                    </flux:select>
+                    <!-- Days Filter -->
+                    <div>
+                        <label class="card-label">Thời gian</label>
+                        <select wire:model.live="filterDays" class="card-input">
+                            <option value="7">7 ngày qua</option>
+                            <option value="30">30 ngày qua</option>
+                            <option value="90">90 ngày qua</option>
+                            <option value="">Tất cả</option>
+                        </select>
+                    </div>
                 </div>
             </div>
         </div>
 
         <!-- Logs Table -->
-        <div class="bg-white dark:bg-gray-900 rounded-2xl shadow-xl border-0 overflow-hidden backdrop-blur-sm">
-            <div class="overflow-x-auto">
-                <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-                    <thead class="bg-gray-50 dark:bg-gray-800">
-                        <tr>
-                            <th
-                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-                                Trạng thái
-                            </th>
-                            <th
-                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-                                Thời gian
-                            </th>
-                            <th
-                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-                                Địa chỉ IP
-                            </th>
-                            <th
-                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-                                Trình duyệt & Hệ điều hành
-                            </th>
-                            <th
-                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-                                Chi tiết
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody class="bg-white dark:bg-gray-900 divide-y divide-gray-200 dark:divide-gray-700">
+        <div class="theme-card-pink">
+            <div class="card-header">
+                <div class="flex items-center space-x-3">
+                    <div class="w-8 h-8 bg-pink-200 dark:bg-pink-800/30 rounded-lg flex items-center justify-center">
+                        <flux:icon.document-text class="w-4 h-4 text-pink-600 dark:text-pink-400" />
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-pink-600 dark:text-pink-400">Nhật ký đăng nhập</h3>
+                        <p class="text-pink-600 dark:text-pink-400 text-xs">Lịch sử hoạt động đăng nhập</p>
+                    </div>
+                </div>
+            </div>
+            <div class="table-full-width">
+                <div class="theme-table-pink">
+                    <div class="overflow-x-auto">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Trạng thái</th>
+                                    <th>Thời gian</th>
+                                    <th>Địa chỉ IP</th>
+                                    <th>Trình duyệt & Hệ điều hành</th>
+                                    <th>Chi tiết</th>
+                                </tr>
+                            </thead>
+                            <tbody>
                         @forelse($logs as $log)
-                            <tr class="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors duration-200">
-                                <td class="px-6 py-4 whitespace-nowrap">
+                            <tr>
+                                <td>
                                     @switch($log->status)
                                         @case('success')
                                             <span
@@ -211,70 +213,69 @@
                                         @break
                                     @endswitch
                                 </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-300">
+                                <td>
                                     <div>
                                         <div class="font-medium">{{ $log->login_at->format('d/m/Y H:i:s') }}</div>
                                         @if ($log->logout_at)
-                                            <div class="text-xs text-gray-500 dark:text-gray-400">
+                                            <div class="text-xs text-zinc-500 dark:text-zinc-400">
                                                 Đăng xuất: {{ $log->logout_at->format('H:i:s') }}
                                             </div>
                                         @endif
                                     </div>
                                 </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-300">
+                                <td>
                                     <div class="flex items-center">
                                         <span class="truncate max-w-[200px]" title="{{ $log->ip_address }}">{{ $log->ip_address }}</span>
                                     </div>
                                 </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-300">
+                                <td>
                                     <div class="flex items-center">
                                         <span class="truncate max-w-[200px]" title="{{ $log->device }}">{{ $log->device }}</span>
                                     </div>
                                 </td>
-                                <td class="px-6 py-4 text-sm text-gray-900 dark:text-gray-300">
+                                <td>
                                     @if ($log->failure_reason)
                                         @if(str_contains($log->failure_reason, 'Forced logout'))
                                             <span class="text-orange-600 dark:text-orange-400 flex items-center">
-                                                <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
-                                                    <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
-                                                </svg>
+                                                <flux:icon.exclamation-triangle class="w-4 h-4 mr-1" />
                                                 Đăng xuất tự động
                                             </span>
                                         @else
                                             <span class="text-red-600 dark:text-red-400">{{ $log->failure_reason }}</span>
                                         @endif
                                     @elseif($log->location)
-                                        <span class="text-gray-600 dark:text-gray-400">{{ $log->location }}</span>
+                                        <span class="text-zinc-600 dark:text-zinc-400">{{ $log->location }}</span>
                                     @else
-                                        <span class="text-gray-400">-</span>
+                                        <span class="text-zinc-400">-</span>
                                     @endif
                                 </td>
                             </tr>
                             @empty
                                 <tr>
-                                    <td colspan="5" class="px-6 py-12 text-center text-gray-500 dark:text-gray-400">
-                                        <svg class="w-12 h-12 mx-auto mb-4 text-gray-300 dark:text-gray-600"
-                                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
-                                            </path>
-                                        </svg>
-                                        <p class="text-lg font-medium mb-2">Không có nhật ký đăng nhập</p>
-                                        <p class="text-sm">Chưa có hoạt động đăng nhập nào được ghi lại với bộ lọc hiện
-                                            tại.</p>
+                                    <td colspan="5" class="text-center py-12">
+                                        <div class="empty-state flex flex-col items-center">
+                                            <flux:icon.document-text class="w-12 h-12 mb-4" />
+                                            <h3 class="text-lg font-medium mb-2">
+                                                Không có nhật ký đăng nhập
+                                            </h3>
+                                            <p>
+                                                Chưa có hoạt động đăng nhập nào được ghi lại với bộ lọc hiện tại.
+                                            </p>
+                                        </div>
                                     </td>
                                 </tr>
                             @endforelse
                         </tbody>
                     </table>
                 </div>
-
-                <!-- Pagination -->
-                @if ($logs->hasPages())
-                    <div class="px-6 py-4 border-t border-gray-200 dark:border-gray-700">
-                        {{ $logs->links() }}
-                    </div>
-                @endif
             </div>
+        </div>
+
+        <!-- Pagination -->
+        @if ($logs->hasPages())
+            <div class="pagination-container">
+                {{ $logs->links() }}
+            </div>
+        @endif
         </x-settings.layout>
     </section>

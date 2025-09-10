@@ -1,68 +1,76 @@
 <div class="relative mb-4 w-full">
 
-    <div class="flex items-center justify-between mb-6">
-        <div>
-            <flux:heading size="xl" level="1">{{ __('Tài khoản ngân hàng') }}</flux:heading>
-            <flux:breadcrumbs class="mt-2">
-                <flux:breadcrumbs.item href="{{ route('dashboard') }}">Bảng điều khiển</flux:breadcrumbs.item>
-                <flux:breadcrumbs.item>Tài khoản ngân hàng</flux:breadcrumbs.item>
-            </flux:breadcrumbs>
+    {{-- Header Section --}}
+    <div class="theme-header-pink">
+        <div class="flex items-center justify-between">
+            <div class="header-content">
+                <div class="flex items-center space-x-3 mb-2">
+                    <div class="header-icon">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h1 class="header-title">Tài khoản ngân hàng</h1>
+                        <p class="header-subtitle">Quản lý các tài khoản ngân hàng trong hệ thống</p>
+                    </div>
+                </div>
+                <div class="header-breadcrumbs">
+                    <a href="{{ route('dashboard') }}">Bảng điều khiển</a>
+                    <svg fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+                    </svg>
+                    <span>Tài khoản ngân hàng</span>
+                </div>
+            </div>
+            <div class="flex items-center space-x-3">
+                <div class="header-counter">
+                    <span>{{ $banks->total() ?? 0 }} tài khoản</span>
+                </div>
+                <button wire:click="addBank" class="header-button">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                    </svg>
+                    <span>Thêm tài khoản</span>
+                </button>
+            </div>
         </div>
-
-        <flux:button icon="plus-circle" class="cursor-pointer" wire:click="addBank">Thêm tài khoản</flux:button>
     </div>
-
-    <flux:separator variant="subtle" />
 
     <livewire:back.finance.bank.actions-account-bank />
 
     <div class="mt-6">
-        <div
-            class="bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-800 overflow-hidden shadow-sm">
+        <div class="theme-table-pink">
             <div class="overflow-x-auto">
-                <table class="w-full divide-y divide-gray-200 dark:divide-gray-800">
-                    <thead class="bg-gray-50 dark:bg-gray-800">
+                <table>
+                    <thead>
                         <tr>
-                            <th
-                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider">
-                                Ngân hàng</th>
-                            <th
-                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider">
-                                Mã ngân hàng</th>
-                            <th
-                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider">
-                                Số tài khoản</th>
-                            <th
-                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider">
-                                Chủ tài khoản</th>
-                            <th
-                                class="px-6 py-3 text-center text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider">
-                                Trạng thái</th>
-                            <th
-                                class="px-6 py-3 text-center text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider">
-                                Thao tác</th>
+                            <th>Ngân hàng</th>
+                            <th>Mã ngân hàng</th>
+                            <th>Số tài khoản</th>
+                            <th>Chủ tài khoản</th>
+                            <th class="text-center">Trạng thái</th>
+                            <th class="text-center">Thao tác</th>
                         </tr>
                     </thead>
-                    <tbody class="bg-white dark:bg-gray-900 divide-y divide-gray-200 dark:divide-gray-800">
+                    <tbody>
                         @forelse ($banks as $bank)
-                            <tr wire:key="bank-{{ $bank->id }}"
-                                class="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors duration-200">
-                                <td
-                                    class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100 font-medium">
+                            <tr wire:key="bank-{{ $bank->id }}">
+                                <td class="whitespace-nowrap font-medium">
                                     {{ $bank->bank_name }}</td>
-                                <td class="px-6 py-4 text-sm text-gray-900 dark:text-gray-300">
+                                <td>
                                     {{ $bank->bank_code }}</td>
-                                <td class="px-6 py-4 text-sm text-gray-900 dark:text-gray-300">
+                                <td>
                                     {{ $bank->account_number }}</td>
-                                <td class="px-6 py-4 text-sm text-gray-900 dark:text-gray-300">{{ $bank->account_name }}
+                                <td>{{ $bank->account_name }}
                                 </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-center">
+                                <td class="whitespace-nowrap text-center">
                                     <span
                                         class="px-2 py-1 rounded-full text-xs {{ $bank->status === 'active' ? 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400' : 'bg-gray-100 text-gray-700 dark:bg-gray-800/60 dark:text-gray-300' }}">
                                         {{ $bank->status === 'active' ? 'Hoạt động' : 'Ngưng' }}
                                     </span>
                                 </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-center">
+                                <td class="whitespace-nowrap text-center">
                                     <div class="flex items-center justify-center gap-2">
                                         <flux:button size="sm" variant="primary" icon="square-pen"
                                             wire:click="editBank({{ $bank->id }})" class="cursor-pointer">Sửa
@@ -75,9 +83,9 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="5" class="px-6 py-8 text-center text-gray-500 dark:text-gray-400">
-                                    <div class="flex flex-col items-center">
-                                        <flux:icon.banknotes class="w-8 h-8 text-gray-400 dark:text-gray-600 mb-2" />
+                                <td colspan="5" class="px-6 py-8">
+                                    <div class="empty-state flex flex-col items-center">
+                                        <flux:icon.banknotes class="w-8 h-8 mb-2" />
                                         <div class="text-sm">Chưa có tài khoản ngân hàng</div>
                                     </div>
                                 </td>
@@ -88,7 +96,7 @@
             </div>
 
             @if ($banks->hasPages())
-                <div class="px-6 py-4 border-t border-gray-200 dark:border-gray-800">
+                <div class="pagination-container">
                     {{ $banks->links() }}
                 </div>
             @endif

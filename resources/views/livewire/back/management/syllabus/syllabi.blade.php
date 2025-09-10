@@ -1,41 +1,60 @@
 <div class="relative mb-4 w-full">
-    <div class="flex items-center justify-between mb-6">
-        <div>
-            <flux:heading size="xl" level="1">Syllabus</flux:heading>
-            <flux:breadcrumbs class="mt-2">
-                <flux:breadcrumbs.item href="{{ route('dashboard') }}">Bảng điều khiển</flux:breadcrumbs.item>
-                <flux:breadcrumbs.item>Syllabus</flux:breadcrumbs.item>
-            </flux:breadcrumbs>
+    {{-- Header Section --}}
+    <div class="theme-header-pink">
+        <div class="flex items-center justify-between">
+            <div class="header-content">
+                <div class="flex items-center space-x-3 mb-2">
+                    <div class="header-icon">
+                        <flux:icon.book-open class="size-12" />
+                    </div>
+                    <div>
+                        <h1 class="header-title">Syllabus</h1>
+                        <p class="header-subtitle">Quản lý chương trình học chi tiết</p>
+                    </div>
+                </div>
+                <div class="header-breadcrumbs">
+                    <a href="{{ route('dashboard') }}">Bảng điều khiển</a>
+                    <svg fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+                    </svg>
+                    <span>Syllabus</span>
+                </div>
+            </div>
+            <div class="flex items-center space-x-3">
+                <div class="header-counter">
+                    <span>{{ $syllabi->total() ?? 0 }} syllabus</span>
+                </div>
+                <livewire:back.management.syllabus.actions-syllabus />
+            </div>
         </div>
-
-        <livewire:back.management.syllabus.actions-syllabus />
     </div>
 
-    <flux:separator variant="subtle" />
 
     <!-- Search and Filter Section -->
     <div class="mt-6">
-        <div class="bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-800 p-4 mb-6">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="theme-card-pink mb-6">
+
+            <div class="p-6">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <!-- Search -->
                 <div>
-                    <label for="search" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Tìm kiếm</label>
+                    <label for="search" class="card-label">Tìm kiếm</label>
                     <input 
                         wire:model.live="search" 
                         type="text" 
                         id="search"
                         placeholder="Tìm theo bài học, nội dung, mục tiêu..."
-                        class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+                        class="card-input"
                     >
                 </div>
                 
                 <!-- Subject Filter -->
                 <div>
-                    <label for="subjectFilter" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Lọc theo môn học</label>
+                    <label for="subjectFilter" class="card-label">Lọc theo môn học</label>
                     <select 
                         wire:model.live="subjectFilter" 
                         id="subjectFilter"
-                        class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+                        class="card-input"
                     >
                         <option value="">Tất cả môn học</option>
                         @foreach($subjects as $subject)
@@ -46,11 +65,11 @@
                 
                 <!-- Per Page -->
                 <div>
-                    <label for="perPage" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Số dòng mỗi trang</label>
+                    <label for="perPage" class="card-label">Số dòng mỗi trang</label>
                     <select 
                         wire:model.live="perPage" 
                         id="perPage"
-                        class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+                        class="card-input"
                     >
                         <option value="10">10</option>
                         <option value="25">25</option>
@@ -58,43 +77,32 @@
                         <option value="100">100</option>
                     </select>
                 </div>
+                </div>
             </div>
         </div>
     </div>
 
     <!-- Syllabus Table -->
-    <div class="bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-800 overflow-hidden">
+    <div class="theme-table-pink">
         <div class="overflow-x-auto">
-            <table class="w-full divide-y divide-gray-200 dark:divide-gray-800">
-                <thead class="bg-gray-50 dark:bg-gray-800">
+            <table>
+                <thead>
                     <tr>
-                        <th class="px-3 py-3 text-center text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider w-16">
-                            STT
-                        </th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider">
-                            Môn học
-                        </th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider">
-                            Bài học
-                        </th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider">
-                            Nội dung
-                        </th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider">
-                            Mục tiêu
-                        </th>
-                        <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 dark:text-gray-200 uppercase tracking-wider">
-                            Thao tác
-                        </th>
+                        <th class="text-center w-16">STT</th>
+                        <th class="text-left">Môn học</th>
+                        <th class="text-left">Bài học</th>
+                        <th class="text-left">Nội dung</th>
+                        <th class="text-left">Mục tiêu</th>
+                        <th class="text-center">Thao tác</th>
                     </tr>
                 </thead>
-                <tbody class="bg-white dark:bg-gray-900 divide-y divide-gray-200 dark:divide-gray-800">
+                <tbody>
                     @forelse($syllabi as $syllabus)
-                        <tr class="hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors duration-200">
-                            <td class="px-3 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100 text-center font-medium">
+                        <tr class="table-row">
+                            <td class="table-cell text-center">
                                 {{ $syllabus->ordering }}
                             </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
+                            <td class="table-cell">
                                 <div class="flex flex-col">
                                     <span class="text-sm font-medium text-gray-900 dark:text-gray-100">
                                         {{ $syllabus->subject->name }}
@@ -107,20 +115,20 @@
                                     </span>
                                 </div>
                             </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100">
+                            <td class="table-cell">
                                 {{ $syllabus->lesson_number }}
                             </td>
-                            <td class="px-6 py-4 text-sm text-gray-900 dark:text-gray-100">
+                            <td class="table-cell">
                                 <div class="max-w-xs truncate" title="{{ $syllabus->content }}">
                                     {{ Str::limit($syllabus->content, 100) }}
                                 </div>
                             </td>
-                            <td class="px-6 py-4 text-sm text-gray-900 dark:text-gray-100">
+                            <td class="table-cell">
                                 <div class="max-w-xs truncate" title="{{ $syllabus->objectives }}">
                                     {{ Str::limit($syllabus->objectives, 100) }}
                                 </div>
                             </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-center">
+                            <td class="table-cell text-center">
                                 <div class="flex items-center justify-center gap-2">
                                     <flux:button size="sm" variant="primary" icon="eye"
                                         title="Xem chi tiết"
@@ -143,10 +151,9 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="6" class="px-6 py-8 text-center text-gray-500 dark:text-gray-400">
-                                <div class="flex flex-col items-center">
-                                    <flux:icon.book-open
-                                        class="w-8 h-8 text-gray-400 dark:text-gray-600 mb-2" />
+                            <td colspan="6" class="table-cell">
+                                <div class="empty-state flex flex-col items-center">
+                                    <flux:icon.book-open class="w-8 h-8 mb-2" />
                                     <div class="text-sm">Không có syllabus nào</div>
                                 </div>
                             </td>
@@ -158,14 +165,14 @@
         
         <!-- Pagination -->
         @if($syllabi->hasPages())
-            <div class="px-6 py-4 border-t border-gray-200 dark:border-gray-800">
+            <div class="pagination-container">
                 {{ $syllabi->links() }}
             </div>
         @endif
     </div>
 
     <!-- Summary -->
-    <div class="mt-4 text-sm text-gray-600 dark:text-gray-400">
+    <div class="mt-4 text-sm text-zinc-600 dark:text-zinc-400">
         Hiển thị {{ $syllabi->firstItem() ?? 0 }} đến {{ $syllabi->lastItem() ?? 0 }} trong tổng số {{ $syllabi->total() }} syllabus
     </div>
 
