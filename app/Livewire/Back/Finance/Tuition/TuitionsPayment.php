@@ -7,6 +7,7 @@ use Livewire\Attributes\On;
 use Livewire\Attributes\Url;
 use Livewire\Attributes\Title;
 use App\Support\Bank\BankHelper;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Support\Tuition\TuitionHelper;
 use App\Repositories\Contracts\BankRepositoryInterface;
@@ -114,7 +115,7 @@ class TuitionsPayment extends Component
     {
         try {
             // Lấy location_id từ bảng pivot location_user
-            $locationUser = \Illuminate\Support\Facades\DB::table('location_user')
+            $locationUser = DB::table('location_user')
                 ->where('user_id', $studentId)
                 ->first();
             
