@@ -52,7 +52,7 @@ class TuitionsPayment extends Component
     public $note = '';
     public $paymentMethod = 'cash';
 
-    #[Url]
+    #[Url(except: '')]
     public $student;
 
     public function mount()
@@ -234,6 +234,7 @@ class TuitionsPayment extends Component
         $this->selectedStudent = null;
         $this->transactionHistory = []; // Xóa lịch sử giao dịch
         $this->loadStudents();
+        $this->student = '';
     }
 
     public function addProgram($programId)
