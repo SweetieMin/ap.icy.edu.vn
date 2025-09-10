@@ -118,11 +118,11 @@ input, textarea, [contenteditable] {
 
 /* Pink Theme - Header Section */
 .theme-header-pink {
-    @apply bg-pink-100 dark:bg-zinc-900 rounded-2xl p-8 mb-8 shadow-2xl;
+    @apply bg-pink-100 dark:bg-zinc-800 rounded-2xl p-8 mb-8 shadow-2xl;
 }
 
 .theme-header-pink .header-content {
-    @apply text-pink-600 dark:text-pink-400;
+    @apply text-pink-600 dark:text-white;
 }
 
 .theme-header-pink .header-icon {
@@ -130,19 +130,19 @@ input, textarea, [contenteditable] {
 }
 
 .theme-header-pink .header-icon svg {
-    @apply w-6 h-6 text-pink-600 dark:text-pink-400;
+    @apply w-6 h-6 text-pink-600 dark:text-white;
 }
 
 .theme-header-pink .header-title {
-    @apply text-3xl font-bold text-pink-600 dark:text-pink-400;
+    @apply text-3xl font-bold text-pink-600 dark:text-white;
 }
 
 .theme-header-pink .header-subtitle {
-    @apply text-pink-600 dark:text-pink-400 text-sm;
+    @apply text-pink-600 dark:text-white text-sm;
 }
 
 .theme-header-pink .header-breadcrumbs {
-    @apply flex items-center space-x-2 text-sm text-pink-600 dark:text-pink-400;
+    @apply flex items-center space-x-2 text-sm text-pink-600 dark:text-white;
 }
 
 .theme-header-pink .header-breadcrumbs a {
@@ -150,24 +150,24 @@ input, textarea, [contenteditable] {
 }
 
 .theme-header-pink .header-breadcrumbs svg {
-    @apply w-4 h-4 text-pink-600 dark:text-pink-400;
+    @apply w-4 h-4 text-pink-600 dark:text-white;
 }
 
 .theme-header-pink .header-counter {
-    @apply bg-pink-100 dark:bg-pink-900/20 backdrop-blur-sm rounded-xl px-4 py-2;
+    @apply bg-pink-100 dark:bg-pink-600/30 backdrop-blur-sm rounded-xl px-4 py-2;
 }
 
 .theme-header-pink .header-counter span {
-    @apply text-pink-600 dark:text-pink-400 text-sm font-medium;
+    @apply text-pink-600 dark:text-white text-sm font-medium;
 }
 
 .theme-header-pink .header-button {
-    @apply bg-white text-gray-900 hover:bg-gray-100 px-6 py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center space-x-2;
+    @apply bg-pink-600 text-white hover:bg-pink-700 dark:bg-pink-600 dark:text-white dark:hover:bg-pink-700 px-6 py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center space-x-2;
 }
 
 /* Pink Theme - Table */
 .theme-table-pink {
-    @apply bg-white dark:bg-pink-50/10 rounded-2xl border border-pink-200 dark:border-pink-800 overflow-hidden shadow-xl;
+    @apply bg-white dark:bg-zinc-800 rounded-2xl border border-pink-200 dark:border-pink-800 overflow-hidden shadow-xl;
 }
 
 .theme-table-pink table {
@@ -175,11 +175,11 @@ input, textarea, [contenteditable] {
 }
 
 .theme-table-pink thead {
-    @apply bg-pink-50 dark:bg-pink-900/20;
+    @apply bg-pink-50 dark:bg-pink-900/40;
 }
 
 .theme-table-pink th {
-    @apply px-6 py-3 text-xs font-medium text-pink-600 dark:text-pink-400 uppercase tracking-wider text-left;
+    @apply px-6 py-3 text-xs font-medium text-pink-600 dark:text-pink-200 uppercase tracking-wider text-left;
 }
 
 .theme-table-pink th.text-center {
@@ -187,15 +187,15 @@ input, textarea, [contenteditable] {
 }
 
 .theme-table-pink tbody {
-    @apply bg-white dark:bg-pink-50/10 divide-y divide-pink-200 dark:divide-pink-800;
+    @apply bg-white dark:bg-zinc-800 divide-y divide-pink-200 dark:divide-pink-800;
 }
 
 .theme-table-pink tr {
-    @apply hover:bg-pink-50 dark:hover:bg-pink-900/20 transition-colors duration-200;
+    @apply hover:bg-pink-50 dark:hover:bg-zinc-700 transition-colors duration-200;
 }
 
 .theme-table-pink td {
-    @apply px-6 py-4 text-sm text-pink-900 dark:text-pink-300;
+    @apply px-6 py-4 text-sm text-pink-900 dark:text-zinc-100;
 }
 
 .theme-table-pink .pagination-container {
@@ -203,11 +203,11 @@ input, textarea, [contenteditable] {
 }
 
 .theme-table-pink .empty-state {
-    @apply text-center text-pink-500 dark:text-pink-400;
+    @apply text-center text-pink-500 dark:text-zinc-300;
 }
 
 .theme-table-pink .empty-state svg {
-    @apply text-pink-400 dark:text-pink-600;
+    @apply text-pink-400 dark:text-zinc-400;
 }
 
 /* Full width table container */
@@ -282,7 +282,7 @@ input, textarea, [contenteditable] {
 
 /* Pink Theme - Cards */
 .theme-card-pink {
-    @apply bg-white dark:bg-zinc-900 rounded-2xl border border-zinc-200 dark:border-zinc-700 shadow-lg hover:shadow-2xl transition-all duration-300 transform overflow-hidden;
+    @apply bg-white dark:bg-zinc-800 rounded-2xl border border-pink-200 dark:border-pink-800 shadow-lg hover:shadow-2xl transition-all duration-300 transform overflow-hidden;
 }
 
 .theme-card-pink .card-label {
@@ -315,7 +315,7 @@ input, textarea, [contenteditable] {
 }
 
 .theme-card-pink .card-header {
-    @apply bg-pink-100 dark:bg-zinc-800 p-4;
+    @apply bg-pink-100 dark:bg-pink-900/30 p-4;
 }
 
 .theme-card-pink .card-header-icon {

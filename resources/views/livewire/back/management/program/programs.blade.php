@@ -16,7 +16,9 @@
                 <div class="header-breadcrumbs">
                     <a href="{{ route('dashboard') }}">Bảng điều khiển</a>
                     <svg fill="currentColor" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+                        <path fill-rule="evenodd"
+                            d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                            clip-rule="evenodd"></path>
                     </svg>
                     <span>Chương trình học</span>
                 </div>
@@ -27,7 +29,8 @@
                 </div>
                 <button wire:click="addProgram" class="header-button">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
                     </svg>
                     <span>Thêm chương trình</span>
                 </button>
@@ -72,11 +75,15 @@
                                         {{ $program->ordering }}
                                     </td>
                                     <td class="whitespace-nowrap">
-                                        <div class="flex items-center">
-                                            <span class="font-medium">{{ $program->name }}</span>
-                                            <span class="ml-2 text-xs text-pink-500 dark:text-pink-400 font-medium">
-                                                ({{ $program->english_name }})
-                                            </span>
+                                        <div class="space-y-1">
+                                            <div class="font-semibold text-pink-900 dark:text-pink-100">
+                                                {{ $program->name }}</div>
+
+                                            <div
+                                                class="text-xs text-pink-600 dark:text-pink-400 font-medium  inline-block">
+                                                {{ $program->english_name }}
+                                            </div>
+
                                         </div>
                                     </td>
                                     <td class="hidden 2xl:table-cell">
@@ -111,8 +118,8 @@
                         </tbody>
                     </table>
                 </div>
-                
-                @if($programs->hasPages())
+
+                @if ($programs->hasPages())
                     <div class="pagination-container">
                         {{ $programs->links() }}
                     </div>
