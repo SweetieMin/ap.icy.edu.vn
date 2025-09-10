@@ -47,7 +47,7 @@
                 <!-- Tìm kiếm theo tên -->
                 <div>
                     <label class="card-label">Tìm kiếm</label>
-                    <input type="text" wire:model.live="search" placeholder="Tìm theo tên hoặc mã học viên..."
+                    <input type="text" wire:model.live="search" placeholder="Tên hoặc mã học viên..."
                         class="card-input">
                 </div>
 

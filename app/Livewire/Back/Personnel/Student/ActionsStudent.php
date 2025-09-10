@@ -23,6 +23,7 @@ class ActionsStudent extends Component
 
     // Location fields
     public $location_id;
+    public $locationStudent;
 
     // File upload
     public $avatarFile;
@@ -237,6 +238,18 @@ class ActionsStudent extends Component
     {
         $this->guardian_name = UserHelper::convertNameToTitleCase($this->guardian_name);
     }
+
+    public function mount()
+    {
+        $this->loadData();
+    }
+
+    public function loadData()
+    {
+        $this->locationStudent = app(UserRepositoryInterface::class)->getCurrentUserLocations();
+        $this->location_id = $this->locationStudent->first()->id;
+    }
+
     public function render()
     {
         return view('livewire.back.personnel.student.actions-student');

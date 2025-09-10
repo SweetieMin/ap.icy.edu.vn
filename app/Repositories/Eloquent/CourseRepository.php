@@ -4,6 +4,7 @@ namespace App\Repositories\Eloquent;
 
 use App\Models\Course;
 use App\Support\Course\CourseHelper;
+use App\Repositories\Contracts\UserRepositoryInterface;
 use App\Repositories\Contracts\CourseRepositoryInterface;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
@@ -11,7 +12,9 @@ class CourseRepository implements CourseRepositoryInterface
 {
     public function getAll(int $perPage = 10): LengthAwarePaginator
     {
-        return Course::with(['location', 'season', 'subject'])
+        $locations = app(UserRepositoryInterface::class)->getCurrentUserLocations();
+        return Course::whereIn('location_id', $locations->pluck('id'))
+            ->with(['location', 'season', 'subject'])
             ->orderBy('ordering')
             ->paginate($perPage);
     }

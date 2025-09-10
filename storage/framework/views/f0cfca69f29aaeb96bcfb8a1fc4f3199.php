@@ -100,9 +100,9 @@ if (isset($__slots)) unset($__slots);
                         <thead>
                             <tr>
                                 <th class="text-center w-16">STT</th>
-
+                                <th class="w-60">Cơ sở</th>
+                                <th class="w-60">Học kỳ</th>
                                 <th class="text-center w-30">Lớp học</th>
-                                <th class="text-center hidden sm:table-cell">Mô tả</th>
                                 <th class="text-center">Thao tác</th>
                             </tr>
                         </thead>
@@ -113,15 +113,20 @@ if (isset($__slots)) unset($__slots);
                                         <?php echo e($course->ordering); ?>
 
                                     </td>
+                                    <td class="table-cell ">
+                                        <?php echo e($course->location->name); ?>
+
+                                    </td>
+                                    <td class="table-cell ">
+                                        <?php echo e($course->season->name); ?>
+
+                                    </td>
 
                                     <td class="table-cell whitespace-nowrap text-center w-30">
                                         <?php echo e($course->name); ?>
 
                                     </td>
-                                    <td class="table-cell hidden sm:table-cell">
-                                        <?php echo e($course->description); ?>
 
-                                    </td>
                                     <td class="table-cell text-center">
                                         <div class="flex items-center justify-center gap-2">
                                             <?php if (isset($component)) { $__componentOriginalc04b147acd0e65cc1a77f86fb0e81580 = $component; } ?>

@@ -39,7 +39,7 @@ class Courses extends Component
 
     public function render()
     {
-        $courses = app(CourseRepositoryInterface::class)->getAll(5);
+        $courses = app(CourseRepositoryInterface::class)->getAll(10);
         return view('livewire.back.management.course.courses',[
             'courses' => $courses,
         ]);

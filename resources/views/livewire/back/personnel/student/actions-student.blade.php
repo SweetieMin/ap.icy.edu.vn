@@ -27,19 +27,19 @@
                 </flux:heading>
             </div>
 
-            @if (auth()->user()->locations()->count() > 1)
+           
                 <div class="space-y-6">
                     <div class="form-group">
                         <flux:select wire:model='location_id' label="🏢 Cơ sở" placeholder="Chọn cơ sở"
                             class="rounded-xl border-gray-300 focus:border-blue-500 focus:ring-blue-500 transition-all duration-300">
-                            <flux:select.option :value='null' label="Không chọn cơ sở" />
-                            @foreach (auth()->user()->locations as $location)
+                           
+                            @foreach ($locationStudent as $location)
                                 <flux:select.option :value="$location->id" label="{{ $location->name }}" />
                             @endforeach
                         </flux:select>
                     </div>
                 </div>
-            @endif
+           
 
             <div class="space-y-2">
                 {{-- Name and Username --}}

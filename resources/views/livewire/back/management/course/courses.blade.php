@@ -66,9 +66,9 @@
                         <thead>
                             <tr>
                                 <th class="text-center w-16">STT</th>
-
+                                <th class="w-60">Cơ sở</th>
+                                <th class="w-60">Học kỳ</th>
                                 <th class="text-center w-30">Lớp học</th>
-                                <th class="text-center hidden sm:table-cell">Mô tả</th>
                                 <th class="text-center">Thao tác</th>
                             </tr>
                         </thead>
@@ -78,13 +78,17 @@
                                     <td class="table-cell text-center drag-handle cursor-move w-16">
                                         {{ $course->ordering }}
                                     </td>
+                                    <td class="table-cell ">
+                                        {{ $course->location->name }}
+                                    </td>
+                                    <td class="table-cell ">
+                                        {{ $course->season->name }}
+                                    </td>
 
                                     <td class="table-cell whitespace-nowrap text-center w-30">
                                         {{ $course->name }}
                                     </td>
-                                    <td class="table-cell hidden sm:table-cell">
-                                        {{ $course->description }}
-                                    </td>
+
                                     <td class="table-cell text-center">
                                         <div class="flex items-center justify-center gap-2">
                                             <flux:button size="sm" variant="primary" icon="square-pen"

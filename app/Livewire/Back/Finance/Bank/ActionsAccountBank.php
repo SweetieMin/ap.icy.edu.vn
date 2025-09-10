@@ -18,6 +18,7 @@ class ActionsAccountBank extends Component
     public $status = 'active';
     public $description;
     public $isEditMode = false;
+    public $listBank;
 
     public function rules()
     {
@@ -101,13 +102,14 @@ class ActionsAccountBank extends Component
         $this->redirectRoute('admin.finance.bank-accounts', navigate: true);
     }
 
-    public function render()
+    public function mount()
     {
         $banks = BankHelper::getBanks();
-        $listBank = collect($banks)->pluck('shortName')->toArray();
-        
-        return view('livewire.back.finance.bank.actions-account-bank',[
-            'listBank' => $listBank,
-        ]);
+        $this->listBank = collect($banks)->pluck('shortName')->toArray();
+    }
+
+    public function render()
+    {
+        return view('livewire.back.finance.bank.actions-account-bank');
     }
 }

@@ -20,6 +20,8 @@ class ActionsStaff extends Component
     public $location_id;
     public $role_id;
     public $avatarFile;
+    public $roleStaff;
+    public $locationStaff;
 
     public function updateUsername()
     {
@@ -55,12 +57,23 @@ class ActionsStaff extends Component
         $this->isEditStaffMode = false;
     }
 
+    public function mount()
+    {
+        $this->loadData();
+    }
+
+    public function loadData()
+    {
+        $this->roleStaff = app(RoleRepositoryInterface::class)->managerAccessPersonnel();
+        $this->role_id = $this->roleStaff->first()->id;
+
+        $this->locationStaff = app(UserRepositoryInterface::class)->getCurrentUserLocations();
+        $this->location_id = $this->locationStaff->first()->id;
+    }
+
     public function render()
     {
-        $roleStaff = app(RoleRepositoryInterface::class)->managerAccessPersonnel();
-        return view('livewire.back.personnel.employee.actions-staff', [
-            'roleStaff' => $roleStaff,
-        ]);
+        return view('livewire.back.personnel.employee.actions-staff');
     }
 
     public function rules()

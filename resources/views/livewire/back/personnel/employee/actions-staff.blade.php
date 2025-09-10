@@ -29,20 +29,18 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
                 <div class="form-group">
-                    @if (auth()->user()->locations()->count() > 1)
-                        <flux:select wire:model='location_id' label="🏢 Cơ sở" placeholder="Chọn cơ sở"
-                            class="rounded-xl border-gray-300 focus:border-blue-500 focus:ring-blue-500 transition-all duration-300 shadow-sm hover:shadow-md">
-                            <flux:select.option :value='null' label="Không chọn cơ sở" />
-                            @foreach (auth()->user()->locations as $location)
-                                <flux:select.option :value="$location->id" label="{{ $location->name }}" />
-                            @endforeach
-                        </flux:select>
-                    @endif
+
+                    <flux:select wire:model='location_id' label="🏢 Cơ sở" placeholder="Chọn cơ sở"
+                        class="rounded-xl border-gray-300 focus:border-blue-500 focus:ring-blue-500 transition-all duration-300 shadow-sm hover:shadow-md">
+                        @foreach ($locationStaff as $location)
+                            <flux:select.option :value="$location->id" label="{{ $location->name }}" />
+                        @endforeach
+                    </flux:select>
+
                 </div>
                 <div class="form-group">
                     <flux:select wire:model='role_id' label="👨‍🎓 Vai trò" placeholder="Chọn vai trò"
                         class="rounded-xl border-gray-300 focus:border-green-500 focus:ring-green-500 transition-all duration-300 shadow-sm hover:shadow-md">
-                        <flux:select.option :value='null' label="Không chọn vai trò" />
                         @foreach ($roleStaff as $role)
                             <flux:select.option :value="$role->id" label="{{ $role->name }}" />
                         @endforeach
