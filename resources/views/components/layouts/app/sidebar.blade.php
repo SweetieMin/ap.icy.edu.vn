@@ -9,11 +9,10 @@
     <div class="flex h-full">
         {{-- Sidebar bên trái --}}
         <flux:sidebar sticky stashable
-            class="w-[300px] border-e border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900 h-full flex flex-col">
+            class="w-[320px] border-e border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900 h-full flex flex-col">
             
             {{-- Header cố định --}}
             <div class="flex-shrink-0 p-4 border-b border-zinc-200 dark:border-zinc-700">
-                <flux:sidebar.toggle class="lg:hidden" icon="x-mark" />
 
                 <a href="{{ route('dashboard') }}" class="me-5 flex items-center space-x-2 rtl:space-x-reverse" wire:navigate>
                     <x-app-logo />

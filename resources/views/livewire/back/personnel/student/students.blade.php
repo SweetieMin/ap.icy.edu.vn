@@ -16,7 +16,9 @@
                 <div class="header-breadcrumbs">
                     <a href="{{ route('dashboard') }}">Bảng điều khiển</a>
                     <svg fill="currentColor" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+                        <path fill-rule="evenodd"
+                            d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                            clip-rule="evenodd"></path>
                     </svg>
                     <span>Danh sách học viên</span>
                 </div>
@@ -26,7 +28,8 @@
                     <span>{{ $students->count() }} học viên</span>
                 </div>
                 <div class="flex gap-2">
-                    <a href="/admin/finance/tuitions-payment" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg font-medium transition-all duration-300 flex items-center space-x-2">
+                    <a href="/admin/finance/tuitions-payment"
+                        class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg font-medium transition-all duration-300 flex items-center space-x-2">
                         <flux:icon.credit-card class="w-4 h-4" />
                         <span>Thanh toán học phí</span>
                     </a>
@@ -76,79 +79,84 @@
                                 <th class="text-center w-16">STT</th>
                                 <th>Họ và tên</th>
                                 <th class="hidden md:table-cell">Số điện thoại</th>
-                                <th class="text-center">Cơ sở</th>
+                                @if (auth()->user()->locations()->count() > 1)
+                                    <th class="text-center">Cơ sở</th>
+                                @endif
                                 <th class="text-center">Thao tác</th>
                             </tr>
                         </thead>
                         <tbody>
-                        @forelse ($students as $index => $student)
-                            <tr wire:key="student-{{ $student->id }}">
-                                <td class="text-center font-medium">
-                                    {{ $loop->iteration }}
-                                </td>
-                                <td>
-                                    <div class="flex items-center gap-3">
-                                        <img class="h-8 w-8 rounded-full object-cover"
-                                            src="{{ $student->detail?->avatar ?? asset('images/default-avatar.png') }}"
-                                            alt="{{ $student->name }}">
-                                        <div>
-                                            <div class="font-medium">{{ $student->name }}</div>
-                                            <div class="text-xs text-gray-500 dark:text-gray-400">ID:
-                                                {{ $student->account_code }}</div>
+                            @forelse ($students as $index => $student)
+                                <tr wire:key="student-{{ $student->id }}">
+                                    <td class="text-center font-medium">
+                                        {{ $loop->iteration }}
+                                    </td>
+                                    <td>
+                                        <div class="flex items-center gap-3">
+                                            <img class="h-8 w-8 rounded-full object-cover"
+                                                src="{{ $student->detail?->avatar ?? asset('images/default-avatar.png') }}"
+                                                alt="{{ $student->name }}">
+                                            <div>
+                                                <div class="font-medium">{{ $student->name }}</div>
+                                                <div class="text-xs text-gray-500 dark:text-gray-400">ID:
+                                                    {{ $student->account_code }}</div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </td>
-                                <td class="hidden md:table-cell">
-                                    {{ $student->detail?->phone ?? 'Chưa cập nhật' }}
-                                </td>
-                                <td class="text-center">
-                                    @if ($student->locations->count() > 0)
-                                        @foreach ($student->locations as $location)
-                                            <flux:badge color="blue" size="sm" class="mb-1">
-                                                {{ $location->name }}
-                                            </flux:badge>
-                                            @if (!$loop->last)
-                                                <br>
+                                    </td>
+                                    <td class="hidden md:table-cell">
+                                        {{ $student->detail?->phone ?? 'Chưa cập nhật' }}
+                                    </td>
+                                    @if (auth()->user()->locations()->count() > 1)
+                                        <td class="text-center">
+                                            @if ($student->locations->count() > 0)
+                                                @foreach ($student->locations as $location)
+                                                    <flux:badge color="blue" size="sm" class="mb-1">
+                                                        {{ $location->name }}
+                                                    </flux:badge>
+                                                    @if (!$loop->last)
+                                                        <br>
+                                                    @endif
+                                                @endforeach
+                                            @else
+                                                <span class="text-gray-500 dark:text-gray-400 text-xs">Chưa có cơ
+                                                    sở</span>
                                             @endif
-                                        @endforeach
-                                    @else
-                                        <span class="text-gray-500 dark:text-gray-400 text-xs">Chưa có cơ sở</span>
+                                        </td>
                                     @endif
-                                </td>
-                                <td class="text-center">
-                                    <div class="flex items-center justify-center gap-2">
-                                        <flux:button size="sm" variant="primary" icon="pencil"
-                                            wire:click="editStudent({{ $student->id }})" class="cursor-pointer">
-                                            Sửa thông tin
-                                        </flux:button>
+                                    <td class="text-center">
+                                        <div class="flex items-center justify-center gap-2">
+                                            <flux:button size="sm" variant="primary" icon="pencil"
+                                                wire:click="editStudent({{ $student->id }})" class="cursor-pointer">
+                                                Sửa thông tin
+                                            </flux:button>
 
-                                        <flux:button size="sm" variant="danger" icon="trash"
-                                            wire:click="deleteStudent({{ $student->id }})" class="cursor-pointer">
-                                            Xóa
-                                        </flux:button>
-                                    </div>
-                                </td>
-                            </tr>
-                        @empty
-                            <tr>
-                                <td colspan="5" class="text-center py-12">
-                                    <div class="empty-state flex flex-col items-center">
-                                        <flux:icon.academic-cap class="w-12 h-12 mb-4" />
-                                        <h3 class="text-lg font-medium mb-2">
-                                            Không có học viên nào
-                                        </h3>
-                                        <p>
-                                            Hiện tại không có học viên nào trong các cơ sở của bạn
-                                        </p>
-                                    </div>
-                                </td>
-                            </tr>
-                        @endforelse
-                    </tbody>
-                </table>
-            </div>
-            {{-- Pagination if needed --}}
-            {{-- @if ($students->hasPages())
+                                            <flux:button size="sm" variant="danger" icon="trash"
+                                                wire:click="deleteStudent({{ $student->id }})" class="cursor-pointer">
+                                                Xóa
+                                            </flux:button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="5" class="text-center py-12">
+                                        <div class="empty-state flex flex-col items-center">
+                                            <flux:icon.academic-cap class="w-12 h-12 mb-4" />
+                                            <h3 class="text-lg font-medium mb-2">
+                                                Không có học viên nào
+                                            </h3>
+                                            <p>
+                                                Hiện tại không có học viên nào trong các cơ sở của bạn
+                                            </p>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
+                </div>
+                {{-- Pagination if needed --}}
+                {{-- @if ($students->hasPages())
                 <div class="pagination-container">
                     {{ $students->links() }}
                 </div>
