@@ -31,6 +31,27 @@ class UserDetail extends Model
         return $value ? Carbon::parse($value)->setTimezone(config('app.timezone'))->format('Y-m-d') : '';
     }
 
+    public function getBirthdayDayAttribute()
+    {
+        return $this->birthday
+            ? Carbon::parse($this->birthday)->format('d')
+            : "";
+    }
+
+    public function getBirthdayMonthAttribute()
+    {
+        return $this->birthday
+            ? Carbon::parse($this->birthday)->format('m')
+            : "";
+    }
+
+    public function getBirthdayYearAttribute()
+    {
+        return $this->birthday
+            ? Carbon::parse($this->birthday)->format('Y')
+            : "";
+    }
+
     public function gender($value)
     {
         return $value ? 'Nữ' : 'Nam';

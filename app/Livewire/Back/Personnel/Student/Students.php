@@ -6,6 +6,7 @@ use Livewire\Component;
 use Livewire\Attributes\Title;
 use App\Repositories\Contracts\UserRepositoryInterface;
 use App\Repositories\Contracts\StudentRepositoryInterface;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 #[Title('Học viên')]
 class Students extends Component
@@ -43,7 +44,7 @@ class Students extends Component
             'search' => $this->search,
         ];
         $this->students = app(StudentRepositoryInterface::class)->getStudentsOfLocationWithFilters($filters);
-        
+
         // Load học viên không có location với filter search
         $filtersWithoutLocation = [
             'search' => $this->search,
@@ -58,12 +59,20 @@ class Students extends Component
             'search' => $this->search,
         ];
         $this->students = app(StudentRepositoryInterface::class)->getStudentsOfLocationWithFilters($filters);
-        
+
         // Load học viên không có location với filter search
         $filtersWithoutLocation = [
             'search' => $this->search,
         ];
         $this->studentsWithoutLocation = app(StudentRepositoryInterface::class)->getStudentsWithoutLocation($filtersWithoutLocation);
+    }
+
+    public function printStudentRegistration($studentId)
+    {
+        $url = route('pdf.student-registration', [
+            'student' => $studentId,
+        ]);
+        $this->dispatch('open-pdf', ['url' => $url]);
     }
 
     public function render()
@@ -73,13 +82,13 @@ class Students extends Component
             'search' => $this->search,
         ];
         $this->students = app(StudentRepositoryInterface::class)->getStudentsOfLocationWithFilters($filters);
-        
+
         // Load học viên không có location
         $filtersWithoutLocation = [
             'search' => $this->search,
         ];
         $this->studentsWithoutLocation = app(StudentRepositoryInterface::class)->getStudentsWithoutLocation($filtersWithoutLocation);
-        
+
         $locations = app(UserRepositoryInterface::class)->getCurrentUserLocations();
         return view('livewire.back.personnel.student.students', [
             'students' => $this->students,

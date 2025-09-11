@@ -34,6 +34,7 @@ use App\Livewire\Back\Management\Location\Locations;
 use App\Livewire\Back\Finance\Tuition\TuitionsHistory;
 use App\Livewire\Back\Finance\Tuition\TuitionsPayment;
 use App\Livewire\Back\Management\Curriculum\Curricula;
+use App\Http\Controllers\StudentRegistrationController;
 use App\Livewire\Back\Finance\Price\ProgramPricesManagement;
 
 
@@ -103,3 +104,5 @@ Route::prefix('admin')->middleware(['auth', 'preventBackHistory'])->name('admin.
 });
 
 require __DIR__ . '/auth.php';
+
+Route::get('pdf/student-registration/{student}', [StudentRegistrationController::class, 'generate'])->name('pdf.student-registration');
