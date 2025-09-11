@@ -156,7 +156,7 @@ class ActionsStudent extends Component
         $this->gender = $student->detail->gender;
         $this->guardian_name = $student->detail->guardian_name;
         $this->guardian_phone = $student->detail->guardian_phone;
-        $this->location_id = $student->locations->first()->id;
+        $this->location_id = $student->locations->first()->id ?? null;
         $this->isEditStudentMode = true;
         Flux::modal('modal-student')->show();
     }
