@@ -179,7 +179,7 @@
                             <th>Học viên</th>
                             <th class="hidden lg:table-cell">Chương trình</th>
                             <th class="text-center hidden md:table-cell">Học kỳ</th>
-                            <th class="text-center hidden xl:table-cell">Số biên lai</th>
+                            <th class="text-center hidden xl:table-cell">Nôi dung</th>
                             <th class="text-center">Số tiền</th>
                             <th class="text-center">Trạng thái</th>
                             <th class="text-center hidden sm:table-cell">Phương thức</th>
@@ -221,7 +221,7 @@
                                 </td>
                                 <td class="text-center hidden xl:table-cell">
                                     <div class="font-mono">
-                                        <?php echo e($tuition->receipt_number ?? 'Chưa có'); ?>
+                                        <?php echo e($tuition->note ?? 'Chưa có'); ?>
 
                                     </div>
                                 </td>
@@ -458,7 +458,7 @@
                     </div>
                 </div>
                 <div class="p-6">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                         <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-4 border border-green-200 dark:border-green-800">
                             <div class="flex items-center space-x-3">
                                 <div class="w-10 h-10 bg-green-100 dark:bg-green-800 rounded-lg flex items-center justify-center">
@@ -514,9 +514,41 @@
 <?php endif; ?>
                                 </div>
                                 <div>
-                                    <div class="text-sm text-blue-600 dark:text-blue-400 font-medium">Tổng tiền</div>
+                                    <div class="text-sm text-blue-600 dark:text-blue-400 font-medium">Tổng tiền đã thanh toán</div>
                                     <div class="text-2xl font-bold text-blue-700 dark:text-blue-300">
-                                        <?php echo e(number_format($tuitions->sum('price'), 0, ',', '.')); ?> VNĐ
+                                        <?php echo e(number_format($tuitions->where('status', 'paid')->sum('price'), 0, ',', '.')); ?> VNĐ
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-orange-50 dark:bg-orange-900/20 rounded-lg p-4 border border-orange-200 dark:border-orange-800">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-10 h-10 bg-orange-100 dark:bg-orange-800 rounded-lg flex items-center justify-center">
+                                    <?php if (isset($component)) { $__componentOriginal7f0e8d69add49581695c1337b3f85fff = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal7f0e8d69add49581695c1337b3f85fff = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::icon.exclamation-triangle','data' => ['class' => 'w-5 h-5 text-orange-600 dark:text-orange-400']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('flux::icon.exclamation-triangle'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['class' => 'w-5 h-5 text-orange-600 dark:text-orange-400']); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal7f0e8d69add49581695c1337b3f85fff)): ?>
+<?php $attributes = $__attributesOriginal7f0e8d69add49581695c1337b3f85fff; ?>
+<?php unset($__attributesOriginal7f0e8d69add49581695c1337b3f85fff); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal7f0e8d69add49581695c1337b3f85fff)): ?>
+<?php $component = $__componentOriginal7f0e8d69add49581695c1337b3f85fff; ?>
+<?php unset($__componentOriginal7f0e8d69add49581695c1337b3f85fff); ?>
+<?php endif; ?>
+                                </div>
+                                <div>
+                                    <div class="text-sm text-orange-600 dark:text-orange-400 font-medium">Tổng công nợ</div>
+                                    <div class="text-2xl font-bold text-orange-700 dark:text-orange-300">
+                                        <?php echo e(number_format($tuitions->where('status', 'pending')->sum('price'), 0, ',', '.')); ?> VNĐ
                                     </div>
                                 </div>
                             </div>

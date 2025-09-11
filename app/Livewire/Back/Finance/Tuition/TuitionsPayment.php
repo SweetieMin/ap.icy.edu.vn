@@ -24,26 +24,26 @@ class TuitionsPayment extends Component
     public $searchProgram = '';
     public $programs = [];
     public $filteredPrograms = [];
-    
+
     // Student selection
     public $selectedStudent = null;
     public $students = [];
     public $searchStudent = '';
     public $filteredStudents = [];
-    
+
     // Seasons
     public $seasons = [];
-    
+
     // Banks
     public $banks = [];
     public $selectedBankId = null;
-    
+
     // Transaction History
     public $transactionHistory = [];
-    
+
     // Selected items
     public $selectedItems = [];
-    
+
     // Payment
     public $totalAmount = 0;
     public $discountAmount = 0;
@@ -63,7 +63,7 @@ class TuitionsPayment extends Component
         $this->loadBanks();
         if ($this->student) {
             $this->selectStudent($this->student);
-        }else{
+        } else {
             $this->student = '';
         }
     }
@@ -78,7 +78,7 @@ class TuitionsPayment extends Component
     {
         $programs = app(ProgramRepositoryInterface::class)->getAllPrograms();
         $this->programs = [];
-        
+
         // Chuyển đổi và thêm giá mặc định (sẽ được override khi chọn học sinh)
         foreach ($programs as $program) {
             $this->programs[] = [
@@ -88,7 +88,7 @@ class TuitionsPayment extends Component
                 'price' => 0, // Giá mặc định, sẽ được cập nhật khi chọn học sinh
             ];
         }
-        
+
         $this->filteredPrograms = []; // Không hiển thị gì ban đầu
     }
 
@@ -120,22 +120,21 @@ class TuitionsPayment extends Component
             $locationUser = DB::table('location_user')
                 ->where('user_id', $studentId)
                 ->first();
-            
+
             if (!$locationUser || !$locationUser->location_id) {
                 return 0;
             }
-            
+
             // Lấy giá từ ProgramLocationPrice
             $programLocationPrice = app(ProgramLocationPriceRepositoryInterface::class)
                 ->getPriceByProgramAndLocation($programId, $locationUser->location_id);
-            
+
             if ($programLocationPrice) {
                 return (float) $programLocationPrice->price;
             }
-            
+
             // Nếu không tìm thấy giá theo location, trả về 0
             return 0;
-            
         } catch (\Exception $e) {
             return 0;
         }
@@ -146,9 +145,9 @@ class TuitionsPayment extends Component
         if (empty($this->searchProgram)) {
             $this->filteredPrograms = $this->programs; // Hiển thị tất cả chương trình khi chưa tìm kiếm
         } else {
-            $this->filteredPrograms = array_filter($this->programs, function($program) {
+            $this->filteredPrograms = array_filter($this->programs, function ($program) {
                 return stripos($program['name'], $this->searchProgram) !== false ||
-                       stripos($program['english_name'], $this->searchProgram) !== false;
+                    stripos($program['english_name'], $this->searchProgram) !== false;
             });
         }
     }
@@ -174,9 +173,9 @@ class TuitionsPayment extends Component
         if (empty($this->searchStudent)) {
             $this->filteredStudents = $this->students; // Hiển thị tất cả học sinh khi chưa tìm kiếm
         } else {
-            $this->filteredStudents = array_filter($this->students, function($student) {
-                return stripos($student['name'], $this->searchStudent) !== false || 
-                       stripos($student['account_code'], $this->searchStudent) !== false;
+            $this->filteredStudents = array_filter($this->students, function ($student) {
+                return stripos($student['name'], $this->searchStudent) !== false ||
+                    stripos($student['account_code'], $this->searchStudent) !== false;
             });
         }
     }
@@ -213,7 +212,7 @@ class TuitionsPayment extends Component
                     ->where('user_id', $studentId)
                     ->first();
                 $locationId = $locationUser ? $locationUser->location_id : null;
-                
+
                 $this->selectedStudent = [
                     'id' => $fullStudent->id,
                     'name' => $fullStudent->name,
@@ -223,7 +222,7 @@ class TuitionsPayment extends Component
             } else {
                 $this->selectedStudent = $student;
             }
-            
+
             $this->searchStudent = ''; // Xóa từ khóa tìm kiếm sau khi chọn
             $this->filteredStudents = []; // Xóa danh sách kết quả
             // Load lịch sử giao dịch của học sinh
@@ -250,12 +249,12 @@ class TuitionsPayment extends Component
         if ($program) {
             // Lấy giá từ ProgramLocationPrice dựa trên location của học sinh
             $price = $this->getProgramPriceForStudent($programId, $this->selectedStudent['id']);
-            
+
             if ($price <= 0) {
                 session()->flash('error', 'Chương trình này chưa có giá cho cơ sở của học sinh!');
                 return;
             }
-            
+
             $newItem = [
                 'id' => (int) $program['id'],
                 'name' => $program['name'],
@@ -264,17 +263,16 @@ class TuitionsPayment extends Component
                 'season_name' => null,
                 'type' => 'program',
             ];
-            
+
             $this->selectedItems[] = $newItem;
-            
+
             // Giữ danh sách chương trình hiển thị sau khi thêm
             $this->filteredPrograms = $this->programs;
-            
+
             $this->calculateTotal();
-            
+
             // Force refresh component
             $this->dispatch('$refresh');
-            
         }
     }
 
@@ -288,7 +286,7 @@ class TuitionsPayment extends Component
             'season_name' => null,
             'type' => 'uniform',
         ];
-        
+
         $this->calculateTotal();
     }
 
@@ -344,7 +342,7 @@ class TuitionsPayment extends Component
 
         foreach ($this->selectedItems as $item) {
             $itemPrice = (float) $item['price'];
-            
+
             // Tính giảm giá cho từng item
             if (isset($item['discount_amount']) && $item['discount_amount'] > 0) {
                 $discountAmount = (float) $item['discount_amount'];
@@ -355,7 +353,7 @@ class TuitionsPayment extends Component
                 }
                 $totalItemDiscounts += $itemDiscount;
             }
-            
+
             $this->totalAmount += $itemPrice;
         }
 
@@ -371,7 +369,7 @@ class TuitionsPayment extends Component
         }
 
         $this->finalAmount = $this->totalAmount - $totalDiscount;
-        
+
         // Đảm bảo finalAmount không âm
         if ($this->finalAmount < 0) {
             $this->finalAmount = 0;
@@ -432,21 +430,21 @@ class TuitionsPayment extends Component
 
         try {
             $student = app(StudentRepositoryInterface::class)->getStudentById($this->selectedStudent['id']);
-            
+
             if (!$student) {
                 session()->flash('error', 'Không tìm thấy thông tin học sinh!');
                 return;
             }
-            
+
             $createdTuitions = [];
             $baseReceiptNumber = 'ICY' . $student->username . uniqid();
-            
+
             // Tạo từng bản ghi tuition cho mỗi chương trình
             foreach ($this->selectedItems as $index => $item) {
                 // Tính giá cho từng item (bao gồm giảm giá item-level)
                 $itemPrice = (float) $item['price'];
                 $itemDiscount = 0;
-                
+
                 if (isset($item['discount_amount']) && $item['discount_amount'] > 0) {
                     $discountAmount = (float) $item['discount_amount'];
                     if (($item['discount_type'] ?? 'vnd') === 'percent') {
@@ -456,19 +454,16 @@ class TuitionsPayment extends Component
                     }
                 }
 
-                if ($this->paymentMethod === 'bank_transfer') {
-                    if ($item['type'] === 'uniform') {
-                        $note = "Uniform - " . $student->username;
-                    } else {
-                        $note = BankHelper::generateDescriptionTransactionBankTransfer($student->id, $item['season_id'], $item['id']);
-                    }
+                if ($item['type'] === 'uniform') {
+                    $note = "Uniform_" . $student->username.'_'.uniqid();
                 } else {
-                    $note = $this->note;
+                    $note = BankHelper::generateDescriptionTransactionBankTransfer($student->id, $item['season_id'], $item['id']);
                 }
-                
+
+
                 $finalItemPrice = $itemPrice - $itemDiscount;
                 if ($finalItemPrice < 0) $finalItemPrice = 0;
-                
+
                 $tuition = [
                     'user_id' => $student->id,
                     'receipt_number' => $baseReceiptNumber . '-' . ($index + 1), // Thêm số thứ tự
@@ -487,11 +482,10 @@ class TuitionsPayment extends Component
                 $createdTuition = app(TuitionRepositoryInterface::class)->create($tuition);
                 $createdTuitions[] = $createdTuition;
             }
-            
+
             $count = count($createdTuitions);
             session()->flash('success', "Tạo thành công {$count} bản ghi thanh toán.");
             $this->redirectRoute('admin.finance.tuitions-payment', ['student' => $this->selectedStudent['id']], navigate: true);
-            
         } catch (\Exception $e) {
             session()->flash('error', 'Có lỗi xảy ra khi tạo thanh toán: ' . $e->getMessage());
         }
@@ -506,6 +500,15 @@ class TuitionsPayment extends Component
         $amount = (string) $transaction->price;
 
         $this->dispatch('process-payment', $crc16, $bankName, $accountNumber, $amount);
+    }
+
+    public function paidCash($transactionId)
+    {
+        $transaction = app(TuitionRepositoryInterface::class)->getTuitionById($transactionId);
+        $transaction->status = 'paid';
+        $transaction->save();
+        session()->flash('success', 'Đã thanh toán thành công');
+        $this->redirectRoute('admin.finance.tuitions-payment', ['student' => $this->selectedStudent['id']], navigate: true);
     }
 
     public function render()

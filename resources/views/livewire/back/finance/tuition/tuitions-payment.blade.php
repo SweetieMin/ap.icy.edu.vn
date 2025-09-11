@@ -537,105 +537,112 @@
     {{-- Transaction History Section - Separate from payment section --}}
     @if ($selectedStudent)
 
-            <div class="card-header my-4">
-                <div class="flex items-center space-x-3">
-                    <div class="w-8 h-8 bg-pink-200 dark:bg-pink-800/30 rounded-lg flex items-center justify-center">
-                        <flux:icon.document-text class="w-4 h-4 text-pink-600 dark:text-pink-400" />
-                    </div>
-                    <div>
-                        <h3 class="text-lg font-bold text-pink-600 dark:text-pink-400">Lịch sử giao dịch</h3>
-                        <p class="text-pink-600 dark:text-pink-400 text-xs">Lịch sử giao dịch của
-                            {{ $selectedStudent['name'] }}</p>
-                    </div>
+        <div class="card-header my-4">
+            <div class="flex items-center space-x-3">
+                <div class="w-8 h-8 bg-pink-200 dark:bg-pink-800/30 rounded-lg flex items-center justify-center">
+                    <flux:icon.document-text class="w-4 h-4 text-pink-600 dark:text-pink-400" />
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold text-pink-600 dark:text-pink-400">Lịch sử giao dịch</h3>
+                    <p class="text-pink-600 dark:text-pink-400 text-xs">Lịch sử giao dịch của
+                        {{ $selectedStudent['name'] }}</p>
                 </div>
             </div>
+        </div>
 
 
-                @if (count($transactionHistory) > 0)
-                    <div class="table-full-width">
-                        <div class="theme-table-pink">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>Chương trình</th>
-                                        <th>Mùa học</th>
-                                        <th>Số tiền</th>
-                                        <th>Phương thức</th>
-                                        <th>Trạng thái</th>
-                                        <th>Ngày tạo</th>
-                                        <th>QR thanh toán</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($transactionHistory as $transaction)
-                                        <tr>
-                                            <td>
-                                                {{ $transaction['program']['name'] ?? 'Đồng phục' }}
-                                            </td>
-                                            <td>
-                                                {{ $transaction['season']['name'] ?? '--' }}
-                                            </td>
-                                            <td>
-                                                {{ number_format($transaction['price'], 0, ',', '.') }} VNĐ
-                                            </td>
-                                            <td>
-                                                @if ($transaction['payment_method'] === 'cash')
-                                                    <span
-                                                        class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
-                                                        💵 Tiền mặt
-                                                    </span>
-                                                @else
-                                                    <span
-                                                        class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200">
-                                                        🏦 Chuyển khoản
-                                                    </span>
-                                                @endif
-                                            </td>
-                                            <td>
-                                                @if ($transaction['status'] === 'pending')
-                                                    <span
-                                                        class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200">
-                                                        ⏳ Chờ xử lý
-                                                    </span>
-                                                @elseif($transaction['status'] === 'paid')
-                                                    <span
-                                                        class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
-                                                        ✅ Hoàn thành
-                                                    </span>
-                                                @else
-                                                    <span
-                                                        class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200">
-                                                        ❌ Hủy bỏ
-                                                    </span>
-                                                @endif
-                                            </td>
-                                            <td>
-                                                {{ $transaction['created_at_formatted'] }}
-                                            </td>
-                                            <td>
-                                                @if ($transaction['payment_method'] === 'bank_transfer' && $transaction['status'] !== 'paid')
-                                                    <flux:button size="sm" variant="primary" icon="qr-code"
-                                                        wire:click="showQrCode({{ $transaction['id'] }})"
-                                                        class="cursor-pointer">
-                                                        QR Code
-                                                    </flux:button>
-                                                @endif
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                @else
-                    <div class="text-center py-2">
-                        <div class="text-gray-500 dark:text-gray-400">
-                            <flux:icon.document-text class="w-12 h-12 mx-auto mb-4 text-gray-400" />
-                            <p class="text-lg font-medium">Chưa có giao dịch nào</p>
-                            <p class="text-sm">Học sinh này chưa có lịch sử giao dịch nào trong hệ thống.</p>
-                        </div>
-                    </div>
-                @endif
+        @if (count($transactionHistory) > 0)
+            <div class="table-full-width">
+                <div class="theme-table-pink">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Chương trình</th>
+                                <th>Mùa học</th>
+                                <th>Số tiền</th>
+                                <th>Phương thức</th>
+                                <th>Trạng thái</th>
+                                <th>Ngày tạo</th>
+                                <th>Thanh toán</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($transactionHistory as $transaction)
+                                <tr>
+                                    <td>
+                                        {{ $transaction['program']['name'] ?? 'Đồng phục' }}
+                                    </td>
+                                    <td>
+                                        {{ $transaction['season']['name'] ?? '--' }}
+                                    </td>
+                                    <td>
+                                        {{ number_format($transaction['price'], 0, ',', '.') }} VNĐ
+                                    </td>
+                                    <td>
+                                        @if ($transaction['payment_method'] === 'cash')
+                                            <span
+                                                class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
+                                                💵 Tiền mặt
+                                            </span>
+                                        @else
+                                            <span
+                                                class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200">
+                                                🏦 Chuyển khoản
+                                            </span>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if ($transaction['status'] === 'pending')
+                                            <span
+                                                class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200">
+                                                ⏳ Chờ xử lý
+                                            </span>
+                                        @elseif($transaction['status'] === 'paid')
+                                            <span
+                                                class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
+                                                ✅ Hoàn thành
+                                            </span>
+                                        @else
+                                            <span
+                                                class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200">
+                                                ❌ Hủy bỏ
+                                            </span>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        {{ $transaction['created_at_formatted'] }}
+                                    </td>
+                                    <td>
+                                        @if ($transaction['payment_method'] === 'bank_transfer' && $transaction['status'] !== 'paid')
+                                            <flux:button size="sm" variant="primary" icon="qr-code"
+                                                wire:click="showQrCode({{ $transaction['id'] }})"
+                                                class="cursor-pointer">
+                                                QR Code
+                                            </flux:button>
+                                        @endif
+                                        @if ($transaction['payment_method'] === 'cash' && $transaction['status'] !== 'paid')
+                                            <flux:button color="green" size="sm" variant="primary"
+                                                icon="check" wire:click="paidCash({{ $transaction['id'] }})"
+                                                class="cursor-pointer">
+                                                Đã thanh toán
+                                            </flux:button>
+                                        @endif
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        @else
+            <div class="text-center py-2">
+                <div class="text-gray-500 dark:text-gray-400">
+                    <flux:icon.document-text class="w-12 h-12 mx-auto mb-4 text-gray-400" />
+                    <p class="text-lg font-medium">Chưa có giao dịch nào</p>
+                    <p class="text-sm">Học sinh này chưa có lịch sử giao dịch nào trong hệ thống.</p>
+                </div>
+            </div>
+        @endif
 
 
     @endif

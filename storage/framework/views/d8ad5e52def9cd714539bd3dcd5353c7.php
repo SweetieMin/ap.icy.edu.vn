@@ -682,10 +682,10 @@
     
     <!--[if BLOCK]><![endif]--><?php if($selectedStudent): ?>
 
-            <div class="card-header my-4">
-                <div class="flex items-center space-x-3">
-                    <div class="w-8 h-8 bg-pink-200 dark:bg-pink-800/30 rounded-lg flex items-center justify-center">
-                        <?php if (isset($component)) { $__componentOriginal74697c151ccb8418c53b50a995b31225 = $component; } ?>
+        <div class="card-header my-4">
+            <div class="flex items-center space-x-3">
+                <div class="w-8 h-8 bg-pink-200 dark:bg-pink-800/30 rounded-lg flex items-center justify-center">
+                    <?php if (isset($component)) { $__componentOriginal74697c151ccb8418c53b50a995b31225 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal74697c151ccb8418c53b50a995b31225 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::icon.document-text','data' => ['class' => 'w-4 h-4 text-pink-600 dark:text-pink-400']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('flux::icon.document-text'); ?>
@@ -705,83 +705,83 @@
 <?php $component = $__componentOriginal74697c151ccb8418c53b50a995b31225; ?>
 <?php unset($__componentOriginal74697c151ccb8418c53b50a995b31225); ?>
 <?php endif; ?>
-                    </div>
-                    <div>
-                        <h3 class="text-lg font-bold text-pink-600 dark:text-pink-400">Lịch sử giao dịch</h3>
-                        <p class="text-pink-600 dark:text-pink-400 text-xs">Lịch sử giao dịch của
-                            <?php echo e($selectedStudent['name']); ?></p>
-                    </div>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold text-pink-600 dark:text-pink-400">Lịch sử giao dịch</h3>
+                    <p class="text-pink-600 dark:text-pink-400 text-xs">Lịch sử giao dịch của
+                        <?php echo e($selectedStudent['name']); ?></p>
                 </div>
             </div>
+        </div>
 
 
-                <!--[if BLOCK]><![endif]--><?php if(count($transactionHistory) > 0): ?>
-                    <div class="table-full-width">
-                        <div class="theme-table-pink">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>Chương trình</th>
-                                        <th>Mùa học</th>
-                                        <th>Số tiền</th>
-                                        <th>Phương thức</th>
-                                        <th>Trạng thái</th>
-                                        <th>Ngày tạo</th>
-                                        <th>QR thanh toán</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <!--[if BLOCK]><![endif]--><?php $__currentLoopData = $transactionHistory; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $transaction): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                        <tr>
-                                            <td>
-                                                <?php echo e($transaction['program']['name'] ?? 'Đồng phục'); ?>
+        <!--[if BLOCK]><![endif]--><?php if(count($transactionHistory) > 0): ?>
+            <div class="table-full-width">
+                <div class="theme-table-pink">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Chương trình</th>
+                                <th>Mùa học</th>
+                                <th>Số tiền</th>
+                                <th>Phương thức</th>
+                                <th>Trạng thái</th>
+                                <th>Ngày tạo</th>
+                                <th>Thanh toán</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!--[if BLOCK]><![endif]--><?php $__currentLoopData = $transactionHistory; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $transaction): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <tr>
+                                    <td>
+                                        <?php echo e($transaction['program']['name'] ?? 'Đồng phục'); ?>
 
-                                            </td>
-                                            <td>
-                                                <?php echo e($transaction['season']['name'] ?? '--'); ?>
+                                    </td>
+                                    <td>
+                                        <?php echo e($transaction['season']['name'] ?? '--'); ?>
 
-                                            </td>
-                                            <td>
-                                                <?php echo e(number_format($transaction['price'], 0, ',', '.')); ?> VNĐ
-                                            </td>
-                                            <td>
-                                                <!--[if BLOCK]><![endif]--><?php if($transaction['payment_method'] === 'cash'): ?>
-                                                    <span
-                                                        class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
-                                                        💵 Tiền mặt
-                                                    </span>
-                                                <?php else: ?>
-                                                    <span
-                                                        class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200">
-                                                        🏦 Chuyển khoản
-                                                    </span>
-                                                <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
-                                            </td>
-                                            <td>
-                                                <!--[if BLOCK]><![endif]--><?php if($transaction['status'] === 'pending'): ?>
-                                                    <span
-                                                        class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200">
-                                                        ⏳ Chờ xử lý
-                                                    </span>
-                                                <?php elseif($transaction['status'] === 'paid'): ?>
-                                                    <span
-                                                        class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
-                                                        ✅ Hoàn thành
-                                                    </span>
-                                                <?php else: ?>
-                                                    <span
-                                                        class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200">
-                                                        ❌ Hủy bỏ
-                                                    </span>
-                                                <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
-                                            </td>
-                                            <td>
-                                                <?php echo e($transaction['created_at_formatted']); ?>
+                                    </td>
+                                    <td>
+                                        <?php echo e(number_format($transaction['price'], 0, ',', '.')); ?> VNĐ
+                                    </td>
+                                    <td>
+                                        <!--[if BLOCK]><![endif]--><?php if($transaction['payment_method'] === 'cash'): ?>
+                                            <span
+                                                class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
+                                                💵 Tiền mặt
+                                            </span>
+                                        <?php else: ?>
+                                            <span
+                                                class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200">
+                                                🏦 Chuyển khoản
+                                            </span>
+                                        <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                                    </td>
+                                    <td>
+                                        <!--[if BLOCK]><![endif]--><?php if($transaction['status'] === 'pending'): ?>
+                                            <span
+                                                class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200">
+                                                ⏳ Chờ xử lý
+                                            </span>
+                                        <?php elseif($transaction['status'] === 'paid'): ?>
+                                            <span
+                                                class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
+                                                ✅ Hoàn thành
+                                            </span>
+                                        <?php else: ?>
+                                            <span
+                                                class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200">
+                                                ❌ Hủy bỏ
+                                            </span>
+                                        <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                                    </td>
+                                    <td>
+                                        <?php echo e($transaction['created_at_formatted']); ?>
 
-                                            </td>
-                                            <td>
-                                                <!--[if BLOCK]><![endif]--><?php if($transaction['payment_method'] === 'bank_transfer' && $transaction['status'] !== 'paid'): ?>
-                                                    <?php if (isset($component)) { $__componentOriginalc04b147acd0e65cc1a77f86fb0e81580 = $component; } ?>
+                                    </td>
+                                    <td>
+                                        <!--[if BLOCK]><![endif]--><?php if($transaction['payment_method'] === 'bank_transfer' && $transaction['status'] !== 'paid'): ?>
+                                            <?php if (isset($component)) { $__componentOriginalc04b147acd0e65cc1a77f86fb0e81580 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginalc04b147acd0e65cc1a77f86fb0e81580 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::button.index','data' => ['size' => 'sm','variant' => 'primary','icon' => 'qr-code','wire:click' => 'showQrCode('.e($transaction['id']).')','class' => 'cursor-pointer']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('flux::button'); ?>
@@ -791,8 +791,8 @@
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
 <?php $component->withAttributes(['size' => 'sm','variant' => 'primary','icon' => 'qr-code','wire:click' => 'showQrCode('.e($transaction['id']).')','class' => 'cursor-pointer']); ?>
-                                                        QR Code
-                                                     <?php echo $__env->renderComponent(); ?>
+                                                QR Code
+                                             <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php if (isset($__attributesOriginalc04b147acd0e65cc1a77f86fb0e81580)): ?>
 <?php $attributes = $__attributesOriginalc04b147acd0e65cc1a77f86fb0e81580; ?>
@@ -802,18 +802,41 @@
 <?php $component = $__componentOriginalc04b147acd0e65cc1a77f86fb0e81580; ?>
 <?php unset($__componentOriginalc04b147acd0e65cc1a77f86fb0e81580); ?>
 <?php endif; ?>
-                                                <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
-                                            </td>
-                                        </tr>
-                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><!--[if ENDBLOCK]><![endif]-->
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                <?php else: ?>
-                    <div class="text-center py-2">
-                        <div class="text-gray-500 dark:text-gray-400">
-                            <?php if (isset($component)) { $__componentOriginal74697c151ccb8418c53b50a995b31225 = $component; } ?>
+                                        <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                                        <!--[if BLOCK]><![endif]--><?php if($transaction['payment_method'] === 'cash' && $transaction['status'] !== 'paid'): ?>
+                                            <?php if (isset($component)) { $__componentOriginalc04b147acd0e65cc1a77f86fb0e81580 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginalc04b147acd0e65cc1a77f86fb0e81580 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::button.index','data' => ['color' => 'green','size' => 'sm','variant' => 'primary','icon' => 'check','wire:click' => 'paidCash('.e($transaction['id']).')','class' => 'cursor-pointer']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('flux::button'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['color' => 'green','size' => 'sm','variant' => 'primary','icon' => 'check','wire:click' => 'paidCash('.e($transaction['id']).')','class' => 'cursor-pointer']); ?>
+                                                Đã thanh toán
+                                             <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginalc04b147acd0e65cc1a77f86fb0e81580)): ?>
+<?php $attributes = $__attributesOriginalc04b147acd0e65cc1a77f86fb0e81580; ?>
+<?php unset($__attributesOriginalc04b147acd0e65cc1a77f86fb0e81580); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginalc04b147acd0e65cc1a77f86fb0e81580)): ?>
+<?php $component = $__componentOriginalc04b147acd0e65cc1a77f86fb0e81580; ?>
+<?php unset($__componentOriginalc04b147acd0e65cc1a77f86fb0e81580); ?>
+<?php endif; ?>
+                                        <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                                    </td>
+                                </tr>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><!--[if ENDBLOCK]><![endif]-->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        <?php else: ?>
+            <div class="text-center py-2">
+                <div class="text-gray-500 dark:text-gray-400">
+                    <?php if (isset($component)) { $__componentOriginal74697c151ccb8418c53b50a995b31225 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal74697c151ccb8418c53b50a995b31225 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::icon.document-text','data' => ['class' => 'w-12 h-12 mx-auto mb-4 text-gray-400']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('flux::icon.document-text'); ?>
@@ -833,11 +856,11 @@
 <?php $component = $__componentOriginal74697c151ccb8418c53b50a995b31225; ?>
 <?php unset($__componentOriginal74697c151ccb8418c53b50a995b31225); ?>
 <?php endif; ?>
-                            <p class="text-lg font-medium">Chưa có giao dịch nào</p>
-                            <p class="text-sm">Học sinh này chưa có lịch sử giao dịch nào trong hệ thống.</p>
-                        </div>
-                    </div>
-                <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                    <p class="text-lg font-medium">Chưa có giao dịch nào</p>
+                    <p class="text-sm">Học sinh này chưa có lịch sử giao dịch nào trong hệ thống.</p>
+                </div>
+            </div>
+        <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
 
 
     <?php endif; ?><!--[if ENDBLOCK]><![endif]-->

@@ -122,7 +122,7 @@
                             <th>Học viên</th>
                             <th class="hidden lg:table-cell">Chương trình</th>
                             <th class="text-center hidden md:table-cell">Học kỳ</th>
-                            <th class="text-center hidden xl:table-cell">Số biên lai</th>
+                            <th class="text-center hidden xl:table-cell">Nôi dung</th>
                             <th class="text-center">Số tiền</th>
                             <th class="text-center">Trạng thái</th>
                             <th class="text-center hidden sm:table-cell">Phương thức</th>
@@ -160,7 +160,7 @@
                                 </td>
                                 <td class="text-center hidden xl:table-cell">
                                     <div class="font-mono">
-                                        {{ $tuition->receipt_number ?? 'Chưa có' }}
+                                        {{ $tuition->note ?? 'Chưa có' }}
                                     </div>
                                 </td>
                                 <td class="text-center">
@@ -248,7 +248,7 @@
                     </div>
                 </div>
                 <div class="p-6">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                         <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-4 border border-green-200 dark:border-green-800">
                             <div class="flex items-center space-x-3">
                                 <div class="w-10 h-10 bg-green-100 dark:bg-green-800 rounded-lg flex items-center justify-center">
@@ -266,9 +266,22 @@
                                     <flux:icon.currency-dollar class="w-5 h-5 text-blue-600 dark:text-blue-400" />
                                 </div>
                                 <div>
-                                    <div class="text-sm text-blue-600 dark:text-blue-400 font-medium">Tổng tiền</div>
+                                    <div class="text-sm text-blue-600 dark:text-blue-400 font-medium">Tổng tiền đã thanh toán</div>
                                     <div class="text-2xl font-bold text-blue-700 dark:text-blue-300">
-                                        {{ number_format($tuitions->sum('price'), 0, ',', '.') }} VNĐ
+                                        {{ number_format($tuitions->where('status', 'paid')->sum('price'), 0, ',', '.') }} VNĐ
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-orange-50 dark:bg-orange-900/20 rounded-lg p-4 border border-orange-200 dark:border-orange-800">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-10 h-10 bg-orange-100 dark:bg-orange-800 rounded-lg flex items-center justify-center">
+                                    <flux:icon.exclamation-triangle class="w-5 h-5 text-orange-600 dark:text-orange-400" />
+                                </div>
+                                <div>
+                                    <div class="text-sm text-orange-600 dark:text-orange-400 font-medium">Tổng công nợ</div>
+                                    <div class="text-2xl font-bold text-orange-700 dark:text-orange-300">
+                                        {{ number_format($tuitions->where('status', 'pending')->sum('price'), 0, ',', '.') }} VNĐ
                                     </div>
                                 </div>
                             </div>
