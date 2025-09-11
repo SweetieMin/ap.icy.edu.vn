@@ -290,5 +290,163 @@ if (isset($__slots)) unset($__slots);
         </div>
     </div>
 
+    
+    <!--[if BLOCK]><![endif]--><?php if($staffsWithoutLocation->count() > 1): ?>
+        <div class="mt-6">
+            <div class="theme-card-pink mb-4">
+                <div class="p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+                                Nhân viên chưa được phân cơ sở
+                            </h3>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">
+                                <?php echo e($staffsWithoutLocation->count()); ?> nhân viên chưa được gán cơ sở
+                            </p>
+                        </div>
+                        <div class="header-counter">
+                            <span><?php echo e($staffsWithoutLocation->count()); ?> nhân viên</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="table-full-width">
+                <div class="theme-table-pink">
+                    <div class="overflow-x-auto">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th class="text-center w-16">STT</th>
+                                    <th>Họ và tên</th>
+                                    <th class="hidden md:table-cell">Số điện thoại</th>
+                                    <th class="text-center">Cơ sở</th>
+                                    <th class="text-center hidden sm:table-cell">Chức vụ</th>
+                                    <th class="text-center">Thao tác</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            <!--[if BLOCK]><![endif]--><?php $__empty_1 = true; $__currentLoopData = $staffsWithoutLocation; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $staff): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                                <tr wire:key="staff-no-location-<?php echo e($staff->id); ?>">
+                                    <td class="text-center font-medium">
+                                        <?php echo e($loop->iteration); ?>
+
+                                    </td>
+                                    <td>
+                                        <div class="flex items-center gap-3">
+                                            <img class="h-8 w-8 rounded-full object-cover"
+                                                src="<?php echo e($staff->detail?->avatar ?? asset('storage/images/avatars/default-avatar.png')); ?>"
+                                                alt="<?php echo e($staff->name); ?>">
+                                            <div>
+                                                <div class="font-medium"><?php echo e($staff->name); ?></div>
+                                                <div class="text-xs text-gray-500 dark:text-gray-400">ID:
+                                                    <?php echo e($staff->account_code); ?></div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="hidden md:table-cell">
+                                        <?php echo e($staff->detail?->phone ?? 'Chưa cập nhật'); ?>
+
+                                    </td>
+                                    <td class="text-center">
+                                        <span class="text-red-500 dark:text-red-400 text-xs font-medium">
+                                            Chưa có cơ sở
+                                        </span>
+                                    </td>
+                                    <td class="text-center hidden sm:table-cell">
+                                        <div>
+                                            <?php echo e($staff->roles->pluck('name')->implode(', ')); ?>
+
+                                        </div>
+                                    </td>
+                                    <td class="text-center">
+                                        <div class="flex items-center justify-center gap-2">
+                                            <?php if (isset($component)) { $__componentOriginalc04b147acd0e65cc1a77f86fb0e81580 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginalc04b147acd0e65cc1a77f86fb0e81580 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::button.index','data' => ['size' => 'sm','variant' => 'primary','icon' => 'pencil','wire:click' => 'editStaff('.e($staff->id).')','class' => 'cursor-pointer']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('flux::button'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['size' => 'sm','variant' => 'primary','icon' => 'pencil','wire:click' => 'editStaff('.e($staff->id).')','class' => 'cursor-pointer']); ?>
+                                                Sửa thông tin
+                                             <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginalc04b147acd0e65cc1a77f86fb0e81580)): ?>
+<?php $attributes = $__attributesOriginalc04b147acd0e65cc1a77f86fb0e81580; ?>
+<?php unset($__attributesOriginalc04b147acd0e65cc1a77f86fb0e81580); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginalc04b147acd0e65cc1a77f86fb0e81580)): ?>
+<?php $component = $__componentOriginalc04b147acd0e65cc1a77f86fb0e81580; ?>
+<?php unset($__componentOriginalc04b147acd0e65cc1a77f86fb0e81580); ?>
+<?php endif; ?>
+
+                                            <?php if (isset($component)) { $__componentOriginalc04b147acd0e65cc1a77f86fb0e81580 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginalc04b147acd0e65cc1a77f86fb0e81580 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::button.index','data' => ['size' => 'sm','variant' => 'danger','icon' => 'trash','wire:click' => 'deleteStaff('.e($staff->id).')','class' => 'cursor-pointer']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('flux::button'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['size' => 'sm','variant' => 'danger','icon' => 'trash','wire:click' => 'deleteStaff('.e($staff->id).')','class' => 'cursor-pointer']); ?>
+                                                Xóa
+                                             <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginalc04b147acd0e65cc1a77f86fb0e81580)): ?>
+<?php $attributes = $__attributesOriginalc04b147acd0e65cc1a77f86fb0e81580; ?>
+<?php unset($__attributesOriginalc04b147acd0e65cc1a77f86fb0e81580); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginalc04b147acd0e65cc1a77f86fb0e81580)): ?>
+<?php $component = $__componentOriginalc04b147acd0e65cc1a77f86fb0e81580; ?>
+<?php unset($__componentOriginalc04b147acd0e65cc1a77f86fb0e81580); ?>
+<?php endif; ?>
+                                        </div>
+                                    </td>
+                                </tr>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+                                <tr>
+                                    <td colspan="6" class="text-center py-12">
+                                        <div class="empty-state flex flex-col items-center">
+                                            <?php if (isset($component)) { $__componentOriginal4e4f522adb19cc742fb2b199df7e6c95 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal4e4f522adb19cc742fb2b199df7e6c95 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::icon.users','data' => ['class' => 'w-12 h-12 mb-4']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('flux::icon.users'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['class' => 'w-12 h-12 mb-4']); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal4e4f522adb19cc742fb2b199df7e6c95)): ?>
+<?php $attributes = $__attributesOriginal4e4f522adb19cc742fb2b199df7e6c95; ?>
+<?php unset($__attributesOriginal4e4f522adb19cc742fb2b199df7e6c95); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal4e4f522adb19cc742fb2b199df7e6c95)): ?>
+<?php $component = $__componentOriginal4e4f522adb19cc742fb2b199df7e6c95; ?>
+<?php unset($__componentOriginal4e4f522adb19cc742fb2b199df7e6c95); ?>
+<?php endif; ?>
+                                            <h3 class="text-lg font-medium mb-2">
+                                                Không có nhân viên nào
+                                            </h3>
+                                            <p>
+                                                Hiện tại không có nhân viên nào chưa được phân cơ sở
+                                            </p>
+                                        </div>
+                                    </td>
+                                </tr>
+                            <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+
 </div>
 <?php /**PATH /Users/smyth/Herd/ap.icy.edu.vn/resources/views/livewire/back/personnel/employee/staff.blade.php ENDPATH**/ ?>

@@ -13,4 +13,10 @@ interface StaffRepositoryInterface
      */
     public function getStaffsOfLocationWithFilters(array $filters = []);
 
+    /**
+     * Get staffs without any location assigned.
+     * @param array $filters ['role_id' => ?, 'search' => ?]
+     */
+    public function getStaffsWithoutLocation(array $filters = []);
+
 }

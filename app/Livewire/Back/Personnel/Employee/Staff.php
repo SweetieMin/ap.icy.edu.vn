@@ -15,6 +15,7 @@ class Staff extends Component
     public $filterRoleId = null;
     public $search = '';
     public $staffs = [];
+    public $staffsWithoutLocation = [];
 
     public function updatedFilterRoleId()
     {
@@ -24,6 +25,13 @@ class Staff extends Component
             'search' => $this->search,
         ];
         $this->staffs = app(StaffRepositoryInterface::class)->getStaffsOfLocationWithFilters($filters);
+        
+        // Load nhân viên không có location với filter role
+        $filtersWithoutLocation = [
+            'role_id' => $this->filterRoleId,
+            'search' => $this->search,
+        ];
+        $this->staffsWithoutLocation = app(StaffRepositoryInterface::class)->getStaffsWithoutLocation($filtersWithoutLocation);
     }
 
     public function addStaff()
@@ -49,6 +57,13 @@ class Staff extends Component
             'search' => $this->search,
         ];
         $this->staffs = app(StaffRepositoryInterface::class)->getStaffsOfLocationWithFilters($filters);
+        
+        // Load nhân viên không có location với filter search
+        $filtersWithoutLocation = [
+            'role_id' => $this->filterRoleId,
+            'search' => $this->search,
+        ];
+        $this->staffsWithoutLocation = app(StaffRepositoryInterface::class)->getStaffsWithoutLocation($filtersWithoutLocation);
     }
 
     public function updatedFilterLocationId()
@@ -59,6 +74,13 @@ class Staff extends Component
             'search' => $this->search,
         ];
         $this->staffs = app(StaffRepositoryInterface::class)->getStaffsOfLocationWithFilters($filters);
+        
+        // Load nhân viên không có location với filter role
+        $filtersWithoutLocation = [
+            'role_id' => $this->filterRoleId,
+            'search' => $this->search,
+        ];
+        $this->staffsWithoutLocation = app(StaffRepositoryInterface::class)->getStaffsWithoutLocation($filtersWithoutLocation);
     }
 
     public function render()
@@ -69,10 +91,19 @@ class Staff extends Component
             'search' => $this->search,
         ];
         $this->staffs = app(StaffRepositoryInterface::class)->getStaffsOfLocationWithFilters($filters);
+        
+        // Load nhân viên không có location
+        $filtersWithoutLocation = [
+            'role_id' => $this->filterRoleId,
+            'search' => $this->search,
+        ];
+        $this->staffsWithoutLocation = app(StaffRepositoryInterface::class)->getStaffsWithoutLocation($filtersWithoutLocation);
+        
         $locations = app(UserRepositoryInterface::class)->getCurrentUserLocations();
         $roles = app(RoleRepositoryInterface::class)->managerAccessPersonnel();
         return view('livewire.back.personnel.employee.staff',[
             'staffs' => $this->staffs,
+            'staffsWithoutLocation' => $this->staffsWithoutLocation,
             'locations' => $locations,
             'roles' => $roles,
         ]);

@@ -13,6 +13,7 @@ class Students extends Component
     public $filterLocationId = null;
     public $search = '';
     public $students = [];
+    public $studentsWithoutLocation = [];
 
     public function addStudent()
     {
@@ -42,6 +43,12 @@ class Students extends Component
             'search' => $this->search,
         ];
         $this->students = app(StudentRepositoryInterface::class)->getStudentsOfLocationWithFilters($filters);
+        
+        // Load học viên không có location với filter search
+        $filtersWithoutLocation = [
+            'search' => $this->search,
+        ];
+        $this->studentsWithoutLocation = app(StudentRepositoryInterface::class)->getStudentsWithoutLocation($filtersWithoutLocation);
     }
 
     public function updatedFilterLocationId()
@@ -51,6 +58,12 @@ class Students extends Component
             'search' => $this->search,
         ];
         $this->students = app(StudentRepositoryInterface::class)->getStudentsOfLocationWithFilters($filters);
+        
+        // Load học viên không có location với filter search
+        $filtersWithoutLocation = [
+            'search' => $this->search,
+        ];
+        $this->studentsWithoutLocation = app(StudentRepositoryInterface::class)->getStudentsWithoutLocation($filtersWithoutLocation);
     }
 
     public function render()
@@ -60,9 +73,17 @@ class Students extends Component
             'search' => $this->search,
         ];
         $this->students = app(StudentRepositoryInterface::class)->getStudentsOfLocationWithFilters($filters);
+        
+        // Load học viên không có location
+        $filtersWithoutLocation = [
+            'search' => $this->search,
+        ];
+        $this->studentsWithoutLocation = app(StudentRepositoryInterface::class)->getStudentsWithoutLocation($filtersWithoutLocation);
+        
         $locations = app(UserRepositoryInterface::class)->getCurrentUserLocations();
         return view('livewire.back.personnel.student.students', [
             'students' => $this->students,
+            'studentsWithoutLocation' => $this->studentsWithoutLocation,
             'locations' => $locations,
         ]);
     }

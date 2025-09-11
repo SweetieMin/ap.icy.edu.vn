@@ -166,4 +166,106 @@
         </div>
     </div>
 
+    {{-- Bảng nhân viên không có location --}}
+    @if($staffsWithoutLocation->count() > 0)
+        <div class="mt-6">
+            <div class="theme-card-pink mb-4">
+                <div class="p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+                                Nhân viên chưa được phân cơ sở
+                            </h3>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">
+                                {{ $staffsWithoutLocation->count() }} nhân viên chưa được gán cơ sở
+                            </p>
+                        </div>
+                        <div class="header-counter">
+                            <span>{{ $staffsWithoutLocation->count() }} nhân viên</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="table-full-width">
+                <div class="theme-table-pink">
+                    <div class="overflow-x-auto">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th class="text-center w-16">STT</th>
+                                    <th>Họ và tên</th>
+                                    <th class="hidden md:table-cell">Số điện thoại</th>
+                                    <th class="text-center">Cơ sở</th>
+                                    <th class="text-center hidden sm:table-cell">Chức vụ</th>
+                                    <th class="text-center">Thao tác</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            @forelse ($staffsWithoutLocation as $index => $staff)
+                                <tr wire:key="staff-no-location-{{ $staff->id }}">
+                                    <td class="text-center font-medium">
+                                        {{ $loop->iteration }}
+                                    </td>
+                                    <td>
+                                        <div class="flex items-center gap-3">
+                                            <img class="h-8 w-8 rounded-full object-cover"
+                                                src="{{ $staff->detail?->avatar ?? asset('storage/images/avatars/default-avatar.png') }}"
+                                                alt="{{ $staff->name }}">
+                                            <div>
+                                                <div class="font-medium">{{ $staff->name }}</div>
+                                                <div class="text-xs text-gray-500 dark:text-gray-400">ID:
+                                                    {{ $staff->account_code }}</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="hidden md:table-cell">
+                                        {{ $staff->detail?->phone ?? 'Chưa cập nhật' }}
+                                    </td>
+                                    <td class="text-center">
+                                        <span class="text-red-500 dark:text-red-400 text-xs font-medium">
+                                            Chưa có cơ sở
+                                        </span>
+                                    </td>
+                                    <td class="text-center hidden sm:table-cell">
+                                        <div>
+                                            {{ $staff->roles->pluck('name')->implode(', ') }}
+                                        </div>
+                                    </td>
+                                    <td class="text-center">
+                                        <div class="flex items-center justify-center gap-2">
+                                            <flux:button size="sm" variant="primary" icon="pencil"
+                                                wire:click="editStaff({{ $staff->id }})" class="cursor-pointer">
+                                                Sửa thông tin
+                                            </flux:button>
+
+                                            <flux:button size="sm" variant="danger" icon="trash"
+                                                wire:click="deleteStaff({{ $staff->id }})" class="cursor-pointer">
+                                                Xóa
+                                            </flux:button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="6" class="text-center py-12">
+                                        <div class="empty-state flex flex-col items-center">
+                                            <flux:icon.users class="w-12 h-12 mb-4" />
+                                            <h3 class="text-lg font-medium mb-2">
+                                                Không có nhân viên nào
+                                            </h3>
+                                            <p>
+                                                Hiện tại không có nhân viên nào chưa được phân cơ sở
+                                            </p>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    @endif
+
 </div>

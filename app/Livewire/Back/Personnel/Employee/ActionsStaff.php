@@ -172,7 +172,7 @@ class ActionsStaff extends Component
         $this->gender = $staff->detail->gender;
         $this->guardian_name = $staff->detail->guardian_name;
         $this->guardian_phone = $staff->detail->guardian_phone;
-        $this->location_id = $staff->locations->first()->id;
+        $this->location_id = $staff->locations->first()->id ?? null;
         $this->role_id = $staff->roles->first()->id;
         $this->isEditStaffMode = true;
         Flux::modal('modal-employee')->show();

@@ -88,6 +88,30 @@ class StudentRepository implements StudentRepositoryInterface
         });
     }
 
+    public function getStudentsWithoutLocation(array $filters = [])
+    {
+        $query = User::with(['locations', 'roles', 'detail'])
+            ->where('status', '=', 'active')
+            ->whereHas('roles', function ($q) {
+                $q->where('name', 'student');
+            })
+            ->whereDoesntHave('locations'); // Học viên không có location nào
+
+        if (!empty($filters['search'])) {
+            $search = trim($filters['search']);
+            $query->where(function ($q) use ($search) {
+                $q->where('name', 'like', "%{$search}%")
+                    ->orWhere('account_code', 'like', "%{$search}%");
+            });
+        }
+
+        return $query->get()->sortBy(function ($user) {
+            return [
+                $user->name,
+            ];
+        });
+    }
+
 }
 
 
