@@ -7,7 +7,15 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class Program extends Model
 {
-    protected $fillable = ['name', 'english_name' , 'description', 'ordering'];
+    protected $fillable = ['name', 'english_name' , 'description', 'ordering', 'price_book'];
+
+    protected function priceBook(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value) => (float) $value,
+            set: fn ($value) => (float) str_replace(['.', ',', ' VNĐ'], '', $value)
+        );
+    }
     
     public function subjects()
     {

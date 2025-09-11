@@ -98,6 +98,7 @@ if (isset($__slots)) unset($__slots);
                                 <th class="text-center w-16">STT</th>
                                 <th class="w-30">Chương trình học</th>
                                 <th class="hidden 2xl:table-cell">Mô tả</th>
+                                <th class="text-center hidden lg:table-cell">Giá sách</th>
                                 <th class="text-center">Thao tác</th>
                             </tr>
                         </thead>
@@ -126,6 +127,11 @@ if (isset($__slots)) unset($__slots);
                                         <div class=" truncate" title="<?php echo e($program->description); ?>">
                                             <?php echo e($program->description); ?>
 
+                                        </div>
+                                    </td>
+                                    <td class="text-center hidden lg:table-cell">
+                                        <div class="font-bold text-green-600 dark:text-green-400">
+                                            <?php echo e(number_format($program->price_book, 0, ',', '.')); ?> VNĐ
                                         </div>
                                     </td>
 
@@ -256,7 +262,7 @@ if (isset($__slots)) unset($__slots);
                                 </tr>
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
                                 <tr>
-                                    <td colspan="4" class="px-6 py-8">
+                                    <td colspan="5" class="px-6 py-8">
                                         <div class="empty-state flex flex-col items-center">
                                             <?php if (isset($component)) { $__componentOriginal76d8dfc5ede7830a506df27ed24d5d51 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal76d8dfc5ede7830a506df27ed24d5d51 = $attributes; } ?>

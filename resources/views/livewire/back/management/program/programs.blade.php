@@ -64,6 +64,7 @@
                                 <th class="text-center w-16">STT</th>
                                 <th class="w-30">Chương trình học</th>
                                 <th class="hidden 2xl:table-cell">Mô tả</th>
+                                <th class="text-center hidden lg:table-cell">Giá sách</th>
                                 <th class="text-center">Thao tác</th>
                             </tr>
                         </thead>
@@ -91,6 +92,11 @@
                                             {{ $program->description }}
                                         </div>
                                     </td>
+                                    <td class="text-center hidden lg:table-cell">
+                                        <div class="font-bold text-green-600 dark:text-green-400">
+                                            {{ number_format($program->price_book, 0, ',', '.') }} VNĐ
+                                        </div>
+                                    </td>
 
                                     <td class="whitespace-nowrap text-center">
                                         <flux:dropdown>
@@ -112,7 +118,7 @@
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="4" class="px-6 py-8">
+                                    <td colspan="5" class="px-6 py-8">
                                         <div class="empty-state flex flex-col items-center">
                                             <flux:icon.book-marked class="w-8 h-8 mb-2" />
                                             <div class="text-sm">Không có khoá học nào</div>

@@ -159,19 +159,30 @@
                 <div class="p-6">
 
                     
-                    <div class="mb-4 flex gap-3">
-                        
-                        <div class="flex-1">
-                            <input type="text" wire:model.live="searchProgram" clearable
-                                wire:focus="onProgramSearchFocus" wire:blur="onProgramSearchBlur"
-                                placeholder="Tìm kiếm chương trình theo tên..." class="card-input">
-                        </div>
+                    <div class="mb-4">
+                        <input type="text" wire:model.live="searchProgram" clearable
+                            wire:focus="onProgramSearchFocus" wire:blur="onProgramSearchBlur"
+                            placeholder="Tìm kiếm chương trình theo tên..." class="card-input">
+                    </div>
 
+                    
+                    <!--[if BLOCK]><![endif]--><?php if(!$selectedStudent): ?>
                         
-                        <div class="w-1/5">
-                            <button wire:click="addUniform"
-                                class="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-4 rounded-lg transition-all duration-300 flex items-center justify-center">
-                                <?php if (isset($component)) { $__componentOriginal4798c9ed545a644ce2a2a591ad6db0d1 = $component; } ?>
+                        <div class="text-center py-8">
+                            <div class="text-gray-500 dark:text-gray-400 text-lg">Vui lòng chọn học sinh trước</div>
+                            <div class="text-gray-400 dark:text-gray-500 text-sm mt-1">Sau khi chọn học sinh, danh sách
+                                chương trình sẽ hiển thị</div>
+                        </div>
+                    <?php elseif(count($filteredPrograms) > 0): ?>
+                        <div class="max-h-64 overflow-y-auto space-y-2">
+                            
+                            <!--[if BLOCK]><![endif]--><?php if($isProgramSearchFocused || empty($searchProgram)): ?>
+                                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-3 hover:bg-purple-100 dark:hover:bg-purple-800/30 border border-purple-200 dark:border-purple-700">
+                                    <button wire:click="addUniform"
+                                        class="w-full flex items-center justify-between text-left">
+                                        <div class="flex-1">
+                                            <div class="text-purple-900 dark:text-purple-100 font-medium mb-1 flex items-center">
+                                                <?php if (isset($component)) { $__componentOriginal4798c9ed545a644ce2a2a591ad6db0d1 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal4798c9ed545a644ce2a2a591ad6db0d1 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::icon.shirt','data' => ['class' => 'w-4 h-4 mr-2']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('flux::icon.shirt'); ?>
@@ -191,24 +202,26 @@
 <?php $component = $__componentOriginal4798c9ed545a644ce2a2a591ad6db0d1; ?>
 <?php unset($__componentOriginal4798c9ed545a644ce2a2a591ad6db0d1); ?>
 <?php endif; ?>
-                                Thêm đồng phục
-                            </button>
-                        </div>
-                    </div>
+                                                Đồng phục
+                                            </div>
+                                            <div class="text-purple-600 dark:text-purple-400 text-sm font-bold">
+                                                100.000 VNĐ
+                                            </div>
+                                        </div>
+                                        <div class="text-purple-600 dark:text-purple-400">
+                                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                                <path fill-rule="evenodd"
+                                                    d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
+                                                    clip-rule="evenodd"></path>
+                                            </svg>
+                                        </div>
+                                    </button>
+                                </div>
+                            <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
 
-                    
-                    <!--[if BLOCK]><![endif]--><?php if(!$selectedStudent): ?>
-                        
-                        <div class="text-center py-8">
-                            <div class="text-gray-500 dark:text-gray-400 text-lg">Vui lòng chọn học sinh trước</div>
-                            <div class="text-gray-400 dark:text-gray-500 text-sm mt-1">Sau khi chọn học sinh, danh sách
-                                chương trình sẽ hiển thị</div>
-                        </div>
-                    <?php elseif(count($filteredPrograms) > 0): ?>
-                        <div class="max-h-64 overflow-y-auto space-y-2">
+                            
                             <!--[if BLOCK]><![endif]--><?php $__currentLoopData = $filteredPrograms; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $program): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                <div
-                                    class="bg-gray-50 dark:bg-gray-700 rounded-lg p-3 hover:bg-gray-100 dark:hover:bg-gray-600 ">
+                                <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-3 hover:bg-gray-100 dark:hover:bg-gray-600">
                                     <button wire:click="addProgram(<?php echo e($program['id']); ?>)"
                                         class="w-full flex items-center justify-between text-left">
                                         <div class="flex-1">
@@ -339,6 +352,30 @@
                                         </div>
 
                                         
+                                        <!--[if BLOCK]><![endif]--><?php if($item['type'] === 'program'): ?>
+                                            <?php
+                                                $program = collect($programs)->firstWhere('id', $item['id']);
+                                                $hasBookPrice = $program && $program['price_book'] > 0;
+                                            ?>
+                                            <!--[if BLOCK]><![endif]--><?php if($hasBookPrice): ?>
+                                                <div class="w-24">
+                                                    <label class="flex items-center text-xs text-gray-600 dark:text-gray-400">
+                                                        <input type="checkbox" 
+                                                            wire:change="toggleItemBookPurchase(<?php echo e($index); ?>, $event.target.checked)"
+                                                            <?php echo e(isset($item['include_book']) && $item['include_book'] ? 'checked' : ''); ?>
+
+                                                            class="w-3 h-3 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-1 dark:bg-gray-700 dark:border-gray-600">
+                                                        <span class="ml-1">📚 Sách</span>
+                                                    </label>
+                                                </div>
+                                            <?php else: ?>
+                                                <div class="w-24"></div>
+                                            <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                                        <?php else: ?>
+                                            <div class="w-24"></div>
+                                        <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+
+                                        
                                         <div class="w-32">
                                             <!--[if BLOCK]><![endif]--><?php if($item['type'] === 'uniform'): ?>
                                                 <div
@@ -385,15 +422,27 @@
 
                                         
                                         <div class="w-24 text-right">
+                                            <!--[if BLOCK]><![endif]--><?php if(isset($item['include_book']) && $item['include_book'] && isset($item['book_price']) && $item['book_price'] > 0): ?>
+                                                <div class="text-gray-700 dark:text-gray-300 text-xs">
+                                                    <?php echo e(number_format($item['base_price'], 0, ',', '.')); ?>
+
+                                                </div>
+                                                <div class="text-green-600 dark:text-green-400 text-xs">
+                                                    +<?php echo e(number_format($item['book_price'], 0, ',', '.')); ?>
+
+                                                </div>
+                                            <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
                                             <div class="text-gray-900 dark:text-white font-bold text-sm">
                                                 <?php echo e(number_format($item['price'], 0, ',', '.')); ?>
 
                                             </div>
                                             <!--[if BLOCK]><![endif]--><?php if(isset($item['discount_amount']) && $item['discount_amount'] > 0): ?>
                                                 <?php
+                                                    // Chỉ tính giảm giá trên base_price, không tính trên giá sách
+                                                    $basePrice = isset($item['base_price']) ? $item['base_price'] : $item['price'];
                                                     $discountValue =
                                                         ($item['discount_type'] ?? 'vnd') === 'percent'
-                                                            ? ($item['price'] * $item['discount_amount']) / 100
+                                                            ? ($basePrice * $item['discount_amount']) / 100
                                                             : $item['discount_amount'];
                                                     $finalPrice = $item['price'] - $discountValue;
                                                 ?>
@@ -565,8 +614,11 @@
                             $totalItemDiscounts = 0;
                             foreach ($selectedItems as $item) {
                                 if (isset($item['discount_amount']) && $item['discount_amount'] > 0) {
+                                    // Chỉ tính giảm giá trên base_price, không tính trên giá sách
+                                    $basePrice = isset($item['base_price']) ? $item['base_price'] : $item['price'];
+                                    
                                     if (($item['discount_type'] ?? 'vnd') === 'percent') {
-                                        $totalItemDiscounts += ($item['price'] * $item['discount_amount']) / 100;
+                                        $totalItemDiscounts += ($basePrice * $item['discount_amount']) / 100;
                                     } else {
                                         $totalItemDiscounts += $item['discount_amount'];
                                     }
@@ -885,6 +937,13 @@
 
         document.addEventListener('turnOffQRCode', function() {
             window.serialPortManager.turnOffQRCode();
+        });
+
+        // Handle delayed blur for program search
+        document.addEventListener('delayed-blur', function() {
+            setTimeout(function() {
+                window.Livewire.find('<?php echo e($_instance->getId()); ?>').call('handleDelayedBlur');
+            }, 150); // 150ms delay
         });
     </script>
 <?php $__env->stopPush(); ?>

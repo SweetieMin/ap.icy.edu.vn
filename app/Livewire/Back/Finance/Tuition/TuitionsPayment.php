@@ -24,6 +24,7 @@ class TuitionsPayment extends Component
     public $searchProgram = '';
     public $programs = [];
     public $filteredPrograms = [];
+    public $isProgramSearchFocused = false;
 
     // Student selection
     public $selectedStudent = null;
@@ -43,6 +44,9 @@ class TuitionsPayment extends Component
 
     // Selected items
     public $selectedItems = [];
+    
+    // Book purchase tracking
+    public $bookPurchases = [];
 
     // Payment
     public $totalAmount = 0;
@@ -86,6 +90,7 @@ class TuitionsPayment extends Component
                 'name' => $program->name,
                 'english_name' => $program->english_name,
                 'price' => 0, // Giá mặc định, sẽ được cập nhật khi chọn học sinh
+                'price_book' => $program->price_book ?? 0, // Giá sách
             ];
         }
 
@@ -154,6 +159,7 @@ class TuitionsPayment extends Component
 
     public function onProgramSearchFocus()
     {
+        $this->isProgramSearchFocused = true;
         // Chỉ hiển thị danh sách chương trình khi đã chọn học sinh
         if ($this->selectedStudent) {
             $this->filteredPrograms = $this->programs;
@@ -162,6 +168,13 @@ class TuitionsPayment extends Component
 
     public function onProgramSearchBlur()
     {
+        // Delay để tránh blur khi click vào button
+        $this->dispatch('delayed-blur');
+    }
+    
+    public function handleDelayedBlur()
+    {
+        $this->isProgramSearchFocused = false;
         // Khi blur khỏi ô tìm kiếm, giữ danh sách hiển thị nếu đã chọn học sinh
         if ($this->selectedStudent) {
             $this->filteredPrograms = $this->programs;
@@ -233,9 +246,39 @@ class TuitionsPayment extends Component
     public function clearStudentSelection()
     {
         $this->selectedStudent = null;
+        $this->selectedItems = [];
+        $this->bookPurchases = [];
         $this->transactionHistory = []; // Xóa lịch sử giao dịch
         $this->loadStudents();
         $this->student = '';
+    }
+
+    public function toggleItemBookPurchase($index, $checked)
+    {
+        if (isset($this->selectedItems[$index])) {
+            $item = $this->selectedItems[$index];
+            
+            if ($item['type'] === 'program') {
+                // Lấy thông tin chương trình để lấy giá sách
+                $program = collect($this->programs)->firstWhere('id', $item['id']);
+                
+                if ($program && $program['price_book'] > 0) {
+                    if ($checked) {
+                        // Thêm giá sách
+                        $this->selectedItems[$index]['include_book'] = true;
+                        $this->selectedItems[$index]['book_price'] = $program['price_book'];
+                        $this->selectedItems[$index]['price'] = $item['base_price'] + $program['price_book'];
+                    } else {
+                        // Bỏ giá sách
+                        $this->selectedItems[$index]['include_book'] = false;
+                        $this->selectedItems[$index]['book_price'] = 0;
+                        $this->selectedItems[$index]['price'] = $item['base_price'];
+                    }
+                    
+                    $this->calculateTotal();
+                }
+            }
+        }
     }
 
     public function addProgram($programId)
@@ -255,13 +298,17 @@ class TuitionsPayment extends Component
                 return;
             }
 
+            // Thêm chương trình với giá gốc, chưa mua sách
             $newItem = [
                 'id' => (int) $program['id'],
                 'name' => $program['name'],
                 'price' => (float) $price,
+                'base_price' => (float) $price,
+                'book_price' => 0,
                 'season_id' => null, // Sẽ được chọn sau
                 'season_name' => null,
                 'type' => 'program',
+                'include_book' => false,
             ];
 
             $this->selectedItems[] = $newItem;
@@ -343,11 +390,14 @@ class TuitionsPayment extends Component
         foreach ($this->selectedItems as $item) {
             $itemPrice = (float) $item['price'];
 
-            // Tính giảm giá cho từng item
+            // Tính giảm giá cho từng item - chỉ tính trên base_price (giá gốc chương trình)
             if (isset($item['discount_amount']) && $item['discount_amount'] > 0) {
                 $discountAmount = (float) $item['discount_amount'];
+                // Chỉ tính giảm giá trên base_price, không tính trên giá sách
+                $basePrice = isset($item['base_price']) ? (float) $item['base_price'] : $itemPrice;
+                
                 if (($item['discount_type'] ?? 'vnd') === 'percent') {
-                    $itemDiscount = ($itemPrice * $discountAmount) / 100;
+                    $itemDiscount = ($basePrice * $discountAmount) / 100;
                 } else {
                     $itemDiscount = $discountAmount;
                 }
@@ -457,9 +507,12 @@ class TuitionsPayment extends Component
                 if ($item['type'] === 'uniform') {
                     $note = "Uniform_" . $student->username.'_'.uniqid();
                 } else {
-                    $note = BankHelper::generateDescriptionTransactionBankTransfer($student->id, $item['season_id'], $item['id']);
+                    if ($item['include_book']) {
+                        $note = BankHelper::generateDescriptionTransactionBankTransfer($student->id, $item['season_id'], $item['id'])."_Book";
+                    } else {
+                        $note = BankHelper::generateDescriptionTransactionBankTransfer($student->id, $item['season_id'], $item['id']);
+                    }
                 }
-
 
                 $finalItemPrice = $itemPrice - $itemDiscount;
                 if ($finalItemPrice < 0) $finalItemPrice = 0;
@@ -513,6 +566,8 @@ class TuitionsPayment extends Component
 
     public function render()
     {
-        return view('livewire.back.finance.tuition.tuitions-payment');
+        return view('livewire.back.finance.tuition.tuitions-payment', [
+            'programs' => $this->programs
+        ]);
     }
 }

@@ -81,23 +81,11 @@
                 </div>
                 <div class="p-6">
 
-                    {{-- Search Program and Uniform Button --}}
-                    <div class="mb-4 flex gap-3">
-                        {{-- Search Program --}}
-                        <div class="flex-1">
-                            <input type="text" wire:model.live="searchProgram" clearable
-                                wire:focus="onProgramSearchFocus" wire:blur="onProgramSearchBlur"
-                                placeholder="Tìm kiếm chương trình theo tên..." class="card-input">
-                        </div>
-
-                        {{-- Uniform Button --}}
-                        <div class="w-1/5">
-                            <button wire:click="addUniform"
-                                class="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-4 rounded-lg transition-all duration-300 flex items-center justify-center">
-                                <flux:icon.shirt class="w-4 h-4 mr-2" />
-                                Thêm đồng phục
-                            </button>
-                        </div>
+                    {{-- Search Program --}}
+                    <div class="mb-4">
+                        <input type="text" wire:model.live="searchProgram" clearable
+                            wire:focus="onProgramSearchFocus" wire:blur="onProgramSearchBlur"
+                            placeholder="Tìm kiếm chương trình theo tên..." class="card-input">
                     </div>
 
                     {{-- Search Results --}}
@@ -110,9 +98,34 @@
                         </div>
                     @elseif (count($filteredPrograms) > 0)
                         <div class="max-h-64 overflow-y-auto space-y-2">
+                            {{-- Uniform Item - Show when focused or when not searching --}}
+                            @if ($isProgramSearchFocused || empty($searchProgram))
+                                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-3 hover:bg-purple-100 dark:hover:bg-purple-800/30 border border-purple-200 dark:border-purple-700">
+                                    <button wire:click="addUniform"
+                                        class="w-full flex items-center justify-between text-left">
+                                        <div class="flex-1">
+                                            <div class="text-purple-900 dark:text-purple-100 font-medium mb-1 flex items-center">
+                                                <flux:icon.shirt class="w-4 h-4 mr-2" />
+                                                Đồng phục
+                                            </div>
+                                            <div class="text-purple-600 dark:text-purple-400 text-sm font-bold">
+                                                100.000 VNĐ
+                                            </div>
+                                        </div>
+                                        <div class="text-purple-600 dark:text-purple-400">
+                                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                                                <path fill-rule="evenodd"
+                                                    d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
+                                                    clip-rule="evenodd"></path>
+                                            </svg>
+                                        </div>
+                                    </button>
+                                </div>
+                            @endif
+
+                            {{-- Programs List --}}
                             @foreach ($filteredPrograms as $program)
-                                <div
-                                    class="bg-gray-50 dark:bg-gray-700 rounded-lg p-3 hover:bg-gray-100 dark:hover:bg-gray-600 ">
+                                <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-3 hover:bg-gray-100 dark:hover:bg-gray-600">
                                     <button wire:click="addProgram({{ $program['id'] }})"
                                         class="w-full flex items-center justify-between text-left">
                                         <div class="flex-1">
@@ -220,6 +233,29 @@
                                             {{ $item['name'] }}
                                         </div>
 
+                                        {{-- Book Purchase Checkbox --}}
+                                        @if ($item['type'] === 'program')
+                                            @php
+                                                $program = collect($programs)->firstWhere('id', $item['id']);
+                                                $hasBookPrice = $program && $program['price_book'] > 0;
+                                            @endphp
+                                            @if ($hasBookPrice)
+                                                <div class="w-24">
+                                                    <label class="flex items-center text-xs text-gray-600 dark:text-gray-400">
+                                                        <input type="checkbox" 
+                                                            wire:change="toggleItemBookPurchase({{ $index }}, $event.target.checked)"
+                                                            {{ isset($item['include_book']) && $item['include_book'] ? 'checked' : '' }}
+                                                            class="w-3 h-3 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-1 dark:bg-gray-700 dark:border-gray-600">
+                                                        <span class="ml-1">📚 Sách</span>
+                                                    </label>
+                                                </div>
+                                            @else
+                                                <div class="w-24"></div>
+                                            @endif
+                                        @else
+                                            <div class="w-24"></div>
+                                        @endif
+
                                         {{-- Season Selection --}}
                                         <div class="w-32">
                                             @if ($item['type'] === 'uniform')
@@ -266,14 +302,24 @@
 
                                         {{-- Price Display --}}
                                         <div class="w-24 text-right">
+                                            @if (isset($item['include_book']) && $item['include_book'] && isset($item['book_price']) && $item['book_price'] > 0)
+                                                <div class="text-gray-700 dark:text-gray-300 text-xs">
+                                                    {{ number_format($item['base_price'], 0, ',', '.') }}
+                                                </div>
+                                                <div class="text-green-600 dark:text-green-400 text-xs">
+                                                    +{{ number_format($item['book_price'], 0, ',', '.') }}
+                                                </div>
+                                            @endif
                                             <div class="text-gray-900 dark:text-white font-bold text-sm">
                                                 {{ number_format($item['price'], 0, ',', '.') }}
                                             </div>
                                             @if (isset($item['discount_amount']) && $item['discount_amount'] > 0)
                                                 @php
+                                                    // Chỉ tính giảm giá trên base_price, không tính trên giá sách
+                                                    $basePrice = isset($item['base_price']) ? $item['base_price'] : $item['price'];
                                                     $discountValue =
                                                         ($item['discount_type'] ?? 'vnd') === 'percent'
-                                                            ? ($item['price'] * $item['discount_amount']) / 100
+                                                            ? ($basePrice * $item['discount_amount']) / 100
                                                             : $item['discount_amount'];
                                                     $finalPrice = $item['price'] - $discountValue;
                                                 @endphp
@@ -423,8 +469,11 @@
                             $totalItemDiscounts = 0;
                             foreach ($selectedItems as $item) {
                                 if (isset($item['discount_amount']) && $item['discount_amount'] > 0) {
+                                    // Chỉ tính giảm giá trên base_price, không tính trên giá sách
+                                    $basePrice = isset($item['base_price']) ? $item['base_price'] : $item['price'];
+                                    
                                     if (($item['discount_type'] ?? 'vnd') === 'percent') {
-                                        $totalItemDiscounts += ($item['price'] * $item['discount_amount']) / 100;
+                                        $totalItemDiscounts += ($basePrice * $item['discount_amount']) / 100;
                                     } else {
                                         $totalItemDiscounts += $item['discount_amount'];
                                     }
@@ -667,6 +716,13 @@
 
         document.addEventListener('turnOffQRCode', function() {
             window.serialPortManager.turnOffQRCode();
+        });
+
+        // Handle delayed blur for program search
+        document.addEventListener('delayed-blur', function() {
+            setTimeout(function() {
+                @this.call('handleDelayedBlur');
+            }, 150); // 150ms delay
         });
     </script>
 @endpush

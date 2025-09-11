@@ -12,14 +12,19 @@
             </div>
 
             <flux:separator />
-
+            <div class="form-group">
+                <flux:input wire:model='name' autocomplete="off" clearable label="Tên chương trình" autofocus>
+                </flux:input>
+            </div>
             <div class="flex gap-2">
+
                 <div class="form-group w-3/5">
-                    <flux:input wire:model='name' autocomplete="off" clearable label="Tên chương trình" autofocus>
+                    <flux:input wire:model='english_name' autocomplete="off" clearable label="Tên tiếng anh">
                     </flux:input>
                 </div>
                 <div class="form-group w-2/5">
-                    <flux:input wire:model='english_name' autocomplete="off" clearable label="Tên tiếng anh">
+                    <flux:input wire:model='price_book' type="number" step="0.01" min="0" autocomplete="off"
+                        clearable label="Giá sách (VNĐ)">
                     </flux:input>
                 </div>
             </div>
