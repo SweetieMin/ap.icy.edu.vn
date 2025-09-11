@@ -103,4 +103,3 @@ Route::prefix('admin')->middleware(['auth', 'preventBackHistory'])->name('admin.
 });
 
 require __DIR__ . '/auth.php';
-require __DIR__ . '/email-preview.php';
