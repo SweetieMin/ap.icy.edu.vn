@@ -124,24 +124,25 @@
                                         </td>
                                     @endif
                                     <td class="text-center">
-                                        <div class="flex items-center justify-center gap-2">
-                                            <flux:button size="sm" variant="primary" icon="pencil"
-                                                wire:click="editStudent({{ $student->id }})" class="cursor-pointer">
-                                                Sửa thông tin
-                                            </flux:button>
+                                        <flux:dropdown>
+                                            <flux:button icon:trailing="chevron-down">Thao tác</flux:button>
 
-                                            <flux:button size="sm" variant="danger" icon="trash"
-                                                wire:click="deleteStudent({{ $student->id }})" class="cursor-pointer">
-                                                Xóa
-                                            </flux:button>
+                                            <flux:menu>
+                                                <flux:menu.item icon="pencil"
+                                                    wire:click="editStudent({{ $student->id }})">Sửa thông tin
+                                                </flux:menu.item>
 
+                                                <flux:menu.item icon="printer"
+                                                    wire:click="printStudentRegistration({{ $student->id }})">In đơn
+                                                    đăng ký</flux:menu.item>
 
-                                            <flux:button size="sm" color="green" variant="primary" icon="printer"
-                                                wire:click="printStudentRegistration({{ $student->id }})"
-                                                class="cursor-pointer">
-                                                In đơn đăng ký
-                                            </flux:button>
-                                        </div>
+                                                <flux:menu.separator />
+
+                                                <flux:menu.item variant="danger" icon="trash"
+                                                    wire:click="deleteStudent({{ $student->id }})">Xóa
+                                                </flux:menu.item>
+                                            </flux:menu>
+                                        </flux:dropdown>
                                     </td>
                                 </tr>
                             @empty
@@ -237,25 +238,26 @@
                                             </td>
                                         @endif
                                         <td class="text-center">
-                                            <div class="flex items-center justify-center gap-2">
-                                                <flux:button size="sm" variant="primary" icon="pencil"
-                                                    wire:click="editStudent({{ $student->id }})"
-                                                    class="cursor-pointer">
-                                                    Sửa thông tin
-                                                </flux:button>
+                                            <flux:dropdown>
+                                                <flux:button icon:trailing="chevron-down">Thao tác</flux:button>
 
-                                                <flux:button size="sm" variant="danger" icon="trash"
-                                                    wire:click="deleteStudent({{ $student->id }})"
-                                                    class="cursor-pointer">
-                                                    Xóa
-                                                </flux:button>
+                                                <flux:menu>
+                                                    <flux:menu.item icon="pencil"
+                                                        wire:click="editStudent({{ $student->id }})">Sửa thông tin
+                                                    </flux:menu.item>
 
-                                                <flux:button size="sm" variant="primary" icon="printer"
-                                                    wire:click="printStudentRegistration({{ $student->id }})"
-                                                    class="cursor-pointer">
-                                                    In đơn đăng ký
-                                                </flux:button>
-                                            </div>
+                                                    <flux:menu.item icon="printer"
+                                                        wire:click="printStudentRegistration({{ $student->id }})">In
+                                                        đơn
+                                                        đăng ký</flux:menu.item>
+
+                                                    <flux:menu.separator />
+
+                                                    <flux:menu.item variant="danger" icon="trash"
+                                                        wire:click="deleteStudent({{ $student->id }})">Xóa
+                                                    </flux:menu.item>
+                                                </flux:menu>
+                                            </flux:dropdown>
                                         </td>
                                     </tr>
                                 @empty
@@ -287,10 +289,10 @@
         window.addEventListener('open-pdf', e => {
             console.log(e.detail[0].url);
             let url = e.detail[0].url;
-            
+
             // Mở PDF trong tab mới và tự động in
             let printWindow = window.open(url, '_blank');
-            
+
             // Đợi PDF load xong rồi in
             if (printWindow) {
                 printWindow.onload = function() {
@@ -298,7 +300,7 @@
                         printWindow.print();
                     }, 2000); // Đợi 2 giây để PDF load hoàn toàn
                 };
-                
+
                 // Fallback nếu onload không hoạt động
                 setTimeout(() => {
                     try {

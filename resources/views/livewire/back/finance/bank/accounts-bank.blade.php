@@ -71,14 +71,21 @@
                                     </span>
                                 </td>
                                 <td class="whitespace-nowrap text-center">
-                                    <div class="flex items-center justify-center gap-2">
-                                        <flux:button size="sm" variant="primary" icon="square-pen"
-                                            wire:click="editBank({{ $bank->id }})" class="cursor-pointer">Sửa
-                                        </flux:button>
-                                        <flux:button size="sm" variant="danger" icon="trash"
-                                            wire:click="deleteBank({{ $bank->id }})" class="cursor-pointer">Xoá
-                                        </flux:button>
-                                    </div>
+                                    <flux:dropdown>
+                                        <flux:button icon:trailing="chevron-down">Thao tác</flux:button>
+
+                                        <flux:menu>
+                                            <flux:menu.item  icon="pencil"
+                                                wire:click="editBank({{ $bank->id }})">Sửa thông tin
+                                            </flux:menu.item>
+
+                                            <flux:menu.separator />
+
+                                            <flux:menu.item variant="danger" icon="trash"
+                                                wire:click="deleteBank({{ $bank->id }})">Xóa
+                                            </flux:menu.item>
+                                        </flux:menu>
+                                    </flux:dropdown>
                                 </td>
                             </tr>
                         @empty

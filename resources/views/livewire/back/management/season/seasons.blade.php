@@ -65,16 +65,21 @@
                                     </flux:badge>
                                 </td>
                                 <td class="whitespace-nowrap text-center">
-                                    <div class="flex items-center justify-center gap-2">
-                                        <flux:button size="sm" variant="primary" icon="square-pen"
-                                            wire:click="editSeason({{ $season->id }})" class="cursor-pointer">
-                                            Sửa
-                                        </flux:button>
-                                        <flux:button size="sm" variant="danger" icon="trash"
-                                            wire:click="deleteSeason({{ $season->id }})" class="cursor-pointer">
-                                            Xóa
-                                        </flux:button>
-                                    </div>
+                                    <flux:dropdown>
+                                        <flux:button icon:trailing="chevron-down">Thao tác</flux:button>
+
+                                        <flux:menu>
+                                            <flux:menu.item  icon="pencil"
+                                                wire:click="editSeason({{ $season->id }})">Sửa thông tin
+                                            </flux:menu.item>
+
+                                            <flux:menu.separator />
+
+                                            <flux:menu.item variant="danger" icon="trash"
+                                                wire:click="deleteSeason({{ $season->id }})">Xóa
+                                            </flux:menu.item>
+                                        </flux:menu>
+                                    </flux:dropdown>
                                 </td>
                             </tr>
                         @empty

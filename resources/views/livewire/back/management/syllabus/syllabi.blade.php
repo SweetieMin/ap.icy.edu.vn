@@ -129,24 +129,25 @@
                                 </div>
                             </td>
                             <td class="table-cell text-center">
-                                <div class="flex items-center justify-center gap-2">
-                                    <flux:button size="sm" variant="primary" icon="eye"
-                                        title="Xem chi tiết"
-                                        class="cursor-pointer">
-                                        Xem
-                                    </flux:button>
-                                    <flux:button size="sm" variant="primary" icon="square-pen"
-                                        wire:click="$dispatch('edit-syllabus', { syllabusId: {{ $syllabus->id }} })"
-                                        class="cursor-pointer">
-                                        Sửa
-                                    </flux:button>
-                                    <flux:button size="sm" variant="danger" icon="trash"
-                                        wire:click="deleteSyllabus({{ $syllabus->id }})"
-                                        wire:confirm="Bạn có chắc chắn muốn xóa syllabus này?"
-                                        class="cursor-pointer">
-                                        Xóa
-                                    </flux:button>
-                                </div>
+                                <flux:dropdown>
+                                    <flux:button icon:trailing="chevron-down">Thao tác</flux:button>
+
+                                    <flux:menu>
+                                        <flux:menu.item  icon="pencil"
+                                            wire:click="editSyllabus({{ $syllabus->id }})">Sửa thông tin
+                                        </flux:menu.item>
+
+                                        <flux:menu.item  icon="eye"
+                                            wire:click="viewSyllabus({{ $syllabus->id }})">Xem chi tiết
+                                        </flux:menu.item>
+
+                                        <flux:menu.separator />
+
+                                        <flux:menu.item variant="danger" icon="trash"
+                                            wire:click="deleteSyllabus({{ $syllabus->id }})">Xóa
+                                        </flux:menu.item>
+                                    </flux:menu>
+                                </flux:dropdown>
                             </td>
                         </tr>
                     @empty

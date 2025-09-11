@@ -16,7 +16,9 @@
                 <div class="header-breadcrumbs">
                     <a href="{{ route('dashboard') }}">Bảng điều khiển</a>
                     <svg fill="currentColor" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+                        <path fill-rule="evenodd"
+                            d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                            clip-rule="evenodd"></path>
                     </svg>
                     <span>Vai trò</span>
                 </div>
@@ -54,64 +56,70 @@
                             </tr>
                         </thead>
                         <tbody>
-                        @forelse ($roles as $role)
-                            <tr wire:key="role-{{ $role->id }}">
-                                <td class="text-center font-medium">
-                                    {{ $role->id }}
-                                </td>
-                                <td>
-                                    {{ $role->name }}
-                                </td>
-                                <td class="hidden sm:table-cell">
-                                    {{ Str::limit($role->description, 70) }}
-                                </td>
-                                <td class="text-center">
-                                    <flux:badge variant="solid" color="{{ $role->type === 'system' ? 'green' : 'zinc' }}">
-                                        {{ $role->type }}
-                                    </flux:badge>
-                                </td>
-                                <td class="text-center hidden sm:table-cell">
-                                    {{ $role->createdBy->name ?? 'Hệ thống' }}
-                                </td>
-                                <td class="text-center">
-                                    @if ($role->type === 'custom')
-                                    <div class="flex items-center justify-center gap-2">
-                                        <flux:button size="sm" variant="primary" icon="square-pen"
-                                            wire:click="editRole({{ $role->id }})" class="cursor-pointer" >
-                                            Sửa
-                                        </flux:button>
-                                        <flux:button size="sm" variant="danger" icon="trash"
-                                            wire:click="deleteRole({{ $role->id }})" class="cursor-pointer">
-                                            Xóa
-                                        </flux:button>
-                                    </div>
-                                    @endif
-                                </td>
-                            </tr>
-                        @empty
-                            <tr>
-                                <td colspan="6" class="text-center py-12">
-                                    <div class="empty-state flex flex-col items-center">
-                                        <flux:icon.user-lock class="w-12 h-12 mb-4" />
-                                        <h3 class="text-lg font-medium mb-2">
-                                            Không có vai trò nào
-                                        </h3>
-                                        <p>
-                                            Chưa có vai trò nào được tạo trong hệ thống
-                                        </p>
-                                    </div>
-                                </td>
-                            </tr>
-                        @endforelse
-                    </tbody>
-                </table>
-            </div>
-            
-            @if($roles->hasPages())
-                <div class="pagination-container">
-                    {{ $roles->links() }}
+                            @forelse ($roles as $role)
+                                <tr wire:key="role-{{ $role->id }}">
+                                    <td class="text-center font-medium">
+                                        {{ $role->id }}
+                                    </td>
+                                    <td>
+                                        {{ $role->name }}
+                                    </td>
+                                    <td class="hidden sm:table-cell">
+                                        {{ Str::limit($role->description, 70) }}
+                                    </td>
+                                    <td class="text-center">
+                                        <flux:badge variant="solid"
+                                            color="{{ $role->type === 'system' ? 'green' : 'zinc' }}">
+                                            {{ $role->type }}
+                                        </flux:badge>
+                                    </td>
+                                    <td class="text-center hidden sm:table-cell">
+                                        {{ $role->createdBy->name ?? 'Hệ thống' }}
+                                    </td>
+                                    <td class="text-center">
+                                        @if ($role->type === 'custom')
+                                            <flux:dropdown>
+                                                <flux:button icon:trailing="chevron-down">Thao tác</flux:button>
+
+                                                <flux:menu>
+                                                    <flux:menu.item icon="pencil"
+                                                        wire:click="editRole({{ $role->id }})">Sửa thông tin
+                                                    </flux:menu.item>
+
+                                                    <flux:menu.separator />
+
+                                                    <flux:menu.item variant="danger" icon="trash"
+                                                        wire:click="deleteRole({{ $role->id }})">Xóa
+                                                    </flux:menu.item>
+                                                </flux:menu>
+                                            </flux:dropdown>
+                                        @endif
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="6" class="text-center py-12">
+                                        <div class="empty-state flex flex-col items-center">
+                                            <flux:icon.user-lock class="w-12 h-12 mb-4" />
+                                            <h3 class="text-lg font-medium mb-2">
+                                                Không có vai trò nào
+                                            </h3>
+                                            <p>
+                                                Chưa có vai trò nào được tạo trong hệ thống
+                                            </p>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
                 </div>
-            @endif
+
+                @if ($roles->hasPages())
+                    <div class="pagination-container">
+                        {{ $roles->links() }}
+                    </div>
+                @endif
             </div>
         </div>
     </div>

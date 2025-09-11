@@ -125,17 +125,21 @@
                                     </div>
                                 </td>
                                 <td class="text-center">
-                                    <div class="flex items-center justify-center gap-2">
-                                        <flux:button size="sm" variant="primary" icon="pencil"
-                                            wire:click="editStaff({{ $staff->id }})" class="cursor-pointer">
-                                            Sửa thông tin
-                                        </flux:button>
+                                    <flux:dropdown>
+                                        <flux:button icon:trailing="chevron-down">Thao tác</flux:button>
 
-                                        <flux:button size="sm" variant="danger" icon="trash"
-                                            wire:click="deleteStaff({{ $staff->id }})" class="cursor-pointer">
-                                            Xóa
-                                        </flux:button>
-                                    </div>
+                                        <flux:menu>
+                                            <flux:menu.item  icon="pencil"
+                                                wire:click="editStaff({{ $staff->id }})">Sửa thông tin
+                                            </flux:menu.item>
+
+                                            <flux:menu.separator />
+
+                                            <flux:menu.item variant="danger" icon="trash"
+                                                wire:click="deleteStaff({{ $staff->id }})">Xóa
+                                            </flux:menu.item>
+                                        </flux:menu>
+                                    </flux:dropdown>
                                 </td>
                             </tr>
                         @empty
@@ -233,17 +237,21 @@
                                         </div>
                                     </td>
                                     <td class="text-center">
-                                        <div class="flex items-center justify-center gap-2">
-                                            <flux:button size="sm" variant="primary" icon="pencil"
-                                                wire:click="editStaff({{ $staff->id }})" class="cursor-pointer">
-                                                Sửa thông tin
-                                            </flux:button>
-
-                                            <flux:button size="sm" variant="danger" icon="trash"
-                                                wire:click="deleteStaff({{ $staff->id }})" class="cursor-pointer">
-                                                Xóa
-                                            </flux:button>
-                                        </div>
+                                        <flux:dropdown>
+                                            <flux:button icon:trailing="chevron-down">Thao tác</flux:button>
+    
+                                            <flux:menu>
+                                                <flux:menu.item  icon="pencil"
+                                                    wire:click="editStaff({{ $staff->id }})">Sửa thông tin
+                                                </flux:menu.item>
+    
+                                                <flux:menu.separator />
+    
+                                                <flux:menu.item variant="danger" icon="trash"
+                                                    wire:click="deleteStaff({{ $staff->id }})">Xóa
+                                                </flux:menu.item>
+                                            </flux:menu>
+                                        </flux:dropdown>
                                     </td>
                                 </tr>
                             @empty
