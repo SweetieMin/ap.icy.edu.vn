@@ -113,11 +113,10 @@
 
     <!-- Bảng lịch sử đóng tiền -->
     <div class="mt-6">
-        <div class="table-full-width">
-            <div class="theme-table-pink">
-                <div class="overflow-x-auto max-h-[calc(100vh-300px)]">
-                    <table>
-                        <thead>
+        <div class="theme-table-pink">
+            <div class="overflow-x-auto max-h-[calc(100vh-300px)]">
+                <table>
+                    <thead class="sticky top-0 z-10">
                         <tr>
                             <th class="text-center w-16">STT</th>
                             <th>Học viên</th>

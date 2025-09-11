@@ -315,7 +315,7 @@ input, textarea, [contenteditable] {
 }
 
 .theme-card-pink .card-header {
-    @apply bg-pink-100 dark:bg-pink-900/30 p-4;
+    @apply bg-pink-100 dark:bg-pink-900/30 p-4 rounded-t-xl;
 }
 
 .theme-card-pink .card-header-icon {
