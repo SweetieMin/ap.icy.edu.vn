@@ -41,6 +41,7 @@ use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
+use Carbon\Carbon;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -73,6 +74,11 @@ class AppServiceProvider extends ServiceProvider
     {
         // Fix MySQL key length issue for utf8mb4
         Schema::defaultStringLength(191);
+
+        // Set timezone for Carbon
+        Carbon::setLocale('vi');
+        date_default_timezone_set('Asia/Ho_Chi_Minh');
+        config(['app.timezone' => 'Asia/Ho_Chi_Minh']);
 
         RedirectIfAuthenticated::redirectUsing(function () {
             return route('dashboard');

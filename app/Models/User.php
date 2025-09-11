@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Notifications\VerifyEmailNotification;
+use App\Notifications\ResetPasswordNotification;
 
 class User extends Authenticatable 
 {
@@ -82,6 +84,47 @@ class User extends Authenticatable
     public function roles()
     {
         return $this->belongsToMany(Role::class, 'role_user');
+    }
+
+    /**
+     * Send the email verification notification.
+     */
+    public function sendEmailVerificationNotification()
+    {
+        $this->notify(new VerifyEmailNotification);
+    }
+
+    /**
+     * Send the password reset notification.
+     */
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new ResetPasswordNotification($token));
+    }
+
+    /**
+     * Send welcome notification with temporary password.
+     */
+    public function sendWelcomeNotification(string $temporaryPassword = null)
+    {
+        $this->notify(new \App\Notifications\WelcomeNotification($temporaryPassword));
+    }
+
+    /**
+     * Send system notification.
+     */
+    public function sendSystemNotification(
+        string $title,
+        string $message,
+        string $actionUrl = null,
+        string $actionText = null
+    ) {
+        $this->notify(new \App\Notifications\SystemNotification(
+            $title,
+            $message,
+            $actionUrl,
+            $actionText
+        ));
     }
 
     public function hasRole($role)
