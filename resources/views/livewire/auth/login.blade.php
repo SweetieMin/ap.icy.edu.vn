@@ -21,9 +21,13 @@
             <form wire:submit="login" class="flex flex-col gap-4 sm:gap-6">
                 <input type="hidden" wire:model="login_id" value="{{ $lastUser['email'] ?? $lastUser['username'] }}">
                 <x-auth-session-status class="text-center" :status="session('status')" />
+                
+
+                
                 <!-- Password -->
                 <flux:input wire:model="password" :label="__('Password')" type="password" required
                     autocomplete="current-password" :placeholder="__('Mật khẩu')" viewable />
+                    
 
                 <flux:button variant="primary" color="pink" type="submit" class="w-full cursor-pointer">
                     {{ __('Đăng nhập lại') }}

@@ -122,6 +122,7 @@ class Login extends Component
 
         throw ValidationException::withMessages([
             'login_id' => self::ERROR_INVALID_CREDENTIALS,
+            'password' => self::ERROR_INVALID_CREDENTIALS,
         ]);
     }
 
