@@ -80,4 +80,15 @@ class UserRepository implements UserRepositoryInterface
         ->get();
     }
 
+    public function addBODWithNewLocation(int $locationId)
+    {
+        $users = User::whereHas('roles', function ($query) {
+            $query->where('name', 'BOD');
+        })->get();
+        foreach ($users as $user) {
+            $user->locations()->attach($locationId);
+        }
+        return $users;
+    }
+
 }

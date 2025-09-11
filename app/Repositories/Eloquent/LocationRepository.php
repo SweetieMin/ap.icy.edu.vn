@@ -2,11 +2,12 @@
 
 namespace App\Repositories\Eloquent;
 
-use App\Repositories\Contracts\LocationRepositoryInterface;
 use App\Models\Location;
-use Illuminate\Contracts\Pagination\LengthAwarePaginator;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use App\Repositories\Contracts\UserRepositoryInterface;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use App\Repositories\Contracts\LocationRepositoryInterface;
 
 class LocationRepository implements LocationRepositoryInterface
 {
@@ -40,7 +41,9 @@ class LocationRepository implements LocationRepositoryInterface
 
     public function create(array $data)
     {
-        return Location::create($this->prepareDataBeforeCreate($data));
+        $location = Location::create($this->prepareDataBeforeCreate($data));
+        app(UserRepositoryInterface::class)->addBODWithNewLocation($location->id);
+        return $location;
     }
 
     public function update(int $id, array $data)
@@ -53,11 +56,6 @@ class LocationRepository implements LocationRepositoryInterface
     public function delete(int $id)
     {
         return DB::transaction(function () use ($id) {
-            //check if location has users
-            if (Location::find($id)->users->count() > 0) {
-                session()->flash('error', 'Cơ sở này vẫn còn nhân viên');
-                return false;
-            }
 
             $deleted = $this->getLocationById($id)->delete();
             

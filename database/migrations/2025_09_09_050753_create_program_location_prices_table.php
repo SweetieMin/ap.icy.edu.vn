@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('program_location_prices', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('program_id')->constrained('programs');
-            $table->foreignId('location_id')->constrained('locations');
+            $table->foreignId('program_id')->constrained('programs')->onDelete('cascade');
+            $table->foreignId('location_id')->constrained('locations')->onDelete('cascade');
             $table->decimal('price', 10, 2);
             $table->timestamps();
         });
