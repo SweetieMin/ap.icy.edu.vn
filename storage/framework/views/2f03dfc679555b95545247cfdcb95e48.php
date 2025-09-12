@@ -94,9 +94,9 @@ if (isset($__slots)) unset($__slots);
 ?>
     <!-- Search and Filter Section -->
     <div class="mt-6">
-        <div class="theme-card-pink mb-6">
+        <div class="theme-card-pink mb-2">
             <div class="p-6">
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
                     <!-- Program Selection -->
                     <div>
                         <label for="selectedProgramId" class="card-label">Chọn chương trình</label>
@@ -117,6 +117,8 @@ if (isset($__slots)) unset($__slots);
                         </select>
                     </div>
 
+
+
                     <!-- Search -->
                     <div>
                         <label for="search" class="card-label">Tìm kiếm</label>
@@ -126,6 +128,51 @@ if (isset($__slots)) unset($__slots);
                 </div>
             </div>
         </div>
+    </div>
+
+    <!-- URL Book Display -->
+    <div>
+        <!--[if BLOCK]><![endif]--><?php if($selectedSubjectId): ?>
+            <?php
+                $selectedSubject = $subjects->firstWhere('id', $selectedSubjectId);
+            ?>
+            <!--[if BLOCK]><![endif]--><?php if($selectedSubject && $selectedSubject->url_book): ?>
+                <div class="mt-2 mb-2">
+                    <a href="<?php echo e($selectedSubject->url_book); ?>" target="_blank"
+                        class="inline-flex items-center px-3 py-2 text-sm font-medium text-pink-600 bg-pink-50 border border-pink-200 rounded-lg hover:bg-pink-100 hover:text-pink-700 transition-colors duration-200 dark:bg-pink-900/20 dark:border-pink-800 dark:text-pink-400 dark:hover:bg-pink-900/30">
+                        <?php if (isset($component)) { $__componentOriginalf85a09e6911faf7375dfec728fe17fc4 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginalf85a09e6911faf7375dfec728fe17fc4 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::icon.bookmark-square','data' => ['class' => 'w-4 h-4 mr-2']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('flux::icon.bookmark-square'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['class' => 'w-4 h-4 mr-2']); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginalf85a09e6911faf7375dfec728fe17fc4)): ?>
+<?php $attributes = $__attributesOriginalf85a09e6911faf7375dfec728fe17fc4; ?>
+<?php unset($__attributesOriginalf85a09e6911faf7375dfec728fe17fc4); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginalf85a09e6911faf7375dfec728fe17fc4)): ?>
+<?php $component = $__componentOriginalf85a09e6911faf7375dfec728fe17fc4; ?>
+<?php unset($__componentOriginalf85a09e6911faf7375dfec728fe17fc4); ?>
+<?php endif; ?>
+                        Xem sách giáo khoa
+                    </a>
+                </div>
+            <?php else: ?>
+                <div class="mt-2 text-sm text-gray-500 dark:text-gray-400">
+                    Chưa có link sách giáo khoa
+                </div>
+            <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+        <?php else: ?>
+            <div class="mt-2 text-sm text-gray-500 dark:text-gray-400">
+                Vui lòng chọn môn học
+            </div>
+        <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
     </div>
 
     <!-- Syllabus Table -->
@@ -150,7 +197,8 @@ if (isset($__slots)) unset($__slots);
                     <!--[if BLOCK]><![endif]--><?php $__empty_1 = true; $__currentLoopData = $syllabi; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $syllabus): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                         <tr class="table-row sortable-row" data-id="<?php echo e($syllabus->id); ?>">
 
-                            <td class="table-cell text-center font-medium <?php echo e($syllabi->first() && (auth()->user()->can('update', $syllabi->first()) || auth()->user()->can('delete', $syllabi->first())) ? 'drag-handle cursor-move' : ''); ?>">
+                            <td
+                                class="table-cell text-center font-medium <?php echo e($syllabi->first() && (auth()->user()->can('update', $syllabi->first()) || auth()->user()->can('delete', $syllabi->first())) ? 'drag-handle cursor-move' : ''); ?>">
                                 <?php echo e($syllabus->lesson_number); ?>
 
                             </td>

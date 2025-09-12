@@ -1261,6 +1261,822 @@ class SyllabusSeeder extends Seeder
             ]);
         }
 
-        
+        // ========== ICY IELTS 1 ==========
+        $ielts1 = Subject::where('name', 'ICY IELTS 1')->first();
+
+        $lessons_ielts1 = [
+            [1, 'Unit 1: Daily Life – Lesson 1: Lead-in & Vocabulary', 'Daily routines, Present simple verbs, Adverbs of frequency', 'Present simple, Adverbs of frequency', 'Create a vocabulary mindmap + write 5 original sentences', 'Students can activate prior knowledge, recognize and use new vocabulary in context, and express simple ideas with target words.'],
+            [2, 'Unit 1: Daily Life – Lesson 2: Grammar & Practice', 'Daily routines, Present simple verbs, Adverbs of frequency', 'Present simple, Adverbs of frequency', 'Complete grammar drills + compose a short dialogue', 'Students can apply target grammar rules in controlled and semi-controlled practice, and self-correct common mistakes.'],
+            [3, 'Unit 1: Daily Life – Lesson 3: Reading & Listening', 'Daily routines, Present simple verbs, Adverbs of frequency', 'Present simple, Adverbs of frequency', 'Read passage + answer comprehension questions + listening gap-fill', 'Students can understand main ideas and details from short academic and everyday texts, improve note-taking, and identify keywords.'],
+            [4, 'Unit 1: Daily Life – Lesson 4: Speaking & Writing', 'Daily routines, Present simple verbs, Adverbs of frequency', 'Present simple, Adverbs of frequency', 'Prepare and deliver a 2-min oral presentation + write a short essay', 'Students can produce connected speech and structured writing with appropriate vocabulary and grammar for familiar IELTS topics.'],
+            [5, 'Unit 2: House and Home – Lesson 1: Lead-in & Vocabulary', 'Home vocabulary, Furniture, Prepositions of place', 'There is/are, Prepositions of place', 'Create a vocabulary mindmap + write 5 original sentences', 'Students can activate prior knowledge, recognize and use new vocabulary in context, and express simple ideas with target words.'],
+            [6, 'Unit 2: House and Home – Lesson 2: Grammar & Practice', 'Home vocabulary, Furniture, Prepositions of place', 'There is/are, Prepositions of place', 'Complete grammar drills + compose a short dialogue', 'Students can apply target grammar rules in controlled and semi-controlled practice, and self-correct common mistakes.'],
+            [7, 'Unit 2: House and Home – Lesson 3: Reading & Listening', 'Home vocabulary, Furniture, Prepositions of place', 'There is/are, Prepositions of place', 'Read passage + answer comprehension questions + listening gap-fill', 'Students can understand main ideas and details from short academic and everyday texts, improve note-taking, and identify keywords.'],
+            [8, 'Unit 2: House and Home – Lesson 4: Speaking & Writing', 'Home vocabulary, Furniture, Prepositions of place', 'There is/are, Prepositions of place', 'Prepare and deliver a 2-min oral presentation + write a short essay', 'Students can produce connected speech and structured writing with appropriate vocabulary and grammar for familiar IELTS topics.'],
+            [9, 'Unit 3: Hobbies, Leisure and Entertainment – Lesson 1: Lead-in & Vocabulary', 'Leisure activities, Entertainment vocabulary', 'Like + V-ing, Present continuous', 'Create a vocabulary mindmap + write 5 original sentences', 'Students can activate prior knowledge, recognize and use new vocabulary in context, and express simple ideas with target words.'],
+            [10, 'Unit 3: Hobbies, Leisure and Entertainment – Lesson 2: Grammar & Practice', 'Leisure activities, Entertainment vocabulary', 'Like + V-ing, Present continuous', 'Complete grammar drills + compose a short dialogue', 'Students can apply target grammar rules in controlled and semi-controlled practice, and self-correct common mistakes.'],
+            [11, 'Unit 3: Hobbies, Leisure and Entertainment – Lesson 3: Reading & Listening', 'Leisure activities, Entertainment vocabulary', 'Like + V-ing, Present continuous', 'Read passage + answer comprehension questions + listening gap-fill', 'Students can understand main ideas and details from short academic and everyday texts, improve note-taking, and identify keywords.'],
+            [12, 'Unit 3: Hobbies, Leisure and Entertainment – Lesson 4: Speaking & Writing', 'Leisure activities, Entertainment vocabulary', 'Like + V-ing, Present continuous', 'Prepare and deliver a 2-min oral presentation + write a short essay', 'Students can produce connected speech and structured writing with appropriate vocabulary and grammar for familiar IELTS topics.'],
+            [13, 'Mid-term Test', '-', '-', 'Written & oral test (Units 1–3)', 'Students can demonstrate integrated mastery of vocabulary, grammar, reading, listening, speaking, and writing skills from Units 1–3.'],
+            [14, 'Unit 4: Travel and Holidays – Lesson 1: Lead-in & Vocabulary', 'Travel vocabulary, Holiday expressions', 'Past simple, Future with will/going to', 'Create a vocabulary mindmap + write 5 original sentences', 'Students can activate prior knowledge, recognize and use new vocabulary in context, and express simple ideas with target words.'],
+            [15, 'Unit 4: Travel and Holidays – Lesson 2: Grammar & Practice', 'Travel vocabulary, Holiday expressions', 'Past simple, Future with will/going to', 'Complete grammar drills + compose a short dialogue', 'Students can apply target grammar rules in controlled and semi-controlled practice, and self-correct common mistakes.'],
+            [16, 'Unit 4: Travel and Holidays – Lesson 3: Reading & Listening', 'Travel vocabulary, Holiday expressions', 'Past simple, Future with will/going to', 'Read passage + answer comprehension questions + listening gap-fill', 'Students can understand main ideas and details from short academic and everyday texts, improve note-taking, and identify keywords.'],
+            [17, 'Unit 4: Travel and Holidays – Lesson 4: Speaking & Writing', 'Travel vocabulary, Holiday expressions', 'Past simple, Future with will/going to', 'Prepare and deliver a 2-min oral presentation + write a short essay', 'Students can produce connected speech and structured writing with appropriate vocabulary and grammar for familiar IELTS topics.'],
+            [18, 'Unit 5: Food – Lesson 1: Lead-in & Vocabulary', 'Food vocabulary, Countable/uncountable nouns', 'Much/many/some/any, Quantifiers', 'Create a vocabulary mindmap + write 5 original sentences', 'Students can activate prior knowledge, recognize and use new vocabulary in context, and express simple ideas with target words.'],
+            [19, 'Unit 5: Food – Lesson 2: Grammar & Practice', 'Food vocabulary, Countable/uncountable nouns', 'Much/many/some/any, Quantifiers', 'Complete grammar drills + compose a short dialogue', 'Students can apply target grammar rules in controlled and semi-controlled practice, and self-correct common mistakes.'],
+            [20, 'Project-based Learning 1', 'Integrated vocabulary', 'Integrated grammar', 'Group poster/project about Units 1–3', 'Students can collaborate in groups to design posters, conduct peer teaching, and present integrated knowledge from Units 1–3.'],
+            [21, 'Unit 5: Food – Lesson 3: Reading & Listening', 'Food vocabulary, Countable/uncountable nouns', 'Much/many/some/any, Quantifiers', 'Read passage + answer comprehension questions + listening gap-fill', 'Students can understand main ideas and details from short academic and everyday texts, improve note-taking, and identify keywords.'],
+            [22, 'Project-based Learning 2', 'Integrated vocabulary', 'Integrated grammar', 'Group presentation about Units 4–5', 'Students can develop problem-solving, presentation, and public speaking skills by synthesizing knowledge from Units 4–5.'],
+            [23, 'Unit 5: Food – Lesson 4: Speaking & Writing', 'Food vocabulary, Countable/uncountable nouns', 'Much/many/some/any, Quantifiers', 'Prepare and deliver a 2-min oral presentation + write a short essay', 'Students can produce connected speech and structured writing with appropriate vocabulary and grammar for familiar IELTS topics.'],
+            [24, 'Final Test', '-', '-', 'Written & oral test (Units 4–5)', 'Students can demonstrate readiness for higher-level IELTS practice by integrating all 4 skills and grammar/vocabulary knowledge from Units 4–5.'],
+        ];
+
+        foreach ($lessons_ielts1 as $lesson) {
+            $ielts1->syllabi()->create([
+                'lesson_number' => $lesson[0],
+                'content'       => $lesson[1],
+                'vocabulary'    => $lesson[2],
+                'grammar'       => $lesson[3],
+                'assignment'    => $lesson[4],
+                'CLO'           => $lesson[5],
+            ]);
+        }
+
+        // ========== ICY IELTS 2 ==========
+        $ielts2 = Subject::where('name', 'ICY IELTS 2')->first();
+
+        $lessons_ielts2 = [
+            [1, 'Unit 6: Transport and Places in Town – Lesson 1: Lead-in & Vocabulary', 'Transport vocabulary, Town places vocabulary', 'Prepositions of place, Directions', 'Create a vocabulary list + example sentences', 'Students can identify, recall and use new vocabulary related to the topic in basic conversations.'],
+            [2, 'Unit 6: Transport and Places in Town – Lesson 2: Grammar & Practice', 'Transport vocabulary, Town places vocabulary', 'Prepositions of place, Directions', 'Complete grammar exercises + write 5 original sentences', 'Students can apply target grammar rules in speaking and writing tasks with accuracy.'],
+            [3, 'Unit 6: Transport and Places in Town – Lesson 3: Reading & Listening', 'Transport vocabulary, Town places vocabulary', 'Prepositions of place, Directions', 'Read passage + answer comprehension questions + listening gap-fill', 'Students can understand main ideas and details from academic texts and authentic listening materials, and take notes effectively.'],
+            [4, 'Unit 6: Transport and Places in Town – Lesson 4: Speaking & Writing', 'Transport vocabulary, Town places vocabulary', 'Prepositions of place, Directions', 'Prepare short oral presentation + write a short essay', 'Students can produce coherent spoken and written texts, expressing opinions and providing supporting details.'],
+            [5, 'Unit 7: Jobs, Work and Study – Lesson 1: Lead-in & Vocabulary', 'Jobs vocabulary, Workplace expressions', 'Present perfect, Passive voice', 'Create a vocabulary list + example sentences', 'Students can identify, recall and use new vocabulary related to the topic in basic conversations.'],
+            [6, 'Unit 7: Jobs, Work and Study – Lesson 2: Grammar & Practice', 'Jobs vocabulary, Workplace expressions', 'Present perfect, Passive voice', 'Complete grammar exercises + write 5 original sentences', 'Students can apply target grammar rules in speaking and writing tasks with accuracy.'],
+            [7, 'Unit 7: Jobs, Work and Study – Lesson 3: Reading & Listening', 'Jobs vocabulary, Workplace expressions', 'Present perfect, Passive voice', 'Read passage + answer comprehension questions + listening gap-fill', 'Students can understand main ideas and details from academic texts and authentic listening materials, and take notes effectively.'],
+            [8, 'Unit 7: Jobs, Work and Study – Lesson 4: Speaking & Writing', 'Jobs vocabulary, Workplace expressions', 'Present perfect, Passive voice', 'Prepare short oral presentation + write a short essay', 'Students can produce coherent spoken and written texts, expressing opinions and providing supporting details.'],
+            [9, 'Unit 8: Food and Healthy Living – Lesson 1: Lead-in & Vocabulary', 'Food vocabulary, Health expressions', 'Quantifiers, Countable/uncountable nouns', 'Create a vocabulary list + example sentences', 'Students can identify, recall and use new vocabulary related to the topic in basic conversations.'],
+            [10, 'Unit 8: Food and Healthy Living – Lesson 2: Grammar & Practice', 'Food vocabulary, Health expressions', 'Quantifiers, Countable/uncountable nouns', 'Complete grammar exercises + write 5 original sentences', 'Students can apply target grammar rules in speaking and writing tasks with accuracy.'],
+            [11, 'Unit 8: Food and Healthy Living – Lesson 3: Reading & Listening', 'Food vocabulary, Health expressions', 'Quantifiers, Countable/uncountable nouns', 'Read passage + answer comprehension questions + listening gap-fill', 'Students can understand main ideas and details from academic texts and authentic listening materials, and take notes effectively.'],
+            [12, 'Unit 8: Food and Healthy Living – Lesson 4: Speaking & Writing', 'Food vocabulary, Health expressions', 'Quantifiers, Countable/uncountable nouns', 'Prepare short oral presentation + write a short essay', 'Students can produce coherent spoken and written texts, expressing opinions and providing supporting details.'],
+            [13, 'Mid-term Test', '-', '-', 'Written & oral test (Units 6–8)', 'Students demonstrate mastery of Units 6–8'],
+            [14, 'Unit 9: Environment and Nature – Lesson 1: Lead-in & Vocabulary', 'Environment vocabulary, Nature expressions', 'Modals of obligation, Zero conditional', 'Create a vocabulary list + example sentences', 'Students can identify, recall and use new vocabulary related to the topic in basic conversations.'],
+            [15, 'Unit 9: Environment and Nature – Lesson 2: Grammar & Practice', 'Environment vocabulary, Nature expressions', 'Modals of obligation, Zero conditional', 'Complete grammar exercises + write 5 original sentences', 'Students can apply target grammar rules in speaking and writing tasks with accuracy.'],
+            [16, 'Unit 9: Environment and Nature – Lesson 3: Reading & Listening', 'Environment vocabulary, Nature expressions', 'Modals of obligation, Zero conditional', 'Read passage + answer comprehension questions + listening gap-fill', 'Students can understand main ideas and details from academic texts and authentic listening materials, and take notes effectively.'],
+            [17, 'Unit 9: Environment and Nature – Lesson 4: Speaking & Writing', 'Environment vocabulary, Nature expressions', 'Modals of obligation, Zero conditional', 'Prepare short oral presentation + write a short essay', 'Students can produce coherent spoken and written texts, expressing opinions and providing supporting details.'],
+            [18, 'Unit 10: Education and Learning – Lesson 1: Lead-in & Vocabulary', 'School and education vocabulary', 'Gerunds and infinitives', 'Create a vocabulary list + example sentences', 'Students can identify, recall and use new vocabulary related to the topic in basic conversations.'],
+            [19, 'Unit 10: Education and Learning – Lesson 2: Grammar & Practice', 'School and education vocabulary', 'Gerunds and infinitives', 'Complete grammar exercises + write 5 original sentences', 'Students can apply target grammar rules in speaking and writing tasks with accuracy.'],
+            [20, 'Unit 10: Education and Learning – Lesson 3: Reading & Listening', 'School and education vocabulary', 'Gerunds and infinitives', 'Read passage + answer comprehension questions + listening gap-fill', 'Students can understand main ideas and details from academic texts and authentic listening materials, and take notes effectively.'],
+            [21, 'Unit 10: Education and Learning – Lesson 4: Speaking & Writing', 'School and education vocabulary', 'Gerunds and infinitives', 'Prepare short oral presentation + write a short essay', 'Students can produce coherent spoken and written texts, expressing opinions and providing supporting details.'],
+            [22, 'Project-based Learning: IELTS Poster Project', 'Integrated review vocabulary', 'Integrated review grammar', 'Create and present a project poster', 'Students can apply knowledge creatively in a real-life context'],
+            [23, 'Review & Consolidation', 'Review vocabulary from Units 6–10', 'Review grammar from Units 6–10', 'Complete group quiz + discussion', 'Students consolidate knowledge and skills from previous units'],
+            [24, 'Final Test', '-', '-', 'Written & oral test (Units 6–10)', 'Students demonstrate mastery of Units 6–10'],
+        ];
+
+        foreach ($lessons_ielts2 as $lesson) {
+            $ielts2->syllabi()->create([
+                'lesson_number' => $lesson[0],
+                'content'       => $lesson[1],
+                'vocabulary'    => $lesson[2],
+                'grammar'       => $lesson[3],
+                'assignment'    => $lesson[4],
+                'CLO'           => $lesson[5],
+            ]);
+        }
+
+        // ========== ICY IELTS 3 ==========
+        $ielts3 = Subject::where('name', 'ICY IELTS 3')->first();
+
+        $lessons_ielts3 = [
+            [1, 'Unit 1: Relationships – Reading', 'Family, Friendship, Relationships', 'Present simple & continuous, Comparatives, Questions', 'Read IELTS-style passage + comprehension + summarize', 'Students can skim/scan IELTS texts and identify details.'],
+            [2, 'Unit 1: Relationships – Writing', 'Family, Friendship, Relationships', 'Present simple & continuous, Comparatives, Questions', 'Write IELTS Task 1/2 essay (150–250 words)', 'Students can produce coherent IELTS essays with correct grammar.'],
+            [3, 'Unit 1: Relationships – Listening', 'Family, Friendship, Relationships', 'Present simple & continuous, Comparatives, Questions', 'IELTS audio + gap-fill + note-taking', 'Students can understand gist and detail in IELTS listening.'],
+            [4, 'Unit 1: Relationships – Speaking', 'Family, Friendship, Relationships', 'Present simple & continuous, Comparatives, Questions', 'Discussion + IELTS Speaking Part 1/2/3 practice', 'Students can respond fluently and accurately in IELTS Speaking.'],
+            [5, 'Review 1: Relationships', 'Vocabulary from Unit 1', 'Grammar from Unit 1', 'Vocabulary & grammar quiz + integrated IELTS skills practice', 'Students can consolidate vocabulary, grammar, and skills from the unit.'],
+            [6, 'Unit 2: Places and Buildings – Reading', 'Buildings, City places, Directions', 'There is/are, Prepositions of place, Past simple', 'Read IELTS-style passage + comprehension + summarize', 'Students can skim/scan IELTS texts and identify details.'],
+            [7, 'Unit 2: Places and Buildings – Writing', 'Buildings, City places, Directions', 'There is/are, Prepositions of place, Past simple', 'Write IELTS Task 1/2 essay (150–250 words)', 'Students can produce coherent IELTS essays with correct grammar.'],
+            [8, 'Unit 2: Places and Buildings – Listening', 'Buildings, City places, Directions', 'There is/are, Prepositions of place, Past simple', 'IELTS audio + gap-fill + note-taking', 'Students can understand gist and detail in IELTS listening.'],
+            [9, 'Unit 2: Places and Buildings – Speaking', 'Buildings, City places, Directions', 'There is/are, Prepositions of place, Past simple', 'Discussion + IELTS Speaking Part 1/2/3 practice', 'Students can respond fluently and accurately in IELTS Speaking.'],
+            [10, 'Review 2: Places and Buildings', 'Vocabulary from Unit 2', 'Grammar from Unit 2', 'Vocabulary & grammar quiz + integrated IELTS skills practice', 'Students can consolidate vocabulary, grammar, and skills from the unit.'],
+            [11, 'Unit 3: Education and Employment – Reading', 'Jobs, Employment, Education systems', 'Present perfect, Future tenses, Passive voice', 'Read IELTS-style passage + comprehension + summarize', 'Students can skim/scan IELTS texts and identify details.'],
+            [12, 'Mid-term Test', '-', '-', 'Written & oral test (Units 1–2)', 'Students can integrate skills and knowledge from Units 1–2 in test format.'],
+            [13, 'Unit 3: Education and Employment – Writing', 'Jobs, Employment, Education systems', 'Present perfect, Future tenses, Passive voice', 'Write IELTS Task 1/2 essay (150–250 words)', 'Students can produce coherent IELTS essays with correct grammar.'],
+            [14, 'Unit 3: Education and Employment – Listening', 'Jobs, Employment, Education systems', 'Present perfect, Future tenses, Passive voice', 'IELTS audio + gap-fill + note-taking', 'Students can understand gist and detail in IELTS listening.'],
+            [15, 'Unit 3: Education and Employment – Speaking', 'Jobs, Employment, Education systems', 'Present perfect, Future tenses, Passive voice', 'Discussion + IELTS Speaking Part 1/2/3 practice', 'Students can respond fluently and accurately in IELTS Speaking.'],
+            [16, 'Review 3: Education and Employment', 'Vocabulary from Unit 3', 'Grammar from Unit 3', 'Vocabulary & grammar quiz + integrated IELTS skills practice', 'Students can consolidate vocabulary, grammar, and skills from the unit.'],
+            [17, 'Unit 4: Food and Drink – Reading', 'Food vocabulary, Eating habits, Restaurant language', 'Countable/uncountable nouns, Quantifiers, Modal verbs', 'Read IELTS-style passage + comprehension + summarize', 'Students can skim/scan IELTS texts and identify details.'],
+            [18, 'Unit 4: Food and Drink – Writing', 'Food vocabulary, Eating habits, Restaurant language', 'Countable/uncountable nouns, Quantifiers, Modal verbs', 'Write IELTS Task 1/2 essay (150–250 words)', 'Students can produce coherent IELTS essays with correct grammar.'],
+            [19, 'Unit 4: Food and Drink – Listening', 'Food vocabulary, Eating habits, Restaurant language', 'Countable/uncountable nouns, Quantifiers, Modal verbs', 'IELTS audio + gap-fill + note-taking', 'Students can understand gist and detail in IELTS listening.'],
+            [20, 'Unit 4: Food and Drink – Speaking', 'Food vocabulary, Eating habits, Restaurant language', 'Countable/uncountable nouns, Quantifiers, Modal verbs', 'Discussion + IELTS Speaking Part 1/2/3 practice', 'Students can respond fluently and accurately in IELTS Speaking.'],
+            [21, 'Review 4: Food and Drink', 'Vocabulary from Unit 4', 'Grammar from Unit 4', 'Vocabulary & grammar quiz + integrated IELTS skills practice', 'Students can consolidate vocabulary, grammar, and skills from the unit.'],
+            [22, 'IELTS Integrated Practice 1', 'Review Units 1–2', 'Grammar consolidation', 'Simulated IELTS test practice (mixed skills)', 'Students can apply integrated IELTS skills in test-like conditions.'],
+            [23, 'IELTS Integrated Practice 2', 'Review Units 3–4', 'Grammar consolidation', 'Simulated IELTS test practice (mixed skills)', 'Students can apply integrated IELTS skills in test-like conditions.'],
+            [24, 'Final Test', '-', '-', 'Written & oral test (Units 3–4)', 'Students can integrate skills and knowledge from Units 3–4 in test format.'],
+        ];
+
+        foreach ($lessons_ielts3 as $lesson) {
+            $ielts3->syllabi()->create([
+                'lesson_number' => $lesson[0],
+                'content'       => $lesson[1],
+                'vocabulary'    => $lesson[2],
+                'grammar'       => $lesson[3],
+                'assignment'    => $lesson[4],
+                'CLO'           => $lesson[5],
+            ]);
+        }
+
+        // ========== ICY IELTS 4 ==========
+        $ielts4 = Subject::where('name', 'ICY IELTS 4')->first();
+
+        $lessons_ielts4 = [
+            [1, "Unit 5: Consumerism – Reading", "Shopping, Consumer habits, Advertising vocabulary", "Comparatives, Superlatives, Quantifiers", "Read IELTS-style passage + comprehension questions + vocabulary tasks", "Students can identify gist, detail, and inference in reading tasks"],
+            [2, "Unit 5: Consumerism – Writing", "Shopping, Consumer habits, Advertising vocabulary", "Comparatives, Superlatives, Quantifiers", "Write IELTS Task 1 or 2 essay (150–250 words) + peer review", "Students can produce structured, coherent IELTS essays with appropriate grammar and vocabulary"],
+            [3, "Unit 5: Consumerism – Listening", "Shopping, Consumer habits, Advertising vocabulary", "Comparatives, Superlatives, Quantifiers", "IELTS listening practice + gap-fill + note-taking", "Students can comprehend gist, detail, and note key ideas from IELTS listening sections"],
+            [4, "Unit 5: Consumerism – Speaking", "Shopping, Consumer habits, Advertising vocabulary", "Comparatives, Superlatives, Quantifiers", "Discussion + IELTS Speaking Part 1/2/3 practice", "Students can respond to IELTS Speaking topics with fluency and appropriate grammar/vocabulary"],
+            [5, "Review 5: Consumerism", "Vocabulary from Unit 5", "Grammar from Unit 5", "Vocabulary & grammar quiz + integrated IELTS skills practice", "Students can consolidate knowledge of vocabulary and grammar from Unit 5"],
+            [6, "Unit 6: Leisure Time – Reading", "Hobbies, Leisure activities, Entertainment vocabulary", "Present simple/continuous, Future forms, Gerunds/Infinitives", "Read IELTS-style passage + comprehension questions + vocabulary tasks", "Students can identify gist, detail, and inference in reading tasks"],
+            [7, "Unit 6: Leisure Time – Writing", "Hobbies, Leisure activities, Entertainment vocabulary", "Present simple/continuous, Future forms, Gerunds/Infinitives", "Write IELTS Task 1 or 2 essay (150–250 words) + peer review", "Students can produce structured, coherent IELTS essays with appropriate grammar and vocabulary"],
+            [8, "Unit 6: Leisure Time – Listening", "Hobbies, Leisure activities, Entertainment vocabulary", "Present simple/continuous, Future forms, Gerunds/Infinitives", "IELTS listening practice + gap-fill + note-taking", "Students can comprehend gist, detail, and note key ideas from IELTS listening sections"],
+            [9, "Unit 6: Leisure Time – Speaking", "Hobbies, Leisure activities, Entertainment vocabulary", "Present simple/continuous, Future forms, Gerunds/Infinitives", "Discussion + IELTS Speaking Part 1/2/3 practice", "Students can respond to IELTS Speaking topics with fluency and appropriate grammar/vocabulary"],
+            [10, "Review 6: Leisure Time", "Vocabulary from Unit 6", "Grammar from Unit 6", "Vocabulary & grammar quiz + integrated IELTS skills practice", "Students can consolidate knowledge of vocabulary and grammar from Unit 6"],
+            [11, "Mid-term Test", "-", "-", "Written & oral test (Units 5–6)", "Students demonstrate mastery of Units 5–6"],
+            [12, "Unit 7: Communication – Reading", "Communication styles, Technology vocabulary", "Conditionals, Reported speech", "Read IELTS-style passage + comprehension questions + vocabulary tasks", "Students can identify gist, detail, and inference in reading tasks"],
+            [13, "Unit 7: Communication – Writing", "Communication styles, Technology vocabulary", "Conditionals, Reported speech", "Write IELTS Task 1 or 2 essay (150–250 words) + peer review", "Students can produce structured, coherent IELTS essays with appropriate grammar and vocabulary"],
+            [14, "Unit 7: Communication – Listening", "Communication styles, Technology vocabulary", "Conditionals, Reported speech", "IELTS listening practice + gap-fill + note-taking", "Students can comprehend gist, detail, and note key ideas from IELTS listening sections"],
+            [15, "Unit 7: Communication – Speaking", "Communication styles, Technology vocabulary", "Conditionals, Reported speech", "Discussion + IELTS Speaking Part 1/2/3 practice", "Students can respond to IELTS Speaking topics with fluency and appropriate grammar/vocabulary"],
+            [16, "Review 7: Communication", "Vocabulary from Unit 7", "Grammar from Unit 7", "Vocabulary & grammar quiz + integrated IELTS skills practice", "Students can consolidate knowledge of vocabulary and grammar from Unit 7"],
+            [17, "Unit 8: Global Issues – Reading", "Global issues, Social vocabulary", "Passive voice, Modals of deduction", "Read IELTS-style passage + comprehension questions + vocabulary tasks", "Students can identify gist, detail, and inference in reading tasks"],
+            [18, "Unit 8: Global Issues – Writing", "Global issues, Social vocabulary", "Passive voice, Modals of deduction", "Write IELTS Task 1 or 2 essay (150–250 words) + peer review", "Students can produce structured, coherent IELTS essays with appropriate grammar and vocabulary"],
+            [19, "Unit 8: Global Issues – Listening", "Global issues, Social vocabulary", "Passive voice, Modals of deduction", "IELTS listening practice + gap-fill + note-taking", "Students can comprehend gist, detail, and note key ideas from IELTS listening sections"],
+            [20, "Unit 8: Global Issues – Speaking", "Global issues, Social vocabulary", "Passive voice, Modals of deduction", "Discussion + IELTS Speaking Part 1/2/3 practice", "Students can respond to IELTS Speaking topics with fluency and appropriate grammar/vocabulary"],
+            [21, "Review 8: Global Issues", "Vocabulary from Unit 8", "Grammar from Unit 8", "Vocabulary & grammar quiz + integrated IELTS skills practice", "Students can consolidate knowledge of vocabulary and grammar from Unit 8"],
+            [22, "Extensive Reading: IELTS-style passages", "Mixed-topic vocabulary", "Integrated grammar review", "Read long-form texts + answer comprehension + vocabulary tasks", "Students can apply reading strategies to long-form IELTS passages"],
+            [23, "Consolidation & Sharing", "Mixed-topic vocabulary", "Integrated grammar review", "Speaking presentations + peer feedback", "Students can integrate and present knowledge across topics"],
+            [24, "Final Test", "-", "-", "Full IELTS 4 skills test", "Students demonstrate mastery of Units 5–8"],
+        ];
+
+        foreach ($lessons_ielts4 as $lesson) {
+            $ielts4->syllabi()->create([
+                'lesson_number' => $lesson[0],
+                'content'       => $lesson[1],
+                'vocabulary'    => $lesson[2],
+                'grammar'       => $lesson[3],
+                'assignment'    => $lesson[4],
+                'CLO'           => $lesson[5],
+            ]);
+        }
+
+        // ========== ICY IELTS 5 ==========
+        $ielts5 = Subject::where('name', 'ICY Ielts 5')->first();
+
+        $lessons_ielts5 = [
+            [1, "Unit 1: The Man-made Environment – Reading", "Buildings, Architecture, Urban development", "There is/are, Passive voice, Relative clauses", "Read IELTS passage + answer comprehension + vocabulary questions", "Students can apply scanning/skimming strategies to locate information"],
+            [2, "Unit 1: The Man-made Environment – Writing", "Buildings, Architecture, Urban development", "There is/are, Passive voice, Relative clauses", "Write IELTS Task 1 or 2 essay (150–250 words) using topic vocabulary", "Students can write essays with clear argumentation and cohesion"],
+            [3, "Unit 1: The Man-made Environment – Listening", "Buildings, Architecture, Urban development", "There is/are, Passive voice, Relative clauses", "IELTS listening test practice + gap-fill + note completion", "Students can understand gist, detail, and recognize distractors in listening"],
+            [4, "Unit 1: The Man-made Environment – Speaking", "Buildings, Architecture, Urban development", "There is/are, Passive voice, Relative clauses", "Pair/group practice + IELTS Speaking Part 1/2/3 tasks", "Students can speak fluently and accurately on related topics"],
+            [5, "Review 1: The Man-made Environment", "Vocabulary from Unit 1", "Grammar from Unit 1", "Review quiz + integrated skill practice + mini project", "Students can consolidate vocabulary, grammar, and skills from Unit 1"],
+            [6, "Unit 2: Nature and Conservation – Reading", "Environment, Conservation, Natural resources", "Conditionals, Modals (must, should, might)", "Read IELTS passage + answer comprehension + vocabulary questions", "Students can infer meaning from context and locate answers"],
+            [7, "Unit 2: Nature and Conservation – Writing", "Environment, Conservation, Natural resources", "Conditionals, Modals (must, should, might)", "Write IELTS Task 1 or 2 essay (150–250 words) using topic vocabulary", "Students can write essays using cause-effect and problem-solution structures"],
+            [8, "Unit 2: Nature and Conservation – Listening", "Environment, Conservation, Natural resources", "Conditionals, Modals (must, should, might)", "IELTS listening test practice + gap-fill + note completion", "Students can listen for gist, specific details and take notes effectively"],
+            [9, "Unit 2: Nature and Conservation – Speaking", "Environment, Conservation, Natural resources", "Conditionals, Modals (must, should, might)", "Pair/group practice + IELTS Speaking Part 1/2/3 tasks", "Students can discuss environmental issues using appropriate vocabulary"],
+            [10, "Review 2: Nature and Conservation", "Vocabulary from Unit 2", "Grammar from Unit 2", "Review quiz + integrated skill practice + mini project", "Students can consolidate vocabulary, grammar, and skills from Unit 2"],
+            [11, "Unit 3: Science and Technology – Reading", "Technology, Innovation, Research", "Complex sentences, Noun clauses", "Read IELTS passage + answer comprehension + vocabulary questions", "Students can identify writer’s opinion and supporting evidence"],
+            [12, "Unit 3: Science and Technology – Writing", "Technology, Innovation, Research", "Complex sentences, Noun clauses", "Write IELTS Task 1 or 2 essay (150–250 words) using topic vocabulary", "Students can write essays with logical flow and advanced connectors"],
+            [13, "Unit 3: Science and Technology – Listening", "Technology, Innovation, Research", "Complex sentences, Noun clauses", "IELTS listening test practice + gap-fill + note completion", "Students can understand lecture-style listening and paraphrasing"],
+            [14, "Unit 3: Science and Technology – Speaking", "Technology, Innovation, Research", "Complex sentences, Noun clauses", "Pair/group practice + IELTS Speaking Part 1/2/3 tasks", "Students can present opinions clearly using complex sentence forms"],
+            [15, "Review 3: Science and Technology", "Vocabulary from Unit 3", "Grammar from Unit 3", "Review quiz + integrated skill practice + mini project", "Students can consolidate vocabulary, grammar, and skills from Unit 3"],
+            [16, "Unit 4: Culture and Society – Reading", "Culture, Society, Beliefs", "Reported speech, Relative clauses", "Read IELTS passage + answer comprehension + vocabulary questions", "Students can recognize writer attitude and tone"],
+            [17, "Unit 4: Culture and Society – Writing", "Culture, Society, Beliefs", "Reported speech, Relative clauses", "Write IELTS Task 1 or 2 essay (150–250 words) using topic vocabulary", "Students can write persuasive essays using relevant examples"],
+            [18, "Unit 4: Culture and Society – Listening", "Culture, Society, Beliefs", "Reported speech, Relative clauses", "IELTS listening test practice + gap-fill + note completion", "Students can identify main ideas and supporting details from recordings"],
+            [19, "Unit 4: Culture and Society – Speaking", "Culture, Society, Beliefs", "Reported speech, Relative clauses", "Pair/group practice + IELTS Speaking Part 1/2/3 tasks", "Students can speak about culture confidently with appropriate vocabulary"],
+            [20, "Review 4: Culture and Society", "Vocabulary from Unit 4", "Grammar from Unit 4", "Review quiz + integrated skill practice + mini project", "Students can consolidate vocabulary, grammar, and skills from Unit 4"],
+            [21, "Mid-term Test", "-", "-", "Written & oral test (Units 1–2)", "Students demonstrate mastery of Units 1–2"],
+            [22, "Project-based Learning: Environment Poster", "Integrated review vocabulary", "Integrated review grammar", "Prepare and present a project", "Students apply knowledge creatively in real tasks"],
+            [23, "Project-based Learning: Culture Exhibition", "Integrated review vocabulary", "Integrated review grammar", "Prepare and present a project", "Students apply knowledge creatively in real tasks"],
+            [24, "Final Test", "-", "-", "Written & oral test (Units 1–4)", "Students demonstrate mastery of Units 1–4"],
+        ];
+
+        foreach ($lessons_ielts5 as $lesson) {
+            $ielts5->syllabi()->create([
+                'lesson_number' => $lesson[0],
+                'content'       => $lesson[1],
+                'vocabulary'    => $lesson[2],
+                'grammar'       => $lesson[3],
+                'assignment'    => $lesson[4],
+                'CLO'           => $lesson[5],
+            ]);
+        }
+
+        // ========== ICY IELTS 6 ==========
+        $ielts6 = Subject::where('name', 'ICY Ielts 6')->first();
+
+        $lessons_ielts6 = [
+            [1, "Unit 5: Business and Work – Reading", "Work, Careers, Business terms", "Present perfect, Future tenses, Conditionals", "Read IELTS passage + comprehension + vocabulary exercises", "Students can analyze IELTS texts for gist, detail, and inference."],
+            [2, "Unit 5: Business and Work – Writing", "Work, Careers, Business terms", "Present perfect, Future tenses, Conditionals", "Write IELTS Task 1/2 essay (150–250 words) with feedback", "Students can produce IELTS essays with task achievement and coherence."],
+            [3, "Unit 5: Business and Work – Listening", "Work, Careers, Business terms", "Present perfect, Future tenses, Conditionals", "IELTS listening test practice + multiple choice + gap-fill", "Students can understand detail and gist in IELTS listening tasks."],
+            [4, "Unit 5: Business and Work – Speaking", "Work, Careers, Business terms", "Present perfect, Future tenses, Conditionals", "Speaking mock test: IELTS Part 1/2/3 practice", "Students can speak fluently and coherently on IELTS topics."],
+            [5, "Review 5: Business and Work", "Vocabulary from Unit 5", "Grammar from Unit 5", "Review quiz + integrated IELTS skills + mini test", "Students can consolidate key vocabulary, grammar, and exam skills from the unit."],
+            [6, "Unit 6: The Natural Environment – Reading", "Environment, Nature, Climate change vocabulary", "Passive voice, Modals, Relative clauses", "Read IELTS passage + comprehension + vocabulary exercises", "Students can analyze IELTS texts for gist, detail, and inference."],
+            [7, "Unit 6: The Natural Environment – Writing", "Environment, Nature, Climate change vocabulary", "Passive voice, Modals, Relative clauses", "Write IELTS Task 1/2 essay (150–250 words) with feedback", "Students can produce IELTS essays with task achievement and coherence."],
+            [8, "Unit 6: The Natural Environment – Listening", "Environment, Nature, Climate change vocabulary", "Passive voice, Modals, Relative clauses", "IELTS listening test practice + multiple choice + gap-fill", "Students can understand detail and gist in IELTS listening tasks."],
+            [9, "Unit 6: The Natural Environment – Speaking", "Environment, Nature, Climate change vocabulary", "Passive voice, Modals, Relative clauses", "Speaking mock test: IELTS Part 1/2/3 practice", "Students can speak fluently and coherently on IELTS topics."],
+            [10, "Review 6: The Natural Environment", "Vocabulary from Unit 6", "Grammar from Unit 6", "Review quiz + integrated IELTS skills + mini test", "Students can consolidate key vocabulary, grammar, and exam skills from the unit."],
+            [11, "Unit 7: Education Systems – Reading", "Schools, Education systems, Academic vocabulary", "Reported speech, Gerunds & infinitives, Articles", "Read IELTS passage + comprehension + vocabulary exercises", "Students can analyze IELTS texts for gist, detail, and inference."],
+            [12, "Mid-term Test", "-", "-", "Written & oral test (Units 5–6)", "Students can demonstrate mastery of Units 5–6 in IELTS-style test."],
+            [13, "Unit 7: Education Systems – Writing", "Schools, Education systems, Academic vocabulary", "Reported speech, Gerunds & infinitives, Articles", "Write IELTS Task 1/2 essay (150–250 words) with feedback", "Students can produce IELTS essays with task achievement and coherence."],
+            [14, "Unit 7: Education Systems – Listening", "Schools, Education systems, Academic vocabulary", "Reported speech, Gerunds & infinitives, Articles", "IELTS listening test practice + multiple choice + gap-fill", "Students can understand detail and gist in IELTS listening tasks."],
+            [15, "Unit 7: Education Systems – Speaking", "Schools, Education systems, Academic vocabulary", "Reported speech, Gerunds & infinitives, Articles", "Speaking mock test: IELTS Part 1/2/3 practice", "Students can speak fluently and coherently on IELTS topics."],
+            [16, "Review 7: Education Systems", "Vocabulary from Unit 7", "Grammar from Unit 7", "Review quiz + integrated IELTS skills + mini test", "Students can consolidate key vocabulary, grammar, and exam skills from the unit."],
+            [17, "Unit 8: Festivals and Traditions – Reading", "Festivals, Traditions, Cultural vocabulary", "Comparatives, Superlatives, Adverb clauses", "Read IELTS passage + comprehension + vocabulary exercises", "Students can analyze IELTS texts for gist, detail, and inference."],
+            [18, "Unit 8: Festivals and Traditions – Writing", "Festivals, Traditions, Cultural vocabulary", "Comparatives, Superlatives, Adverb clauses", "Write IELTS Task 1/2 essay (150–250 words) with feedback", "Students can produce IELTS essays with task achievement and coherence."],
+            [19, "Unit 8: Festivals and Traditions – Listening", "Festivals, Traditions, Cultural vocabulary", "Comparatives, Superlatives, Adverb clauses", "IELTS listening test practice + multiple choice + gap-fill", "Students can understand detail and gist in IELTS listening tasks."],
+            [20, "Unit 8: Festivals and Traditions – Speaking", "Festivals, Traditions, Cultural vocabulary", "Comparatives, Superlatives, Adverb clauses", "Speaking mock test: IELTS Part 1/2/3 practice", "Students can speak fluently and coherently on IELTS topics."],
+            [21, "Review 8: Festivals and Traditions", "Vocabulary from Unit 8", "Grammar from Unit 8", "Review quiz + integrated IELTS skills + mini test", "Students can consolidate key vocabulary, grammar, and exam skills from the unit."],
+            [22, "IELTS Integrated Practice 1", "Review Units 5–6", "Grammar consolidation", "Full IELTS practice session with mixed skills", "Students can apply integrated IELTS skills in exam-like practice."],
+            [23, "IELTS Integrated Practice 2", "Review Units 7–8", "Grammar consolidation", "Full IELTS practice session with mixed skills", "Students can apply integrated IELTS skills in exam-like practice."],
+            [24, "Final Test", "-", "-", "Written & oral test (Units 7–8)", "Students can demonstrate mastery of Units 7–8 in IELTS-style test."],
+        ];
+
+        foreach ($lessons_ielts6 as $lesson) {
+            $ielts6->syllabi()->create([
+                'lesson_number' => $lesson[0],
+                'content'       => $lesson[1],
+                'vocabulary'    => $lesson[2],
+                'grammar'       => $lesson[3],
+                'assignment'    => $lesson[4],
+                'CLO'           => $lesson[5],
+            ]);
+        }
+
+        // ========== ICY IELTS 7 ==========
+        $ielts7 = Subject::where('name', 'ICY Ielts 7')->first();
+
+        $lessons_ielts7 = [
+            [1, "Unit 1: Urban and Rural Life – Reading", "Urban life vocabulary, Rural life terms, Community and lifestyle", "Present simple/continuous, Comparatives & superlatives, Relative clauses", "Read IELTS passage + comprehension questions + vocabulary note-taking", "Students can apply IELTS reading strategies (skimming, scanning, inference)."],
+            [2, "Unit 1: Urban and Rural Life – Writing", "Urban life vocabulary, Rural life terms, Community and lifestyle", "Present simple/continuous, Comparatives & superlatives, Relative clauses", "Write IELTS Task 1/2 essay (150–250 words) with peer and teacher feedback", "Students can produce IELTS essays with task achievement, coherence, and lexical range."],
+            [3, "Unit 1: Urban and Rural Life – Listening", "Urban life vocabulary, Rural life terms, Community and lifestyle", "Present simple/continuous, Comparatives & superlatives, Relative clauses", "IELTS listening tasks: note completion, multiple choice, sentence completion", "Students can identify gist, detail, and handle distractors in listening passages."],
+            [4, "Unit 1: Urban and Rural Life – Speaking", "Urban life vocabulary, Rural life terms, Community and lifestyle", "Present simple/continuous, Comparatives & superlatives, Relative clauses", "Mock test: IELTS Speaking Part 1, 2, and 3 practice", "Students can speak confidently, fluently, and with accurate grammar on IELTS topics."],
+            [5, "Review 1: Urban and Rural Life", "Vocabulary from Unit 1", "Grammar from Unit 1", "Review quiz + integrated skills practice + vocabulary consolidation", "Students can consolidate language and test-taking skills from the completed unit."],
+            [6, "Unit 2: Health – Reading", "Health issues, Medical vocabulary, Healthy lifestyle", "Modal verbs, Conditionals, Passive voice", "Read IELTS passage + comprehension questions + vocabulary note-taking", "Students can apply IELTS reading strategies (skimming, scanning, inference)."],
+            [7, "Unit 2: Health – Writing", "Health issues, Medical vocabulary, Healthy lifestyle", "Modal verbs, Conditionals, Passive voice", "Write IELTS Task 1/2 essay (150–250 words) with peer and teacher feedback", "Students can produce IELTS essays with task achievement, coherence, and lexical range."],
+            [8, "Unit 2: Health – Listening", "Health issues, Medical vocabulary, Healthy lifestyle", "Modal verbs, Conditionals, Passive voice", "IELTS listening tasks: note completion, multiple choice, sentence completion", "Students can identify gist, detail, and handle distractors in listening passages."],
+            [9, "Unit 2: Health – Speaking", "Health issues, Medical vocabulary, Healthy lifestyle", "Modal verbs, Conditionals, Passive voice", "Mock test: IELTS Speaking Part 1, 2, and 3 practice", "Students can speak confidently, fluently, and with accurate grammar on IELTS topics."],
+            [10, "Review 2: Health", "Vocabulary from Unit 2", "Grammar from Unit 2", "Review quiz + integrated skills practice + vocabulary consolidation", "Students can consolidate language and test-taking skills from the completed unit."],
+            [11, "Unit 3: Art and Architecture – Reading", "Art terms, Architecture vocabulary, Cultural heritage", "Reported speech, Articles, Complex sentences", "Read IELTS passage + comprehension questions + vocabulary note-taking", "Students can apply IELTS reading strategies (skimming, scanning, inference)."],
+            [12, "Mid-term Test", "-", "-", "Written & oral test (Units 1–2)", "Students can demonstrate mastery of Units 1–2 in IELTS-style test."],
+            [13, "Unit 3: Art and Architecture – Writing", "Art terms, Architecture vocabulary, Cultural heritage", "Reported speech, Articles, Complex sentences", "Write IELTS Task 1/2 essay (150–250 words) with peer and teacher feedback", "Students can produce IELTS essays with task achievement, coherence, and lexical range."],
+            [14, "Unit 3: Art and Architecture – Listening", "Art terms, Architecture vocabulary, Cultural heritage", "Reported speech, Articles, Complex sentences", "IELTS listening tasks: note completion, multiple choice, sentence completion", "Students can identify gist, detail, and handle distractors in listening passages."],
+            [15, "Unit 3: Art and Architecture – Speaking", "Art terms, Architecture vocabulary, Cultural heritage", "Reported speech, Articles, Complex sentences", "Mock test: IELTS Speaking Part 1, 2, and 3 practice", "Students can speak confidently, fluently, and with accurate grammar on IELTS topics."],
+            [16, "Review 3: Art and Architecture", "Vocabulary from Unit 3", "Grammar from Unit 3", "Review quiz + integrated skills practice + vocabulary consolidation", "Students can consolidate language and test-taking skills from the completed unit."],
+            [17, "Unit 4: Finance and Business – Reading", "Finance vocabulary, Business terms, Economic activities", "Future tenses, Quantifiers, Adverbial clauses", "Read IELTS passage + comprehension questions + vocabulary note-taking", "Students can apply IELTS reading strategies (skimming, scanning, inference)."],
+            [18, "Unit 4: Finance and Business – Writing", "Finance vocabulary, Business terms, Economic activities", "Future tenses, Quantifiers, Adverbial clauses", "Write IELTS Task 1/2 essay (150–250 words) with peer and teacher feedback", "Students can produce IELTS essays with task achievement, coherence, and lexical range."],
+            [19, "Unit 4: Finance and Business – Listening", "Finance vocabulary, Business terms, Economic activities", "Future tenses, Quantifiers, Adverbial clauses", "IELTS listening tasks: note completion, multiple choice, sentence completion", "Students can identify gist, detail, and handle distractors in listening passages."],
+            [20, "Unit 4: Finance and Business – Speaking", "Finance vocabulary, Business terms, Economic activities", "Future tenses, Quantifiers, Adverbial clauses", "Mock test: IELTS Speaking Part 1, 2, and 3 practice", "Students can speak confidently, fluently, and with accurate grammar on IELTS topics."],
+            [21, "IELTS Integrated Practice 1", "Review Units 1–2", "Grammar consolidation", "IELTS practice with mixed tasks and time management focus", "Students can apply integrated IELTS skills under exam-like conditions."],
+            [22, "IELTS Integrated Practice 2", "Review Units 3–4", "Grammar consolidation", "IELTS practice with mixed tasks and time management focus", "Students can apply integrated IELTS skills under exam-like conditions."],
+            [23, "Review 4: Finance and Business", "Vocabulary from Unit 4", "Grammar from Unit 4", "Review quiz + integrated skills practice + vocabulary consolidation", "Students can consolidate language and test-taking skills from the completed unit."],
+            [24, "Final Test", "-", "-", "Written & oral test (Units 3–4)", "Students can demonstrate mastery of Units 3–4 in IELTS-style test."],
+        ];
+
+        foreach ($lessons_ielts7 as $lesson) {
+            $ielts7->syllabi()->create([
+                'lesson_number' => $lesson[0],
+                'content'       => $lesson[1],
+                'vocabulary'    => $lesson[2],
+                'grammar'       => $lesson[3],
+                'assignment'    => $lesson[4],
+                'CLO'           => $lesson[5],
+            ]);
+        }
+
+        // ========== ICY IELTS 8 ==========
+        $ielts8 = Subject::where('name', 'ICY IELTS 8')->first();
+
+        $lessons_ielts8 = [
+            [1, "Unit 5: History – Reading", "Historical events, Civilizations, Timelines", "Past tenses, Reported speech, Passive voice", "Read IELTS passage + comprehension + vocabulary analysis", "Students can apply IELTS reading strategies for different question types."],
+            [2, "Unit 5: History – Writing", "Historical events, Civilizations, Timelines", "Past tenses, Reported speech, Passive voice", "Write IELTS Task 1/2 essay (150–250 words) with corrections", "Students can produce IELTS essays that meet criteria for task achievement, coherence, and vocabulary."],
+            [3, "Unit 5: History – Listening", "Historical events, Civilizations, Timelines", "Past tenses, Reported speech, Passive voice", "IELTS listening sections practice + note-taking tasks", "Students can capture key ideas and supporting details in IELTS listening tasks."],
+            [4, "Unit 5: History – Speaking", "Historical events, Civilizations, Timelines", "Past tenses, Reported speech, Passive voice", "Speaking mock test with IELTS examiner feedback (Part 1/2/3)", "Students can speak fluently, with good grammar and pronunciation in IELTS contexts."],
+            [5, "Review 5: History", "Vocabulary from Unit 5", "Grammar from Unit 5", "Unit review quiz + integrated practice + vocabulary check", "Students can consolidate all skills and vocabulary learned in the unit."],
+            [6, "Unit 6: Science and Technology – Reading", "Technology terms, Scientific vocabulary, Innovation", "Conditionals, Relative clauses, Complex sentences", "Read IELTS passage + comprehension + vocabulary analysis", "Students can apply IELTS reading strategies for different question types."],
+            [7, "Unit 6: Science and Technology – Writing", "Technology terms, Scientific vocabulary, Innovation", "Conditionals, Relative clauses, Complex sentences", "Write IELTS Task 1/2 essay (150–250 words) with corrections", "Students can produce IELTS essays that meet criteria for task achievement, coherence, and vocabulary."],
+            [8, "Unit 6: Science and Technology – Listening", "Technology terms, Scientific vocabulary, Innovation", "Conditionals, Relative clauses, Complex sentences", "IELTS listening sections practice + note-taking tasks", "Students can capture key ideas and supporting details in IELTS listening tasks."],
+            [9, "Unit 6: Science and Technology – Speaking", "Technology terms, Scientific vocabulary, Innovation", "Conditionals, Relative clauses, Complex sentences", "Speaking mock test with IELTS examiner feedback (Part 1/2/3)", "Students can speak fluently, with good grammar and pronunciation in IELTS contexts."],
+            [10, "Review 6: Science and Technology", "Vocabulary from Unit 6", "Grammar from Unit 6", "Unit review quiz + integrated practice + vocabulary check", "Students can consolidate all skills and vocabulary learned in the unit."],
+            [11, "Unit 7: Television, News and Current Affairs – Reading", "Media vocabulary, News terms, Broadcasting", "Direct and indirect speech, Adverb clauses, Question formation", "Read IELTS passage + comprehension + vocabulary analysis", "Students can apply IELTS reading strategies for different question types."],
+            [12, "Mid-term Test", "-", "-", "Written & oral test (Units 5–6)", "Students can demonstrate mastery of Units 5–6 in an IELTS-style test."],
+            [13, "Unit 7: Television, News and Current Affairs – Writing", "Media vocabulary, News terms, Broadcasting", "Direct and indirect speech, Adverb clauses, Question formation", "Write IELTS Task 1/2 essay (150–250 words) with corrections", "Students can produce IELTS essays that meet criteria for task achievement, coherence, and vocabulary."],
+            [14, "Unit 7: Television, News and Current Affairs – Listening", "Media vocabulary, News terms, Broadcasting", "Direct and indirect speech, Adverb clauses, Question formation", "IELTS listening sections practice + note-taking tasks", "Students can capture key ideas and supporting details in IELTS listening tasks."],
+            [15, "Unit 7: Television, News and Current Affairs – Speaking", "Media vocabulary, News terms, Broadcasting", "Direct and indirect speech, Adverb clauses, Question formation", "Speaking mock test with IELTS examiner feedback (Part 1/2/3)", "Students can speak fluently, with good grammar and pronunciation in IELTS contexts."],
+            [16, "Review 7: Television, News and Current Affairs", "Vocabulary from Unit 7", "Grammar from Unit 7", "Unit review quiz + integrated practice + vocabulary check", "Students can consolidate all skills and vocabulary learned in the unit."],
+            [17, "Unit 8: Culture – Reading", "Cultural traditions, Arts vocabulary, Heritage", "Comparatives, Superlatives, Quantifiers", "Read IELTS passage + comprehension + vocabulary analysis", "Students can apply IELTS reading strategies for different question types."],
+            [18, "Unit 8: Culture – Writing", "Cultural traditions, Arts vocabulary, Heritage", "Comparatives, Superlatives, Quantifiers", "Write IELTS Task 1/2 essay (150–250 words) with corrections", "Students can produce IELTS essays that meet criteria for task achievement, coherence, and vocabulary."],
+            [19, "Unit 8: Culture – Listening", "Cultural traditions, Arts vocabulary, Heritage", "Comparatives, Superlatives, Quantifiers", "IELTS listening sections practice + note-taking tasks", "Students can capture key ideas and supporting details in IELTS listening tasks."],
+            [20, "Unit 8: Culture – Speaking", "Cultural traditions, Arts vocabulary, Heritage", "Comparatives, Superlatives, Quantifiers", "Speaking mock test with IELTS examiner feedback (Part 1/2/3)", "Students can speak fluently, with good grammar and pronunciation in IELTS contexts."],
+            [21, "Review 8: Culture", "Vocabulary from Unit 8", "Grammar from Unit 8", "Unit review quiz + integrated practice + vocabulary check", "Students can consolidate all skills and vocabulary learned in the unit."],
+            [22, "IELTS Integrated Practice 1", "Review Units 5–6", "Grammar consolidation", "IELTS integrated practice: timed exam simulation", "Students can integrate all IELTS skills in a timed test-like environment."],
+            [23, "IELTS Integrated Practice 2", "Review Units 7–8", "Grammar consolidation", "IELTS integrated practice: timed exam simulation", "Students can integrate all IELTS skills in a timed test-like environment."],
+            [24, "Final Test", "-", "-", "Written & oral test (Units 7–8)", "Students can demonstrate mastery of Units 7–8 in an IELTS-style test."],
+        ];
+
+        foreach ($lessons_ielts8 as $lesson) {
+            $ielts8->syllabi()->create([
+                'lesson_number' => $lesson[0],
+                'content'       => $lesson[1],
+                'vocabulary'    => $lesson[2],
+                'grammar'       => $lesson[3],
+                'assignment'    => $lesson[4],
+                'CLO'           => $lesson[5],
+            ]);
+        }
+
+        // ========== ICY BUSINESS 1 ==========
+        $business1 = Subject::where('name', 'ICY Business 1')->first();
+
+        $lessons_business1 = [
+            [1,  "Unit 1: Introductions and Names – Lesson 1", "Business greetings, introductions", "Present simple", "Role-play business introductions", "Students can introduce themselves professionally"],
+            [2,  "Unit 1: Introductions and Names – Lesson 2", "Job titles, departments", "Present simple", "Interview a classmate about their role", "Students can ask and answer about roles/departments"],
+            [3,  "Unit 2: Describing People – Lesson 1", "Physical appearance, personality traits", "Adjectives, verb to be", "Describe a coworker in pairs", "Students can describe people accurately"],
+            [4,  "Unit 2: Describing People – Lesson 2", "Strengths & weaknesses vocabulary", "Comparatives & superlatives", "Group ranking activity", "Students can compare and evaluate people"],
+            [5,  "Unit 3: Clothes – Lesson 1", "Clothing and dress codes", "Countable/uncountable nouns", "Discuss dress code at work", "Students can talk about appropriate work clothes"],
+            [6,  "Unit 3: Clothes – Lesson 2", "Shopping and style", "Present continuous", "Create an outfit proposal", "Students can describe clothing and style choices"],
+            [7,  "Unit 4: Routines – Lesson 1", "Daily routines, work schedule", "Adverbs of frequency", "Write and present daily routine", "Students can talk about work routines"],
+            [8,  "Unit 4: Routines – Lesson 2", "Meetings and schedules", "Time expressions", "Plan a weekly schedule in groups", "Students can organize and describe schedules"],
+            [9,  "Unit 5: Dates – Lesson 1", "Days, months, ordinal numbers", "Prepositions of time", "Set up a meeting calendar", "Students can use time expressions accurately"],
+            [10, "Unit 5: Dates – Lesson 2", "Making appointments", "Future with 'will'", "Simulate booking meetings", "Students can make and confirm appointments"],
+            [11, "Unit 6: Jobs – Lesson 1", "Job titles, roles", "Present simple", "Guess the job activity", "Students can describe jobs and roles"],
+            [12, "Unit 6: Jobs – Lesson 2", "Workplaces and tasks", "Modal verbs: can/can’t", "Create job descriptions", "Students can talk about abilities at work"],
+            [13, "Mid-term Test (Units 1–6)", "-", "-", "Written and oral test", "Students demonstrate mastery of Units 1–6"],
+            [14, "Unit 7: Favorites – Lesson 1", "Likes/dislikes vocabulary", "Like/love/hate + V-ing", "Interview peers on preferences", "Students can talk about personal preferences"],
+            [15, "Unit 7: Favorites – Lesson 2", "Hobbies and free time", "Present continuous", "Create hobby posters", "Students can describe hobbies and interests"],
+            [16, "Unit 8: Sports and Exercise – Lesson 1", "Sports vocabulary", "Frequency adverbs", "Plan a company sports day", "Students can talk about sports activities"],
+            [17, "Unit 8: Sports and Exercise – Lesson 2", "Health & fitness vocabulary", "Have to / don’t have to", "Make a fitness plan", "Students can give advice on exercise"],
+            [18, "Unit 9: Locations – Lesson 1", "Office locations, places", "There is / There are", "Draw and present office maps", "Students can describe locations"],
+            [19, "Unit 9: Locations – Lesson 2", "Giving directions", "Imperatives", "Office tour role-play", "Students can give and follow directions"],
+            [20, "Unit 10: The Family – Lesson 1", "Family members, relationships", "Possessive adjectives", "Family tree activity", "Students can describe family relationships"],
+            [21, "Unit 11: Entertainment – Lesson 1", "Leisure activities", "Can/can’t", "Plan a team-building event", "Students can talk about entertainment preferences"],
+            [22, "Unit 11: Entertainment – Lesson 2", "Making invitations", "Would like to", "Role-play invitations", "Students can invite and respond politely"],
+            [23, "Review (Units 7–11)", "Vocabulary from Units 7–11", "Grammar from Units 7–11", "Quiz + team project", "Students consolidate learned language"],
+            [24, "Final Test (Units 1–11)", "-", "-", "Written & oral test", "Students demonstrate mastery of all units"],
+        ];
+
+        foreach ($lessons_business1 as $lesson) {
+            $business1->syllabi()->create([
+                'lesson_number' => $lesson[0],
+                'content'       => $lesson[1],
+                'vocabulary'    => $lesson[2],
+                'grammar'       => $lesson[3],
+                'assignment'    => $lesson[4],
+                'CLO'           => $lesson[5],
+            ]);
+        }
+
+        // ========== ICY BUSINESS 2 ==========
+        $business2 = Subject::where('name', 'ICY Business 2')->first();
+
+        $lessons_business2 = [
+            [1,  "Unit 1: The Weekend", "Topic-related vocabulary", "Tense practice", "Role-play scenarios", "Develop gist and detail listening"],
+            [2,  "Unit 2: City Transportation", "Listening-focused vocabulary", "Question forms", "Debate session", "Enhance speaking fluency"],
+            [3,  "Unit 4: Celebrations", "Functional expressions", "Sentence stress", "Storytelling in pairs", "Practice real-life dialogues"],
+            [4,  "Unit 5: Restaurants", "Useful collocations", "Intonation and reduction", "Interview a partner", "Strengthen grammar accuracy"],
+            [5,  "Unit 6: Gifts", "Spoken interaction vocabulary", "Grammar in context", "Mini-presentation", "Build confidence in oral interaction"],
+            [6,  "Unit 7: Air Travel", "Topic-related vocabulary", "Tense practice", "Customer service simulation", "Apply vocabulary in context"],
+            [7,  "Unit 8: Mishaps", "Listening-focused vocabulary", "Question forms", "Problem-solving discussion", "Improve pronunciation and stress"],
+            [8,  "Unit 9: Jobs", "Functional expressions", "Sentence stress", "Create and act a dialogue", "Encourage spontaneous speaking"],
+            [9,  "Unit 10: Keeping Fit", "Useful collocations", "Intonation and reduction", "Impromptu speaking", "Promote collaborative communication"],
+            [10, "Unit 11: Invitations", "Spoken interaction vocabulary", "Grammar in context", "Pitch an idea to classmates", "Integrate listening and speaking skills"],
+            [11, "Unit 12: Campus Life", "Topic-related vocabulary", "Tense practice", "Role-play scenarios", "Develop gist and detail listening"],
+            [12, "Unit 13: Hobbies and Pastimes", "Listening-focused vocabulary", "Question forms", "Debate session", "Enhance speaking fluency"],
+            [13, "Mid-term Test", "Comprehensive vocabulary review", "Grammar consolidation (Units 1–12)", "Mid-term integrated listening and speaking test", "Assess mid-term progress in listening, grammar, and speaking fluency"],
+            [14, "Unit 14: Shopping Problems", "Useful collocations", "Intonation and reduction", "Interview a partner", "Strengthen grammar accuracy"],
+            [15, "Unit 15: Hotel Services", "Spoken interaction vocabulary", "Grammar in context", "Mini-presentation", "Build confidence in oral interaction"],
+            [16, "Unit 16: Movies", "Topic-related vocabulary", "Tense practice", "Customer service simulation", "Apply vocabulary in context"],
+            [17, "Unit 17: Fears", "Listening-focused vocabulary", "Question forms", "Problem-solving discussion", "Improve pronunciation and stress"],
+            [18, "Unit 18: Phone Messages", "Functional expressions", "Sentence stress", "Create and act a dialogue", "Encourage spontaneous speaking"],
+            [19, "Unit 19: Touring a City", "Useful collocations", "Intonation and reduction", "Impromptu speaking", "Promote collaborative communication"],
+            [20, "Unit 20: Airports", "Spoken interaction vocabulary", "Grammar in context", "Pitch an idea to classmates", "Integrate listening and speaking skills"],
+            [21, "Unit 21: Hotels", "Topic-related vocabulary", "Tense practice", "Role-play scenarios", "Develop gist and detail listening"],
+            [22, "Unit 22: Traffic", "Listening-focused vocabulary", "Question forms", "Debate session", "Enhance speaking fluency"],
+            [23, "Unit 23: Roommates", "Functional expressions", "Sentence stress", "Storytelling in pairs", "Practice real-life dialogues"],
+            [24, "Final Test", "Comprehensive vocabulary review", "Grammar consolidation (Full course)", "Final integrated listening and speaking test", "Evaluate full-course achievements and readiness for next level"],
+        ];
+
+        foreach ($lessons_business2 as $lesson) {
+            $business2->syllabi()->create([
+                'lesson_number' => $lesson[0],
+                'content'       => $lesson[1],
+                'vocabulary'    => $lesson[2],
+                'grammar'       => $lesson[3],
+                'assignment'    => $lesson[4],
+                'CLO'           => $lesson[5],
+            ]);
+        }
+
+        // ========== ICY BUSINESS 3 ==========
+        $business3 = Subject::where('name', 'ICY Business 3')->first();
+
+        $lessons_business3 = [
+            [1,  "Unit 2: Plans", "Topic-related vocabulary", "Tense practice", "Role-play scenarios", "Develop gist and detail listening"],
+            [2,  "Unit 3: Successful Businesses", "Listening-focused vocabulary", "Question forms", "Debate session", "Enhance speaking fluency"],
+            [3,  "Unit 4: Apologies and Excuses", "Functional expressions", "Sentence stress", "Storytelling in pairs", "Practice real-life dialogues"],
+            [4,  "Unit 5: Character Traits", "Useful collocations", "Intonation and reduction", "Interview a partner", "Strengthen grammar accuracy"],
+            [5,  "Unit 6: Travel", "Spoken interaction vocabulary", "Grammar in context", "Mini-presentation", "Build confidence in oral interaction"],
+            [6,  "Unit 7: Housing", "Topic-related vocabulary", "Tense practice", "Customer service simulation", "Apply vocabulary in context"],
+            [7,  "Unit 8: Can You Believe It?", "Listening-focused vocabulary", "Question forms", "Problem-solving discussion", "Improve pronunciation and stress"],
+            [8,  "Unit 10: Television", "Functional expressions", "Sentence stress", "Create and act a dialogue", "Encourage spontaneous speaking"],
+            [9,  "Unit 11: Cities", "Useful collocations", "Intonation and reduction", "Impromptu speaking", "Promote collaborative communication"],
+            [10, "Unit 12: Urban Life", "Spoken interaction vocabulary", "Grammar in context", "Pitch an idea to classmates", "Integrate listening and speaking skills"],
+            [11, "Unit 13: Special Days", "Topic-related vocabulary", "Tense practice", "Role-play scenarios", "Develop gist and detail listening"],
+            [12, "Mid-term Test", "Comprehensive vocabulary review", "Grammar consolidation (Units 2–13)", "Mid-term integrated listening and speaking test", "Assess mid-term progress in listening, grammar, and speaking fluency"],
+            [13, "Unit 14: Fashion", "Functional expressions", "Sentence stress", "Storytelling in pairs", "Practice real-life dialogues"],
+            [14, "Unit 15: Favorites", "Useful collocations", "Intonation and reduction", "Interview a partner", "Strengthen grammar accuracy"],
+            [15, "Unit 16: Phone Messages", "Spoken interaction vocabulary", "Grammar in context", "Mini-presentation", "Build confidence in oral interaction"],
+            [16, "Unit 17: Past Events", "Topic-related vocabulary", "Tense practice", "Customer service simulation", "Apply vocabulary in context"],
+            [17, "Unit 18: Vacations", "Listening-focused vocabulary", "Question forms", "Problem-solving discussion", "Improve pronunciation and stress"],
+            [18, "Unit 19: The News", "Functional expressions", "Sentence stress", "Create and act a dialogue", "Encourage spontaneous speaking"],
+            [19, "Unit 20: Opinions", "Useful collocations", "Intonation and reduction", "Impromptu speaking", "Promote collaborative communication"],
+            [20, "Unit 21: Famous People", "Spoken interaction vocabulary", "Grammar in context", "Pitch an idea to classmates", "Integrate listening and speaking skills"],
+            [21, "Unit 22: Food and Nutrition", "Topic-related vocabulary", "Tense practice", "Role-play scenarios", "Develop gist and detail listening"],
+            [22, "Unit 23: Predicaments", "Listening-focused vocabulary", "Question forms", "Debate session", "Enhance speaking fluency"],
+            [23, "Unit 24: Global Issues", "Functional expressions", "Sentence stress", "Storytelling in pairs", "Practice real-life dialogues"],
+            [24, "Final Test", "Comprehensive vocabulary review", "Grammar consolidation (Full course)", "Final integrated listening and speaking test", "Evaluate full-course achievements and readiness for next level"],
+        ];
+
+        foreach ($lessons_business3 as $lesson) {
+            $business3->syllabi()->create([
+                'lesson_number' => $lesson[0],
+                'content'       => $lesson[1],
+                'vocabulary'    => $lesson[2],
+                'grammar'       => $lesson[3],
+                'assignment'    => $lesson[4],
+                'CLO'           => $lesson[5],
+            ]);
+        }
+
+        // ========== ICY BUSINESS 4 ==========
+        $business4 = Subject::where('name', 'ICY Business 4')->first();
+
+        $lessons_business4 = [
+            [1,  "Unit 1: Brands – Lesson 1: Talk about your favourite brands", "Brands, Products, Market", "Words with brand/product/market; Present simple & continuous", "Write about brands", "Discuss brands"],
+            [2,  "Unit 1: Brands – Lesson 2: Listening & Reading (Interview with brand manager, Building luxury brands)", "Luxury, Brand manager", "Brand-related grammar", "Summarize brand article", "Understand brand articles"],
+            [3,  "Unit 1: Brands – Lesson 3: Case Study – Hudson Corporation: Luggage manufacturer, Writing: email", "Email terms", "Email writing format", "Write brand protection email", "Write brand emails"],
+            [4,  "Unit 2: Travel – Lesson 1: Talk about your travel experiences", "Travel, Hotels", "British & American travel words; Future forms", "Describe travel experience", "Discuss travel"],
+            [5,  "Unit 2: Travel – Lesson 2: Listening & Reading (Hotel chain interview, Business travellers)", "Business travellers", "Travel grammar", "Summarize business travellers article", "Understand travel articles"],
+            [6,  "Unit 2: Travel – Lesson 3: Case Study – BTS: Retain travel agent’s key client, Writing: email", "Travel emails", "Email writing structures", "Write client email", "Write travel emails"],
+            [7,  "Unit 3: Change – Lesson 1: Discuss attitudes to change in general and at work", "Change, Management", "Describing change, Past simple & present perfect", "Write about change", "Discuss change"],
+            [8,  "Unit 3: Change – Lesson 2: Listening & Reading (Mercedes article, Consultant interview)", "Consultants, Mergers", "Change grammar", "Summarize consultant article", "Understand consultant texts"],
+            [9,  "Unit 3: Change – Lesson 3: Case Study – AcquiringAsia Entertainment: Merger problems, Writing: action minutes", "Action minutes terms", "Action minutes writing", "Write action minutes", "Write action minutes"],
+            [10, "Working Across Cultures 1: Socialising", "Socialising, Networking", "Expressions for networking", "Research socialising styles", "Understand socialising"],
+            [11, "Revision A", "Review vocab Units 1–3", "Review Units 1–3 grammar", "Practice test Units 1–3", "Review Units 1–3"],
+            [12, "Unit 4: Organisation – Lesson 1: Talk about status within an organisation", "Organisation, Company", "Words & expressions for company structure; Noun combinations", "Describe company structure", "Discuss organisation"],
+            [13, "Unit 4: Organisation – Lesson 2: Listening & Reading (Successful organisation, Management interview)", "Management roles", "Organisation grammar", "Summarize organisation article", "Understand company texts"],
+            [14, "Unit 4: Organisation – Lesson 3: Case Study – InStep’s relocation: Shoe manufacturer site, Writing: email", "Relocation terms", "Formal writing", "Write relocation email", "Write relocation emails"],
+            [15, "Unit 5: Advertising – Lesson 1: Discuss authentic advertisements", "Advertising, Campaigns", "Advertising expressions, Articles", "Analyze advertisements", "Discuss advertising"],
+            [16, "Unit 5: Advertising – Lesson 2: Listening & Reading (New campaign article, Interview with marketing executive)", "Marketing executive", "Campaign grammar", "Summarize campaign", "Understand campaign texts"],
+            [17, "Unit 5: Advertising – Lesson 3: Case Study – Alpha Advertising: Campaign development, Writing: summary", "Summary terms", "Summary structures", "Write campaign summary", "Write summaries"],
+            [18, "Unit 6: Money – Lesson 1: Do a quiz and discuss attitudes to money", "Money, Finance", "Finance expressions, Trends", "Money quiz", "Discuss money"],
+            [19, "Unit 6: Money – Lesson 2: Listening & Reading (Interview with investment director, Inspirational story)", "Investment, Trends", "Describing finance", "Summarize investment story", "Understand investment texts"],
+            [20, "Unit 6: Money – Lesson 3: Case Study – Make your pitch: Investor idea presentation, Writing: email", "Investor emails", "Email grammar", "Write investor email", "Write investor emails"],
+            [21, "Working Across Cultures 2: International Meetings", "Meetings, Cultures", "Meeting expressions", "Compare international meetings", "Discuss meetings"],
+            [22, "Revision B", "Review vocab Units 4–6", "Review Units 4–6 grammar", "Practice test Units 4–6", "Review Units 4–6"],
+            [23, "Mid-term Test", "Mid-term vocabulary", "Grammar from Units 1–6", "Mid-term exam", "Assess progress"],
+            [24, "Project Work: Group Presentation (Marketing/Branding theme)", "Presentation language", "Presentation connectors", "Prepare group presentation", "Present projects"],
+        ];
+
+        foreach ($lessons_business4 as $lesson) {
+            $business4->syllabi()->create([
+                'lesson_number' => $lesson[0],
+                'content'       => $lesson[1],
+                'vocabulary'    => $lesson[2],
+                'grammar'       => $lesson[3],
+                'assignment'    => $lesson[4],
+                'CLO'           => $lesson[5],
+            ]);
+        }
+
+        // ========== ICY BUSINESS 5 ==========
+        $business5 = Subject::where('name', 'ICY Business 5')->first();
+
+        $lessons_business5 = [
+            [1,  "Unit 7: Cultures – Lesson 1: Discuss importance of cultural awareness in business", "Culture, Awareness, Relationships", "Idioms for relationships, Advice/obligation/necessity", "Write about cultural awareness", "Discuss cultural awareness"],
+            [2,  "Unit 7: Cultures – Lesson 2: Listening & Reading (Interview with cultural trainer, Culture shock article)", "Culture shock, Trainers", "Social English grammar", "Summarize culture shock article", "Understand culture shock"],
+            [3,  "Unit 7: Cultures – Lesson 3: Case Study – Business culture briefing: Prepare a talk, Writing: report", "Business culture, Reports", "Report writing", "Write business culture report", "Write reports"],
+            [4,  "Unit 8: Human Resources – Lesson 1: Talk about job interviews", "Job interviews, Applications", "Expressions for applications, -ing forms & infinitives", "Prepare for job interview", "Discuss interviews"],
+            [5,  "Unit 8: Human Resources – Lesson 2: Listening & Reading (Women at work, Interview with recruitment specialist)", "Recruitment, Specialists", "Recruitment grammar", "Summarize women at work text", "Understand recruitment texts"],
+            [6,  "Unit 8: Human Resources – Lesson 3: Case Study – Fast Fitness: New manager hiring, Writing: letter", "Hiring, Letters", "Letter structures", "Write manager hiring letter", "Write letters"],
+            [7,  "Unit 9: International Markets – Lesson 1: Discuss development of international markets", "Markets, Trade, Negotiations", "Free trade vocabulary, Conditionals", "Research international markets", "Discuss markets"],
+            [8,  "Unit 9: International Markets – Lesson 2: Listening & Reading (China–US trade, Expert on negotiations)", "Exports, Conditions", "Negotiation grammar", "Summarize trade article", "Understand trade texts"],
+            [9,  "Unit 9: International Markets – Lesson 3: Case Study – Pampas Leather: Negotiate a deal, Writing: email", "Deals, Emails", "Email writing forms", "Write negotiation email", "Write emails"],
+            [10, "Working Across Cultures 3: Doing Business Internationally", "International business", "International grammar", "Compare cultures", "Understand international business"],
+            [11, "Revision C", "Review vocab Units 7–9", "Review Units 7–9 grammar", "Practice test Units 7–9", "Review Units 7–9"],
+            [12, "Unit 10: Ethics – Lesson 1: Discuss ethics at work", "Ethics, Résumés", "Describing illegal behaviour, Narrative tenses", "List ethical dilemmas", "Discuss ethics"],
+            [13, "Unit 10: Ethics – Lesson 2: Listening & Reading (Résumé ethics, Interview with environmental director)", "Illegal/unethical behaviour, Organisations", "Work ethics grammar", "Summarize résumé ethics text", "Understand ethics texts"],
+            [14, "Unit 10: Ethics – Lesson 3: Case Study – Principles or profit?: Ethical dilemmas, Writing: report", "Ethical dilemmas, Reports", "Report grammar", "Write ethics report", "Write ethics reports"],
+            [15, "Unit 11: Leadership – Lesson 1: Discuss qualities of good leadership", "Leadership, Character", "Relative clauses, Character description", "Describe good leadership", "Discuss leadership"],
+            [16, "Unit 11: Leadership – Lesson 2: Listening & Reading (Interview with recruitment director, Leading L’Oréal)", "Executives, Clauses", "Leadership grammar", "Summarize L’Oréal article", "Understand leadership texts"],
+            [17, "Unit 11: Leadership – Lesson 3: Case Study – Lina Sports: Best leader decision, Writing: email", "Sportswear leadership, Emails", "Email grammar", "Write leadership email", "Write leadership emails"],
+            [18, "Unit 12: Competition – Lesson 1: Do a quiz on competitiveness", "Competition, Sports idioms", "Passives, Sports idioms", "Do competition quiz", "Discuss competition"],
+            [19, "Unit 12: Competition – Lesson 2: Listening & Reading (Head to head competition, Interview with Competition Commission)", "Head-to-head, Passives", "Competition grammar", "Summarize competition article", "Understand competition texts"],
+            [20, "Unit 12: Competition – Lesson 3: Case Study – Fashion House: Negotiate contracts, Writing: email", "Contracts, Suppliers, Emails", "Contract email grammar", "Write contract negotiation email", "Write contract emails"],
+            [21, "Working Across Cultures 4: Communication Styles", "Communication styles", "Cross-cultural grammar", "Compare communication styles", "Discuss communication styles"],
+            [22, "Revision D", "Review vocab Units 10–12", "Review Units 10–12 grammar", "Practice test Units 10–12", "Review Units 10–12"],
+            [23, "Mid-term Test", "Mid-term vocabulary", "Grammar from Units 7–12", "Mid-term exam", "Assess progress"],
+            [24, "Project Work: Group Presentation (Leadership/Competition theme)", "Presentation language", "Presentation connectors", "Prepare presentation", "Present projects"],
+        ];
+
+        foreach ($lessons_business5 as $lesson) {
+            $business5->syllabi()->create([
+                'lesson_number' => $lesson[0],
+                'content'       => $lesson[1],
+                'vocabulary'    => $lesson[2],
+                'grammar'       => $lesson[3],
+                'assignment'    => $lesson[4],
+                'CLO'           => $lesson[5],
+            ]);
+        }
+
+        // ========== ICY BUSINESS 6 ==========
+        $business6 = Subject::where('name', 'ICY Business 6')->first();
+
+        $lessons_business6 = [
+            [1,  "Unit 1: Communication – Lesson 1: Talk about what makes a good communicator", "Communication, Idioms", "Idioms, Communication breakdown", "Write about good communicators", "Discuss communication"],
+            [2,  "Unit 1: Communication – Lesson 2: Listening & Reading (Interview with expert, A quiet word article)", "Good communicators, Emails", "Email grammar", "Summarize article", "Understand communication texts"],
+            [3,  "Unit 1: Communication – Lesson 3: Case Study – The price of success: Improve communications, Writing: email", "Report terms", "Report writing structures", "Write improvement email", "Write improvement emails"],
+            [4,  "Unit 2: International Marketing – Lesson 1: Talk about international brands", "Marketing, Brands", "Marketing word partnerships, Noun compounds", "Research global brands", "Discuss international marketing"],
+            [5,  "Unit 2: International Marketing – Lesson 2: Listening & Reading (Diego Della Valle, Interview with marketing professor & CEO)", "Noun compounds, Partnerships", "Marketing grammar", "Summarize marketing article", "Understand marketing texts"],
+            [6,  "Unit 2: International Marketing – Lesson 3: Case Study – Henri-Claude Cosmetics: TV commercial, Writing: action minutes", "Action minutes", "Action minutes", "Write action minutes", "Write action minutes"],
+            [7,  "Unit 3: Building Relationships – Lesson 1: Talk about building relationships", "Relationships, CSR", "Describing relations, Multiword verbs", "Write about relationships", "Discuss relationships"],
+            [8,  "Unit 3: Building Relationships – Lesson 2: Listening & Reading (Head of CSR interview, How East is meeting West)", "East-West business", "Networking grammar", "Summarize CSR article", "Understand CSR texts"],
+            [9,  "Unit 3: Building Relationships – Lesson 3: Case Study – Al-Munir Hotel: Customer satisfaction plan, Writing: letter", "Customer satisfaction, Letters", "Letter grammar", "Write satisfaction letter", "Write satisfaction letters"],
+            [10, "Working Across Cultures 1: Doing Business Internationally", "Cross-cultural business", "Cross-cultural grammar", "Compare international business", "Understand international business"],
+            [11, "Revision A", "Review vocab Units 1–3", "Review Units 1–3 grammar", "Practice test Units 1–3", "Review Units 1–3"],
+            [12, "Unit 4: Success – Lesson 1: Discuss what makes people/companies successful", "Success, Profiles", "Prefixes, Present & past tenses", "Write about success factors", "Discuss success"],
+            [13, "Unit 4: Success – Lesson 2: Listening & Reading (Interview with MD, Profile of Carlos Slim)", "Business leaders, Companies", "Success grammar", "Summarize Carlos Slim article", "Understand leader profiles"],
+            [14, "Unit 4: Success – Lesson 3: Case Study – Kensington United: Sponsorship negotiation, Writing: press release/letter", "Press releases, Sponsorships", "Press release writing", "Write sponsorship press release", "Write press releases"],
+            [15, "Unit 5: Job Satisfaction – Lesson 1: Discuss motivational factors and do a quiz", "Motivation, Job satisfaction", "Synonyms, Word-building, Passives", "Job satisfaction quiz", "Discuss job satisfaction"],
+            [16, "Unit 5: Job Satisfaction – Lesson 2: Listening & Reading (Interview with HR Director, Marriott Hotels article)", "Hotels, HR", "HR grammar", "Summarize hotel article", "Understand HR texts"],
+            [17, "Unit 5: Job Satisfaction – Lesson 3: Case Study – Just good friends?: Deal with in-house relationships, Writing: guidelines", "Guidelines terms", "Guideline structures", "Write HR guidelines", "Write guidelines"],
+            [18, "Unit 6: Risk – Lesson 1: Discuss different aspects of risk", "Risk, Internationalisation", "Describing risk, Adverbs of degree", "Write about risks", "Discuss risk"],
+            [19, "Unit 6: Risk – Lesson 2: Listening & Reading (Interview with MD of Risk Management, Internationalisation article)", "Adverbs of degree", "Risk grammar", "Summarize risk article", "Understand risk texts"],
+            [20, "Unit 6: Risk – Lesson 3: Case Study – Winton Carter Mining: Evaluate mining risks, Writing: report", "Reports, Mining", "Report writing", "Write mining risk report", "Write risk reports"],
+            [21, "Working Across Cultures 2: Working in New Markets", "New markets, Cultures", "Market grammar", "Compare markets", "Discuss new markets"],
+            [22, "Revision B", "Review vocab Units 4–6", "Review Units 4–6 grammar", "Practice test Units 4–6", "Review Units 4–6"],
+            [23, "Mid-term Test", "Mid-term vocabulary", "Grammar from Units 1–6", "Mid-term exam", "Assess progress"],
+            [24, "Project Work: Group Presentation (Marketing/CSR theme)", "Presentation language", "Presentation connectors", "Prepare group presentation", "Present projects"],
+        ];
+
+        foreach ($lessons_business6 as $lesson) {
+            $business6->syllabi()->create([
+                'lesson_number' => $lesson[0],
+                'content'       => $lesson[1],
+                'vocabulary'    => $lesson[2],
+                'grammar'       => $lesson[3],
+                'assignment'    => $lesson[4],
+                'CLO'           => $lesson[5],
+            ]);
+        }
+
+        // ========== ICY BUSINESS 7 ==========
+        $business7 = Subject::where('name', 'ICY Business 7')->first();
+
+        $lessons_business7 = [
+            [1,  "Unit 7: Management Styles – Lesson 1: Discuss aspects of management style", "Management, Styles", "Management qualities, Text reference", "Write about management style", "Discuss management styles"],
+            [2,  "Unit 7: Management Styles – Lesson 2: Listening & Reading (Management book interview, CBS/Times article)", "Qualities, Text reference", "Presentation grammar", "Summarize management text", "Understand management texts"],
+            [3,  "Unit 7: Management Styles – Lesson 3: Case Study – Selig & Lind: Choose project manager, Writing: report", "Reports", "Report writing structures", "Write project manager report", "Write reports"],
+            [4,  "Unit 8: Team Building – Lesson 1: Talk about working in teams", "Team, Collaboration", "Prefixes, Modal perfect", "Team quiz", "Discuss teamwork"],
+            [5,  "Unit 8: Team Building – Lesson 2: Listening & Reading (Interview with founder, Recipes for team building)", "Prefixes, Modal perfect", "Team grammar", "Summarize team article", "Understand team texts"],
+            [6,  "Unit 8: Team Building – Lesson 3: Case Study – Motivating the sales team, Writing: letter", "Letters, Motivation", "Letter writing structures", "Write sales team letter", "Write letters"],
+            [7,  "Unit 9: Raising Finance – Lesson 1: Discuss how and where finance can be raised", "Finance, Equity", "Financial terms, Dependent prepositions", "Research finance sources", "Discuss finance"],
+            [8,  "Unit 9: Raising Finance – Lesson 2: Listening & Reading (Private equity firm interview, No more easy money)", "Dependent prepositions", "Negotiation grammar", "Summarize finance article", "Understand finance texts"],
+            [9,  "Unit 9: Raising Finance – Lesson 3: Case Study – Last throw of the dice: Negotiate finance, Writing: summary", "Summaries, Finance", "Summary grammar", "Write finance summary", "Write summaries"],
+            [10, "Working Across Cultures 3: Managing International Teams", "Customer service, Complaints", "Complaints, Gerunds", "Research customer service", "Discuss customer service"],
+            [11, "Revision C", "Review vocab Units 7–9", "Review Units 7–9 grammar", "Practice test Units 7–9", "Review Units 7–9"],
+            [12, "Unit 10: Customer Service – Lesson 1: Discuss factors and importance of customer service", "Crises, Ethics", "Conditionals, Crisis grammar", "List crisis strategies", "Discuss crises"],
+            [13, "Unit 10: Customer Service – Lesson 2: Listening & Reading (Interview with restaurant manager, Changing customer service)", "Conditionals, Crisis terms", "Handling questions", "Summarize crisis article", "Understand crisis texts"],
+            [14, "Unit 10: Customer Service – Lesson 3: Case Study – Hurrah Airlines: Deal with complaints, Writing: report", "Reports, Articles", "Report grammar", "Write crisis report", "Write reports"],
+            [15, "Unit 11: Crisis Management – Lesson 1: Discuss ways of handling crises", "Mergers, Acquisitions", "Passives, Probability", "Define M&A terms", "Discuss mergers"],
+            [16, "Unit 11: Crisis Management – Lesson 2: Listening & Reading (Interview with ethics professor, Brand crisis articles)", "Prediction, Probability", "M&A grammar", "Summarize M&A article", "Understand M&A texts"],
+            [17, "Unit 11: Crisis Management – Lesson 3: Case Study – In Range: Press conference defence, Writing: article/report", "Reports, Presentations", "Report grammar", "Write acquisition report", "Write reports"],
+            [18, "Unit 12: Mergers and Acquisitions – Lesson 1: Define & discuss acquisitions, mergers, ventures", "Negotiations, Cultures", "Negotiation grammar", "Compare negotiations", "Discuss negotiations"],
+            [19, "Unit 12: Mergers and Acquisitions – Lesson 2: Listening & Reading (M&A centre interview, Green targets article)", "Review vocab Units 10–12", "Review Units 10–12 grammar", "Practice test Units 10–12", "Review Units 10–12"],
+            [20, "Unit 12: Mergers and Acquisitions – Lesson 3: Case Study – Rinnovar International: Recommendations, Writing: report", "Mid-term vocabulary", "Grammar from Units 7–12", "Mid-term exam", "Assess progress"],
+            [21, "Working Across Cultures 4: International Negotiations", "Presentation language", "Presentation connectors", "Prepare presentation", "Present projects"],
+            [22, "Revision D", "Writing terms", "Writing grammar", "Write reports/letters", "Role-play teamwork"],
+            [23, "Mid-term Test", "Role-play vocabulary", "Role-play grammar", "Role-play teamwork", "Review listening & vocab"],
+            [24, "Project Work: Group Presentation (Finance/Management theme)", "Listening words", "Listening grammar", "Listen & answer quiz", "Consolidate grammar & writing"],
+        ];
+
+        foreach ($lessons_business7 as $lesson) {
+            $business7->syllabi()->create([
+                'lesson_number' => $lesson[0],
+                'content'       => $lesson[1],
+                'vocabulary'    => $lesson[2],
+                'grammar'       => $lesson[3],
+                'assignment'    => $lesson[4],
+                'CLO'           => $lesson[5],
+            ]);
+        }
+
+        // ========== ICY BUSINESS 8 ==========
+        $business8 = Subject::where('name', 'ICY Business 8')->first();
+
+        $lessons_business8 = [
+            [1,  "Unit 1: First Impressions – Lesson 1: First impressions in presentations", "Impressions, Presentations", "Adverbs, Formal & informal register", "Write about impressions", "Discuss impressions"],
+            [2,  "Unit 1: First Impressions – Lesson 2: Listening & Reading (It's not what you know, Adverbs)", "Adverbs, Networking", "Grammar for networking", "Summarize article", "Understand articles"],
+            [3,  "Unit 1: First Impressions – Lesson 3: Case Study – Movers and shakers, Writing: formal letter", "Formal letters", "Letter structures", "Write formal letter", "Write letters"],
+            [4,  "Unit 2: Training – Lesson 1: Apprenticeships", "Training, Apprenticeships", "Emphasising grammar", "Describe training", "Discuss training"],
+            [5,  "Unit 2: Training – Lesson 2: Listening & Reading (Training leaders article, Emphasising your point)", "Emphasising points", "Articles, Countables", "Summarize training article", "Understand training texts"],
+            [6,  "Unit 2: Training – Lesson 3: Case Study – Training at Carter & Randall, Writing: email (summarising decisions)", "Emails, Decisions", "Email grammar", "Write email", "Write emails"],
+            [7,  "Unit 3: Energy – Lesson 1: Clean energy", "Energy, Clean power", "Report grammar", "Research clean energy", "Discuss energy"],
+            [8,  "Unit 3: Energy – Lesson 2: Listening & Reading (The danger of losing touch with reality, Articles)", "Articles, Countable nouns", "Decision-making grammar", "Summarize energy article", "Understand energy texts"],
+            [9,  "Unit 3: Energy – Lesson 3: Case Study – Energy saving at Turnalet Software, Writing: report", "Reports, Energy saving", "Report structures", "Write energy report", "Write reports"],
+            [10, "Working Across Cultures 1: International Presentations", "International presentations", "Presentation grammar", "Research presentations", "Understand presentations"],
+            [11, "Revision A", "Review vocab Units 1–3", "Review Units 1–3 grammar", "Practice test Units 1–3", "Review Units 1–3"],
+            [12, "Unit 4: Marketing – Lesson 1: Customer relationship management", "Marketing, Customers", "Defining/non-defining clauses", "Customer service activity", "Discuss marketing"],
+            [13, "Unit 4: Marketing – Lesson 2: Listening & Reading (Is the customer always right?, Defining clauses)", "Defining clauses", "Marketing grammar", "Summarize customer article", "Understand customer texts"],
+            [14, "Unit 4: Marketing – Lesson 3: Case Study – Home2u Relaunch, Writing: press release", "Press releases", "Press release grammar", "Write press release", "Write press releases"],
+            [15, "Unit 5: Employment Trends – Lesson 1: The future of work", "Employment, Work", "-ing forms, Infinitives", "Describe work trends", "Discuss employment"],
+            [16, "Unit 5: Employment Trends – Lesson 2: Listening & Reading (Gigamonics article, -ing forms and infinitives)", "-ing forms, Infinitives", "Employment grammar", "Summarize employment article", "Understand employment texts"],
+            [17, "Unit 5: Employment Trends – Lesson 3: Case Study – Delaney: call-centre absenteeism, Writing: email", "Conflict, Emails", "Conflict grammar", "Write conflict email", "Write emails"],
+            [18, "Unit 6: Ethics – Lesson 1: Corporate responsibility", "Ethics, Responsibility", "Modal perfect", "Write about ethics", "Discuss ethics"],
+            [19, "Unit 6: Ethics – Lesson 2: Listening & Reading (Enron whistleblower, Modal perfect)", "Modal perfect", "Ethics grammar", "Summarize whistleblower article", "Understand ethics texts"],
+            [20, "Unit 6: Ethics – Lesson 3: Case Study – Daybreak Dilemmas, Writing: press release", "Press releases, Reports", "Press release grammar", "Write ethics press release", "Write press releases"],
+            [21, "Working Across Cultures 2: Ethical International Business", "Ethics & culture", "Cross-cultural grammar", "Compare ethics cultures", "Discuss ethics & culture"],
+            [22, "Revision B", "Review vocab Units 4–6", "Review Units 4–6 grammar", "Practice test Units 4–6", "Review Units 4–6"],
+            [23, "Mid-term Test", "Mid-term vocabulary", "Grammar from Units 1–6", "Mid-term exam", "Assess progress"],
+            [24, "Project Work: Group Presentation (Ethics/Marketing theme)", "Presentation language", "Presentation connectors", "Prepare presentation", "Present projects"],
+        ];
+
+        foreach ($lessons_business8 as $lesson) {
+            $business8->syllabi()->create([
+                'lesson_number' => $lesson[0],
+                'content'       => $lesson[1],
+                'vocabulary'    => $lesson[2],
+                'grammar'       => $lesson[3],
+                'assignment'    => $lesson[4],
+                'CLO'           => $lesson[5],
+            ]);
+        }
+
+        // ========== ICY BUSINESS 9 ==========
+        $business9 = Subject::where('name', 'ICY Business 9')->first();
+
+        $lessons_business9 = [
+            [1, "Unit 7: Finance – Lesson 1: Discuss sustainable banking", "Banking, Finance", "Multiword verbs, Financial terms", "Write about banking", "Discuss banking"],
+            [2, "Unit 7: Finance – Lesson 2: Listening & Reading (Day of reckoning, Multiword verbs)", "Multiword verbs", "Grammar for banking", "Summarize finance article", "Understand finance texts"],
+            [3, "Unit 7: Finance – Lesson 3: Case Study – Dragons & Angels: Investment proposal, Writing: email", "Investment proposals, Emails", "Email grammar", "Write investment email", "Write investment emails"],
+            [4, "Unit 8: Consultants – Lesson 1: Talk about operations consulting", "Consulting, Operations", "Ellipsis, Consulting grammar", "Describe consulting", "Discuss consulting"],
+            [5, "Unit 8: Consultants – Lesson 2: Listening & Reading (Day in the life of consultant, Ellipsis)", "Ellipsis, Terms", "Negotiation grammar", "Summarize consulting text", "Understand consulting texts"],
+            [6, "Unit 8: Consultants – Lesson 3: Case Study – New market opportunities, Writing: email", "Emails, Opportunities", "Email grammar", "Write consulting email", "Write consulting emails"],
+            [7, "Unit 9: Strategy – Lesson 1: Discuss strategy, goals and values", "Strategy, Goals, Values", "Rhetorical questions, Strategy grammar", "Write about strategy", "Discuss strategy"],
+            [8, "Unit 9: Strategy – Lesson 2: Listening & Reading (Living strategy, Rhetorical questions)", "Rhetorical questions", "Mission statement grammar", "Summarize strategy article", "Understand strategy texts"],
+            [9, "Unit 9: Strategy – Lesson 3: Case Study – Stella Airways: Strategy for the skies, Writing: summary", "Summaries, Strategy", "Summary grammar", "Write strategy summary", "Write strategy summaries"],
+            [10, "Working Across Cultures 3: Socialising", "Socialising, Culture", "Socialising grammar", "Research socialising", "Understand socialising"],
+            [11, "Revision C", "Review vocab Units 7–9", "Review Units 7–9 grammar", "Practice test Units 7–9", "Review Units 7–9"],
+            [12, "Unit 10: Online Business – Lesson 1: Discuss developments in online business", "Online business, Corporate", "Rhetorical devices, Presentation grammar", "Write about online business", "Discuss online business"],
+            [13, "Unit 10: Online Business – Lesson 2: Listening & Reading (Corporate firefighters, Rhetorical devices)", "Rhetorical devices", "Online grammar", "Summarize online text", "Understand online texts"],
+            [14, "Unit 10: Online Business – Lesson 3: Case Study – The Fashion Screen, Writing: summary", "Summaries, Fashion", "Summary grammar", "Write fashion summary", "Write summaries"],
+            [15, "Unit 11: New Business – Lesson 1: Get advice for start-ups", "Start-ups, Entrepreneurs", "Cleft sentences, Start-up grammar", "Write about start-ups", "Discuss start-ups"],
+            [16, "Unit 11: New Business – Lesson 2: Listening & Reading (One-trick pony, Work longer, Cleft sentences)", "Cleft sentences", "Entrepreneur grammar", "Summarize start-up text", "Understand start-up texts"],
+            [17, "Unit 11: New Business – Lesson 3: Case Study – OTC Tech: Growth proposal, Writing: email", "Emails, Proposals", "Proposal grammar", "Write growth email", "Write proposals"],
+            [18, "Unit 12: Project Management – Lesson 1: Discuss project management issues", "Project management, Scheduling", "Instructive texts, Project grammar", "Write about project management", "Discuss project management"],
+            [19, "Unit 12: Project Management – Lesson 2: Listening & Reading (Fine-tune schedule, Instructive texts)", "Instructive texts", "Teleconference grammar", "Summarize project text", "Understand project texts"],
+            [20, "Unit 12: Project Management – Lesson 3: Case Study – Creating a world-class port, Writing: report", "Reports, Ports", "Report grammar", "Write project report", "Write reports"],
+            [21, "Working Across Cultures 4: Managing an International Team", "International teams", "Negotiation grammar", "Compare international teams", "Discuss international teams"],
+            [22, "Revision D", "Review vocab Units 10–12", "Review Units 10–12 grammar", "Practice test Units 10–12", "Review Units 10–12"],
+            [23, "Mid-term Test", "Mid-term vocabulary", "Grammar from Units 7–12", "Mid-term exam", "Assess progress"],
+            [24, "Project Work: Group Presentation (Finance/Strategy theme)", "Presentation language", "Presentation connectors", "Prepare presentation", "Present projects"],
+        ];
+
+        foreach ($lessons_business9 as $lesson) {
+            $business9->syllabi()->create([
+                'lesson_number' => $lesson[0],
+                'content'       => $lesson[1],
+                'vocabulary'    => $lesson[2],
+                'grammar'       => $lesson[3],
+                'assignment'    => $lesson[4],
+                'CLO'           => $lesson[5],
+            ]);
+        }
+
+        // ========== ICY WONDERLAND 1 ==========
+        $wonderland1 = Subject::where('name', 'ICY Wonderland 1')->first();
+
+        $lessons_w1 = [
+            [1, "Unit 1: Art Class - Lesson 1: School Supplies", "pencil, eraser, ruler, crayon, school bag", "Trace words sheet; find 3 items at home and say their names to parents.", "Name common school supplies accurately and respond to classroom instructions."],
+            [2, "Unit 1: Art Class - Lesson 2: School Supplies (Expanding)", "scissors, glue, paint, paintbrush", "Cut-and-paste matching sheet; practice Q&A with family.", "Use question/answer patterns to identify objects in context."],
+            [3, "Unit 1: Art Class - Lesson 3: Story", "review of Unit 1 vocabulary", "Retell story to parents using pictures (3 sentences).", "Understand the main idea of a short story and retell with prompts."],
+            [4, "Unit 1: Art Class - Lesson 4: Phonics", "pen, bag, paint, ball", "Phonics worksheet; record 1 minute practicing p/b (optional).", "Recognize and produce target phonics sounds and letters p/b."],
+            [5, "Unit 2: Let's Play - Lesson 1: Toys", "ball, doll, kite, car, robot", "Draw your favorite toy and label it in English.", "Identify and name common toys; use 'I have...' in simple utterances."],
+            [6, "Unit 2: Let's Play - Lesson 2: Toys (Expanding)", "train, teddy bear, puzzle, yo-yo", "Ask family members about toy likes (in L1/L2 mix) and report next class.", "Express likes/dislikes about toys using a fixed pattern."],
+            [7, "Unit 2: Let's Play - Lesson 3: Story", "review of Unit 2 vocabulary", "Comprehension mini-sheet (circle the toy).", "Follow and act a simple story related to toys."],
+            [8, "Unit 2: Let's Play - Lesson 4: Phonics", "top, doll, train, dog", "Phonics practice sheet (t/d); read chant to parents.", "Differentiate and produce /t/ vs /d/; recognize letters t, d."],
+            [9, "Check Up 1 (Units 1 & 2)", "All Unit 1–2 vocabulary & patterns", "Review any incorrect items at home.", "Consolidate Units 1–2 and diagnose areas for support."],
+            [10, "Project Day: Art & Toys Poster", "review Units 1–2 key vocab", "Finish poster at home if needed; practice 2-sentence presentation.", "Integrate vocabulary in a simple product and present to peers."],
+            [11, "Unit 3: Many Colors - Lesson 1: Colors", "red, blue, green, yellow, orange", "Color-by-code worksheet; practice color words at home.", "Recognize and produce basic color vocabulary."],
+            [12, "Unit 3: Many Colors - Lesson 2: Colors (Expanding)", "purple, pink, black, white", "Complete mini-graph at home using family preferences.", "Express color preferences in short sentences."],
+            [13, "Mid-term Test (Units 1 & 2)", "All Unit 1–2 vocabulary & patterns", "Review mistakes; short revision list sent to parents.", "Assess achievement halfway and plan support."],
+            [14, "Unit 3: Many Colors - Lesson 3: Story", "review Unit 3 colors", "Draw your favorite scene and label colors.", "Understand and retell a simple color story."],
+            [15, "Unit 3: Many Colors - Lesson 4: Phonics", "kite, car, game, green", "Phonics worksheet; practice chant at home.", "Differentiate and produce /k/ and /g/; link sounds to letters."],
+            [16, "Unit 4: Counting - Lesson 1: Numbers", "one, two, three, four, five", "Count toys at home and tell a parent (1–5).", "Recognize, say, and count 1–5 accurately."],
+            [17, "Unit 4: Counting - Lesson 2: Numbers (Expanding)", "six, seven, eight, nine, ten", "Worksheet practice 6–10; count items at home.", "Count and answer 'How many?' up to 10."],
+            [18, "Unit 4: Counting - Lesson 3: Story", "review Unit 4 numbers", "Number sequencing mini-book to finish at home.", "Understand a simple counting narrative and link numerals to sets."],
+            [19, "Unit 4: Counting - Lesson 4: Phonics", "six, seven, ten, two", "Phonics worksheet; practice counting chant.", "Relate sounds /s/, /t/ to print and words."],
+            [20, "Check Up 2 (Units 3 & 4)", "All Unit 3–4 vocabulary & patterns", "Revise items marked with a sticker at home.", "Consolidate Units 3–4; prepare for final."],
+            [21, "Storytelling Day: Class Book Mix", "mixed vocabulary from Units 1–4", "Finish sequencing mini-booklet at home.", "Build confidence in extended speaking and sequencing."],
+            [22, "Phonics Challenge & Games", "phonics from Units 1–4", "Short phonics sheet; practice tricky pairs at home.", "Consolidate phonics learned across the course."],
+            [23, "Final Review & Mock Test", "review all Units 1–4", "Light review at home; good sleep reminder.", "Be ready and confident for final assessment."],
+            [24, "Final Test (Units 1–4)", "All vocabulary & patterns from Units 1–4", "Celebrate achievements; optional photo with certificate.", "Demonstrate end-of-course outcomes across four skills."],
+        ];
+
+        foreach ($lessons_w1 as $lesson) {
+            $wonderland1->syllabi()->create([
+                'lesson_number' => $lesson[0],
+                'content'       => $lesson[1],
+                'vocabulary'    => $lesson[2],
+                'assignment'    => $lesson[3],
+                'CLO'           => $lesson[4],
+            ]);
+        }
+
+        // ========== ICY WONDERLAND 2 ==========
+        $wonderland2 = Subject::where('name', 'ICY Wonderland 2')->first();
+
+        $lessons_w2 = [
+            [1, "Unit 5: Animals - Lesson 1: Pets", "cat, dog, fish, bird, rabbit", "Workbook exercises.", "Recognize and use vocabulary from lesson 1: pets in context."],
+            [2, "Unit 5: Animals - Lesson 2: Farm Animals (Expanding)", "cow, sheep, goat, horse", "Workbook exercises.", "Recognize and use vocabulary from lesson 2: farm animals (expanding) in context."],
+            [3, "Unit 5: Animals - Lesson 3: Story", "review of Unit 5 vocabulary", "Workbook exercises.", "Recognize and use vocabulary from lesson 3: story in context."],
+            [4, "Unit 5: Animals - Lesson 4: Phonics", "cat, cow, pig, pen", "Workbook exercises.", "Recognize and use vocabulary from lesson 4: phonics in context."],
+            [5, "Unit 6: Lunch - Lesson 1: Food", "rice, soup, chicken, bread, milk", "Workbook exercises.", "Recognize and use vocabulary from lesson 1: food in context."],
+            [6, "Unit 6: Lunch - Lesson 2: Food (Expanding)", "juice, salad, noodles, cake", "Workbook exercises.", "Recognize and use vocabulary from lesson 2: food (expanding) in context."],
+            [7, "Unit 6: Lunch - Lesson 3: Story", "review of Unit 6 vocabulary", "Workbook exercises.", "Recognize and use vocabulary from lesson 3: story in context."],
+            [8, "Unit 6: Lunch - Lesson 4: Phonics", "juice, jam, soup, salad", "Workbook exercises.", "Recognize and use vocabulary from lesson 4: phonics in context."],
+            [9, "Check Up 3 (Units 5 & 6)", "All Unit 5-6 vocabulary", "Revise for midterm.", "Consolidate learning from Units 5-6."],
+            [10, "Unit 7: Things to do - Lesson 1: Abilities", "run, jump, swim, climb, dance", "Workbook exercises.", "Recognize and use vocabulary from lesson 1: abilities in context."],
+            [11, "Unit 7: Things to do - Lesson 2: Abilities (Expanding)", "sing, draw, read, write", "Workbook exercises.", "Recognize and use vocabulary from lesson 2: abilities (expanding) in context."],
+            [12, "Unit 7: Things to do - Lesson 3: Story", "review of Unit 7 vocabulary", "Workbook exercises.", "Recognize and use vocabulary from lesson 3: story in context."],
+            [13, "Mid-term Test (Units 5 & 6)", "All Unit 5–6 vocabulary & patterns", "Review mistakes; short revision list sent to parents.", "Assess achievement halfway and plan support."],
+            [14, "Unit 7: Things to do - Lesson 4: Phonics", "run, read, swim, sing", "Workbook exercises.", "Recognize and use vocabulary from lesson 4: phonics in context."],
+            [15, "Unit 8: My body - Lesson 1: My face", "eye, nose, mouth, ear, hair", "Workbook exercises.", "Recognize and use vocabulary from lesson 1: my face in context."],
+            [16, "Unit 8: My body - Lesson 2: My body (Expanding)", "arm, leg, hand, foot", "Workbook exercises.", "Recognize and use vocabulary from lesson 2: my body (expanding) in context."],
+            [17, "Unit 8: My body - Lesson 3: Story", "review of Unit 8 vocabulary", "Workbook exercises.", "Recognize and use vocabulary from lesson 3: story in context."],
+            [18, "Unit 8: My body - Lesson 4: Phonics", "hand, hair, leg, lip", "Workbook exercises.", "Recognize and use vocabulary from lesson 4: phonics in context."],
+            [19, "Check Up 4 (Units 7 & 8)", "All Unit 7-8 vocabulary", "Revise for final.", "Consolidate learning from Units 7-8."],
+            [20, "Extra Review & Games 20", "Mixed vocabulary from Units 5-8", "Review at home any tricky words.", "Reinforce learning from all topics."],
+            [21, "Extra Review & Games 21", "Mixed vocabulary from Units 5-8", "Review at home any tricky words.", "Reinforce learning from all topics."],
+            [22, "Extra Review & Games 22", "Mixed vocabulary from Units 5-8", "Review at home any tricky words.", "Reinforce learning from all topics."],
+            [23, "Final Review & Mock Test", "review all Units 5-8", "Light review at home; good sleep reminder.", "Be ready and confident for final assessment."],
+            [24, "Final Test (Units 5–8)", "All vocabulary & patterns from Units 5–8", "Celebrate achievements; optional photo with certificate.", "Demonstrate end-of-course outcomes across four skills."],
+        ];
+
+        foreach ($lessons_w2 as $lesson) {
+            $wonderland2->syllabi()->create([
+                'lesson_number' => $lesson[0],
+                'content'       => $lesson[1],
+                'vocabulary'    => $lesson[2],
+                'assignment'    => $lesson[3],
+                'CLO'           => $lesson[4],
+            ]);
+        }
+
+        // ========== ICY WONDERLAND 3 ==========
+        $wonderland3 = Subject::where('name', 'ICY Wonderland 3')->first();
+
+        $lessons_w3 = [
+            [1, "Unit 1: First Day - Lesson 1: School Supplies", "pencil, eraser, ruler, crayon, school bag", "Workbook exercises.", "Recognize and use vocabulary from lesson 1: school supplies in context."],
+            [2, "Unit 1: First Day - Lesson 2: School Supplies (Expanding)", "scissors, glue, paint, paintbrush", "Workbook exercises.", "Recognize and use vocabulary from lesson 2: school supplies (expanding) in context."],
+            [3, "Unit 1: First Day - Lesson 3: Story", "review of Unit 1 vocabulary", "Workbook exercises.", "Recognize and use vocabulary from lesson 3: story in context."],
+            [4, "Unit 1: First Day - Lesson 4: Phonics", "pen, bag, paint, ball", "Workbook exercises.", "Recognize and use vocabulary from lesson 4: phonics in context."],
+            [5, "Unit 2: Art Class - Lesson 1: Art Supplies", "paint, brush, paper, scissors, glue", "Workbook exercises.", "Recognize and use vocabulary from lesson 1: art supplies in context."],
+            [6, "Unit 2: Art Class - Lesson 2: Colors", "red, blue, green, yellow, orange", "Workbook exercises.", "Recognize and use vocabulary from lesson 2: colors in context."],
+            [7, "Unit 2: Art Class - Lesson 3: Story", "review of Unit 2 vocabulary", "Workbook exercises.", "Recognize and use vocabulary from lesson 3: story in context."],
+            [8, "Unit 2: Art Class - Lesson 4: Phonics", "red, blue, green, yellow", "Workbook exercises.", "Recognize and use vocabulary from lesson 4: phonics in context."],
+            [9, "Check Up 1 (Units 1 & 2)", "All Unit 1-2 vocabulary", "Revise for midterm.", "Consolidate learning from Units 1-2."],
+            [10, "Unit 3: Birthday Party - Lesson 1: Numbers", "one, two, three, four, five", "Workbook exercises.", "Recognize and use vocabulary from lesson 1: numbers in context."],
+            [11, "Unit 3: Birthday Party - Lesson 2: Toys", "ball, doll, kite, car, robot", "Workbook exercises.", "Recognize and use vocabulary from lesson 2: toys in context."],
+            [12, "Unit 3: Birthday Party - Lesson 3: Story", "review of Unit 3 vocabulary", "Workbook exercises.", "Recognize and use vocabulary from lesson 3: story in context."],
+            [13, "Mid-term Test (Units 1 & 2)", "All Unit 1–2 vocabulary & patterns", "Review mistakes; short revision list sent to parents.", "Assess achievement halfway and plan support."],
+            [14, "Unit 3: Birthday Party - Lesson 4: Phonics", "ball, bag, car, cake", "Workbook exercises.", "Recognize and use vocabulary from lesson 4: phonics in context."],
+            [15, "Unit 4: Home - Lesson 1: Family", "father, mother, brother, sister, baby", "Workbook exercises.", "Recognize and use vocabulary from lesson 1: family in context."],
+            [16, "Unit 4: Home - Lesson 2: Food", "rice, soup, chicken, bread, milk", "Workbook exercises.", "Recognize and use vocabulary from lesson 2: food in context."],
+            [17, "Unit 4: Home - Lesson 3: Story", "review of Unit 4 vocabulary", "Workbook exercises.", "Recognize and use vocabulary from lesson 3: story in context."],
+            [18, "Unit 4: Home - Lesson 4: Phonics", "rice, read, soup, sister", "Workbook exercises.", "Recognize and use vocabulary from lesson 4: phonics in context."],
+            [19, "Check Up 2 (Units 3 & 4)", "All Unit 3-4 vocabulary", "Revise for final.", "Consolidate learning from Units 3-4."],
+            [20, "YLE Practice & Review 20", "Mixed vocabulary from Units 1-4", "Review at home for final.", "Prepare for YLE-style assessment."],
+            [21, "YLE Practice & Review 21", "Mixed vocabulary from Units 1-4", "Review at home for final.", "Prepare for YLE-style assessment."],
+            [22, "YLE Practice & Review 22", "Mixed vocabulary from Units 1-4", "Review at home for final.", "Prepare for YLE-style assessment."],
+            [24, "Final Test (Units 1–4)", "All vocabulary & patterns from Units 1–4", "Celebrate achievements; optional photo with certificate.", "Demonstrate end-of-course outcomes across four skills."],
+        ];
+
+        foreach ($lessons_w3 as $lesson) {
+            $wonderland3->syllabi()->create([
+                'lesson_number' => $lesson[0],
+                'content'       => $lesson[1],
+                'vocabulary'    => $lesson[2],
+                'assignment'    => $lesson[3],
+                'CLO'           => $lesson[4],
+            ]);
+        }
+
+        // ========== ICY WONDERLAND 4 ==========
     }
 }

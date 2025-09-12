@@ -31,6 +31,7 @@ class SubjectSeeder extends Seeder
                 'code' => 'IW1',
                 'description' => 'Làm quen với tiếng Anh qua các hoạt động vui nhộn cho trẻ mẫu giáo',
                 'ordering' => 1,
+                'url_book' => 'https://online.flipbuilder.com/sdtta/yura/',
             ],
             [
                 'program_id' => $kindergarten->id,
@@ -38,6 +39,7 @@ class SubjectSeeder extends Seeder
                 'code' => 'IW2',
                 'description' => 'Phát triển từ vựng cơ bản và phát âm cho trẻ mẫu giáo',
                 'ordering' => 2,
+                'url_book' => 'https://online.flipbuilder.com/sdtta/yura/',
             ],
             [
                 'program_id' => $kindergarten->id,
@@ -45,6 +47,7 @@ class SubjectSeeder extends Seeder
                 'code' => 'IW3',
                 'description' => 'Học các câu giao tiếp đơn giản cho trẻ mẫu giáo',
                 'ordering' => 3,
+                'url_book' => 'https://online.flipbuilder.com/sdtta/vypw/',
             ],
             [
                 'program_id' => $kindergarten->id,
@@ -52,6 +55,7 @@ class SubjectSeeder extends Seeder
                 'code' => 'IW4',
                 'description' => 'Luyện tập nghe và nói cơ bản cho trẻ mẫu giáo',
                 'ordering' => 4,
+                'url_book' => 'https://online.flipbuilder.com/sdtta/vypw/',
             ],
             [
                 'program_id' => $kindergarten->id,
@@ -59,6 +63,7 @@ class SubjectSeeder extends Seeder
                 'code' => 'IW5',
                 'description' => 'Mở rộng vốn từ và câu cho trẻ mẫu giáo',
                 'ordering' => 5,
+                'url_book' => 'https://online.flipbuilder.com/sdtta/jqgr/',
             ],
             [
                 'program_id' => $kindergarten->id,
@@ -66,6 +71,7 @@ class SubjectSeeder extends Seeder
                 'code' => 'IW6',
                 'description' => 'Hoàn thiện kỹ năng giao tiếp cơ bản cho trẻ mẫu giáo',
                 'ordering' => 6,
+                'url_book' => 'https://online.flipbuilder.com/sdtta/jqqr/',
             ],
 
             // Anh ngữ thiếu nhi (Kids) - HS cấp 1
@@ -75,6 +81,7 @@ class SubjectSeeder extends Seeder
                 'code' => 'IK1',
                 'description' => 'Nền tảng tiếng Anh cho học sinh cấp 1',
                 'ordering' => 1,
+                'url_book' => 'https://online.flipbuilder.com/xtrvf/xncb/',
             ],
             [
                 'program_id' => $kids->id,
@@ -82,6 +89,7 @@ class SubjectSeeder extends Seeder
                 'code' => 'IK2',
                 'description' => 'Phát triển từ vựng và ngữ pháp cơ bản cho học sinh cấp 1',
                 'ordering' => 2,
+                'url_book' => 'https://online.flipbuilder.com/xtrvf/xncb/',
             ],
             [
                 'program_id' => $kids->id,
@@ -89,6 +97,7 @@ class SubjectSeeder extends Seeder
                 'code' => 'IK3',
                 'description' => 'Luyện tập đọc hiểu và viết câu đơn cho học sinh cấp 1',
                 'ordering' => 3,
+                'url_book' => 'https://online.flipbuilder.com/xtrvf/xncb/',
             ],
             [
                 'program_id' => $kids->id,
@@ -96,6 +105,7 @@ class SubjectSeeder extends Seeder
                 'code' => 'IK4',
                 'description' => 'Mở rộng kỹ năng nghe và nói cho học sinh cấp 1',
                 'ordering' => 4,
+                'url_book' => 'https://online.flipbuilder.com/sdtta/arnd/mobile/index.html#p=1',
             ],
             [
                 'program_id' => $kids->id,
@@ -103,6 +113,7 @@ class SubjectSeeder extends Seeder
                 'code' => 'IK5',
                 'description' => 'Học ngữ pháp nâng cao cho học sinh cấp 1',
                 'ordering' => 5,
+                'url_book' => 'https://online.flipbuilder.com/sdtta/arnd/mobile/index.html#p=1',
             ],
             [
                 'program_id' => $kids->id,
@@ -110,6 +121,7 @@ class SubjectSeeder extends Seeder
                 'code' => 'IK6',
                 'description' => 'Luyện tập viết đoạn văn ngắn cho học sinh cấp 1',
                 'ordering' => 6,
+                'url_book' => 'https://online.flipbuilder.com/sdtta/arnd/mobile/index.html#p=1',
             ],
             [
                 'program_id' => $kids->id,
@@ -117,6 +129,7 @@ class SubjectSeeder extends Seeder
                 'code' => 'IK7',
                 'description' => 'Phát triển kỹ năng đọc hiểu cho học sinh cấp 1',
                 'ordering' => 7,
+                'url_book' => 'https://online.flipbuilder.com/xtrvf/prio/',
             ],
             [
                 'program_id' => $kids->id,
@@ -124,6 +137,7 @@ class SubjectSeeder extends Seeder
                 'code' => 'IK8',
                 'description' => 'Luyện tập nghe hiểu nâng cao cho học sinh cấp 1',
                 'ordering' => 8,
+                'url_book' => 'https://online.flipbuilder.com/xtrvf/prio/',
             ],
             [
                 'program_id' => $kids->id,
@@ -131,6 +145,7 @@ class SubjectSeeder extends Seeder
                 'code' => 'IK9',
                 'description' => 'Học từ vựng chuyên sâu cho học sinh cấp 1',
                 'ordering' => 9,
+                'url_book' => 'https://online.flipbuilder.com/xtrvf/prio/',
             ],
             [
                 'program_id' => $kids->id,
@@ -138,6 +153,7 @@ class SubjectSeeder extends Seeder
                 'code' => 'IK10',
                 'description' => 'Luyện tập giao tiếp thực tế cho học sinh cấp 1',
                 'ordering' => 10,
+                'url_book' => 'https://online.flipbuilder.com/sdtta/whif/mobile/index.html#p=1',
             ],
             [
                 'program_id' => $kids->id,
@@ -145,6 +161,7 @@ class SubjectSeeder extends Seeder
                 'code' => 'IK11',
                 'description' => 'Ôn tập và củng cố kiến thức cho học sinh cấp 1',
                 'ordering' => 11,
+                'url_book' => 'https://online.flipbuilder.com/sdtta/whif/mobile/index.html#p=2',
             ],
             [
                 'program_id' => $kids->id,
@@ -152,6 +169,7 @@ class SubjectSeeder extends Seeder
                 'code' => 'IK12',
                 'description' => 'Chuẩn bị chuyển cấp cho học sinh cấp 1',
                 'ordering' => 12,
+                'url_book' => 'https://online.flipbuilder.com/sdtta/whif/mobile/index.html#p=3',
             ],
             [
                 'program_id' => $kids->id,
@@ -159,6 +177,7 @@ class SubjectSeeder extends Seeder
                 'code' => 'IK13',
                 'description' => 'Luyện thi chứng chỉ quốc tế cho học sinh cấp 1',
                 'ordering' => 13,
+                'url_book' => 'https://online.flipbuilder.com/xtrvf/bcqw/',
             ],
             [
                 'program_id' => $kids->id,
@@ -166,6 +185,7 @@ class SubjectSeeder extends Seeder
                 'code' => 'IK14',
                 'description' => 'Thực hành kỹ năng tổng hợp cho học sinh cấp 1',
                 'ordering' => 14,
+                'url_book' => 'https://online.flipbuilder.com/xtrvf/bcqw/',
             ],
             [
                 'program_id' => $kids->id,
@@ -173,6 +193,7 @@ class SubjectSeeder extends Seeder
                 'code' => 'IK15',
                 'description' => 'Hoàn thiện chương trình Kids cho học sinh cấp 1',
                 'ordering' => 15,
+                'url_book' => 'https://online.flipbuilder.com/xtrvf/bcqw/',
             ],
 
             // Anh ngữ thiếu niên (Teenager's English) - HS cấp 2
@@ -182,6 +203,7 @@ class SubjectSeeder extends Seeder
                 'code' => 'IT1',
                 'description' => 'Nền tảng tiếng Anh cho học sinh cấp 2',
                 'ordering' => 1,
+                'url_book' => 'https://online.flipbuilder.com/sdtta/sxmf/',
             ],
             [
                 'program_id' => $teenager->id,
@@ -189,6 +211,7 @@ class SubjectSeeder extends Seeder
                 'code' => 'IT2',
                 'description' => 'Phát triển ngữ pháp và từ vựng cho học sinh cấp 2',
                 'ordering' => 2,
+                'url_book' => 'https://online.flipbuilder.com/sdtta/sxmf/',
             ],
             [
                 'program_id' => $teenager->id,
@@ -196,6 +219,7 @@ class SubjectSeeder extends Seeder
                 'code' => 'IT3',
                 'description' => 'Luyện tập kỹ năng đọc hiểu cho học sinh cấp 2',
                 'ordering' => 3,
+                'url_book' => 'https://online.flipbuilder.com/xtrvf/rnke/',
             ],
             [
                 'program_id' => $teenager->id,
@@ -203,6 +227,7 @@ class SubjectSeeder extends Seeder
                 'code' => 'IT4',
                 'description' => 'Phát triển kỹ năng viết cho học sinh cấp 2',
                 'ordering' => 4,
+                'url_book' => 'https://online.flipbuilder.com/xtrvf/rnke/',
             ],
             [
                 'program_id' => $teenager->id,
@@ -210,6 +235,7 @@ class SubjectSeeder extends Seeder
                 'code' => 'IT5',
                 'description' => 'Luyện tập nghe hiểu nâng cao cho học sinh cấp 2',
                 'ordering' => 5,
+                'url_book' => 'https://online.flipbuilder.com/sdtta/xtnz/',
             ],
             [
                 'program_id' => $teenager->id,
@@ -217,6 +243,7 @@ class SubjectSeeder extends Seeder
                 'code' => 'IT6',
                 'description' => 'Phát triển kỹ năng nói cho học sinh cấp 2',
                 'ordering' => 6,
+                'url_book' => 'https://online.flipbuilder.com/sdtta/xtnz/',
             ],
             [
                 'program_id' => $teenager->id,
@@ -224,6 +251,7 @@ class SubjectSeeder extends Seeder
                 'code' => 'IT7',
                 'description' => 'Tổng hợp và ôn tập kiến thức cho học sinh cấp 2',
                 'ordering' => 7,
+                'url_book' => 'https://online.flipbuilder.com/sdtta/gqmy/',
             ],
             [
                 'program_id' => $teenager->id,
@@ -231,6 +259,7 @@ class SubjectSeeder extends Seeder
                 'code' => 'IT8',
                 'description' => 'Chuẩn bị chuyển cấp lên THPT cho học sinh cấp 2',
                 'ordering' => 8,
+                'url_book' => 'https://online.flipbuilder.com/sdtta/gqmy/',
             ],
 
             // Anh ngữ giao tiếp (English for Communication) - 15+ (NGHE-NÓI)
@@ -240,6 +269,7 @@ class SubjectSeeder extends Seeder
                 'code' => 'IC1',
                 'description' => 'Giao tiếp cơ bản trong cuộc sống hàng ngày - tập trung nghe nói',
                 'ordering' => 1,
+                'url_book' => 'https://online.flipbuilder.com/sdtta/fpva/mobile/index.html#p=1',
             ],
             [
                 'program_id' => $communication->id,
@@ -247,6 +277,7 @@ class SubjectSeeder extends Seeder
                 'code' => 'IC2',
                 'description' => 'Giao tiếp trong môi trường xã hội - tập trung nghe nói',
                 'ordering' => 2,
+                'url_book' => 'https://online.flipbuilder.com/sdtta/fpva/mobile/index.html#p=2',
             ],
             [
                 'program_id' => $communication->id,
@@ -254,6 +285,7 @@ class SubjectSeeder extends Seeder
                 'code' => 'IC3',
                 'description' => 'Giao tiếp trong công việc - tập trung nghe nói',
                 'ordering' => 3,
+                'url_book' => 'https://online.flipbuilder.com/sdtta/kjol/',
             ],
             [
                 'program_id' => $communication->id,
@@ -261,6 +293,7 @@ class SubjectSeeder extends Seeder
                 'code' => 'IC4',
                 'description' => 'Giao tiếp trong du lịch - tập trung nghe nói',
                 'ordering' => 4,
+                'url_book' => 'https://online.flipbuilder.com/sdtta/kjol/',
             ],
             [
                 'program_id' => $communication->id,
@@ -268,6 +301,7 @@ class SubjectSeeder extends Seeder
                 'code' => 'IC5',
                 'description' => 'Giao tiếp trong học tập - tập trung nghe nói',
                 'ordering' => 5,
+                'url_book' => 'https://online.flipbuilder.com/sdtta/lmhe/',
             ],
             [
                 'program_id' => $communication->id,
@@ -275,6 +309,7 @@ class SubjectSeeder extends Seeder
                 'code' => 'IC6',
                 'description' => 'Giao tiếp trong y tế - tập trung nghe nói',
                 'ordering' => 6,
+                'url_book' => 'https://online.flipbuilder.com/sdtta/lmhe/',
             ],
             [
                 'program_id' => $communication->id,
@@ -282,6 +317,7 @@ class SubjectSeeder extends Seeder
                 'code' => 'IC7',
                 'description' => 'Giao tiếp trong kinh doanh - tập trung nghe nói',
                 'ordering' => 7,
+                'url_book' => 'https://fliphtml5.com/lhxm/vsqc/%D0%9B%D0%B8%D0%B4%D0%B5%D1%80%D0%A0%D1%8B%D0%BD%D0%B',
             ],
             [
                 'program_id' => $communication->id,
@@ -289,6 +325,7 @@ class SubjectSeeder extends Seeder
                 'code' => 'IC8',
                 'description' => 'Giao tiếp trong văn hóa - tập trung nghe nói',
                 'ordering' => 8,
+                'url_book' => 'https://fliphtml5.com/lhxm/vsqc/%D0%9B%D0%B8%D0%B4%D0%B5%D1%80%D0%A0%D1%8B%D0%BD%D0%B',
             ],
             [
                 'program_id' => $communication->id,
@@ -296,6 +333,7 @@ class SubjectSeeder extends Seeder
                 'code' => 'IC9',
                 'description' => 'Giao tiếp nâng cao - tập trung nghe nói',
                 'ordering' => 9,
+                'url_book' => 'https://fliphtml5.com/zgboo/crrc/Market Leader 3rd Edition %28Pre-Intermediate%29/82/',
             ],
             [
                 'program_id' => $communication->id,
@@ -312,6 +350,7 @@ class SubjectSeeder extends Seeder
                 'code' => 'IB1',
                 'description' => 'Tiếng Anh cơ bản trong doanh nghiệp',
                 'ordering' => 1,
+                'url_book' => 'https://online.flipbuilder.com/sdtta/fpva/mobile/index.html#p=1',
             ],
             [
                 'program_id' => $business->id,
@@ -319,6 +358,7 @@ class SubjectSeeder extends Seeder
                 'code' => 'IB2',
                 'description' => 'Giao tiếp trong họp hành doanh nghiệp',
                 'ordering' => 2,
+                'url_book' => 'https://online.flipbuilder.com/sdtta/kjol/',
             ],
             [
                 'program_id' => $business->id,
@@ -326,6 +366,7 @@ class SubjectSeeder extends Seeder
                 'code' => 'IB3',
                 'description' => 'Thuyết trình và báo cáo doanh nghiệp',
                 'ordering' => 3,
+                'url_book' => 'https://online.flipbuilder.com/sdtta/lmhe/',
             ],
             [
                 'program_id' => $business->id,
@@ -333,6 +374,7 @@ class SubjectSeeder extends Seeder
                 'code' => 'IB4',
                 'description' => 'Đàm phán và thương lượng doanh nghiệp',
                 'ordering' => 4,
+                'url_book' => 'https://fliphtml5.com/lpkv/exgt/basic',
             ],
             [
                 'program_id' => $business->id,
@@ -340,6 +382,7 @@ class SubjectSeeder extends Seeder
                 'code' => 'IB5',
                 'description' => 'Viết email và tài liệu kinh doanh',
                 'ordering' => 5,
+                'url_book' => 'https://fliphtml5.com/lpkv/exgt/basic',
             ],
             [
                 'program_id' => $business->id,
@@ -347,6 +390,7 @@ class SubjectSeeder extends Seeder
                 'code' => 'IB6',
                 'description' => 'Giao tiếp với khách hàng doanh nghiệp',
                 'ordering' => 6,
+                'url_book' => 'https://fliphtml5.com/vsnkg/dhte/Market Leader 3ed Upper Intermediate Course Book/1/',
             ],
             [
                 'program_id' => $business->id,
@@ -354,6 +398,7 @@ class SubjectSeeder extends Seeder
                 'code' => 'IB7',
                 'description' => 'Quản lý dự án bằng tiếng Anh doanh nghiệp',
                 'ordering' => 7,
+                'url_book' => 'https://fliphtml5.com/vsnkg/dhte/Market Leader 3ed Upper Intermediate Course Book/1/',
             ],
             [
                 'program_id' => $business->id,
@@ -361,6 +406,7 @@ class SubjectSeeder extends Seeder
                 'code' => 'IB8',
                 'description' => 'Lãnh đạo và quản lý nhóm doanh nghiệp',
                 'ordering' => 8,
+                'url_book' => 'https://fliphtml5.com/xjdvv/vzge/Market Leader Advanced/',
             ],
             [
                 'program_id' => $business->id,
@@ -368,6 +414,7 @@ class SubjectSeeder extends Seeder
                 'code' => 'IB9',
                 'description' => 'Thành thạo tiếng Anh doanh nghiệp',
                 'ordering' => 9,
+                'url_book' => 'https://fliphtml5.com/xjdvv/vzge/Market Leader Advanced/',
             ],
 
             // Chứng chỉ IELTS (IELTS Achievers) - Cơ bản đến nâng cao
@@ -377,6 +424,7 @@ class SubjectSeeder extends Seeder
                 'code' => 'II1',
                 'description' => 'Cơ bản: Từ vựng chủ đề, ngữ pháp căn bản, Grammar, Vocabulary, IPA',
                 'ordering' => 1,
+                'url_book' => 'https://online.flipbuilder.com/xtrvf/pfey/',
             ],
             [
                 'program_id' => $ielts->id,
@@ -384,6 +432,7 @@ class SubjectSeeder extends Seeder
                 'code' => 'II2',
                 'description' => 'Cơ bản: Từ vựng chủ đề, ngữ pháp căn bản, Grammar, Vocabulary, IPA',
                 'ordering' => 2,
+                'url_book' => 'https://online.flipbuilder.com/xtrvf/pfey/',
             ],
             [
                 'program_id' => $ielts->id,
@@ -391,6 +440,7 @@ class SubjectSeeder extends Seeder
                 'code' => 'II3',
                 'description' => 'Làm quen với Ielts: Hackers for listening/reading, các câu writing ngắn, speaking part 1',
                 'ordering' => 3,
+                'url_book' => 'https://online.flipbuilder.com/xtrvf/vhni/',
             ],
             [
                 'program_id' => $ielts->id,
@@ -398,6 +448,7 @@ class SubjectSeeder extends Seeder
                 'code' => 'II4',
                 'description' => 'Làm quen với Ielts: Hackers for listening/reading, writing task 1, speaking part 2',
                 'ordering' => 4,
+                'url_book' => 'https://online.flipbuilder.com/xtrvf/vhni/',
             ],
             [
                 'program_id' => $ielts->id,
@@ -405,6 +456,7 @@ class SubjectSeeder extends Seeder
                 'code' => 'II5',
                 'description' => 'Làm quen với Ielts: Hackers for listening/reading, writing task 2, speaking part 2,3',
                 'ordering' => 5,
+                'url_book' => 'https://online.flipbuilder.com/sdtta/mkpn/mobile/index.html',
             ],
             [
                 'program_id' => $ielts->id,
@@ -412,6 +464,7 @@ class SubjectSeeder extends Seeder
                 'code' => 'II6',
                 'description' => 'Chuyên sâu về Ielts: Giải đề full bài theo từng kĩ năng (Ielts Mock Test)',
                 'ordering' => 6,
+                'url_book' => 'https://online.flipbuilder.com/sdtta/mkpn/mobile/index.html',
             ],
             [
                 'program_id' => $ielts->id,
@@ -419,6 +472,7 @@ class SubjectSeeder extends Seeder
                 'code' => 'II7',
                 'description' => 'Chuyên sâu về Ielts: Ôn tập lại từ vựng, Full đề thi',
                 'ordering' => 7,
+                'url_book' => 'https://online.flipbuilder.com/sdtta/uwdr/mobile/index.html',
             ],
             [
                 'program_id' => $ielts->id,
@@ -426,6 +480,7 @@ class SubjectSeeder extends Seeder
                 'code' => 'II8',
                 'description' => 'Chuyên sâu về Ielts: Ôn tập lại từ vựng, Full đề thi',
                 'ordering' => 8,
+                'url_book' => 'https://online.flipbuilder.com/sdtta/uwdr/mobile/index.html',
             ],
 
             // Luyện thi vào 10 (Highschool Entrance) - HS thi vào 10

@@ -41,9 +41,9 @@
     <livewire:back.management.syllabus.actions-syllabus />
     <!-- Search and Filter Section -->
     <div class="mt-6">
-        <div class="theme-card-pink mb-6">
+        <div class="theme-card-pink mb-2">
             <div class="p-6">
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
                     <!-- Program Selection -->
                     <div>
                         <label for="selectedProgramId" class="card-label">Chọn chương trình</label>
@@ -64,6 +64,8 @@
                         </select>
                     </div>
 
+
+
                     <!-- Search -->
                     <div>
                         <label for="search" class="card-label">Tìm kiếm</label>
@@ -73,6 +75,32 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    <!-- URL Book Display -->
+    <div>
+        @if ($selectedSubjectId)
+            @php
+                $selectedSubject = $subjects->firstWhere('id', $selectedSubjectId);
+            @endphp
+            @if ($selectedSubject && $selectedSubject->url_book)
+                <div class="mt-2 mb-2">
+                    <a href="{{ $selectedSubject->url_book }}" target="_blank"
+                        class="inline-flex items-center px-3 py-2 text-sm font-medium text-pink-600 bg-pink-50 border border-pink-200 rounded-lg hover:bg-pink-100 hover:text-pink-700 transition-colors duration-200 dark:bg-pink-900/20 dark:border-pink-800 dark:text-pink-400 dark:hover:bg-pink-900/30">
+                        <flux:icon.bookmark-square class="w-4 h-4 mr-2" />
+                        Xem sách giáo khoa
+                    </a>
+                </div>
+            @else
+                <div class="mt-2 text-sm text-gray-500 dark:text-gray-400">
+                    Chưa có link sách giáo khoa
+                </div>
+            @endif
+        @else
+            <div class="mt-2 text-sm text-gray-500 dark:text-gray-400">
+                Vui lòng chọn môn học
+            </div>
+        @endif
     </div>
 
     <!-- Syllabus Table -->
@@ -97,7 +125,8 @@
                     @forelse($syllabi as $syllabus)
                         <tr class="table-row sortable-row" data-id="{{ $syllabus->id }}">
 
-                            <td class="table-cell text-center font-medium {{$syllabi->first() && (auth()->user()->can('update', $syllabi->first()) || auth()->user()->can('delete', $syllabi->first())) ? 'drag-handle cursor-move' : ''}}">
+                            <td
+                                class="table-cell text-center font-medium {{ $syllabi->first() && (auth()->user()->can('update', $syllabi->first()) || auth()->user()->can('delete', $syllabi->first())) ? 'drag-handle cursor-move' : '' }}">
                                 {{ $syllabus->lesson_number }}
                             </td>
                             <td class="table-cell">
