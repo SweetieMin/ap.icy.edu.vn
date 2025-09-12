@@ -11,24 +11,25 @@ use App\Livewire\Settings\Notification;
 use App\Livewire\Back\Access\Role\Roles;
 
 // Access
-use App\Livewire\Settings\AuthenticationLogs;
+use App\Livewire\Back\Arrangement\TimeTable;
 
 // Finance
+use App\Livewire\Settings\AuthenticationLogs;
 use App\Livewire\Back\Personnel\Employee\Staff;
-use App\Livewire\Back\Finance\Bank\AccountsBank;
 
 // Personnel
+use App\Livewire\Back\Finance\Bank\AccountsBank;
 use App\Livewire\Back\Management\Course\Courses;
-use App\Livewire\Back\Management\Season\Seasons;
 //use App\Livewire\Back\Personnel\Registration\StaffsRegistration;
 //use App\Livewire\Back\Personnel\Registration\StudentsRegistration;
 
 // Management
+use App\Livewire\Back\Management\Season\Seasons;
 use App\Livewire\Back\Personnel\Student\Students;
 use App\Livewire\Back\Management\Program\Programs;
 use App\Livewire\Back\Management\Subject\Subjects;
-use App\Livewire\Back\Management\Syllabus\Syllabi;
 
+use App\Livewire\Back\Management\Syllabus\Syllabi;
 use App\Livewire\Back\Access\Permission\Permissions;
 use App\Livewire\Back\Management\Location\Locations;
 use App\Livewire\Back\Finance\Tuition\TuitionsHistory;
@@ -93,6 +94,10 @@ Route::prefix('admin')->middleware(['auth', 'preventBackHistory'])->name('admin.
 
         Route::get('program-prices', ProgramPricesManagement::class)->name('program-prices');
 
+    });
+
+    Route::prefix('arrangement')->name('arrangement.')->group(function () {
+        Route::get('time-table', TimeTable::class)->name('time-table');
     });
 
     Route::redirect('settings', 'settings/profile');

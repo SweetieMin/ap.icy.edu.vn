@@ -2,8 +2,8 @@
     ondragleave="onLivewireCalendarEventDragLeave(event, '{{ $componentId }}', '{{ $day }}', '{{ $dragAndDropClasses }}');"
     ondragover="onLivewireCalendarEventDragOver(event);"
     ondrop="onLivewireCalendarEventDrop(event, '{{ $componentId }}', '{{ $day }}', {{ $day->year }}, {{ $day->month }}, {{ $day->day }}, '{{ $dragAndDropClasses }}');"
-    class="flex-1 h-32 sm:h-40 lg:h-48 border border-pink-400 -mt-px -ml-px hover:bg-gray-400 transition-colors duration-200"
-    style="min-width: 8rem; max-width: 12rem;">
+    class="flex-1 h-36 sm:h-44 lg:h-52 border border-pink-400 -mt-px -ml-px hover:bg-gray-400 transition-colors duration-200"
+    style="flex: 1 1 0%; min-width: 5.5rem;">
 
     {{-- Wrapper for Drag and Drop --}}
     <div class="w-full h-full" id="{{ $componentId }}-{{ $day }}">
@@ -23,8 +23,9 @@
 
             {{-- Event Count --}}
             @if ($events->isNotEmpty())
-                <p class="text-xs text-gray-500 mt-1">
-                    {{ $events->count() }} sự kiện
+                <p class="text-xs sm:text-sm text-gray-500 mt-1">
+                    <span class="hidden sm:inline">{{ $events->count() }} sự kiện</span>
+                    <span class="sm:hidden">{{ $events->count() }}</span>
                 </p>
             @endif
 
@@ -36,7 +37,7 @@
                             ondragstart="onLivewireCalendarEventDragStart(event, '{{ $event['id'] }}')"
                             @if ($eventClickEnabled) wire:click="onEventClick({{ $event['id'] }})" @endif
                             onclick="event.stopPropagation()"
-                            class="text-xs p-1 sm:p-1.5 rounded {{ $event['color'] ?? 'bg-blue-500' }} text-white truncate cursor-pointer hover:opacity-80 transition-opacity duration-200 touch-manipulation min-h-[32px] flex items-center"
+                            class="text-xs sm:text-sm p-1.5 sm:p-2 rounded {{ $event['color'] ?? 'bg-blue-500' }} text-white truncate cursor-pointer hover:opacity-80 transition-opacity duration-200 touch-manipulation min-h-[36px] sm:min-h-[40px] flex items-center"
                             title="{{ $event['title'] }} - {{ $event['description'] ?? '' }}">
                             <span class="truncate">{{ $event['title'] }}</span>
                         </div>

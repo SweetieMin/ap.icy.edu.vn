@@ -1,5 +1,5 @@
 <div class="flex-1 h-10 sm:h-12 border -mt-px -ml-px flex items-center justify-center bg-pink-50 text-pink-700 font-medium"
-     style="min-width: 8rem; max-width: 12rem;">
+     style="flex: 1 1 0%; min-width:5.5rem;">
 
     <p class="text-xs sm:text-md">
         @switch($day->dayOfWeek)

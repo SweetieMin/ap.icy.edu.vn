@@ -106,7 +106,7 @@
                             Xếp lớp học
                         </flux:navlist.item>
 
-                        <flux:navlist.item icon="calendar-days" :current="request()->routeIs('')" wire:navigate>
+                        <flux:navlist.item icon="calendar-days" :href="route('admin.arrangement.time-table')" :current="request()->routeIs('admin.arrangement.time-table')" wire:navigate>
                             Xếp lịch học
                         </flux:navlist.item>
 

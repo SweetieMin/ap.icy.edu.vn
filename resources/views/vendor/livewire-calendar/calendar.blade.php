@@ -57,11 +57,11 @@
     </div>
 
     {{-- Calendar Grid --}}
-    <div class="flex">
-        <div class="overflow-x-auto w-full">
-            <div class="inline-block min-w-full overflow-hidden">
+    <div class="w-full">
+        <div class="overflow-x-auto">
+            <div class="min-w-full sm:w-full" style="min-width: 38.5rem;">
                 {{-- Days of Week Header --}}
-                <div class="w-full flex flex-row bg-gray-50 border-b border-gray-200">
+                <div class="w-full flex bg-gray-50 border-b border-gray-200">
                     @foreach($monthGrid->first() as $day)
                         @include($dayOfWeekView, ['day' => $day])
                     @endforeach
@@ -69,7 +69,7 @@
 
                 {{-- Calendar Days --}}
                 @foreach($monthGrid as $week)
-                    <div class="w-full flex flex-row">
+                    <div class="w-full flex">
                         @foreach($week as $day)
                             @include($dayView, [
                                     'componentId' => $componentId,
@@ -111,5 +111,10 @@
     {{-- After Calendar View (if any) --}}
     <div>
         @includeIf($afterCalendarView)
+    </div>
+
+    {{-- Modal Setup View (if any) --}}
+    <div>
+        @includeIf($modalSetup)
     </div>
 </div>

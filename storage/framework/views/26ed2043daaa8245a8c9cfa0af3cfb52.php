@@ -2,8 +2,8 @@
     ondragleave="onLivewireCalendarEventDragLeave(event, '<?php echo e($componentId); ?>', '<?php echo e($day); ?>', '<?php echo e($dragAndDropClasses); ?>');"
     ondragover="onLivewireCalendarEventDragOver(event);"
     ondrop="onLivewireCalendarEventDrop(event, '<?php echo e($componentId); ?>', '<?php echo e($day); ?>', <?php echo e($day->year); ?>, <?php echo e($day->month); ?>, <?php echo e($day->day); ?>, '<?php echo e($dragAndDropClasses); ?>');"
-    class="flex-1 h-32 sm:h-40 lg:h-48 border border-pink-400 -mt-px -ml-px hover:bg-gray-400 transition-colors duration-200"
-    style="min-width: 8rem; max-width: 12rem;">
+    class="flex-1 h-36 sm:h-44 lg:h-52 border border-pink-400 -mt-px -ml-px hover:bg-gray-400 transition-colors duration-200"
+    style="flex: 1 1 0%; min-width: 5.5rem;">
 
     
     <div class="w-full h-full" id="<?php echo e($componentId); ?>-<?php echo e($day); ?>">
@@ -24,8 +24,9 @@
 
             
             <!--[if BLOCK]><![endif]--><?php if($events->isNotEmpty()): ?>
-                <p class="text-xs text-gray-500 mt-1">
-                    <?php echo e($events->count()); ?> sự kiện
+                <p class="text-xs sm:text-sm text-gray-500 mt-1">
+                    <span class="hidden sm:inline"><?php echo e($events->count()); ?> sự kiện</span>
+                    <span class="sm:hidden"><?php echo e($events->count()); ?></span>
                 </p>
             <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
 
@@ -37,7 +38,7 @@
                             ondragstart="onLivewireCalendarEventDragStart(event, '<?php echo e($event['id']); ?>')"
                             <?php if($eventClickEnabled): ?> wire:click="onEventClick(<?php echo e($event['id']); ?>)" <?php endif; ?>
                             onclick="event.stopPropagation()"
-                            class="text-xs p-1 sm:p-1.5 rounded <?php echo e($event['color'] ?? 'bg-blue-500'); ?> text-white truncate cursor-pointer hover:opacity-80 transition-opacity duration-200 touch-manipulation min-h-[32px] flex items-center"
+                            class="text-xs sm:text-sm p-1.5 sm:p-2 rounded <?php echo e($event['color'] ?? 'bg-blue-500'); ?> text-white truncate cursor-pointer hover:opacity-80 transition-opacity duration-200 touch-manipulation min-h-[36px] sm:min-h-[40px] flex items-center"
                             title="<?php echo e($event['title']); ?> - <?php echo e($event['description'] ?? ''); ?>">
                             <span class="truncate"><?php echo e($event['title']); ?></span>
                         </div>

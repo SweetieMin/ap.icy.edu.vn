@@ -2,7 +2,6 @@
 
 namespace App\Livewire\Back\Dashboard;
 
-use Livewire\Component;
 use Illuminate\Support\Carbon;
 use Livewire\Attributes\Title;
 use Illuminate\Support\Collection;
