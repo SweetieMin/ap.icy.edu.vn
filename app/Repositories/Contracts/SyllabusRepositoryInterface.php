@@ -4,12 +4,12 @@ namespace App\Repositories\Contracts;
 
 interface SyllabusRepositoryInterface
 {
-    public function getAll(?int $perPage = null);
+    public function getAll();
     public function create(array $data);
     public function update(int $id, array $data);
     public function delete(int $id);
     public function getSyllabusById(int $id);
-    public function getBySubject(int $subjectId, ?int $perPage = null);
-    public function search(string $search, ?int $perPage = null);
+    public function getBySubject(int $subjectId);
+    public function search(string $search);
     public function updateOrdering(array $orderedIds);
 }

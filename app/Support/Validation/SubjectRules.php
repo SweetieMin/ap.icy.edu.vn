@@ -11,6 +11,7 @@ class SubjectRules
             'name' => ['required', 'string', 'min:3', 'max:255', 'unique:subjects,name' . ($id ? ",$id" : ''),'regex:/^[\p{L}0-9\s]+$/u'],
             'code' => ['required', 'string', 'max:4', 'unique:subjects,code' . ($id ? ",$id" : ''), 'regex:/^[a-zA-Z0-9]+$/'],
             'description' => ['nullable', 'string', 'max:500'],
+            'url_book' => ['nullable', 'url', 'max:500'],
         ];
     }
 
@@ -30,6 +31,8 @@ class SubjectRules
             'code.unique' => 'Mã môn học này đã được sử dụng.',
             'code.regex' => 'Mã môn học chỉ được chứa chữ và số.',
             'description.max' => 'Mô tả không được vượt quá 500 ký tự.',
+            'url_book.url' => 'URL sách giáo khoa không hợp lệ.',
+            'url_book.max' => 'URL sách giáo khoa không được vượt quá 500 ký tự.',
         ];
     }
 }

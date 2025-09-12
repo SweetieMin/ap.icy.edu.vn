@@ -13,17 +13,13 @@ return new class extends Migration
     {
         Schema::create('syllabi', function (Blueprint $table) {
             $table->id();
-            $table->integer('ordering')->default(1000);
             $table->foreignId('subject_id')->constrained('subjects');
             $table->unsignedInteger('lesson_number');
-            $table->string('content');
-            $table->string('objectives');
-            $table->string('vocabulary');
-            $table->string('assignment');
-            $table->string('student_task')->nullable();
-            $table->string('lecturer_task')->nullable();
-            $table->string('lecture_slide')->nullable();
-            $table->string('audio_file')->nullable();
+            $table->string('content')->nullable();
+            $table->string('vocabulary')->nullable();
+            $table->string('grammar')->nullable();
+            $table->string('assignment')->nullable();
+            $table->string('CLO')->nullable();
             $table->timestamps();
         });
     }

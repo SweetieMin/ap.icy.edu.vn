@@ -35,6 +35,14 @@ class SubjectRepository implements SubjectRepositoryInterface
         return $perPage ? $query->paginate($perPage) : $query->get();
     }
 
+    public function getByProgram(int $programId)
+    {
+        return Subject::with('program')
+            ->where('program_id', $programId)
+            ->orderBy('ordering')
+            ->get();
+    }
+
 
     public function create(array $data, $programId)
     {

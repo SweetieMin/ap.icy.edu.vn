@@ -2,30 +2,27 @@
 
 namespace App\Livewire\Back\Management\Syllabus;
 
-use App\Repositories\Contracts\SyllabusRepositoryInterface;
-use App\Repositories\Contracts\SubjectRepositoryInterface;
-use App\Support\Validation\SyllabusRules;
-use Livewire\Component;
-use Livewire\WithFileUploads;
-use Livewire\Attributes\On;
 use Flux\Flux;
+use Livewire\Component;
+use App\Models\Syllabus;
+use Livewire\Attributes\On;
+use App\Support\Validation\SyllabusRules;
+use App\Repositories\Contracts\SubjectRepositoryInterface;
+use App\Repositories\Contracts\SyllabusRepositoryInterface;
+
 
 class ActionsSyllabus extends Component
 {
-    use WithFileUploads;
+
 
     public $syllabusId;
     public $subject_id;
     public $lesson_number;
     public $content;
-    public $objectives;
     public $vocabulary;
+    public $grammar;
     public $assignment;
-    public $student_task;
-    public $lecturer_task;
-    public $lecture_slide;
-    public $audio_file;
-    public $ordering;
+    public $CLO;
 
     public $isEditing = false;
 
@@ -55,7 +52,7 @@ class ActionsSyllabus extends Component
     public function addSyllabus()
     {
         $this->resetErrorBag();
-        $this->reset(['syllabusId', 'subject_id', 'lesson_number', 'content', 'objectives', 'vocabulary', 'assignment', 'student_task', 'lecturer_task', 'lecture_slide', 'audio_file', 'ordering']);
+        $this->reset(['syllabusId', 'subject_id', 'lesson_number', 'content', 'vocabulary', 'grammar', 'assignment', 'CLO']);
         $this->isEditing = false;
         Flux::modal('modal-syllabus')->show();
     }
@@ -68,28 +65,23 @@ class ActionsSyllabus extends Component
             'subject_id' => $this->subject_id,
             'lesson_number' => $this->lesson_number,
             'content' => $this->content,
-            'objectives' => $this->objectives,
             'vocabulary' => $this->vocabulary,
+            'grammar' => $this->grammar,
             'assignment' => $this->assignment,
-            'student_task' => $this->student_task,
-            'lecturer_task' => $this->lecturer_task,
-            'lecture_slide' => $this->lecture_slide,
-            'audio_file' => $this->audio_file,
-            'ordering' => $this->ordering,
+            'CLO' => $this->CLO,
         ]);
-
-        session()->flash('message', 'Syllabus đã được tạo thành công!');
-        $this->reset(['syllabusId', 'subject_id', 'lesson_number', 'content', 'objectives', 'vocabulary', 'assignment', 'student_task', 'lecturer_task', 'lecture_slide', 'audio_file', 'ordering']);
+        $this->reset(['syllabusId', 'subject_id', 'lesson_number', 'content', 'vocabulary', 'grammar', 'assignment', 'CLO']);
         Flux::modal('modal-syllabus')->close();
-        
-        $this->dispatch('syllabus-saved');
+        session()->flash('success', 'Syllabus đã được tạo thành công!');
+        $this->redirectRoute('admin.management.syllabi', navigate: true);
     }
 
     #[On('edit-syllabus')]
-    public function editSyllabus($syllabusId)
+    public function editSyllabus($id)
     {
+        $syllabus = Syllabus::findOrFail($id);
         $this->resetErrorBag();
-        $this->syllabusId = $syllabusId;
+        $this->syllabusId = $id;
         $this->loadSyllabus();
         $this->isEditing = true;
         Flux::modal('modal-syllabus')->show();
@@ -103,21 +95,32 @@ class ActionsSyllabus extends Component
             'subject_id' => $this->subject_id,
             'lesson_number' => $this->lesson_number,
             'content' => $this->content,
-            'objectives' => $this->objectives,
             'vocabulary' => $this->vocabulary,
+            'grammar' => $this->grammar,
             'assignment' => $this->assignment,
-            'student_task' => $this->student_task,
-            'lecturer_task' => $this->lecturer_task,
-            'lecture_slide' => $this->lecture_slide,
-            'audio_file' => $this->audio_file,
-            'ordering' => $this->ordering,
+            'CLO' => $this->CLO,
         ]);
 
-        session()->flash('message', 'Syllabus đã được cập nhật thành công!');
-        $this->reset(['syllabusId', 'subject_id', 'lesson_number', 'content', 'objectives', 'vocabulary', 'assignment', 'student_task', 'lecturer_task', 'lecture_slide', 'audio_file', 'ordering']);
+        $this->reset(['syllabusId', 'subject_id', 'lesson_number', 'content', 'vocabulary', 'grammar', 'assignment', 'CLO']);
         Flux::modal('modal-syllabus')->close();
-        
-        $this->dispatch('syllabus-saved');
+        session()->flash('success', 'Syllabus đã được cập nhật thành công!');
+        $this->redirectRoute('admin.management.syllabi', navigate: true);
+    }
+
+    #[On('delete-syllabus')]
+    public function deleteSyllabus($id)
+    {
+        $this->syllabusId = $id;
+        Flux::modal('delete-syllabus')->show();
+    }
+
+    public function deleteSyllabusConfirm()
+    {
+        $this->syllabusRepository->delete($this->syllabusId);
+        $this->reset(['syllabusId']);
+        Flux::modal('delete-syllabus')->close();
+        session()->flash('success', 'Syllabus đã được xóa thành công!');
+        $this->redirectRoute('admin.management.syllabi', navigate: true);
     }
 
     public function loadSyllabus()
@@ -126,21 +129,25 @@ class ActionsSyllabus extends Component
         $this->subject_id = $syllabus->subject_id;
         $this->lesson_number = $syllabus->lesson_number;
         $this->content = $syllabus->content;
-        $this->objectives = $syllabus->objectives;
         $this->vocabulary = $syllabus->vocabulary;
+        $this->grammar = $syllabus->grammar;
         $this->assignment = $syllabus->assignment;
-        $this->student_task = $syllabus->student_task;
-        $this->lecturer_task = $syllabus->lecturer_task;
-        $this->lecture_slide = $syllabus->lecture_slide;
-        $this->audio_file = $syllabus->audio_file;
-        $this->ordering = $syllabus->ordering;
+        $this->CLO = $syllabus->CLO;
     }
-
 
 
     public function render()
     {
+        // Lấy subjects từ component cha (Syllabi) thông qua session hoặc parameter
         $subjects = app(SubjectRepositoryInterface::class)->getAll();
+        
+        // Nếu có subject_id được chọn, lấy subjects của chương trình đó
+        if ($this->subject_id) {
+            $subject = app(SubjectRepositoryInterface::class)->getSubjectById($this->subject_id);
+            if ($subject) {
+                $subjects = app(SubjectRepositoryInterface::class)->getByProgram($subject->program_id);
+            }
+        }
 
         return view('livewire.back.management.syllabus.actions-syllabus', [
             'subjects' => $subjects,

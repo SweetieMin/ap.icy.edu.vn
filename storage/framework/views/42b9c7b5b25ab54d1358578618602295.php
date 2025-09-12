@@ -1,8 +1,10 @@
+
+
 <?php $attributes ??= new \Illuminate\View\ComponentAttributeBag;
 
 $__newAttributes = [];
 $__propNames = \Illuminate\View\ComponentAttributeBag::extractPropNames(([
-    'id' => uniqid(),
+    'as' => null,
 ]));
 
 foreach ($attributes->all() as $__key => $__value) {
@@ -19,7 +21,7 @@ unset($__propNames);
 unset($__newAttributes);
 
 foreach (array_filter(([
-    'id' => uniqid(),
+    'as' => null,
 ]), 'is_string', ARRAY_FILTER_USE_KEY) as $__key => $__value) {
     $$__key = $$__key ?? $__value;
 }
@@ -32,12 +34,15 @@ foreach ($attributes->all() as $__key => $__value) {
 
 unset($__defined_vars, $__key, $__value); ?>
 
-<svg <?php echo e($attributes); ?> fill="none">
-    <defs>
-        <pattern id="pattern-<?php echo e($id); ?>" x="0" y="0" width="8" height="8" patternUnits="userSpaceOnUse">
-            <path d="M-1 5L5 -1M3 9L8.5 3.5" stroke-width="0.5"></path>
-        </pattern>
-    </defs>
-    <rect stroke="none" fill="url(#pattern-<?php echo e($id); ?>)" width="100%" height="100%"></rect>
-</svg>
-<?php /**PATH /Users/smyth/Herd/ap.icy.edu.vn/resources/views/components/placeholder-pattern.blade.php ENDPATH**/ ?>
+<?php if ($as === 'button'): ?>
+    <button <?php echo e($attributes->merge(['type' => 'button'])); ?>>
+        <?php echo e($slot); ?>
+
+    </button>
+<?php else: ?>
+    <div <?php echo e($attributes); ?>>
+        <?php echo e($slot); ?>
+
+    </div>
+<?php endif; ?>
+<?php /**PATH /Users/smyth/Herd/ap.icy.edu.vn/vendor/livewire/flux/src/../stubs/resources/views/flux/button-or-div.blade.php ENDPATH**/ ?>

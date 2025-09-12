@@ -13,36 +13,30 @@ class SyllabusRepository implements SyllabusRepositoryInterface
     {
         return [
             'subject_id' => $data['subject_id'],
-            'lesson_number' => trim($data['lesson_number']),
-            'content' => trim($data['content']),
-            'objectives' => trim($data['objectives']),
+            'lesson_number' => $data['lesson_number'],
+            'content' => isset($data['content']) ? trim($data['content']) : null,
             'vocabulary' => isset($data['vocabulary']) ? trim($data['vocabulary']) : null,
+            'grammar' => isset($data['grammar']) ? trim($data['grammar']) : null,
             'assignment' => isset($data['assignment']) ? trim($data['assignment']) : null,
-            'student_task' => isset($data['student_task']) ? trim($data['student_task']) : null,
-            'lecturer_task' => isset($data['lecturer_task']) ? trim($data['lecturer_task']) : null,
-            'lecture_slide' => isset($data['lecture_slide']) ? trim($data['lecture_slide']) : null,
-            'audio_file' => isset($data['audio_file']) ? trim($data['audio_file']) : null,
-            'ordering' => $data['ordering'] ?? $this->getNextOrdering($data['subject_id']),
+            'CLO' => isset($data['CLO']) ? trim($data['CLO']) : null,
         ];
     }
 
-    protected function getNextOrdering(int $subjectId): int
+    public function getAll()
     {
-        $maxOrdering = Syllabus::where('subject_id', $subjectId)->max('ordering') ?? 0;
-        return $maxOrdering + 1;
-    }
-
-    public function getAll(?int $perPage = null)
-    {
-        $query = Syllabus::with(['subject.program'])
-            ->orderBy('ordering');
-
-        return $perPage ? $query->paginate($perPage) : $query->get();
+        return Syllabus::with(['subject.program'])
+            ->orderBy('lesson_number')
+            ->get();
     }
 
     public function create(array $data): Syllabus
     {
         $data = $this->prepareData($data);
+        $remainingIds = Syllabus::where('subject_id', $data['subject_id'])
+            ->orderBy('lesson_number')
+            ->pluck('id')
+            ->toArray();
+        $this->updateOrdering($remainingIds);
         return Syllabus::create($data);
     }
 
@@ -51,7 +45,11 @@ class SyllabusRepository implements SyllabusRepositoryInterface
         $syllabus = $this->getSyllabusById($id);
         $data = $this->prepareData($data);
         $syllabus->update($data);
-        
+        $remainingIds = Syllabus::where('subject_id', $syllabus->subject_id)
+            ->orderBy('lesson_number')
+            ->pluck('id')
+            ->toArray();
+        $this->updateOrdering($remainingIds);
         // Clear cache
         unset($this->syllabusCache[$id]);
         
@@ -61,16 +59,12 @@ class SyllabusRepository implements SyllabusRepositoryInterface
     public function delete(int $id): void
     {
         $syllabus = $this->getSyllabusById($id);
-        $subjectId = $syllabus->subject_id;
         $syllabus->delete();
-        
-        // Reorder remaining syllabi in the same subject
-        $remainingIds = Syllabus::where('subject_id', $subjectId)
-            ->orderBy('ordering')
+        $remainingIds = Syllabus::where('subject_id', $syllabus->subject_id)
+            ->orderBy('lesson_number')
             ->pluck('id')
             ->toArray();
         $this->updateOrdering($remainingIds);
-        
         // Clear cache
         unset($this->syllabusCache[$id]);
     }
@@ -80,36 +74,37 @@ class SyllabusRepository implements SyllabusRepositoryInterface
         return $this->syllabusCache[$id] ??= Syllabus::with(['subject.program'])->findOrFail($id);
     }
 
-    public function getBySubject(int $subjectId, ?int $perPage = null)
+    public function getBySubject(int $subjectId)
     {
-        $query = Syllabus::with(['subject.program'])
+        return Syllabus::with(['subject.program'])
             ->where('subject_id', $subjectId)
-            ->orderBy('ordering');
-
-        return $perPage ? $query->paginate($perPage) : $query->get();
+            ->orderBy('lesson_number')
+            ->get();
     }
 
-    public function search(string $search, ?int $perPage = null)
+    public function updateOrdering(array $orderedIds)
     {
-        $query = Syllabus::with(['subject.program'])
+        foreach ($orderedIds as $index => $id) {
+            Syllabus::where('id', $id)->update(['lesson_number' => $index + 1]);
+        }
+    }
+
+    public function search(string $search)
+    {
+        return Syllabus::with(['subject.program'])
             ->where(function ($q) use ($search) {
                 $q->where('lesson_number', 'like', '%' . $search . '%')
                   ->orWhere('content', 'like', '%' . $search . '%')
-                  ->orWhere('objectives', 'like', '%' . $search . '%')
+                  ->orWhere('vocabulary', 'like', '%' . $search . '%')
+                  ->orWhere('grammar', 'like', '%' . $search . '%')
+                  ->orWhere('assignment', 'like', '%' . $search . '%')
+                  ->orWhere('CLO', 'like', '%' . $search . '%')
                   ->orWhereHas('subject', function ($subjectQuery) use ($search) {
                       $subjectQuery->where('name', 'like', '%' . $search . '%')
                                   ->orWhere('code', 'like', '%' . $search . '%');
                   });
             })
-            ->orderBy('ordering');
-
-        return $perPage ? $query->paginate($perPage) : $query->get();
-    }
-
-    public function updateOrdering(array $orderedIds): void
-    {
-        foreach ($orderedIds as $index => $id) {
-            Syllabus::where('id', $id)->update(['ordering' => $index + 1]);
-        }
+            ->orderBy('lesson_number')
+            ->get();
     }
 }

@@ -8,17 +8,13 @@ class Syllabus extends Model
 {
     protected $table = 'syllabi';
     protected $fillable = [
-        'ordering',
         'subject_id',
         'lesson_number',
         'content',
-        'objectives',
         'vocabulary',
+        'grammar',
         'assignment',
-        'student_task',
-        'lecturer_task',
-        'lecture_slide',
-        'audio_file'
+        'CLO'
     ];
 
     public function subject()
