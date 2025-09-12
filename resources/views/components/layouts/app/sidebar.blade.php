@@ -242,7 +242,7 @@
     </div>
     @stack('scripts')
     @fluxScripts
-
+    @livewireCalendarScripts
 </body>
 
 
