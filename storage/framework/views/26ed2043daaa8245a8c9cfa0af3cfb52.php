@@ -36,6 +36,7 @@
                         <div <?php if($dragAndDropEnabled): ?> draggable="true" <?php endif; ?>
                             ondragstart="onLivewireCalendarEventDragStart(event, '<?php echo e($event['id']); ?>')"
                             <?php if($eventClickEnabled): ?> wire:click="onEventClick(<?php echo e($event['id']); ?>)" <?php endif; ?>
+                            onclick="event.stopPropagation()"
                             class="text-xs p-1 rounded <?php echo e($event['color'] ?? 'bg-blue-500'); ?> text-white truncate cursor-pointer hover:opacity-80 transition-opacity duration-200"
                             title="<?php echo e($event['title']); ?> - <?php echo e($event['description'] ?? ''); ?>">
                             <?php echo e($event['title']); ?>

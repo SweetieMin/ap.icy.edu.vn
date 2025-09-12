@@ -3,7 +3,7 @@
 $__split = function ($name, $params = []) {
     return [$name, $params];
 };
-[$__name, $__params] = $__split('back.dashboard.timetable', ['dayClickEnabled' => true,'eventClickEnabled' => false,'dragAndDropEnabled' => false]);
+[$__name, $__params] = $__split('back.dashboard.timetable', ['dayClickEnabled' => true,'eventClickEnabled' => true,'dragAndDropEnabled' => true]);
 
 $__html = app('livewire')->mount($__name, $__params, 'lw-1537465735-0', $__slots ?? [], get_defined_vars());
 

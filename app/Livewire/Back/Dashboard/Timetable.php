@@ -57,8 +57,7 @@ class Timetable extends LivewireCalendar
      */
     public function onDayClick($year, $month, $day)
     {
-        $date = Carbon::createFromDate($year, $month, $day);
-        
+
     }
 
     /**
@@ -66,11 +65,7 @@ class Timetable extends LivewireCalendar
      */
     public function onEventClick($eventId)
     {
-        $event = $this->events()->firstWhere('id', $eventId);
-        if ($event) {
-            session()->flash('success', "Sự kiện: " . $event['title'] . " - " . ($event['description'] ?? ''));
-            $this->redirectRoute('dashboard');
-        }
+
     }
 
     /**

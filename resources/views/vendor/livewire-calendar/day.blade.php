@@ -35,6 +35,7 @@
                         <div @if ($dragAndDropEnabled) draggable="true" @endif
                             ondragstart="onLivewireCalendarEventDragStart(event, '{{ $event['id'] }}')"
                             @if ($eventClickEnabled) wire:click="onEventClick({{ $event['id'] }})" @endif
+                            onclick="event.stopPropagation()"
                             class="text-xs p-1 rounded {{ $event['color'] ?? 'bg-blue-500' }} text-white truncate cursor-pointer hover:opacity-80 transition-opacity duration-200"
                             title="{{ $event['title'] }} - {{ $event['description'] ?? '' }}">
                             {{ $event['title'] }}
