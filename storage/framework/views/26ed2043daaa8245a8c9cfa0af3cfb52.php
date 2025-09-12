@@ -13,7 +13,7 @@
 
             
             <div class="flex items-center justify-between">
-                <p class="text-sm <?php echo e($dayInMonth ? 'font-medium text-gray-900' : 'text-gray-400'); ?>">
+                <p class="text-md <?php echo e($dayInMonth ? 'font-medium text-pink-600' : 'text-pink-100'); ?>">
                     <?php echo e($day->format('j')); ?>
 
                 </p>

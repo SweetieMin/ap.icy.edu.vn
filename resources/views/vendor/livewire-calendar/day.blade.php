@@ -13,7 +13,7 @@
 
             {{-- Number of Day --}}
             <div class="flex items-center justify-between">
-                <p class="text-sm {{ $dayInMonth ? 'font-medium text-gray-900' : 'text-gray-400' }}">
+                <p class="text-md {{ $dayInMonth ? 'font-medium text-pink-600' : 'text-pink-100' }}">
                     {{ $day->format('j') }}
                 </p>
                 @if ($isToday)
