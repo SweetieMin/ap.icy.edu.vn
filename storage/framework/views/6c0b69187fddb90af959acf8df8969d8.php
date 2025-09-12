@@ -190,10 +190,10 @@ if (isset($__slots)) unset($__slots);
 
                                 
                                 <div class="p-6">
-                                    <!--[if BLOCK]><![endif]--><?php if($subject->description): ?>
+                                    <!--[if BLOCK]><![endif]--><?php if($subject->curriculum_name): ?>
                                         <div class="mb-4">
                                             <p class="text-zinc-600 dark:text-zinc-300 text-sm line-clamp-3">
-                                                <?php echo e($subject->description); ?>
+                                                <?php echo e($subject->curriculum_name); ?>
 
                                             </p>
                                         </div>

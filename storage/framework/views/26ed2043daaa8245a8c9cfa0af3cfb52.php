@@ -2,8 +2,8 @@
     ondragleave="onLivewireCalendarEventDragLeave(event, '<?php echo e($componentId); ?>', '<?php echo e($day); ?>', '<?php echo e($dragAndDropClasses); ?>');"
     ondragover="onLivewireCalendarEventDragOver(event);"
     ondrop="onLivewireCalendarEventDrop(event, '<?php echo e($componentId); ?>', '<?php echo e($day); ?>', <?php echo e($day->year); ?>, <?php echo e($day->month); ?>, <?php echo e($day->day); ?>, '<?php echo e($dragAndDropClasses); ?>');"
-    class="flex-1 h-40 lg:h-48 border border-pink-400 -mt-px -ml-px hover:bg-gray-400 transition-colors duration-200"
-    style="min-width: 10rem;">
+    class="flex-1 h-32 sm:h-40 lg:h-48 border border-pink-400 -mt-px -ml-px hover:bg-gray-400 transition-colors duration-200"
+    style="min-width: 8rem; max-width: 12rem;">
 
     
     <div class="w-full h-full" id="<?php echo e($componentId); ?>-<?php echo e($day); ?>">
@@ -13,12 +13,12 @@
 
             
             <div class="flex items-center justify-between">
-                <p class="text-md <?php echo e($dayInMonth ? 'font-medium text-pink-600' : 'text-pink-100'); ?>">
+                <p class="text-sm sm:text-md <?php echo e($dayInMonth ? 'font-medium text-pink-600' : 'text-pink-100'); ?>">
                     <?php echo e($day->format('j')); ?>
 
                 </p>
                 <!--[if BLOCK]><![endif]--><?php if($isToday): ?>
-                    <div class="w-2 h-2 bg-pink-500 rounded-full"></div>
+                    <div class="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-pink-500 rounded-full"></div>
                 <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
             </div>
 
@@ -30,17 +30,16 @@
             <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
 
             
-            <div class="mt-2 flex-1 overflow-y-auto">
-                <div class="space-y-1">
+            <div class="mt-1 sm:mt-2 flex-1 overflow-y-auto">
+                <div class="space-y-0.5 sm:space-y-1">
                     <!--[if BLOCK]><![endif]--><?php $__currentLoopData = $events; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $event): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                         <div <?php if($dragAndDropEnabled): ?> draggable="true" <?php endif; ?>
                             ondragstart="onLivewireCalendarEventDragStart(event, '<?php echo e($event['id']); ?>')"
                             <?php if($eventClickEnabled): ?> wire:click="onEventClick(<?php echo e($event['id']); ?>)" <?php endif; ?>
                             onclick="event.stopPropagation()"
-                            class="text-xs p-1 rounded <?php echo e($event['color'] ?? 'bg-blue-500'); ?> text-white truncate cursor-pointer hover:opacity-80 transition-opacity duration-200"
+                            class="text-xs p-1 sm:p-1.5 rounded <?php echo e($event['color'] ?? 'bg-blue-500'); ?> text-white truncate cursor-pointer hover:opacity-80 transition-opacity duration-200 touch-manipulation min-h-[32px] flex items-center"
                             title="<?php echo e($event['title']); ?> - <?php echo e($event['description'] ?? ''); ?>">
-                            <?php echo e($event['title']); ?>
-
+                            <span class="truncate"><?php echo e($event['title']); ?></span>
                         </div>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><!--[if ENDBLOCK]><![endif]-->
                 </div>

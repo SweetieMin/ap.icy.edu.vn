@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignId('program_id')->constrained('programs')->onDelete('restrict');
             $table->string('name');
             $table->string('code');
-            $table->text('description')->nullable();
+            $table->text('curriculum_name')->nullable();
             $table->string('url_book')->nullable();
             $table->timestamps();
         });

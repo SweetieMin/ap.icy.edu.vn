@@ -1261,6 +1261,170 @@ class SyllabusSeeder extends Seeder
             ]);
         }
 
+        // ========== ICY COMMUNICATION 7 ==========
+        $subject = Subject::where('name', 'ICY Communication 7')->first();
+
+        $lessons = [
+            [1,  "Unit 1: Introductions – Lesson 1: Introduce yourself", "Nationalities, Jobs", "to be, a/an with jobs, wh- questions", "Write self-introduction", "Introduce self and others"],
+            [2,  "Unit 1: Introductions – Lesson 2: Listening & Reading (Interview, From small town to global leader)", "Work roles, Leadership", "Present simple, Leadership vocabulary", "Summarize interview", "Understand interviews"],
+            [3,  "Unit 1: Introductions – Lesson 3: Case Study – A job fair in Singapore, Writing: email", "Job fair, Recruitment", "Email format", "Draft a job application email", "Write formal email"],
+            [4,  "Unit 2: Work and Leisure – Lesson 1: Discuss what people want from work", "Leisure activities, Staff needs", "Days, months, dates; Present simple; Frequency adverbs", "Make a work diary", "Talk about work and leisure"],
+            [5,  "Unit 2: Work and Leisure – Lesson 2: Listening & Reading (Business diary, Interview)", "Business terms, Diary", "Present simple review", "Interview a peer", "Understand business texts"],
+            [6,  "Unit 2: Work and Leisure – Lesson 3: Case Study – Hudson Design Inc., Writing: email", "Customer issues", "Email politeness forms", "Write staff complaint response", "Handle staff issues"],
+            [7,  "Unit 3: Problems – Lesson 1: Talk about problems at work", "Problems, Solutions", "Adjectives too/enough, Present simple negatives, have, some/any", "Write problem-solution dialogue", "Discuss problems"],
+            [8,  "Unit 3: Problems – Lesson 2: Listening & Reading (Change leadership, Call-centre interviews)", "Call-centre, Feedback", "Question forms", "Role-play a call-centre", "Understand interviews"],
+            [9,  "Unit 3: Problems – Lesson 3: Case Study – High-Style Business Rentals, Writing: email", "Customer response", "Email structure", "Email reply practice", "Respond to customer feedback"],
+            [10, "Working Across Cultures 1: Eating Out", "Eating out, Culture", "Cultural expressions", "Research cultural dining habits", "Understand cultural differences"],
+            [11, "Revision A", "Review vocab Units 1–3", "Review Units 1–3 grammar", "Unit 1–3 practice test", "Review learning"],
+            [12, "Unit 4: Travel – Lesson 1: Talk about business travel", "Travel, Hotel", "can/can’t, there is/are", "Describe business trip", "Talk about travel"],
+            [13, "Unit 4: Travel – Lesson 2: Listening & Reading (Interview, Hilton Tokyo)", "Booking, Arrangements", "Requests, polite forms", "Booking dialogue", "Handle bookings"],
+            [14, "Unit 4: Travel – Lesson 3: Case Study – Gustav Conference Centre, Writing: email", "Conference, Companies", "Formal writing", "Conference email writing", "Coordinate meetings"],
+            [15, "Unit 5: Food and Entertaining – Lesson 1: Discuss food from different countries", "Food, Cuisines", "some/any, Countable & uncountable nouns", "Write food journal", "Discuss food & culture"],
+            [16, "Unit 5: Food and Entertaining – Lesson 2: Listening & Reading (Fast-food chains, Interview)", "Fast-food, Global brands", "Food-related grammar", "Summarize fast-food article", "Understand articles"],
+            [17, "Unit 5: Food and Entertaining – Lesson 3: Case Study – Which restaurant?, Writing: email", "Restaurant choices", "Decision-making phrases", "Choose restaurant activity", "Make decisions"],
+            [18, "Unit 6: Buying and Selling – Lesson 1: Talk about buying different products", "Products, Services", "Past simple, Time references", "Make product description", "Describe products"],
+            [19, "Unit 6: Buying and Selling – Lesson 2: Listening & Reading (Uniqlo, Interview)", "Success story, Management", "Comparisons", "Summarize Uniqlo text", "Understand success stories"],
+            [20, "Unit 6: Buying and Selling – Lesson 3: Case Study – NP Innovations, Writing: email", "Innovation, Marketing", "Product descriptions", "Write innovation email", "Make innovation proposals"],
+            [21, "Working Across Cultures 2: Communication Styles", "Communication styles", "Politeness strategies", "Compare communication styles", "Understand communication styles"],
+            [22, "Revision B", "Review vocab Units 4–6", "Review Units 4–6 grammar", "Unit 4–6 practice test", "Review learning"],
+            [23, "Mid-term Test", "Mid-term test vocabulary", "Grammar from Units 1–6", "Mid-term exam", "Assess progress"],
+            [24, "Project Work: Group Presentation (Business theme)", "Presentation language", "Presentation connectors", "Prepare group presentation", "Present in English"],
+        ];
+
+        foreach ($lessons as $lesson) {
+            $subject->syllabi()->create([
+                'lesson_number' => $lesson[0],
+                'content'       => $lesson[1],
+                'vocabulary'    => $lesson[2],
+                'grammar'       => $lesson[3],
+                'assignment'    => $lesson[4],
+                'CLO'           => $lesson[5],
+            ]);
+        }
+
+        // ========== ICY COMMUNICATION 8 ==========
+        $subject = Subject::where('name', 'ICY Communication 8')->first();
+
+        $lessons = [
+            [1,  "Unit 7: People – Lesson 1: Talk about how you like to work", "Work preferences, People", "Past simple negatives & questions, Question forms", "Write about work style", "Describe work preferences"],
+            [2,  "Unit 7: People – Lesson 2: Listening & Reading (Interview, Women at the top)", "Management, Leadership", "Describing people, Review grammar", "Summarize leadership text", "Understand leadership texts"],
+            [3,  "Unit 7: People – Lesson 3: Case Study – Tell us about it!, Writing: reply to a problem message", "Problem messages", "Email reply structure", "Draft reply to problem email", "Reply to formal messages"],
+            [4,  "Unit 8: Advertising – Lesson 1: Do an advertising quiz", "Advertising, Markets", "Comparatives, Superlatives, much/a lot/a little/a bit", "Do advertising survey", "Understand ads"],
+            [5,  "Unit 8: Advertising – Lesson 2: Listening & Reading (Volkswagen ad, Interview)", "Comparatives, Superlatives", "Advertising grammar", "Summarize ad campaign", "Analyze campaigns"],
+            [6,  "Unit 8: Advertising – Lesson 3: Case Study – Excelsior Chocolate Products, Writing: product launch plan", "Product launch", "Product launch writing", "Write product launch email", "Plan product launches"],
+            [7,  "Unit 9: Companies – Lesson 1: Do a companies quiz", "Companies, Leadership", "Present continuous, Present simple", "Company quiz", "Discuss companies"],
+            [8,  "Unit 9: Companies – Lesson 2: Listening & Reading (Change leadership, New markets)", "New markets, Industries", "Describing companies", "Summarize new markets text", "Understand new markets"],
+            [9,  "Unit 9: Companies – Lesson 3: Case Study – Presenting your company, Writing: company profile", "Company profile", "Presentation grammar", "Prepare company profile", "Present a company profile"],
+            [10, "Working Across Cultures 3: Doing Business Internationally", "International business, Cultures", "Cross-cultural communication", "Research international business", "Understand international business"],
+            [11, "Revision C", "Review vocab Units 7–9", "Review Units 7–9 grammar", "Practice test Units 7–9", "Review Units 7–9"],
+            [12, "Unit 10: Communication – Lesson 1: Do a communications quiz", "Communication, Social media", "Future with will", "Write communication diary", "Communicate future plans"],
+            [13, "Unit 10: Communication – Lesson 2: Listening & Reading (Interview, Facebook article)", "Future plans", "Arrangements", "Future plan writing", "Understand social media articles"],
+            [14, "Unit 10: Communication – Lesson 3: Case Study – Blakelock Engineering, Writing: email", "Arrangements, Company issues", "Formal writing", "Email to manager", "Handle arrangements"],
+            [15, "Unit 11: Cultures – Lesson 1: Look at tips for doing business in another country", "Cultural mistakes, Differences", "should/shouldn’t, could/would", "List cultural mistakes", "Identify cultural mistakes"],
+            [16, "Unit 11: Cultures – Lesson 2: Listening & Reading (Cultural mistakes, Lessons in cultural difference)", "Company cultures", "Cultural expressions", "Write cultural reflection", "Understand cultural lessons"],
+            [17, "Unit 11: Cultures – Lesson 3: Case Study – The wind of change, Writing: action minutes", "Change management", "Action minutes", "Minutes of meeting", "Assess company change"],
+            [18, "Unit 12: Jobs – Lesson 1: Discuss jobs", "Jobs, Networking", "Present perfect, Past simple vs present perfect", "Describe skills", "Discuss jobs"],
+            [19, "Unit 12: Jobs – Lesson 2: Listening & Reading (Interview, Networking profile)", "Skills, Abilities", "Describing skills", "Summarize job profile", "Understand networking profiles"],
+            [20, "Unit 12: Jobs – Lesson 3: Case Study – Nelson & Harper Inc., Writing: letter", "Job interviews, Letters", "Letter writing structures", "Write job application letter", "Prepare for job interviews"],
+            [21, "Working Across Cultures 4: Team Working", "Teamwork, Collaboration", "Teamwork grammar", "Group teamwork activity", "Collaborate in teamwork"],
+            [22, "Revision D", "Review vocab Units 10–12", "Review Units 10–12 grammar", "Practice test Units 10–12", "Review Units 10–12"],
+            [23, "Mid-term Test", "Mid-term vocabulary", "Grammar from Units 7–12", "Mid-term exam", "Assess progress"],
+            [24, "Project Work: Group Presentation (Company theme)", "Presentation language", "Presentation connectors", "Prepare group presentation", "Present project"],
+        ];
+
+        foreach ($lessons as $lesson) {
+            $subject->syllabi()->create([
+                'lesson_number' => $lesson[0],
+                'content'       => $lesson[1],
+                'vocabulary'    => $lesson[2],
+                'grammar'       => $lesson[3],
+                'assignment'    => $lesson[4],
+                'CLO'           => $lesson[5],
+            ]);
+        }
+
+        // ========== ICY COMMUNICATION 9 ==========
+        $subject = Subject::where('name', 'ICY Communication 9')->first();
+
+        $lessons = [
+            [1,  "Unit 1: Careers – Lesson 1: Talk about your career plan", "Career, Jobs", "Modals 1: ability, requests, offers", "Write about career plan", "Discuss career plans"],
+            [2,  "Unit 1: Careers – Lesson 2: Listening & Reading (Interview with Finance Director, Facebook profile)", "Finance, Job prospects", "Career grammar", "Summarize Facebook text", "Understand interviews"],
+            [3,  "Unit 1: Careers – Lesson 3: Case Study – YouJuice: Job candidate decision, Writing: email", "Recruitment, Emails", "Email writing format", "Write job application email", "Write job-related emails"],
+            [4,  "Unit 2: Companies – Lesson 1: Talk about companies", "Companies, CEOs", "Present simple & present continuous", "Company research", "Describe companies"],
+            [5,  "Unit 2: Companies – Lesson 2: Listening & Reading (CEO search, Best companies)", "Corporate culture, Industries", "Describing companies", "Summarize article", "Understand articles"],
+            [6,  "Unit 2: Companies – Lesson 3: Case Study – Dino Conti Ice Cream: Investment decision, Writing: proposal", "Proposal terms", "Proposal writing structures", "Write investment proposal", "Write proposals"],
+            [7,  "Unit 3: Selling – Lesson 1: Talk about shopping habits", "Shopping, Sales", "Modals 2: must, need to, have to, should", "Write shopping diary", "Discuss shopping habits"],
+            [8,  "Unit 3: Selling – Lesson 2: Listening & Reading (Interview with Marketing Director, Women in sales)", "Marketing, Surveys", "Sales-related grammar", "Summarize sales survey", "Understand marketing surveys"],
+            [9,  "Unit 3: Selling – Lesson 3: Case Study – Partnership agreement, Writing: letter", "Partnership, Letters", "Letter writing forms", "Write partnership letter", "Write partnership letters"],
+            [10, "Working Across Cultures 1: Saying 'No' Politely", "Cultural politeness", "Politeness expressions", "Research politeness", "Understand politeness"],
+            [11, "Revision A", "Review vocab Units 1–3", "Review Units 1–3 grammar", "Practice test Units 1–3", "Review Units 1–3"],
+            [12, "Unit 4: Great Ideas – Lesson 1: Discuss what makes a great idea", "Ideas, Creativity", "Verb & noun combinations", "Describe a great idea", "Discuss ideas"],
+            [13, "Unit 4: Great Ideas – Lesson 2: Listening & Reading (Researcher, Translators, Safer cycling, Going for gold)", "Research, Innovation", "Past simple & past continuous", "Summarize research articles", "Understand research texts"],
+            [14, "Unit 4: Great Ideas – Lesson 3: Case Study – New attraction idea, Writing: report", "Attractions, Reports", "Report writing grammar", "Write attraction report", "Write reports"],
+            [15, "Unit 5: Stress – Lesson 1: Discuss stressful situations and activities", "Stress, Workplace", "Past simple & present perfect", "List stressful activities", "Discuss stress"],
+            [16, "Unit 5: Stress – Lesson 2: Listening & Reading (Interview with Director, Over half stressed owners)", "Health, Consultancy", "Stress vocabulary", "Summarize stress article", "Understand stress articles"],
+            [17, "Unit 5: Stress – Lesson 3: Case Study – Davies-Miller Advertising, Writing: report", "Advertising, Stress reduction", "Report grammar", "Write stress report", "Write company reports"],
+            [18, "Unit 6: Entertaining – Lesson 1: Discuss corporate entertaining", "Entertainment, Events", "Multiword verbs", "Plan a corporate event", "Discuss entertaining"],
+            [19, "Unit 6: Entertaining – Lesson 2: Listening & Reading (CEO interview, Entertainment experts)", "Corporate, Hospitality", "Present continuous", "Summarize interviews", "Understand CEO interviews"],
+            [20, "Unit 6: Entertaining – Lesson 3: Case Study – Organising a conference, Writing: email", "Conferences, Emails", "Email format", "Write conference email", "Write emails"],
+            [21, "Working Across Cultures 2: Doing Business Internationally", "International business", "International communication grammar", "Compare business practices", "Understand business cultures"],
+            [22, "Revision B", "Review vocab Units 4–6", "Review Units 4–6 grammar", "Practice test Units 4–6", "Review Units 4–6"],
+            [23, "Mid-term Test", "Mid-term vocabulary", "Grammar from Units 1–6", "Mid-term exam", "Assess progress"],
+            [24, "Project Work: Group Presentation (Business Idea theme)", "Presentation language", "Presentation connectors", "Prepare presentation", "Present in English"],
+        ];
+
+        foreach ($lessons as $lesson) {
+            $subject->syllabi()->create([
+                'lesson_number' => $lesson[0],
+                'content'       => $lesson[1],
+                'vocabulary'    => $lesson[2],
+                'grammar'       => $lesson[3],
+                'assignment'    => $lesson[4],
+                'CLO'           => $lesson[5],
+            ]);
+        }
+
+        // ========== ICY COMMUNICATION 10 ==========
+        $subject = Subject::where('name', 'ICY Communication 10')->first();
+
+        $lessons = [
+            [1,  "Unit 7: New Business – Lesson 1: Discuss new businesses and business sectors", "Business, Sectors", "Economic terms, Time clauses", "Write about new business idea", "Discuss new businesses"],
+            [2,  "Unit 7: New Business – Lesson 2: Listening & Reading (Interviews with CEOs, Internet whiz-kid, Exports)", "CEOs, Exports", "Business grammar", "Summarize CEO text", "Understand CEO interviews"],
+            [3,  "Unit 7: New Business – Lesson 3: Case Study – Taka Shimizu Cycles: Factory location decision, Writing: email", "Factories, Emails", "Email writing format", "Write factory location email", "Write business emails"],
+            [4,  "Unit 8: Marketing – Lesson 1: Talk about marketing mix and campaigns", "Marketing mix, Campaigns", "Word partnerships, Questions", "Do marketing quiz", "Discuss marketing mix"],
+            [5,  "Unit 8: Marketing – Lesson 2: Listening & Reading (Interview with Marketing Manager, Adidas targets China)", "Adidas, Global markets", "Marketing language", "Summarize Adidas article", "Understand global marketing"],
+            [6,  "Unit 8: Marketing – Lesson 3: Case Study – Wincote International: Outdoor sales plan, Writing: email", "Plans, Emails", "Email structures", "Write marketing email", "Write marketing emails"],
+            [7,  "Unit 9: Planning – Lesson 1: Discuss how and when to plan", "Planning, Strategies", "Future plans, Planning grammar", "Plan a project", "Discuss planning"],
+            [8,  "Unit 9: Planning – Lesson 2: Listening & Reading (Interview with consultant, When there’s no Plan A)", "Consultants, Future plans", "Future tenses", "Summarize planning text", "Understand planning texts"],
+            [9,  "Unit 9: Planning – Lesson 3: Case Study – European Press and Media: Magazine issue plan, Writing: letter", "Magazine issues, Letters", "Letter writing forms", "Write magazine letter", "Write letters"],
+            [10, "Working Across Cultures 3: International Conference Calls", "Conference calls, Cultures", "Conference communication", "Research conference calls", "Handle conference calls"],
+            [11, "Revision C", "Review vocab Units 7–9", "Review Units 7–9 grammar", "Practice test Units 7–9", "Review Units 7–9"],
+            [12, "Unit 10: Managing People – Lesson 1: Discuss qualities of a good manager", "Managers, Leadership", "Verbs & prepositions, Reported speech", "List manager qualities", "Discuss management"],
+            [13, "Unit 10: Managing People – Lesson 2: Listening & Reading (Management book, Share the power)", "Management books, Power", "Leadership grammar", "Summarize leadership text", "Understand leadership texts"],
+            [14, "Unit 10: Managing People – Lesson 3: Case Study – Ashley Cooper Search: Improve staff relations, Writing: report", "Reports, Staff relations", "Report grammar", "Write staff relations report", "Write staff reports"],
+            [15, "Unit 11: Conflict – Lesson 1: Do a quiz on managing conflict", "Conflict, Resolution", "Conditionals, Word-building", "Conflict quiz", "Understand conflict"],
+            [16, "Unit 11: Conflict – Lesson 2: Listening & Reading (Interview with expert, Conflict intervention)", "Dispute experts, Interventions", "Conflict grammar", "Summarize conflict article", "Analyze conflict texts"],
+            [17, "Unit 11: Conflict – Lesson 3: Case Study – Herman & Corrie Teas: Buy-out decision, Writing: letter", "Buy-out offers, Letters", "Letter grammar", "Write buy-out letter", "Write conflict letters"],
+            [18, "Unit 12: Products – Lesson 1: Discuss products", "Products, Innovation", "Passives, Product descriptions", "Describe product", "Discuss products"],
+            [19, "Unit 12: Products – Lesson 2: Listening & Reading (Editor interview, Innovation path)", "Editors, Competitions", "Innovation grammar", "Summarize innovation article", "Understand innovation texts"],
+            [20, "Unit 12: Products – Lesson 3: Case Study – George Marshall Awards: Product innovation, Writing: report", "Reports, Presentations", "Report structures", "Write product report", "Write product reports"],
+            [21, "Working Across Cultures 4: Preparing to Do Business Internationally", "International business", "International grammar", "Compare international practices", "Do international business"],
+            [22, "Revision D", "Review vocab Units 10–12", "Review Units 10–12 grammar", "Practice test Units 10–12", "Review Units 10–12"],
+            [23, "Mid-term Test", "Mid-term vocabulary", "Grammar from Units 7–12", "Mid-term exam", "Assess progress"],
+            [24, "Project Work: Group Presentation (Business/Marketing theme)", "Presentation language", "Presentation connectors", "Prepare presentation", "Present projects"],
+        ];
+
+        foreach ($lessons as $lesson) {
+            $subject->syllabi()->create([
+                'lesson_number' => $lesson[0],
+                'content'       => $lesson[1],
+                'vocabulary'    => $lesson[2],
+                'grammar'       => $lesson[3],
+                'assignment'    => $lesson[4],
+                'CLO'           => $lesson[5],
+            ]);
+        }
+
         // ========== ICY IELTS 1 ==========
         $ielts1 = Subject::where('name', 'ICY IELTS 1')->first();
 
@@ -2078,5 +2242,621 @@ class SyllabusSeeder extends Seeder
         }
 
         // ========== ICY WONDERLAND 4 ==========
+        $wonderland4 = Subject::where('name', 'ICY Wonderland 4')->first();
+
+        $lessons_w4 = [
+            [1, "Unit 5: The Park - Lesson 1: Nature", "flower, tree, rock, river, hill, lake", "Workbook pp. (Nature); find 2 items at home and tell parents in English.", "Name common things in a park and produce short 'I can see…' sentences."],
+            [2, "Unit 5: The Park - Lesson 2: Playtime", "play soccer, jump rope, fly a kite, ride a bike", "Workbook practice; ask a family member what they can do.", "Express simple abilities in the playtime context."],
+            [3, "Unit 5: The Park - Lesson 3: Story", "review of Unit 5 vocabulary", "Retell story to parents using pictures (3 sentences).", "Understand main idea of a short story and retell with prompts."],
+            [4, "Unit 5: The Park - Lesson 4: Animals", "turtle, frog, spider, ant", "Workbook page (animals); review Q&A at home.", "Respond accurately to visibility questions about animals."],
+            [5, "Unit 6: The Zoo - Lesson 1: Animals", "monkey, elephant, tiger, bear, kangaroo, penguin", "Workbook pp. (zoo scene).", "Use location questions/answers with common zoo animals."],
+            [6, "Unit 6: The Zoo - Lesson 2: Animals (Expanding)", "snake, giraffe, lion, zebra", "Workbook exercises (plural forms).", "Ask and answer about animal locations using plural nouns."],
+            [7, "Unit 6: The Zoo - Lesson 3: Story", "review of Unit 6 vocabulary", "Story mini-sheet: circle the correct picture.", "Show understanding of a narrative and polite expressions."],
+            [8, "Unit 6: The Zoo - Lesson 4: Abilities", "run, hop, swim, walk", "Short worksheet (abilities).", "Answer ability questions about animals correctly."],
+            [9, "Check Up 3 (Units 5 & 6)", "All Unit 5–6 vocabulary & patterns", "Review items marked with a sticker at home.", "Consolidate learning from Units 5–6 and diagnose needs."],
+            [10, "Unit 7: Science Day - Lesson 1: My Body", "arm, hand, finger, leg, foot, toe", "Workbook pp. (body).", "Identify and name body parts; use singular/plural frames."],
+            [11, "Unit 7: Science Day - Lesson 2: My Face", "eye, nose, mouth, ear", "Practice Q&A at home with family.", "Use confirmation questions about face parts."],
+            [12, "Unit 7: Science Day - Lesson 3: Story", "review of Unit 7 vocabulary", "Draw your favorite scene and label it.", "Understand and retell a simple story using polite phrases."],
+            [13, "Mid-term Test (Units 5 & 6)", "All Unit 5–6 vocabulary & patterns", "Review mistakes; short revision list to parents.", "Assess achievement halfway and plan support."],
+            [14, "Unit 7: Science Day - Lesson 4: Healthy Habits", "wash my face, wash my hands, brush my hair, brush my teeth", "Worksheet; practice routine at home and tell parents.", "Use everyday habit phrases in simple sentences."],
+            [15, "Unit 8: The Toy Store - Lesson 1: Adjectives", "old, new, big, small, long, short", "Workbook adjectives page.", "Use basic adjectives to describe objects accurately."],
+            [16, "Unit 8: The Toy Store - Lesson 2: Adjectives (Expanding)", "fast, slow, noisy, quiet", "Practice Q&A with a family member (report next class).", "Ask and answer adjective questions correctly."],
+            [17, "Unit 8: The Toy Store - Lesson 3: Story", "review of Unit 8 vocabulary", "Comprehension mini-sheet (circle the picture).", "Use polite requests in a familiar context."],
+            [18, "Unit 8: The Toy Store - Lesson 4: Transportation", "bus, truck, train, boat", "Workbook transport page.", "Recognize and name common vehicles; use 'What’s this/that?'"],
+            [19, "Check Up 4 (Units 7 & 8)", "All Unit 7–8 vocabulary", "Revise items marked with a sticker at home.", "Consolidate Units 7–8; prepare for YLE practice."],
+            [20, "YLE Practice 1", "Mixed vocabulary from Units 5–8", "Review mistakes at home; re-practice tricky items.", "Familiarize with YLE task formats and strategies."],
+            [21, "YLE Practice 2", "Mixed vocabulary from Units 5–8", "Short mixed-skill worksheet at home.", "Improve accuracy and fluency under time constraints."],
+            [22, "YLE Practice 3", "Mixed vocabulary from Units 5–8", "Light review and rest advice.", "Be ready for final assessment tasks."],
+            [23, "Final Review & Mock Test", "review all Units 5–8", "Light review at home; good sleep reminder.", "Be confident and ready for final assessment."],
+            [24, "Final Test (Units 5–8)", "All vocabulary & patterns from Units 5–8", "Celebrate achievements; optional photo with certificate.", "Demonstrate end-of-course outcomes across four skills."],
+        ];
+
+        foreach ($lessons_w4 as $lesson) {
+            $wonderland4->syllabi()->create([
+                'lesson_number' => $lesson[0],
+                'content'       => $lesson[1],
+                'vocabulary'    => $lesson[2],
+                'assignment'    => $lesson[3],
+                'CLO'           => $lesson[4],
+            ]);
+        }
+
+        // ========== ICY WONDERLAND 5 ==========
+        $wonderland5 = Subject::where('name', 'ICY Wonderland 5')->first();
+
+        $lessons_w5 = [
+            [1, "Unit 1: How We Feel - Lesson 1: Feelings", "happy, sad, hot, cold, hungry, thirsty", "Worksheet: Match words to pictures.", "Identify and say basic feelings in English."],
+            [2, "Unit 1: How We Feel - Lesson 2: Feelings (Expanding)", "sick, tired, bored, excited", "Write 5 sentences using new feelings.", "Use expanded feelings vocabulary in short dialogues."],
+            [3, "Unit 1: How We Feel - Lesson 3: Story", "hurt, leg, arm", "Draw and label your favorite story part.", "Comprehend and retell a short story."],
+            [4, "Unit 1: How We Feel - Lesson 4: The Senses", "see, hear, smell, taste, touch", "Make a senses chart at home.", "Name and use sense verbs in context."],
+            [5, "Unit 2: In Town - Lesson 1: Jobs", "doctor, nurse, teacher, student, pilot, cook", "Draw and label 3 jobs.", "Identify and name common jobs."],
+            [6, "Unit 2: In Town - Lesson 2: Jobs (Expanding)", "police officer, firefighter, bus driver, soccer player", "Write 4 sentences about jobs.", "Use expanded jobs vocabulary in dialogues."],
+            [7, "Unit 2: In Town - Lesson 3: Story", "excuse me, borrow, phone", "Draw your favorite story scene.", "Comprehend and retell a short story."],
+            [8, "Unit 2: In Town - Lesson 4: Places", "hospital, school, home, restaurant", "Write 4 sentences about places.", "Identify and talk about places in town."],
+            [9, "Check Up 1 (Unit 1 + Unit 2)", "All vocabulary from Units 1-2", "Workbook review pages.", "Review and consolidate Units 1-2."],
+            [10, "Unit 3: Things to Eat - Lesson 1: Food", "soup, salad, spaghetti, french fries, steak, eggs", "Draw and label 3 foods.", "Identify and name common foods."],
+            [11, "Unit 3: Things to Eat - Lesson 2: Fruit", "apple, banana, orange, peach", "Write 4 fruit sentences.", "Use fruit vocabulary in sentences."],
+            [12, "Unit 3: Things to Eat - Lesson 3: Story", "apple, please, thank you", "Draw your favorite part of story.", "Comprehend and act out short story."],
+            [13, "Mid-term Test", "All vocabulary Units 1-3", "Study all Units 1-3.", "Assess mid-term learning outcomes."],
+            [14, "Unit 3: Things to Eat - Lesson 4: Dairy Products", "milk, yogurt, cheese, butter", "Write 3 sentences about dairy.", "Identify and talk about dairy products."],
+            [15, "Unit 4: Things to Wear - Lesson 1: Clothes", "shirt, dress, skirt, pants, socks, shoes", "Draw and label 3 clothes.", "Identify and name common clothes."],
+            [16, "Unit 4: Things to Wear - Lesson 2: Clothes (Expanding)", "cap, T-shirt, shorts, sneakers", "Write 4 sentences about clothes.", "Use expanded clothes vocabulary in dialogues."],
+            [17, "Unit 4: Things to Wear - Lesson 3: Story", "hat, coat, sweater, boots", "Draw your favorite part of story.", "Comprehend and act out short story."],
+            [18, "Unit 4: Things to Wear - Lesson 4: Clothes", "hat, coat, sweater, boots", "Write 3 clothes sentences.", "Identify and talk about clothes."],
+            [19, "Check Up 2 (Unit 3 + Unit 4)", "All vocabulary from Units 3-4", "Workbook review pages.", "Review and consolidate Units 3-4."],
+            [20, "YLE Practice 1", "Vocabulary from Units 1-4", "Review YLE vocabulary.", "Prepare for YLE Starters test."],
+            [21, "YLE Practice 2", "Vocabulary from Units 1-4", "Review YLE vocabulary.", "Prepare for YLE Starters test."],
+            [22, "YLE Review", "Vocabulary from Units 1-4", "Revise vocabulary and skills.", "Be ready for YLE Starters test."],
+            [23, "YLE Speaking Practice", "Vocabulary from Units 1-4", "Practice speaking daily.", "Speak confidently in YLE test."],
+            [24, "Final Test", "All vocabulary Units 1-4", "Study all Units 1-4.", "Assess final learning outcomes."],
+        ];
+
+        foreach ($lessons_w5 as $lesson) {
+            $wonderland5->syllabi()->create([
+                'lesson_number' => $lesson[0],
+                'content'       => $lesson[1],
+                'vocabulary'    => $lesson[2],
+                'assignment'    => $lesson[3],
+                'CLO'           => $lesson[4],
+            ]);
+        }
+
+        // ========== ICY WONDERLAND 6 ==========
+        $wonderland6 = Subject::where('name', 'ICY Wonderland 6')->first();
+
+        $lessons_w6 = [
+            [1, "Unit 5: Things to Do - Lesson 1: Actions", "read, write, draw, talk, sing, dance", "Practice writing action verbs at home", "Recognize and use basic action verbs in context"],
+            [2, "Unit 5: Things to Do - Lesson 2: Actions (Expanding)", "eat, drink, sleep, play", "Complete action-matching worksheet", "Use extended action verbs in daily conversation"],
+            [3, "Unit 5: Things to Do - Lesson 3: Story", "story vocabulary from 'Let's Play!'", "Draw favorite scene from story", "Understand and retell a simple story"],
+            [4, "Unit 5: Things to Do - Lesson 4: Activities", "play the guitar, listen to music, watch TV, do homework", "Practice describing own activities at home", "Use activity vocabulary to describe daily routines"],
+
+            [5, "Unit 6: Home - Lesson 1: Things at Home", "bed, bookshelf, table, sofa, clock, computer", "Draw and label 3 items from home", "Identify and name common household objects"],
+            [6, "Unit 6: Home - Lesson 2: Rooms", "bedroom, bathroom, living room, kitchen", "Describe your favorite room at home", "Name and describe rooms in a house"],
+            [7, "Unit 6: Home - Lesson 3: Story", "story vocabulary from 'Surprise!'", "Write one sentence about the story", "Understand and retell a short story"],
+            [8, "Unit 6: Home - Lesson 4: Numbers (0-100)", "numbers 0-100", "Count and record items at home", "Count and use numbers in conversation"],
+
+            [9, "Check Up 1 (Unit 5 & Unit 6)", "review vocabulary from Units 5 & 6", "Review vocabulary at home", "Recall and use vocabulary from Units 5 & 6"],
+
+            [10, "Unit 7: My Day - Lesson 1: Time", "one o’clock, one fifteen, one thirty, one forty-five, two o’clock", "Practice telling time at home", "Tell and ask about time accurately"],
+            [11, "Unit 7: My Day - Lesson 2: Meals", "breakfast, lunch, snack, dinner", "Draw and label meals", "Use vocabulary to talk about meals"],
+            [12, "Unit 7: My Day - Lesson 3: Story", "story vocabulary from 'Time for Bed'", "Write a sentence about story", "Understand and retell a bedtime story"],
+            [13, "Mid-term Test", "-", "-", "Assess progress in Units 5-7"],
+            [14, "Unit 7: My Day - Lesson 4: Daily Routine", "wake up, go to school, come home, go to bed", "Write daily routine", "Describe and discuss daily routines"],
+
+            [15, "Unit 8: My Week - Lesson 1: Subjects", "science, art, math, PE, music, social studies", "Draw and label favorite subject", "Identify and discuss school subjects"],
+            [16, "Unit 8: My Week - Lesson 2: Classes", "karate class, dance class, swimming class, English class", "Write own class schedule", "Use class vocabulary to talk about schedule"],
+            [17, "Unit 8: My Week - Lesson 3: Story", "story vocabulary from 'A Friend'", "Draw favorite part of story", "Understand and retell a friendship story"],
+            [18, "Unit 8: My Week - Lesson 4: Countries", "Brazil, Canada, Egypt, South Korea", "Color and label flags", "Identify countries and say where people are from"],
+
+            [19, "Check Up 2 (Unit 7 & Unit 8)", "review vocabulary from Units 7 & 8", "Review vocabulary", "Recall and use vocabulary from Units 7 & 8"],
+            [20, "YLE Practice 1", "-", "-", "Familiarize with YLE format"],
+            [21, "YLE Practice 2", "-", "-", "Familiarize with YLE format"],
+            [22, "Revision", "-", "-", "Prepare for final test"],
+            [23, "Speaking & Listening Practice", "-", "-", "Improve fluency and listening comprehension"],
+            [24, "Final Test", "-", "-", "Assess overall course outcomes"],
+        ];
+
+        foreach ($lessons_w6 as $lesson) {
+            $wonderland6->syllabi()->create([
+                'lesson_number' => $lesson[0],
+                'content'       => $lesson[1],
+                'vocabulary'    => $lesson[2],
+                'assignment'    => $lesson[3],
+                'CLO'           => $lesson[4],
+            ]);
+        }
+
+        // ========== ICY HIGHSCHOOL 1 ==========
+        $highschool1 = Subject::where('name', 'ICY Highschool 1')->first();
+
+        $lessons_hs1 = [
+            [1, "Chuyên đề 1: Ngữ âm – Phân biệt âm cơ bản, luyện phát âm", "Phonemes, Vowel, Consonant", "Phonetics rules", "Luyện phát âm IPA", "Phân biệt ngữ âm"],
+            [2, "Chuyên đề 2: Trọng âm – Quy tắc trọng âm cơ bản & bài tập", "Stress rules, Word stress", "Stress placement rules", "Làm bài tập trọng âm", "Hiểu trọng âm"],
+            [3, "Chuyên đề 3: Verb Tenses – Ôn tập thì cơ bản", "Simple tenses, Continuous, Perfect", "Verb tense forms", "Viết đoạn văn sử dụng thì cơ bản", "Nắm vững thì cơ bản"],
+            [4, "Chuyên đề 3: Verb Tenses – Bài tập ứng dụng nâng cao", "Advanced tense markers", "Usage in contexts", "Bài tập chia thì nâng cao", "Ứng dụng thì nâng cao"],
+            [5, "Chuyên đề 4: Sự phối hợp thì – Lý thuyết & ví dụ minh họa", "Sequence of tenses", "Tense agreement", "Viết lại câu với đúng thì", "Hiểu sự phối hợp thì"],
+            [6, "Chuyên đề 4: Sự phối hợp thì – Bài tập thực hành", "Reported tense shift", "Backshifting rules", "Bài tập chuyển đổi thì", "Ứng dụng phối hợp thì"],
+            [7, "Chuyên đề 5: Sự hòa hợp CN & ĐT – Quy tắc cơ bản", "Subject-verb agreement", "Singular vs plural verb", "Chọn động từ đúng", "Nắm vững SVA"],
+            [8, "Chuyên đề 5: Sự hòa hợp CN & ĐT – Bài tập tổng hợp", "Special cases", "Indefinite pronouns", "Sửa lỗi SVA", "Sửa lỗi SVA"],
+            [9, "Chuyên đề 6: Động từ khuyết thiếu – Các loại modal verbs", "Modal verbs (can, may, must)", "Modal verb structures", "Hoàn thành câu với modals", "Sử dụng modal verbs"],
+            [10, "Chuyên đề 6: Động từ khuyết thiếu – Bài tập ứng dụng", "Obligation & advice modals", "Usage of modals", "Viết đoạn văn sử dụng modals", "Ứng dụng modal verbs"],
+            [11, "Chuyên đề 7: Cụm động từ – Cách dùng & ví dụ", "Phrasal verbs", "Phrasal verb structures", "Danh sách phrasal verbs", "Nắm vững cụm động từ"],
+            [12, "Chuyên đề 7: Cụm động từ – Bài tập thực hành", "Common phrasal verbs", "Common phrasal verb usage", "Đặt câu với phrasal verbs", "Thực hành phrasal verbs"],
+            [13, "Mid-term Test", "Mid-term vocabulary", "Mid-term review grammar", "Mid-term exam", "Đánh giá năng lực giữa kỳ"],
+            [14, "Chuyên đề 8: Thức giả định – Lý thuyết & ví dụ", "Subjunctive, Wish clauses", "Subjunctive forms", "Viết câu giả định", "Hiểu thức giả định"],
+            [15, "Chuyên đề 8: Thức giả định – Bài tập ứng dụng", "If only, It's time", "Hypothetical expressions", "Bài tập if only/wish", "Ứng dụng thức giả định"],
+            [16, "Chuyên đề 9: Danh động từ – Cách dùng & cấu trúc", "Gerund, Gerund phrases", "Gerund usage", "Viết câu với gerund", "Hiểu danh động từ"],
+            [17, "Chuyên đề 9: Danh động từ – Bài tập thực hành", "Gerund vs Infinitive", "Gerund vs Infinitive", "Phân biệt gerund/infinitive", "Ứng dụng gerund"],
+            [18, "Chuyên đề 10: Câu hỏi đuôi – Lý thuyết & ví dụ", "Question tags", "Tag question rules", "Đặt câu hỏi đuôi", "Hiểu câu hỏi đuôi"],
+            [19, "Chuyên đề 10: Câu hỏi đuôi – Bài tập luyện tập", "Negative & positive tags", "Tag question exceptions", "Viết đoạn hội thoại", "Thực hành câu hỏi đuôi"],
+            [20, "Chuyên đề 11: So sánh – Các loại so sánh", "Comparatives, Superlatives", "Comparative structures", "Viết câu so sánh", "Hiểu so sánh"],
+            [21, "Chuyên đề 11: So sánh – Bài tập thực hành", "So sánh nâng cao", "Advanced comparisons", "Bài tập nâng cao", "Ứng dụng so sánh nâng cao"],
+            [22, "Chuyên đề 12: Trật tự của tính từ – Quy tắc & ví dụ", "Adjective order", "Adjective order rules", "Sắp xếp tính từ", "Hiểu trật tự tính từ"],
+            [23, "Chuyên đề 13: Mạo từ – Cách dùng a/an/the", "Articles (a/an/the)", "Article usage rules", "Điền mạo từ đúng", "Sử dụng mạo từ đúng"],
+            [24, "Final Test", "Final Test vocabulary", "Final Test grammar", "Final exam", "Đánh giá năng lực cuối kỳ"],
+        ];
+
+        foreach ($lessons_hs1 as $lesson) {
+            $highschool1->syllabi()->create([
+                'lesson_number' => $lesson[0],
+                'content'       => $lesson[1],
+                'vocabulary'    => $lesson[2],
+                'grammar'       => $lesson[3],
+                'assignment'    => $lesson[4],
+                'CLO'           => $lesson[5],
+            ]);
+        }
+
+        // ========== ICY HIGHSCHOOL 2 ==========
+        $highschool2 = Subject::where('name', 'ICY Highschool 2')->first();
+
+        $lessons_hs2 = [
+            [1, "Chuyên đề 14: Cấu tạo từ – Lý thuyết & ví dụ", "Prefixes, Suffixes", "Word formation rules", "Viết từ mới bằng tiền tố/hậu tố", "Hiểu cấu tạo từ"],
+            [2, "Chuyên đề 14: Cấu tạo từ – Bài tập ứng dụng", "Word formation", "Suffixes & prefixes", "Làm bài tập word formation", "Ứng dụng word formation"],
+            [3, "Chuyên đề 15: Từ chỉ số lượng – Lý thuyết & ví dụ", "Quantifiers, Much/Many", "Quantifier rules", "Điền từ chỉ số lượng", "Hiểu từ chỉ số lượng"],
+            [4, "Chuyên đề 15: Từ chỉ số lượng – Bài tập thực hành", "Few/Little", "Practice with quantifiers", "Viết câu với few/little", "Ứng dụng trong bài tập"],
+            [5, "Chuyên đề 16: Giới từ – Các loại giới từ cơ bản", "Prepositions of place/time", "Preposition usage", "Đặt câu với giới từ", "Hiểu giới từ"],
+            [6, "Chuyên đề 16: Giới từ – Bài tập luyện tập", "Prepositional phrases", "Prepositional structures", "Hoàn thành bài tập giới từ", "Sử dụng giới từ đúng"],
+            [7, "Chuyên đề 17: Liên từ – Lý thuyết & ví dụ", "Conjunctions: and, but, or", "Conjunction rules", "Viết câu với liên từ", "Hiểu liên từ"],
+            [8, "Chuyên đề 17: Liên từ – Bài tập thực hành", "Although, unless", "Advanced conjunctions", "Làm bài tập liên từ", "Sử dụng liên từ đúng"],
+            [9, "Chuyên đề 18: Câu bị động – Các dạng bị động cơ bản", "Passive voice", "Passive voice forms", "Chuyển câu sang bị động", "Hiểu câu bị động"],
+            [10, "Chuyên đề 18: Câu bị động – Bài tập ứng dụng", "Advanced passives", "Usage of passives", "Viết đoạn văn bị động", "Ứng dụng bị động"],
+            [11, "Chuyên đề 19: Câu điều kiện – Lý thuyết & ví dụ", "Conditionals (0,1,2)", "Conditional sentence rules", "Viết câu điều kiện", "Hiểu câu điều kiện"],
+            [12, "Chuyên đề 19: Câu điều kiện – Bài tập luyện tập", "Conditionals (3, mixed)", "Mixed conditionals", "Làm bài tập điều kiện nâng cao", "Ứng dụng điều kiện nâng cao"],
+            [13, "Mid-term Test", "Mid-term vocabulary", "Mid-term review grammar", "Mid-term exam", "Đánh giá giữa kỳ"],
+            [14, "Chuyên đề 20: Câu trực tiếp, gián tiếp – Nguyên tắc chuyển đổi", "Direct speech", "Rules for reported speech", "Chuyển câu trực tiếp thành gián tiếp", "Hiểu câu trực tiếp/gián tiếp"],
+            [15, "Chuyên đề 20: Câu trực tiếp, gián tiếp – Bài tập ứng dụng", "Indirect speech", "Reported questions & commands", "Bài tập reported speech", "Ứng dụng reported speech"],
+            [16, "Chuyên đề 21: Đảo ngữ – Lý thuyết & ví dụ", "Inversion structures", "Inversion rules", "Viết câu đảo ngữ", "Hiểu đảo ngữ"],
+            [17, "Chuyên đề 21: Đảo ngữ – Bài tập thực hành", "Negative inversion", "Practice inversion", "Bài tập đảo ngữ", "Ứng dụng đảo ngữ"],
+            [18, "Chuyên đề 22: Mệnh đề quan hệ – Lý thuyết & ví dụ", "Relative clauses", "Relative clause rules", "Viết câu với mệnh đề quan hệ", "Hiểu mệnh đề quan hệ"],
+            [19, "Chuyên đề 22: Mệnh đề quan hệ – Bài tập ứng dụng", "Defining & non-defining", "Reduced relative clauses", "Bài tập rút gọn mệnh đề quan hệ", "Ứng dụng mệnh đề quan hệ"],
+            [20, "Chuyên đề 23: Thành ngữ – Các thành ngữ phổ biến", "Idioms", "Idiomatic usage", "Viết câu với idioms", "Hiểu thành ngữ"],
+            [21, "Chuyên đề 23: Thành ngữ – Bài tập luyện tập", "Idiomatic phrases", "Idioms in sentences", "Bài tập idioms", "Ứng dụng thành ngữ"],
+            [22, "Chuyên đề 24: Cụm từ cố định – Tổng hợp & bài tập", "Fixed expressions", "Fixed expression rules", "Viết câu với cụm từ cố định", "Hiểu cụm từ cố định"],
+            [23, "Chuyên đề 25: Cấu trúc thông dụng – Tổng hợp & bài tập", "Common structures", "Common structures", "Viết đoạn văn dùng cấu trúc thông dụng", "Ứng dụng cấu trúc thông dụng"],
+            [24, "Final Test", "Final Test vocabulary", "Final Test grammar", "Final exam", "Đánh giá cuối kỳ"],
+        ];
+
+        foreach ($lessons_hs2 as $lesson) {
+            $highschool2->syllabi()->create([
+                'lesson_number' => $lesson[0],
+                'content'       => $lesson[1],
+                'vocabulary'    => $lesson[2],
+                'grammar'       => $lesson[3],
+                'assignment'    => $lesson[4],
+                'CLO'           => $lesson[5],
+            ]);
+        }
+
+        // ========== ICY HIGHSCHOOL 3 ==========
+        $highschool3 = Subject::where('name', 'ICY Highschool 3')->first();
+
+        $lessons_hs3 = [
+            [1, "Test 1", "Vocab Test 1", "Grammar Test 1", "Làm Test 1", "Hoàn thành Test 1"],
+            [2, "Test 2", "Vocab Test 2", "Grammar Test 2", "Làm Test 2", "Hoàn thành Test 2"],
+            [3, "Test 3", "Vocab Test 3", "Grammar Test 3", "Làm Test 3", "Hoàn thành Test 3"],
+            [4, "Review Test 1–3", "Review vocab 1–3", "Review grammar 1–3", "Ôn tập Test 1–3", "Củng cố kiến thức Test 1–3"],
+            [5, "Test 4", "Vocab Test 4", "Grammar Test 4", "Làm Test 4", "Hoàn thành Test 4"],
+            [6, "Test 5", "Vocab Test 5", "Grammar Test 5", "Làm Test 5", "Hoàn thành Test 5"],
+            [7, "Test 6", "Vocab Test 6", "Grammar Test 6", "Làm Test 6", "Hoàn thành Test 6"],
+            [8, "Review Test 4–6", "Review vocab 4–6", "Review grammar 4–6", "Ôn tập Test 4–6", "Củng cố kiến thức Test 4–6"],
+            [9, "Test 7", "Vocab Test 7", "Grammar Test 7", "Làm Test 7", "Hoàn thành Test 7"],
+            [10, "Test 8", "Vocab Test 8", "Grammar Test 8", "Làm Test 8", "Hoàn thành Test 8"],
+            [11, "Test 9", "Vocab Test 9", "Grammar Test 9", "Làm Test 9", "Hoàn thành Test 9"],
+            [12, "Review Test 7–9", "Review vocab 7–9", "Review grammar 7–9", "Ôn tập Test 7–9", "Củng cố kiến thức Test 7–9"],
+            [13, "Mid-term Test", "Mid-term vocabulary", "Mid-term review grammar", "Mid-term exam", "Đánh giá giữa kỳ"],
+            [14, "Test 10", "Vocab Test 10", "Grammar Test 10", "Làm Test 10", "Hoàn thành Test 10"],
+            [15, "Test 11", "Vocab Test 11", "Grammar Test 11", "Làm Test 11", "Hoàn thành Test 11"],
+            [16, "Test 12", "Vocab Test 12", "Grammar Test 12", "Làm Test 12", "Hoàn thành Test 12"],
+            [17, "Review Test 10–12", "Review vocab 10–12", "Review grammar 10–12", "Ôn tập Test 10–12", "Củng cố kiến thức Test 10–12"],
+            [18, "Test 13", "Vocab Test 13", "Grammar Test 13", "Làm Test 13", "Hoàn thành Test 13"],
+            [19, "Test 14", "Vocab Test 14", "Grammar Test 14", "Làm Test 14", "Hoàn thành Test 14"],
+            [20, "Test 15", "Vocab Test 15", "Grammar Test 15", "Làm Test 15", "Hoàn thành Test 15"],
+            [21, "Review Test 13–15", "Review vocab 13–15", "Review grammar 13–15", "Ôn tập Test 13–15", "Củng cố kiến thức Test 13–15"],
+            [22, "Practice Test 1", "Practice vocab 1", "Practice grammar 1", "Thực hành đề 1", "Thực hành tổng hợp 1"],
+            [23, "Practice Test 2", "Practice vocab 2", "Practice grammar 2", "Thực hành đề 2", "Thực hành tổng hợp 2"],
+            [24, "Final Test", "Final Test vocabulary", "Final Test grammar", "Final exam", "Đánh giá cuối kỳ"],
+        ];
+
+        foreach ($lessons_hs3 as $lesson) {
+            $highschool3->syllabi()->create([
+                'lesson_number' => $lesson[0],
+                'content'       => $lesson[1],
+                'vocabulary'    => $lesson[2],
+                'grammar'       => $lesson[3],
+                'assignment'    => $lesson[4],
+                'CLO'           => $lesson[5],
+            ]);
+        }
+
+        // ========== ICY HIGHSCHOOL 4 ==========
+        $highschool4 = Subject::where('name', 'ICY Highschool 4')->first();
+
+        $lessons_hs4 = [
+            [1, "Test 16", "Vocab Test 16", "Grammar Test 16", "Làm Test 16", "Hoàn thành Test 16"],
+            [2, "Test 17", "Vocab Test 17", "Grammar Test 17", "Làm Test 17", "Hoàn thành Test 17"],
+            [3, "Test 18", "Vocab Test 18", "Grammar Test 18", "Làm Test 18", "Hoàn thành Test 18"],
+            [4, "Review Test 16–18", "Review vocab 16–18", "Review grammar 16–18", "Ôn tập Test 16–18", "Củng cố kiến thức Test 16–18"],
+            [5, "Test 19", "Vocab Test 19", "Grammar Test 19", "Làm Test 19", "Hoàn thành Test 19"],
+            [6, "Test 20", "Vocab Test 20", "Grammar Test 20", "Làm Test 20", "Hoàn thành Test 20"],
+            [7, "Test 21", "Vocab Test 21", "Grammar Test 21", "Làm Test 21", "Hoàn thành Test 21"],
+            [8, "Review Test 19–21", "Review vocab 19–21", "Review grammar 19–21", "Ôn tập Test 19–21", "Củng cố kiến thức Test 19–21"],
+            [9, "Test 22", "Vocab Test 22", "Grammar Test 22", "Làm Test 22", "Hoàn thành Test 22"],
+            [10, "Test 23", "Vocab Test 23", "Grammar Test 23", "Làm Test 23", "Hoàn thành Test 23"],
+            [11, "Test 24", "Vocab Test 24", "Grammar Test 24", "Làm Test 24", "Hoàn thành Test 24"],
+            [12, "Review Test 22–24", "Review vocab 22–24", "Review grammar 22–24", "Ôn tập Test 22–24", "Củng cố kiến thức Test 22–24"],
+            [13, "Mid-term Test", "Mid-term vocabulary", "Mid-term review grammar", "Mid-term exam", "Đánh giá giữa kỳ"],
+            [14, "Test 25", "Vocab Test 25", "Grammar Test 25", "Làm Test 25", "Hoàn thành Test 25"],
+            [15, "Test 26", "Vocab Test 26", "Grammar Test 26", "Làm Test 26", "Hoàn thành Test 26"],
+            [16, "Test 27", "Vocab Test 27", "Grammar Test 27", "Làm Test 27", "Hoàn thành Test 27"],
+            [17, "Review Test 25–27", "Review vocab 25–27", "Review grammar 25–27", "Ôn tập Test 25–27", "Củng cố kiến thức Test 25–27"],
+            [18, "Test 28", "Vocab Test 28", "Grammar Test 28", "Làm Test 28", "Hoàn thành Test 28"],
+            [19, "Test 29", "Vocab Test 29", "Grammar Test 29", "Làm Test 29", "Hoàn thành Test 29"],
+            [20, "Test 30", "Vocab Test 30", "Grammar Test 30", "Làm Test 30", "Hoàn thành Test 30"],
+            [21, "Review Test 28–30", "Review vocab 28–30", "Review grammar 28–30", "Ôn tập Test 28–30", "Củng cố kiến thức Test 28–30"],
+            [22, "Practice Test 1", "Practice vocab 1", "Practice grammar 1", "Thực hành đề 1", "Thực hành tổng hợp 1"],
+            [23, "Practice Test 2", "Practice vocab 2", "Practice grammar 2", "Thực hành đề 2", "Thực hành tổng hợp 2"],
+            [24, "Final Test", "Final Test vocabulary", "Final Test grammar", "Final exam", "Đánh giá cuối kỳ"],
+        ];
+
+        foreach ($lessons_hs4 as $lesson) {
+            $highschool4->syllabi()->create([
+                'lesson_number' => $lesson[0],
+                'content'       => $lesson[1],
+                'vocabulary'    => $lesson[2],
+                'grammar'       => $lesson[3],
+                'assignment'    => $lesson[4],
+                'CLO'           => $lesson[5],
+            ]);
+        }
+
+        // ========== ICY HIGHSCHOOL 5 ==========
+        $hs5 = Subject::where('name', 'ICY Highschool 5')->first();
+
+        $lessons_hs5 = [
+            [1, "Test 31 - Mai Lan Hương", "Test vocabulary (Mai Lan Hương)", "Test grammar (Mai Lan Hương)", "Bài tập Test (Mai Lan Hương)", "Hoàn thành Test (Mai Lan Hương)"],
+            [2, "Test 32 - Mai Lan Hương", "Test vocabulary (Mai Lan Hương)", "Test grammar (Mai Lan Hương)", "Bài tập Test (Mai Lan Hương)", "Hoàn thành Test (Mai Lan Hương)"],
+            [3, "Test 33 - Mai Lan Hương", "Test vocabulary (Mai Lan Hương)", "Test grammar (Mai Lan Hương)", "Bài tập Test (Mai Lan Hương)", "Hoàn thành Test (Mai Lan Hương)"],
+            [4, "Test 34 - Mai Lan Hương", "Test vocabulary (Mai Lan Hương)", "Test grammar (Mai Lan Hương)", "Bài tập Test (Mai Lan Hương)", "Hoàn thành Test (Mai Lan Hương)"],
+            [5, "Test 35 - Mai Lan Hương", "Test vocabulary (Mai Lan Hương)", "Test grammar (Mai Lan Hương)", "Bài tập Test (Mai Lan Hương)", "Hoàn thành Test (Mai Lan Hương)"],
+            [6, "Mock Test 1 - Giáo trình ICY (Reading)", "Reading vocab practice (Mock ICY)", "Reading grammar practice (Mock ICY)", "Bài tập chuyên sâu Reading (Mock ICY)", "Phát triển kỹ năng đọc hiểu chuyên sâu (Mock ICY)"],
+            [7, "Mock Test 2 - Giáo trình ICY (Reading)", "Reading vocab practice (Mock ICY)", "Reading grammar practice (Mock ICY)", "Bài tập chuyên sâu Reading (Mock ICY)", "Phát triển kỹ năng đọc hiểu chuyên sâu (Mock ICY)"],
+            [8, "Review Mock Test 1–2 (Vocabulary + Grammar)", "Review Vocabulary (Mock Tests)", "Review Grammar (Mock Tests)", "Bài tập củng cố Grammar + Vocabulary (Mock Tests)", "Củng cố Grammar + Vocabulary sau 2 Mock Tests"],
+            [9, "Mock Test 3 - Giáo trình ICY (Reading)", "Reading vocab practice (Mock ICY)", "Reading grammar practice (Mock ICY)", "Bài tập chuyên sâu Reading (Mock ICY)", "Phát triển kỹ năng đọc hiểu chuyên sâu (Mock ICY)"],
+            [10, "Mock Test 4 - Giáo trình ICY (Reading)", "Reading vocab practice (Mock ICY)", "Reading grammar practice (Mock ICY)", "Bài tập chuyên sâu Reading (Mock ICY)", "Phát triển kỹ năng đọc hiểu chuyên sâu (Mock ICY)"],
+            [11, "Review Mock Test 3–4 (Vocabulary + Grammar)", "Review Vocabulary (Mock Tests)", "Review Grammar (Mock Tests)", "Bài tập củng cố Grammar + Vocabulary (Mock Tests)", "Củng cố Grammar + Vocabulary sau 2 Mock Tests"],
+            [12, "Mock Test 5 - Giáo trình ICY (Reading)", "Reading vocab practice (Mock ICY)", "Reading grammar practice (Mock ICY)", "Bài tập chuyên sâu Reading (Mock ICY)", "Phát triển kỹ năng đọc hiểu chuyên sâu (Mock ICY)"],
+            [13, "Mid-term Test", "Mid-term vocabulary", "Mid-term review grammar", "Mid-term exam", "Đánh giá giữa kỳ"],
+            [14, "Mock Test 6 - Giáo trình ICY (Reading)", "Reading vocab practice (Mock ICY)", "Reading grammar practice (Mock ICY)", "Bài tập chuyên sâu Reading (Mock ICY)", "Phát triển kỹ năng đọc hiểu chuyên sâu (Mock ICY)"],
+            [15, "Review Mock Test 5–6 (Vocabulary + Grammar)", "Review Vocabulary (Mock Tests)", "Review Grammar (Mock Tests)", "Bài tập củng cố Grammar + Vocabulary (Mock Tests)", "Củng cố Grammar + Vocabulary sau 2 Mock Tests"],
+            [16, "Mock Test 7 - Giáo trình ICY (Reading)", "Reading vocab practice (Mock ICY)", "Reading grammar practice (Mock ICY)", "Bài tập chuyên sâu Reading (Mock ICY)", "Phát triển kỹ năng đọc hiểu chuyên sâu (Mock ICY)"],
+            [17, "Mock Test 8 - Giáo trình ICY (Reading)", "Reading vocab practice (Mock ICY)", "Reading grammar practice (Mock ICY)", "Bài tập chuyên sâu Reading (Mock ICY)", "Phát triển kỹ năng đọc hiểu chuyên sâu (Mock ICY)"],
+            [18, "Review Mock Test 7–8 (Vocabulary + Grammar)", "Review Vocabulary (Mock Tests)", "Review Grammar (Mock Tests)", "Bài tập củng cố Grammar + Vocabulary (Mock Tests)", "Củng cố Grammar + Vocabulary sau 2 Mock Tests"],
+            [19, "Mock Test 9 - Giáo trình ICY (Reading)", "Reading vocab practice (Mock ICY)", "Reading grammar practice (Mock ICY)", "Bài tập chuyên sâu Reading (Mock ICY)", "Phát triển kỹ năng đọc hiểu chuyên sâu (Mock ICY)"],
+            [20, "Mock Test 10 - Giáo trình ICY (Reading)", "Reading vocab practice (Mock ICY)", "Reading grammar practice (Mock ICY)", "Bài tập chuyên sâu Reading (Mock ICY)", "Phát triển kỹ năng đọc hiểu chuyên sâu (Mock ICY)"],
+            [21, "Review Mock Test 9–10 (Vocabulary + Grammar)", "Review Vocabulary (Mock Tests)", "Review Grammar (Mock Tests)", "Bài tập củng cố Grammar + Vocabulary (Mock Tests)", "Củng cố Grammar + Vocabulary sau 2 Mock Tests"],
+            [22, "Review", "Review Vocabulary (Mock Tests)", "Review Grammar (Mock Tests)", "Bài tập củng cố Grammar + Vocabulary (Mock Tests)", "Củng cố Grammar + Vocabulary sau 2 Mock Tests"],
+            [23, "Review", "Review Vocabulary (Mock Tests)", "Review Grammar (Mock Tests)", "Bài tập củng cố Grammar + Vocabulary (Mock Tests)", "Củng cố Grammar + Vocabulary sau 2 Mock Tests"],
+            [24, "Final Test", "Final Test vocabulary", "Final Test grammar", "Final exam", "Đánh giá cuối kỳ"],
+        ];
+
+        foreach ($lessons_hs5 as $lesson) {
+            $hs5->syllabi()->create([
+                'lesson_number' => $lesson[0],
+                'content'       => $lesson[1],
+                'vocabulary'    => $lesson[2],
+                'grammar'       => $lesson[3],
+                'assignment'    => $lesson[4],
+                'CLO'           => $lesson[5],
+            ]);
+        }
+
+        // ========== ICY HIGHSCHOOL 6 ==========
+        $highschool6 = Subject::where('name', 'ICY Highschool 6')->first();
+
+        $lessons_highschool6 = [
+            [1,  "Đề thi thật 2017 - General + Reading", "Exam vocabulary (General + Reading)", "Grammar for General + Reading", "Làm phần General + Reading của đề thi", "Hoàn thành phần General + Reading của đề thi thật"],
+            [2,  "Đề thi thật 2017 - Writing", "Exam vocabulary (Writing)", "Grammar for Writing tasks", "Làm phần Writing của đề thi", "Hoàn thành phần Writing của đề thi thật"],
+            [3,  "Review", "Review Vocabulary", "Review Grammar", "Bài tập củng cố Grammar + Vocabulary", "Củng cố Grammar + Vocabulary sau 1 đề thi"],
+            [4,  "Đề thi thật 2018 - General + Reading", "Exam vocabulary (General + Reading)", "Grammar for General + Reading", "Làm phần General + Reading của đề thi", "Hoàn thành phần General + Reading của đề thi thật"],
+            [5,  "Đề thi thật 2018 - Writing", "Exam vocabulary (Writing)", "Grammar for Writing tasks", "Làm phần Writing của đề thi", "Hoàn thành phần Writing của đề thi thật"],
+            [6,  "Review", "Review Vocabulary", "Review Grammar", "Bài tập củng cố Grammar + Vocabulary", "Củng cố Grammar + Vocabulary sau 1 đề thi"],
+            [7,  "Đề thi thật 2019 - General + Reading", "Exam vocabulary (General + Reading)", "Grammar for General + Reading", "Làm phần General + Reading của đề thi", "Hoàn thành phần General + Reading của đề thi thật"],
+            [8,  "Đề thi thật 2019 - Writing", "Exam vocabulary (Writing)", "Grammar for Writing tasks", "Làm phần Writing của đề thi", "Hoàn thành phần Writing của đề thi thật"],
+            [9,  "Review", "Review Vocabulary", "Review Grammar", "Bài tập củng cố Grammar + Vocabulary", "Củng cố Grammar + Vocabulary sau 1 đề thi"],
+            [10, "Đề thi thật 2020 - General + Reading", "Exam vocabulary (General + Reading)", "Grammar for General + Reading", "Làm phần General + Reading của đề thi", "Hoàn thành phần General + Reading của đề thi thật"],
+            [11, "Đề thi thật 2020 - Writing", "Exam vocabulary (Writing)", "Grammar for Writing tasks", "Làm phần Writing của đề thi", "Hoàn thành phần Writing của đề thi thật"],
+            [12, "Review", "Review Vocabulary", "Review Grammar", "Bài tập củng cố Grammar + Vocabulary", "Củng cố Grammar + Vocabulary sau 1 đề thi"],
+            [13, "Mid-term Test", "Mid-term vocabulary", "Mid-term review grammar", "Mid-term exam", "Đánh giá giữa kỳ"],
+            [14, "Đề thi thật 2021 - General + Reading", "Exam vocabulary (General + Reading)", "Grammar for General + Reading", "Làm phần General + Reading của đề thi", "Hoàn thành phần General + Reading của đề thi thật"],
+            [15, "Đề thi thật 2021 - Writing", "Exam vocabulary (Writing)", "Grammar for Writing tasks", "Làm phần Writing của đề thi", "Hoàn thành phần Writing của đề thi thật"],
+            [16, "Review", "Review Vocabulary", "Review Grammar", "Bài tập củng cố Grammar + Vocabulary", "Củng cố Grammar + Vocabulary sau 1 đề thi"],
+            [17, "Đề thi thật 2022 - General + Reading", "Exam vocabulary (General + Reading)", "Grammar for General + Reading", "Làm phần General + Reading của đề thi", "Hoàn thành phần General + Reading của đề thi thật"],
+            [18, "Đề thi thật 2022 - Writing", "Exam vocabulary (Writing)", "Grammar for Writing tasks", "Làm phần Writing của đề thi", "Hoàn thành phần Writing của đề thi thật"],
+            [19, "Review", "Review Vocabulary", "Review Grammar", "Bài tập củng cố Grammar + Vocabulary", "Củng cố Grammar + Vocabulary sau 1 đề thi"],
+            [20, "Đề thi thật 2023 - General + Reading", "Exam vocabulary (General + Reading)", "Grammar for General + Reading", "Làm phần General + Reading của đề thi", "Hoàn thành phần General + Reading của đề thi thật"],
+            [21, "Đề thi thật 2023 - Writing", "Exam vocabulary (Writing)", "Grammar for Writing tasks", "Làm phần Writing của đề thi", "Hoàn thành phần Writing của đề thi thật"],
+            [22, "Đề thi thật 2024 - General + Reading", "Exam vocabulary (General + Reading)", "Grammar for General + Reading", "Làm phần General + Reading của đề thi", "Hoàn thành phần General + Reading của đề thi thật"],
+            [23, "Đề thi thật 2024 - Writing", "Exam vocabulary (Writing)", "Grammar for Writing tasks", "Làm phần Writing của đề thi", "Hoàn thành phần Writing của đề thi thật"],
+            [24, "Final Test", "Final Review vocabulary", "Final review grammar", "Final Review exam", "Đánh giá cuối kỳ"],
+        ];
+
+        foreach ($lessons_highschool6 as $lesson) {
+            $highschool6->syllabi()->create([
+                'lesson_number' => $lesson[0],
+                'content'       => $lesson[1],
+                'vocabulary'    => $lesson[2],
+                'grammar'       => $lesson[3],
+                'assignment'    => $lesson[4],
+                'CLO'           => $lesson[5],
+            ]);
+        }
+
+        // ========== ICY UNICOLLEGE 1 ==========
+        $subject = Subject::where('name', 'ICY UNICOLLEGE 1')->first();
+
+        $lessons = [
+            [1,  "Chuyên đề 1: Ngữ âm – Phân biệt âm cơ bản, luyện phát âm", "Phonemes, Vowel, Consonant", "Phonetics rules", "Luyện phát âm IPA", "Phân biệt ngữ âm"],
+            [2,  "Chuyên đề 2: Trọng âm – Quy tắc trọng âm cơ bản & bài tập", "Stress rules, Word stress", "Stress placement rules", "Làm bài tập trọng âm", "Hiểu trọng âm"],
+            [3,  "Chuyên đề 3: Verb Tenses – Ôn tập thì cơ bản", "Simple tenses, Continuous, Perfect", "Verb tense forms", "Viết đoạn văn sử dụng thì cơ bản", "Nắm vững thì cơ bản"],
+            [4,  "Chuyên đề 3: Verb Tenses – Bài tập ứng dụng nâng cao", "Advanced tense markers", "Usage in contexts", "Bài tập chia thì nâng cao", "Ứng dụng thì nâng cao"],
+            [5,  "Chuyên đề 4: Sự phối hợp thì – Lý thuyết & ví dụ minh họa", "Sequence of tenses", "Tense agreement", "Viết lại câu với đúng thì", "Hiểu sự phối hợp thì"],
+            [6,  "Chuyên đề 4: Sự phối hợp thì – Bài tập thực hành", "Reported tense shift", "Backshifting rules", "Bài tập chuyển đổi thì", "Ứng dụng phối hợp thì"],
+            [7,  "Chuyên đề 5: Sự hòa hợp CN & ĐT – Quy tắc cơ bản", "Subject-verb agreement", "Singular vs plural verb", "Chọn động từ đúng", "Nắm vững SVA"],
+            [8,  "Chuyên đề 5: Sự hòa hợp CN & ĐT – Bài tập tổng hợp", "Special cases", "Indefinite pronouns", "Sửa lỗi SVA", "Sửa lỗi SVA"],
+            [9,  "Chuyên đề 6: Động từ khuyết thiếu – Các loại modal verbs", "Modal verbs (can, may, must)", "Modal verb structures", "Hoàn thành câu với modals", "Sử dụng modal verbs"],
+            [10, "Chuyên đề 6: Động từ khuyết thiếu – Bài tập ứng dụng", "Obligation & advice modals", "Usage of modals", "Viết đoạn văn sử dụng modals", "Ứng dụng modal verbs"],
+            [11, "Chuyên đề 7: Cụm động từ – Cách dùng & ví dụ", "Phrasal verbs", "Phrasal verb structures", "Danh sách phrasal verbs", "Nắm vững cụm động từ"],
+            [12, "Chuyên đề 7: Cụm động từ – Bài tập thực hành", "Common phrasal verbs", "Common phrasal verb usage", "Đặt câu với phrasal verbs", "Thực hành phrasal verbs"],
+            [13, "Mid-term Test", "Mid-term vocabulary", "Mid-term review grammar", "Mid-term exam", "Đánh giá năng lực giữa kỳ"],
+            [14, "Chuyên đề 8: Thức giả định – Lý thuyết & ví dụ", "Subjunctive, Wish clauses", "Subjunctive forms", "Viết câu giả định", "Hiểu thức giả định"],
+            [15, "Chuyên đề 8: Thức giả định – Bài tập ứng dụng", "If only, It's time", "Hypothetical expressions", "Bài tập if only/wish", "Ứng dụng thức giả định"],
+            [16, "Chuyên đề 9: Danh động từ – Cách dùng & cấu trúc", "Gerund, Gerund phrases", "Gerund usage", "Viết câu với gerund", "Hiểu danh động từ"],
+            [17, "Chuyên đề 9: Danh động từ – Bài tập thực hành", "Gerund vs Infinitive", "Gerund vs Infinitive", "Phân biệt gerund/infinitive", "Ứng dụng gerund"],
+            [18, "Chuyên đề 10: Câu hỏi đuôi – Lý thuyết & ví dụ", "Question tags", "Tag question rules", "Đặt câu hỏi đuôi", "Hiểu câu hỏi đuôi"],
+            [19, "Chuyên đề 10: Câu hỏi đuôi – Bài tập luyện tập", "Negative & positive tags", "Tag question exceptions", "Viết đoạn hội thoại", "Thực hành câu hỏi đuôi"],
+            [20, "Chuyên đề 11: So sánh – Các loại so sánh", "Comparatives, Superlatives", "Comparative structures", "Viết câu so sánh", "Hiểu so sánh"],
+            [21, "Chuyên đề 11: So sánh – Bài tập thực hành", "So sánh nâng cao", "Advanced comparisons", "Bài tập nâng cao", "Ứng dụng so sánh nâng cao"],
+            [22, "Chuyên đề 12: Trật tự của tính từ – Quy tắc & ví dụ", "Adjective order", "Adjective order rules", "Sắp xếp tính từ", "Hiểu trật tự tính từ"],
+            [23, "Chuyên đề 13: Mạo từ – Cách dùng a/an/the", "Articles (a/an/the)", "Article usage rules", "Điền mạo từ đúng", "Sử dụng mạo từ đúng"],
+            [24, "Final Test", "Final Test vocabulary", "Final Test grammar", "Final exam", "Đánh giá năng lực cuối kỳ"],
+        ];
+
+        foreach ($lessons as $lesson) {
+            $subject->syllabi()->create([
+                'lesson_number' => $lesson[0],
+                'content'       => $lesson[1],
+                'vocabulary'    => $lesson[2],
+                'grammar'       => $lesson[3],
+                'assignment'    => $lesson[4],
+                'CLO'           => $lesson[5],
+            ]);
+        }
+
+        // ========== ICY UNICOLLEGE 2 ==========
+        $subject = Subject::where('name', 'ICY UNICOLLEGE 2')->first();
+
+        $lessons = [
+            [1,  "Chuyên đề 14: Cấu tạo từ – Lý thuyết & ví dụ", "Prefixes, Suffixes", "Word formation rules", "Viết từ mới bằng tiền tố/hậu tố", "Hiểu cấu tạo từ"],
+            [2,  "Chuyên đề 14: Cấu tạo từ – Bài tập ứng dụng", "Word formation", "Suffixes & prefixes", "Làm bài tập word formation", "Ứng dụng word formation"],
+            [3,  "Chuyên đề 15: Từ chỉ số lượng – Lý thuyết & ví dụ", "Quantifiers, Much/Many", "Quantifier rules", "Điền từ chỉ số lượng", "Hiểu từ chỉ số lượng"],
+            [4,  "Chuyên đề 15: Từ chỉ số lượng – Bài tập thực hành", "Few/Little", "Practice with quantifiers", "Viết câu với few/little", "Ứng dụng trong bài tập"],
+            [5,  "Chuyên đề 16: Giới từ – Các loại giới từ cơ bản", "Prepositions of place/time", "Preposition usage", "Đặt câu với giới từ", "Hiểu giới từ"],
+            [6,  "Chuyên đề 16: Giới từ – Bài tập luyện tập", "Prepositional phrases", "Prepositional structures", "Hoàn thành bài tập giới từ", "Sử dụng giới từ đúng"],
+            [7,  "Chuyên đề 17: Liên từ – Lý thuyết & ví dụ", "Conjunctions: and, but, or", "Conjunction rules", "Viết câu với liên từ", "Hiểu liên từ"],
+            [8,  "Chuyên đề 17: Liên từ – Bài tập thực hành", "Although, unless", "Advanced conjunctions", "Làm bài tập liên từ", "Sử dụng liên từ đúng"],
+            [9,  "Chuyên đề 18: Câu bị động – Các dạng bị động cơ bản", "Passive voice", "Passive voice forms", "Chuyển câu sang bị động", "Hiểu câu bị động"],
+            [10, "Chuyên đề 18: Câu bị động – Bài tập ứng dụng", "Advanced passives", "Usage of passives", "Viết đoạn văn bị động", "Ứng dụng bị động"],
+            [11, "Chuyên đề 19: Câu điều kiện – Lý thuyết & ví dụ", "Conditionals (0,1,2)", "Conditional sentence rules", "Viết câu điều kiện", "Hiểu câu điều kiện"],
+            [12, "Chuyên đề 19: Câu điều kiện – Bài tập luyện tập", "Conditionals (3, mixed)", "Mixed conditionals", "Làm bài tập điều kiện nâng cao", "Ứng dụng điều kiện nâng cao"],
+            [13, "Mid-term Test", "Mid-term vocabulary", "Mid-term review grammar", "Mid-term exam", "Đánh giá giữa kỳ"],
+            [14, "Chuyên đề 20: Câu trực tiếp, gián tiếp – Nguyên tắc chuyển đổi", "Direct speech", "Rules for reported speech", "Chuyển câu trực tiếp thành gián tiếp", "Hiểu câu trực tiếp/gián tiếp"],
+            [15, "Chuyên đề 20: Câu trực tiếp, gián tiếp – Bài tập ứng dụng", "Indirect speech", "Reported questions & commands", "Bài tập reported speech", "Ứng dụng reported speech"],
+            [16, "Chuyên đề 21: Đảo ngữ – Lý thuyết & ví dụ", "Inversion structures", "Inversion rules", "Viết câu đảo ngữ", "Hiểu đảo ngữ"],
+            [17, "Chuyên đề 21: Đảo ngữ – Bài tập thực hành", "Negative inversion", "Practice inversion", "Bài tập đảo ngữ", "Ứng dụng đảo ngữ"],
+            [18, "Chuyên đề 22: Mệnh đề quan hệ – Lý thuyết & ví dụ", "Relative clauses", "Relative clause rules", "Viết câu với mệnh đề quan hệ", "Hiểu mệnh đề quan hệ"],
+            [19, "Chuyên đề 22: Mệnh đề quan hệ – Bài tập ứng dụng", "Defining & non-defining", "Reduced relative clauses", "Bài tập rút gọn mệnh đề quan hệ", "Ứng dụng mệnh đề quan hệ"],
+            [20, "Chuyên đề 23: Thành ngữ – Các thành ngữ phổ biến", "Idioms", "Idiomatic usage", "Viết câu với idioms", "Hiểu thành ngữ"],
+            [21, "Chuyên đề 23: Thành ngữ – Bài tập luyện tập", "Idiomatic phrases", "Idioms in sentences", "Bài tập idioms", "Ứng dụng thành ngữ"],
+            [22, "Chuyên đề 24: Cụm từ cố định – Tổng hợp & bài tập", "Fixed expressions", "Fixed expression rules", "Viết câu với cụm từ cố định", "Hiểu cụm từ cố định"],
+            [23, "Chuyên đề 25: Cấu trúc thông dụng – Tổng hợp & bài tập", "Common structures", "Common structures", "Viết đoạn văn dùng cấu trúc thông dụng", "Ứng dụng cấu trúc thông dụng"],
+            [24, "Final Test", "Final Test vocabulary", "Final Test grammar", "Final exam", "Đánh giá cuối kỳ"],
+        ];
+
+        foreach ($lessons as $lesson) {
+            $subject->syllabi()->create([
+                'lesson_number' => $lesson[0],
+                'content'       => $lesson[1],
+                'vocabulary'    => $lesson[2],
+                'grammar'       => $lesson[3],
+                'assignment'    => $lesson[4],
+                'CLO'           => $lesson[5],
+            ]);
+        }
+
+        // ========== ICY UNICOLLEGE 3 ==========
+        $subject = Subject::where('name', 'ICY UNICOLLEGE 3')->first();
+
+        $lessons_unicollege3 = [
+            [1,  "Test 1 - Lesson 1: General", "Penbook Test vocabulary (General)", "Penbook grammar focus (General)", "Làm phần General trong Test Penbook", "Hoàn thành phần General của Test Penbook"],
+            [2,  "Test 1 - Lesson 2: Reading", "Penbook Test vocabulary (Reading)", "Penbook grammar focus (Reading)", "Làm phần Reading trong Test Penbook", "Hoàn thành phần Reading của Test Penbook"],
+            [3,  "Test 2 - Lesson 1: General", "Penbook Test vocabulary (General)", "Penbook grammar focus (General)", "Làm phần General trong Test Penbook", "Hoàn thành phần General của Test Penbook"],
+            [4,  "Test 2 - Lesson 2: Reading", "Penbook Test vocabulary (Reading)", "Penbook grammar focus (Reading)", "Làm phần Reading trong Test Penbook", "Hoàn thành phần Reading của Test Penbook"],
+            [5,  "Test 3 - Lesson 1: General", "Penbook Test vocabulary (General)", "Penbook grammar focus (General)", "Làm phần General trong Test Penbook", "Hoàn thành phần General của Test Penbook"],
+            [6,  "Test 3 - Lesson 2: Reading", "Penbook Test vocabulary (Reading)", "Penbook grammar focus (Reading)", "Làm phần Reading trong Test Penbook", "Hoàn thành phần Reading của Test Penbook"],
+            [7,  "Test 4 - Lesson 1: General", "Penbook Test vocabulary (General)", "Penbook grammar focus (General)", "Làm phần General trong Test Penbook", "Hoàn thành phần General của Test Penbook"],
+            [8,  "Test 4 - Lesson 2: Reading", "Penbook Test vocabulary (Reading)", "Penbook grammar focus (Reading)", "Làm phần Reading trong Test Penbook", "Hoàn thành phần Reading của Test Penbook"],
+            [9,  "Test 5 - Lesson 1: General", "Penbook Test vocabulary (General)", "Penbook grammar focus (General)", "Làm phần General trong Test Penbook", "Hoàn thành phần General của Test Penbook"],
+            [10, "Test 5 - Lesson 2: Reading", "Penbook Test vocabulary (Reading)", "Penbook grammar focus (Reading)", "Làm phần Reading trong Test Penbook", "Hoàn thành phần Reading của Test Penbook"],
+            [11, "Review Test 1–5", "Review Vocabulary (Test consolidation)", "Review Grammar (Test consolidation)", "Bài tập củng cố Grammar + Vocabulary", "Củng cố Grammar + Vocabulary sau 5 bài test"],
+            [12, "Test 6 - Lesson 1: General", "Penbook Test vocabulary (General)", "Penbook grammar focus (General)", "Làm phần General trong Test Penbook", "Hoàn thành phần General của Test Penbook"],
+            [13, "Mid-term Test", "Mid-term vocabulary", "Mid-term review grammar", "Mid-term exam", "Đánh giá giữa kỳ"],
+            [14, "Test 6 - Lesson 2: Reading", "Penbook Test vocabulary (Reading)", "Penbook grammar focus (Reading)", "Làm phần Reading trong Test Penbook", "Hoàn thành phần Reading của Test Penbook"],
+            [15, "Test 7 - Lesson 1: General", "Penbook Test vocabulary (General)", "Penbook grammar focus (General)", "Làm phần General trong Test Penbook", "Hoàn thành phần General của Test Penbook"],
+            [16, "Test 7 - Lesson 2: Reading", "Penbook Test vocabulary (Reading)", "Penbook grammar focus (Reading)", "Làm phần Reading trong Test Penbook", "Hoàn thành phần Reading của Test Penbook"],
+            [17, "Test 8 - Lesson 1: General", "Penbook Test vocabulary (General)", "Penbook grammar focus (General)", "Làm phần General trong Test Penbook", "Hoàn thành phần General của Test Penbook"],
+            [18, "Test 8 - Lesson 2: Reading", "Penbook Test vocabulary (Reading)", "Penbook grammar focus (Reading)", "Làm phần Reading trong Test Penbook", "Hoàn thành phần Reading của Test Penbook"],
+            [19, "Test 9 - Lesson 1: General", "Penbook Test vocabulary (General)", "Penbook grammar focus (General)", "Làm phần General trong Test Penbook", "Hoàn thành phần General của Test Penbook"],
+            [20, "Test 9 - Lesson 2: Reading", "Penbook Test vocabulary (Reading)", "Penbook grammar focus (Reading)", "Làm phần Reading trong Test Penbook", "Hoàn thành phần Reading của Test Penbook"],
+            [21, "Test 10 - Lesson 1: General", "Penbook Test vocabulary (General)", "Penbook grammar focus (General)", "Làm phần General trong Test Penbook", "Hoàn thành phần General của Test Penbook"],
+            [22, "Test 10 - Lesson 2: Reading", "Penbook Test vocabulary (Reading)", "Penbook grammar focus (Reading)", "Làm phần Reading trong Test Penbook", "Hoàn thành phần Reading của Test Penbook"],
+            [23, "Review Test 6–10", "Review Vocabulary (Test consolidation)", "Review Grammar (Test consolidation)", "Bài tập củng cố Grammar + Vocabulary", "Củng cố Grammar + Vocabulary sau 5 bài test"],
+            [24, "Final Test", "Final Test vocabulary", "Final Test grammar", "Final exam", "Đánh giá cuối kỳ"],
+        ];
+
+        foreach ($lessons_unicollege3 as $lesson) {
+            $subject->syllabi()->create([
+                'lesson_number' => $lesson[0],
+                'content'       => $lesson[1],
+                'vocabulary'    => $lesson[2],
+                'grammar'       => $lesson[3],
+                'assignment'    => $lesson[4],
+                'CLO'           => $lesson[5],
+            ]);
+        }
+
+        //
+        $subject = Subject::where('name', 'ICY UNICOLLEGE 4')->first();
+
+        $lessons_unicollege4 = [
+            [1,  "Test 11 - Lesson 1: General", "Penbook Test vocabulary (General)", "Penbook grammar focus (General)", "Làm phần General trong Test Penbook", "Hoàn thành phần General của Test Penbook"],
+            [2,  "Test 11 - Lesson 2: Reading", "Penbook Test vocabulary (Reading)", "Penbook grammar focus (Reading)", "Làm phần Reading trong Test Penbook", "Hoàn thành phần Reading của Test Penbook"],
+            [3,  "Test 12 - Lesson 1: General", "Penbook Test vocabulary (General)", "Penbook grammar focus (General)", "Làm phần General trong Test Penbook", "Hoàn thành phần General của Test Penbook"],
+            [4,  "Test 12 - Lesson 2: Reading", "Penbook Test vocabulary (Reading)", "Penbook grammar focus (Reading)", "Làm phần Reading trong Test Penbook", "Hoàn thành phần Reading của Test Penbook"],
+            [5,  "Test 13 - Lesson 1: General", "Penbook Test vocabulary (General)", "Penbook grammar focus (General)", "Làm phần General trong Test Penbook", "Hoàn thành phần General của Test Penbook"],
+            [6,  "Test 13 - Lesson 2: Reading", "Penbook Test vocabulary (Reading)", "Penbook grammar focus (Reading)", "Làm phần Reading trong Test Penbook", "Hoàn thành phần Reading của Test Penbook"],
+            [7,  "Test 14 - Lesson 1: General", "Penbook Test vocabulary (General)", "Penbook grammar focus (General)", "Làm phần General trong Test Penbook", "Hoàn thành phần General của Test Penbook"],
+            [8,  "Test 14 - Lesson 2: Reading", "Penbook Test vocabulary (Reading)", "Penbook grammar focus (Reading)", "Làm phần Reading trong Test Penbook", "Hoàn thành phần Reading của Test Penbook"],
+            [9,  "Test 15 - Lesson 1: General", "Penbook Test vocabulary (General)", "Penbook grammar focus (General)", "Làm phần General trong Test Penbook", "Hoàn thành phần General của Test Penbook"],
+            [10, "Test 15 - Lesson 2: Reading", "Penbook Test vocabulary (Reading)", "Penbook grammar focus (Reading)", "Làm phần Reading trong Test Penbook", "Hoàn thành phần Reading của Test Penbook"],
+            [11, "Review Test 11–15", "Review Vocabulary (Test consolidation)", "Review Grammar (Test consolidation)", "Bài tập củng cố Grammar + Vocabulary", "Củng cố Grammar + Vocabulary sau 5 bài test"],
+            [12, "Test 16 - Lesson 1: General", "Penbook Test vocabulary (General)", "Penbook grammar focus (General)", "Làm phần General trong Test Penbook", "Hoàn thành phần General của Test Penbook"],
+            [13, "Mid-term Test", "Mid-term vocabulary", "Mid-term review grammar", "Mid-term exam", "Đánh giá giữa kỳ"],
+            [14, "Test 16 - Lesson 2: Reading", "Penbook Test vocabulary (Reading)", "Penbook grammar focus (Reading)", "Làm phần Reading trong Test Penbook", "Hoàn thành phần Reading của Test Penbook"],
+            [15, "Test 17 - Lesson 1: General", "Penbook Test vocabulary (General)", "Penbook grammar focus (General)", "Làm phần General trong Test Penbook", "Hoàn thành phần General của Test Penbook"],
+            [16, "Test 17 - Lesson 2: Reading", "Penbook Test vocabulary (Reading)", "Penbook grammar focus (Reading)", "Làm phần Reading trong Test Penbook", "Hoàn thành phần Reading của Test Penbook"],
+            [17, "Test 18 - Lesson 1: General", "Penbook Test vocabulary (General)", "Penbook grammar focus (General)", "Làm phần General trong Test Penbook", "Hoàn thành phần General của Test Penbook"],
+            [18, "Test 18 - Lesson 2: Reading", "Penbook Test vocabulary (Reading)", "Penbook grammar focus (Reading)", "Làm phần Reading trong Test Penbook", "Hoàn thành phần Reading của Test Penbook"],
+            [19, "Test 19 - Lesson 1: General", "Penbook Test vocabulary (General)", "Penbook grammar focus (General)", "Làm phần General trong Test Penbook", "Hoàn thành phần General của Test Penbook"],
+            [20, "Test 19 - Lesson 2: Reading", "Penbook Test vocabulary (Reading)", "Penbook grammar focus (Reading)", "Làm phần Reading trong Test Penbook", "Hoàn thành phần Reading của Test Penbook"],
+            [21, "Test 20 - Lesson 1: General", "Penbook Test vocabulary (General)", "Penbook grammar focus (General)", "Làm phần General trong Test Penbook", "Hoàn thành phần General của Test Penbook"],
+            [22, "Test 20 - Lesson 2: Reading", "Penbook Test vocabulary (Reading)", "Penbook grammar focus (Reading)", "Làm phần Reading trong Test Penbook", "Hoàn thành phần Reading của Test Penbook"],
+            [23, "Review Test 16–20", "Review Vocabulary (Test consolidation)", "Review Grammar (Test consolidation)", "Bài tập củng cố Grammar + Vocabulary", "Củng cố Grammar + Vocabulary sau 5 bài test"],
+            [24, "Final Test", "Final Test vocabulary", "Final Test grammar", "Final exam", "Đánh giá cuối kỳ"],
+        ];
+
+        foreach ($lessons_unicollege4 as $lesson) {
+            $subject->syllabi()->create([
+                'lesson_number' => $lesson[0],
+                'content'       => $lesson[1],
+                'vocabulary'    => $lesson[2],
+                'grammar'       => $lesson[3],
+                'assignment'    => $lesson[4],
+                'CLO'           => $lesson[5],
+            ]);
+        }
+
+
+        // ========== ICY UNICOLLEGE 5 ==========
+        $subject = Subject::where('name', 'ICY UNICOLLEGE 5')->first();
+
+        $lessons_unicollege5 = [
+            [1,  "Mock Test 1 - Lesson 1: General", "ICY Mock Test vocabulary (General)", "ICY Mock Test grammar focus (General)", "Làm phần General trong Mock Test ICY", "Hoàn thành phần General của Mock Test ICY"],
+            [2,  "Mock Test 1 - Lesson 2: Reading", "ICY Mock Test vocabulary (Reading)", "ICY Mock Test grammar focus (Reading)", "Làm phần Reading trong Mock Test ICY", "Hoàn thành phần Reading của Mock Test ICY"],
+            [3,  "Mock Test 2 - Lesson 1: General", "ICY Mock Test vocabulary (General)", "ICY Mock Test grammar focus (General)", "Làm phần General trong Mock Test ICY", "Hoàn thành phần General của Mock Test ICY"],
+            [4,  "Mock Test 2 - Lesson 2: Reading", "ICY Mock Test vocabulary (Reading)", "ICY Mock Test grammar focus (Reading)", "Làm phần Reading trong Mock Test ICY", "Hoàn thành phần Reading của Mock Test ICY"],
+            [5,  "Mock Test 3 - Lesson 1: General", "ICY Mock Test vocabulary (General)", "ICY Mock Test grammar focus (General)", "Làm phần General trong Mock Test ICY", "Hoàn thành phần General của Mock Test ICY"],
+            [6,  "Mock Test 3 - Lesson 2: Reading", "ICY Mock Test vocabulary (Reading)", "ICY Mock Test grammar focus (Reading)", "Làm phần Reading trong Mock Test ICY", "Hoàn thành phần Reading của Mock Test ICY"],
+            [7,  "Mock Test 4 - Lesson 1: General", "ICY Mock Test vocabulary (General)", "ICY Mock Test grammar focus (General)", "Làm phần General trong Mock Test ICY", "Hoàn thành phần General của Mock Test ICY"],
+            [8,  "Mock Test 4 - Lesson 2: Reading", "ICY Mock Test vocabulary (Reading)", "ICY Mock Test grammar focus (Reading)", "Làm phần Reading trong Mock Test ICY", "Hoàn thành phần Reading của Mock Test ICY"],
+            [9,  "Mock Test 5 - Lesson 1: General", "ICY Mock Test vocabulary (General)", "ICY Mock Test grammar focus (General)", "Làm phần General trong Mock Test ICY", "Hoàn thành phần General của Mock Test ICY"],
+            [10, "Mock Test 5 - Lesson 2: Reading", "ICY Mock Test vocabulary (Reading)", "ICY Mock Test grammar focus (Reading)", "Làm phần Reading trong Mock Test ICY", "Hoàn thành phần Reading của Mock Test ICY"],
+            [11, "Review Mock Test 1–5", "Review Vocabulary (Mock Test consolidation)", "Review Grammar (Mock Test consolidation)", "Bài tập củng cố Grammar + Vocabulary", "Củng cố Grammar + Vocabulary sau 5 Mock Tests"],
+            [12, "Mock Test 6 - Lesson 1: General", "ICY Mock Test vocabulary (General)", "ICY Mock Test grammar focus (General)", "Làm phần General trong Mock Test ICY", "Hoàn thành phần General của Mock Test ICY"],
+            [13, "Mid-term Test", "Mid-term vocabulary", "Mid-term review grammar", "Mid-term exam", "Đánh giá giữa kỳ"],
+            [14, "Mock Test 6 - Lesson 2: Reading", "ICY Mock Test vocabulary (Reading)", "ICY Mock Test grammar focus (Reading)", "Làm phần Reading trong Mock Test ICY", "Hoàn thành phần Reading của Mock Test ICY"],
+            [15, "Mock Test 7 - Lesson 1: General", "ICY Mock Test vocabulary (General)", "ICY Mock Test grammar focus (General)", "Làm phần General trong Mock Test ICY", "Hoàn thành phần General của Mock Test ICY"],
+            [16, "Mock Test 7 - Lesson 2: Reading", "ICY Mock Test vocabulary (Reading)", "ICY Mock Test grammar focus (Reading)", "Làm phần Reading trong Mock Test ICY", "Hoàn thành phần Reading của Mock Test ICY"],
+            [17, "Mock Test 8 - Lesson 1: General", "ICY Mock Test vocabulary (General)", "ICY Mock Test grammar focus (General)", "Làm phần General trong Mock Test ICY", "Hoàn thành phần General của Mock Test ICY"],
+            [18, "Mock Test 8 - Lesson 2: Reading", "ICY Mock Test vocabulary (Reading)", "ICY Mock Test grammar focus (Reading)", "Làm phần Reading trong Mock Test ICY", "Hoàn thành phần Reading của Mock Test ICY"],
+            [19, "Mock Test 9 - Lesson 1: General", "ICY Mock Test vocabulary (General)", "ICY Mock Test grammar focus (General)", "Làm phần General trong Mock Test ICY", "Hoàn thành phần General của Mock Test ICY"],
+            [20, "Mock Test 9 - Lesson 2: Reading", "ICY Mock Test vocabulary (Reading)", "ICY Mock Test grammar focus (Reading)", "Làm phần Reading trong Mock Test ICY", "Hoàn thành phần Reading của Mock Test ICY"],
+            [21, "Mock Test 10 - Lesson 1: General", "ICY Mock Test vocabulary (General)", "ICY Mock Test grammar focus (General)", "Làm phần General trong Mock Test ICY", "Hoàn thành phần General của Mock Test ICY"],
+            [22, "Mock Test 10 - Lesson 2: Reading", "ICY Mock Test vocabulary (Reading)", "ICY Mock Test grammar focus (Reading)", "Làm phần Reading trong Mock Test ICY", "Hoàn thành phần Reading của Mock Test ICY"],
+            [23, "Review Mock Test 6–10", "Review Vocabulary (Mock Test consolidation)", "Review Grammar (Mock Test consolidation)", "Bài tập củng cố Grammar + Vocabulary", "Củng cố Grammar + Vocabulary sau 5 Mock Tests"],
+            [24, "Final Test", "Final Test vocabulary", "Final Test grammar", "Final exam", "Đánh giá cuối kỳ"],
+        ];
+
+        foreach ($lessons_unicollege5 as $lesson) {
+            $subject->syllabi()->create([
+                'lesson_number' => $lesson[0],
+                'content'       => $lesson[1],
+                'vocabulary'    => $lesson[2],
+                'grammar'       => $lesson[3],
+                'assignment'    => $lesson[4],
+                'CLO'           => $lesson[5],
+            ]);
+        }
+
+        // ========== ICY UNICOLLEGE 6 ==========
+        $subject = Subject::where('name', 'ICY UNICOLLEGE 6')->first();
+
+        $lessons = [
+            [1,  "Đề thi thật 2017 - Lesson 1: General", "Exam vocabulary (General)", "Grammar focus (General exam)", "Làm phần General của đề thi thật", "Hoàn thành phần General của đề thi thật"],
+            [2,  "Đề thi thật 2017 - Lesson 2: Reading", "Exam vocabulary (Reading)", "Grammar focus (Reading exam)", "Làm phần Reading của đề thi thật", "Hoàn thành phần Reading của đề thi thật"],
+            [3,  "Review", "Review Vocabulary (Exam consolidation)", "Review Grammar (Exam consolidation)", "Bài tập củng cố Grammar + Vocabulary", "Củng cố Grammar + Vocabulary sau 1 đề thi"],
+            [4,  "Đề thi thật 2018 - Lesson 1: General", "Exam vocabulary (General)", "Grammar focus (General exam)", "Làm phần General của đề thi thật", "Hoàn thành phần General của đề thi thật"],
+            [5,  "Đề thi thật 2018 - Lesson 2: Reading", "Exam vocabulary (Reading)", "Grammar focus (Reading exam)", "Làm phần Reading của đề thi thật", "Hoàn thành phần Reading của đề thi thật"],
+            [6,  "Review", "Review Vocabulary (Exam consolidation)", "Review Grammar (Exam consolidation)", "Bài tập củng cố Grammar + Vocabulary", "Củng cố Grammar + Vocabulary sau 1 đề thi"],
+            [7,  "Đề thi thật 2019 - Lesson 1: General", "Exam vocabulary (General)", "Grammar focus (General exam)", "Làm phần General của đề thi thật", "Hoàn thành phần General của đề thi thật"],
+            [8,  "Đề thi thật 2019 - Lesson 2: Reading", "Exam vocabulary (Reading)", "Grammar focus (Reading exam)", "Làm phần Reading của đề thi thật", "Hoàn thành phần Reading của đề thi thật"],
+            [9,  "Review", "Review Vocabulary (Exam consolidation)", "Review Grammar (Exam consolidation)", "Bài tập củng cố Grammar + Vocabulary", "Củng cố Grammar + Vocabulary sau 1 đề thi"],
+            [10, "Đề thi thật 2020 - Lesson 1: General", "Exam vocabulary (General)", "Grammar focus (General exam)", "Làm phần General của đề thi thật", "Hoàn thành phần General của đề thi thật"],
+            [11, "Đề thi thật 2020 - Lesson 2: Reading", "Exam vocabulary (Reading)", "Grammar focus (Reading exam)", "Làm phần Reading của đề thi thật", "Hoàn thành phần Reading của đề thi thật"],
+            [12, "Review", "Review Vocabulary (Exam consolidation)", "Review Grammar (Exam consolidation)", "Bài tập củng cố Grammar + Vocabulary", "Củng cố Grammar + Vocabulary sau 1 đề thi"],
+            [13, "Mid-term Test", "Mid-term vocabulary", "Mid-term review grammar", "Mid-term exam", "Đánh giá giữa kỳ"],
+            [14, "Đề thi thật 2021 - Lesson 1: General", "Exam vocabulary (General)", "Grammar focus (General exam)", "Làm phần General của đề thi thật", "Hoàn thành phần General của đề thi thật"],
+            [15, "Đề thi thật 2021 - Lesson 2: Reading", "Exam vocabulary (Reading)", "Grammar focus (Reading exam)", "Làm phần Reading của đề thi thật", "Hoàn thành phần Reading của đề thi thật"],
+            [16, "Review", "Review Vocabulary (Exam consolidation)", "Review Grammar (Exam consolidation)", "Bài tập củng cố Grammar + Vocabulary", "Củng cố Grammar + Vocabulary sau 1 đề thi"],
+            [17, "Đề thi thật 2022 - Lesson 1: General", "Exam vocabulary (General)", "Grammar focus (General exam)", "Làm phần General của đề thi thật", "Hoàn thành phần General của đề thi thật"],
+            [18, "Đề thi thật 2022 - Lesson 2: Reading", "Exam vocabulary (Reading)", "Grammar focus (Reading exam)", "Làm phần Reading của đề thi thật", "Hoàn thành phần Reading của đề thi thật"],
+            [19, "Review", "Review Vocabulary (Exam consolidation)", "Review Grammar (Exam consolidation)", "Bài tập củng cố Grammar + Vocabulary", "Củng cố Grammar + Vocabulary sau 1 đề thi"],
+            [20, "Đề thi thật 2023 - Lesson 1: General", "Exam vocabulary (General)", "Grammar focus (General exam)", "Làm phần General của đề thi thật", "Hoàn thành phần General của đề thi thật"],
+            [21, "Đề thi thật 2023 - Lesson 2: Reading", "Exam vocabulary (Reading)", "Grammar focus (Reading exam)", "Làm phần Reading của đề thi thật", "Hoàn thành phần Reading của đề thi thật"],
+            [22, "Đề thi thật 2024 - Lesson 1: General", "Exam vocabulary (General)", "Grammar focus (General exam)", "Làm phần General của đề thi thật", "Hoàn thành phần General của đề thi thật"],
+            [23, "Đề thi thật 2024 - Lesson 2: Reading", "Exam vocabulary (Reading)", "Grammar focus (Reading exam)", "Làm phần Reading của đề thi thật", "Hoàn thành phần Reading của đề thi thật"],
+            [24, "Final Test", "Final Test vocabulary", "Final Test grammar", "Final exam", "Đánh giá cuối kỳ"],
+        ];
+
+        foreach ($lessons as $lesson) {
+            $subject->syllabi()->create([
+                'lesson_number' => $lesson[0],
+                'content'       => $lesson[1],
+                'vocabulary'    => $lesson[2],
+                'grammar'       => $lesson[3],
+                'assignment'    => $lesson[4],
+                'CLO'           => $lesson[5],
+            ]);
+        }
     }
 }

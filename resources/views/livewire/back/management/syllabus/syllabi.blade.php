@@ -1,9 +1,9 @@
 <div class="relative mb-4 w-full">
     {{-- Header Section --}}
     <div class="theme-header-pink">
-        <div class="flex items-center justify-between">
+        <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between space-y-4 lg:space-y-0">
             <div class="header-content">
-                <div class="flex items-center space-x-3 mb-2">
+                <div class="flex items-center space-x-2 sm:space-x-3 mb-2">
                     <div class="header-icon">
                         <flux:icon.book-open class="size-12" />
                     </div>
@@ -22,15 +22,16 @@
                     <span>Syllabus</span>
                 </div>
             </div>
-            <div class="flex items-center space-x-3">
+            <div class="flex flex-col sm:flex-row items-start sm:items-center space-y-2 sm:space-y-0 sm:space-x-3">
                 <div class="header-counter">
                     <span>{{ $syllabi->count() ?? 0 }} bài học</span>
                 </div>
 
                 @can('create', \App\Models\Syllabus::class)
-                    <button wire:click="addSyllabus" class="header-button">
-                        <flux:icon.plus-circle />
-                        <span>Thêm Syllabus</span>
+                    <button wire:click="addSyllabus" class="header-button w-full sm:w-auto">
+                        <flux:icon.plus-circle class="w-4 h-4 sm:w-5 sm:h-5" />
+                        <span class="hidden sm:inline">Thêm Syllabus</span>
+                        <span class="sm:hidden">Thêm</span>
                     </button>
                 @endcan
 
@@ -44,6 +45,13 @@
         <div class="theme-card-pink mb-2">
             <div class="p-6">
                 <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+
+                    <!-- Search -->
+                    <div>
+                        <label for="search" class="card-label">Tìm kiếm</label>
+                        <input wire:model.live="search" type="text" id="search"
+                            placeholder="Tìm theo bài học, nội dung, từ vựng..." class="card-input">
+                    </div>
                     <!-- Program Selection -->
                     <div>
                         <label for="selectedProgramId" class="card-label">Chọn chương trình</label>
@@ -65,43 +73,40 @@
                     </div>
 
 
-
-                    <!-- Search -->
+                    <!-- URL Book Display -->
                     <div>
-                        <label for="search" class="card-label">Tìm kiếm</label>
-                        <input wire:model.live="search" type="text" id="search"
-                            placeholder="Tìm theo bài học, nội dung, từ vựng..." class="card-input">
+                        @if ($selectedSubjectId)
+                            @php
+                                $selectedSubject = $subjects->firstWhere('id', $selectedSubjectId);
+                            @endphp
+                            @if ($selectedSubject && $selectedSubject->url_book)
+                                <div class="mt-7">
+                                    <flux:tooltip  content="Xem sách giáo khoa">
+                                        <a href="{{ $selectedSubject->url_book }}" target="_blank"
+                                            class="inline-flex items-center px-3 py-3 text-sm font-medium text-pink-600 bg-pink-50 border border-pink-200 rounded-lg hover:bg-pink-100 hover:text-pink-700 transition-colors duration-200 dark:bg-pink-900/20 dark:border-pink-800 dark:text-pink-400 dark:hover:bg-pink-900/30">
+                                            <flux:icon.bookmark-square class="w-4 h-4 mr-2" />
+                                            {{ $selectedSubject->curriculum_name }}
+                                        </a>
+                                    </flux:tooltip>
+                                </div>
+                            @else
+                                <div class="mt-10 text-sm text-gray-500 dark:text-gray-400">
+                                    Chưa có link sách giáo khoa
+                                </div>
+                            @endif
+                        @else
+                            <div class="mt-2 text-sm text-gray-500 dark:text-gray-400">
+                                Vui lòng chọn môn học
+                            </div>
+                        @endif
                     </div>
+
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- URL Book Display -->
-    <div>
-        @if ($selectedSubjectId)
-            @php
-                $selectedSubject = $subjects->firstWhere('id', $selectedSubjectId);
-            @endphp
-            @if ($selectedSubject && $selectedSubject->url_book)
-                <div class="mt-2 mb-2">
-                    <a href="{{ $selectedSubject->url_book }}" target="_blank"
-                        class="inline-flex items-center px-3 py-2 text-sm font-medium text-pink-600 bg-pink-50 border border-pink-200 rounded-lg hover:bg-pink-100 hover:text-pink-700 transition-colors duration-200 dark:bg-pink-900/20 dark:border-pink-800 dark:text-pink-400 dark:hover:bg-pink-900/30">
-                        <flux:icon.bookmark-square class="w-4 h-4 mr-2" />
-                        Xem sách giáo khoa
-                    </a>
-                </div>
-            @else
-                <div class="mt-2 text-sm text-gray-500 dark:text-gray-400">
-                    Chưa có link sách giáo khoa
-                </div>
-            @endif
-        @else
-            <div class="mt-2 text-sm text-gray-500 dark:text-gray-400">
-                Vui lòng chọn môn học
-            </div>
-        @endif
-    </div>
+
 
     <!-- Syllabus Table -->
     <div class="theme-table-pink">
@@ -130,14 +135,14 @@
                                 {{ $syllabus->lesson_number }}
                             </td>
                             <td class="table-cell">
-                                <div class="max-w-xs truncate" title="{{ $syllabus->content }}">
-                                    {{ Str::limit($syllabus->content, 80) }}
+                                <div title="{{ $syllabus->content }}">
+                                    {{ $syllabus->content }}
                                 </div>
                             </td>
 
                             <td class="table-cell">
-                                <div class="max-w-xs truncate" title="{{ $syllabus->CLO }}">
-                                    {{ Str::limit($syllabus->CLO, 60) }}
+                                <div title="{{ $syllabus->CLO }}">
+                                    {{ $syllabus->CLO }}
                                 </div>
                             </td>
                             @if (auth()->user()->can('update', $syllabus) || auth()->user()->can('delete', $syllabus))

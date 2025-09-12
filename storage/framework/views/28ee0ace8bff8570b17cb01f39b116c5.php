@@ -2,15 +2,15 @@
     
     <?php if (isset($component)) { $__componentOriginal8cc9d3143946b992b324617832699c5f = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal8cc9d3143946b992b324617832699c5f = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::modal.index','data' => ['dismissible' => false,'name' => 'modal-subject','class' => 'md:w-[600px]']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::modal.index','data' => ['dismissible' => false,'name' => 'modal-role','class' => 'md:w-900']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('flux::modal'); ?>
 <?php if ($component->shouldRender()): ?>
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>
 <?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
-<?php $component->withAttributes(['dismissible' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(false),'name' => 'modal-subject','class' => 'md:w-[600px]']); ?>
-        <form wire:submit='<?php echo e($isEditSubjectMode ? 'updateSubject' : 'createSubject'); ?>' class="space-y-6">
+<?php $component->withAttributes(['dismissible' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(false),'name' => 'modal-role','class' => 'md:w-900']); ?>
+        <form wire:submit='<?php echo e($isEditRoleMode ? 'updateRole' : 'createRole'); ?>' class="space-y-6">
             <div>
                 <?php if (isset($component)) { $__componentOriginale0fd5b6a0986beffac17a0a103dfd7b9 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginale0fd5b6a0986beffac17a0a103dfd7b9 = $attributes; } ?>
@@ -22,7 +22,7 @@
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
 <?php $component->withAttributes(['class' => 'font-bold','size' => 'lg']); ?>
-                    <?php echo e($isEditSubjectMode ? 'Cập nhật môn học' : 'Tạo mới môn học'); ?>
+                    <?php echo e($isEditRoleMode ? 'Cập nhật vai trò' : 'Tạo mới vai trò'); ?>
 
                  <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
@@ -43,9 +43,7 @@
 <?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
-<?php $component->withAttributes(['class' => 'mt-2']); ?>
-                    <?php echo e($isEditSubjectMode ? 'Chỉnh sửa thông tin môn học' : 'Thêm mới môn học vào hệ thống'); ?>
-
+<?php $component->withAttributes(['class' => 'mt-2']); ?><?php echo e($isEditRoleMode ? 'Chỉnh sửa thông tin vai trò' : 'Thêm mới vai trò'); ?>.
                  <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php if (isset($__attributesOriginal0638ebfbd490c7a414275d493e14cb4e)): ?>
@@ -58,110 +56,99 @@
 <?php endif; ?>
             </div>
 
-            <div class="flex gap-2">
-                <div class="form-group w-3/5">
-                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Tên môn học</label>
-                    <div class="relative">
-                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                            <span class="text-gray-500 text-sm font-medium">ICY</span>
-                        </div>
-                        <input type="text" wire:model='name' 
-                            class="block w-full pl-12 pr-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 focus:ring-2 focus:ring-pink-500 focus:border-pink-500 transition-all duration-200"
-                            placeholder="Tên môn học" autofocus>
-                    </div>
-                    <!--[if BLOCK]><![endif]--><?php $__errorArgs = ['name'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?>
-                        <p class="mt-1 text-sm text-red-600 dark:text-red-400"><?php echo e($message); ?></p>
-                    <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?><!--[if ENDBLOCK]><![endif]-->
-                </div>
-                <div class="form-group w-2/5">
-                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Mã môn học</label>
-                    <input type="text" wire:model='code' 
-                        class="block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 focus:ring-2 focus:ring-pink-500 focus:border-pink-500 transition-all duration-200"
-                        placeholder="Mã môn học">
-                    <!--[if BLOCK]><![endif]--><?php $__errorArgs = ['code'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?>
-                        <p class="mt-1 text-sm text-red-600 dark:text-red-400"><?php echo e($message); ?></p>
-                    <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?><!--[if ENDBLOCK]><![endif]-->
-                </div>
-            </div>
-            
+            <!--[if BLOCK]><![endif]--><?php if($isEditRoleMode): ?>
+                <input type="text" wire:model='roleId' hidden />
+            <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
 
             <div class="form-group">
-                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Chương trình học</label>
-                <select wire:model="program_id" 
-                    class="block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-pink-500 focus:border-pink-500 transition-all duration-200">
-                    <option value="">Chọn chương trình học</option>
-                    <!--[if BLOCK]><![endif]--><?php $__empty_1 = true; $__currentLoopData = $programs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $program): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
-                        <option value="<?php echo e($program->id); ?>"><?php echo e($program->name); ?></option>
-                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
-                        <option value="">Không có chương trình học</option>
-                    <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
-                </select>
-                <!--[if BLOCK]><![endif]--><?php $__errorArgs = ['program_id'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?>
-                    <p class="mt-1 text-sm text-red-600 dark:text-red-400"><?php echo e($message); ?></p>
-                <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?><!--[if ENDBLOCK]><![endif]-->
+                <?php if (isset($component)) { $__componentOriginal26c546557cdc09040c8dd00b2090afd0 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal26c546557cdc09040c8dd00b2090afd0 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::input.index','data' => ['label' => 'Tên vai trò','placeholder' => 'Nhập tên vai trò...','autofocus' => true,'wire:model' => 'name']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('flux::input'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['label' => 'Tên vai trò','placeholder' => 'Nhập tên vai trò...','autofocus' => true,'wire:model' => 'name']); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal26c546557cdc09040c8dd00b2090afd0)): ?>
+<?php $attributes = $__attributesOriginal26c546557cdc09040c8dd00b2090afd0; ?>
+<?php unset($__attributesOriginal26c546557cdc09040c8dd00b2090afd0); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal26c546557cdc09040c8dd00b2090afd0)): ?>
+<?php $component = $__componentOriginal26c546557cdc09040c8dd00b2090afd0; ?>
+<?php unset($__componentOriginal26c546557cdc09040c8dd00b2090afd0); ?>
+<?php endif; ?>
             </div>
 
             <div class="form-group">
-                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Tên chương trình học</label>
-                <textarea wire:model='curriculum_name' rows="4"
-                    class="block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 focus:ring-2 focus:ring-pink-500 focus:border-pink-500 transition-all duration-200 resize-none"
-                    placeholder="Nhập tên chương trình học chi tiết..."></textarea>
-                <!--[if BLOCK]><![endif]--><?php $__errorArgs = ['curriculum_name'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?>
-                    <p class="mt-1 text-sm text-red-600 dark:text-red-400"><?php echo e($message); ?></p>
-                <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?><!--[if ENDBLOCK]><![endif]-->
+                <?php if (isset($component)) { $__componentOriginal0ee30026125d1a66523211147b00e4dc = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal0ee30026125d1a66523211147b00e4dc = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::textarea','data' => ['label' => 'Mô tả','placeholder' => 'Nhập mô tả vai trò...','wire:model' => 'description','rows' => '4']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('flux::textarea'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['label' => 'Mô tả','placeholder' => 'Nhập mô tả vai trò...','wire:model' => 'description','rows' => '4']); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal0ee30026125d1a66523211147b00e4dc)): ?>
+<?php $attributes = $__attributesOriginal0ee30026125d1a66523211147b00e4dc; ?>
+<?php unset($__attributesOriginal0ee30026125d1a66523211147b00e4dc); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal0ee30026125d1a66523211147b00e4dc)): ?>
+<?php $component = $__componentOriginal0ee30026125d1a66523211147b00e4dc; ?>
+<?php unset($__componentOriginal0ee30026125d1a66523211147b00e4dc); ?>
+<?php endif; ?>
             </div>
 
-            <div class="form-group">
-                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">URL sách giáo khoa</label>
-                <input type="url" wire:model='url_book' 
-                    class="block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 focus:ring-2 focus:ring-pink-500 focus:border-pink-500 transition-all duration-200"
-                    placeholder="https://example.com/textbook">
-                <!--[if BLOCK]><![endif]--><?php $__errorArgs = ['url_book'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?>
-                    <p class="mt-1 text-sm text-red-600 dark:text-red-400"><?php echo e($message); ?></p>
-                <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?><!--[if ENDBLOCK]><![endif]-->
-            </div>
+            <div class="flex">
+                <?php if (isset($component)) { $__componentOriginal4a4f7aa062a095c651c2f80bb685a42a = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal4a4f7aa062a095c651c2f80bb685a42a = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::spacer','data' => []] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('flux::spacer'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal4a4f7aa062a095c651c2f80bb685a42a)): ?>
+<?php $attributes = $__attributesOriginal4a4f7aa062a095c651c2f80bb685a42a; ?>
+<?php unset($__attributesOriginal4a4f7aa062a095c651c2f80bb685a42a); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal4a4f7aa062a095c651c2f80bb685a42a)): ?>
+<?php $component = $__componentOriginal4a4f7aa062a095c651c2f80bb685a42a; ?>
+<?php unset($__componentOriginal4a4f7aa062a095c651c2f80bb685a42a); ?>
+<?php endif; ?>
+                <?php if (isset($component)) { $__componentOriginalc04b147acd0e65cc1a77f86fb0e81580 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginalc04b147acd0e65cc1a77f86fb0e81580 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::button.index','data' => ['type' => 'submit','class' => 'cursor-pointer','variant' => 'primary']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('flux::button'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['type' => 'submit','class' => 'cursor-pointer','variant' => 'primary']); ?>
+                    <?php echo e($isEditRoleMode ? 'Cập nhật' : 'Thêm mới'); ?>
 
-            <div class="flex justify-end">
-                <button type="submit" 
-                    class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-md font-medium transition-colors duration-200">
-                    <?php echo e($isEditSubjectMode ? 'Cập nhật' : 'Thêm mới'); ?>
-
-                </button>
+                 <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginalc04b147acd0e65cc1a77f86fb0e81580)): ?>
+<?php $attributes = $__attributesOriginalc04b147acd0e65cc1a77f86fb0e81580; ?>
+<?php unset($__attributesOriginalc04b147acd0e65cc1a77f86fb0e81580); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginalc04b147acd0e65cc1a77f86fb0e81580)): ?>
+<?php $component = $__componentOriginalc04b147acd0e65cc1a77f86fb0e81580; ?>
+<?php unset($__componentOriginalc04b147acd0e65cc1a77f86fb0e81580); ?>
+<?php endif; ?>
             </div>
         </form>
      <?php echo $__env->renderComponent(); ?>
@@ -174,17 +161,18 @@ unset($__errorArgs, $__bag); ?><!--[if ENDBLOCK]><![endif]-->
 <?php $component = $__componentOriginal8cc9d3143946b992b324617832699c5f; ?>
 <?php unset($__componentOriginal8cc9d3143946b992b324617832699c5f); ?>
 <?php endif; ?>
+
     
     <?php if (isset($component)) { $__componentOriginal8cc9d3143946b992b324617832699c5f = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal8cc9d3143946b992b324617832699c5f = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::modal.index','data' => ['name' => 'modal-delete-subject','class' => 'md:w-[500px]']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::modal.index','data' => ['name' => 'delete-role','class' => 'md:w-[500px]']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('flux::modal'); ?>
 <?php if ($component->shouldRender()): ?>
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>
 <?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
-<?php $component->withAttributes(['name' => 'modal-delete-subject','class' => 'md:w-[500px]']); ?>
+<?php $component->withAttributes(['name' => 'delete-role','class' => 'md:w-[500px]']); ?>
         <div
             class="bg-gradient-to-br from-red-50 via-white to-pink-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 rounded-2xl">
             <!-- Header với gradient background -->
@@ -211,7 +199,7 @@ unset($__errorArgs, $__bag); ?><!--[if ENDBLOCK]><![endif]-->
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
 <?php $component->withAttributes(['class' => 'font-bold text-white text-xl']); ?>
-                            🗑️ Xác nhận xóa môn học
+                            🗑️ Xác nhận xóa vai trò
                          <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php if (isset($__attributesOriginale0fd5b6a0986beffac17a0a103dfd7b9)): ?>
@@ -247,11 +235,12 @@ unset($__errorArgs, $__bag); ?><!--[if ENDBLOCK]><![endif]-->
                 </div>
             </div>
 
-            <form wire:submit='deleteSubjectConfirm' class="px-8 py-6 space-y-6">
+            <form wire:submit='deleteRoleConfirm' class="px-8 py-6 space-y-6">
                 <div class="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-xl p-6">
                     <div class="flex items-start">
                         <div class="flex-shrink-0">
-                            <svg class="w-8 h-8 text-red-600 dark:text-red-400" fill="currentColor" viewBox="0 0 20 20">
+                            <svg class="w-8 h-8 text-red-600 dark:text-red-400" fill="currentColor"
+                                viewBox="0 0 20 20">
                                 <path fill-rule="evenodd"
                                     d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"
                                     clip-rule="evenodd"></path>
@@ -262,12 +251,12 @@ unset($__errorArgs, $__bag); ?><!--[if ENDBLOCK]><![endif]-->
                                 Cảnh báo xóa dữ liệu
                             </h3>
                             <div class="mt-2 text-red-700 dark:text-red-300">
-                                <p class="mb-2">Bạn có chắc chắn muốn xóa môn học này không?</p>
+                                <p class="mb-2">Bạn có chắc chắn muốn xóa vai trò này không?</p>
                                 <ul class="list-disc list-inside space-y-1 text-sm">
-                                    <li>Tất cả thông tin môn học sẽ bị xóa vĩnh viễn</li>
-                                    <li>Các khóa học và giáo trình liên quan sẽ bị ảnh hưởng</li>
-                                    <li>Dữ liệu học tập của học viên có thể bị mất</li>
-                                    <li>Thứ tự sắp xếp môn học sẽ bị thay đổi</li>
+                                    <li>Tất cả thông tin vai trò sẽ bị xóa vĩnh viễn</li>
+                                    <li>Các quyền hạn liên quan sẽ bị mất</li>
+                                    <li>Người dùng có vai trò này sẽ bị ảnh hưởng</li>
+                                    <li>Hệ thống phân quyền có thể bị gián đoạn</li>
                                     <li>Hành động này không thể hoàn tác</li>
                                 </ul>
                             </div>
@@ -353,4 +342,4 @@ unset($__errorArgs, $__bag); ?><!--[if ENDBLOCK]><![endif]-->
 <?php unset($__componentOriginal8cc9d3143946b992b324617832699c5f); ?>
 <?php endif; ?>
 </div>
-<?php /**PATH /Users/smyth/Herd/ap.icy.edu.vn/resources/views/livewire/back/management/subject/actions-subject.blade.php ENDPATH**/ ?>
+<?php /**PATH /Users/smyth/Herd/ap.icy.edu.vn/resources/views/livewire/back/access/role/actions-role.blade.php ENDPATH**/ ?>

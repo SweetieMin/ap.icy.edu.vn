@@ -55,11 +55,11 @@
             </div>
 
             <div class="form-group">
-                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Mô tả môn học</label>
-                <textarea wire:model='description' rows="4"
+                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Tên chương trình học</label>
+                <textarea wire:model='curriculum_name' rows="4"
                     class="block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 focus:ring-2 focus:ring-pink-500 focus:border-pink-500 transition-all duration-200 resize-none"
-                    placeholder="Nhập mô tả chi tiết về môn học..."></textarea>
-                @error('description')
+                    placeholder="Nhập tên chương trình học chi tiết..."></textarea>
+                @error('curriculum_name')
                     <p class="mt-1 text-sm text-red-600 dark:text-red-400">{{ $message }}</p>
                 @enderror
             </div>

@@ -1,9 +1,9 @@
 <div class="relative mb-4 w-full">
     
     <div class="theme-header-pink">
-        <div class="flex items-center justify-between">
+        <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between space-y-4 lg:space-y-0">
             <div class="header-content">
-                <div class="flex items-center space-x-3 mb-2">
+                <div class="flex items-center space-x-2 sm:space-x-3 mb-2">
                     <div class="header-icon">
                         <?php if (isset($component)) { $__componentOriginal8318632d5261647b706c011e29964ab1 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal8318632d5261647b706c011e29964ab1 = $attributes; } ?>
@@ -41,23 +41,23 @@
                     <span>Syllabus</span>
                 </div>
             </div>
-            <div class="flex items-center space-x-3">
+            <div class="flex flex-col sm:flex-row items-start sm:items-center space-y-2 sm:space-y-0 sm:space-x-3">
                 <div class="header-counter">
                     <span><?php echo e($syllabi->count() ?? 0); ?> bài học</span>
                 </div>
 
                 <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('create', \App\Models\Syllabus::class)): ?>
-                    <button wire:click="addSyllabus" class="header-button">
+                    <button wire:click="addSyllabus" class="header-button w-full sm:w-auto">
                         <?php if (isset($component)) { $__componentOriginal4ca64116c97e8cb412511f025b00da30 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal4ca64116c97e8cb412511f025b00da30 = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::icon.plus-circle','data' => []] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::icon.plus-circle','data' => ['class' => 'w-4 h-4 sm:w-5 sm:h-5']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('flux::icon.plus-circle'); ?>
 <?php if ($component->shouldRender()): ?>
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>
 <?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
-<?php $component->withAttributes([]); ?>
+<?php $component->withAttributes(['class' => 'w-4 h-4 sm:w-5 sm:h-5']); ?>
 <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php if (isset($__attributesOriginal4ca64116c97e8cb412511f025b00da30)): ?>
@@ -68,7 +68,8 @@
 <?php $component = $__componentOriginal4ca64116c97e8cb412511f025b00da30; ?>
 <?php unset($__componentOriginal4ca64116c97e8cb412511f025b00da30); ?>
 <?php endif; ?>
-                        <span>Thêm Syllabus</span>
+                        <span class="hidden sm:inline">Thêm Syllabus</span>
+                        <span class="sm:hidden">Thêm</span>
                     </button>
                 <?php endif; ?>
 
@@ -97,6 +98,13 @@ if (isset($__slots)) unset($__slots);
         <div class="theme-card-pink mb-2">
             <div class="p-6">
                 <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+
+                    <!-- Search -->
+                    <div>
+                        <label for="search" class="card-label">Tìm kiếm</label>
+                        <input wire:model.live="search" type="text" id="search"
+                            placeholder="Tìm theo bài học, nội dung, từ vựng..." class="card-input">
+                    </div>
                     <!-- Program Selection -->
                     <div>
                         <label for="selectedProgramId" class="card-label">Chọn chương trình</label>
@@ -118,29 +126,27 @@ if (isset($__slots)) unset($__slots);
                     </div>
 
 
-
-                    <!-- Search -->
+                    <!-- URL Book Display -->
                     <div>
-                        <label for="search" class="card-label">Tìm kiếm</label>
-                        <input wire:model.live="search" type="text" id="search"
-                            placeholder="Tìm theo bài học, nội dung, từ vựng..." class="card-input">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- URL Book Display -->
-    <div>
-        <!--[if BLOCK]><![endif]--><?php if($selectedSubjectId): ?>
-            <?php
-                $selectedSubject = $subjects->firstWhere('id', $selectedSubjectId);
-            ?>
-            <!--[if BLOCK]><![endif]--><?php if($selectedSubject && $selectedSubject->url_book): ?>
-                <div class="mt-2 mb-2">
-                    <a href="<?php echo e($selectedSubject->url_book); ?>" target="_blank"
-                        class="inline-flex items-center px-3 py-2 text-sm font-medium text-pink-600 bg-pink-50 border border-pink-200 rounded-lg hover:bg-pink-100 hover:text-pink-700 transition-colors duration-200 dark:bg-pink-900/20 dark:border-pink-800 dark:text-pink-400 dark:hover:bg-pink-900/30">
-                        <?php if (isset($component)) { $__componentOriginalf85a09e6911faf7375dfec728fe17fc4 = $component; } ?>
+                        <!--[if BLOCK]><![endif]--><?php if($selectedSubjectId): ?>
+                            <?php
+                                $selectedSubject = $subjects->firstWhere('id', $selectedSubjectId);
+                            ?>
+                            <!--[if BLOCK]><![endif]--><?php if($selectedSubject && $selectedSubject->url_book): ?>
+                                <div class="mt-7">
+                                    <?php if (isset($component)) { $__componentOriginalf5109f209df079b3a83484e1e6310749 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginalf5109f209df079b3a83484e1e6310749 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::tooltip.index','data' => ['content' => 'Xem sách giáo khoa']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('flux::tooltip'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['content' => 'Xem sách giáo khoa']); ?>
+                                        <a href="<?php echo e($selectedSubject->url_book); ?>" target="_blank"
+                                            class="inline-flex items-center px-3 py-3 text-sm font-medium text-pink-600 bg-pink-50 border border-pink-200 rounded-lg hover:bg-pink-100 hover:text-pink-700 transition-colors duration-200 dark:bg-pink-900/20 dark:border-pink-800 dark:text-pink-400 dark:hover:bg-pink-900/30">
+                                            <?php if (isset($component)) { $__componentOriginalf85a09e6911faf7375dfec728fe17fc4 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginalf85a09e6911faf7375dfec728fe17fc4 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::icon.bookmark-square','data' => ['class' => 'w-4 h-4 mr-2']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('flux::icon.bookmark-square'); ?>
@@ -160,20 +166,38 @@ if (isset($__slots)) unset($__slots);
 <?php $component = $__componentOriginalf85a09e6911faf7375dfec728fe17fc4; ?>
 <?php unset($__componentOriginalf85a09e6911faf7375dfec728fe17fc4); ?>
 <?php endif; ?>
-                        Xem sách giáo khoa
-                    </a>
+                                            <?php echo e($selectedSubject->curriculum_name); ?>
+
+                                        </a>
+                                     <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginalf5109f209df079b3a83484e1e6310749)): ?>
+<?php $attributes = $__attributesOriginalf5109f209df079b3a83484e1e6310749; ?>
+<?php unset($__attributesOriginalf5109f209df079b3a83484e1e6310749); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginalf5109f209df079b3a83484e1e6310749)): ?>
+<?php $component = $__componentOriginalf5109f209df079b3a83484e1e6310749; ?>
+<?php unset($__componentOriginalf5109f209df079b3a83484e1e6310749); ?>
+<?php endif; ?>
+                                </div>
+                            <?php else: ?>
+                                <div class="mt-10 text-sm text-gray-500 dark:text-gray-400">
+                                    Chưa có link sách giáo khoa
+                                </div>
+                            <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                        <?php else: ?>
+                            <div class="mt-2 text-sm text-gray-500 dark:text-gray-400">
+                                Vui lòng chọn môn học
+                            </div>
+                        <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                    </div>
+
                 </div>
-            <?php else: ?>
-                <div class="mt-2 text-sm text-gray-500 dark:text-gray-400">
-                    Chưa có link sách giáo khoa
-                </div>
-            <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
-        <?php else: ?>
-            <div class="mt-2 text-sm text-gray-500 dark:text-gray-400">
-                Vui lòng chọn môn học
             </div>
-        <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+        </div>
     </div>
+
+
 
     <!-- Syllabus Table -->
     <div class="theme-table-pink">
@@ -203,15 +227,15 @@ if (isset($__slots)) unset($__slots);
 
                             </td>
                             <td class="table-cell">
-                                <div class="max-w-xs truncate" title="<?php echo e($syllabus->content); ?>">
-                                    <?php echo e(Str::limit($syllabus->content, 80)); ?>
+                                <div title="<?php echo e($syllabus->content); ?>">
+                                    <?php echo e($syllabus->content); ?>
 
                                 </div>
                             </td>
 
                             <td class="table-cell">
-                                <div class="max-w-xs truncate" title="<?php echo e($syllabus->CLO); ?>">
-                                    <?php echo e(Str::limit($syllabus->CLO, 60)); ?>
+                                <div title="<?php echo e($syllabus->CLO); ?>">
+                                    <?php echo e($syllabus->CLO); ?>
 
                                 </div>
                             </td>

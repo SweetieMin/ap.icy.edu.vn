@@ -7,25 +7,26 @@
     @endif
 >
     {{-- Navigation Controls --}}
-    <div class="bg-white shadow-sm rounded-t-lg p-4 border-b border-gray-200">
+    <div class="bg-white shadow-sm rounded-t-lg p-2 sm:p-4 border-b border-gray-200">
         <div class="flex items-center justify-between">
             {{-- Previous Month Button --}}
             <button 
                 wire:click="goToPreviousMonth"
-                class="flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-pink-50 hover:border-pink-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500 transition-colors duration-200"
+                class="flex items-center px-2 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-pink-50 hover:border-pink-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500 transition-colors duration-200 min-h-[44px] touch-manipulation"
             >
-                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg class="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
                 </svg>
-                Tháng trước
+                <span class="hidden sm:inline">Tháng trước</span>
+                <span class="sm:hidden">Trước</span>
             </button>
 
             {{-- Current Month Display --}}
-            <div class="text-center">
-                <h2 class="text-2xl font-semibold text-pink-600 cursor-pointer" wire:click="goToCurrentMonth">
+            <div class="text-center flex-1 mx-2">
+                <h2 class="text-lg sm:text-2xl font-semibold text-pink-600 cursor-pointer touch-manipulation" wire:click="goToCurrentMonth">
                     {{ ucwords(now()->locale('vi')->translatedFormat('l, d F Y')) }}
                 </h2>
-                <p class="text-sm text-gray-500">
+                <p class="text-xs sm:text-sm text-gray-500">
                     {{ $startsAt->format('d/m/Y') }} - {{ $endsAt->format('d/m/Y') }}
                 </p>
             </div>
@@ -33,10 +34,11 @@
             {{-- Next Month Button --}}
             <button 
                 wire:click="goToNextMonth"
-                class="flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-pink-50 hover:border-pink-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500 transition-colors duration-200"
+                class="flex items-center px-2 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-pink-50 hover:border-pink-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500 transition-colors duration-200 min-h-[44px] touch-manipulation"
             >
-                Tháng sau
-                <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <span class="hidden sm:inline">Tháng sau</span>
+                <span class="sm:hidden">Sau</span>
+                <svg class="w-3 h-3 sm:w-4 sm:h-4 ml-1 sm:ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                 </svg>
             </button>
@@ -45,8 +47,8 @@
     </div>
 
     {{-- Calendar Header --}}
-    <div class="bg-gradient-to-r from-pink-500 to-pink-600 text-white p-4">
-        <h1 class="text-2xl font-bold text-center">Lịch học tập</h1>
+    <div class="bg-gradient-to-r from-pink-500 to-pink-600 text-white p-2 sm:p-4">
+        <h1 class="text-lg sm:text-2xl font-bold text-center">Lịch học tập</h1>
     </div>
 
     {{-- Before Calendar View (if any) --}}
@@ -84,23 +86,23 @@
     </div>
 
     {{-- Calendar Footer with Legend --}}
-    <div class="bg-pink-50 px-4 py-3 border-t border-pink-200">
-        <div class="flex items-center justify-between text-sm text-gray-600">
-            <div class="flex items-center space-x-4">
+    <div class="bg-pink-50 px-2 sm:px-4 py-2 sm:py-3 border-t border-pink-200">
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between text-xs sm:text-sm text-gray-600 space-y-2 sm:space-y-0">
+            <div class="flex flex-col sm:flex-row items-start sm:items-center space-y-1 sm:space-y-0 sm:space-x-4">
                 <div class="flex items-center">
-                    <div class="w-3 h-3 bg-pink-500 rounded-full mr-2"></div>
-                    <span>Lịch hẹn học viên</span>
+                    <div class="w-2 h-2 sm:w-3 sm:h-3 bg-pink-500 rounded-full mr-1 sm:mr-2"></div>
+                    <span class="text-xs sm:text-sm">Lịch hẹn học viên</span>
                 </div>
                 <div class="flex items-center">
-                    <div class="w-3 h-3 bg-pink-600 rounded-full mr-2"></div>
-                    <span>Kiểm tra</span>
+                    <div class="w-2 h-2 sm:w-3 sm:h-3 bg-pink-600 rounded-full mr-1 sm:mr-2"></div>
+                    <span class="text-xs sm:text-sm">Kiểm tra</span>
                 </div>
                 <div class="flex items-center">
-                    <div class="w-3 h-3 bg-pink-400 rounded-full mr-2"></div>
-                    <span>Họp phụ huynh</span>
+                    <div class="w-2 h-2 sm:w-3 sm:h-3 bg-pink-400 rounded-full mr-1 sm:mr-2"></div>
+                    <span class="text-xs sm:text-sm">Họp phụ huynh</span>
                 </div>
             </div>
-            <div class="text-pink-600 font-medium">
+            <div class="text-pink-600 font-medium text-xs sm:text-sm">
                 Tổng: {{ $events->count() }} sự kiện
             </div>
         </div>

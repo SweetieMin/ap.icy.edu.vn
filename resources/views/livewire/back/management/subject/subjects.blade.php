@@ -156,10 +156,10 @@
 
                                 {{-- Card Body --}}
                                 <div class="p-6">
-                                    @if($subject->description)
+                                    @if($subject->curriculum_name)
                                         <div class="mb-4">
                                             <p class="text-zinc-600 dark:text-zinc-300 text-sm line-clamp-3">
-                                                {{ $subject->description }}
+                                                {{ $subject->curriculum_name }}
                                             </p>
                                         </div>
                                     @endif

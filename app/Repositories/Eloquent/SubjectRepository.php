@@ -20,7 +20,7 @@ class SubjectRepository implements SubjectRepositoryInterface
 
         $data['name'] = $name;
         $data['code'] = strtoupper(trim($data['code']));
-        $data['description'] = trim($data['description']);
+        $data['curriculum_name'] = trim($data['curriculum_name']);
         return $data;
     }
 
