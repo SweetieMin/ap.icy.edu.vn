@@ -11,11 +11,10 @@
 
 
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {{-- Cơ sở --}}
                 <div class="form-group">
                     <flux:select wire:model="location_id" placeholder="Chọn cơ sở" label="Cơ sở">
-
                         @foreach ($locations as $location)
                             <flux:select.option value="{{ $location->id }}">{{ $location->name }}</flux:select.option>
                         @endforeach
@@ -25,17 +24,27 @@
                 {{-- Học kỳ --}}
                 <div class="form-group">
                     <flux:select wire:model="season_id" placeholder="Chọn học kỳ" label="Học kỳ">
-
                         @foreach ($seasons as $season)
                             <flux:select.option value="{{ $season->id }}">{{ $season->name }}</flux:select.option>
+                        @endforeach
+                    </flux:select>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {{-- Chương trình --}}
+                <div class="form-group">
+                    <flux:select wire:model="program_id" wire:change="programSelected" placeholder="Chọn chương trình" label="Chương trình">
+                        <flux:select.option value="">Chọn chương trình</flux:select.option>
+                        @foreach ($programs as $program)
+                            <flux:select.option value="{{ $program->id }}">{{ $program->name }}</flux:select.option>
                         @endforeach
                     </flux:select>
                 </div>
 
                 {{-- Môn học --}}
                 <div class="form-group">
-                    <flux:select wire:model="subject_id" wire:change="subjectSelected" placeholder="Chọn môn học"
-                        label="Môn học">
+                    <flux:select wire:model="subject_id" wire:change="subjectSelected" placeholder="Chọn môn học" label="Môn học" :disabled="!$program_id">
                         <flux:select.option value="">Chọn môn học</flux:select.option>
                         @foreach ($subjects as $subject)
                             <flux:select.option value="{{ $subject->id }}">{{ $subject->name }}</flux:select.option>

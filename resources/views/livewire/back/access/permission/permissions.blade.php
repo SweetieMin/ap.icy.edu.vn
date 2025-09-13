@@ -39,9 +39,8 @@
 
     {{-- Main content area --}}
     <div class="mt-6">
-        <div class="table-full-width">
-            <div class="theme-table-pink">
-                <div class="overflow-x-auto">
+        <div class="theme-table-pink">
+            <div class="overflow-x-auto">
                     <table>
                         <thead>
                             <tr>
@@ -102,7 +101,6 @@
                     {{ $permissions->links() }}
                 </div>
             @endif
-            </div>
         </div>
     </div>
 </div>

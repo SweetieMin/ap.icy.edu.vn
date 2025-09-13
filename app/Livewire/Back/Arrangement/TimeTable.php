@@ -22,11 +22,13 @@ class Timetable extends LivewireCalendar
     public $startTime = '';
     public $endTime = '';
     public $roomName = '';
+    public $kindOfEvents = [];
 
     public function afterMount($extras = [])
     {
         $this->modalSetup = $extras['modalSetup'] ?? 'vendor.livewire-calendar.modal-time-table';
         $this->loadAvailableCourses();
+        $this->kindOfEvents = $this->getKindOfEvents();
     }
 
     /**
@@ -35,6 +37,17 @@ class Timetable extends LivewireCalendar
     public function loadAvailableCourses()
     {
         $this->availableCourses = app(CourseRepositoryInterface::class)->getCoursesWithActiveSeasons();
+    }
+
+    public function getKindOfEvents()
+    {
+        return [
+            'class_schedule' => 'Lịch học',
+            'event' => 'Sự kiện',
+            'exam' => 'Kiểm tra',
+            'meeting' => 'Họp phụ huynh',
+            'other' => 'Khác',
+        ];
     }
 
     public function events(): Collection
@@ -65,6 +78,7 @@ class Timetable extends LivewireCalendar
      */
     public function saveEvent()
     {
+        dd($this->all());
         $this->validate([
             'eventTitle' => 'required|string|max:255',
             'eventDescription' => 'nullable|string|max:500',
@@ -86,15 +100,8 @@ class Timetable extends LivewireCalendar
             'roomName.max' => 'Tên phòng học không được vượt quá 100 ký tự.',
         ]);
 
-        dd($this->all());
 
-        // TODO: Lưu vào database
-        // Event::create([
-        //     'title' => $this->eventTitle,
-        //     'description' => $this->eventDescription,
-        //     'date' => $this->selectedDate,
-        //     'color' => $this->eventColor,
-        // ]);
+        
 
         session()->flash('success', 'Sự kiện đã được thêm thành công!');
         $this->closeModal();

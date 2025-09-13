@@ -12,6 +12,7 @@ use App\Support\Validation\CourseRules;
 use App\Repositories\Contracts\UserRepositoryInterface;
 use App\Repositories\Contracts\CourseRepositoryInterface;
 use App\Repositories\Contracts\SeasonRepositoryInterface;
+use App\Repositories\Contracts\ProgramRepositoryInterface;
 
 
 class ActionsCourse extends Component
@@ -21,12 +22,14 @@ class ActionsCourse extends Component
     public $description;
     public $location_id;
     public $season_id;
+    public $program_id;
     public $subject_id;
     public $ordering = 1000;
     public $isEditCourseMode = false;
 
     public $locations = [];
     public $seasons = [];
+    public $programs = [];
     public $subjects = [];
 
     public function mount()
@@ -40,6 +43,8 @@ class ActionsCourse extends Component
         $this->locations = $locations;
         $seasons = app(SeasonRepositoryInterface::class)->getSeasonAvailable();
         $this->seasons = $seasons;
+        $programs = app(ProgramRepositoryInterface::class)->getAllPrograms();
+        $this->programs = $programs;
 
         $this->subjects = Subject::all();
         // Mặc định chọn location đầu tiên và season đầu tiên
@@ -61,6 +66,20 @@ class ActionsCourse extends Component
         return CourseRules::messages();
     }
 
+    public function programSelected()
+    {
+        // Reset subject khi chọn program mới
+        $this->subject_id = null;
+        $this->name = null;
+        
+        // Load subjects theo program
+        if ($this->program_id) {
+            $this->subjects = Subject::where('program_id', $this->program_id)->get();
+        } else {
+            $this->subjects = Subject::all();
+        }
+    }
+
     public function subjectSelected()
     {
         $this->name = CourseHelper::generateCourseName($this->location_id, $this->season_id, $this->subject_id);
@@ -70,7 +89,7 @@ class ActionsCourse extends Component
     public function addCourse()
     {
         $this->resetErrorBag();
-        $this->reset(['courseId', 'name', 'description', 'location_id', 'season_id', 'subject_id', 'ordering']);
+        $this->reset(['courseId', 'name', 'description', 'location_id', 'season_id', 'program_id', 'subject_id', 'ordering']);
         $this->ordering = 1000;
         $this->isEditCourseMode = false;
         $this->loadData();
@@ -112,6 +131,7 @@ class ActionsCourse extends Component
         $this->description = $course->description;
         $this->location_id = $course->location_id;
         $this->season_id = $course->season_id;
+        $this->program_id = $course->subject->program_id ?? null;
         $this->subject_id = $course->subject_id;
         $this->ordering = $course->ordering;
         $this->isEditCourseMode = true;
@@ -137,7 +157,7 @@ class ActionsCourse extends Component
             session()->flash('success', 'Lớp học đã được cập nhật thành công.');
             Flux::modal('modal-course')->close();
             $this->redirectRoute('admin.management.courses', navigate: true);
-            $this->reset(['courseId', 'name', 'description', 'location_id', 'season_id', 'subject_id', 'ordering']);
+            $this->reset(['courseId', 'name', 'description', 'location_id', 'season_id', 'program_id', 'subject_id', 'ordering']);
         } catch (Throwable $e) {
             session()->flash('error', 'Có lỗi xảy ra khi cập nhật lớp học: ' . $e->getMessage());
         }

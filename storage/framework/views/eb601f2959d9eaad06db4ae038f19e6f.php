@@ -142,9 +142,8 @@ if (isset($__slots)) unset($__slots);
 
 
     <div class="mt-6">
-        <div class="table-full-width">
-            <div class="theme-table-pink">
-                <div class="overflow-x-auto">
+        <div class="theme-table-pink">
+            <div class="overflow-x-auto">
                     <table>
                         <thead>
                             <tr>
@@ -401,7 +400,6 @@ if (isset($__slots)) unset($__slots);
                 </div>
                 
                 
-            </div>
         </div>
     </div>
 
@@ -426,9 +424,8 @@ if (isset($__slots)) unset($__slots);
                 </div>
             </div>
 
-            <div class="table-full-width">
-                <div class="theme-table-pink">
-                    <div class="overflow-x-auto">
+            <div class="theme-table-pink">
+                <div class="overflow-x-auto">
                         <table>
                             <thead>
                                 <tr>
@@ -653,8 +650,7 @@ if (isset($__slots)) unset($__slots);
                                     </tr>
                                 <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
                             </tbody>
-                        </table>
-                    </div>
+                    </table>
                 </div>
             </div>
     <?php endif; ?><!--[if ENDBLOCK]><![endif]-->

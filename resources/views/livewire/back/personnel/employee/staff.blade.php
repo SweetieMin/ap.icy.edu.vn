@@ -70,9 +70,8 @@
     </div>
 
     <div class="mt-6">
-        <div class="table-full-width">
-            <div class="theme-table-pink">
-                <div class="overflow-x-auto">
+        <div class="theme-table-pink">
+            <div class="overflow-x-auto">
                     <table>
                         <thead>
                             <tr>
@@ -166,7 +165,6 @@
                     {{ $staffs->links() }}
                 </div>
             @endif --}}
-            </div>
         </div>
     </div>
 
@@ -191,9 +189,8 @@
                 </div>
             </div>
 
-            <div class="table-full-width">
-                <div class="theme-table-pink">
-                    <div class="overflow-x-auto">
+            <div class="theme-table-pink">
+                <div class="overflow-x-auto">
                         <table>
                             <thead>
                                 <tr>
@@ -273,7 +270,6 @@
                     </table>
                 </div>
             </div>
-        </div>
     @endif
 
 </div>

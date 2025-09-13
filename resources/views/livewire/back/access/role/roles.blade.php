@@ -41,9 +41,8 @@
 
     {{-- Main content area --}}
     <div class="mt-6">
-        <div class="table-full-width">
-            <div class="theme-table-pink">
-                <div class="overflow-x-auto">
+        <div class="theme-table-pink">
+            <div class="overflow-x-auto">
                     <table>
                         <thead>
                             <tr>
@@ -115,12 +114,11 @@
                     </table>
                 </div>
 
-                @if ($roles->hasPages())
-                    <div class="pagination-container">
-                        {{ $roles->links() }}
-                    </div>
-                @endif
-            </div>
+            @if ($roles->hasPages())
+                <div class="pagination-container">
+                    {{ $roles->links() }}
+                </div>
+            @endif
         </div>
     </div>
 </div>

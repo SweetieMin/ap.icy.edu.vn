@@ -9,24 +9,40 @@
                 @endif
             </flux:text>
         </div>
+        <div class="grid grid-cols-2 gap-3">
+            <div class="form-group">
+                <flux:text class="text-sm font-medium text-gray-700 mb-2">Chọn loại sự kiện</flux:text>
+                <flux:select wire:model="selectedCourseId"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-pink-500">
+                    <option value="">-- Chọn loại sự kiện --</option>
+                    @foreach ($kindOfEvents as $key => $value)
+                        <flux:select.option value="{{ $key }}"> {{ $value }}</flux:select.option>
+                    @endforeach
+                </flux:select>
 
-        <flux:input wire:model="eventTitle" label="Tiêu đề sự kiện" placeholder="Nhập tiêu đề sự kiện..." />
+                @error('selectedCourseId')
+                    <flux:text class="text-red-500 text-sm">{{ $message }}</flux:text>
+                @enderror
 
-        <div>
-            <flux:text class="text-sm font-medium text-gray-700 mb-2">Chọn lớp học</flux:text>
-            <flux:select wire:model="selectedCourseId"
-                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-pink-500">
-                <option value="">-- Chọn lớp học --</option>
-                @foreach ($availableCourses as $course)
-                    <flux:select.option value="{{ $course['id'] }}"> {{ $course['location_name'] }} -
-                        {{ $course['season_code'] }} - {{ $course['name'] }}</flux:select.option>
-                @endforeach
-            </flux:select>
+            </div>
 
-            @error('selectedCourseId')
-                <flux:text class="text-red-500 text-sm">{{ $message }}</flux:text>
-            @enderror
 
+            <div class="form-group">
+                <flux:text class="text-sm font-medium text-gray-700 mb-2">Chọn lớp học</flux:text>
+                <flux:select wire:model="selectedCourseId"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-pink-500">
+                    <option value="">-- Chọn lớp học --</option>
+                    @foreach ($availableCourses as $course)
+                        <flux:select.option value="{{ $course['id'] }}"> {{ $course['location_name'] }} -
+                            {{ $course['season_code'] }} - {{ $course['name'] }}</flux:select.option>
+                    @endforeach
+                </flux:select>
+
+                @error('selectedCourseId')
+                    <flux:text class="text-red-500 text-sm">{{ $message }}</flux:text>
+                @enderror
+
+            </div>
         </div>
 
         <div>
