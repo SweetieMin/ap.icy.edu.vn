@@ -31,10 +31,10 @@ class Profile extends Component
     {
         $this->name = Auth::user()->name;
         $this->username = Auth::user()->username;
-        $this->email = Auth::user()->email;
-        $this->phone = Auth::user()->detail->phone;
-        $this->address = Auth::user()->detail->address;
-        $this->birthday = Auth::user()->detail->birthday;
+        $this->email = Auth::user()->email ?? '';
+        $this->phone = Auth::user()->detail->phone ?? '';
+        $this->address = Auth::user()->detail->address ?? '';
+        $this->birthday = Auth::user()->detail->birthday ?? '';
     }
 
     /**
