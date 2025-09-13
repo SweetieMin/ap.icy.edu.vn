@@ -12,6 +12,7 @@ use App\Livewire\Back\Access\Role\Roles;
 
 // Access
 use App\Livewire\Back\Arrangement\TimeTable;
+use App\Livewire\Back\Arrangement\ClassAssignment;
 
 // Finance
 use App\Livewire\Settings\AuthenticationLogs;
@@ -98,6 +99,7 @@ Route::prefix('admin')->middleware(['auth', 'preventBackHistory'])->name('admin.
 
     Route::prefix('arrangement')->name('arrangement.')->group(function () {
         Route::get('time-table', TimeTable::class)->name('time-table');
+        Route::get('class-assignment', ClassAssignment::class)->name('class-assignment');
     });
 
     Route::redirect('settings', 'settings/profile');

@@ -102,7 +102,7 @@
 
                     <flux:navlist.group :heading="__('Arrangement')" class="grid">
 
-                        <flux:navlist.item icon="adjustments-horizontal" :current="request()->routeIs('')" wire:navigate>
+                        <flux:navlist.item icon="adjustments-horizontal" :href="route('admin.arrangement.class-assignment')" :current="request()->routeIs('admin.arrangement.class-assignment')" wire:navigate>
                             Xếp lớp học
                         </flux:navlist.item>
 
