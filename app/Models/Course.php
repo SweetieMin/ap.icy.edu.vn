@@ -35,4 +35,9 @@ class Course extends Model
     {
         return $this->belongsTo(Subject::class);
     }
+
+    public function classSchedules()
+    {
+        return $this->hasMany(ClassSchedule::class);
+    }
 }

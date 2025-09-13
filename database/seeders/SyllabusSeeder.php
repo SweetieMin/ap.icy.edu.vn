@@ -2531,37 +2531,37 @@ class SyllabusSeeder extends Seeder
         }
 
         // ========== ICY HIGHSCHOOL 5 ==========
-        $hs5 = Subject::where('name', 'ICY Highschool 5')->first();
+        $highschool5 = Subject::where('name', 'ICY Highschool 5')->first();
 
         $lessons_hs5 = [
-            [1, "Test 31 - Mai Lan Hương", "Test vocabulary (Mai Lan Hương)", "Test grammar (Mai Lan Hương)", "Bài tập Test (Mai Lan Hương)", "Hoàn thành Test (Mai Lan Hương)"],
-            [2, "Test 32 - Mai Lan Hương", "Test vocabulary (Mai Lan Hương)", "Test grammar (Mai Lan Hương)", "Bài tập Test (Mai Lan Hương)", "Hoàn thành Test (Mai Lan Hương)"],
-            [3, "Test 33 - Mai Lan Hương", "Test vocabulary (Mai Lan Hương)", "Test grammar (Mai Lan Hương)", "Bài tập Test (Mai Lan Hương)", "Hoàn thành Test (Mai Lan Hương)"],
-            [4, "Test 34 - Mai Lan Hương", "Test vocabulary (Mai Lan Hương)", "Test grammar (Mai Lan Hương)", "Bài tập Test (Mai Lan Hương)", "Hoàn thành Test (Mai Lan Hương)"],
-            [5, "Test 35 - Mai Lan Hương", "Test vocabulary (Mai Lan Hương)", "Test grammar (Mai Lan Hương)", "Bài tập Test (Mai Lan Hương)", "Hoàn thành Test (Mai Lan Hương)"],
-            [6, "Mock Test 1 - Giáo trình ICY (Reading)", "Reading vocab practice (Mock ICY)", "Reading grammar practice (Mock ICY)", "Bài tập chuyên sâu Reading (Mock ICY)", "Phát triển kỹ năng đọc hiểu chuyên sâu (Mock ICY)"],
-            [7, "Mock Test 2 - Giáo trình ICY (Reading)", "Reading vocab practice (Mock ICY)", "Reading grammar practice (Mock ICY)", "Bài tập chuyên sâu Reading (Mock ICY)", "Phát triển kỹ năng đọc hiểu chuyên sâu (Mock ICY)"],
-            [8, "Review Mock Test 1–2 (Vocabulary + Grammar)", "Review Vocabulary (Mock Tests)", "Review Grammar (Mock Tests)", "Bài tập củng cố Grammar + Vocabulary (Mock Tests)", "Củng cố Grammar + Vocabulary sau 2 Mock Tests"],
-            [9, "Mock Test 3 - Giáo trình ICY (Reading)", "Reading vocab practice (Mock ICY)", "Reading grammar practice (Mock ICY)", "Bài tập chuyên sâu Reading (Mock ICY)", "Phát triển kỹ năng đọc hiểu chuyên sâu (Mock ICY)"],
-            [10, "Mock Test 4 - Giáo trình ICY (Reading)", "Reading vocab practice (Mock ICY)", "Reading grammar practice (Mock ICY)", "Bài tập chuyên sâu Reading (Mock ICY)", "Phát triển kỹ năng đọc hiểu chuyên sâu (Mock ICY)"],
-            [11, "Review Mock Test 3–4 (Vocabulary + Grammar)", "Review Vocabulary (Mock Tests)", "Review Grammar (Mock Tests)", "Bài tập củng cố Grammar + Vocabulary (Mock Tests)", "Củng cố Grammar + Vocabulary sau 2 Mock Tests"],
-            [12, "Mock Test 5 - Giáo trình ICY (Reading)", "Reading vocab practice (Mock ICY)", "Reading grammar practice (Mock ICY)", "Bài tập chuyên sâu Reading (Mock ICY)", "Phát triển kỹ năng đọc hiểu chuyên sâu (Mock ICY)"],
+            [1,  "Test 31 - Mai Lan Hương", "Test vocabulary (Mai Lan Hương)", "Test grammar (Mai Lan Hương)", "Bài tập Test (Mai Lan Hương)", "Hoàn thành Test (Mai Lan Hương)"],
+            [2,  "Test 32 - Mai Lan Hương", "Test vocabulary (Mai Lan Hương)", "Test grammar (Mai Lan Hương)", "Bài tập Test (Mai Lan Hương)", "Hoàn thành Test (Mai Lan Hương)"],
+            [3,  "Test 33 - Mai Lan Hương", "Test vocabulary (Mai Lan Hương)", "Test grammar (Mai Lan Hương)", "Bài tập Test (Mai Lan Hương)", "Hoàn thành Test (Mai Lan Hương)"],
+            [4,  "Test 34 - Mai Lan Hương", "Test vocabulary (Mai Lan Hương)", "Test grammar (Mai Lan Hương)", "Bài tập Test (Mai Lan Hương)", "Hoàn thành Test (Mai Lan Hương)"],
+            [5,  "Test 35 - Mai Lan Hương", "Test vocabulary (Mai Lan Hương)", "Test grammar (Mai Lan Hương)", "Bài tập Test (Mai Lan Hương)", "Hoàn thành Test (Mai Lan Hương)"],
+            [6,  "Mock Test 1 - Giáo trình ICY (Writing)", "Reading vocab practice (Mock ICY)", "Reading grammar practice (Mock ICY)", "Bài tập chuyên sâu Reading (Mock ICY)", "Phát triển kỹ năng đọc hiểu chuyên sâu (Mock ICY)"],
+            [7,  "Mock Test 2 - Giáo trình ICY (Writing)", "Reading vocab practice (Mock ICY)", "Reading grammar practice (Mock ICY)", "Bài tập chuyên sâu Reading (Mock ICY)", "Phát triển kỹ năng đọc hiểu chuyên sâu (Mock ICY)"],
+            [8,  "Mock Test 3 - Giáo trình ICY (Writing)", "Reading vocab practice (Mock ICY)", "Reading grammar practice (Mock ICY)", "Bài tập chuyên sâu Reading (Mock ICY)", "Phát triển kỹ năng đọc hiểu chuyên sâu (Mock ICY)"],
+            [9,  "Mock Test 4 - Giáo trình ICY (Writing)", "Reading vocab practice (Mock ICY)", "Reading grammar practice (Mock ICY)", "Bài tập chuyên sâu Reading (Mock ICY)", "Phát triển kỹ năng đọc hiểu chuyên sâu (Mock ICY)"],
+            [10, "Mock Test 5 - Giáo trình ICY (Writing)", "Reading vocab practice (Mock ICY)", "Reading grammar practice (Mock ICY)", "Bài tập chuyên sâu Reading (Mock ICY)", "Phát triển kỹ năng đọc hiểu chuyên sâu (Mock ICY)"],
+            [11, "Mock Test 6 - Giáo trình ICY (Writing)", "Reading vocab practice (Mock ICY)", "Reading grammar practice (Mock ICY)", "Bài tập chuyên sâu Reading (Mock ICY)", "Phát triển kỹ năng đọc hiểu chuyên sâu (Mock ICY)"],
+            [12, "Mock Test 7 - Giáo trình ICY (Writing)", "Reading vocab practice (Mock ICY)", "Reading grammar practice (Mock ICY)", "Bài tập chuyên sâu Reading (Mock ICY)", "Phát triển kỹ năng đọc hiểu chuyên sâu (Mock ICY)"],
             [13, "Mid-term Test", "Mid-term vocabulary", "Mid-term review grammar", "Mid-term exam", "Đánh giá giữa kỳ"],
-            [14, "Mock Test 6 - Giáo trình ICY (Reading)", "Reading vocab practice (Mock ICY)", "Reading grammar practice (Mock ICY)", "Bài tập chuyên sâu Reading (Mock ICY)", "Phát triển kỹ năng đọc hiểu chuyên sâu (Mock ICY)"],
-            [15, "Review Mock Test 5–6 (Vocabulary + Grammar)", "Review Vocabulary (Mock Tests)", "Review Grammar (Mock Tests)", "Bài tập củng cố Grammar + Vocabulary (Mock Tests)", "Củng cố Grammar + Vocabulary sau 2 Mock Tests"],
-            [16, "Mock Test 7 - Giáo trình ICY (Reading)", "Reading vocab practice (Mock ICY)", "Reading grammar practice (Mock ICY)", "Bài tập chuyên sâu Reading (Mock ICY)", "Phát triển kỹ năng đọc hiểu chuyên sâu (Mock ICY)"],
-            [17, "Mock Test 8 - Giáo trình ICY (Reading)", "Reading vocab practice (Mock ICY)", "Reading grammar practice (Mock ICY)", "Bài tập chuyên sâu Reading (Mock ICY)", "Phát triển kỹ năng đọc hiểu chuyên sâu (Mock ICY)"],
-            [18, "Review Mock Test 7–8 (Vocabulary + Grammar)", "Review Vocabulary (Mock Tests)", "Review Grammar (Mock Tests)", "Bài tập củng cố Grammar + Vocabulary (Mock Tests)", "Củng cố Grammar + Vocabulary sau 2 Mock Tests"],
-            [19, "Mock Test 9 - Giáo trình ICY (Reading)", "Reading vocab practice (Mock ICY)", "Reading grammar practice (Mock ICY)", "Bài tập chuyên sâu Reading (Mock ICY)", "Phát triển kỹ năng đọc hiểu chuyên sâu (Mock ICY)"],
-            [20, "Mock Test 10 - Giáo trình ICY (Reading)", "Reading vocab practice (Mock ICY)", "Reading grammar practice (Mock ICY)", "Bài tập chuyên sâu Reading (Mock ICY)", "Phát triển kỹ năng đọc hiểu chuyên sâu (Mock ICY)"],
-            [21, "Review Mock Test 9–10 (Vocabulary + Grammar)", "Review Vocabulary (Mock Tests)", "Review Grammar (Mock Tests)", "Bài tập củng cố Grammar + Vocabulary (Mock Tests)", "Củng cố Grammar + Vocabulary sau 2 Mock Tests"],
-            [22, "Review", "Review Vocabulary (Mock Tests)", "Review Grammar (Mock Tests)", "Bài tập củng cố Grammar + Vocabulary (Mock Tests)", "Củng cố Grammar + Vocabulary sau 2 Mock Tests"],
-            [23, "Review", "Review Vocabulary (Mock Tests)", "Review Grammar (Mock Tests)", "Bài tập củng cố Grammar + Vocabulary (Mock Tests)", "Củng cố Grammar + Vocabulary sau 2 Mock Tests"],
-            [24, "Final Test", "Final Test vocabulary", "Final Test grammar", "Final exam", "Đánh giá cuối kỳ"],
+            [14, "Mock Test 8 - Giáo trình ICY (Writing)", "Reading vocab practice (Mock ICY)", "Reading grammar practice (Mock ICY)", "Bài tập chuyên sâu Reading (Mock ICY)", "Phát triển kỹ năng đọc hiểu chuyên sâu (Mock ICY)"],
+            [15, "Mock Test 9 - Giáo trình ICY (Writing)", "Reading vocab practice (Mock ICY)", "Reading grammar practice (Mock ICY)", "Bài tập chuyên sâu Reading (Mock ICY)", "Phát triển kỹ năng đọc hiểu chuyên sâu (Mock ICY)"],
+            [16, "Mock Test 10 - Giáo trình ICY (Writing)", "Reading vocab practice (Mock ICY)", "Reading grammar practice (Mock ICY)", "Bài tập chuyên sâu Reading (Mock ICY)", "Phát triển kỹ năng đọc hiểu chuyên sâu (Mock ICY)"],
+            [17, "Final Test", "Final Test vocabulary", "Final Test grammar", "Final exam", "Đánh giá cuối kỳ"],
+            [18, "Mock Test 11 - Giáo trình ICY (Writing)", "Writing vocab practice (Mock ICY)", "Writing grammar practice (Mock ICY)", "Bài tập chuyên sâu Writing (Mock ICY)", "Phát triển kỹ năng viết học thuật chuyên sâu (Mock ICY)"],
+            [19, "Mock Test 12 - Giáo trình ICY (Writing)", "Writing vocab practice (Mock ICY)", "Writing grammar practice (Mock ICY)", "Bài tập chuyên sâu Writing (Mock ICY)", "Phát triển kỹ năng viết học thuật chuyên sâu (Mock ICY)"],
+            [20, "Mock Test 13 - Giáo trình ICY (Writing)", "Writing vocab practice (Mock ICY)", "Writing grammar practice (Mock ICY)", "Bài tập chuyên sâu Writing (Mock ICY)", "Phát triển kỹ năng viết học thuật chuyên sâu (Mock ICY)"],
+            [21, "Mock Test 14 - Giáo trình ICY (Writing)", "Writing vocab practice (Mock ICY)", "Writing grammar practice (Mock ICY)", "Bài tập chuyên sâu Writing (Mock ICY)", "Phát triển kỹ năng viết học thuật chuyên sâu (Mock ICY)"],
+            [22, "Mock Test 15 - Giáo trình ICY (Writing)", "Writing vocab practice (Mock ICY)", "Writing grammar practice (Mock ICY)", "Bài tập chuyên sâu Writing (Mock ICY)", "Phát triển kỹ năng viết học thuật chuyên sâu (Mock ICY)"],
+            [23, "Mock Test 16 - Giáo trình ICY (Writing)", "Writing vocab practice (Mock ICY)", "Writing grammar practice (Mock ICY)", "Bài tập chuyên sâu Writing (Mock ICY)", "Phát triển kỹ năng viết học thuật chuyên sâu (Mock ICY)"],
+            [24, "FinalTest", "Final vocabulary", "Final review grammar", "Final exam", "Đánh giá cuối kỳ"],
         ];
 
         foreach ($lessons_hs5 as $lesson) {
-            $hs5->syllabi()->create([
+            $highschool5->syllabi()->create([
                 'lesson_number' => $lesson[0],
                 'content'       => $lesson[1],
                 'vocabulary'    => $lesson[2],

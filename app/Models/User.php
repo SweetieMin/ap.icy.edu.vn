@@ -139,4 +139,12 @@ class User extends Authenticatable
     {
         return $this->hasMany(Tuition::class);
     }
+
+    /**
+     * The attributes add class schedule of user.
+     */
+    public function classSchedules()
+    {
+        return $this->hasMany(ClassSchedule::class);
+    }
 }

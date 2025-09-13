@@ -113,7 +113,9 @@ class Timetable extends LivewireCalendar
     /**
      * Xử lý khi click vào sự kiện
      */
-    public function onEventClick($eventId) {}
+    public function onEventClick($eventId) {
+        
+    }
 
     /**
      * Xử lý khi kéo thả sự kiện
