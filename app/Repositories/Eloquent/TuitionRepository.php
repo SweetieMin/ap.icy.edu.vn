@@ -115,7 +115,7 @@ class TuitionRepository implements TuitionRepositoryInterface
     public function updateStatus(string $content, float $transferAmount): bool
     {
         try {
-            $tuition = Tuition::where('note', $content)->where('price', $transferAmount)->first();
+            $tuition = Tuition::where('content_transaction', $content)->where('price', $transferAmount)->first();
             return $tuition->update(['status' => 'paid']);
         } catch (Throwable $e) {
             return false;

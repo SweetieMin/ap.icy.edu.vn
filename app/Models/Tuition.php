@@ -19,6 +19,7 @@ class Tuition extends Model
         'status',
         'payment_method',
         'bank_id',
+        'content_transaction',
         'note',
         'created_by',
     ];

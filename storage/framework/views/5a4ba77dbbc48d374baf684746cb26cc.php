@@ -367,39 +367,63 @@ if (isset($__slots)) unset($__slots);
 
     
     <!--[if BLOCK]><![endif]--><?php if($staffsWithoutLocation->count() > 0): ?>
-        <div class="mt-6">
-            <div class="theme-card-pink mb-4">
-                <div class="p-6">
-                    <div class="flex items-center justify-between mb-4">
-                        <div>
-                            <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
-                                Nhân viên chưa được phân cơ sở
-                            </h3>
-                            <p class="text-sm text-gray-600 dark:text-gray-400">
-                                <?php echo e($staffsWithoutLocation->count()); ?> nhân viên chưa được gán cơ sở
-                            </p>
+        
+        <div class="theme-header-pink mt-6">
+            <div class="flex items-center justify-between">
+                <div class="header-content">
+                    <div class="flex items-center space-x-3 mb-2">
+                        <div class="header-icon">
+                            <?php if (isset($component)) { $__componentOriginal7f0e8d69add49581695c1337b3f85fff = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal7f0e8d69add49581695c1337b3f85fff = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::icon.exclamation-triangle','data' => ['class' => 'size-12']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('flux::icon.exclamation-triangle'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['class' => 'size-12']); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal7f0e8d69add49581695c1337b3f85fff)): ?>
+<?php $attributes = $__attributesOriginal7f0e8d69add49581695c1337b3f85fff; ?>
+<?php unset($__attributesOriginal7f0e8d69add49581695c1337b3f85fff); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal7f0e8d69add49581695c1337b3f85fff)): ?>
+<?php $component = $__componentOriginal7f0e8d69add49581695c1337b3f85fff; ?>
+<?php unset($__componentOriginal7f0e8d69add49581695c1337b3f85fff); ?>
+<?php endif; ?>
                         </div>
-                        <div class="header-counter">
-                            <span><?php echo e($staffsWithoutLocation->count()); ?> nhân viên</span>
+                        <div>
+                            <h1 class="header-title">Nhân viên chưa được phân cơ sở</h1>
+                            <p class="header-subtitle">Danh sách nhân viên chưa được gán cơ sở</p>
                         </div>
                     </div>
                 </div>
+                <div class="flex items-center space-x-3">
+                    <div class="header-counter">
+                        <span><?php echo e($staffsWithoutLocation->count()); ?> nhân viên</span>
+                    </div>
+                </div>
             </div>
+        </div>
 
+        
+        <div class="mt-6">
             <div class="theme-table-pink">
                 <div class="overflow-x-auto">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th class="text-center w-16">STT</th>
-                                    <th>Họ và tên</th>
-                                    <th class="hidden md:table-cell">Số điện thoại</th>
-                                    <th class="text-center">Cơ sở</th>
-                                    <th class="text-center hidden sm:table-cell">Chức vụ</th>
-                                    <th class="text-center">Thao tác</th>
-                                </tr>
-                            </thead>
-                            <tbody>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class="text-center w-16">STT</th>
+                                <th>Họ và tên</th>
+                                <th class="hidden md:table-cell">Số điện thoại</th>
+                                <th class="text-center">Cơ sở</th>
+                                <th class="text-center hidden sm:table-cell">Chức vụ</th>
+                                <th class="text-center">Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody>
                             <!--[if BLOCK]><![endif]--><?php $__empty_1 = true; $__currentLoopData = $staffsWithoutLocation; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $staff): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                                 <tr wire:key="staff-no-location-<?php echo e($staff->id); ?>">
                                     <td class="text-center font-medium">
@@ -463,7 +487,7 @@ if (isset($__slots)) unset($__slots);
 <?php $component = $__componentOriginalc04b147acd0e65cc1a77f86fb0e81580; ?>
 <?php unset($__componentOriginalc04b147acd0e65cc1a77f86fb0e81580); ?>
 <?php endif; ?>
-    
+
                                             <?php if (isset($component)) { $__componentOriginalf7749b857446d2788d0b6ca0c63f9d3a = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginalf7749b857446d2788d0b6ca0c63f9d3a = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::menu.index','data' => []] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
@@ -494,7 +518,7 @@ if (isset($__slots)) unset($__slots);
 <?php $component = $__componentOriginal5027d420cfeeb03dd925cfc08ae44851; ?>
 <?php unset($__componentOriginal5027d420cfeeb03dd925cfc08ae44851); ?>
 <?php endif; ?>
-    
+
                                                 <?php if (isset($component)) { $__componentOriginald5e1eb3ae521062f8474178ba08933ca = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginald5e1eb3ae521062f8474178ba08933ca = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::menu.separator','data' => []] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
@@ -515,7 +539,7 @@ if (isset($__slots)) unset($__slots);
 <?php $component = $__componentOriginald5e1eb3ae521062f8474178ba08933ca; ?>
 <?php unset($__componentOriginald5e1eb3ae521062f8474178ba08933ca); ?>
 <?php endif; ?>
-    
+
                                                 <?php if (isset($component)) { $__componentOriginal5027d420cfeeb03dd925cfc08ae44851 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal5027d420cfeeb03dd925cfc08ae44851 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::menu.item','data' => ['variant' => 'danger','icon' => 'trash','wire:click' => 'deleteStaff('.e($staff->id).')']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
@@ -596,6 +620,7 @@ if (isset($__slots)) unset($__slots);
                     </table>
                 </div>
             </div>
+        </div>
     <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
 
 </div>

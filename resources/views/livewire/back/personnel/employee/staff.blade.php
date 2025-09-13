@@ -170,39 +170,44 @@
 
     {{-- Bảng nhân viên không có location --}}
     @if($staffsWithoutLocation->count() > 0)
-        <div class="mt-6">
-            <div class="theme-card-pink mb-4">
-                <div class="p-6">
-                    <div class="flex items-center justify-between mb-4">
-                        <div>
-                            <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
-                                Nhân viên chưa được phân cơ sở
-                            </h3>
-                            <p class="text-sm text-gray-600 dark:text-gray-400">
-                                {{ $staffsWithoutLocation->count() }} nhân viên chưa được gán cơ sở
-                            </p>
+        {{-- Header Section for Staff Without Location --}}
+        <div class="theme-header-pink mt-6">
+            <div class="flex items-center justify-between">
+                <div class="header-content">
+                    <div class="flex items-center space-x-3 mb-2">
+                        <div class="header-icon">
+                            <flux:icon.exclamation-triangle class="size-12" />
                         </div>
-                        <div class="header-counter">
-                            <span>{{ $staffsWithoutLocation->count() }} nhân viên</span>
+                        <div>
+                            <h1 class="header-title">Nhân viên chưa được phân cơ sở</h1>
+                            <p class="header-subtitle">Danh sách nhân viên chưa được gán cơ sở</p>
                         </div>
                     </div>
                 </div>
+                <div class="flex items-center space-x-3">
+                    <div class="header-counter">
+                        <span>{{ $staffsWithoutLocation->count() }} nhân viên</span>
+                    </div>
+                </div>
             </div>
+        </div>
 
+        {{-- Main content area --}}
+        <div class="mt-6">
             <div class="theme-table-pink">
                 <div class="overflow-x-auto">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th class="text-center w-16">STT</th>
-                                    <th>Họ và tên</th>
-                                    <th class="hidden md:table-cell">Số điện thoại</th>
-                                    <th class="text-center">Cơ sở</th>
-                                    <th class="text-center hidden sm:table-cell">Chức vụ</th>
-                                    <th class="text-center">Thao tác</th>
-                                </tr>
-                            </thead>
-                            <tbody>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class="text-center w-16">STT</th>
+                                <th>Họ và tên</th>
+                                <th class="hidden md:table-cell">Số điện thoại</th>
+                                <th class="text-center">Cơ sở</th>
+                                <th class="text-center hidden sm:table-cell">Chức vụ</th>
+                                <th class="text-center">Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody>
                             @forelse ($staffsWithoutLocation as $index => $staff)
                                 <tr wire:key="staff-no-location-{{ $staff->id }}">
                                     <td class="text-center font-medium">
@@ -236,14 +241,14 @@
                                     <td class="text-center">
                                         <flux:dropdown>
                                             <flux:button icon:trailing="chevron-down">Thao tác</flux:button>
-    
+
                                             <flux:menu>
                                                 <flux:menu.item  icon="pencil"
                                                     wire:click="editStaff({{ $staff->id }})">Sửa thông tin
                                                 </flux:menu.item>
-    
+
                                                 <flux:menu.separator />
-    
+
                                                 <flux:menu.item variant="danger" icon="trash"
                                                     wire:click="deleteStaff({{ $staff->id }})">Xóa
                                                 </flux:menu.item>
@@ -270,6 +275,7 @@
                     </table>
                 </div>
             </div>
+        </div>
     @endif
 
 </div>

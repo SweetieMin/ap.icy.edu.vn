@@ -173,109 +173,113 @@
 
     {{-- Bảng học viên không có location --}}
     @if ($studentsWithoutLocation->count() > 0)
-        <div class="mt-6">
-            <div class="theme-card-pink mb-4">
-                <div class="p-6">
-                    <div class="flex items-center justify-between mb-4">
-                        <div>
-                            <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
-                                Học viên chưa được phân cơ sở
-                            </h3>
-                            <p class="text-sm text-gray-600 dark:text-gray-400">
-                                {{ $studentsWithoutLocation->count() }} học viên chưa được gán cơ sở
-                            </p>
+        {{-- Header Section for Students Without Location --}}
+        <div class="theme-header-pink mt-6">
+            <div class="flex items-center justify-between">
+                <div class="header-content">
+                    <div class="flex items-center space-x-3 mb-2">
+                        <div class="header-icon">
+                            <flux:icon.exclamation-triangle class="size-12" />
                         </div>
-                        <div class="header-counter">
-                            <span>{{ $studentsWithoutLocation->count() }} học viên</span>
+                        <div>
+                            <h1 class="header-title">Học viên chưa được phân cơ sở</h1>
+                            <p class="header-subtitle">Danh sách học viên chưa được gán cơ sở</p>
                         </div>
                     </div>
                 </div>
+                <div class="flex items-center space-x-3">
+                    <div class="header-counter">
+                        <span>{{ $studentsWithoutLocation->count() }} học viên</span>
+                    </div>
+                </div>
             </div>
+        </div>
 
+        {{-- Main content area --}}
+        <div class="mt-6">
             <div class="theme-table-pink">
                 <div class="overflow-x-auto">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th class="text-center w-16">STT</th>
-                                    <th>Họ và tên</th>
-                                    <th class="hidden md:table-cell">Số điện thoại</th>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class="text-center w-16">STT</th>
+                                <th>Họ và tên</th>
+                                <th class="hidden md:table-cell">Số điện thoại</th>
+                                @if (auth()->user()->locations()->count() > 1)
+                                    <th class="text-center">Cơ sở</th>
+                                @endif
+                                <th class="text-center">Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @forelse ($studentsWithoutLocation as $index => $student)
+                                <tr wire:key="student-no-location-{{ $student->id }}">
+                                    <td class="text-center font-medium">
+                                        {{ $loop->iteration }}
+                                    </td>
+                                    <td>
+                                        <div class="flex items-center gap-3">
+                                            <img class="h-8 w-8 rounded-full object-cover"
+                                                src="{{ $student->detail?->avatar ?? asset('images/default-avatar.png') }}"
+                                                alt="{{ $student->name }}">
+                                            <div>
+                                                <div class="font-medium">{{ $student->name }}</div>
+                                                <div class="text-xs text-gray-500 dark:text-gray-400">ID:
+                                                    {{ $student->account_code }}</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="hidden md:table-cell">
+                                        {{ $student->detail?->phone ?? 'Chưa cập nhật' }}
+                                    </td>
                                     @if (auth()->user()->locations()->count() > 1)
-                                        <th class="text-center">Cơ sở</th>
-                                    @endif
-                                    <th class="text-center">Thao tác</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @forelse ($studentsWithoutLocation as $index => $student)
-                                    <tr wire:key="student-no-location-{{ $student->id }}">
-                                        <td class="text-center font-medium">
-                                            {{ $loop->iteration }}
-                                        </td>
-                                        <td>
-                                            <div class="flex items-center gap-3">
-                                                <img class="h-8 w-8 rounded-full object-cover"
-                                                    src="{{ $student->detail?->avatar ?? asset('images/default-avatar.png') }}"
-                                                    alt="{{ $student->name }}">
-                                                <div>
-                                                    <div class="font-medium">{{ $student->name }}</div>
-                                                    <div class="text-xs text-gray-500 dark:text-gray-400">ID:
-                                                        {{ $student->account_code }}</div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="hidden md:table-cell">
-                                            {{ $student->detail?->phone ?? 'Chưa cập nhật' }}
-                                        </td>
-                                        @if (auth()->user()->locations()->count() > 1)
-                                            <td class="text-center">
-                                                <span class="text-red-500 dark:text-red-400 text-xs font-medium">
-                                                    Chưa có cơ sở
-                                                </span>
-                                            </td>
-                                        @endif
                                         <td class="text-center">
-                                            <flux:dropdown>
-                                                <flux:button icon:trailing="chevron-down">Thao tác</flux:button>
-
-                                                <flux:menu>
-                                                    <flux:menu.item icon="pencil"
-                                                        wire:click="editStudent({{ $student->id }})">Sửa thông tin
-                                                    </flux:menu.item>
-
-                                                    <flux:menu.item icon="printer"
-                                                        wire:click="printStudentRegistration({{ $student->id }})">In
-                                                        đơn
-                                                        đăng ký</flux:menu.item>
-
-                                                    <flux:menu.separator />
-
-                                                    <flux:menu.item variant="danger" icon="trash"
-                                                        wire:click="deleteStudent({{ $student->id }})">Xóa
-                                                    </flux:menu.item>
-                                                </flux:menu>
-                                            </flux:dropdown>
+                                            <span class="text-red-500 dark:text-red-400 text-xs font-medium">
+                                                Chưa có cơ sở
+                                            </span>
                                         </td>
-                                    </tr>
-                                @empty
-                                    <tr>
-                                        <td colspan="5" class="text-center py-12">
-                                            <div class="empty-state flex flex-col items-center">
-                                                <flux:icon.academic-cap class="w-12 h-12 mb-4" />
-                                                <h3 class="text-lg font-medium mb-2">
-                                                    Không có học viên nào
-                                                </h3>
-                                                <p>
-                                                    Hiện tại không có học viên nào chưa được phân cơ sở
-                                                </p>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                @endforelse
-                            </tbody>
+                                    @endif
+                                    <td class="text-center">
+                                        <flux:dropdown>
+                                            <flux:button icon:trailing="chevron-down">Thao tác</flux:button>
+
+                                            <flux:menu>
+                                                <flux:menu.item icon="pencil"
+                                                    wire:click="editStudent({{ $student->id }})">Sửa thông tin
+                                                </flux:menu.item>
+
+                                                <flux:menu.item icon="printer"
+                                                    wire:click="printStudentRegistration({{ $student->id }})">In đơn đăng ký</flux:menu.item>
+
+                                                <flux:menu.separator />
+
+                                                <flux:menu.item variant="danger" icon="trash"
+                                                    wire:click="deleteStudent({{ $student->id }})">Xóa
+                                                </flux:menu.item>
+                                            </flux:menu>
+                                        </flux:dropdown>
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="5" class="text-center py-12">
+                                        <div class="empty-state flex flex-col items-center">
+                                            <flux:icon.academic-cap class="w-12 h-12 mb-4" />
+                                            <h3 class="text-lg font-medium mb-2">
+                                                Không có học viên nào
+                                            </h3>
+                                            <p>
+                                                Hiện tại không có học viên nào chưa được phân cơ sở
+                                            </p>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforelse
+                        </tbody>
                     </table>
                 </div>
             </div>
+        </div>
     @endif
 
 </div>

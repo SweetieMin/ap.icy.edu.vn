@@ -489,44 +489,110 @@ class TuitionsPayment extends Component
             $createdTuitions = [];
             $baseReceiptNumber = 'ICY' . $student->username . uniqid();
 
-            // Tạo từng bản ghi tuition cho mỗi chương trình
-            foreach ($this->selectedItems as $index => $item) {
-                // Tính giá cho từng item (bao gồm giảm giá item-level)
-                $itemPrice = (float) $item['price'];
-                $itemDiscount = 0;
-
-                if (isset($item['discount_amount']) && $item['discount_amount'] > 0) {
-                    $discountAmount = (float) $item['discount_amount'];
-                    if (($item['discount_type'] ?? 'vnd') === 'percent') {
-                        $itemDiscount = ($itemPrice * $discountAmount) / 100;
-                    } else {
-                        $itemDiscount = $discountAmount;
-                    }
-                }
-
+            // Phân loại items: tách khoá học và đồng phục
+            $programItems = [];
+            $uniformItems = [];
+            
+            foreach ($this->selectedItems as $item) {
                 if ($item['type'] === 'uniform') {
-                    $note = "Uniform_" . $student->username.'_'.uniqid();
+                    $uniformItems[] = $item;
                 } else {
-                    if ($item['include_book']) {
-                        $note = BankHelper::generateDescriptionTransactionBankTransfer($student->id, $item['season_id'], $item['id'])."_Book";
+                    $programItems[] = $item;
+                }
+            }
+
+            $receiptCounter = 1;
+
+            // Xử lý các khoá học (có thể gộp với đồng phục)
+            foreach ($programItems as $programItem) {
+                // Tính giá cho khoá học
+                $programPrice = (float) $programItem['price'];
+                $programDiscount = 0;
+
+                if (isset($programItem['discount_amount']) && $programItem['discount_amount'] > 0) {
+                    $discountAmount = (float) $programItem['discount_amount'];
+                    if (($programItem['discount_type'] ?? 'vnd') === 'percent') {
+                        $programDiscount = ($programPrice * $discountAmount) / 100;
                     } else {
-                        $note = BankHelper::generateDescriptionTransactionBankTransfer($student->id, $item['season_id'], $item['id']);
+                        $programDiscount = $discountAmount;
                     }
                 }
 
-                $finalItemPrice = $itemPrice - $itemDiscount;
-                if ($finalItemPrice < 0) $finalItemPrice = 0;
+                $finalProgramPrice = $programPrice - $programDiscount;
+                if ($finalProgramPrice < 0) $finalProgramPrice = 0;
+
+                // Tính tổng giá đồng phục (nếu có)
+                $totalUniformPrice = 0;
+                foreach ($uniformItems as $uniformItem) {
+                    $totalUniformPrice += (float) $uniformItem['price'];
+                }
+
+                // Tổng giá cho bản ghi này (khoá học + đồng phục)
+                $totalPrice = $finalProgramPrice + $totalUniformPrice;
+
+                // Tạo note cho hạng mục
+                $itemName = $programItem['name'];
+                if ($programItem['include_book']) {
+                    $itemName .= ' + Sách';
+                }
+                if ($totalUniformPrice > 0) {
+                    $itemName .= ' + Đồng phục';
+                }
+
+                // Tạo content_transaction (chỉ cho chuyển khoản)
+                $contentTransaction = null;
+                if ($this->paymentMethod === 'bank_transfer') {
+                    if ($programItem['include_book']) {
+                        $contentTransaction = BankHelper::generateDescriptionTransactionBankTransfer($student->id, $programItem['season_id'], $programItem['id'])."_Book";
+                    } else {
+                        $contentTransaction = BankHelper::generateDescriptionTransactionBankTransfer($student->id, $programItem['season_id'], $programItem['id']);
+                    }
+                }
 
                 $tuition = [
                     'user_id' => $student->id,
-                    'receipt_number' => $baseReceiptNumber . '-' . ($index + 1), // Thêm số thứ tự
-                    'program_id' => $item['type'] === 'uniform' ? null : $item['id'],
-                    'season_id' => $item['type'] === 'uniform' ? null : $item['season_id'],
-                    'price' => $finalItemPrice,
+                    'receipt_number' => $baseReceiptNumber . '-' . $receiptCounter,
+                    'program_id' => $programItem['id'],
+                    'season_id' => $programItem['season_id'],
+                    'price' => $totalPrice,
                     'status' => 'pending',
                     'payment_method' => $this->paymentMethod,
                     'bank_id' => $this->selectedBankId,
-                    'note' => $note,
+                    'content_transaction' => $contentTransaction,
+                    'note' => $itemName,
+                    'created_by' => Auth::user()->id,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ];
+
+                $createdTuition = app(TuitionRepositoryInterface::class)->create($tuition);
+                $createdTuitions[] = $createdTuition;
+                $receiptCounter++;
+            }
+
+            // Nếu chỉ có đồng phục mà không có khoá học
+            if (empty($programItems) && !empty($uniformItems)) {
+                $totalUniformPrice = 0;
+                foreach ($uniformItems as $uniformItem) {
+                    $totalUniformPrice += (float) $uniformItem['price'];
+                }
+
+                $contentTransaction = null;
+                if ($this->paymentMethod === 'bank_transfer') {
+                    $contentTransaction = "Uniform_" . $student->username.'_'.uniqid();
+                }
+
+                $tuition = [
+                    'user_id' => $student->id,
+                    'receipt_number' => $baseReceiptNumber . '-' . $receiptCounter,
+                    'program_id' => null,
+                    'season_id' => null,
+                    'price' => $totalUniformPrice,
+                    'status' => 'pending',
+                    'payment_method' => $this->paymentMethod,
+                    'bank_id' => $this->selectedBankId,
+                    'content_transaction' => $contentTransaction,
+                    'note' => 'Đồng phục',
                     'created_by' => Auth::user()->id,
                     'created_at' => now(),
                     'updated_at' => now(),
