@@ -40,6 +40,7 @@ class ActionsCourse extends Component
         $this->locations = $locations;
         $seasons = app(SeasonRepositoryInterface::class)->getSeasonAvailable();
         $this->seasons = $seasons;
+
         $this->subjects = Subject::all();
         // Mặc định chọn location đầu tiên và season đầu tiên
         if (!empty($this->locations)) {

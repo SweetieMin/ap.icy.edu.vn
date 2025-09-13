@@ -81,6 +81,45 @@ class CourseRepository implements CourseRepositoryInterface
             ->get();
     }
 
+    public function getCoursesWithActiveSeasons()
+    {
+        $now = now();
+        
+        return Course::with(['season', 'subject', 'location'])
+            ->whereHas('season', function($query) use ($now) {
+                $query->where(function($q) use ($now) {
+                    // Season đang diễn ra (dựa trên ngày tháng)
+                    $q->where('start_date', '<=', $now)
+                      ->where('end_date', '>=', $now);
+                })->orWhere(function($q) use ($now) {
+                    // Season sắp diễn ra (dựa trên ngày tháng)
+                    $q->where('start_date', '>', $now);
+                });
+            })
+            ->orderBy('name')
+            ->get()
+            ->filter(function($course) {
+                // Lọc thêm dựa trên status được tính toán
+                $currentStatus = $course->season->current_status;
+                return in_array($currentStatus, ['ongoing', 'upcoming']);
+            })
+            ->map(function($course) {
+                return [
+                    'id' => $course->id,
+                    'name' => $course->name,
+                    'code' => $course->code,
+                    'season_name' => $course->season->name,
+                    'season_code' => $course->season->code,
+                    'season_status' => $course->season->current_status,
+                    'subject_name' => $course->subject->name ?? 'N/A',
+                    'location_name' => $course->location->name ?? 'N/A',
+                    'description' => $course->description,
+                ];
+            })
+            ->values() // Reset array keys after filter
+            ->toArray();
+    }
+
     public function create(array $data)
     {
         $course = Course::create($data);

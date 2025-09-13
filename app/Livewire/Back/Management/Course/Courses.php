@@ -74,7 +74,7 @@ class Courses extends Component
         ], $this->perPage);
 
         $locations = app(UserRepositoryInterface::class)->getCurrentUserLocations();
-        $seasons = app(SeasonRepositoryInterface::class)->getSeasonAvailable();
+        $seasons = app(SeasonRepositoryInterface::class)->getAllSeasons();
         
         return view('livewire.back.management.course.courses',[
             'courses' => $courses,
