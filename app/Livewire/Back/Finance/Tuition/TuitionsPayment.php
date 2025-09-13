@@ -531,7 +531,7 @@ class TuitionsPayment extends Component
                 $totalPrice = $finalProgramPrice + $totalUniformPrice;
 
                 // Tạo note cho hạng mục
-                $itemName = $programItem['name'];
+                $itemName = 'Khoá học';
                 if ($programItem['include_book']) {
                     $itemName .= ' + Sách';
                 }
