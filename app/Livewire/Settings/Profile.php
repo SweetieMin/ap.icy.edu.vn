@@ -120,4 +120,10 @@ class Profile extends Component
 
         Session::flash('status', 'verification-link-sent');
     }
+
+    public function linkGoogle()
+    {
+        return redirect()->route('auth.google');
+    }
+
 }

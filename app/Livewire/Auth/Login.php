@@ -81,6 +81,11 @@ class Login extends Component
             return;
         }
 
+        // Check email verification for email login
+        if (!$this->checkEmailVerification($user)) {
+            return;
+        }
+
         $this->handleSuccessfulLogin($user);
     }
 
@@ -90,6 +95,22 @@ class Login extends Component
     private function determineLoginField(): string
     {
         return filter_var($this->login_id, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
+    }
+
+    /**
+     * Check if email is verified when trying to login with email
+     */
+    private function checkEmailVerification($user): bool
+    {
+        // If login field is email and email is not verified, deny login
+        if ($this->determineLoginField() === 'email' && !$user->hasVerifiedEmail()) {
+            throw ValidationException::withMessages([
+                'login_id' => 'Email chưa được xác thực. Vui lòng sử dụng tên đăng nhập hoặc xác thực email trước.',
+                'password' => 'Email chưa được xác thực. Vui lòng sử dụng tên đăng nhập hoặc xác thực email trước.',
+            ]);
+        }
+        
+        return true;
     }
 
     /**

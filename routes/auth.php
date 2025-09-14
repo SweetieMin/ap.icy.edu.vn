@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use App\Livewire\Auth\ConfirmPassword;
 use App\Livewire\Auth\ForgotPassword;
@@ -12,6 +13,8 @@ Route::middleware('guest')->group(function () {
     Route::get('login', Login::class)->name('login');
     Route::get('forgot-password', ForgotPassword::class)->name('password.request');
     Route::get('reset-password/{token}', ResetPassword::class)->name('password.reset');
+    
+
 });
 
 Route::middleware('auth')->group(function () {
@@ -25,6 +28,10 @@ Route::middleware('auth')->group(function () {
     Route::get('confirm-password', ConfirmPassword::class)
         ->name('password.confirm');
 });
+
+// Google OAuth routes - accessible by both guest and authenticated users
+Route::get('auth/google', [GoogleController::class, 'redirectToGoogle'])->name('auth.google');
+Route::get('callback/google', [GoogleController::class, 'handleGoogleCallback'])->name('callback.google');
 
 Route::post('logout', App\Livewire\Actions\Logout::class)
     ->name('logout');
