@@ -25,12 +25,12 @@ class Login extends Component
     private const MAX_LOGIN_ATTEMPTS = 5;
     private const COOKIE_EXPIRY_DAYS = 7;
     private const COOKIE_EXPIRY_MINUTES = 60 * 24 * 7;
-    
+
     // User status constants
     private const STATUS_PENDING = 'pending';
     private const STATUS_LOCKED = 'locked';
     private const STATUS_RESIGNED = 'resigned';
-    
+
     // Error messages
     private const ERROR_INVALID_CREDENTIALS = 'Thông tin đăng nhập không chính xác.';
     private const ERROR_ACCOUNT_PENDING = 'Tài khoản của bạn đang chờ xét duyệt.';
@@ -69,14 +69,14 @@ class Login extends Component
         $this->ensureIsNotRateLimited();
 
         $loginField = $this->determineLoginField();
-        
+
         if (!$this->attemptAuthentication($loginField)) {
             $this->handleFailedLogin();
             return;
         }
 
         $user = Auth::user();
-        
+
         if (!$this->validateUserStatus($user)) {
             return;
         }
@@ -104,12 +104,13 @@ class Login extends Component
     {
         // If login field is email and email is not verified, deny login
         if ($this->determineLoginField() === 'email' && !$user->hasVerifiedEmail()) {
+            Auth::logout();
+            $this->login_id = $this->password = '';
             throw ValidationException::withMessages([
                 'login_id' => 'Email chưa được xác thực. Vui lòng sử dụng tên đăng nhập hoặc xác thực email trước.',
-                'password' => 'Email chưa được xác thực. Vui lòng sử dụng tên đăng nhập hoặc xác thực email trước.',
             ]);
         }
-        
+
         return true;
     }
 
@@ -178,7 +179,7 @@ class Login extends Component
         $this->handleOtherSessions($user);
         $this->setRememberCookie();
         $this->setLastUserCookie($user);
-        
+
         $this->redirectIntended(default: route('dashboard', absolute: false), navigate: true);
     }
 
@@ -214,9 +215,9 @@ class Login extends Component
     private function handleOtherSessions($user): void
     {
         $currentSessionId = session()->getId();
-        
+
         $otherSessions = $this->getOtherSessions($user->id, $currentSessionId);
-        
+
         $this->logForcedLogouts($user, $otherSessions);
         $this->deleteOtherSessions($user->id, $currentSessionId);
     }
@@ -262,7 +263,7 @@ class Login extends Component
     {
         $rememberKey = 'remember_web_' . sha1(config('app.key'));
         $rememberValue = Cookie::get($rememberKey);
-        
+
         if ($rememberValue) {
             Cookie::queue($rememberKey, $rememberValue, self::COOKIE_EXPIRY_MINUTES);
         }
@@ -290,7 +291,7 @@ class Login extends Component
     private function prepareUserData($user): array
     {
         $detail = $user->detail()->first();
-        
+
         return [
             'id' => $user->id,
             'name' => $user->name,
@@ -354,7 +355,7 @@ class Login extends Component
 
         try {
             $lastUser = json_decode(decrypt(Cookie::get('last_user')), true);
-            
+
             if (is_array($lastUser) && isset($lastUser['email'])) {
                 $this->login_id = $lastUser['email'];
             } elseif (is_array($lastUser) && isset($lastUser['username'])) {
@@ -363,7 +364,7 @@ class Login extends Component
         } catch (Exception $e) {
             // Clear invalid cookie
             Cookie::queue(Cookie::forget('last_user'));
-            
+
             if ($this->shouldLog()) {
                 logger()->warning('Invalid last_user cookie detected and cleared: ' . $e->getMessage());
             }
