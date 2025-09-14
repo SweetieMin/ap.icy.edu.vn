@@ -75,6 +75,11 @@ class Students extends Component
         $this->dispatch('open-pdf', ['url' => $url]);
     }
 
+    public function paymentStudent($studentId)
+    {
+        $this->redirectRoute('admin.finance.tuitions-payment', ['student' => $studentId], navigate: true);
+    }
+
     public function render()
     {
         $filters = [

@@ -48,7 +48,9 @@
                         <flux:input wire:model='name' label="👨‍🎓 Họ và tên 🚩" placeholder="Nhập họ và tên đầy đủ"
                             wire:change='updateUsername'
                             class="rounded-xl border-gray-300 focus:border-blue-500 focus:ring-blue-500 transition-all duration-300"
-                            autofocus />
+                            autofocus 
+                            {{ $isEditStudentMode ? 'disabled' : '' }}
+                            />
                     </div>
                     <div class="form-group md:col-span-2">
                         <flux:input wire:model='username' label="👤 Tên đăng nhập" placeholder="username" disabled

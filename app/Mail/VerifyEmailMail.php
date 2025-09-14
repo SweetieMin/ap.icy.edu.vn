@@ -31,6 +31,7 @@ class VerifyEmailMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
+            to: $this->user->email,
             subject: 'Xác thực địa chỉ email - ' . config('app.name'),
         );
     }

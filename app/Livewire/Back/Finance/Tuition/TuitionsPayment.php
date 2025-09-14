@@ -59,6 +59,12 @@ class TuitionsPayment extends Component
     #[Url(except: '')]
     public $student;
 
+    #[On('payment-student')]
+    public function paymentStudent($studentId)
+    {
+        $this->student = $studentId;
+    }
+
     public function mount()
     {
         $this->loadPrograms();

@@ -2,14 +2,14 @@
     
     <?php if (isset($component)) { $__componentOriginal8cc9d3143946b992b324617832699c5f = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal8cc9d3143946b992b324617832699c5f = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::modal.index','data' => ['dismissible' => false,'name' => 'modal-student','class' => 'w-full max-w-[90vw] md:max-w-[720px] lg:max-w-[800px] max-h-[90vh] overflow-y-auto']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::modal.index','data' => ['dismissible' => false,'name' => 'modal-employee','class' => 'w-full max-w-[90vw] md:max-w-[720px] lg:max-w-[800px] max-h-[90vh] overflow-y-auto']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('flux::modal'); ?>
 <?php if ($component->shouldRender()): ?>
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>
 <?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
-<?php $component->withAttributes(['dismissible' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(false),'name' => 'modal-student','class' => 'w-full max-w-[90vw] md:max-w-[720px] lg:max-w-[800px] max-h-[90vh] overflow-y-auto']); ?>
+<?php $component->withAttributes(['dismissible' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(false),'name' => 'modal-employee','class' => 'w-full max-w-[90vw] md:max-w-[720px] lg:max-w-[800px] max-h-[90vh] overflow-y-auto']); ?>
 
         <!-- Header -->
         <div class="px-8 py-6 border-b border-gray-200 dark:border-gray-700">
@@ -23,7 +23,7 @@
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
 <?php $component->withAttributes(['class' => 'font-bold text-gray-800 dark:text-gray-200 text-xl']); ?>
-                <?php echo e($isEditStudentMode ? '✏️ Cập nhật học viên' : '➕ Thêm mới học viên'); ?>
+                <?php echo e($isEditStaffMode ? '✏️ Cập nhật nhân viên' : '➕ Thêm mới nhân viên'); ?>
 
              <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
@@ -45,7 +45,7 @@
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
 <?php $component->withAttributes(['class' => 'mt-1 text-gray-600 dark:text-gray-400']); ?>
-                <?php echo e($isEditStudentMode ? 'Chỉnh sửa thông tin học viên trong hệ thống' : 'Thêm mới học viên vào hệ thống quản lý'); ?>
+                <?php echo e($isEditStaffMode ? 'Chỉnh sửa thông tin nhân viên trong hệ thống' : 'Thêm mới nhân viên vào hệ thống quản lý'); ?>
 
              <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
@@ -59,10 +59,9 @@
 <?php endif; ?>
         </div>
 
-        <form wire:submit.prevent='<?php echo e($isEditStudentMode ? 'updateStudent' : 'createStudent'); ?>'
-            class="px-8 py-6 space-y-8">
-            <!--[if BLOCK]><![endif]--><?php if($isEditStudentMode): ?>
-                <input type="hidden" wire:model='studentId' />
+        <form wire:submit.prevent='<?php echo e($isEditStaffMode ? 'updateStaff' : 'createStaff'); ?>' class="px-8 py-6 space-y-8">
+            <!--[if BLOCK]><![endif]--><?php if($isEditStaffMode): ?>
+                <input type="hidden" wire:model='staffId' />
             <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
 
             
@@ -91,22 +90,22 @@
 <?php endif; ?>
             </div>
 
-           
-                <div class="space-y-6">
-                    <div class="form-group">
-                        <?php if (isset($component)) { $__componentOriginala467913f9ff34913553be64599ec6e92 = $component; } ?>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                <div class="form-group">
+
+                    <?php if (isset($component)) { $__componentOriginala467913f9ff34913553be64599ec6e92 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginala467913f9ff34913553be64599ec6e92 = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::select.index','data' => ['wire:model' => 'location_id','label' => '🏢 Cơ sở','placeholder' => 'Chọn cơ sở','class' => 'rounded-xl border-gray-300 focus:border-blue-500 focus:ring-blue-500 transition-all duration-300']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::select.index','data' => ['wire:model' => 'location_id','label' => '🏢 Cơ sở','placeholder' => 'Chọn cơ sở','class' => 'rounded-xl border-gray-300 focus:border-blue-500 focus:ring-blue-500 transition-all duration-300 shadow-sm hover:shadow-md']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('flux::select'); ?>
 <?php if ($component->shouldRender()): ?>
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>
 <?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
-<?php $component->withAttributes(['wire:model' => 'location_id','label' => '🏢 Cơ sở','placeholder' => 'Chọn cơ sở','class' => 'rounded-xl border-gray-300 focus:border-blue-500 focus:ring-blue-500 transition-all duration-300']); ?>
-                           
-                            <!--[if BLOCK]><![endif]--><?php $__currentLoopData = $locationStudent; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $location): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                <?php if (isset($component)) { $__componentOriginalc7395a5f1f6c2e275d1dc4ea0be0c745 = $component; } ?>
+<?php $component->withAttributes(['wire:model' => 'location_id','label' => '🏢 Cơ sở','placeholder' => 'Chọn cơ sở','class' => 'rounded-xl border-gray-300 focus:border-blue-500 focus:ring-blue-500 transition-all duration-300 shadow-sm hover:shadow-md']); ?>
+                        <!--[if BLOCK]><![endif]--><?php $__currentLoopData = $locationStaff; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $location): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <?php if (isset($component)) { $__componentOriginalc7395a5f1f6c2e275d1dc4ea0be0c745 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginalc7395a5f1f6c2e275d1dc4ea0be0c745 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::select.option.index','data' => ['value' => $location->id,'label' => ''.e($location->name).'']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('flux::select.option'); ?>
@@ -126,8 +125,8 @@
 <?php $component = $__componentOriginalc7395a5f1f6c2e275d1dc4ea0be0c745; ?>
 <?php unset($__componentOriginalc7395a5f1f6c2e275d1dc4ea0be0c745); ?>
 <?php endif; ?>
-                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><!--[if ENDBLOCK]><![endif]-->
-                         <?php echo $__env->renderComponent(); ?>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><!--[if ENDBLOCK]><![endif]-->
+                     <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php if (isset($__attributesOriginala467913f9ff34913553be64599ec6e92)): ?>
 <?php $attributes = $__attributesOriginala467913f9ff34913553be64599ec6e92; ?>
@@ -137,33 +136,91 @@
 <?php $component = $__componentOriginala467913f9ff34913553be64599ec6e92; ?>
 <?php unset($__componentOriginala467913f9ff34913553be64599ec6e92); ?>
 <?php endif; ?>
-                    </div>
+
                 </div>
-           
+                <div class="form-group">
+                    <?php if (isset($component)) { $__componentOriginala467913f9ff34913553be64599ec6e92 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginala467913f9ff34913553be64599ec6e92 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::select.index','data' => ['wire:model' => 'role_id','label' => '👨‍🎓 Vai trò','placeholder' => 'Chọn vai trò','class' => 'rounded-xl border-gray-300 focus:border-green-500 focus:ring-green-500 transition-all duration-300 shadow-sm hover:shadow-md']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('flux::select'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['wire:model' => 'role_id','label' => '👨‍🎓 Vai trò','placeholder' => 'Chọn vai trò','class' => 'rounded-xl border-gray-300 focus:border-green-500 focus:ring-green-500 transition-all duration-300 shadow-sm hover:shadow-md']); ?>
+                        <!--[if BLOCK]><![endif]--><?php $__currentLoopData = $roleStaff; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $role): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <?php if (isset($component)) { $__componentOriginalc7395a5f1f6c2e275d1dc4ea0be0c745 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginalc7395a5f1f6c2e275d1dc4ea0be0c745 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::select.option.index','data' => ['value' => $role->id,'label' => ''.e($role->name).'']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('flux::select.option'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['value' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($role->id),'label' => ''.e($role->name).'']); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginalc7395a5f1f6c2e275d1dc4ea0be0c745)): ?>
+<?php $attributes = $__attributesOriginalc7395a5f1f6c2e275d1dc4ea0be0c745; ?>
+<?php unset($__attributesOriginalc7395a5f1f6c2e275d1dc4ea0be0c745); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginalc7395a5f1f6c2e275d1dc4ea0be0c745)): ?>
+<?php $component = $__componentOriginalc7395a5f1f6c2e275d1dc4ea0be0c745; ?>
+<?php unset($__componentOriginalc7395a5f1f6c2e275d1dc4ea0be0c745); ?>
+<?php endif; ?>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><!--[if ENDBLOCK]><![endif]-->
+                     <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginala467913f9ff34913553be64599ec6e92)): ?>
+<?php $attributes = $__attributesOriginala467913f9ff34913553be64599ec6e92; ?>
+<?php unset($__attributesOriginala467913f9ff34913553be64599ec6e92); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginala467913f9ff34913553be64599ec6e92)): ?>
+<?php $component = $__componentOriginala467913f9ff34913553be64599ec6e92; ?>
+<?php unset($__componentOriginala467913f9ff34913553be64599ec6e92); ?>
+<?php endif; ?>
+                </div>
+
+            </div>
 
             <div class="space-y-2">
                 
                 <div class="grid grid-cols-1 md:grid-cols-5 gap-4">
                     <div class="form-group md:col-span-3">
-                        <flux:input wire:model='name' label="👨‍🎓 Họ và tên 🚩" placeholder="Nhập họ và tên đầy đủ"
-                            wire:change='updateUsername'
-                            class="rounded-xl border-gray-300 focus:border-blue-500 focus:ring-blue-500 transition-all duration-300"
-                            autofocus 
-                            <?php echo e($isEditStudentMode ? 'disabled' : ''); ?>
-
-                            />
-                    </div>
-                    <div class="form-group md:col-span-2">
                         <?php if (isset($component)) { $__componentOriginal26c546557cdc09040c8dd00b2090afd0 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal26c546557cdc09040c8dd00b2090afd0 = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::input.index','data' => ['wire:model' => 'username','label' => '👤 Tên đăng nhập','placeholder' => 'username','disabled' => true,'class' => 'rounded-xl border-gray-300 focus:border-blue-500 focus:ring-blue-500 transition-all duration-300']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::input.index','data' => ['wire:model' => 'name','label' => '👨‍🎓 Họ và tên 🚩','placeholder' => 'Nhập họ và tên đầy đủ','wire:change' => 'updateUsername','class' => 'rounded-xl border-gray-300 focus:border-blue-500 focus:ring-blue-500 transition-all duration-300','autofocus' => true]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('flux::input'); ?>
 <?php if ($component->shouldRender()): ?>
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>
 <?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
-<?php $component->withAttributes(['wire:model' => 'username','label' => '👤 Tên đăng nhập','placeholder' => 'username','disabled' => true,'class' => 'rounded-xl border-gray-300 focus:border-blue-500 focus:ring-blue-500 transition-all duration-300']); ?>
+<?php $component->withAttributes(['wire:model' => 'name','label' => '👨‍🎓 Họ và tên 🚩','placeholder' => 'Nhập họ và tên đầy đủ','wire:change' => 'updateUsername','class' => 'rounded-xl border-gray-300 focus:border-blue-500 focus:ring-blue-500 transition-all duration-300','autofocus' => true]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal26c546557cdc09040c8dd00b2090afd0)): ?>
+<?php $attributes = $__attributesOriginal26c546557cdc09040c8dd00b2090afd0; ?>
+<?php unset($__attributesOriginal26c546557cdc09040c8dd00b2090afd0); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal26c546557cdc09040c8dd00b2090afd0)): ?>
+<?php $component = $__componentOriginal26c546557cdc09040c8dd00b2090afd0; ?>
+<?php unset($__componentOriginal26c546557cdc09040c8dd00b2090afd0); ?>
+<?php endif; ?>
+                    </div>
+                    <div class="form-group md:col-span-2">
+                        <?php if (isset($component)) { $__componentOriginal26c546557cdc09040c8dd00b2090afd0 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal26c546557cdc09040c8dd00b2090afd0 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::input.index','data' => ['wire:model' => 'username','label' => '🔑 Tên đăng nhập','placeholder' => 'username','disabled' => true,'class' => 'rounded-xl border-gray-300 focus:border-blue-500 focus:ring-blue-500 transition-all duration-300']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('flux::input'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['wire:model' => 'username','label' => '🔑 Tên đăng nhập','placeholder' => 'username','disabled' => true,'class' => 'rounded-xl border-gray-300 focus:border-blue-500 focus:ring-blue-500 transition-all duration-300']); ?>
 <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php if (isset($__attributesOriginal26c546557cdc09040c8dd00b2090afd0)): ?>
@@ -233,10 +290,8 @@
 
                     
                     <div class="form-group md:col-span-2">
-                        <label for="gender_female"
-                            class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Giới tính</label>
                         <div class="flex items-center space-x-2">
-                            <input name="gender" wire:model='gender' type="checkbox"
+                            <input name="gender" wire:model='gender' label="Giới tính" type="checkbox"
                                 class="h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-300 rounded" />
                             <span class="text-gray-700 dark:text-gray-300">Nữ</span>
                         </div>
@@ -365,14 +420,14 @@
                     <div class="form-group">
                         <?php if (isset($component)) { $__componentOriginal26c546557cdc09040c8dd00b2090afd0 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal26c546557cdc09040c8dd00b2090afd0 = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::input.index','data' => ['wire:model' => 'guardian_name','wire:change' => 'updateGuardian','label' => 'Họ và tên người giám hộ 🚩','placeholder' => 'Nhập tên','class' => 'rounded-xl border-gray-300 focus:border-red-500 focus:ring-red-500 transition-all duration-300']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::input.index','data' => ['wire:model' => 'guardian_name','wire:change' => 'updateGuardian','label' => 'Họ và tên người giám hộ','placeholder' => 'Nhập tên','class' => 'rounded-xl border-gray-300 focus:border-red-500 focus:ring-red-500 transition-all duration-300']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('flux::input'); ?>
 <?php if ($component->shouldRender()): ?>
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>
 <?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
-<?php $component->withAttributes(['wire:model' => 'guardian_name','wire:change' => 'updateGuardian','label' => 'Họ và tên người giám hộ 🚩','placeholder' => 'Nhập tên','class' => 'rounded-xl border-gray-300 focus:border-red-500 focus:ring-red-500 transition-all duration-300']); ?>
+<?php $component->withAttributes(['wire:model' => 'guardian_name','wire:change' => 'updateGuardian','label' => 'Họ và tên người giám hộ','placeholder' => 'Nhập tên','class' => 'rounded-xl border-gray-300 focus:border-red-500 focus:ring-red-500 transition-all duration-300']); ?>
 <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php if (isset($__attributesOriginal26c546557cdc09040c8dd00b2090afd0)): ?>
@@ -387,14 +442,14 @@
                     <div class="form-group">
                         <?php if (isset($component)) { $__componentOriginal26c546557cdc09040c8dd00b2090afd0 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal26c546557cdc09040c8dd00b2090afd0 = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::input.index','data' => ['wire:model' => 'guardian_phone','label' => '📱 Số điện thoại 🚩','placeholder' => '0123456789','class' => 'rounded-xl border-gray-300 focus:border-red-500 focus:ring-red-500 transition-all duration-300']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::input.index','data' => ['wire:model' => 'guardian_phone','label' => '📱 Số điện thoại','placeholder' => '0123456789','class' => 'rounded-xl border-gray-300 focus:border-red-500 focus:ring-red-500 transition-all duration-300']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('flux::input'); ?>
 <?php if ($component->shouldRender()): ?>
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>
 <?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
-<?php $component->withAttributes(['wire:model' => 'guardian_phone','label' => '📱 Số điện thoại 🚩','placeholder' => '0123456789','class' => 'rounded-xl border-gray-300 focus:border-red-500 focus:ring-red-500 transition-all duration-300']); ?>
+<?php $component->withAttributes(['wire:model' => 'guardian_phone','label' => '📱 Số điện thoại','placeholder' => '0123456789','class' => 'rounded-xl border-gray-300 focus:border-red-500 focus:ring-red-500 transition-all duration-300']); ?>
 <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php if (isset($__attributesOriginal26c546557cdc09040c8dd00b2090afd0)): ?>
@@ -467,7 +522,7 @@
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
 <?php $component->withAttributes(['type' => 'submit','variant' => 'primary','class' => 'cursor-pointer px-8 py-2 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300']); ?>
-                        <?php echo e($isEditStudentMode ? '✅ Cập nhật' : '➕ Thêm mới'); ?>
+                        <?php echo e($isEditStaffMode ? '✅ Cập nhật' : '➕ Thêm mới'); ?>
 
                      <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
@@ -483,9 +538,10 @@
             </div>
 
             <div class="flex items-center pt-6 border-t border-gray-200 dark:border-gray-700">
-                <span class="inline-flex items-center px-4 py-2 bg-yellow-50 dark:bg-yellow-900/20 text-yellow-800 dark:text-yellow-200 rounded-xl text-sm font-medium shadow-sm">
+                <span
+                    class="inline-flex items-center px-4 py-2 bg-yellow-50 dark:bg-yellow-900/20 text-yellow-800 dark:text-yellow-200 rounded-xl text-sm font-medium shadow-sm">
                     <svg class="w-5 h-5 mr-2 text-red-500" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M10 2a8 8 0 100 16 8 8 0 000-16zm1 11H9v-2h2v2zm0-4H9V7h2v2z"/>
+                        <path d="M10 2a8 8 0 100 16 8 8 0 000-16zm1 11H9v-2h2v2zm0-4H9V7h2v2z" />
                     </svg>
                     Các trường có dấu <span class="font-bold text-red-500 mx-1">🚩</span> là bắt buộc.
                 </span>
@@ -506,14 +562,14 @@
     
     <?php if (isset($component)) { $__componentOriginal8cc9d3143946b992b324617832699c5f = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal8cc9d3143946b992b324617832699c5f = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::modal.index','data' => ['name' => 'delete-student','class' => 'md:w-[500px]']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::modal.index','data' => ['name' => 'delete-staff','class' => 'md:w-[500px]']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('flux::modal'); ?>
 <?php if ($component->shouldRender()): ?>
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>
 <?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
-<?php $component->withAttributes(['name' => 'delete-student','class' => 'md:w-[500px]']); ?>
+<?php $component->withAttributes(['name' => 'delete-staff','class' => 'md:w-[500px]']); ?>
         <div
             class="bg-gradient-to-br from-red-50 via-white to-pink-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 rounded-2xl">
             <!-- Header với gradient background -->
@@ -540,7 +596,7 @@
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
 <?php $component->withAttributes(['class' => 'font-bold text-white text-xl']); ?>
-                            🗑️ Xác nhận xóa học viên
+                            🗑️ Xác nhận xóa nhân viên
                          <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php if (isset($__attributesOriginale0fd5b6a0986beffac17a0a103dfd7b9)): ?>
@@ -576,7 +632,7 @@
                 </div>
             </div>
 
-            <form wire:submit='deleteStudentConfirm' class="px-8 py-6 space-y-6">
+            <form wire:submit='deleteStaffConfirm' class="px-8 py-6 space-y-6">
                 <div class="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-xl p-6">
                     <div class="flex items-start">
                         <div class="flex-shrink-0">
@@ -592,9 +648,9 @@
                                 Cảnh báo xóa dữ liệu
                             </h3>
                             <div class="mt-2 text-red-700 dark:text-red-300">
-                                <p class="mb-2">Bạn có chắc chắn muốn xóa học viên này không?</p>
+                                <p class="mb-2">Bạn có chắc chắn muốn xóa nhân viên này không?</p>
                                 <ul class="list-disc list-inside space-y-1 text-sm">
-                                    <li>Tất cả thông tin học viên sẽ bị xóa vĩnh viễn</li>
+                                    <li>Tất cả thông tin nhân viên sẽ bị xóa vĩnh viễn</li>
                                     <li>Ảnh đại diện sẽ bị xóa khỏi hệ thống</li>
                                     <li>Hành động này không thể hoàn tác</li>
                                 </ul>
@@ -681,5 +737,4 @@
 <?php unset($__componentOriginal8cc9d3143946b992b324617832699c5f); ?>
 <?php endif; ?>
 </div>
-
-<?php /**PATH /Users/smyth/Herd/ap.icy.edu.vn/resources/views/livewire/back/personnel/student/actions-student.blade.php ENDPATH**/ ?>
+<?php /**PATH /Users/smyth/Herd/ap.icy.edu.vn/resources/views/livewire/back/personnel/employee/actions-staff.blade.php ENDPATH**/ ?>

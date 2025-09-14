@@ -200,8 +200,7 @@
                         @if ($totalItemDiscounts > 0)
                             <div class="mb-2">
                                 <div class="flex justify-between items-center">
-                                    <span class="text-gray-700 dark:text-gray-300 font-medium">Giảm giá từng khóa
-                                        học:</span>
+                                    <span class="text-gray-700 dark:text-gray-300 font-medium">Giảm giá:</span>
                                     <span class="text-red-600 dark:text-red-400 font-bold">
                                         -{{ number_format($totalItemDiscounts, 0, ',', '.') }} VNĐ
                                     </span>

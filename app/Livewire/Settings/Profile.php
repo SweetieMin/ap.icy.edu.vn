@@ -71,8 +71,6 @@ class Profile extends Component
             'address.string' => 'Địa chỉ phải là một chuỗi',
             'address.max' => 'Địa chỉ không được vượt quá 255 ký tự',
         ]);
-
-        sleep(1);
     
         $user->fill([
             'email' => $validated['email'],
@@ -87,9 +85,9 @@ class Profile extends Component
         $user->detail()->updateOrCreate(
             ['user_id' => $user->id],
             [
-                'phone' => $validated['phone'],
-                'birthday' => $validated['birthday'],
-                'address' => $validated['address'],
+                'phone' => !empty($validated['phone']) ? $validated['phone'] : null,
+                'birthday' => !empty($validated['birthday']) ? $validated['birthday'] : null,
+                'address' => !empty($validated['address']) ? $validated['address'] : null,
             ]
         );
     
@@ -109,6 +107,12 @@ class Profile extends Component
         if ($user->hasVerifiedEmail()) {
             $this->redirectIntended(default: route('dashboard', absolute: false));
 
+            return;
+        }
+
+        // Check if user has a valid email address
+        if (empty($user->email)) {
+            Session::flash('error', 'Bạn cần có địa chỉ email để gửi email xác thực.');
             return;
         }
 
