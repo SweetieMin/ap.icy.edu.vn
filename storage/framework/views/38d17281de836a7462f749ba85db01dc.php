@@ -76,24 +76,25 @@ if (isset($__slots)) unset($__slots);
     
     <div class="mt-6">
         <div class="theme-table-pink">
-            <div class="overflow-x-auto">
+            
+            <div class="hidden md:block overflow-x-auto">
                 <table>
                     <thead>
                         <tr>
                             <th class="text-center w-16">Mã</th>
-                            <th class="text-center hidden sm:table-cell">Tên học kỳ</th>
+                            <th class="text-center">Tên học kỳ</th>
                             <th class="text-center">Trạng thái</th>
                             <th class="text-center">Thao tác</th>
                         </tr>
                     </thead>
                     <tbody>
                         <!--[if BLOCK]><![endif]--><?php $__empty_1 = true; $__currentLoopData = $seasons; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $season): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
-                            <tr wire:key="season-<?php echo e($season->id); ?>">
+                            <tr wire:key="season-desktop-<?php echo e($season->id); ?>">
                                 <td class="whitespace-nowrap text-center font-medium">
                                     <?php echo e($season->code); ?>
 
                                 </td>
-                                <td class="whitespace-nowrap text-center hidden sm:table-cell">
+                                <td class="whitespace-nowrap text-center">
                                     <?php echo e($season->name); ?>
 
                                 </td>
@@ -278,9 +279,167 @@ if (isset($__slots)) unset($__slots);
                     </tbody>
                 </table>
             </div>
+
+            
+            <div class="md:hidden space-y-3">
+                <!--[if BLOCK]><![endif]--><?php $__empty_1 = true; $__currentLoopData = $seasons; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $season): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                    <div class="bg-white rounded-lg border border-gray-200 shadow-sm" 
+                         x-data="{ expanded: false }" 
+                         wire:key="season-mobile-<?php echo e($season->id); ?>">
+                        
+                        
+                        <div class="p-4 flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
+                                    <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <div class="font-medium text-gray-900"><?php echo e($season->code); ?></div>
+                                    <div class="text-sm text-gray-500"><?php echo e($season->name); ?></div>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center space-x-2">
+                                <?php if (isset($component)) { $__componentOriginal4cc377eda9b63b796b6668ee7832d023 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal4cc377eda9b63b796b6668ee7832d023 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::badge.index','data' => ['variant' => 'solid','color' => ''.e($season->status_badge_color).'','class' => 'text-xs']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('flux::badge'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['variant' => 'solid','color' => ''.e($season->status_badge_color).'','class' => 'text-xs']); ?>
+                                    <?php echo e($season->status_badge_label); ?>
+
+                                 <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal4cc377eda9b63b796b6668ee7832d023)): ?>
+<?php $attributes = $__attributesOriginal4cc377eda9b63b796b6668ee7832d023; ?>
+<?php unset($__attributesOriginal4cc377eda9b63b796b6668ee7832d023); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal4cc377eda9b63b796b6668ee7832d023)): ?>
+<?php $component = $__componentOriginal4cc377eda9b63b796b6668ee7832d023; ?>
+<?php unset($__componentOriginal4cc377eda9b63b796b6668ee7832d023); ?>
+<?php endif; ?>
+                                
+                                <button @click="expanded = !expanded" 
+                                        class="p-2 rounded-full hover:bg-gray-100">
+                                    <svg class="w-5 h-5 text-gray-400" 
+                                         :class="{ 'rotate-180': expanded }" 
+                                         fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+
+                        
+                        <div x-show="expanded" 
+                             class="border-t border-gray-100 bg-gray-50">
+                            
+                            <div class="p-4 space-y-3">
+                                
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm font-medium text-gray-600">Mã học kỳ:</span>
+                                    <span class="text-sm text-gray-900 font-mono"><?php echo e($season->code); ?></span>
+                                </div>
+
+                                
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm font-medium text-gray-600">Tên học kỳ:</span>
+                                    <span class="text-sm text-gray-900 text-right max-w-[200px]"><?php echo e($season->name); ?></span>
+                                </div>
+
+                                
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm font-medium text-gray-600">Trạng thái:</span>
+                                    <?php if (isset($component)) { $__componentOriginal4cc377eda9b63b796b6668ee7832d023 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal4cc377eda9b63b796b6668ee7832d023 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::badge.index','data' => ['variant' => 'solid','color' => ''.e($season->status_badge_color).'']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('flux::badge'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['variant' => 'solid','color' => ''.e($season->status_badge_color).'']); ?>
+                                        <?php echo e($season->status_badge_label); ?>
+
+                                     <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal4cc377eda9b63b796b6668ee7832d023)): ?>
+<?php $attributes = $__attributesOriginal4cc377eda9b63b796b6668ee7832d023; ?>
+<?php unset($__attributesOriginal4cc377eda9b63b796b6668ee7832d023); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal4cc377eda9b63b796b6668ee7832d023)): ?>
+<?php $component = $__componentOriginal4cc377eda9b63b796b6668ee7832d023; ?>
+<?php unset($__componentOriginal4cc377eda9b63b796b6668ee7832d023); ?>
+<?php endif; ?>
+                                </div>
+
+                                
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm font-medium text-gray-600">Ngày tạo:</span>
+                                    <span class="text-sm text-gray-900"><?php echo e($season->created_at->format('d/m/Y H:i')); ?></span>
+                                </div>
+
+                                
+                                <div class="pt-3 border-t border-gray-200">
+                                    <div class="flex space-x-2">
+                                        <button wire:click="editSeason(<?php echo e($season->id); ?>)"
+                                                class="flex-1 bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700 transition-colors flex items-center justify-center space-x-2">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+                                            </svg>
+                                            <span>Sửa</span>
+                                        </button>
+                                        
+                                        <button wire:click="deleteSeason(<?php echo e($season->id); ?>)"
+                                                class="flex-1 bg-red-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-red-700 transition-colors flex items-center justify-center space-x-2">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                                            </svg>
+                                            <span>Xóa</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+                    <div class="bg-white rounded-lg border border-gray-200 p-8">
+                        <div class="empty-state flex flex-col items-center">
+                            <?php if (isset($component)) { $__componentOriginalf48bb55ce6fd23a8de595ceefa5f14db = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginalf48bb55ce6fd23a8de595ceefa5f14db = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::icon.calendar','data' => ['class' => 'w-8 h-8 mb-2 text-gray-400']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('flux::icon.calendar'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['class' => 'w-8 h-8 mb-2 text-gray-400']); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginalf48bb55ce6fd23a8de595ceefa5f14db)): ?>
+<?php $attributes = $__attributesOriginalf48bb55ce6fd23a8de595ceefa5f14db; ?>
+<?php unset($__attributesOriginalf48bb55ce6fd23a8de595ceefa5f14db); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginalf48bb55ce6fd23a8de595ceefa5f14db)): ?>
+<?php $component = $__componentOriginalf48bb55ce6fd23a8de595ceefa5f14db; ?>
+<?php unset($__componentOriginalf48bb55ce6fd23a8de595ceefa5f14db); ?>
+<?php endif; ?>
+                            <div class="text-sm text-gray-500">Không có học kỳ nào</div>
+                        </div>
+                    </div>
+                <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+            </div>
             
             <!--[if BLOCK]><![endif]--><?php if($seasons->hasPages()): ?>
-                <div class="pagination-container">
+                <div class="pagination-container mt-6">
                     <?php echo e($seasons->links()); ?>
 
                 </div>

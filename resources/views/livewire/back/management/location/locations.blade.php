@@ -45,26 +45,27 @@
     {{-- Main content area --}}
     <div class="mt-6">
         <div class="theme-table-pink">
-            <div class="overflow-x-auto">
+            {{-- Desktop Table View --}}
+            <div class="hidden md:block overflow-x-auto">
                 <table>
                     <thead>
                         <tr>
                             <th class="text-center">Tên cơ sở</th>
                             <th class="text-center">Địa chỉ</th>
-                            <th class="text-center hidden sm:table-cell">Người tạo</th>
+                            <th class="text-center">Người tạo</th>
                             <th class="text-center">Thao tác</th>
                         </tr>
                     </thead>
                     <tbody>
                         @forelse ($locations as $location)
-                            <tr wire:key="location-{{ $location->id }}">
+                            <tr wire:key="location-desktop-{{ $location->id }}">
                                 <td class="whitespace-nowrap text-center font-medium">
                                     {{ $location->name }}
                                 </td>
                                 <td class="whitespace-nowrap text-center font-medium">
                                     {{ $location->address }}
                                 </td>
-                                <td class="whitespace-nowrap text-center hidden sm:table-cell">
+                                <td class="whitespace-nowrap text-center">
                                     {{ $location->createdBy->name }}
                                 </td>
                                 <td class="whitespace-nowrap text-center">
@@ -99,8 +100,102 @@
                 </table>
             </div>
 
+            {{-- Mobile Card View --}}
+            <div class="md:hidden space-y-3">
+                @forelse ($locations as $location)
+                    <div class="bg-white rounded-lg border border-gray-200 shadow-sm" 
+                         x-data="{ expanded: false }" 
+                         wire:key="location-mobile-{{ $location->id }}">
+                        
+                        {{-- Main Row --}}
+                        <div class="p-4 flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
+                                    <svg class="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <div class="font-medium text-gray-900">{{ $location->name }}</div>
+                                    <div class="text-sm text-gray-500">{{ $location->address }}</div>
+                                </div>
+                            </div>
+                            
+                            <button @click="expanded = !expanded" 
+                                    class="p-2 rounded-full hover:bg-gray-100 ">
+                                <svg class="w-5 h-5 text-gray-400 " 
+                                     :class="{ 'rotate-180': expanded }" 
+                                     fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                </svg>
+                            </button>
+                        </div>
+
+                        {{-- Expanded Details --}}
+                        <div x-show="expanded" 
+
+                             class="border-t border-gray-100 bg-gray-50">
+                            
+                            <div class="p-4 space-y-3">
+                                {{-- Tên cơ sở --}}
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm font-medium text-gray-600">Tên cơ sở:</span>
+                                    <span class="text-sm text-gray-900">{{ $location->name }}</span>
+                                </div>
+
+                                {{-- Địa chỉ --}}
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm font-medium text-gray-600">Địa chỉ:</span>
+                                    <span class="text-sm text-gray-900 text-right max-w-[200px]">{{ $location->address }}</span>
+                                </div>
+
+                                {{-- Người tạo --}}
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm font-medium text-gray-600">Người tạo:</span>
+                                    <span class="text-sm text-gray-900">{{ $location->createdBy->name }}</span>
+                                </div>
+
+                                {{-- Ngày tạo --}}
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm font-medium text-gray-600">Ngày tạo:</span>
+                                    <span class="text-sm text-gray-900">{{ $location->created_at->format('d/m/Y H:i') }}</span>
+                                </div>
+
+                                {{-- Actions --}}
+                                <div class="pt-3 border-t border-gray-200">
+                                    <div class="flex space-x-2">
+                                        <button wire:click="editLocation({{ $location->id }})"
+                                                class="flex-1 bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700 transition-colors flex items-center justify-center space-x-2">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+                                            </svg>
+                                            <span>Sửa</span>
+                                        </button>
+                                        
+                                        <button wire:click="deleteLocation({{ $location->id }})"
+                                                class="flex-1 bg-red-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-red-700 transition-colors flex items-center justify-center space-x-2">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                                            </svg>
+                                            <span>Xóa</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @empty
+                    <div class="bg-white rounded-lg border border-gray-200 p-8">
+                        <div class="empty-state flex flex-col items-center">
+                            <flux:icon.map-pin class="w-8 h-8 mb-2 text-gray-400" />
+                            <div class="text-sm text-gray-500">Không có cơ sở nào</div>
+                        </div>
+                    </div>
+                @endforelse
+            </div>
+
             @if ($locations->hasPages())
-                <div class="pagination-container">
+                <div class="pagination-container mt-6">
                     {{ $locations->links() }}
                 </div>
             @endif

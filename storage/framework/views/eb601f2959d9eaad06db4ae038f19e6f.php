@@ -121,7 +121,8 @@ if (isset($__slots)) unset($__slots);
 
     <div class="mt-6">
         <div class="theme-table-pink">
-            <div class="overflow-x-auto">
+            
+            <div class="hidden md:block overflow-x-auto">
                 <table>
                     <thead>
                         <tr>
@@ -136,7 +137,7 @@ if (isset($__slots)) unset($__slots);
                     </thead>
                     <tbody>
                         <!--[if BLOCK]><![endif]--><?php $__empty_1 = true; $__currentLoopData = $students; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $student): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
-                            <tr wire:key="student-<?php echo e($student->id); ?>">
+                            <tr wire:key="student-desktop-<?php echo e($student->id); ?>">
                                 <td class="text-center font-medium">
                                     <?php echo e($loop->iteration); ?>
 
@@ -417,6 +418,216 @@ if (isset($__slots)) unset($__slots);
                         <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
                     </tbody>
                 </table>
+            </div>
+
+            
+            <div class="md:hidden space-y-3">
+                <!--[if BLOCK]><![endif]--><?php $__empty_1 = true; $__currentLoopData = $students; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $student): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                    <div class="bg-white rounded-lg border border-gray-200 shadow-sm" 
+                         x-data="{ expanded: false }" 
+                         wire:key="student-mobile-<?php echo e($student->id); ?>">
+                        
+                        
+                        <div class="p-4 flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-8 h-8 bg-sky-100 rounded-full flex items-center justify-center">
+                                    <?php if (isset($component)) { $__componentOriginale0880cb6488d85d9ca54288aa080a834 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginale0880cb6488d85d9ca54288aa080a834 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::icon.academic-cap','data' => ['class' => 'w-4 h-4 text-sky-600']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('flux::icon.academic-cap'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['class' => 'w-4 h-4 text-sky-600']); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginale0880cb6488d85d9ca54288aa080a834)): ?>
+<?php $attributes = $__attributesOriginale0880cb6488d85d9ca54288aa080a834; ?>
+<?php unset($__attributesOriginale0880cb6488d85d9ca54288aa080a834); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginale0880cb6488d85d9ca54288aa080a834)): ?>
+<?php $component = $__componentOriginale0880cb6488d85d9ca54288aa080a834; ?>
+<?php unset($__componentOriginale0880cb6488d85d9ca54288aa080a834); ?>
+<?php endif; ?>
+                                </div>
+                                <div>
+                                    <div class="font-medium text-gray-900"><?php echo e($student->name); ?></div>
+                                    <div class="text-sm text-gray-500">ID: <?php echo e($student->account_code); ?></div>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center space-x-2">
+                                <?php if(auth()->user()->locations()->count() > 1 && $student->locations->count() > 0): ?>
+                                    <?php if (isset($component)) { $__componentOriginal4cc377eda9b63b796b6668ee7832d023 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal4cc377eda9b63b796b6668ee7832d023 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::badge.index','data' => ['color' => 'blue','size' => 'sm']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('flux::badge'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['color' => 'blue','size' => 'sm']); ?>
+                                        <?php echo e($student->locations->first()->name); ?>
+
+                                     <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal4cc377eda9b63b796b6668ee7832d023)): ?>
+<?php $attributes = $__attributesOriginal4cc377eda9b63b796b6668ee7832d023; ?>
+<?php unset($__attributesOriginal4cc377eda9b63b796b6668ee7832d023); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal4cc377eda9b63b796b6668ee7832d023)): ?>
+<?php $component = $__componentOriginal4cc377eda9b63b796b6668ee7832d023; ?>
+<?php unset($__componentOriginal4cc377eda9b63b796b6668ee7832d023); ?>
+<?php endif; ?>
+                                <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                                
+                                <button @click="expanded = !expanded" 
+                                        class="p-2 rounded-full hover:bg-gray-100">
+                                    <svg class="w-5 h-5 text-gray-400" 
+                                         :class="{ 'rotate-180': expanded }" 
+                                         fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+
+                        
+                        <div x-show="expanded" 
+                             class="border-t border-gray-100 bg-gray-50">
+                            
+                            <div class="p-4 space-y-3">
+                                
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm font-medium text-gray-600">Họ và tên:</span>
+                                    <div class="flex items-center space-x-2">
+                                        <img class="h-6 w-6 rounded-full object-cover"
+                                            src="<?php echo e($student->detail?->avatar ?? asset('images/default-avatar.png')); ?>"
+                                            alt="<?php echo e($student->name); ?>">
+                                        <span class="text-sm text-gray-900"><?php echo e($student->name); ?></span>
+                                    </div>
+                                </div>
+
+                                
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm font-medium text-gray-600">Số điện thoại:</span>
+                                    <span class="text-sm text-gray-900"><?php echo e($student->detail?->phone ?? 'Chưa cập nhật'); ?></span>
+                                </div>
+
+                                
+                                <!--[if BLOCK]><![endif]--><?php if(auth()->user()->locations()->count() > 1): ?>
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-sm font-medium text-gray-600">Cơ sở:</span>
+                                        <div class="text-right">
+                                            <!--[if BLOCK]><![endif]--><?php if($student->locations->count() > 0): ?>
+                                                <!--[if BLOCK]><![endif]--><?php $__currentLoopData = $student->locations; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $location): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                    <?php if (isset($component)) { $__componentOriginal4cc377eda9b63b796b6668ee7832d023 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal4cc377eda9b63b796b6668ee7832d023 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::badge.index','data' => ['color' => 'blue','size' => 'sm','class' => 'mb-1']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('flux::badge'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['color' => 'blue','size' => 'sm','class' => 'mb-1']); ?>
+                                                        <?php echo e($location->name); ?>
+
+                                                     <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal4cc377eda9b63b796b6668ee7832d023)): ?>
+<?php $attributes = $__attributesOriginal4cc377eda9b63b796b6668ee7832d023; ?>
+<?php unset($__attributesOriginal4cc377eda9b63b796b6668ee7832d023); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal4cc377eda9b63b796b6668ee7832d023)): ?>
+<?php $component = $__componentOriginal4cc377eda9b63b796b6668ee7832d023; ?>
+<?php unset($__componentOriginal4cc377eda9b63b796b6668ee7832d023); ?>
+<?php endif; ?>
+                                                    <!--[if BLOCK]><![endif]--><?php if(!$loop->last): ?>
+                                                        <br>
+                                                    <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><!--[if ENDBLOCK]><![endif]-->
+                                            <?php else: ?>
+                                                <span class="text-gray-500 text-xs">Chưa có cơ sở</span>
+                                            <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                                        </div>
+                                    </div>
+                                <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+
+                                
+                                <div class="pt-3 border-t border-gray-200">
+                                    <div class="grid grid-cols-2 gap-2">
+                                        <button wire:click="editStudent(<?php echo e($student->id); ?>)"
+                                                class="bg-blue-600 text-white px-3 py-2 rounded-md text-sm font-medium hover:bg-blue-700 transition-colors flex items-center justify-center space-x-1">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+                                            </svg>
+                                            <span>Sửa</span>
+                                        </button>
+                                        
+                                        <button wire:click="printStudentRegistration(<?php echo e($student->id); ?>)"
+                                                class="bg-gray-600 text-white px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors flex items-center justify-center space-x-1">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path>
+                                            </svg>
+                                            <span>In đơn</span>
+                                        </button>
+                                        
+                                        <button wire:click="paymentStudent(<?php echo e($student->id); ?>)"
+                                                class="bg-green-600 text-white px-3 py-2 rounded-md text-sm font-medium hover:bg-green-700 transition-colors flex items-center justify-center space-x-1">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path>
+                                            </svg>
+                                            <span>Thanh toán</span>
+                                        </button>
+                                        
+                                        <button wire:click="deleteStudent(<?php echo e($student->id); ?>)"
+                                                class="bg-red-600 text-white px-3 py-2 rounded-md text-sm font-medium hover:bg-red-700 transition-colors flex items-center justify-center space-x-1">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                                            </svg>
+                                            <span>Xóa</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+                    <div class="bg-white rounded-lg border border-gray-200 p-8">
+                        <div class="empty-state flex flex-col items-center">
+                            <?php if (isset($component)) { $__componentOriginale0880cb6488d85d9ca54288aa080a834 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginale0880cb6488d85d9ca54288aa080a834 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::icon.academic-cap','data' => ['class' => 'w-12 h-12 mb-4 text-gray-400']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('flux::icon.academic-cap'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['class' => 'w-12 h-12 mb-4 text-gray-400']); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginale0880cb6488d85d9ca54288aa080a834)): ?>
+<?php $attributes = $__attributesOriginale0880cb6488d85d9ca54288aa080a834; ?>
+<?php unset($__attributesOriginale0880cb6488d85d9ca54288aa080a834); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginale0880cb6488d85d9ca54288aa080a834)): ?>
+<?php $component = $__componentOriginale0880cb6488d85d9ca54288aa080a834; ?>
+<?php unset($__componentOriginale0880cb6488d85d9ca54288aa080a834); ?>
+<?php endif; ?>
+                            <h3 class="text-lg font-medium mb-2 text-gray-500">
+                                Không có học viên nào
+                            </h3>
+                            <p class="text-gray-400">
+                                Hiện tại không có học viên nào trong các cơ sở của bạn
+                            </p>
+                        </div>
+                    </div>
+                <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
             </div>
             
             

@@ -63,7 +63,8 @@
     <!-- Bảng quản lý giá tiền -->
     <div class="mt-6">
         <div class="theme-table-pink">
-            <div class="overflow-x-auto max-h-[calc(100vh-300px)]">
+            {{-- Desktop Table View --}}
+            <div class="hidden md:block overflow-x-auto max-h-[calc(100vh-300px)]">
                 <table>
                     <thead class="sticky top-0 z-10">
                         <tr>
@@ -82,7 +83,7 @@
                     </thead>
                     <tbody>
                         @forelse ($programs as $program)
-                            <tr wire:key="program-{{ $program->id }}">
+                            <tr wire:key="program-desktop-{{ $program->id }}">
                                 <td class="whitespace-nowrap">
                                     <div class="space-y-1">
                                         <div class="font-semibold text-pink-900 dark:text-pink-100">{{ $program->name }}</div>
@@ -182,6 +183,164 @@
                         @endforelse
                 </tbody>
             </table>
+            </div>
+
+            {{-- Mobile Card View --}}
+            <div class="md:hidden space-y-4">
+                @forelse ($programs as $program)
+                    <div class="bg-white rounded-lg border border-gray-200 shadow-sm" 
+                         x-data="{ expanded: false }" 
+                         wire:key="program-mobile-{{ $program->id }}">
+                        
+                        {{-- Main Row --}}
+                        <div class="p-4 flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-8 h-8 bg-emerald-100 rounded-full flex items-center justify-center">
+                                    <svg class="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <div class="font-medium text-gray-900">{{ $program->name }}</div>
+                                    @if($program->english_name)
+                                        <div class="text-sm text-gray-500">{{ $program->english_name }}</div>
+                                    @endif
+                                </div>
+                            </div>
+                            
+                            <button @click="expanded = !expanded" 
+                                    class="p-2 rounded-full hover:bg-gray-100">
+                                <svg class="w-5 h-5 text-gray-400" 
+                                     :class="{ 'rotate-180': expanded }" 
+                                     fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                </svg>
+                            </button>
+                        </div>
+
+                        {{-- Expanded Details --}}
+                        <div x-show="expanded" 
+                             class="border-t border-gray-100 bg-gray-50">
+                            
+                            <div class="p-4 space-y-4">
+                                {{-- Program Info --}}
+                                <div class="flex flex-col space-y-1">
+                                    <span class="text-sm font-medium text-gray-600">Chương trình:</span>
+                                    <span class="text-sm text-gray-900">{{ $program->name }}</span>
+                                    @if($program->english_name)
+                                        <span class="text-sm text-gray-500">{{ $program->english_name }}</span>
+                                    @endif
+                                </div>
+
+                                {{-- Prices for each location --}}
+                                <div class="space-y-3">
+                                    <span class="text-sm font-medium text-gray-600">Giá tại các cơ sở:</span>
+                                    @foreach($locations as $location)
+                                        @php
+                                            $price = $filteredPrices->where('program_id', $program->id)->where('location_id', $location->id)->first();
+                                        @endphp
+                                        <div class="bg-white rounded-lg p-3 border border-gray-200">
+                                            <div class="flex justify-between items-center mb-2">
+                                                <span class="text-sm font-medium text-gray-700">{{ $location->name }}</span>
+                                            </div>
+                                            
+                                            @if($price)
+                                                @if(isset($editingPrices[$price['id']]))
+                                                    {{-- Edit Mode --}}
+                                                    <div class="space-y-2">
+                                                        <input type="number" 
+                                                            wire:model="editingPrices.{{ $price['id'] }}.price"
+                                                            class="w-full px-3 py-2 border border-gray-300 rounded-md text-sm"
+                                                            placeholder="Nhập giá">
+                                                        @error("editingPrices.{$price['id']}.price")
+                                                            <div class="text-red-500 text-xs">{{ $message }}</div>
+                                                        @enderror
+                                                    </div>
+                                                @else
+                                                    {{-- Display Mode --}}
+                                                    <div class="text-sm font-semibold text-green-600">
+                                                        {{ number_format($price['price'], 0, ',', '.') }} VNĐ
+                                                    </div>
+                                                @endif
+                                            @else
+                                                {{-- No Price Data --}}
+                                                @php
+                                                    $isEditingProgram = $filteredPrices->where('program_id', $program->id)->whereIn('id', array_keys($editingPrices))->count() > 0;
+                                                @endphp
+                                                
+                                                @if($isEditingProgram)
+                                                    {{-- Edit Mode for New Price --}}
+                                                    <div class="space-y-2">
+                                                        <input type="number" 
+                                                            wire:model="newPrices.{{ $program->id }}.{{ $location->id }}"
+                                                            placeholder="Nhập giá"
+                                                            class="w-full px-3 py-2 border border-gray-300 rounded-md text-sm">
+                                                        @error("newPrices.{$program->id}.{$location->id}")
+                                                            <div class="text-red-500 text-xs">{{ $message }}</div>
+                                                        @enderror
+                                                    </div>
+                                                @else
+                                                    {{-- Display Mode - Show Add Button --}}
+                                                    <button type="button"
+                                                        wire:click="startProgramEdit({{ $program->id }})"
+                                                        class="w-full bg-pink-100 hover:bg-pink-200 text-pink-700 text-sm font-medium px-3 py-2 rounded-lg border border-pink-200 transition-all duration-200">
+                                                        + Thêm giá
+                                                    </button>
+                                                @endif
+                                            @endif
+                                        </div>
+                                    @endforeach
+                                </div>
+
+                                {{-- Actions --}}
+                                @php
+                                    $programPrices = $filteredPrices->where('program_id', $program->id);
+                                    $isEditing = $programPrices->whereIn('id', array_keys($editingPrices))->count() > 0;
+                                @endphp
+                                
+                                <div class="pt-3 border-t border-gray-200">
+                                    @if($isEditing)
+                                        {{-- Save/Cancel --}}
+                                        <div class="flex space-x-2">
+                                            <button wire:click="saveProgramPrices({{ $program->id }})"
+                                                    class="flex-1 bg-green-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-green-700 transition-colors flex items-center justify-center space-x-2">
+                                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                                </svg>
+                                                <span>Lưu</span>
+                                            </button>
+                                            
+                                            <button wire:click="cancelProgramEdit({{ $program->id }})"
+                                                    class="flex-1 bg-red-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-red-700 transition-colors flex items-center justify-center space-x-2">
+                                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                                </svg>
+                                                <span>Hủy</span>
+                                            </button>
+                                        </div>
+                                    @else
+                                        {{-- Edit Button --}}
+                                        <button wire:click="startProgramEdit({{ $program->id }})"
+                                                class="w-full bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700 transition-colors flex items-center justify-center space-x-2">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+                                            </svg>
+                                            <span>Chỉnh sửa</span>
+                                        </button>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @empty
+                    <div class="bg-white rounded-lg border border-gray-200 p-8">
+                        <div class="empty-state flex flex-col items-center">
+                            <flux:icon.currency-dollar class="w-8 h-8 mb-2 text-gray-400" />
+                            <div class="text-sm text-gray-500">Không có dữ liệu chương trình</div>
+                        </div>
+                    </div>
+                @endforelse
+            </div>
         </div>
     </div>
 

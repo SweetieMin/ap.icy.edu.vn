@@ -163,7 +163,8 @@ if (isset($__slots)) unset($__slots);
         x-init="initSortable()">
             
             <div class="theme-table-pink">
-                <div class="overflow-x-auto">
+                
+                <div class="hidden md:block overflow-x-auto">
                     <table>
                         <thead>
                             <tr>
@@ -176,7 +177,7 @@ if (isset($__slots)) unset($__slots);
                         </thead>
                         <tbody id="sortable-courses">
                             <!--[if BLOCK]><![endif]--><?php $__empty_1 = true; $__currentLoopData = $courses; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $course): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
-                                <tr wire:key="course-<?php echo e($course->id); ?>" data-id="<?php echo e($course->id); ?>" class="table-row ">
+                                <tr wire:key="course-desktop-<?php echo e($course->id); ?>" data-id="<?php echo e($course->id); ?>" class="table-row ">
                                     <td class="table-cell text-center drag-handle cursor-move w-16">
                                         <?php echo e($course->ordering); ?>
 
@@ -352,9 +353,144 @@ if (isset($__slots)) unset($__slots);
                         </tbody>
                     </table>
                 </div>
+
+                
+                <div class="md:hidden space-y-3" 
+                     x-data 
+                     x-init="
+                        const mobileEl = document.getElementById('sortable-courses-mobile');
+                        if (mobileEl) {
+                            new Sortable(mobileEl, {
+                                animation: 150,
+                                handle: '.drag-handle',
+                                onEnd: function() {
+                                    let orderedIds = [];
+                                    mobileEl.querySelectorAll('[data-id]').forEach(item => {
+                                        orderedIds.push(item.getAttribute('data-id'));
+                                    });
+                                    $wire.updateCourseOrdering(orderedIds);
+                                }
+                            });
+                        }
+                     "
+                     id="sortable-courses-mobile">
+                    <!--[if BLOCK]><![endif]--><?php $__empty_1 = true; $__currentLoopData = $courses; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $course): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                        <div class="bg-white rounded-lg border border-gray-200 shadow-sm" 
+                             x-data="{ expanded: false }" 
+                             wire:key="course-mobile-<?php echo e($course->id); ?>"
+                             data-id="<?php echo e($course->id); ?>">
+                            
+                            
+                            <div class="p-4 flex items-center justify-between">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-8 h-8 bg-orange-100 rounded-full flex items-center justify-center cursor-move drag-handle">
+                                        <span class="text-xs font-bold text-orange-600"><?php echo e($course->ordering); ?></span>
+                                    </div>
+                                    <div>
+                                        <div class="font-medium text-gray-900"><?php echo e($course->name); ?></div>
+                                        <div class="text-sm text-gray-500"><?php echo e($course->location->name); ?></div>
+                                    </div>
+                                </div>
+                                
+                                <button @click="expanded = !expanded" 
+                                        class="p-2 rounded-full hover:bg-gray-100">
+                                    <svg class="w-5 h-5 text-gray-400" 
+                                         :class="{ 'rotate-180': expanded }" 
+                                         fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                    </svg>
+                                </button>
+                            </div>
+
+                            
+                            <div x-show="expanded" 
+                                 class="border-t border-gray-100 bg-gray-50">
+                                
+                                <div class="p-4 space-y-3">
+                                    
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-sm font-medium text-gray-600">STT:</span>
+                                        <span class="text-sm text-gray-900 font-mono"><?php echo e($course->ordering); ?></span>
+                                    </div>
+
+                                    
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-sm font-medium text-gray-600">Tên lớp học:</span>
+                                        <span class="text-sm text-gray-900 text-right max-w-[200px]"><?php echo e($course->name); ?></span>
+                                    </div>
+
+                                    
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-sm font-medium text-gray-600">Cơ sở:</span>
+                                        <span class="text-sm text-gray-900 text-right max-w-[200px]"><?php echo e($course->location->name); ?></span>
+                                    </div>
+
+                                    
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-sm font-medium text-gray-600">Học kỳ:</span>
+                                        <span class="text-sm text-gray-900 text-right max-w-[200px]"><?php echo e($course->season->name); ?></span>
+                                    </div>
+
+                                    
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-sm font-medium text-gray-600">Ngày tạo:</span>
+                                        <span class="text-sm text-gray-900"><?php echo e($course->created_at->format('d/m/Y H:i')); ?></span>
+                                    </div>
+
+                                    
+                                    <div class="pt-3 border-t border-gray-200">
+                                        <div class="flex space-x-2">
+                                            <button wire:click="editCourse(<?php echo e($course->id); ?>)"
+                                                    class="flex-1 bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700 transition-colors flex items-center justify-center space-x-2">
+                                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+                                                </svg>
+                                                <span>Sửa</span>
+                                            </button>
+                                            
+                                            <button wire:click="deleteCourse(<?php echo e($course->id); ?>)"
+                                                    class="flex-1 bg-red-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-red-700 transition-colors flex items-center justify-center space-x-2">
+                                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                                                </svg>
+                                                <span>Xóa</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+                        <div class="bg-white rounded-lg border border-gray-200 p-8">
+                            <div class="empty-state flex flex-col items-center">
+                                <?php if (isset($component)) { $__componentOriginale0880cb6488d85d9ca54288aa080a834 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginale0880cb6488d85d9ca54288aa080a834 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::icon.academic-cap','data' => ['class' => 'w-8 h-8 mb-2 text-gray-400']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('flux::icon.academic-cap'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['class' => 'w-8 h-8 mb-2 text-gray-400']); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginale0880cb6488d85d9ca54288aa080a834)): ?>
+<?php $attributes = $__attributesOriginale0880cb6488d85d9ca54288aa080a834; ?>
+<?php unset($__attributesOriginale0880cb6488d85d9ca54288aa080a834); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginale0880cb6488d85d9ca54288aa080a834)): ?>
+<?php $component = $__componentOriginale0880cb6488d85d9ca54288aa080a834; ?>
+<?php unset($__componentOriginale0880cb6488d85d9ca54288aa080a834); ?>
+<?php endif; ?>
+                                <div class="text-sm text-gray-500">Không có lớp học nào</div>
+                            </div>
+                        </div>
+                    <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                </div>
                 
                 <!--[if BLOCK]><![endif]--><?php if($courses->hasPages()): ?>
-                    <div class="pagination-container">
+                    <div class="pagination-container mt-6">
                         <?php echo e($courses->links()); ?>
 
                     </div>

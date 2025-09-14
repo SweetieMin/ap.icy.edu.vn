@@ -174,7 +174,8 @@
     <!-- Bảng lịch sử đóng tiền -->
     <div class="mt-6">
         <div class="theme-table-pink">
-            <div class="overflow-x-auto max-h-[calc(100vh-300px)]">
+            
+            <div class="hidden md:block overflow-x-auto max-h-[calc(100vh-300px)]">
                 <table>
                     <thead class="sticky top-0 z-10">
                         <tr>
@@ -191,7 +192,7 @@
                     </thead>
                     <tbody>
                         <!--[if BLOCK]><![endif]--><?php $__empty_1 = true; $__currentLoopData = $tuitions; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $tuition): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
-                            <tr wire:key="tuition-<?php echo e($tuition->id); ?>">
+                            <tr wire:key="tuition-desktop-<?php echo e($tuition->id); ?>">
                                 <td class="text-center font-medium">
                                     <?php echo e($index + 1); ?>
 
@@ -425,8 +426,240 @@
                         </tbody>
                     </table>
                 </div>
+
+            
+            <div class="md:hidden space-y-3 max-h-[calc(100vh-300px)] overflow-y-auto">
+                <!--[if BLOCK]><![endif]--><?php $__empty_1 = true; $__currentLoopData = $tuitions; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $tuition): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                    <div class="bg-white rounded-lg border border-gray-200 shadow-sm" 
+                         x-data="{ expanded: false }" 
+                         wire:key="tuition-mobile-<?php echo e($tuition->id); ?>">
+                        
+                        
+                        <div class="p-4 flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-8 h-8 bg-emerald-100 rounded-full flex items-center justify-center">
+                                    <svg class="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <div class="font-medium text-gray-900"><?php echo e($tuition->user->name); ?></div>
+                                    <div class="text-sm text-gray-500">ID: <?php echo e($tuition->user->account_code); ?></div>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center space-x-2">
+                                <!--[if BLOCK]><![endif]--><?php switch($tuition->status):
+                                    case ('paid'): ?>
+                                        <span class="px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                            ✅ Đã thanh toán
+                                        </span>
+                                    <?php break; ?>
+                                    <?php case ('pending'): ?>
+                                        <span class="px-2 py-1 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
+                                            ⏳ Chờ xử lý
+                                        </span>
+                                    <?php break; ?>
+                                    <?php case ('failed'): ?>
+                                        <span class="px-2 py-1 rounded-full text-xs font-medium bg-red-100 text-red-800">
+                                            ❌ Thất bại
+                                        </span>
+                                    <?php break; ?>
+                                    <?php default: ?>
+                                        <span class="px-2 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
+                                            <?php echo e($tuition->status); ?>
+
+                                        </span>
+                                <?php endswitch; ?><!--[if ENDBLOCK]><![endif]-->
+                                
+                                <button @click="expanded = !expanded" 
+                                        class="p-2 rounded-full hover:bg-gray-100">
+                                    <svg class="w-5 h-5 text-gray-400" 
+                                         :class="{ 'rotate-180': expanded }" 
+                                         fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+
+                        
+                        <div x-show="expanded" 
+                             class="border-t border-gray-100 bg-gray-50">
+                            
+                            <div class="p-4 space-y-3">
+                                
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm font-medium text-gray-600">Học viên:</span>
+                                    <div class="flex items-center space-x-2">
+                                        <img class="h-6 w-6 rounded-full object-cover"
+                                            src="<?php echo e($tuition->user->detail?->avatar ?? asset('storage/images/avatars/default-avatar.png')); ?>"
+                                            alt="<?php echo e($tuition->user->name); ?>">
+                                        <span class="text-sm text-gray-900"><?php echo e($tuition->user->name); ?></span>
+                                    </div>
+                                </div>
+
+                                
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm font-medium text-gray-600">Chương trình:</span>
+                                    <div class="text-right">
+                                        <div class="text-sm text-gray-900"><?php echo e($tuition->program->name ?? 'N/A'); ?></div>
+                                        <!--[if BLOCK]><![endif]--><?php if($tuition->program->english_name): ?>
+                                            <div class="text-xs text-gray-500"><?php echo e($tuition->program->english_name); ?></div>
+                                        <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                                    </div>
+                                </div>
+
+                                
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm font-medium text-gray-600">Học kỳ:</span>
+                                    <span class="text-sm text-gray-900"><?php echo e($tuition->season->code ?? 'N/A'); ?></span>
+                                </div>
+
+                                
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm font-medium text-gray-600">Nội dung:</span>
+                                    <span class="text-sm text-gray-900 font-mono"><?php echo e($tuition->note ?? 'Chưa có'); ?></span>
+                                </div>
+
+                                
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm font-medium text-gray-600">Số tiền:</span>
+                                    <span class="text-sm font-bold text-green-600"><?php echo e($tuition->price_formatted); ?> VNĐ</span>
+                                </div>
+
+                                
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm font-medium text-gray-600">Phương thức:</span>
+                                    <!--[if BLOCK]><![endif]--><?php switch($tuition->payment_method):
+                                        case ('cash'): ?>
+                                            <div class="flex items-center space-x-1">
+                                                <?php if (isset($component)) { $__componentOriginal1a2aab62646bbf4070a26cfe0540f0d4 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal1a2aab62646bbf4070a26cfe0540f0d4 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::icon.banknotes','data' => ['class' => 'size-4 text-green-600']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('flux::icon.banknotes'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['class' => 'size-4 text-green-600']); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal1a2aab62646bbf4070a26cfe0540f0d4)): ?>
+<?php $attributes = $__attributesOriginal1a2aab62646bbf4070a26cfe0540f0d4; ?>
+<?php unset($__attributesOriginal1a2aab62646bbf4070a26cfe0540f0d4); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal1a2aab62646bbf4070a26cfe0540f0d4)): ?>
+<?php $component = $__componentOriginal1a2aab62646bbf4070a26cfe0540f0d4; ?>
+<?php unset($__componentOriginal1a2aab62646bbf4070a26cfe0540f0d4); ?>
+<?php endif; ?>
+                                                <span class="text-sm text-gray-900">Tiền mặt</span>
+                                            </div>
+                                        <?php break; ?>
+                                        <?php case ('bank_transfer'): ?>
+                                            <div class="flex items-center space-x-1">
+                                                <?php if (isset($component)) { $__componentOriginal6e0b21ef9231e6606d7ac9c0c02dc146 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal6e0b21ef9231e6606d7ac9c0c02dc146 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::icon.credit-card','data' => ['class' => 'size-4 text-blue-600']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('flux::icon.credit-card'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['class' => 'size-4 text-blue-600']); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal6e0b21ef9231e6606d7ac9c0c02dc146)): ?>
+<?php $attributes = $__attributesOriginal6e0b21ef9231e6606d7ac9c0c02dc146; ?>
+<?php unset($__attributesOriginal6e0b21ef9231e6606d7ac9c0c02dc146); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal6e0b21ef9231e6606d7ac9c0c02dc146)): ?>
+<?php $component = $__componentOriginal6e0b21ef9231e6606d7ac9c0c02dc146; ?>
+<?php unset($__componentOriginal6e0b21ef9231e6606d7ac9c0c02dc146); ?>
+<?php endif; ?>
+                                                <span class="text-sm text-gray-900">Chuyển khoản</span>
+                                            </div>
+                                        <?php break; ?>
+                                        <?php default: ?>
+                                            <span class="text-sm text-gray-900"><?php echo e($tuition->payment_method); ?></span>
+                                    <?php endswitch; ?><!--[if ENDBLOCK]><![endif]-->
+                                </div>
+
+                                
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm font-medium text-gray-600">Trạng thái:</span>
+                                    <!--[if BLOCK]><![endif]--><?php switch($tuition->status):
+                                        case ('paid'): ?>
+                                            <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                                ✅ Đã thanh toán
+                                            </span>
+                                        <?php break; ?>
+                                        <?php case ('pending'): ?>
+                                            <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
+                                                ⏳ Chờ xử lý
+                                            </span>
+                                        <?php break; ?>
+                                        <?php case ('failed'): ?>
+                                            <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-red-100 text-red-800">
+                                                ❌ Thất bại
+                                            </span>
+                                        <?php break; ?>
+                                        <?php default: ?>
+                                            <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
+                                                <?php echo e($tuition->status); ?>
+
+                                            </span>
+                                    <?php endswitch; ?><!--[if ENDBLOCK]><![endif]-->
+                                </div>
+
+                                
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm font-medium text-gray-600">Ngày đóng:</span>
+                                    <div class="text-right">
+                                        <div class="text-sm text-gray-900 font-medium"><?php echo e($tuition->created_at->format('d/m/Y')); ?></div>
+                                        <div class="text-xs text-gray-500"><?php echo e($tuition->created_at->format('H:i:s')); ?></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+                    <div class="bg-white rounded-lg border border-gray-200 p-8">
+                        <div class="flex flex-col items-center">
+                            <?php if (isset($component)) { $__componentOriginal74697c151ccb8418c53b50a995b31225 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal74697c151ccb8418c53b50a995b31225 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::icon.document-text','data' => ['class' => 'size-12 text-gray-400 dark:text-gray-500 mb-4']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('flux::icon.document-text'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['class' => 'size-12 text-gray-400 dark:text-gray-500 mb-4']); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal74697c151ccb8418c53b50a995b31225)): ?>
+<?php $attributes = $__attributesOriginal74697c151ccb8418c53b50a995b31225; ?>
+<?php unset($__attributesOriginal74697c151ccb8418c53b50a995b31225); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal74697c151ccb8418c53b50a995b31225)): ?>
+<?php $component = $__componentOriginal74697c151ccb8418c53b50a995b31225; ?>
+<?php unset($__componentOriginal74697c151ccb8418c53b50a995b31225); ?>
+<?php endif; ?>
+                            <h3 class="text-lg font-medium text-gray-500 dark:text-gray-400 mb-2">
+                                Chưa có lịch sử đóng tiền
+                            </h3>
+                            <p class="text-gray-400 dark:text-gray-500">
+                                Học viên chưa thực hiện giao dịch đóng học phí nào
+                            </p>
+                        </div>
+                    </div>
+                <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
             </div>
         </div>
+    </div>
 
         <!--[if BLOCK]><![endif]--><?php if($tuitions->count() > 0): ?>
             <div class="theme-card-pink mt-4">

@@ -44,77 +44,186 @@
     {{-- Main content area --}}
     <div class="mt-6">
         <div class="theme-table-pink">
-            <div class="overflow-x-auto">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th class="text-center w-16">ID</th>
-                                <th>Tên vai trò</th>
-                                <th class="hidden sm:table-cell">Mô tả</th>
-                                <th class="text-center">Loại</th>
-                                <th class="text-center hidden sm:table-cell">Người tạo</th>
-                                <th class="text-center">Thao tác</th>
+            {{-- Desktop Table View --}}
+            <div class="hidden md:block overflow-x-auto">
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="text-center w-16">ID</th>
+                            <th>Tên vai trò</th>
+                            <th class="hidden sm:table-cell">Mô tả</th>
+                            <th class="text-center">Loại</th>
+                            <th class="text-center hidden sm:table-cell">Người tạo</th>
+                            <th class="text-center">Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @forelse ($roles as $role)
+                            <tr wire:key="role-desktop-{{ $role->id }}">
+                                <td class="text-center font-medium">
+                                    {{ $role->id }}
+                                </td>
+                                <td>
+                                    {{ $role->name }}
+                                </td>
+                                <td class="hidden sm:table-cell">
+                                    {{ Str::limit($role->description, 70) }}
+                                </td>
+                                <td class="text-center">
+                                    <flux:badge variant="solid"
+                                        color="{{ $role->type === 'system' ? 'green' : 'zinc' }}">
+                                        {{ $role->type }}
+                                    </flux:badge>
+                                </td>
+                                <td class="text-center hidden sm:table-cell">
+                                    {{ $role->createdBy->name ?? 'Hệ thống' }}
+                                </td>
+                                <td class="text-center">
+                                    @if ($role->type === 'custom')
+                                        <flux:dropdown>
+                                            <flux:button icon:trailing="chevron-down">Thao tác</flux:button>
+
+                                            <flux:menu>
+                                                <flux:menu.item icon="pencil"
+                                                    wire:click="editRole({{ $role->id }})">Sửa thông tin
+                                                </flux:menu.item>
+
+                                                <flux:menu.separator />
+
+                                                <flux:menu.item variant="danger" icon="trash"
+                                                    wire:click="deleteRole({{ $role->id }})">Xóa
+                                                </flux:menu.item>
+                                            </flux:menu>
+                                        </flux:dropdown>
+                                    @endif
+                                </td>
                             </tr>
-                        </thead>
-                        <tbody>
-                            @forelse ($roles as $role)
-                                <tr wire:key="role-{{ $role->id }}">
-                                    <td class="text-center font-medium">
-                                        {{ $role->id }}
-                                    </td>
-                                    <td>
-                                        {{ $role->name }}
-                                    </td>
-                                    <td class="hidden sm:table-cell">
-                                        {{ Str::limit($role->description, 70) }}
-                                    </td>
-                                    <td class="text-center">
-                                        <flux:badge variant="solid"
-                                            color="{{ $role->type === 'system' ? 'green' : 'zinc' }}">
-                                            {{ $role->type }}
-                                        </flux:badge>
-                                    </td>
-                                    <td class="text-center hidden sm:table-cell">
-                                        {{ $role->createdBy->name ?? 'Hệ thống' }}
-                                    </td>
-                                    <td class="text-center">
-                                        @if ($role->type === 'custom')
-                                            <flux:dropdown>
-                                                <flux:button icon:trailing="chevron-down">Thao tác</flux:button>
+                        @empty
+                            <tr>
+                                <td colspan="6" class="text-center py-12">
+                                    <div class="empty-state flex flex-col items-center">
+                                        <flux:icon.user-lock class="w-12 h-12 mb-4" />
+                                        <h3 class="text-lg font-medium mb-2">
+                                            Không có vai trò nào
+                                        </h3>
+                                        <p>
+                                            Chưa có vai trò nào được tạo trong hệ thống
+                                        </p>
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforelse
+                    </tbody>
+                </table>
+            </div>
 
-                                                <flux:menu>
-                                                    <flux:menu.item icon="pencil"
-                                                        wire:click="editRole({{ $role->id }})">Sửa thông tin
-                                                    </flux:menu.item>
+            {{-- Mobile Card View --}}
+            <div class="md:hidden space-y-3">
+                @forelse ($roles as $role)
+                    <div class="bg-white rounded-lg border border-gray-200 shadow-sm" 
+                         x-data="{ expanded: false }" 
+                         wire:key="role-mobile-{{ $role->id }}">
+                        
+                        {{-- Main Row --}}
+                        <div class="p-4 flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-8 h-8 bg-violet-100 rounded-full flex items-center justify-center">
+                                    <flux:icon.user-lock class="w-4 h-4 text-violet-600" />
+                                </div>
+                                <div>
+                                    <div class="font-medium text-gray-900">{{ $role->name }}</div>
+                                    <div class="text-sm text-gray-500">ID: {{ $role->id }}</div>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center space-x-2">
+                                <flux:badge variant="solid"
+                                    color="{{ $role->type === 'system' ? 'green' : 'zinc' }}">
+                                    {{ $role->type }}
+                                </flux:badge>
+                                
+                                <button @click="expanded = !expanded" 
+                                        class="p-2 rounded-full hover:bg-gray-100">
+                                    <svg class="w-5 h-5 text-gray-400" 
+                                         :class="{ 'rotate-180': expanded }" 
+                                         fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
 
-                                                    <flux:menu.separator />
+                        {{-- Expanded Details --}}
+                        <div x-show="expanded" 
+                             class="border-t border-gray-100 bg-gray-50">
+                            
+                            <div class="p-4 space-y-3">
+                                {{-- Tên vai trò --}}
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm font-medium text-gray-600">Tên vai trò:</span>
+                                    <span class="text-sm text-gray-900">{{ $role->name }}</span>
+                                </div>
 
-                                                    <flux:menu.item variant="danger" icon="trash"
-                                                        wire:click="deleteRole({{ $role->id }})">Xóa
-                                                    </flux:menu.item>
-                                                </flux:menu>
-                                            </flux:dropdown>
-                                        @endif
-                                    </td>
-                                </tr>
-                            @empty
-                                <tr>
-                                    <td colspan="6" class="text-center py-12">
-                                        <div class="empty-state flex flex-col items-center">
-                                            <flux:icon.user-lock class="w-12 h-12 mb-4" />
-                                            <h3 class="text-lg font-medium mb-2">
-                                                Không có vai trò nào
-                                            </h3>
-                                            <p>
-                                                Chưa có vai trò nào được tạo trong hệ thống
-                                            </p>
+                                {{-- Mô tả --}}
+                                <div class="flex justify-between items-start">
+                                    <span class="text-sm font-medium text-gray-600">Mô tả:</span>
+                                    <span class="text-sm text-gray-900 text-right max-w-[200px]">{{ $role->description ?: 'Chưa có mô tả' }}</span>
+                                </div>
+
+                                {{-- Loại --}}
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm font-medium text-gray-600">Loại:</span>
+                                    <flux:badge variant="solid"
+                                        color="{{ $role->type === 'system' ? 'green' : 'zinc' }}">
+                                        {{ $role->type }}
+                                    </flux:badge>
+                                </div>
+
+                                {{-- Người tạo --}}
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm font-medium text-gray-600">Người tạo:</span>
+                                    <span class="text-sm text-gray-900">{{ $role->createdBy->name ?? 'Hệ thống' }}</span>
+                                </div>
+
+                                {{-- Actions --}}
+                                @if ($role->type === 'custom')
+                                    <div class="pt-3 border-t border-gray-200">
+                                        <div class="flex space-x-2">
+                                            <button wire:click="editRole({{ $role->id }})"
+                                                    class="flex-1 bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700 transition-colors flex items-center justify-center space-x-2">
+                                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+                                                </svg>
+                                                <span>Sửa thông tin</span>
+                                            </button>
+                                            
+                                            <button wire:click="deleteRole({{ $role->id }})"
+                                                    class="flex-1 bg-red-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-red-700 transition-colors flex items-center justify-center space-x-2">
+                                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                                                </svg>
+                                                <span>Xóa</span>
+                                            </button>
                                         </div>
-                                    </td>
-                                </tr>
-                            @endforelse
-                        </tbody>
-                    </table>
-                </div>
+                                    </div>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                @empty
+                    <div class="bg-white rounded-lg border border-gray-200 p-8">
+                        <div class="empty-state flex flex-col items-center">
+                            <flux:icon.user-lock class="w-12 h-12 mb-4 text-gray-400" />
+                            <h3 class="text-lg font-medium mb-2 text-gray-500">
+                                Không có vai trò nào
+                            </h3>
+                            <p class="text-gray-400">
+                                Chưa có vai trò nào được tạo trong hệ thống
+                            </p>
+                        </div>
+                    </div>
+                @endforelse
+            </div>
 
             @if ($roles->hasPages())
                 <div class="pagination-container">

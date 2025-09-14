@@ -79,19 +79,20 @@ if (isset($__slots)) unset($__slots);
     
     <div class="mt-6">
         <div class="theme-table-pink">
-            <div class="overflow-x-auto">
+            
+            <div class="hidden md:block overflow-x-auto">
                 <table>
                     <thead>
                         <tr>
                             <th class="text-center">Tên cơ sở</th>
                             <th class="text-center">Địa chỉ</th>
-                            <th class="text-center hidden sm:table-cell">Người tạo</th>
+                            <th class="text-center">Người tạo</th>
                             <th class="text-center">Thao tác</th>
                         </tr>
                     </thead>
                     <tbody>
                         <!--[if BLOCK]><![endif]--><?php $__empty_1 = true; $__currentLoopData = $locations; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $location): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
-                            <tr wire:key="location-<?php echo e($location->id); ?>">
+                            <tr wire:key="location-desktop-<?php echo e($location->id); ?>">
                                 <td class="whitespace-nowrap text-center font-medium">
                                     <?php echo e($location->name); ?>
 
@@ -100,7 +101,7 @@ if (isset($__slots)) unset($__slots);
                                     <?php echo e($location->address); ?>
 
                                 </td>
-                                <td class="whitespace-nowrap text-center hidden sm:table-cell">
+                                <td class="whitespace-nowrap text-center">
                                     <?php echo e($location->createdBy->name); ?>
 
                                 </td>
@@ -262,8 +263,121 @@ if (isset($__slots)) unset($__slots);
                 </table>
             </div>
 
+            
+            <div class="md:hidden space-y-3">
+                <!--[if BLOCK]><![endif]--><?php $__empty_1 = true; $__currentLoopData = $locations; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $location): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                    <div class="bg-white rounded-lg border border-gray-200 shadow-sm" 
+                         x-data="{ expanded: false }" 
+                         wire:key="location-mobile-<?php echo e($location->id); ?>">
+                        
+                        
+                        <div class="p-4 flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
+                                    <svg class="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <div class="font-medium text-gray-900"><?php echo e($location->name); ?></div>
+                                    <div class="text-sm text-gray-500"><?php echo e($location->address); ?></div>
+                                </div>
+                            </div>
+                            
+                            <button @click="expanded = !expanded" 
+                                    class="p-2 rounded-full hover:bg-gray-100 ">
+                                <svg class="w-5 h-5 text-gray-400 " 
+                                     :class="{ 'rotate-180': expanded }" 
+                                     fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                </svg>
+                            </button>
+                        </div>
+
+                        
+                        <div x-show="expanded" 
+
+                             class="border-t border-gray-100 bg-gray-50">
+                            
+                            <div class="p-4 space-y-3">
+                                
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm font-medium text-gray-600">Tên cơ sở:</span>
+                                    <span class="text-sm text-gray-900"><?php echo e($location->name); ?></span>
+                                </div>
+
+                                
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm font-medium text-gray-600">Địa chỉ:</span>
+                                    <span class="text-sm text-gray-900 text-right max-w-[200px]"><?php echo e($location->address); ?></span>
+                                </div>
+
+                                
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm font-medium text-gray-600">Người tạo:</span>
+                                    <span class="text-sm text-gray-900"><?php echo e($location->createdBy->name); ?></span>
+                                </div>
+
+                                
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm font-medium text-gray-600">Ngày tạo:</span>
+                                    <span class="text-sm text-gray-900"><?php echo e($location->created_at->format('d/m/Y H:i')); ?></span>
+                                </div>
+
+                                
+                                <div class="pt-3 border-t border-gray-200">
+                                    <div class="flex space-x-2">
+                                        <button wire:click="editLocation(<?php echo e($location->id); ?>)"
+                                                class="flex-1 bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700 transition-colors flex items-center justify-center space-x-2">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+                                            </svg>
+                                            <span>Sửa</span>
+                                        </button>
+                                        
+                                        <button wire:click="deleteLocation(<?php echo e($location->id); ?>)"
+                                                class="flex-1 bg-red-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-red-700 transition-colors flex items-center justify-center space-x-2">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                                            </svg>
+                                            <span>Xóa</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+                    <div class="bg-white rounded-lg border border-gray-200 p-8">
+                        <div class="empty-state flex flex-col items-center">
+                            <?php if (isset($component)) { $__componentOriginal0d48bd54d72df81b49ee07c1a3735f04 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal0d48bd54d72df81b49ee07c1a3735f04 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::icon.map-pin','data' => ['class' => 'w-8 h-8 mb-2 text-gray-400']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('flux::icon.map-pin'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['class' => 'w-8 h-8 mb-2 text-gray-400']); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal0d48bd54d72df81b49ee07c1a3735f04)): ?>
+<?php $attributes = $__attributesOriginal0d48bd54d72df81b49ee07c1a3735f04; ?>
+<?php unset($__attributesOriginal0d48bd54d72df81b49ee07c1a3735f04); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal0d48bd54d72df81b49ee07c1a3735f04)): ?>
+<?php $component = $__componentOriginal0d48bd54d72df81b49ee07c1a3735f04; ?>
+<?php unset($__componentOriginal0d48bd54d72df81b49ee07c1a3735f04); ?>
+<?php endif; ?>
+                            <div class="text-sm text-gray-500">Không có cơ sở nào</div>
+                        </div>
+                    </div>
+                <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+            </div>
+
             <!--[if BLOCK]><![endif]--><?php if($locations->hasPages()): ?>
-                <div class="pagination-container">
+                <div class="pagination-container mt-6">
                     <?php echo e($locations->links()); ?>
 
                 </div>

@@ -266,11 +266,7 @@
                     </div>
                 @endif
 
-                {{-- Note --}}
-                <div class="mb-6">
-                    <label class="block text-gray-700 dark:text-gray-300 font-medium mb-3">📝 Ghi chú</label>
-                    <textarea wire:model="note" rows="3" placeholder="Nhập ghi chú (tùy chọn)..." class="card-input resize-none"></textarea>
-                </div>
+
 
                 {{-- Action Buttons --}}
                 <div class="space-y-3">
@@ -741,7 +737,8 @@
         {{-- Main content area --}}
         <div class="mt-6">
             <div class="theme-table-pink">
-                <div class="overflow-x-auto">
+                {{-- Desktop Table View --}}
+                <div class="hidden md:block overflow-x-auto">
                     <table>
                         <thead>
                             <tr>
@@ -756,7 +753,7 @@
                         </thead>
                         <tbody>
                             @forelse ($transactionHistory as $transaction)
-                                <tr wire:key="transaction-{{ $transaction['id'] }}">
+                                <tr wire:key="transaction-desktop-{{ $transaction['id'] }}">
                                     <td class="whitespace-nowrap text-center font-medium">
                                         {{ $transaction['note'] ?? ($transaction['program']['name'] ?? 'Đồng phục') }}
                                     </td>
@@ -830,6 +827,155 @@
                             @endforelse
                         </tbody>
                     </table>
+                </div>
+
+                {{-- Mobile Card View --}}
+                <div class="md:hidden space-y-3">
+                    @forelse ($transactionHistory as $transaction)
+                        <div class="bg-white rounded-lg border border-gray-200 shadow-sm" 
+                             x-data="{ expanded: false }" 
+                             wire:key="transaction-mobile-{{ $transaction['id'] }}">
+                            
+                            {{-- Main Row --}}
+                            <div class="p-4 flex items-center justify-between">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-8 h-8 bg-teal-100 rounded-full flex items-center justify-center">
+                                        <svg class="w-4 h-4 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <div class="font-medium text-gray-900">{{ $transaction['note'] ?? ($transaction['program']['name'] ?? 'Đồng phục') }}</div>
+                                        <div class="text-sm text-gray-500">{{ $transaction['created_at_formatted'] }}</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-center space-x-2">
+                                    @if ($transaction['status'] === 'pending')
+                                        <span class="px-2 py-1 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
+                                            ⏳ Chờ xử lý
+                                        </span>
+                                    @elseif($transaction['status'] === 'paid')
+                                        <span class="px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                            ✅ Hoàn thành
+                                        </span>
+                                    @else
+                                        <span class="px-2 py-1 rounded-full text-xs font-medium bg-red-100 text-red-800">
+                                            ❌ Hủy bỏ
+                                        </span>
+                                    @endif
+                                    
+                                    <button @click="expanded = !expanded" 
+                                            class="p-2 rounded-full hover:bg-gray-100">
+                                        <svg class="w-5 h-5 text-gray-400" 
+                                             :class="{ 'rotate-180': expanded }" 
+                                             fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+
+                            {{-- Expanded Details --}}
+                            <div x-show="expanded" 
+                                 class="border-t border-gray-100 bg-gray-50">
+                                
+                                <div class="p-4 space-y-3">
+                                    {{-- Chương trình --}}
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-sm font-medium text-gray-600">Chương trình:</span>
+                                        <span class="text-sm text-gray-900 text-right max-w-[200px]">{{ $transaction['note'] ?? ($transaction['program']['name'] ?? 'Đồng phục') }}</span>
+                                    </div>
+
+                                    {{-- Mùa học --}}
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-sm font-medium text-gray-600">Mùa học:</span>
+                                        <span class="text-sm text-gray-900">{{ $transaction['season']['name'] ?? '--' }}</span>
+                                    </div>
+
+                                    {{-- Số tiền --}}
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-sm font-medium text-gray-600">Số tiền:</span>
+                                        <span class="text-sm font-bold text-green-600">{{ number_format($transaction['price'], 0, ',', '.') }} VNĐ</span>
+                                    </div>
+
+                                    {{-- Phương thức thanh toán --}}
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-sm font-medium text-gray-600">Phương thức:</span>
+                                        @if ($transaction['payment_method'] === 'cash')
+                                            <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                                💵 Tiền mặt
+                                            </span>
+                                        @else
+                                            <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                                                🏦 Chuyển khoản
+                                            </span>
+                                        @endif
+                                    </div>
+
+                                    {{-- Trạng thái --}}
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-sm font-medium text-gray-600">Trạng thái:</span>
+                                        @if ($transaction['status'] === 'pending')
+                                            <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
+                                                ⏳ Chờ xử lý
+                                            </span>
+                                        @elseif($transaction['status'] === 'paid')
+                                            <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                                ✅ Hoàn thành
+                                            </span>
+                                        @else
+                                            <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-red-100 text-red-800">
+                                                ❌ Hủy bỏ
+                                            </span>
+                                        @endif
+                                    </div>
+
+                                    {{-- Ngày tạo --}}
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-sm font-medium text-gray-600">Ngày tạo:</span>
+                                        <span class="text-sm text-gray-900">{{ $transaction['created_at_formatted'] }}</span>
+                                    </div>
+
+                                    {{-- Actions --}}
+                                    @if (($transaction['payment_method'] === 'bank_transfer' && $transaction['status'] !== 'paid') || 
+                                         ($transaction['payment_method'] === 'cash' && $transaction['status'] !== 'paid'))
+                                        <div class="pt-3 border-t border-gray-200">
+                                            <div class="flex space-x-2">
+                                                @if ($transaction['payment_method'] === 'bank_transfer' && $transaction['status'] !== 'paid')
+                                                    <button wire:click="showQrCode({{ $transaction['id'] }})"
+                                                            class="flex-1 bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700 transition-colors flex items-center justify-center space-x-2">
+                                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"></path>
+                                                        </svg>
+                                                        <span>QR Code</span>
+                                                    </button>
+                                                @endif
+                                                
+                                                @if ($transaction['payment_method'] === 'cash' && $transaction['status'] !== 'paid')
+                                                    <button wire:click="paidCash({{ $transaction['id'] }})"
+                                                            class="flex-1 bg-green-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-green-700 transition-colors flex items-center justify-center space-x-2">
+                                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                                        </svg>
+                                                        <span>Đã thanh toán</span>
+                                                    </button>
+                                                @endif
+                                            </div>
+                                        </div>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                    @empty
+                        <div class="bg-white rounded-lg border border-gray-200 p-8">
+                            <div class="empty-state flex flex-col items-center">
+                                <flux:icon.document-text class="w-8 h-8 mb-2 text-gray-400" />
+                                <div class="text-sm text-gray-500">Chưa có giao dịch nào</div>
+                                <div class="text-xs text-gray-400 mt-1">Học sinh này chưa có lịch sử giao dịch nào trong hệ thống.</div>
+                            </div>
+                        </div>
+                    @endforelse
                 </div>
             </div>
         </div>
