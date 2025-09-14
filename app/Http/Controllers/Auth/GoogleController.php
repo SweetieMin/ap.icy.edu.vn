@@ -57,27 +57,10 @@ class GoogleController extends Controller
                     );
                 }
                 
-                Session::flash('status', 'Tài khoản đã được liên kết thành công với Google!');
+                Session::flash('success', 'Tài khoản đã được liên kết thành công với Google!');
                 return redirect()->route('admin.settings.profile');
             }
             
-            // User is not logged in - only allow login for existing users
-            $user = User::where('email', $googleUser->getEmail())->first();
-            
-            if ($user) {
-                // User exists - update email verification and login
-                $user->email_verified_at = now();
-                $user->save();
-                
-                Auth::login($user);
-                
-                Session::flash('status', 'Đăng nhập thành công với Google!');
-                return redirect()->intended(route('dashboard'));
-            } else {
-                // User doesn't exist - redirect to login with error
-                Session::flash('error', 'Không tìm thấy tài khoản với email này. Vui lòng liên hệ quản trị viên để được tạo tài khoản.');
-                return redirect()->route('login');
-            }
             
         } catch (\Exception $e) {
             Session::flash('error', 'Có lỗi xảy ra khi liên kết với Google: ' . $e->getMessage());
