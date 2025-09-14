@@ -2,9 +2,9 @@
 
     {{-- Header Section --}}
     <div class="theme-header-pink">
-        <div class="flex items-center justify-between">
+        <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between space-y-4 lg:space-y-0">
             <div class="header-content">
-                <div class="flex items-center space-x-3 mb-2">
+                <div class="flex items-center space-x-2 sm:space-x-3 mb-2">
                     <div class="header-icon">
                         <flux:icon.user-lock class="size-12" />
                     </div>
@@ -23,13 +23,15 @@
                     <span>Vai trò</span>
                 </div>
             </div>
-            <div class="flex items-center space-x-3">
+            <div class="flex flex-col sm:flex-row items-start sm:items-center space-y-2 sm:space-y-0 sm:space-x-3">
                 <div class="header-counter">
                     <span>{{ $roles->count() }} vai trò</span>
                 </div>
-                <button wire:click='addRole' class="header-button">
-                    <flux:icon.plus class="w-5 h-5" />
-                    <span>Thêm vai trò</span>
+
+                <button wire:click='addRole' class="header-button w-full sm:w-auto">
+                    <flux:icon.plus class="w-4 h-4 sm:w-5 sm:h-5" />
+                    <span class="hidden sm:inline">Thêm vai trò</span>
+                    <span class="sm:hidden">Thêm</span>
                 </button>
             </div>
         </div>

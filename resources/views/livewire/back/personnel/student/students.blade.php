@@ -2,9 +2,9 @@
 
     {{-- Header Section --}}
     <div class="theme-header-pink">
-        <div class="flex items-center justify-between">
+        <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between space-y-4 lg:space-y-0">
             <div class="header-content">
-                <div class="flex items-center space-x-3 mb-2">
+                <div class="flex items-center space-x-2 sm:space-x-3 mb-2">
                     <div class="header-icon">
                         <flux:icon.academic-cap class="size-12" />
                     </div>
@@ -23,19 +23,21 @@
                     <span>Danh sách học viên</span>
                 </div>
             </div>
-            <div class="flex items-center space-x-3">
+            <div class="flex flex-col sm:flex-row items-start sm:items-center space-y-2 sm:space-y-0 sm:space-x-3">
                 <div class="header-counter">
                     <span>{{ $students->count() }} học viên</span>
                 </div>
-                <div class="flex gap-2">
+
+                <div class="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
                     <a href="/admin/finance/tuitions-payment"
-                        class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg font-medium transition-all duration-300 flex items-center space-x-2">
+                        class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg font-medium transition-all duration-300 flex items-center justify-center space-x-2">
                         <flux:icon.credit-card class="w-4 h-4" />
                         <span>Thanh toán học phí</span>
                     </a>
-                    <button wire:click="addStudent()" class="header-button">
-                        <flux:icon.plus class="w-5 h-5" />
-                        <span>Thêm học viên</span>
+                    <button wire:click="addStudent()" class="header-button w-full sm:w-auto">
+                        <flux:icon.plus class="w-4 h-4 sm:w-5 sm:h-5" />
+                        <span class="hidden sm:inline">Thêm học viên</span>
+                        <span class="sm:hidden">Thêm</span>
                     </button>
                 </div>
             </div>

@@ -2,9 +2,9 @@
 
     {{-- Header Section --}}
     <div class="theme-header-pink">
-        <div class="flex items-center justify-between">
+        <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between space-y-4 lg:space-y-0">
             <div class="header-content">
-                <div class="flex items-center space-x-3 mb-2">
+                <div class="flex items-center space-x-2 sm:space-x-3 mb-2">
                     <div class="header-icon">
                         <flux:icon.banknotes class="size-12" />
                     </div>
@@ -21,18 +21,21 @@
                     <span>Lịch sử đóng học phí</span>
                 </div>
             </div>
-            <div class="flex items-center space-x-3">
+            <div class="flex flex-col sm:flex-row items-start sm:items-center space-y-2 sm:space-y-0 sm:space-x-3">
                 <div class="header-counter">
                     <span>{{ $tuitions->count() }} giao dịch</span>
                 </div>
-                <div class="flex gap-2">
-                    <button wire:click="loadTuitions" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-all duration-300 flex items-center space-x-2">
-                        <flux:icon.arrow-path class="w-4 h-4" />
-                        <span>Làm mới</span>
+
+                <div class="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
+                    <button wire:click="loadTuitions" class="bg-blue-600 hover:bg-blue-700 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-medium transition-all duration-300 flex items-center justify-center space-x-2 w-full sm:w-auto">
+                        <flux:icon.arrow-path class="w-4 h-4 sm:w-5 sm:h-5" />
+                        <span class="hidden sm:inline">Làm mới</span>
+                        <span class="sm:hidden">Mới</span>
                     </button>
-                    <button wire:click="clearFilters" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg font-medium transition-all duration-300 flex items-center space-x-2">
-                        <flux:icon.x-mark class="w-4 h-4" />
-                        <span>Xóa bộ lọc</span>
+                    <button wire:click="clearFilters" class="bg-red-600 hover:bg-red-700 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-medium transition-all duration-300 flex items-center justify-center space-x-2 w-full sm:w-auto">
+                        <flux:icon.x-mark class="w-4 h-4 sm:w-5 sm:h-5" />
+                        <span class="hidden sm:inline">Xóa bộ lọc</span>
+                        <span class="sm:hidden">Xóa lọc</span>
                     </button>
                 </div>
             </div>

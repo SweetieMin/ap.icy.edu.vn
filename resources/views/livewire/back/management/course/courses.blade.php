@@ -2,9 +2,9 @@
 
     {{-- Header Section --}}
     <div class="theme-header-pink">
-        <div class="flex items-center justify-between">
+        <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between space-y-4 lg:space-y-0">
             <div class="header-content">
-                <div class="flex items-center space-x-3 mb-2">
+                <div class="flex items-center space-x-2 sm:space-x-3 mb-2">
                     <div class="header-icon">
                         <flux:icon.academic-cap class="size-12" />
                     </div>
@@ -21,15 +21,17 @@
                     <span>Lớp học</span>
                 </div>
             </div>
-            <div class="flex items-center space-x-3">
+            <div class="flex flex-col sm:flex-row items-start sm:items-center space-y-2 sm:space-y-0 sm:space-x-3">
                 <div class="header-counter">
                     <span>{{ $courses->total() ?? 0 }} lớp học</span>
                 </div>
-                <button wire:click="addCourse" class="header-button">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+
+                <button wire:click="addCourse" class="header-button w-full sm:w-auto">
+                    <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
                     </svg>
-                    <span>Thêm Lớp học</span>
+                    <span class="hidden sm:inline">Thêm Lớp học</span>
+                    <span class="sm:hidden">Thêm</span>
                 </button>
             </div>
         </div>
@@ -50,7 +52,7 @@
                             wire:model.live="search" 
                             type="text" 
                             id="search"
-                            placeholder="Tìm theo tên lớp học, cơ sở, học kỳ..."
+                            placeholder="Tên lớp học, cơ sở, học kỳ..."
                             class="card-input"
                         >
                     </div>

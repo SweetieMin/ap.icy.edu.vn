@@ -2,9 +2,9 @@
 
     {{-- Header Section --}}
     <div class="theme-header-pink">
-        <div class="flex items-center justify-between">
+        <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between space-y-4 lg:space-y-0">
             <div class="header-content">
-                <div class="flex items-center space-x-3 mb-2">
+                <div class="flex items-center space-x-2 sm:space-x-3 mb-2">
                     <div class="header-icon">
                         <flux:icon.users class="size-12" />
                     </div>
@@ -21,13 +21,15 @@
                     <span>Danh sách nhân viên</span>
                 </div>
             </div>
-            <div class="flex items-center space-x-3">
+            <div class="flex flex-col sm:flex-row items-start sm:items-center space-y-2 sm:space-y-0 sm:space-x-3">
                 <div class="header-counter">
                     <span>{{ $staffs->count() }} nhân viên</span>
                 </div>
-                <button wire:click="addStaff()" class="header-button">
-                    <flux:icon.plus class="w-5 h-5" />
-                    <span>Thêm nhân viên</span>
+
+                <button wire:click="addStaff()" class="header-button w-full sm:w-auto">
+                    <flux:icon.plus class="w-4 h-4 sm:w-5 sm:h-5" />
+                    <span class="hidden sm:inline">Thêm nhân viên</span>
+                    <span class="sm:hidden">Thêm</span>
                 </button>
             </div>
         </div>
@@ -42,7 +44,7 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
                 <div>
                     <label class="card-label">Tìm kiếm</label>
-                    <input type="text" wire:model.live="search" placeholder="Tìm theo họ và tên hoặc Account code..."
+                    <input type="text" wire:model.live="search" placeholder="Họ và tên hoặc Account code..."
                         class="card-input">
                 </div>
                 @if ($locations->count() > 1)

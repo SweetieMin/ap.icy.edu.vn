@@ -2,9 +2,9 @@
 
     {{-- Header Section --}}
     <div class="theme-header-pink">
-        <div class="flex items-center justify-between">
+        <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between space-y-4 lg:space-y-0">
             <div class="header-content">
-                <div class="flex items-center space-x-3 mb-2">
+                <div class="flex items-center space-x-2 sm:space-x-3 mb-2">
                     <div class="header-icon">
                         <flux:icon.currency-dollar class="size-12" />
                     </div>
@@ -18,38 +18,40 @@
                     <svg fill="currentColor" viewBox="0 0 20 20">
                         <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
                     </svg>
-                    <svg fill="currentColor" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
-                    </svg>
                     <span>Quản lý giá tiền</span>
                 </div>
             </div>
-            <div class="flex items-center space-x-3">
+            <div class="flex flex-col sm:flex-row items-start sm:items-center space-y-2 sm:space-y-0 sm:space-x-3">
                 <div class="header-counter">
                     <span>{{ $programs->count() }} chương trình × {{ $locations->count() }} cơ sở</span>
                 </div>
-                <div class="flex gap-3">
+
+                <div class="flex flex-col sm:flex-row gap-2 sm:gap-3 w-full sm:w-auto">
                     @if(!$bulkUpdateMode)
-                        <button wire:click="toggleBulkUpdate" class="header-button">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <button wire:click="toggleBulkUpdate" class="header-button w-full sm:w-auto">
+                            <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
                             </svg>
-                            <span>Chỉnh sửa hàng loạt</span>
+                            <span class="hidden sm:inline">Chỉnh sửa hàng loạt</span>
+                            <span class="sm:hidden">Chỉnh sửa</span>
                         </button>
                     @else
-                        <button wire:click="startBulkEdit" class="header-button">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <button wire:click="startBulkEdit" class="header-button w-full sm:w-auto">
+                            <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
                             </svg>
-                            <span>Bắt đầu chỉnh sửa</span>
+                            <span class="hidden sm:inline">Bắt đầu chỉnh sửa</span>
+                            <span class="sm:hidden">Bắt đầu</span>
                         </button>
-                        <button wire:click="saveBulkPrices" class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center space-x-2">
-                            <flux:icon.check class="w-5 h-5" />
-                            <span>Lưu tất cả</span>
+                        <button wire:click="saveBulkPrices" class="bg-green-600 hover:bg-green-700 text-white px-4 sm:px-6 py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 w-full sm:w-auto">
+                            <flux:icon.check class="w-4 h-4 sm:w-5 sm:h-5" />
+                            <span class="hidden sm:inline">Lưu tất cả</span>
+                            <span class="sm:hidden">Lưu</span>
                         </button>
-                        <button wire:click="toggleBulkUpdate" class="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center space-x-2">
-                            <flux:icon.x-mark class="w-5 h-5" />
-                            <span>Hủy</span>
+                        <button wire:click="toggleBulkUpdate" class="bg-red-600 hover:bg-red-700 text-white px-4 sm:px-6 py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 w-full sm:w-auto">
+                            <flux:icon.x-mark class="w-4 h-4 sm:w-5 sm:h-5" />
+                            <span class="hidden sm:inline">Hủy</span>
+                            <span class="sm:hidden">Hủy</span>
                         </button>
                     @endif
                 </div>
