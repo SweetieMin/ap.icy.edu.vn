@@ -26,16 +26,22 @@
                     <span>{{ $permissions->count() }} quyền hạn</span>
                 </div>
 
-                <button wire:click='addPermission' class="header-button w-full sm:w-auto">
-                    <flux:icon.plus class="w-4 h-4 sm:w-5 sm:h-5" />
-                    <span class="hidden sm:inline">Thêm quyền hạn</span>
-                    <span class="sm:hidden">Thêm</span>
-                </button>
+                <div class="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
+                    <button wire:click='addPermission' class="header-button w-full sm:w-auto">
+                        <flux:icon.plus class="w-4 h-4 sm:w-5 sm:h-5" />
+                        <span class="hidden sm:inline">Thêm quyền hạn</span>
+                        <span class="sm:hidden">Thêm</span>
+                    </button>
+                    
+                    <button wire:click='addBulkPermission' class="header-button w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white">
+                        <flux:icon.plus class="w-4 h-4 sm:w-5 sm:h-5" />
+                        <span class="hidden sm:inline">Thêm nhiều</span>
+                        <span class="sm:hidden">Nhiều</span>
+                    </button>
+                </div>
             </div>
         </div>
     </div>
-
-    <flux:separator variant="subtle" />
 
     <livewire:back.access.permission.actions-permission />
 

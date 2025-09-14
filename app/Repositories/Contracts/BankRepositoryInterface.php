@@ -7,6 +7,7 @@ use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 interface BankRepositoryInterface
 {
     public function getAll(int $perPage = 10): LengthAwarePaginator;
+    public function getPaginated(int $perPage = 10): LengthAwarePaginator;
     public function getById(int $id);
     public function getActiveBanks();
     public function create(array $data);

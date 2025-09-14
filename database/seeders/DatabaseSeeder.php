@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             LocationSeeder::class,
             SeasonSeeder::class,
             RoleSeeder::class,
+            PermissionSeeder::class,
             ProgramSeeder::class,
             SubjectSeeder::class,
             BankSeeder::class,

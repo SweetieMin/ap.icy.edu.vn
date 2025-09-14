@@ -107,12 +107,7 @@ select:focus[data-flux-control] {
 
 /* End Sortable styles */
 
-* {
-    caret-color: transparent !important;
-}
-input, textarea, [contenteditable] {
-    caret-color: transparent !important;
-}
+/* Removed caret-color: transparent to show cursor in inputs */
 
 /* ===== MANAGEMENT PAGE THEMES ===== */
 

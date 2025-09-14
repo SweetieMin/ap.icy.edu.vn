@@ -1,57 +1,159 @@
 <?php
+
 namespace App\Repositories\Eloquent;
 
 use App\Models\Permission;
 use App\Repositories\Contracts\PermissionRepositoryInterface;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\Route;
 
 class PermissionRepository implements PermissionRepositoryInterface
 {
-    protected array $permissionCache = [];
+    protected $model;
 
-    protected function prepareDataBeforeCreate(array $data): array
+    public function __construct(Permission $model)
     {
-        $data['router'] = trim($data['router']);
-        $data['displayName'] = trim($data['displayName']);
-        $data['isShow'] = $data['isShow'] ?? 1;
-        return $data;
+        $this->model = $model;
     }
 
-    protected function prepareDataBeforeUpdate(array $data): array
+    /**
+     * Get all permissions
+     */
+    public function getAll(): Collection
     {
-        $data['router'] = trim($data['router']);
-        $data['displayName'] = trim($data['displayName']);
-        $data['isShow'] = $data['isShow'] ?? 1;
-        return $data;
+        return $this->model
+            ->orderBy('isShow', 'asc') // 0 trước, 1 sau
+            ->orderBy('displayName', 'asc')
+            ->get();
     }
 
-    public function getAll($perPage = null)
+    /**
+     * Get paginated permissions
+     */
+    public function getPaginated(int $perPage = 10)
     {
-        $query = Permission::orderBy('id', 'asc');
-        if ($perPage) {
-            return $query->paginate($perPage);
+        return $this->model->orderBy('isShow', 'asc') // 0 trước, 1 sau
+                             ->orderBy('displayName', 'asc')
+                             ->paginate($perPage);
+    }
+
+    /**
+     * Get permission by ID
+     */
+    public function findById(int $id): ?Permission
+    {
+        return $this->model->find($id);
+    }
+
+    /**
+     * Get permission by router
+     */
+    public function findByRouter(string $router): ?Permission
+    {
+        return $this->model->where('router', $router)->first();
+    }
+
+    /**
+     * Create new permission
+     */
+    public function create(array $data): Permission
+    {
+        return $this->model->create($data);
+    }
+
+    /**
+     * Update permission
+     */
+    public function update(int $id, array $data): bool
+    {
+        $permission = $this->findById($id);
+        if (!$permission) {
+            return false;
         }
-        return $query->get();
+
+        return $permission->update($data);
     }
 
-    public function create(array $data)
+    /**
+     * Delete permission
+     */
+    public function delete(int $id): bool
     {
-        return Permission::create($this->prepareDataBeforeCreate($data));
+        $permission = $this->findById($id);
+        if (!$permission) {
+            return false;
+        }
+
+        return $permission->delete();
     }
 
-    public function update(int $id, array $data)
+    /**
+     * Get all admin routes
+     */
+    public function getAdminRoutes(): array
     {
-        $permission = $this->getPermissionById($id);
-        $permission->update($this->prepareDataBeforeUpdate($data));
-        return $permission;
+        $routes = Route::getRoutes();
+        $adminRoutes = [];
+
+        foreach ($routes as $route) {
+            $routeName = $route->getName();
+            $routeUri = $route->uri();
+
+            // Check if route name starts with 'admin.' and URI starts with 'admin/'
+            // Also exclude routes that are just 'admin.' (redirect routes)
+            if (
+                $routeName &&
+                str_starts_with($routeName, 'admin.') &&
+                str_starts_with($routeUri, 'admin/') &&
+                $routeName !== 'admin.' &&
+                strlen($routeName) > 6
+            ) { // More than just 'admin.'
+                $adminRoutes[] = $routeName;
+            }
+        }
+
+        // Remove duplicates and sort
+        $adminRoutes = array_unique($adminRoutes);
+        sort($adminRoutes);
+
+        return $adminRoutes;
     }
 
-    public function delete(int $id)
+    /**
+     * Get available admin routes (not yet in permissions table)
+     */
+    public function getAvailableAdminRoutes(): array
     {
-        return $this->getPermissionById($id)->delete();
+        $allRoutes = $this->getAdminRoutes();
+        $existingRoutes = $this->model->pluck('router')->toArray();
+
+        // Filter out existing routes
+        $availableRoutes = array_diff($allRoutes, $existingRoutes);
+
+        return array_values($availableRoutes);
     }
 
-    public function getPermissionById(int $id): Permission
+
+    /**
+     * Create multiple permissions
+     */
+    public function createMultiple(array $permissions): bool
     {
-        return $this->permissionCache[$id] ??= Permission::findOrFail($id);
+        try {
+            foreach ($permissions as $permissionData) {
+                $this->model->create($permissionData);
+            }
+            return true;
+        } catch (\Exception $e) {
+            return false;
+        }
+    }
+
+    /**
+     * Check if permission exists by router
+     */
+    public function existsByRouter(string $router): bool
+    {
+        return $this->model->where('router', $router)->exists();
     }
 }

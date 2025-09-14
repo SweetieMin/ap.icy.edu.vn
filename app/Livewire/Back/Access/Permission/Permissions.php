@@ -17,6 +17,11 @@ class Permissions extends Component
         $this->dispatch('add-permission');
     }
 
+    public function addBulkPermission()
+    {
+        $this->dispatch('add-bulk-permission');
+    }
+
     public function deletePermission($id)
     {
         $this->dispatch('delete-permission', $id);
@@ -29,7 +34,7 @@ class Permissions extends Component
 
     public function render()
     {
-        $permissions = app(PermissionRepositoryInterface::class)->getAll(10);
+        $permissions = app(PermissionRepositoryInterface::class)->getPaginated(10);
         return view('livewire.back.access.permission.permissions', [
             'permissions' => $permissions,
         ]);
