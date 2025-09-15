@@ -12,6 +12,7 @@
 .phpactor.json
 .phpunit.result.cache
 .DS_Store
+*.zip
 Homestead.json
 Homestead.yaml
 npm-debug.log
