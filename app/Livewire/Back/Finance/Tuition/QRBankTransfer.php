@@ -15,6 +15,7 @@ class QRBankTransfer extends Component
     public $amount = 0;
     public $contentTransaction = '';
     public $transactionId = '';
+    public $accountName = '';
 
     #[On('qr-bank-transfer')]
     public function qrBankTransfer($transactionId)
@@ -24,6 +25,7 @@ class QRBankTransfer extends Component
         $this->crc16 = $transaction->content_transaction;
         $this->bankName = $transaction->bank->bank_name;
         $this->accountNumber = $transaction->bank->account_number;
+        $this->accountName = $transaction->bank->account_name;
         $this->amount = $transaction->price;
         $this->contentTransaction = $transaction->content_transaction;
         Flux::modal('qr-bank-transfer')->show();

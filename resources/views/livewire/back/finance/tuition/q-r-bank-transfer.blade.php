@@ -1,5 +1,5 @@
 <div>
-    <flux:modal wire:poll='checkPaymentStatus()' name="qr-bank-transfer" class="max-w-4xl">
+    <flux:modal wire:poll='checkPaymentStatus()' name="qr-bank-transfer" class="max-w-5xl">
         <div class="space-y-6">
             <!-- Header -->
             <div>
@@ -93,28 +93,14 @@
 
                     <!-- Bank Information -->
                     <div class="space-y-2">
-                        <div class="flex items-center mb-4">
-                            <div
-                                class="w-8 h-8 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-lg flex items-center justify-center mr-3">
-                                <flux:icon.building-office class="w-4 h-4 text-white" />
-                            </div>
-                            <flux:heading size="base">Thông tin ngân hàng</flux:heading>
-                        </div>
+
 
                         <div class="space-y-3">
                             <!-- Bank Name -->
                             <div
                                 class="group bg-white rounded-xl p-4 shadow-sm border border-gray-100 hover:shadow-md transition-all duration-200 hover:border-blue-200">
                                 <div class="flex items-center justify-between">
-                                    <div class="flex items-center">
-                                        <div
-                                            class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center mr-3">
-                                            <flux:icon.building-office class="w-4 h-4 text-blue-600" />
-                                        </div>
-                                        <span class="text-sm font-medium text-gray-600">Ngân hàng</span>
-                                    </div>
-                                    <span
-                                        class="text-sm font-bold text-gray-900">{{ $bankName ?? 'Vietcombank' }}</span>
+                                    <flux:input icon="building-office" value="{{ $bankName ?? '' }}" readonly/>
                                 </div>
                             </div>
 
@@ -122,20 +108,7 @@
                             <div
                                 class="group bg-white rounded-xl p-4 shadow-sm border border-gray-100 hover:shadow-md transition-all duration-200 hover:border-green-200">
                                 <div class="flex items-center justify-between">
-                                    <div class="flex items-center">
-                                        <div
-                                            class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center mr-3">
-                                            <flux:icon.credit-card class="w-4 h-4 text-green-600" />
-                                        </div>
-                                        <span class="text-sm font-medium text-gray-600">Số tài khoản</span>
-                                    </div>
-                                    <div class="flex items-center space-x-2">
-                                        <span
-                                            class="text-sm font-bold text-gray-900 font-mono bg-gray-50 px-2 py-1 rounded">{{ $accountNumber ?? '1234567890' }}</span>
-                                        <flux:button variant="ghost" size="sm" icon="clipboard-document"
-                                            class="opacity-0 group-hover:opacity-100 transition-opacity"
-                                            onclick="navigator.clipboard.writeText('{{ $accountNumber ?? '1234567890' }}')" />
-                                    </div>
+                                    <flux:input icon="credit-card" value="{{ $accountNumber ?? '' }}" readonly copyable/>
                                 </div>
                             </div>
 
@@ -143,14 +116,7 @@
                             <div
                                 class="group bg-white rounded-xl p-4 shadow-sm border border-gray-100 hover:shadow-md transition-all duration-200 hover:border-purple-200">
                                 <div class="flex items-center justify-between">
-                                    <div class="flex items-center">
-                                        <div
-                                            class="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center mr-3">
-                                            <flux:icon.user class="w-4 h-4 text-purple-600" />
-                                        </div>
-                                        <span class="text-sm font-medium text-gray-600">Chủ tài khoản</span>
-                                    </div>
-                                    <span class="text-sm font-bold text-gray-900">TRƯỜNG ĐẠI HỌC ICY</span>
+                                    <flux:input icon="user" value="{{ $accountName ?? '' }}" readonly/>
                                 </div>
                             </div>
 
@@ -158,20 +124,7 @@
                             <div
                                 class="group bg-white rounded-xl p-4 shadow-sm border border-gray-100 hover:shadow-md transition-all duration-200 hover:border-orange-200">
                                 <div class="flex items-center justify-between">
-                                    <div class="flex items-center">
-                                        <div
-                                            class="w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center mr-3">
-                                            <flux:icon.document-text class="w-4 h-4 text-orange-600" />
-                                        </div>
-                                        <span class="text-sm font-medium text-gray-600">Nội dung</span>
-                                    </div>
-                                    <div class="flex items-center space-x-2">
-                                        <span
-                                            class="text-sm font-bold text-gray-900 font-mono bg-gray-50 px-2 py-1 rounded">{{ $contentTransaction ?? 'HOCPHI_2024_001' }}</span>
-                                        <flux:button variant="ghost" size="sm" icon="clipboard-document"
-                                            class="opacity-0 group-hover:opacity-100 transition-opacity"
-                                            onclick="navigator.clipboard.writeText('{{ $contentTransaction ?? 'HOCPHI_2024_001' }}')" />
-                                    </div>
+                                    <flux:input icon="document-text" value="{{ $contentTransaction ?? '' }}" readonly copyable />
                                 </div>
                             </div>
                         </div>
