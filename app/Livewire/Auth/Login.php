@@ -77,6 +77,12 @@ class Login extends Component
 
         $user = Auth::user();
 
+        $user->update([
+            'login_attempts' => 0,
+            'first_login_at' => $user->first_login_at ?? now(),
+        ]);
+        $user->save();
+
         if (!$this->validateUserStatus($user)) {
             return;
         }

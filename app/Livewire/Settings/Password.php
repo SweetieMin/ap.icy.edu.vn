@@ -96,6 +96,8 @@ class Password extends Component
 
         $user = Auth::user();
         $user->password = Hash::make($validated['password']);
+        $user->last_password_change_at = now();
+        $user->must_change_password = false;
         $user->save();
 
         $this->reset('current_password', 'password', 'password_confirmation');
