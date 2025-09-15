@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\Location;
 use Livewire\Attributes\Url;
 use Livewire\Attributes\Title;
+use Livewire\Attributes\On;
 use Illuminate\Support\Facades\DB;
 use App\Repositories\Contracts\CourseRepositoryInterface;
 use App\Repositories\Contracts\SeasonRepositoryInterface;
@@ -320,6 +321,12 @@ class ClassAssignment extends Component
         } catch (\Exception $e) {
             session()->flash('error', 'Có lỗi xảy ra khi xếp lớp: ' . $e->getMessage());
         }
+    }
+
+    #[On('assign-student-to-course')]
+    public function handleAssignStudentToCourse($studentId, $courseId)
+    {
+        $this->assignStudentToCourse($studentId, $courseId);
     }
 
     public function render()

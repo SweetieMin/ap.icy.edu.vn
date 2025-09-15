@@ -9,6 +9,7 @@ use Livewire\Component;
 use Livewire\Attributes\On;
 use App\Support\Course\CourseHelper;
 use App\Support\Validation\CourseRules;
+use Illuminate\Support\Facades\DB;
 use App\Repositories\Contracts\UserRepositoryInterface;
 use App\Repositories\Contracts\CourseRepositoryInterface;
 use App\Repositories\Contracts\SeasonRepositoryInterface;
@@ -31,6 +32,11 @@ class ActionsCourse extends Component
     public $seasons = [];
     public $programs = [];
     public $subjects = [];
+
+    // Class list modal properties
+    public $showClassListModal = false;
+    public $selectedCourse = null;
+    public $classStudents = [];
 
     public function mount()
     {
@@ -173,6 +179,40 @@ class ActionsCourse extends Component
         } catch (Throwable $e) {
             session()->flash('error', 'Có lỗi xảy ra khi xóa lớp học: ' . $e->getMessage());
         }
+    }
+
+    #[On('show-class-list')]
+    public function showClassList($courseId)
+    {
+        $this->selectedCourse = app(CourseRepositoryInterface::class)->getCourseById($courseId);
+        
+        if ($this->selectedCourse) {
+            // Load students in this course
+            $this->classStudents = DB::table('course_user')
+                ->join('users', 'course_user.user_id', '=', 'users.id')
+                ->join('user_details', 'users.id', '=', 'user_details.user_id')
+                ->where('course_user.course_id', $courseId)
+                ->where('course_user.status', 'active')
+                ->select(
+                    'users.id as user_id',
+                    'users.name',
+                    'users.account_code',
+                    'user_details.birthday',
+                    'user_details.avatar',
+                    'course_user.status',
+                    'course_user.enrolled_at'
+                )
+                ->get();
+        }
+        
+        $this->showClassListModal = true;
+    }
+
+    public function closeClassListModal()
+    {
+        $this->showClassListModal = false;
+        $this->selectedCourse = null;
+        $this->classStudents = [];
     }
 
     public function render()

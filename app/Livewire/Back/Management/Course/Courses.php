@@ -7,6 +7,7 @@ use Livewire\Component;
 use Livewire\WithPagination;
 use Livewire\Attributes\Title;
 use Livewire\WithoutUrlPagination;
+use Illuminate\Support\Facades\DB;
 use App\Repositories\Contracts\UserRepositoryInterface;
 use App\Repositories\Contracts\CourseRepositoryInterface;
 use App\Repositories\Contracts\SeasonRepositoryInterface;
@@ -21,6 +22,7 @@ class Courses extends Component
     public $locationFilter = '';
     public $seasonFilter = '';
     public $perPage = 10;
+
 
     protected $queryString = [
         'search' => ['except' => ''],
@@ -63,6 +65,11 @@ class Courses extends Component
         app(CourseRepositoryInterface::class)->updateOrdering($orderedIds);
         session()->flash('success', 'Sắp xếp lớp học thành công.');
         $this->redirectRoute('admin.management.courses', navigate: true);
+    }
+
+    public function showClassList($courseId)
+    {
+        $this->dispatch('show-class-list', $courseId);
     }
 
     public function render()

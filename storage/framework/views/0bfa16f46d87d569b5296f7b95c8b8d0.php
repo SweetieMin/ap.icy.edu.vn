@@ -1,12 +1,31 @@
 <div class="relative mb-4 w-full">
 
-    {{-- Header Section --}}
+    
     <div class="theme-header-pink">
         <div class="flex items-center justify-between">
             <div class="header-content">
                 <div class="flex items-center space-x-3 mb-2">
                     <div class="header-icon">
-                        <flux:icon.academic-cap class="size-12" />
+                        <?php if (isset($component)) { $__componentOriginale0880cb6488d85d9ca54288aa080a834 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginale0880cb6488d85d9ca54288aa080a834 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::icon.academic-cap','data' => ['class' => 'size-12']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('flux::icon.academic-cap'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['class' => 'size-12']); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginale0880cb6488d85d9ca54288aa080a834)): ?>
+<?php $attributes = $__attributesOriginale0880cb6488d85d9ca54288aa080a834; ?>
+<?php unset($__attributesOriginale0880cb6488d85d9ca54288aa080a834); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginale0880cb6488d85d9ca54288aa080a834)): ?>
+<?php $component = $__componentOriginale0880cb6488d85d9ca54288aa080a834; ?>
+<?php unset($__componentOriginale0880cb6488d85d9ca54288aa080a834); ?>
+<?php endif; ?>
                     </div>
                     <div>
                         <h1 class="header-title">Xếp lớp học</h1>
@@ -14,7 +33,7 @@
                     </div>
                 </div>
                 <div class="header-breadcrumbs">
-                    <a href="{{ route('dashboard') }}">Bảng điều khiển</a>
+                    <a href="<?php echo e(route('dashboard')); ?>">Bảng điều khiển</a>
                     <svg fill="currentColor" viewBox="0 0 20 20">
                         <path fill-rule="evenodd"
                             d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
@@ -25,16 +44,16 @@
             </div>
             <div class="flex items-center space-x-3">
                 <div class="header-counter">
-                    <span>{{ count($students) }} học viên chưa xếp lớp</span>
+                    <span><?php echo e(count($students)); ?> học viên chưa xếp lớp</span>
                 </div>
                 <div class="header-counter">
-                    <span>{{ count($courses) }} lớp học có sẵn</span>
+                    <span><?php echo e(count($courses)); ?> lớp học có sẵn</span>
                 </div>
             </div>
         </div>
     </div>
 
-    @if (session()->has('error'))
+    <!--[if BLOCK]><![endif]--><?php if(session()->has('error')): ?>
         <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4 mx-6 mt-4">
             <div class="flex items-center">
                 <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
@@ -42,12 +61,13 @@
                         d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
                         clip-rule="evenodd"></path>
                 </svg>
-                {{ session('error') }}
+                <?php echo e(session('error')); ?>
+
             </div>
         </div>
-    @endif
+    <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
 
-    @if (session()->has('success'))
+    <?php if(session()->has('success')): ?>
         <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4 mx-6 mt-4">
             <div class="flex items-center">
                 <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
@@ -55,17 +75,37 @@
                         d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
                         clip-rule="evenodd"></path>
                 </svg>
-                {{ session('success') }}
+                <?php echo e(session('success')); ?>
+
             </div>
         </div>
-    @endif
+    <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
 
-    {{-- Filters Section --}}
+    
     <div class="theme-card-pink mt-4 mb-4">
         <div class="card-header">
             <div class="flex items-center space-x-3">
                 <div class="w-8 h-8 bg-pink-200 dark:bg-pink-800/30 rounded-lg flex items-center justify-center">
-                    <flux:icon.funnel class="w-4 h-4 text-pink-600 dark:text-pink-400" />
+                    <?php if (isset($component)) { $__componentOriginal87cf6d8ede1904877fb35e9e7cf46326 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal87cf6d8ede1904877fb35e9e7cf46326 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::icon.funnel','data' => ['class' => 'w-4 h-4 text-pink-600 dark:text-pink-400']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('flux::icon.funnel'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['class' => 'w-4 h-4 text-pink-600 dark:text-pink-400']); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal87cf6d8ede1904877fb35e9e7cf46326)): ?>
+<?php $attributes = $__attributesOriginal87cf6d8ede1904877fb35e9e7cf46326; ?>
+<?php unset($__attributesOriginal87cf6d8ede1904877fb35e9e7cf46326); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal87cf6d8ede1904877fb35e9e7cf46326)): ?>
+<?php $component = $__componentOriginal87cf6d8ede1904877fb35e9e7cf46326; ?>
+<?php unset($__componentOriginal87cf6d8ede1904877fb35e9e7cf46326); ?>
+<?php endif; ?>
                 </div>
                 <div>
                     <h3 class="text-lg font-bold text-pink-600 dark:text-pink-400">Bộ lọc</h3>
@@ -83,25 +123,25 @@
                 <div>
                     <label class="card-label">🏢 Cơ sở</label>
                     <select wire:model.live="filterLocationId" class="card-input">
-                        @foreach ($locations as $location)
-                            <option value="{{ $location['id'] }}">{{ $location['name'] }}</option>
-                        @endforeach
+                        <!--[if BLOCK]><![endif]--><?php $__currentLoopData = $locations; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $location): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <option value="<?php echo e($location['id']); ?>"><?php echo e($location['name']); ?></option>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><!--[if ENDBLOCK]><![endif]-->
                     </select>
                 </div>
                 <div>
                     <label class="card-label">📅 Mùa học</label>
                     <select wire:model.live="filterSeasonId" class="card-input">
-                        @foreach ($seasons as $season)
-                            <option value="{{ $season['id'] }}">{{ $season['name'] }}</option>
-                        @endforeach
+                        <!--[if BLOCK]><![endif]--><?php $__currentLoopData = $seasons; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $season): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <option value="<?php echo e($season['id']); ?>"><?php echo e($season['name']); ?></option>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><!--[if ENDBLOCK]><![endif]-->
                     </select>
                 </div>
                 <div>
                     <label class="card-label">📚 Chương trình</label>
                     <select wire:model.live="filterProgramId" class="card-input">
-                        @foreach ($programs as $program)
-                            <option value="{{ $program['id'] }}">{{ $program['name'] }}</option>
-                        @endforeach
+                        <!--[if BLOCK]><![endif]--><?php $__currentLoopData = $programs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $program): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <option value="<?php echo e($program['id']); ?>"><?php echo e($program['name']); ?></option>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><!--[if ENDBLOCK]><![endif]-->
                     </select>
                 </div>
             </div>
@@ -110,7 +150,7 @@
 
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 items-start">
 
-        {{-- Left Side - Students List --}}
+        
         <div class="space-y-4 flex flex-col h-full">
             <div class="theme-card-pink flex-1 flex flex-col">
                 <div class="card-header">
@@ -118,7 +158,26 @@
                         <div class="flex items-center space-x-3">
                             <div
                                 class="w-8 h-8 bg-pink-200 dark:bg-pink-800/30 rounded-lg flex items-center justify-center">
-                                <flux:icon.users class="w-4 h-4 text-pink-600 dark:text-pink-400" />
+                                <?php if (isset($component)) { $__componentOriginal4e4f522adb19cc742fb2b199df7e6c95 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal4e4f522adb19cc742fb2b199df7e6c95 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::icon.users','data' => ['class' => 'w-4 h-4 text-pink-600 dark:text-pink-400']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('flux::icon.users'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['class' => 'w-4 h-4 text-pink-600 dark:text-pink-400']); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal4e4f522adb19cc742fb2b199df7e6c95)): ?>
+<?php $attributes = $__attributesOriginal4e4f522adb19cc742fb2b199df7e6c95; ?>
+<?php unset($__attributesOriginal4e4f522adb19cc742fb2b199df7e6c95); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal4e4f522adb19cc742fb2b199df7e6c95)): ?>
+<?php $component = $__componentOriginal4e4f522adb19cc742fb2b199df7e6c95; ?>
+<?php unset($__componentOriginal4e4f522adb19cc742fb2b199df7e6c95); ?>
+<?php endif; ?>
                             </div>
                             <div>
                                 <h3 class="text-lg font-bold text-pink-600 dark:text-pink-400">Học viên chưa xếp lớp
@@ -140,13 +199,13 @@
                     </div>
                 </div>
                 <div class="p-6 flex-1 flex flex-col">
-                    @if (count($students) > 0)
+                    <!--[if BLOCK]><![endif]--><?php if(count($students) > 0): ?>
                         <div class="space-y-2 flex-1 overflow-y-auto" id="students-container">
-                            @foreach ($students as $student)
+                            <!--[if BLOCK]><![endif]--><?php $__currentLoopData = $students; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $student): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <div class="student-card flex items-center space-x-3 p-3 rounded-lg border border-gray-200 dark:border-gray-700 
                                     bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 transition-all duration-200 cursor-move select-none"
-                                    draggable="true" data-student-id="{{ $student->id }}"
-                                    data-student-name="{{ $student->name }}"
+                                    draggable="true" data-student-id="<?php echo e($student->id); ?>"
+                                    data-student-name="<?php echo e($student->name); ?>"
                                     style="user-select: none; -webkit-user-drag: element;">
 
                                     <div class="drag-handle text-gray-400 hover:text-gray-600">
@@ -158,14 +217,16 @@
                                     </div>
 
                                     <div class="flex-1">
-                                        <div class="font-medium text-gray-900 dark:text-white">{{ $student->name }}
+                                        <div class="font-medium text-gray-900 dark:text-white"><?php echo e($student->name); ?>
+
                                         </div>
                                         <div class="text-sm text-gray-500 dark:text-gray-400">
-                                            Mã số: {{ $student->account_code }} |
-                                            SĐT: {{ $student->phone ?? 'Chưa cập nhật' }}
+                                            Mã số: <?php echo e($student->account_code); ?> |
+                                            SĐT: <?php echo e($student->phone ?? 'Chưa cập nhật'); ?>
+
                                         </div>
                                         <div class="text-xs text-gray-400 dark:text-gray-500">
-                                            Đóng học phí: {{ number_format($student->price, 0, ',', '.') }} VNĐ
+                                            Đóng học phí: <?php echo e(number_format($student->price, 0, ',', '.')); ?> VNĐ
                                         </div>
                                     </div>
 
@@ -173,28 +234,66 @@
                                         Kéo vào lớp
                                     </div>
                                 </div>
-                            @endforeach
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><!--[if ENDBLOCK]><![endif]-->
                         </div>
-                    @else
+                    <?php else: ?>
                         <div class="text-center py-8 flex-1 flex flex-col justify-center">
-                            <flux:icon.users class="w-12 h-12 mx-auto mb-4 text-gray-400" />
+                            <?php if (isset($component)) { $__componentOriginal4e4f522adb19cc742fb2b199df7e6c95 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal4e4f522adb19cc742fb2b199df7e6c95 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::icon.users','data' => ['class' => 'w-12 h-12 mx-auto mb-4 text-gray-400']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('flux::icon.users'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['class' => 'w-12 h-12 mx-auto mb-4 text-gray-400']); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal4e4f522adb19cc742fb2b199df7e6c95)): ?>
+<?php $attributes = $__attributesOriginal4e4f522adb19cc742fb2b199df7e6c95; ?>
+<?php unset($__attributesOriginal4e4f522adb19cc742fb2b199df7e6c95); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal4e4f522adb19cc742fb2b199df7e6c95)): ?>
+<?php $component = $__componentOriginal4e4f522adb19cc742fb2b199df7e6c95; ?>
+<?php unset($__componentOriginal4e4f522adb19cc742fb2b199df7e6c95); ?>
+<?php endif; ?>
                             <p class="text-lg font-medium text-gray-500 dark:text-gray-400">Không có học viên nào</p>
                             <p class="text-sm text-gray-400 dark:text-gray-500">Tất cả học viên đã được xếp lớp hoặc
                                 chưa đóng học phí</p>
                         </div>
-                    @endif
+                    <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
                 </div>
             </div>
         </div>
 
-        {{-- Right Side - Courses List and Assignment --}}
+        
         <div class="space-y-4 flex flex-col h-full">
             <div class="theme-card-pink flex-1 flex flex-col">
                 <div class="card-header">
                     <div class="flex items-center space-x-3">
                         <div
                             class="w-8 h-8 bg-pink-200 dark:bg-pink-800/30 rounded-lg flex items-center justify-center">
-                            <flux:icon.academic-cap class="w-4 h-4 text-pink-600 dark:text-pink-400" />
+                            <?php if (isset($component)) { $__componentOriginale0880cb6488d85d9ca54288aa080a834 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginale0880cb6488d85d9ca54288aa080a834 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::icon.academic-cap','data' => ['class' => 'w-4 h-4 text-pink-600 dark:text-pink-400']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('flux::icon.academic-cap'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['class' => 'w-4 h-4 text-pink-600 dark:text-pink-400']); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginale0880cb6488d85d9ca54288aa080a834)): ?>
+<?php $attributes = $__attributesOriginale0880cb6488d85d9ca54288aa080a834; ?>
+<?php unset($__attributesOriginale0880cb6488d85d9ca54288aa080a834); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginale0880cb6488d85d9ca54288aa080a834)): ?>
+<?php $component = $__componentOriginale0880cb6488d85d9ca54288aa080a834; ?>
+<?php unset($__componentOriginale0880cb6488d85d9ca54288aa080a834); ?>
+<?php endif; ?>
                         </div>
                         <div>
                             <h3 class="text-lg font-bold text-pink-600 dark:text-pink-400">Lớp học có sẵn</h3>
@@ -204,13 +303,13 @@
                     </div>
                 </div>
                 <div class="p-6 flex-1 flex flex-col">
-                    @if (count($courses) > 0)
+                    <!--[if BLOCK]><![endif]--><?php if(count($courses) > 0): ?>
                         <div class="space-y-3 flex-1 overflow-y-auto" id="courses-container">
-                            @foreach ($courses as $course)
+                            <!--[if BLOCK]><![endif]--><?php $__currentLoopData = $courses; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $course): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <div class="course-drop-zone p-3 rounded-lg border-2 border-dashed border-gray-300 dark:border-gray-600 
                                     bg-white dark:bg-gray-800 hover:border-green-400 hover:bg-green-50 dark:hover:bg-green-900/20 transition-all duration-200"
-                                    data-course-id="{{ $course->id }}"
-                                    data-course-name="{{ $course->course_name }}">
+                                    data-course-id="<?php echo e($course->id); ?>"
+                                    data-course-name="<?php echo e($course->course_name); ?>">
 
                                     <div class="flex items-center space-x-3">
                                         <div class="drop-icon text-gray-400">
@@ -223,16 +322,19 @@
 
                                         <div class="flex-1">
                                             <div class="font-medium text-gray-900 dark:text-white">
-                                                {{ $course->course_name }}</div>
+                                                <?php echo e($course->course_name); ?></div>
                                             <div class="text-sm text-gray-500 dark:text-gray-400">
-                                                {{ $course->subject_name }} | {{ $course->location_name }}
+                                                <?php echo e($course->subject_name); ?> | <?php echo e($course->location_name); ?>
+
                                             </div>
                                             <div class="text-xs text-gray-400 dark:text-gray-500">
-                                                Mùa: {{ $course->season_name }}
+                                                Mùa: <?php echo e($course->season_name); ?>
+
                                                 <span
                                                     class="ml-2 px-2 py-1 rounded-full text-xs 
-                                                    {{ $course->season_status === 'ongoing' ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800' }}">
-                                                    {{ $course->season_status === 'ongoing' ? 'Đang hoạt động' : 'Sắp mở' }}
+                                                    <?php echo e($course->season_status === 'ongoing' ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'); ?>">
+                                                    <?php echo e($course->season_status === 'ongoing' ? 'Đang hoạt động' : 'Sắp mở'); ?>
+
                                                 </span>
                                             </div>
                                         </div>
@@ -242,16 +344,35 @@
                                         </div>
                                     </div>
                                 </div>
-                            @endforeach
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><!--[if ENDBLOCK]><![endif]-->
                         </div>
-                    @else
+                    <?php else: ?>
                         <div class="text-center py-8 flex-1 flex flex-col justify-center">
-                            <flux:icon.academic-cap class="w-12 h-12 mx-auto mb-4 text-gray-400" />
+                            <?php if (isset($component)) { $__componentOriginale0880cb6488d85d9ca54288aa080a834 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginale0880cb6488d85d9ca54288aa080a834 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::icon.academic-cap','data' => ['class' => 'w-12 h-12 mx-auto mb-4 text-gray-400']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('flux::icon.academic-cap'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['class' => 'w-12 h-12 mx-auto mb-4 text-gray-400']); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginale0880cb6488d85d9ca54288aa080a834)): ?>
+<?php $attributes = $__attributesOriginale0880cb6488d85d9ca54288aa080a834; ?>
+<?php unset($__attributesOriginale0880cb6488d85d9ca54288aa080a834); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginale0880cb6488d85d9ca54288aa080a834)): ?>
+<?php $component = $__componentOriginale0880cb6488d85d9ca54288aa080a834; ?>
+<?php unset($__componentOriginale0880cb6488d85d9ca54288aa080a834); ?>
+<?php endif; ?>
                             <p class="text-lg font-medium text-gray-500 dark:text-gray-400">Không có lớp học nào</p>
                             <p class="text-sm text-gray-400 dark:text-gray-500">Không có lớp học nào phù hợp với bộ lọc
                                 hiện tại</p>
                         </div>
-                    @endif
+                    <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
                 </div>
             </div>
 
@@ -398,3 +519,4 @@
     </script>
 
 </div>
+<?php /**PATH /Users/smyth/Herd/ap.icy.edu.vn/resources/views/livewire/back/arrangement/class-assignment.blade.php ENDPATH**/ ?>
