@@ -1,5 +1,5 @@
 <div>
-    <flux:modal name="qr-bank-transfer" class="max-w-4xl">
+    <flux:modal wire:poll='checkPaymentStatus()' name="qr-bank-transfer" class="max-w-4xl">
         <div class="space-y-6">
             <!-- Header -->
             <div>

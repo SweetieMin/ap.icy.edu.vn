@@ -14,10 +14,12 @@ class QRBankTransfer extends Component
     public $accountNumber = '';
     public $amount = 0;
     public $contentTransaction = '';
+    public $transactionId = '';
 
     #[On('qr-bank-transfer')]
     public function qrBankTransfer($transactionId)
     {
+        $this->transactionId = $transactionId;
         $transaction = app(TuitionRepositoryInterface::class)->getTuitionById($transactionId);
         $this->crc16 = $transaction->content_transaction;
         $this->bankName = $transaction->bank->bank_name;
@@ -25,6 +27,19 @@ class QRBankTransfer extends Component
         $this->amount = $transaction->price;
         $this->contentTransaction = $transaction->content_transaction;
         Flux::modal('qr-bank-transfer')->show();
+    }
+
+    public function checkPaymentStatus()
+    {
+        if ($this->transactionId) {
+            $transaction = app(TuitionRepositoryInterface::class)->getTuitionById($this->transactionId);
+            if ($transaction->status === 'paid') {
+                Flux::modal('qr-bank-transfer')->close();
+                session()->flash('success', 'Thanh toán thành công');
+                $this->dispatch('mainMenuQRCode');
+                $this->redirectRoute('admin.finance.tuitions-payment', navigate: true);
+            }
+        }
     }
 
     public function render()

@@ -210,6 +210,7 @@ class TuitionsPayment extends Component
         // Method để Livewire tự động detect changes
     }
 
+    #[On('mainMenuQRCode')]
     public function mainMenuQRCode()
     {
         $this->dispatch('mainMenuQRCode');
