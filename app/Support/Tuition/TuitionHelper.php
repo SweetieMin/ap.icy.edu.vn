@@ -13,7 +13,7 @@ class TuitionHelper
         $bank_number = app(BankRepositoryInterface::class)->getById($transaction->bank_id)->account_number;
         $amount = (string) $transaction->price;
 
-        $description = $transaction->note;
+        $description = $transaction->content_transaction;
 
         return BankHelper::buildVietQR($bank_code, $bank_number, $amount, $description);
     }

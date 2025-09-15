@@ -1,5 +1,22 @@
 <div class="relative mb-4 w-full">
 
+    <?php
+$__split = function ($name, $params = []) {
+    return [$name, $params];
+};
+[$__name, $__params] = $__split('back.finance.tuition.qr-bank-transfer', []);
+
+$__html = app('livewire')->mount($__name, $__params, 'lw-4049971719-0', $__slots ?? [], get_defined_vars());
+
+echo $__html;
+
+unset($__html);
+unset($__name);
+unset($__params);
+unset($__split);
+if (isset($__slots)) unset($__slots);
+?>
+
     
     <div class="theme-header-pink">
         <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between space-y-4 lg:space-y-0">

@@ -1,5 +1,7 @@
 <div class="relative mb-4 w-full">
 
+    <livewire:back.finance.tuition.qr-bank-transfer />
+
     {{-- Header Section --}}
     <div class="theme-header-pink">
         <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between space-y-4 lg:space-y-0">

@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Back\Finance\Tuition;
 
+use Flux\Flux;
 use Livewire\Component;
 use Livewire\Attributes\On;
 use Livewire\Attributes\Url;
@@ -618,12 +619,14 @@ class TuitionsPayment extends Component
 
     public function showQrCode($transactionId)
     {
+
+        
         $transaction = app(TuitionRepositoryInterface::class)->getTuitionById($transactionId);
         $crc16 = TuitionHelper::generateInformationTransaction($transaction);
         $bankName = app(BankRepositoryInterface::class)->getById($transaction->bank_id)->bank_name;
         $accountNumber = app(BankRepositoryInterface::class)->getById($transaction->bank_id)->account_number;
         $amount = (string) $transaction->price;
-
+        $this->dispatch('qr-bank-transfer', $transaction->id);
         $this->dispatch('process-payment', $crc16, $bankName, $accountNumber, $amount);
     }
 
