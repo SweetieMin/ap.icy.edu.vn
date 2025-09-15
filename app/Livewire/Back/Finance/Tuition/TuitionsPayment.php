@@ -626,7 +626,7 @@ class TuitionsPayment extends Component
         $bankName = app(BankRepositoryInterface::class)->getById($transaction->bank_id)->bank_name;
         $accountNumber = app(BankRepositoryInterface::class)->getById($transaction->bank_id)->account_number;
         $amount = (string) $transaction->price;
-        $this->dispatch('qr-bank-transfer', $transaction->id);
+        $this->dispatch('qr-bank-transfer', $transaction->id, $crc16);
         $this->dispatch('process-payment', $crc16, $bankName, $accountNumber, $amount);
     }
 

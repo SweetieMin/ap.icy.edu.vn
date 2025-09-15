@@ -18,11 +18,11 @@ class QRBankTransfer extends Component
     public $accountName = '';
 
     #[On('qr-bank-transfer')]
-    public function qrBankTransfer($transactionId)
+    public function qrBankTransfer($transactionId, $crc16)
     {
         $this->transactionId = $transactionId;
         $transaction = app(TuitionRepositoryInterface::class)->getTuitionById($transactionId);
-        $this->crc16 = $transaction->content_transaction;
+        $this->crc16 = $crc16;
         $this->bankName = $transaction->bank->bank_name;
         $this->accountNumber = $transaction->bank->account_number;
         $this->accountName = $transaction->bank->account_name;

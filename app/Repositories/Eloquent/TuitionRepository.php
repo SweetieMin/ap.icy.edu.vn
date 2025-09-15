@@ -2,10 +2,11 @@
 
 namespace App\Repositories\Eloquent;
 
-use App\Models\Tuition;
-use App\Repositories\Contracts\TuitionRepositoryInterface;
-use Illuminate\Database\Eloquent\Collection;
 use Throwable;
+use App\Models\Tuition;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Database\Eloquent\Collection;
+use App\Repositories\Contracts\TuitionRepositoryInterface;
 
 class TuitionRepository implements TuitionRepositoryInterface
 {
@@ -33,7 +34,7 @@ class TuitionRepository implements TuitionRepositoryInterface
             $search = $filters['search'];
             $query->whereHas('user', function ($q) use ($search) {
                 $q->where('name', 'like', "%{$search}%")
-                  ->orWhere('account_code', 'like', "%{$search}%");
+                    ->orWhere('account_code', 'like', "%{$search}%");
             });
         }
 
@@ -64,11 +65,11 @@ class TuitionRepository implements TuitionRepositoryInterface
             switch ($filters['month']) {
                 case 'this_month':
                     $query->whereMonth('created_at', now()->month)
-                          ->whereYear('created_at', now()->year);
+                        ->whereYear('created_at', now()->year);
                     break;
                 case 'last_month':
                     $query->whereMonth('created_at', now()->subMonth()->month)
-                          ->whereYear('created_at', now()->subMonth()->year);
+                        ->whereYear('created_at', now()->subMonth()->year);
                     break;
                 case 'this_year':
                     $query->whereYear('created_at', now()->year);
@@ -115,9 +116,20 @@ class TuitionRepository implements TuitionRepositoryInterface
     public function updateStatus(string $content, float $transferAmount): bool
     {
         try {
-            $tuition = Tuition::where('content_transaction', $content)->where('price', $transferAmount)->first();
+            // Lấy 13 ký tự cuối từ $content
+            $code = substr($content, -13);
+
+            $tuition = Tuition::where('price', $transferAmount)
+                ->whereRaw('RIGHT(content_transaction, 13) = ?', [$code])
+                ->first();
+
+            if (! $tuition) {
+                return false;
+            }
+
             return $tuition->update(['status' => 'paid']);
-        } catch (Throwable $e) {
+        } catch (\Throwable $e) {
+            Log::error('UpdateStatus error', ['exception' => $e]);
             return false;
         }
     }
