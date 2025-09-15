@@ -1,6 +1,6 @@
 <div class="relative mb-4 w-full">
 
-    <livewire:back.finance.tuition.qr-bank-transfer />
+    <livewire:back.finance.tuition.q-r-bank-transfer />
 
     {{-- Header Section --}}
     <div class="theme-header-pink">

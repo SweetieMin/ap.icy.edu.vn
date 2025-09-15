@@ -4,7 +4,7 @@
 $__split = function ($name, $params = []) {
     return [$name, $params];
 };
-[$__name, $__params] = $__split('back.finance.tuition.qr-bank-transfer', []);
+[$__name, $__params] = $__split('back.finance.tuition.q-r-bank-transfer', []);
 
 $__html = app('livewire')->mount($__name, $__params, 'lw-4049971719-0', $__slots ?? [], get_defined_vars());
 

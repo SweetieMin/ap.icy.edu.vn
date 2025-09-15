@@ -36,7 +36,6 @@ class QRBankTransfer extends Component
             if ($transaction->status === 'paid') {
                 Flux::modal('qr-bank-transfer')->close();
                 session()->flash('success', 'Thanh toán thành công');
-                $this->dispatch('mainMenuQRCode');
                 $this->redirectRoute('admin.finance.tuitions-payment', navigate: true);
             }
         }
@@ -44,6 +43,6 @@ class QRBankTransfer extends Component
 
     public function render()
     {
-        return view('livewire.back.finance.tuition.qr-bank-transfer');
+        return view('livewire.back.finance.tuition.q-r-bank-transfer');
     }
 }
