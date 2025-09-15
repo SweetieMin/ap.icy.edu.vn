@@ -6,7 +6,8 @@
     <script>
         // Apply dark mode immediately to prevent flash
         (function() {
-            const isDark = localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches);
+            const isDark = localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia(
+                '(prefers-color-scheme: dark)').matches);
             if (isDark) {
                 document.documentElement.classList.add('dark');
             } else {
@@ -29,11 +30,12 @@
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
 <?php $component->withAttributes(['sticky' => true,'stashable' => true,'class' => 'w-[320px] border-e border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900 h-full flex flex-col']); ?>
-            
+
             
             <div class="flex-shrink-0 p-4 border-b border-zinc-200 dark:border-zinc-700">
 
-                <a href="<?php echo e(route('dashboard')); ?>" class="me-5 flex items-center space-x-2 rtl:space-x-reverse" wire:navigate>
+                <a href="<?php echo e(route('dashboard')); ?>" class="me-5 flex items-center space-x-2 rtl:space-x-reverse"
+                    wire:navigate>
                     <?php if (isset($component)) { $__componentOriginal7b17d80ff7900603fe9e5f0b453cc7c3 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal7b17d80ff7900603fe9e5f0b453cc7c3 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.app-logo','data' => []] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
@@ -113,9 +115,17 @@
 <?php unset($__componentOriginal8b1fe5c87f0876e7c101dbc6fe82a9a4); ?>
 <?php endif; ?>
 
-                    <hr class="h-px my-2 bg-gray-200 border-0 dark:bg-gray-700">
 
-                    <?php if (isset($component)) { $__componentOriginal8b1fe5c87f0876e7c101dbc6fe82a9a4 = $component; } ?>
+
+                    <?php if(auth()->user()->hasPermission('admin.management.locations') ||
+                            auth()->user()->hasPermission('admin.management.seasons') ||
+                            auth()->user()->hasPermission('admin.management.programs') ||
+                            auth()->user()->hasPermission('admin.management.subjects') ||
+                            auth()->user()->hasPermission('admin.management.courses') ||
+                            auth()->user()->hasPermission('admin.management.syllabi') ||
+                            auth()->user()->hasPermission('admin.management.curricula')): ?>
+                        <hr class="h-px my-2 bg-gray-200 border-0 dark:bg-gray-700">
+                        <?php if (isset($component)) { $__componentOriginal8b1fe5c87f0876e7c101dbc6fe82a9a4 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal8b1fe5c87f0876e7c101dbc6fe82a9a4 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::navlist.group','data' => ['heading' => __('Management'),'class' => 'grid']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('flux::navlist.group'); ?>
@@ -126,7 +136,8 @@
 <?php endif; ?>
 <?php $component->withAttributes(['heading' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(__('Management')),'class' => 'grid']); ?>
 
-                        <?php if (isset($component)) { $__componentOriginalda376aa217444bbd92367ba1444eb3b8 = $component; } ?>
+                            <?php if(auth()->user()->hasPermission('admin.management.locations')): ?>
+                                <?php if (isset($component)) { $__componentOriginalda376aa217444bbd92367ba1444eb3b8 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginalda376aa217444bbd92367ba1444eb3b8 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::navlist.item','data' => ['icon' => 'map-pin-house','href' => route('admin.management.locations'),'current' => request()->routeIs('admin.management.locations'),'wire:navigate' => true]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('flux::navlist.item'); ?>
@@ -136,8 +147,8 @@
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
 <?php $component->withAttributes(['icon' => 'map-pin-house','href' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(route('admin.management.locations')),'current' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(request()->routeIs('admin.management.locations')),'wire:navigate' => true]); ?>
-                            Cơ sở
-                         <?php echo $__env->renderComponent(); ?>
+                                    Cơ sở
+                                 <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php if (isset($__attributesOriginalda376aa217444bbd92367ba1444eb3b8)): ?>
 <?php $attributes = $__attributesOriginalda376aa217444bbd92367ba1444eb3b8; ?>
@@ -147,8 +158,10 @@
 <?php $component = $__componentOriginalda376aa217444bbd92367ba1444eb3b8; ?>
 <?php unset($__componentOriginalda376aa217444bbd92367ba1444eb3b8); ?>
 <?php endif; ?>
+                            <?php endif; ?>
 
-                        <?php if (isset($component)) { $__componentOriginalda376aa217444bbd92367ba1444eb3b8 = $component; } ?>
+                            <?php if(auth()->user()->hasPermission('admin.management.seasons')): ?>
+                                <?php if (isset($component)) { $__componentOriginalda376aa217444bbd92367ba1444eb3b8 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginalda376aa217444bbd92367ba1444eb3b8 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::navlist.item','data' => ['icon' => 'calendar','href' => route('admin.management.seasons'),'current' => request()->routeIs('admin.management.seasons'),'wire:navigate' => true]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('flux::navlist.item'); ?>
@@ -158,8 +171,8 @@
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
 <?php $component->withAttributes(['icon' => 'calendar','href' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(route('admin.management.seasons')),'current' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(request()->routeIs('admin.management.seasons')),'wire:navigate' => true]); ?>
-                            Học kỳ
-                         <?php echo $__env->renderComponent(); ?>
+                                    Học kỳ
+                                 <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php if (isset($__attributesOriginalda376aa217444bbd92367ba1444eb3b8)): ?>
 <?php $attributes = $__attributesOriginalda376aa217444bbd92367ba1444eb3b8; ?>
@@ -169,8 +182,10 @@
 <?php $component = $__componentOriginalda376aa217444bbd92367ba1444eb3b8; ?>
 <?php unset($__componentOriginalda376aa217444bbd92367ba1444eb3b8); ?>
 <?php endif; ?>
+                            <?php endif; ?>
 
-                        <?php if (isset($component)) { $__componentOriginalda376aa217444bbd92367ba1444eb3b8 = $component; } ?>
+                            <?php if(auth()->user()->hasPermission('admin.management.programs')): ?>
+                                <?php if (isset($component)) { $__componentOriginalda376aa217444bbd92367ba1444eb3b8 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginalda376aa217444bbd92367ba1444eb3b8 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::navlist.item','data' => ['icon' => 'book-marked','href' => route('admin.management.programs'),'current' => request()->routeIs('admin.management.programs'),'wire:navigate' => true]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('flux::navlist.item'); ?>
@@ -180,8 +195,8 @@
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
 <?php $component->withAttributes(['icon' => 'book-marked','href' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(route('admin.management.programs')),'current' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(request()->routeIs('admin.management.programs')),'wire:navigate' => true]); ?>
-                            Chương trình học
-                         <?php echo $__env->renderComponent(); ?>
+                                    Chương trình học
+                                 <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php if (isset($__attributesOriginalda376aa217444bbd92367ba1444eb3b8)): ?>
 <?php $attributes = $__attributesOriginalda376aa217444bbd92367ba1444eb3b8; ?>
@@ -191,8 +206,10 @@
 <?php $component = $__componentOriginalda376aa217444bbd92367ba1444eb3b8; ?>
 <?php unset($__componentOriginalda376aa217444bbd92367ba1444eb3b8); ?>
 <?php endif; ?>
+                            <?php endif; ?>
 
-                        <?php if (isset($component)) { $__componentOriginalda376aa217444bbd92367ba1444eb3b8 = $component; } ?>
+                            <?php if(auth()->user()->hasPermission('admin.management.subjects')): ?>
+                                <?php if (isset($component)) { $__componentOriginalda376aa217444bbd92367ba1444eb3b8 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginalda376aa217444bbd92367ba1444eb3b8 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::navlist.item','data' => ['icon' => 'book-open','href' => route('admin.management.subjects'),'current' => request()->routeIs('admin.management.subjects'),'wire:navigate' => true]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('flux::navlist.item'); ?>
@@ -202,8 +219,8 @@
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
 <?php $component->withAttributes(['icon' => 'book-open','href' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(route('admin.management.subjects')),'current' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(request()->routeIs('admin.management.subjects')),'wire:navigate' => true]); ?>
-                            Môn học
-                         <?php echo $__env->renderComponent(); ?>
+                                    Môn học
+                                 <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php if (isset($__attributesOriginalda376aa217444bbd92367ba1444eb3b8)): ?>
 <?php $attributes = $__attributesOriginalda376aa217444bbd92367ba1444eb3b8; ?>
@@ -213,8 +230,10 @@
 <?php $component = $__componentOriginalda376aa217444bbd92367ba1444eb3b8; ?>
 <?php unset($__componentOriginalda376aa217444bbd92367ba1444eb3b8); ?>
 <?php endif; ?>
+                            <?php endif; ?>
 
-                        <?php if (isset($component)) { $__componentOriginalda376aa217444bbd92367ba1444eb3b8 = $component; } ?>
+                            <?php if(auth()->user()->hasPermission('admin.management.courses')): ?>
+                                <?php if (isset($component)) { $__componentOriginalda376aa217444bbd92367ba1444eb3b8 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginalda376aa217444bbd92367ba1444eb3b8 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::navlist.item','data' => ['icon' => 'academic-cap','href' => route('admin.management.courses'),'current' => request()->routeIs('admin.management.courses'),'wire:navigate' => true]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('flux::navlist.item'); ?>
@@ -224,8 +243,8 @@
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
 <?php $component->withAttributes(['icon' => 'academic-cap','href' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(route('admin.management.courses')),'current' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(request()->routeIs('admin.management.courses')),'wire:navigate' => true]); ?>
-                            Lớp học
-                         <?php echo $__env->renderComponent(); ?>
+                                    Lớp học
+                                 <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php if (isset($__attributesOriginalda376aa217444bbd92367ba1444eb3b8)): ?>
 <?php $attributes = $__attributesOriginalda376aa217444bbd92367ba1444eb3b8; ?>
@@ -235,8 +254,10 @@
 <?php $component = $__componentOriginalda376aa217444bbd92367ba1444eb3b8; ?>
 <?php unset($__componentOriginalda376aa217444bbd92367ba1444eb3b8); ?>
 <?php endif; ?>
+                            <?php endif; ?>
 
-                        <?php if (isset($component)) { $__componentOriginalda376aa217444bbd92367ba1444eb3b8 = $component; } ?>
+                            <?php if(auth()->user()->hasPermission('admin.management.syllabi')): ?>
+                                <?php if (isset($component)) { $__componentOriginalda376aa217444bbd92367ba1444eb3b8 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginalda376aa217444bbd92367ba1444eb3b8 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::navlist.item','data' => ['icon' => 'list-bullet','href' => route('admin.management.syllabi'),'current' => request()->routeIs('admin.management.syllabi'),'wire:navigate' => true]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('flux::navlist.item'); ?>
@@ -246,8 +267,8 @@
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
 <?php $component->withAttributes(['icon' => 'list-bullet','href' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(route('admin.management.syllabi')),'current' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(request()->routeIs('admin.management.syllabi')),'wire:navigate' => true]); ?>
-                            Syllabus
-                         <?php echo $__env->renderComponent(); ?>
+                                    Syllabus
+                                 <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php if (isset($__attributesOriginalda376aa217444bbd92367ba1444eb3b8)): ?>
 <?php $attributes = $__attributesOriginalda376aa217444bbd92367ba1444eb3b8; ?>
@@ -257,8 +278,10 @@
 <?php $component = $__componentOriginalda376aa217444bbd92367ba1444eb3b8; ?>
 <?php unset($__componentOriginalda376aa217444bbd92367ba1444eb3b8); ?>
 <?php endif; ?>
+                            <?php endif; ?>
 
-                        <?php if (isset($component)) { $__componentOriginalda376aa217444bbd92367ba1444eb3b8 = $component; } ?>
+                            <?php if(auth()->user()->hasPermission('admin.management.curricula')): ?>
+                                <?php if (isset($component)) { $__componentOriginalda376aa217444bbd92367ba1444eb3b8 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginalda376aa217444bbd92367ba1444eb3b8 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::navlist.item','data' => ['icon' => 'book-open-text','href' => route('admin.management.curricula'),'current' => request()->routeIs('admin.management.curricula'),'wire:navigate' => true]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('flux::navlist.item'); ?>
@@ -268,8 +291,8 @@
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
 <?php $component->withAttributes(['icon' => 'book-open-text','href' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(route('admin.management.curricula')),'current' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(request()->routeIs('admin.management.curricula')),'wire:navigate' => true]); ?>
-                            Giáo trình
-                         <?php echo $__env->renderComponent(); ?>
+                                    Giáo trình
+                                 <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php if (isset($__attributesOriginalda376aa217444bbd92367ba1444eb3b8)): ?>
 <?php $attributes = $__attributesOriginalda376aa217444bbd92367ba1444eb3b8; ?>
@@ -279,8 +302,9 @@
 <?php $component = $__componentOriginalda376aa217444bbd92367ba1444eb3b8; ?>
 <?php unset($__componentOriginalda376aa217444bbd92367ba1444eb3b8); ?>
 <?php endif; ?>
+                            <?php endif; ?>
 
-                     <?php echo $__env->renderComponent(); ?>
+                         <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php if (isset($__attributesOriginal8b1fe5c87f0876e7c101dbc6fe82a9a4)): ?>
 <?php $attributes = $__attributesOriginal8b1fe5c87f0876e7c101dbc6fe82a9a4; ?>
@@ -290,10 +314,16 @@
 <?php $component = $__componentOriginal8b1fe5c87f0876e7c101dbc6fe82a9a4; ?>
 <?php unset($__componentOriginal8b1fe5c87f0876e7c101dbc6fe82a9a4); ?>
 <?php endif; ?>
+                    <?php endif; ?>
 
-                    <hr class="h-px my-2 bg-gray-200 border-0 dark:bg-gray-700">
 
-                    <?php if (isset($component)) { $__componentOriginal8b1fe5c87f0876e7c101dbc6fe82a9a4 = $component; } ?>
+
+                    <?php if(auth()->user()->hasPermission('admin.finance.program-prices') ||
+                            auth()->user()->hasPermission('admin.finance.bank-accounts') ||
+                            auth()->user()->hasPermission('admin.finance.tuitions-payment') ||
+                            auth()->user()->hasPermission('admin.finance.tuition-history')): ?>
+                        <hr class="h-px my-2 bg-gray-200 border-0 dark:bg-gray-700">
+                        <?php if (isset($component)) { $__componentOriginal8b1fe5c87f0876e7c101dbc6fe82a9a4 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal8b1fe5c87f0876e7c101dbc6fe82a9a4 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::navlist.group','data' => ['heading' => __('Finance'),'class' => 'grid']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('flux::navlist.group'); ?>
@@ -304,7 +334,8 @@
 <?php endif; ?>
 <?php $component->withAttributes(['heading' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(__('Finance')),'class' => 'grid']); ?>
 
-                        <?php if (isset($component)) { $__componentOriginalda376aa217444bbd92367ba1444eb3b8 = $component; } ?>
+                            <?php if(auth()->user()->hasPermission('admin.finance.program-prices')): ?>
+                                <?php if (isset($component)) { $__componentOriginalda376aa217444bbd92367ba1444eb3b8 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginalda376aa217444bbd92367ba1444eb3b8 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::navlist.item','data' => ['icon' => 'currency-dollar','href' => route('admin.finance.program-prices'),'current' => request()->routeIs('admin.finance.program-prices'),'wire:navigate' => true]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('flux::navlist.item'); ?>
@@ -314,8 +345,8 @@
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
 <?php $component->withAttributes(['icon' => 'currency-dollar','href' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(route('admin.finance.program-prices')),'current' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(request()->routeIs('admin.finance.program-prices')),'wire:navigate' => true]); ?>
-                            Quản lý giá tiền
-                         <?php echo $__env->renderComponent(); ?>
+                                    Quản lý giá tiền
+                                 <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php if (isset($__attributesOriginalda376aa217444bbd92367ba1444eb3b8)): ?>
 <?php $attributes = $__attributesOriginalda376aa217444bbd92367ba1444eb3b8; ?>
@@ -325,8 +356,9 @@
 <?php $component = $__componentOriginalda376aa217444bbd92367ba1444eb3b8; ?>
 <?php unset($__componentOriginalda376aa217444bbd92367ba1444eb3b8); ?>
 <?php endif; ?>
-
-                        <?php if (isset($component)) { $__componentOriginalda376aa217444bbd92367ba1444eb3b8 = $component; } ?>
+                            <?php endif; ?>
+                            <?php if(auth()->user()->hasPermission('admin.finance.bank-accounts')): ?>
+                                <?php if (isset($component)) { $__componentOriginalda376aa217444bbd92367ba1444eb3b8 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginalda376aa217444bbd92367ba1444eb3b8 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::navlist.item','data' => ['icon' => 'banknotes','href' => route('admin.finance.bank-accounts'),'current' => request()->routeIs('admin.finance.bank-accounts'),'wire:navigate' => true]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('flux::navlist.item'); ?>
@@ -336,8 +368,8 @@
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
 <?php $component->withAttributes(['icon' => 'banknotes','href' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(route('admin.finance.bank-accounts')),'current' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(request()->routeIs('admin.finance.bank-accounts')),'wire:navigate' => true]); ?>
-                            Tài khoản ngân hàng
-                         <?php echo $__env->renderComponent(); ?>
+                                    Tài khoản ngân hàng
+                                 <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php if (isset($__attributesOriginalda376aa217444bbd92367ba1444eb3b8)): ?>
 <?php $attributes = $__attributesOriginalda376aa217444bbd92367ba1444eb3b8; ?>
@@ -347,8 +379,9 @@
 <?php $component = $__componentOriginalda376aa217444bbd92367ba1444eb3b8; ?>
 <?php unset($__componentOriginalda376aa217444bbd92367ba1444eb3b8); ?>
 <?php endif; ?>
-
-                        <?php if (isset($component)) { $__componentOriginalda376aa217444bbd92367ba1444eb3b8 = $component; } ?>
+                            <?php endif; ?>
+                            <?php if(auth()->user()->hasPermission('admin.finance.tuitions-payment')): ?>
+                                <?php if (isset($component)) { $__componentOriginalda376aa217444bbd92367ba1444eb3b8 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginalda376aa217444bbd92367ba1444eb3b8 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::navlist.item','data' => ['icon' => 'credit-card','href' => route('admin.finance.tuitions-payment'),'current' => request()->routeIs('admin.finance.tuitions-payment'),'wire:navigate' => true]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('flux::navlist.item'); ?>
@@ -358,8 +391,8 @@
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
 <?php $component->withAttributes(['icon' => 'credit-card','href' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(route('admin.finance.tuitions-payment')),'current' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(request()->routeIs('admin.finance.tuitions-payment')),'wire:navigate' => true]); ?>
-                            Thanh toán học phí
-                         <?php echo $__env->renderComponent(); ?>
+                                    Thanh toán học phí
+                                 <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php if (isset($__attributesOriginalda376aa217444bbd92367ba1444eb3b8)): ?>
 <?php $attributes = $__attributesOriginalda376aa217444bbd92367ba1444eb3b8; ?>
@@ -369,8 +402,9 @@
 <?php $component = $__componentOriginalda376aa217444bbd92367ba1444eb3b8; ?>
 <?php unset($__componentOriginalda376aa217444bbd92367ba1444eb3b8); ?>
 <?php endif; ?>
-
-                        <?php if (isset($component)) { $__componentOriginalda376aa217444bbd92367ba1444eb3b8 = $component; } ?>
+                            <?php endif; ?>
+                            <?php if(auth()->user()->hasPermission('admin.finance.tuition-history')): ?>
+                                <?php if (isset($component)) { $__componentOriginalda376aa217444bbd92367ba1444eb3b8 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginalda376aa217444bbd92367ba1444eb3b8 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::navlist.item','data' => ['icon' => 'banknotes','href' => route('admin.finance.tuition-history'),'current' => request()->routeIs('admin.finance.tuition-history'),'wire:navigate' => true]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('flux::navlist.item'); ?>
@@ -380,8 +414,8 @@
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
 <?php $component->withAttributes(['icon' => 'banknotes','href' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(route('admin.finance.tuition-history')),'current' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(request()->routeIs('admin.finance.tuition-history')),'wire:navigate' => true]); ?>
-                            Lịch sử đóng học phí
-                         <?php echo $__env->renderComponent(); ?>
+                                    Lịch sử đóng học phí
+                                 <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php if (isset($__attributesOriginalda376aa217444bbd92367ba1444eb3b8)): ?>
 <?php $attributes = $__attributesOriginalda376aa217444bbd92367ba1444eb3b8; ?>
@@ -391,8 +425,8 @@
 <?php $component = $__componentOriginalda376aa217444bbd92367ba1444eb3b8; ?>
 <?php unset($__componentOriginalda376aa217444bbd92367ba1444eb3b8); ?>
 <?php endif; ?>
-
-                     <?php echo $__env->renderComponent(); ?>
+                            <?php endif; ?>
+                         <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php if (isset($__attributesOriginal8b1fe5c87f0876e7c101dbc6fe82a9a4)): ?>
 <?php $attributes = $__attributesOriginal8b1fe5c87f0876e7c101dbc6fe82a9a4; ?>
@@ -402,10 +436,14 @@
 <?php $component = $__componentOriginal8b1fe5c87f0876e7c101dbc6fe82a9a4; ?>
 <?php unset($__componentOriginal8b1fe5c87f0876e7c101dbc6fe82a9a4); ?>
 <?php endif; ?>
+                    <?php endif; ?>
 
-                    <hr class="h-px my-2 bg-gray-200 border-0 dark:bg-gray-700">
 
-                    <?php if (isset($component)) { $__componentOriginal8b1fe5c87f0876e7c101dbc6fe82a9a4 = $component; } ?>
+
+                    <?php if(auth()->user()->hasPermission('admin.arrangement.class-assignment') ||
+                            auth()->user()->hasPermission('admin.arrangement.time-table')): ?>
+                        <hr class="h-px my-2 bg-gray-200 border-0 dark:bg-gray-700">
+                        <?php if (isset($component)) { $__componentOriginal8b1fe5c87f0876e7c101dbc6fe82a9a4 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal8b1fe5c87f0876e7c101dbc6fe82a9a4 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::navlist.group','data' => ['heading' => __('Arrangement'),'class' => 'grid']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('flux::navlist.group'); ?>
@@ -416,7 +454,8 @@
 <?php endif; ?>
 <?php $component->withAttributes(['heading' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(__('Arrangement')),'class' => 'grid']); ?>
 
-                        <?php if (isset($component)) { $__componentOriginalda376aa217444bbd92367ba1444eb3b8 = $component; } ?>
+                            <?php if(auth()->user()->hasPermission('admin.arrangement.class-assignment')): ?>
+                                <?php if (isset($component)) { $__componentOriginalda376aa217444bbd92367ba1444eb3b8 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginalda376aa217444bbd92367ba1444eb3b8 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::navlist.item','data' => ['icon' => 'adjustments-horizontal','href' => route('admin.arrangement.class-assignment'),'current' => request()->routeIs('admin.arrangement.class-assignment'),'wire:navigate' => true]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('flux::navlist.item'); ?>
@@ -426,8 +465,8 @@
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
 <?php $component->withAttributes(['icon' => 'adjustments-horizontal','href' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(route('admin.arrangement.class-assignment')),'current' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(request()->routeIs('admin.arrangement.class-assignment')),'wire:navigate' => true]); ?>
-                            Xếp lớp học
-                         <?php echo $__env->renderComponent(); ?>
+                                    Xếp lớp học
+                                 <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php if (isset($__attributesOriginalda376aa217444bbd92367ba1444eb3b8)): ?>
 <?php $attributes = $__attributesOriginalda376aa217444bbd92367ba1444eb3b8; ?>
@@ -437,8 +476,9 @@
 <?php $component = $__componentOriginalda376aa217444bbd92367ba1444eb3b8; ?>
 <?php unset($__componentOriginalda376aa217444bbd92367ba1444eb3b8); ?>
 <?php endif; ?>
-
-                        <?php if (isset($component)) { $__componentOriginalda376aa217444bbd92367ba1444eb3b8 = $component; } ?>
+                            <?php endif; ?>
+                            <?php if(auth()->user()->hasPermission('admin.arrangement.time-table')): ?>
+                                <?php if (isset($component)) { $__componentOriginalda376aa217444bbd92367ba1444eb3b8 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginalda376aa217444bbd92367ba1444eb3b8 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::navlist.item','data' => ['icon' => 'calendar-days','href' => route('admin.arrangement.time-table'),'current' => request()->routeIs('admin.arrangement.time-table'),'wire:navigate' => true]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('flux::navlist.item'); ?>
@@ -448,8 +488,8 @@
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
 <?php $component->withAttributes(['icon' => 'calendar-days','href' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(route('admin.arrangement.time-table')),'current' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(request()->routeIs('admin.arrangement.time-table')),'wire:navigate' => true]); ?>
-                            Xếp lịch học
-                         <?php echo $__env->renderComponent(); ?>
+                                    Xếp lịch học
+                                 <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php if (isset($__attributesOriginalda376aa217444bbd92367ba1444eb3b8)): ?>
 <?php $attributes = $__attributesOriginalda376aa217444bbd92367ba1444eb3b8; ?>
@@ -459,8 +499,8 @@
 <?php $component = $__componentOriginalda376aa217444bbd92367ba1444eb3b8; ?>
 <?php unset($__componentOriginalda376aa217444bbd92367ba1444eb3b8); ?>
 <?php endif; ?>
-
-                     <?php echo $__env->renderComponent(); ?>
+                            <?php endif; ?>
+                         <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php if (isset($__attributesOriginal8b1fe5c87f0876e7c101dbc6fe82a9a4)): ?>
 <?php $attributes = $__attributesOriginal8b1fe5c87f0876e7c101dbc6fe82a9a4; ?>
@@ -470,10 +510,11 @@
 <?php $component = $__componentOriginal8b1fe5c87f0876e7c101dbc6fe82a9a4; ?>
 <?php unset($__componentOriginal8b1fe5c87f0876e7c101dbc6fe82a9a4); ?>
 <?php endif; ?>
+                    <?php endif; ?>
 
-                    <hr class="h-px my-2 bg-gray-200 border-0 dark:bg-gray-700">
-
-                    <?php if (isset($component)) { $__componentOriginal8b1fe5c87f0876e7c101dbc6fe82a9a4 = $component; } ?>
+                    <?php if(auth()->user()->hasPermission('admin.access.roles') || auth()->user()->hasPermission('admin.access.permissions')): ?>
+                        <hr class="h-px my-2 bg-gray-200 border-0 dark:bg-gray-700">
+                        <?php if (isset($component)) { $__componentOriginal8b1fe5c87f0876e7c101dbc6fe82a9a4 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal8b1fe5c87f0876e7c101dbc6fe82a9a4 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::navlist.group','data' => ['heading' => __('Access'),'class' => 'grid']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('flux::navlist.group'); ?>
@@ -484,7 +525,8 @@
 <?php endif; ?>
 <?php $component->withAttributes(['heading' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(__('Access')),'class' => 'grid']); ?>
 
-                        <?php if (isset($component)) { $__componentOriginalda376aa217444bbd92367ba1444eb3b8 = $component; } ?>
+                            <?php if(auth()->user()->hasPermission('admin.access.roles')): ?>
+                                <?php if (isset($component)) { $__componentOriginalda376aa217444bbd92367ba1444eb3b8 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginalda376aa217444bbd92367ba1444eb3b8 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::navlist.item','data' => ['icon' => 'user-lock','href' => route('admin.access.roles'),'current' => request()->routeIs('admin.access.roles'),'wire:navigate' => true]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('flux::navlist.item'); ?>
@@ -494,8 +536,8 @@
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
 <?php $component->withAttributes(['icon' => 'user-lock','href' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(route('admin.access.roles')),'current' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(request()->routeIs('admin.access.roles')),'wire:navigate' => true]); ?>
-                            Chức vụ
-                         <?php echo $__env->renderComponent(); ?>
+                                    Chức vụ
+                                 <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php if (isset($__attributesOriginalda376aa217444bbd92367ba1444eb3b8)): ?>
 <?php $attributes = $__attributesOriginalda376aa217444bbd92367ba1444eb3b8; ?>
@@ -505,8 +547,9 @@
 <?php $component = $__componentOriginalda376aa217444bbd92367ba1444eb3b8; ?>
 <?php unset($__componentOriginalda376aa217444bbd92367ba1444eb3b8); ?>
 <?php endif; ?>
-
-                        <?php if (isset($component)) { $__componentOriginalda376aa217444bbd92367ba1444eb3b8 = $component; } ?>
+                            <?php endif; ?>
+                            <?php if(auth()->user()->hasPermission('admin.access.permissions')): ?>
+                                <?php if (isset($component)) { $__componentOriginalda376aa217444bbd92367ba1444eb3b8 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginalda376aa217444bbd92367ba1444eb3b8 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::navlist.item','data' => ['icon' => 'shield-check','href' => route('admin.access.permissions'),'current' => request()->routeIs('admin.access.permissions'),'wire:navigate' => true]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('flux::navlist.item'); ?>
@@ -516,8 +559,8 @@
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
 <?php $component->withAttributes(['icon' => 'shield-check','href' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(route('admin.access.permissions')),'current' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(request()->routeIs('admin.access.permissions')),'wire:navigate' => true]); ?>
-                            Quyền
-                         <?php echo $__env->renderComponent(); ?>
+                                    Quyền
+                                 <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php if (isset($__attributesOriginalda376aa217444bbd92367ba1444eb3b8)): ?>
 <?php $attributes = $__attributesOriginalda376aa217444bbd92367ba1444eb3b8; ?>
@@ -527,8 +570,8 @@
 <?php $component = $__componentOriginalda376aa217444bbd92367ba1444eb3b8; ?>
 <?php unset($__componentOriginalda376aa217444bbd92367ba1444eb3b8); ?>
 <?php endif; ?>
-
-                     <?php echo $__env->renderComponent(); ?>
+                            <?php endif; ?>
+                         <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php if (isset($__attributesOriginal8b1fe5c87f0876e7c101dbc6fe82a9a4)): ?>
 <?php $attributes = $__attributesOriginal8b1fe5c87f0876e7c101dbc6fe82a9a4; ?>
@@ -538,10 +581,12 @@
 <?php $component = $__componentOriginal8b1fe5c87f0876e7c101dbc6fe82a9a4; ?>
 <?php unset($__componentOriginal8b1fe5c87f0876e7c101dbc6fe82a9a4); ?>
 <?php endif; ?>
+                    <?php endif; ?>
 
-                    <hr class="h-px my-2 bg-gray-200 border-0 dark:bg-gray-700">
+                    <?php if(auth()->user()->hasPermission('admin.personnel.staff') || auth()->user()->hasPermission('admin.personnel.students')): ?>
 
-                    <?php if (isset($component)) { $__componentOriginal8b1fe5c87f0876e7c101dbc6fe82a9a4 = $component; } ?>
+                        <hr class="h-px my-2 bg-gray-200 border-0 dark:bg-gray-700">
+                        <?php if (isset($component)) { $__componentOriginal8b1fe5c87f0876e7c101dbc6fe82a9a4 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal8b1fe5c87f0876e7c101dbc6fe82a9a4 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::navlist.group','data' => ['heading' => __('Human resources'),'class' => 'grid']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('flux::navlist.group'); ?>
@@ -552,7 +597,8 @@
 <?php endif; ?>
 <?php $component->withAttributes(['heading' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(__('Human resources')),'class' => 'grid']); ?>
 
-                        <?php if (isset($component)) { $__componentOriginalda376aa217444bbd92367ba1444eb3b8 = $component; } ?>
+                            <?php if(auth()->user()->hasPermission('admin.personnel.staff')): ?>
+                                <?php if (isset($component)) { $__componentOriginalda376aa217444bbd92367ba1444eb3b8 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginalda376aa217444bbd92367ba1444eb3b8 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::navlist.item','data' => ['icon' => 'users','href' => route('admin.personnel.staff'),'current' => request()->routeIs('admin.personnel.staff'),'wire:navigate' => true]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('flux::navlist.item'); ?>
@@ -562,8 +608,8 @@
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
 <?php $component->withAttributes(['icon' => 'users','href' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(route('admin.personnel.staff')),'current' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(request()->routeIs('admin.personnel.staff')),'wire:navigate' => true]); ?>
-                            Nhân viên
-                         <?php echo $__env->renderComponent(); ?>
+                                    Nhân viên
+                                 <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php if (isset($__attributesOriginalda376aa217444bbd92367ba1444eb3b8)): ?>
 <?php $attributes = $__attributesOriginalda376aa217444bbd92367ba1444eb3b8; ?>
@@ -573,8 +619,9 @@
 <?php $component = $__componentOriginalda376aa217444bbd92367ba1444eb3b8; ?>
 <?php unset($__componentOriginalda376aa217444bbd92367ba1444eb3b8); ?>
 <?php endif; ?>
-
-                        <?php if (isset($component)) { $__componentOriginalda376aa217444bbd92367ba1444eb3b8 = $component; } ?>
+                            <?php endif; ?>
+                            <?php if(auth()->user()->hasPermission('admin.personnel.students')): ?>
+                                <?php if (isset($component)) { $__componentOriginalda376aa217444bbd92367ba1444eb3b8 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginalda376aa217444bbd92367ba1444eb3b8 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::navlist.item','data' => ['icon' => 'user-group','href' => route('admin.personnel.students'),'current' => request()->routeIs('admin.personnel.students'),'wire:navigate' => true]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('flux::navlist.item'); ?>
@@ -584,8 +631,8 @@
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
 <?php $component->withAttributes(['icon' => 'user-group','href' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(route('admin.personnel.students')),'current' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(request()->routeIs('admin.personnel.students')),'wire:navigate' => true]); ?>
-                            Học viên
-                         <?php echo $__env->renderComponent(); ?>
+                                    Học viên
+                                 <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php if (isset($__attributesOriginalda376aa217444bbd92367ba1444eb3b8)): ?>
 <?php $attributes = $__attributesOriginalda376aa217444bbd92367ba1444eb3b8; ?>
@@ -595,8 +642,8 @@
 <?php $component = $__componentOriginalda376aa217444bbd92367ba1444eb3b8; ?>
 <?php unset($__componentOriginalda376aa217444bbd92367ba1444eb3b8); ?>
 <?php endif; ?>
-
-                     <?php echo $__env->renderComponent(); ?>
+                            <?php endif; ?>
+                         <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php if (isset($__attributesOriginal8b1fe5c87f0876e7c101dbc6fe82a9a4)): ?>
 <?php $attributes = $__attributesOriginal8b1fe5c87f0876e7c101dbc6fe82a9a4; ?>
@@ -606,6 +653,8 @@
 <?php $component = $__componentOriginal8b1fe5c87f0876e7c101dbc6fe82a9a4; ?>
 <?php unset($__componentOriginal8b1fe5c87f0876e7c101dbc6fe82a9a4); ?>
 <?php endif; ?>
+
+                    <?php endif; ?>
 
                  <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>

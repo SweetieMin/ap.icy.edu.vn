@@ -28,6 +28,11 @@ class Roles extends Component
         $this->dispatch('edit-role', $id);
     }
 
+    public function assignPermissions($id)
+    {
+        $this->dispatch('assign-permissions', $id);
+    }
+
     public function render()
     {
         $roles = app(RoleRepositoryInterface::class)->getAll(10);

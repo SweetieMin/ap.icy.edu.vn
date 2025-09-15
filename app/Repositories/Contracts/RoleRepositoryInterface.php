@@ -9,4 +9,5 @@ interface RoleRepositoryInterface
     public function delete(int $id);
     public function getRoleById(int $id);
     public function managerAccessPersonnel();
+    public function syncPermissions(int $roleId, array $permissionIds);
 }

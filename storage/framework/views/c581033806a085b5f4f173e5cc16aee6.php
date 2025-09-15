@@ -75,26 +75,6 @@
         </div>
     </div>
 
-    <?php if (isset($component)) { $__componentOriginalc481942d30cc0ab06077963cf20a45e8 = $component; } ?>
-<?php if (isset($attributes)) { $__attributesOriginalc481942d30cc0ab06077963cf20a45e8 = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::separator','data' => ['variant' => 'subtle']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
-<?php $component->withName('flux::separator'); ?>
-<?php if ($component->shouldRender()): ?>
-<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
-<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
-<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
-<?php endif; ?>
-<?php $component->withAttributes(['variant' => 'subtle']); ?>
-<?php echo $__env->renderComponent(); ?>
-<?php endif; ?>
-<?php if (isset($__attributesOriginalc481942d30cc0ab06077963cf20a45e8)): ?>
-<?php $attributes = $__attributesOriginalc481942d30cc0ab06077963cf20a45e8; ?>
-<?php unset($__attributesOriginalc481942d30cc0ab06077963cf20a45e8); ?>
-<?php endif; ?>
-<?php if (isset($__componentOriginalc481942d30cc0ab06077963cf20a45e8)): ?>
-<?php $component = $__componentOriginalc481942d30cc0ab06077963cf20a45e8; ?>
-<?php unset($__componentOriginalc481942d30cc0ab06077963cf20a45e8); ?>
-<?php endif; ?>
 
     <?php
 $__split = function ($name, $params = []) {
@@ -125,6 +105,7 @@ if (isset($__slots)) unset($__slots);
                             <th>Tên vai trò</th>
                             <th class="hidden sm:table-cell">Mô tả</th>
                             <th class="text-center">Loại</th>
+                            <th class="text-center hidden lg:table-cell">Quyền hạn</th>
                             <th class="text-center hidden sm:table-cell">Người tạo</th>
                             <th class="text-center">Thao tác</th>
                         </tr>
@@ -168,13 +149,69 @@ if (isset($__slots)) unset($__slots);
 <?php unset($__componentOriginal4cc377eda9b63b796b6668ee7832d023); ?>
 <?php endif; ?>
                                 </td>
+                                <td class="text-center hidden lg:table-cell">
+                                    <div class="flex flex-wrap gap-1 justify-center max-w-xs">
+                                        <!--[if BLOCK]><![endif]--><?php if($role->permissions->count() > 0): ?>
+                                            <!--[if BLOCK]><![endif]--><?php $__currentLoopData = $role->permissions->take(3); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $permission): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                <?php if (isset($component)) { $__componentOriginal4cc377eda9b63b796b6668ee7832d023 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal4cc377eda9b63b796b6668ee7832d023 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::badge.index','data' => ['variant' => 'outline','color' => 'blue','size' => 'sm']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('flux::badge'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['variant' => 'outline','color' => 'blue','size' => 'sm']); ?>
+                                                    <?php echo e(Str::limit($permission->displayName, 15)); ?>
+
+                                                 <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal4cc377eda9b63b796b6668ee7832d023)): ?>
+<?php $attributes = $__attributesOriginal4cc377eda9b63b796b6668ee7832d023; ?>
+<?php unset($__attributesOriginal4cc377eda9b63b796b6668ee7832d023); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal4cc377eda9b63b796b6668ee7832d023)): ?>
+<?php $component = $__componentOriginal4cc377eda9b63b796b6668ee7832d023; ?>
+<?php unset($__componentOriginal4cc377eda9b63b796b6668ee7832d023); ?>
+<?php endif; ?>
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                            <?php if($role->permissions->count() > 3): ?>
+                                                <?php if (isset($component)) { $__componentOriginal4cc377eda9b63b796b6668ee7832d023 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal4cc377eda9b63b796b6668ee7832d023 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::badge.index','data' => ['variant' => 'outline','color' => 'gray','size' => 'sm']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('flux::badge'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['variant' => 'outline','color' => 'gray','size' => 'sm']); ?>
+                                                    +<?php echo e($role->permissions->count() - 3); ?>
+
+                                                 <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal4cc377eda9b63b796b6668ee7832d023)): ?>
+<?php $attributes = $__attributesOriginal4cc377eda9b63b796b6668ee7832d023; ?>
+<?php unset($__attributesOriginal4cc377eda9b63b796b6668ee7832d023); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal4cc377eda9b63b796b6668ee7832d023)): ?>
+<?php $component = $__componentOriginal4cc377eda9b63b796b6668ee7832d023; ?>
+<?php unset($__componentOriginal4cc377eda9b63b796b6668ee7832d023); ?>
+<?php endif; ?>
+                                            <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                                        <?php else: ?>
+                                            <span class="text-xs text-gray-500">Chưa có quyền</span>
+                                        <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                                    </div>
+                                </td>
                                 <td class="text-center hidden sm:table-cell">
                                     <?php echo e($role->createdBy->name ?? 'Hệ thống'); ?>
 
                                 </td>
                                 <td class="text-center">
-                                    <!--[if BLOCK]><![endif]--><?php if($role->type === 'custom'): ?>
-                                        <?php if (isset($component)) { $__componentOriginal2b4bb2cd4b8f1a3c08bae49ea918b888 = $component; } ?>
+
+                                    <?php if (isset($component)) { $__componentOriginal2b4bb2cd4b8f1a3c08bae49ea918b888 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal2b4bb2cd4b8f1a3c08bae49ea918b888 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::dropdown','data' => []] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('flux::dropdown'); ?>
@@ -184,7 +221,7 @@ if (isset($__slots)) unset($__slots);
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
 <?php $component->withAttributes([]); ?>
-                                            <?php if (isset($component)) { $__componentOriginalc04b147acd0e65cc1a77f86fb0e81580 = $component; } ?>
+                                        <?php if (isset($component)) { $__componentOriginalc04b147acd0e65cc1a77f86fb0e81580 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginalc04b147acd0e65cc1a77f86fb0e81580 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::button.index','data' => ['icon:trailing' => 'chevron-down']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('flux::button'); ?>
@@ -204,7 +241,7 @@ if (isset($__slots)) unset($__slots);
 <?php unset($__componentOriginalc04b147acd0e65cc1a77f86fb0e81580); ?>
 <?php endif; ?>
 
-                                            <?php if (isset($component)) { $__componentOriginalf7749b857446d2788d0b6ca0c63f9d3a = $component; } ?>
+                                        <?php if (isset($component)) { $__componentOriginalf7749b857446d2788d0b6ca0c63f9d3a = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginalf7749b857446d2788d0b6ca0c63f9d3a = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::menu.index','data' => []] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('flux::menu'); ?>
@@ -214,6 +251,28 @@ if (isset($__slots)) unset($__slots);
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
 <?php $component->withAttributes([]); ?>
+                                            <?php if (isset($component)) { $__componentOriginal5027d420cfeeb03dd925cfc08ae44851 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal5027d420cfeeb03dd925cfc08ae44851 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::menu.item','data' => ['icon' => 'key','wire:click' => 'assignPermissions('.e($role->id).')']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('flux::menu.item'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['icon' => 'key','wire:click' => 'assignPermissions('.e($role->id).')']); ?>
+                                                Gán quyền
+                                             <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal5027d420cfeeb03dd925cfc08ae44851)): ?>
+<?php $attributes = $__attributesOriginal5027d420cfeeb03dd925cfc08ae44851; ?>
+<?php unset($__attributesOriginal5027d420cfeeb03dd925cfc08ae44851); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal5027d420cfeeb03dd925cfc08ae44851)): ?>
+<?php $component = $__componentOriginal5027d420cfeeb03dd925cfc08ae44851; ?>
+<?php unset($__componentOriginal5027d420cfeeb03dd925cfc08ae44851); ?>
+<?php endif; ?>
+                                            <!--[if BLOCK]><![endif]--><?php if($role->type === 'custom'): ?>
                                                 <?php if (isset($component)) { $__componentOriginal5027d420cfeeb03dd925cfc08ae44851 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal5027d420cfeeb03dd925cfc08ae44851 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::menu.item','data' => ['icon' => 'pencil','wire:click' => 'editRole('.e($role->id).')']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
@@ -234,7 +293,6 @@ if (isset($__slots)) unset($__slots);
 <?php $component = $__componentOriginal5027d420cfeeb03dd925cfc08ae44851; ?>
 <?php unset($__componentOriginal5027d420cfeeb03dd925cfc08ae44851); ?>
 <?php endif; ?>
-
                                                 <?php if (isset($component)) { $__componentOriginald5e1eb3ae521062f8474178ba08933ca = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginald5e1eb3ae521062f8474178ba08933ca = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::menu.separator','data' => []] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
@@ -276,7 +334,9 @@ if (isset($__slots)) unset($__slots);
 <?php $component = $__componentOriginal5027d420cfeeb03dd925cfc08ae44851; ?>
 <?php unset($__componentOriginal5027d420cfeeb03dd925cfc08ae44851); ?>
 <?php endif; ?>
-                                             <?php echo $__env->renderComponent(); ?>
+                                            <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+
+                                         <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php if (isset($__attributesOriginalf7749b857446d2788d0b6ca0c63f9d3a)): ?>
 <?php $attributes = $__attributesOriginalf7749b857446d2788d0b6ca0c63f9d3a; ?>
@@ -286,7 +346,7 @@ if (isset($__slots)) unset($__slots);
 <?php $component = $__componentOriginalf7749b857446d2788d0b6ca0c63f9d3a; ?>
 <?php unset($__componentOriginalf7749b857446d2788d0b6ca0c63f9d3a); ?>
 <?php endif; ?>
-                                         <?php echo $__env->renderComponent(); ?>
+                                     <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php if (isset($__attributesOriginal2b4bb2cd4b8f1a3c08bae49ea918b888)): ?>
 <?php $attributes = $__attributesOriginal2b4bb2cd4b8f1a3c08bae49ea918b888; ?>
@@ -296,12 +356,13 @@ if (isset($__slots)) unset($__slots);
 <?php $component = $__componentOriginal2b4bb2cd4b8f1a3c08bae49ea918b888; ?>
 <?php unset($__componentOriginal2b4bb2cd4b8f1a3c08bae49ea918b888); ?>
 <?php endif; ?>
-                                    <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+
+
                                 </td>
                             </tr>
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
                             <tr>
-                                <td colspan="6" class="text-center py-12">
+                                <td colspan="7" class="text-center py-12">
                                     <div class="empty-state flex flex-col items-center">
                                         <?php if (isset($component)) { $__componentOriginalecd5cc59f7663d531a0d68a1c80f57fe = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginalecd5cc59f7663d531a0d68a1c80f57fe = $attributes; } ?>
@@ -340,10 +401,9 @@ if (isset($__slots)) unset($__slots);
             
             <div class="md:hidden space-y-3">
                 <!--[if BLOCK]><![endif]--><?php $__empty_1 = true; $__currentLoopData = $roles; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $role): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
-                    <div class="bg-white rounded-lg border border-gray-200 shadow-sm" 
-                         x-data="{ expanded: false }" 
-                         wire:key="role-mobile-<?php echo e($role->id); ?>">
-                        
+                    <div class="bg-white rounded-lg border border-gray-200 shadow-sm" x-data="{ expanded: false }"
+                        wire:key="role-mobile-<?php echo e($role->id); ?>">
+
                         
                         <div class="p-4 flex items-center justify-between">
                             <div class="flex items-center space-x-3">
@@ -371,60 +431,31 @@ if (isset($__slots)) unset($__slots);
                                 </div>
                                 <div>
                                     <div class="font-medium text-gray-900"><?php echo e($role->name); ?></div>
-                                    <div class="text-sm text-gray-500">ID: <?php echo e($role->id); ?></div>
                                 </div>
                             </div>
-                            
-                            <div class="flex items-center space-x-2">
-                                <?php if (isset($component)) { $__componentOriginal4cc377eda9b63b796b6668ee7832d023 = $component; } ?>
-<?php if (isset($attributes)) { $__attributesOriginal4cc377eda9b63b796b6668ee7832d023 = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::badge.index','data' => ['variant' => 'solid','color' => ''.e($role->type === 'system' ? 'green' : 'zinc').'']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
-<?php $component->withName('flux::badge'); ?>
-<?php if ($component->shouldRender()): ?>
-<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
-<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
-<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
-<?php endif; ?>
-<?php $component->withAttributes(['variant' => 'solid','color' => ''.e($role->type === 'system' ? 'green' : 'zinc').'']); ?>
-                                    <?php echo e($role->type); ?>
 
-                                 <?php echo $__env->renderComponent(); ?>
-<?php endif; ?>
-<?php if (isset($__attributesOriginal4cc377eda9b63b796b6668ee7832d023)): ?>
-<?php $attributes = $__attributesOriginal4cc377eda9b63b796b6668ee7832d023; ?>
-<?php unset($__attributesOriginal4cc377eda9b63b796b6668ee7832d023); ?>
-<?php endif; ?>
-<?php if (isset($__componentOriginal4cc377eda9b63b796b6668ee7832d023)): ?>
-<?php $component = $__componentOriginal4cc377eda9b63b796b6668ee7832d023; ?>
-<?php unset($__componentOriginal4cc377eda9b63b796b6668ee7832d023); ?>
-<?php endif; ?>
-                                
-                                <button @click="expanded = !expanded" 
-                                        class="p-2 rounded-full hover:bg-gray-100">
-                                    <svg class="w-5 h-5 text-gray-400" 
-                                         :class="{ 'rotate-180': expanded }" 
-                                         fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            <div class="flex items-center space-x-2">
+
+                                <button @click="expanded = !expanded" class="p-2 rounded-full hover:bg-gray-100">
+                                    <svg class="w-5 h-5 text-gray-400" :class="{ 'rotate-180': expanded }"
+                                        fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M19 9l-7 7-7-7"></path>
                                     </svg>
                                 </button>
                             </div>
                         </div>
 
                         
-                        <div x-show="expanded" 
-                             class="border-t border-gray-100 bg-gray-50">
-                            
+                        <div x-show="expanded" class="border-t border-gray-100 bg-gray-50">
+
                             <div class="p-4 space-y-3">
-                                
-                                <div class="flex justify-between items-center">
-                                    <span class="text-sm font-medium text-gray-600">Tên vai trò:</span>
-                                    <span class="text-sm text-gray-900"><?php echo e($role->name); ?></span>
-                                </div>
 
                                 
                                 <div class="flex justify-between items-start">
                                     <span class="text-sm font-medium text-gray-600">Mô tả:</span>
-                                    <span class="text-sm text-gray-900 text-right max-w-[200px]"><?php echo e($role->description ?: 'Chưa có mô tả'); ?></span>
+                                    <span
+                                        class="text-sm text-gray-900 text-right max-w-[200px]"><?php echo e($role->description ?: 'Chưa có mô tả'); ?></span>
                                 </div>
 
                                 
@@ -455,33 +486,84 @@ if (isset($__slots)) unset($__slots);
                                 </div>
 
                                 
-                                <div class="flex justify-between items-center">
-                                    <span class="text-sm font-medium text-gray-600">Người tạo:</span>
-                                    <span class="text-sm text-gray-900"><?php echo e($role->createdBy->name ?? 'Hệ thống'); ?></span>
+                                <div class="flex justify-between items-start">
+                                    <span class="text-sm font-medium text-gray-600">Quyền hạn:</span>
+                                    <div class="flex flex-wrap gap-1 max-w-[200px] justify-end">
+                                        <!--[if BLOCK]><![endif]--><?php if($role->permissions->count() > 0): ?>
+                                            <!--[if BLOCK]><![endif]--><?php $__currentLoopData = $role->permissions->take(2); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $permission): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                <span
+                                                    class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                                                    <?php echo e(Str::limit($permission->displayName, 12)); ?>
+
+                                                </span>
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                            <?php if($role->permissions->count() > 2): ?>
+                                                <span
+                                                    class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-600">
+                                                    +<?php echo e($role->permissions->count() - 2); ?>
+
+                                                </span>
+                                            <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                                        <?php else: ?>
+                                            <span class="text-xs text-gray-500">Chưa có quyền</span>
+                                        <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                                    </div>
                                 </div>
 
                                 
-                                <!--[if BLOCK]><![endif]--><?php if($role->type === 'custom'): ?>
-                                    <div class="pt-3 border-t border-gray-200">
-                                        <div class="flex space-x-2">
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm font-medium text-gray-600">Người tạo:</span>
+                                    <span
+                                        class="text-sm text-gray-900"><?php echo e($role->createdBy->name ?? 'Hệ thống'); ?></span>
+                                </div>
+
+                                
+
+                                <div class="pt-3 border-t border-gray-200">
+                                    <div class="grid grid-cols-3 gap-2">
+
+                                        <button wire:click="assignPermissions(<?php echo e($role->id); ?>)"
+                                            class="bg-green-600 text-white px-3 py-2 rounded-md text-xs font-medium hover:bg-green-700 transition-colors flex items-center justify-center space-x-1">
+                                            <svg class="w-3 h-3" fill="none" stroke="currentColor"
+                                                viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z">
+                                                </path>
+                                            </svg>
+                                            <span>Phân quyền</span>
+                                        </button>
+                                        <!--[if BLOCK]><![endif]--><?php if($role->type === 'custom'): ?>
                                             <button wire:click="editRole(<?php echo e($role->id); ?>)"
-                                                    class="flex-1 bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700 transition-colors flex items-center justify-center space-x-2">
-                                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+                                                class="bg-blue-600 text-white px-3 py-2 rounded-md text-xs font-medium hover:bg-blue-700 transition-colors flex items-center justify-center space-x-1">
+                                                <svg class="w-3 h-3" fill="none" stroke="currentColor"
+                                                    viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="2"
+                                                        d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z">
+                                                    </path>
                                                 </svg>
-                                                <span>Sửa thông tin</span>
+                                                <span>Sửa</span>
                                             </button>
-                                            
+
+
+
                                             <button wire:click="deleteRole(<?php echo e($role->id); ?>)"
-                                                    class="flex-1 bg-red-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-red-700 transition-colors flex items-center justify-center space-x-2">
-                                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                                                class="bg-red-600 text-white px-3 py-2 rounded-md text-xs font-medium hover:bg-red-700 transition-colors flex items-center justify-center space-x-1">
+                                                <svg class="w-3 h-3" fill="none" stroke="currentColor"
+                                                    viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="2"
+                                                        d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16">
+                                                    </path>
                                                 </svg>
                                                 <span>Xóa</span>
                                             </button>
-                                        </div>
+                                        <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
                                     </div>
-                                <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                                </div>
+
+
+
                             </div>
                         </div>
                     </div>
@@ -527,5 +609,23 @@ if (isset($__slots)) unset($__slots);
             <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
         </div>
     </div>
+
+    
+    <?php
+$__split = function ($name, $params = []) {
+    return [$name, $params];
+};
+[$__name, $__params] = $__split('back.access.role.assign-permissions', []);
+
+$__html = app('livewire')->mount($__name, $__params, 'lw-988433890-1', $__slots ?? [], get_defined_vars());
+
+echo $__html;
+
+unset($__html);
+unset($__name);
+unset($__params);
+unset($__split);
+if (isset($__slots)) unset($__slots);
+?>
 </div>
 <?php /**PATH /Users/smyth/Herd/ap.icy.edu.vn/resources/views/livewire/back/access/role/roles.blade.php ENDPATH**/ ?>

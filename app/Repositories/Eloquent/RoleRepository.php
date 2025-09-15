@@ -28,7 +28,9 @@ class RoleRepository implements RoleRepositoryInterface
 
     public function getAll($perPage = null)
     {
-        $query = Role::with('createdBy:id,name')->orderBy('id', 'asc');
+        $query = Role::with(['createdBy:id,name', 'permissions' => function($q) {
+            $q->where('isShow', true);
+        }])->orderBy('id', 'asc');
 
         if ($perPage) {
             return $query->paginate($perPage);
@@ -56,7 +58,13 @@ class RoleRepository implements RoleRepositoryInterface
 
     public function getRoleById(int $id): Role
     {
-        return $this->roleCache[$id] ??= Role::with('createdBy:id,name')->findOrFail($id);
+        return $this->roleCache[$id] ??= Role::with(['createdBy:id,name', 'permissions'])->findOrFail($id);
+    }
+
+    public function syncPermissions(int $roleId, array $permissionIds)
+    {
+        $role = $this->getRoleById($roleId);
+        return $role->permissions()->sync($permissionIds);
     }
 
     public function managerAccessPersonnel(): Collection

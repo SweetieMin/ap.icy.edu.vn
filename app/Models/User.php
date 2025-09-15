@@ -131,7 +131,7 @@ class User extends Authenticatable
     public function hasPermission($permission)
     {
         return $this->roles()->whereHas('permissions', function ($query) use ($permission) {
-            $query->where('permissions.name', $permission);
+            $query->where('permissions.router', $permission);
         })->exists();
     }
 

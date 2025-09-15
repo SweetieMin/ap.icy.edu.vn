@@ -6,7 +6,8 @@
     <script>
         // Apply dark mode immediately to prevent flash
         (function() {
-            const isDark = localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches);
+            const isDark = localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia(
+                '(prefers-color-scheme: dark)').matches);
             if (isDark) {
                 document.documentElement.classList.add('dark');
             } else {
@@ -21,11 +22,12 @@
         {{-- Sidebar bên trái --}}
         <flux:sidebar sticky stashable
             class="w-[320px] border-e border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900 h-full flex flex-col">
-            
+
             {{-- Header cố định --}}
             <div class="flex-shrink-0 p-4 border-b border-zinc-200 dark:border-zinc-700">
 
-                <a href="{{ route('dashboard') }}" class="me-5 flex items-center space-x-2 rtl:space-x-reverse" wire:navigate>
+                <a href="{{ route('dashboard') }}" class="me-5 flex items-center space-x-2 rtl:space-x-reverse"
+                    wire:navigate>
                     <x-app-logo />
                 </a>
             </div>
@@ -42,118 +44,168 @@
 
                     </flux:navlist.group>
 
-                    <hr class="h-px my-2 bg-gray-200 border-0 dark:bg-gray-700">
 
-                    <flux:navlist.group :heading="__('Management')" class="grid">
 
-                        <flux:navlist.item icon="map-pin-house" :href="route('admin.management.locations')"
-                            :current="request()->routeIs('admin.management.locations')" wire:navigate>
-                            Cơ sở
-                        </flux:navlist.item>
+                    @if (auth()->user()->hasPermission('admin.management.locations') ||
+                            auth()->user()->hasPermission('admin.management.seasons') ||
+                            auth()->user()->hasPermission('admin.management.programs') ||
+                            auth()->user()->hasPermission('admin.management.subjects') ||
+                            auth()->user()->hasPermission('admin.management.courses') ||
+                            auth()->user()->hasPermission('admin.management.syllabi') ||
+                            auth()->user()->hasPermission('admin.management.curricula'))
+                        <hr class="h-px my-2 bg-gray-200 border-0 dark:bg-gray-700">
+                        <flux:navlist.group :heading="__('Management')" class="grid">
 
-                        <flux:navlist.item icon="calendar" :href="route('admin.management.seasons')"
-                            :current="request()->routeIs('admin.management.seasons')" wire:navigate>
-                            Học kỳ
-                        </flux:navlist.item>
+                            @if (auth()->user()->hasPermission('admin.management.locations'))
+                                <flux:navlist.item icon="map-pin-house" :href="route('admin.management.locations')"
+                                    :current="request()->routeIs('admin.management.locations')" wire:navigate>
+                                    Cơ sở
+                                </flux:navlist.item>
+                            @endif
 
-                        <flux:navlist.item icon="book-marked" :href="route('admin.management.programs')"
-                            :current="request()->routeIs('admin.management.programs')" wire:navigate>
-                            Chương trình học
-                        </flux:navlist.item>
+                            @if (auth()->user()->hasPermission('admin.management.seasons'))
+                                <flux:navlist.item icon="calendar" :href="route('admin.management.seasons')"
+                                    :current="request()->routeIs('admin.management.seasons')" wire:navigate>
+                                    Học kỳ
+                                </flux:navlist.item>
+                            @endif
 
-                        <flux:navlist.item icon="book-open" :href="route('admin.management.subjects')"
-                            :current="request()->routeIs('admin.management.subjects')" wire:navigate>
-                            Môn học
-                        </flux:navlist.item>
+                            @if (auth()->user()->hasPermission('admin.management.programs'))
+                                <flux:navlist.item icon="book-marked" :href="route('admin.management.programs')"
+                                    :current="request()->routeIs('admin.management.programs')" wire:navigate>
+                                    Chương trình học
+                                </flux:navlist.item>
+                            @endif
 
-                        <flux:navlist.item icon="academic-cap" :href="route('admin.management.courses')"
-                            :current="request()->routeIs('admin.management.courses')" wire:navigate>
-                            Lớp học
-                        </flux:navlist.item>
+                            @if (auth()->user()->hasPermission('admin.management.subjects'))
+                                <flux:navlist.item icon="book-open" :href="route('admin.management.subjects')"
+                                    :current="request()->routeIs('admin.management.subjects')" wire:navigate>
+                                    Môn học
+                                </flux:navlist.item>
+                            @endif
 
-                        <flux:navlist.item icon="list-bullet" :href="route('admin.management.syllabi')"
-                            :current="request()->routeIs('admin.management.syllabi')" wire:navigate>
-                            Syllabus
-                        </flux:navlist.item>
+                            @if (auth()->user()->hasPermission('admin.management.courses'))
+                                <flux:navlist.item icon="academic-cap" :href="route('admin.management.courses')"
+                                    :current="request()->routeIs('admin.management.courses')" wire:navigate>
+                                    Lớp học
+                                </flux:navlist.item>
+                            @endif
 
-                        <flux:navlist.item icon="book-open-text" :href="route('admin.management.curricula')"
-                            :current="request()->routeIs('admin.management.curricula')" wire:navigate>
-                            Giáo trình
-                        </flux:navlist.item>
+                            @if (auth()->user()->hasPermission('admin.management.syllabi'))
+                                <flux:navlist.item icon="list-bullet" :href="route('admin.management.syllabi')"
+                                    :current="request()->routeIs('admin.management.syllabi')" wire:navigate>
+                                    Syllabus
+                                </flux:navlist.item>
+                            @endif
 
-                    </flux:navlist.group>
+                            @if (auth()->user()->hasPermission('admin.management.curricula'))
+                                <flux:navlist.item icon="book-open-text" :href="route('admin.management.curricula')"
+                                    :current="request()->routeIs('admin.management.curricula')" wire:navigate>
+                                    Giáo trình
+                                </flux:navlist.item>
+                            @endif
 
-                    <hr class="h-px my-2 bg-gray-200 border-0 dark:bg-gray-700">
+                        </flux:navlist.group>
+                    @endif
 
-                    <flux:navlist.group :heading="__('Finance')" class="grid">
 
-                        <flux:navlist.item icon="currency-dollar" :href="route('admin.finance.program-prices')"
-                            :current="request()->routeIs('admin.finance.program-prices')" wire:navigate>
-                            Quản lý giá tiền
-                        </flux:navlist.item>
 
-                        <flux:navlist.item icon="banknotes" :href="route('admin.finance.bank-accounts')"
-                            :current="request()->routeIs('admin.finance.bank-accounts')" wire:navigate>
-                            Tài khoản ngân hàng
-                        </flux:navlist.item>
+                    @if (auth()->user()->hasPermission('admin.finance.program-prices') ||
+                            auth()->user()->hasPermission('admin.finance.bank-accounts') ||
+                            auth()->user()->hasPermission('admin.finance.tuitions-payment') ||
+                            auth()->user()->hasPermission('admin.finance.tuition-history'))
+                        <hr class="h-px my-2 bg-gray-200 border-0 dark:bg-gray-700">
+                        <flux:navlist.group :heading="__('Finance')" class="grid">
 
-                        <flux:navlist.item icon="credit-card" :href="route('admin.finance.tuitions-payment')"
-                            :current="request()->routeIs('admin.finance.tuitions-payment')" wire:navigate>
-                            Thanh toán học phí
-                        </flux:navlist.item>
+                            @if (auth()->user()->hasPermission('admin.finance.program-prices'))
+                                <flux:navlist.item icon="currency-dollar" :href="route('admin.finance.program-prices')"
+                                    :current="request()->routeIs('admin.finance.program-prices')" wire:navigate>
+                                    Quản lý giá tiền
+                                </flux:navlist.item>
+                            @endif
+                            @if (auth()->user()->hasPermission('admin.finance.bank-accounts'))
+                                <flux:navlist.item icon="banknotes" :href="route('admin.finance.bank-accounts')"
+                                    :current="request()->routeIs('admin.finance.bank-accounts')" wire:navigate>
+                                    Tài khoản ngân hàng
+                                </flux:navlist.item>
+                            @endif
+                            @if (auth()->user()->hasPermission('admin.finance.tuitions-payment'))
+                                <flux:navlist.item icon="credit-card" :href="route('admin.finance.tuitions-payment')"
+                                    :current="request()->routeIs('admin.finance.tuitions-payment')" wire:navigate>
+                                    Thanh toán học phí
+                                </flux:navlist.item>
+                            @endif
+                            @if (auth()->user()->hasPermission('admin.finance.tuition-history'))
+                                <flux:navlist.item icon="banknotes" :href="route('admin.finance.tuition-history')"
+                                    :current="request()->routeIs('admin.finance.tuition-history')" wire:navigate>
+                                    Lịch sử đóng học phí
+                                </flux:navlist.item>
+                            @endif
+                        </flux:navlist.group>
+                    @endif
 
-                        <flux:navlist.item icon="banknotes" :href="route('admin.finance.tuition-history')"
-                            :current="request()->routeIs('admin.finance.tuition-history')" wire:navigate>
-                            Lịch sử đóng học phí
-                        </flux:navlist.item>
 
-                    </flux:navlist.group>
 
-                    <hr class="h-px my-2 bg-gray-200 border-0 dark:bg-gray-700">
+                    @if (auth()->user()->hasPermission('admin.arrangement.class-assignment') ||
+                            auth()->user()->hasPermission('admin.arrangement.time-table'))
+                        <hr class="h-px my-2 bg-gray-200 border-0 dark:bg-gray-700">
+                        <flux:navlist.group :heading="__('Arrangement')" class="grid">
 
-                    <flux:navlist.group :heading="__('Arrangement')" class="grid">
+                            @if (auth()->user()->hasPermission('admin.arrangement.class-assignment'))
+                                <flux:navlist.item icon="adjustments-horizontal"
+                                    :href="route('admin.arrangement.class-assignment')"
+                                    :current="request()->routeIs('admin.arrangement.class-assignment')" wire:navigate>
+                                    Xếp lớp học
+                                </flux:navlist.item>
+                            @endif
+                            @if (auth()->user()->hasPermission('admin.arrangement.time-table'))
+                                <flux:navlist.item icon="calendar-days" :href="route('admin.arrangement.time-table')"
+                                    :current="request()->routeIs('admin.arrangement.time-table')" wire:navigate>
+                                    Xếp lịch học
+                                </flux:navlist.item>
+                            @endif
+                        </flux:navlist.group>
+                    @endif
 
-                        <flux:navlist.item icon="adjustments-horizontal" :href="route('admin.arrangement.class-assignment')" :current="request()->routeIs('admin.arrangement.class-assignment')" wire:navigate>
-                            Xếp lớp học
-                        </flux:navlist.item>
+                    @if (auth()->user()->hasPermission('admin.access.roles') || auth()->user()->hasPermission('admin.access.permissions'))
+                        <hr class="h-px my-2 bg-gray-200 border-0 dark:bg-gray-700">
+                        <flux:navlist.group :heading="__('Access')" class="grid">
 
-                        <flux:navlist.item icon="calendar-days" :href="route('admin.arrangement.time-table')" :current="request()->routeIs('admin.arrangement.time-table')" wire:navigate>
-                            Xếp lịch học
-                        </flux:navlist.item>
+                            @if (auth()->user()->hasPermission('admin.access.roles'))
+                                <flux:navlist.item icon="user-lock" :href="route('admin.access.roles')"
+                                    :current="request()->routeIs('admin.access.roles')" wire:navigate>
+                                    Chức vụ
+                                </flux:navlist.item>
+                            @endif
+                            @if (auth()->user()->hasPermission('admin.access.permissions'))
+                                <flux:navlist.item icon="shield-check" :href="route('admin.access.permissions')"
+                                    :current="request()->routeIs('admin.access.permissions')" wire:navigate>
+                                    Quyền
+                                </flux:navlist.item>
+                            @endif
+                        </flux:navlist.group>
+                    @endif
 
-                    </flux:navlist.group>
+                    @if (auth()->user()->hasPermission('admin.personnel.staff') || auth()->user()->hasPermission('admin.personnel.students'))
 
-                    <hr class="h-px my-2 bg-gray-200 border-0 dark:bg-gray-700">
+                        <hr class="h-px my-2 bg-gray-200 border-0 dark:bg-gray-700">
+                        <flux:navlist.group :heading="__('Human resources')" class="grid">
 
-                    <flux:navlist.group :heading="__('Access')" class="grid">
+                            @if (auth()->user()->hasPermission('admin.personnel.staff'))
+                                <flux:navlist.item icon="users" :href="route('admin.personnel.staff')"
+                                    :current="request()->routeIs('admin.personnel.staff')" wire:navigate>
+                                    Nhân viên
+                                </flux:navlist.item>
+                            @endif
+                            @if (auth()->user()->hasPermission('admin.personnel.students'))
+                                <flux:navlist.item icon="user-group" :href="route('admin.personnel.students')"
+                                    :current="request()->routeIs('admin.personnel.students')" wire:navigate>
+                                    Học viên
+                                </flux:navlist.item>
+                            @endif
+                        </flux:navlist.group>
 
-                        <flux:navlist.item icon="user-lock" :href="route('admin.access.roles')"
-                            :current="request()->routeIs('admin.access.roles')" wire:navigate>
-                            Chức vụ
-                        </flux:navlist.item>
-
-                        <flux:navlist.item icon="shield-check" :href="route('admin.access.permissions')"
-                            :current="request()->routeIs('admin.access.permissions')" wire:navigate>
-                            Quyền
-                        </flux:navlist.item>
-
-                    </flux:navlist.group>
-
-                    <hr class="h-px my-2 bg-gray-200 border-0 dark:bg-gray-700">
-
-                    <flux:navlist.group :heading="__('Human resources')" class="grid">
-
-                        <flux:navlist.item icon="users" :href="route('admin.personnel.staff')"
-                            :current="request()->routeIs('admin.personnel.staff')" wire:navigate>
-                            Nhân viên
-                        </flux:navlist.item>
-
-                        <flux:navlist.item icon="user-group" :href="route('admin.personnel.students')"
-                            :current="request()->routeIs('admin.personnel.students')" wire:navigate>
-                            Học viên
-                        </flux:navlist.item>
-
-                    </flux:navlist.group>
+                    @endif
 
                 </flux:navlist>
             </div>
