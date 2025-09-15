@@ -14,8 +14,6 @@ class SepayWebhookController extends Controller
         $apiKey = $request->header('Authorization');
         $expected = 'Apikey ' . env('SEPAY_SECRET_KEY');
 
-
-
         if ($apiKey !== $expected) {
             Log::warning('Sepay Webhook - Invalid API Key', ['received' => $apiKey]);
             return response()->json(['error' => 'Unauthorized'], 401);
@@ -23,10 +21,21 @@ class SepayWebhookController extends Controller
 
         $payload = $request->all();
 
-        $content = $payload['content'];
-        $transferAmount = $payload['transferAmount'];
-        
-        app(TuitionRepositoryInterface::class)->updateStatus($content, $transferAmount);
+        $content = $payload['content'] ?? '';
+        $transferAmount = $payload['transferAmount'] ?? 0;
+
+        // ✅ Chuẩn hóa: lấy phần giữa dấu . thứ 3 và dấu . thứ 4
+        $parts = explode('.', $content);
+        $normalizedContent = isset($parts[3]) ? trim($parts[3]) : $content;
+
+        // Ghi log để kiểm tra
+        Log::info('Sepay Webhook - Payload nhận được', [
+            'original_content' => $content,
+            'normalized_content' => $normalizedContent,
+            'transferAmount' => $transferAmount,
+        ]);
+
+        app(TuitionRepositoryInterface::class)->updateStatus($normalizedContent, $transferAmount);
 
         return response()->json(['status' => 'ok'], 200);
     }
