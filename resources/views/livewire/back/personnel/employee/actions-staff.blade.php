@@ -29,14 +29,14 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
                 <div class="form-group">
-
-                    <flux:select wire:model='location_id' label="🏢 Cơ sở" placeholder="Chọn cơ sở"
-                        class="rounded-xl border-gray-300 focus:border-blue-500 focus:ring-blue-500 transition-all duration-300 shadow-sm hover:shadow-md">
-                        @foreach ($locationStaff as $location)
-                            <flux:select.option :value="$location->id" label="{{ $location->name }}" />
-                        @endforeach
-                    </flux:select>
-
+                    @if (auth()->user()->locations()->count() > 1)
+                        <flux:select wire:model='location_id' label="🏢 Cơ sở" placeholder="Chọn cơ sở"
+                            class="rounded-xl border-gray-300 focus:border-blue-500 focus:ring-blue-500 transition-all duration-300 shadow-sm hover:shadow-md">
+                            @foreach ($locationStaff as $location)
+                                <flux:select.option :value="$location->id" label="{{ $location->name }}" />
+                            @endforeach
+                        </flux:select>
+                    @endif
                 </div>
                 <div class="form-group">
                     <flux:select wire:model='role_id' label="👨‍🎓 Vai trò" placeholder="Chọn vai trò"
@@ -53,10 +53,20 @@
                 {{-- Name and Username --}}
                 <div class="grid grid-cols-1 md:grid-cols-5 gap-4">
                     <div class="form-group md:col-span-3">
-                        <flux:input wire:model='name' label="👨‍🎓 Họ và tên 🚩" placeholder="Nhập họ và tên đầy đủ"
-                            wire:change='updateUsername'
-                            class="rounded-xl border-gray-300 focus:border-blue-500 focus:ring-blue-500 transition-all duration-300"
-                            autofocus />
+                        @if ($isEditStaffMode)
+                            <flux:input wire:model='name' label="👨‍🎓 Họ và tên 🚩" placeholder="Nhập họ và tên đầy đủ"
+                                wire:change='updateUsername'
+                                class="rounded-xl border-gray-300 focus:border-blue-500 focus:ring-blue-500 transition-all duration-300"
+                                autofocus 
+                                disabled
+                            />
+                        @else
+                            <flux:input wire:model='name' label="👨‍🎓 Họ và tên 🚩" placeholder="Nhập họ và tên đầy đủ"
+                                wire:change='updateUsername'
+                                class="rounded-xl border-gray-300 focus:border-blue-500 focus:ring-blue-500 transition-all duration-300"
+                                autofocus 
+                            />
+                        @endif
                     </div>
                     <div class="form-group md:col-span-2">
                         <flux:input wire:model='username' label="🔑 Tên đăng nhập" placeholder="username" disabled
