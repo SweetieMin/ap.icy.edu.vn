@@ -5,7 +5,6 @@ namespace Database\Seeders;
 use App\Models\User;
 use App\Models\UserDetail;
 use Illuminate\Database\Seeder;
-use App\Repositories\Contracts\UserRepositoryInterface;
 
 class UserSeeder extends Seeder
 {

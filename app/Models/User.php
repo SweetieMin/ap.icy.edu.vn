@@ -116,20 +116,23 @@ class User extends Authenticatable
     public function sendSystemNotification(
         string $title,
         string $message,
-        string $actionUrl = null,
-        string $actionText = null
     ) {
         $this->notify(new \App\Notifications\SystemNotification(
             $title,
             $message,
-            $actionUrl,
-            $actionText
         ));
     }
 
     public function hasRole($role)
     {
         return $this->roles->contains('name', $role);
+    }
+
+    public function hasPermission($permission)
+    {
+        return $this->roles()->whereHas('permissions', function ($query) use ($permission) {
+            $query->where('permissions.name', $permission);
+        })->exists();
     }
 
     /**
