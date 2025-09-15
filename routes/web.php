@@ -52,54 +52,54 @@ Route::prefix('admin')->middleware(['auth', 'preventBackHistory'])->name('admin.
 
     Route::prefix('management')->name('management.')->group(function () {
 
-        Route::get('locations', Locations::class)->name('locations');
+        Route::get('locations', Locations::class)->name('locations')->middleware('checkPermission:admin.management.locations');
 
-        Route::get('seasons', Seasons::class)->name('seasons');
+        Route::get('seasons', Seasons::class)->name('seasons')->middleware('checkPermission:admin.management.seasons');
 
-        Route::get('programs', Programs::class)->name('programs');
+        Route::get('programs', Programs::class)->name('programs')->middleware('checkPermission:admin.management.programs');
 
-        Route::get('subjects', Subjects::class)->name('subjects');
+        Route::get('subjects', Subjects::class)->name('subjects')->middleware('checkPermission:admin.management.subjects');
 
-        Route::get('courses', Courses::class)->name('courses');
+        Route::get('courses', Courses::class)->name('courses')->middleware('checkPermission:admin.management.courses');
 
-        Route::get('syllabi', Syllabi::class)->name('syllabi');
+        Route::get('syllabi', Syllabi::class)->name('syllabi')->middleware('checkPermission:admin.management.syllabi');
 
         Route::get('curricula', Curricula::class)->name('curricula');
     });
 
     Route::prefix('access')->name('access.')->group(function () {
 
-        Route::get('roles', Roles::class)->name('roles');
+        Route::get('roles', Roles::class)->name('roles')->middleware('checkPermission:admin.access.roles');
 
-        Route::get('permissions', Permissions::class)->name('permissions');
+        Route::get('permissions', Permissions::class)->name('permissions')->middleware('checkPermission:admin.access.permissions');
     });
 
     Route::prefix('personnel')->name('personnel.')->group(function () {
 
-        Route::get('staff', Staff::class)->name('staff');
+        Route::get('staff', Staff::class)->name('staff')->middleware('checkPermission:admin.personnel.staff');
 
         //Route::get('staff-registration', StaffsRegistration::class)->name('staff-registration');
 
-        Route::get('students', Students::class)->name('students');
+        Route::get('students', Students::class)->name('students')->middleware('checkPermission:admin.personnel.students');
 
         //Route::get('student-registration', StudentsRegistration::class)->name('student-registration');
     });
 
     Route::prefix('finance')->name('finance.')->group(function () {
 
-        Route::get('bank-accounts', AccountsBank::class)->name('bank-accounts');
+        Route::get('bank-accounts', AccountsBank::class)->name('bank-accounts')->middleware('checkPermission:admin.finance.bank-accounts');
 
-        Route::get('tuition-history', TuitionsHistory::class)->name('tuition-history');
+        Route::get('tuition-history', TuitionsHistory::class)->name('tuition-history')->middleware('checkPermission:admin.finance.tuition-history');
 
-        Route::get('tuitions-payment', TuitionsPayment::class)->name('tuitions-payment');
+        Route::get('tuitions-payment', TuitionsPayment::class)->name('tuitions-payment')->middleware('checkPermission:admin.finance.tuitions-payment');
 
-        Route::get('program-prices', ProgramPricesManagement::class)->name('program-prices');
+        Route::get('program-prices', ProgramPricesManagement::class)->name('program-prices')->middleware('checkPermission:admin.finance.program-prices');
 
     });
 
     Route::prefix('arrangement')->name('arrangement.')->group(function () {
-        Route::get('time-table', TimeTable::class)->name('time-table');
-        Route::get('class-assignment', ClassAssignment::class)->name('class-assignment');
+        Route::get('time-table', TimeTable::class)->name('time-table')->middleware('checkPermission:admin.arrangement.time-table');
+        Route::get('class-assignment', ClassAssignment::class)->name('class-assignment')->middleware('checkPermission:admin.arrangement.class-assignment');
     });
 
     Route::redirect('settings', 'settings/profile');
