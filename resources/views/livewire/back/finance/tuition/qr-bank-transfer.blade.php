@@ -59,6 +59,14 @@
                                 <span class="text-sm font-medium text-green-700">Hỗ trợ tất cả app ngân hàng</span>
                             </div>
                         </div>
+
+                        <!-- Action Buttons -->
+                        <div class="flex space-x-3 pt-6 justify-center">
+                            <flux:button icon:trailing="loading" variant="ghost"
+                                class="px-6 border border-gray-300 hover:bg-gray-50">
+                                Chờ thanh toán...
+                            </flux:button>
+                        </div>
                     </div>
                 </div>
 
@@ -171,16 +179,12 @@
 
 
 
-                    <!-- Action Buttons -->
-                    <div class="flex space-x-3 pt-6">
-                        <flux:modal.close>
-                            <flux:button variant="ghost" class="px-6 border border-gray-300 hover:bg-gray-50">
-                                Đóng
-                            </flux:button>
-                        </flux:modal.close>
-                    </div>
+
                 </div>
             </div>
+
+
+
         </div>
     </flux:modal>
 
