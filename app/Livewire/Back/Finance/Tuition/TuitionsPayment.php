@@ -325,6 +325,8 @@ class TuitionsPayment extends Component
 
             $this->calculateTotal();
 
+            $this->searchProgram = '';
+
             // Force refresh component
             $this->dispatch('$refresh');
         }
@@ -342,6 +344,7 @@ class TuitionsPayment extends Component
         ];
 
         $this->calculateTotal();
+        $this->searchProgram = '';
     }
 
     public function removeItem($index)
@@ -377,8 +380,7 @@ class TuitionsPayment extends Component
     {
         if (isset($this->selectedItems[$index])) {
             $this->selectedItems[$index]['discount_type'] = $discountType;
-            // Reset discount amount when changing type
-            $this->selectedItems[$index]['discount_amount'] = 0;
+            // Không reset discount amount, chỉ tính lại với loại giảm giá mới
             $this->calculateTotal();
         }
     }
@@ -440,8 +442,7 @@ class TuitionsPayment extends Component
 
     public function updatedDiscountType()
     {
-        // Reset discount amount khi thay đổi loại giảm giá
-        $this->discountAmount = 0;
+        // Không reset discount amount, chỉ tính lại với loại giảm giá mới
         $this->calculateTotal();
     }
 
@@ -510,29 +511,33 @@ class TuitionsPayment extends Component
 
             $receiptCounter = 1;
 
+            // Tính tổng giá đồng phục (nếu có)
+            $totalUniformPrice = 0;
+            foreach ($uniformItems as $uniformItem) {
+                $totalUniformPrice += (float) $uniformItem['price'];
+            }
+
             // Xử lý các khoá học (có thể gộp với đồng phục)
             foreach ($programItems as $programItem) {
-                // Tính giá cho khoá học
-                $programPrice = (float) $programItem['price'];
-                $programDiscount = 0;
+                // Tính giá cho khoá học - sử dụng logic giống calculateTotal()
+                $itemPrice = (float) $programItem['price'];
+                $itemDiscount = 0;
 
+                // Tính giảm giá cho từng item - chỉ tính trên base_price (giá gốc chương trình)
                 if (isset($programItem['discount_amount']) && $programItem['discount_amount'] > 0) {
                     $discountAmount = (float) $programItem['discount_amount'];
+                    // Chỉ tính giảm giá trên base_price, không tính trên giá sách
+                    $basePrice = isset($programItem['base_price']) ? (float) $programItem['base_price'] : $itemPrice;
+                    
                     if (($programItem['discount_type'] ?? 'vnd') === 'percent') {
-                        $programDiscount = ($programPrice * $discountAmount) / 100;
+                        $itemDiscount = ($basePrice * $discountAmount) / 100;
                     } else {
-                        $programDiscount = $discountAmount;
+                        $itemDiscount = $discountAmount;
                     }
                 }
 
-                $finalProgramPrice = $programPrice - $programDiscount;
+                $finalProgramPrice = $itemPrice - $itemDiscount;
                 if ($finalProgramPrice < 0) $finalProgramPrice = 0;
-
-                // Tính tổng giá đồng phục (nếu có)
-                $totalUniformPrice = 0;
-                foreach ($uniformItems as $uniformItem) {
-                    $totalUniformPrice += (float) $uniformItem['price'];
-                }
 
                 // Tổng giá cho bản ghi này (khoá học + đồng phục)
                 $totalPrice = $finalProgramPrice + $totalUniformPrice;
@@ -607,6 +612,40 @@ class TuitionsPayment extends Component
 
                 $createdTuition = app(TuitionRepositoryInterface::class)->create($tuition);
                 $createdTuitions[] = $createdTuition;
+            }
+
+            // Áp dụng giảm giá tổng nếu có
+            if ($this->discountAmount > 0 && count($createdTuitions) > 0) {
+                $totalDiscountAmount = (float) $this->discountAmount;
+                if ($this->discountType === 'percent') {
+                    // Tính giảm giá phần trăm trên tổng tiền
+                    $totalDiscountAmount = ($this->totalAmount * $totalDiscountAmount) / 100;
+                }
+                
+                // Phân bổ giảm giá tổng cho các bản ghi theo tỷ lệ
+                $totalCreatedAmount = 0;
+                foreach ($createdTuitions as $tuition) {
+                    $totalCreatedAmount += $tuition->price;
+                }
+                
+                if ($totalCreatedAmount > 0) {
+                    $remainingDiscount = $totalDiscountAmount;
+                    $lastIndex = count($createdTuitions) - 1;
+                    
+                    foreach ($createdTuitions as $index => $tuition) {
+                        if ($index === $lastIndex) {
+                            // Bản ghi cuối cùng nhận phần còn lại
+                            $tuition->price = max(0, $tuition->price - $remainingDiscount);
+                        } else {
+                            // Phân bổ theo tỷ lệ
+                            $proportion = $tuition->price / $totalCreatedAmount;
+                            $itemDiscount = $totalDiscountAmount * $proportion;
+                            $tuition->price = max(0, $tuition->price - $itemDiscount);
+                            $remainingDiscount -= $itemDiscount;
+                        }
+                        $tuition->save();
+                    }
+                }
             }
 
             $count = count($createdTuitions);
