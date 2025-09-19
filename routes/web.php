@@ -39,6 +39,7 @@ use App\Livewire\Back\Finance\Tuition\TuitionsHistory;
 use App\Livewire\Back\Finance\Tuition\TuitionsPayment;
 use App\Livewire\Back\Management\Curriculum\Curricula;
 use App\Http\Controllers\StudentRegistrationController;
+use App\Livewire\Back\General\Dashboard\LayoutDashboard;
 use App\Livewire\Back\Finance\Price\ProgramPricesManagement;
 
 
@@ -46,9 +47,7 @@ Route::get('/', function () {
     return redirect()->route('login');
 });
 
-Route::view('dashboard', 'dashboard')
-    ->middleware(['auth', 'preventBackHistory'])
-    ->name('dashboard');
+Route::get('dashboard', LayoutDashboard::class)->name('dashboard')->middleware(['auth', 'preventBackHistory']);
 
 Route::prefix('admin')->middleware(['auth', 'preventBackHistory'])->name('admin.')->group(function () {
 
