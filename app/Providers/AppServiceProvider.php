@@ -18,6 +18,7 @@ use App\Repositories\Contracts\StudentRepositoryInterface;
 use App\Repositories\Contracts\SyllabusRepositoryInterface;
 use App\Repositories\Contracts\TuitionRepositoryInterface;
 use App\Repositories\Contracts\ProgramLocationPriceRepositoryInterface;
+use App\Repositories\Contracts\TimeTableRepositoryInterface;
 
 
 use App\Repositories\Eloquent\LocationRepository;
@@ -34,6 +35,7 @@ use App\Repositories\Eloquent\StudentRepository;
 use App\Repositories\Eloquent\SyllabusRepository;
 use App\Repositories\Eloquent\TuitionRepository;
 use App\Repositories\Eloquent\ProgramLocationPriceRepository;
+use App\Repositories\Eloquent\TimeTableRepository;
 
 use Illuminate\Auth\Middleware\Authenticate;
 use Illuminate\Auth\Middleware\RedirectIfAuthenticated;
@@ -65,6 +67,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(SyllabusRepositoryInterface::class, SyllabusRepository::class);
         $this->app->bind(TuitionRepositoryInterface::class, TuitionRepository::class);
         $this->app->bind(ProgramLocationPriceRepositoryInterface::class, ProgramLocationPriceRepository::class);
+        $this->app->bind(TimeTableRepositoryInterface::class, TimeTableRepository::class);
     }
 
     /**

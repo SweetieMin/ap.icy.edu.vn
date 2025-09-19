@@ -1,6 +1,6 @@
 <div>
     {{-- Create and Update Location Modal --}}
-    <flux:modal :dismissible="false" name="modal-location" class="md:w-900">
+    <flux:modal :dismissible="false" name="modal-location" class=" md:w-900">
         <form wire:submit='{{ $isEditLocationMode ? 'updateLocation' : 'createLocation' }}' class="space-y-6">
             <div>
                 <flux:heading class="font-bold" size="lg">

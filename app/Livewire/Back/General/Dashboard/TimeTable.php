@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Back\Dashboard;
+namespace App\Livewire\Back\General\Dashboard;
 
 use Illuminate\Support\Carbon;
 use Livewire\Attributes\Title;
@@ -43,3 +43,4 @@ class Timetable extends LivewireCalendar
     }
 
 }
+

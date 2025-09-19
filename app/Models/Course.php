@@ -40,4 +40,9 @@ class Course extends Model
     {
         return $this->hasMany(ClassSchedule::class);
     }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'course_user');
+    }
 }

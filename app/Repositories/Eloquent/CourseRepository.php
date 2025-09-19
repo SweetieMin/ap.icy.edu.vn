@@ -2,10 +2,12 @@
 
 namespace App\Repositories\Eloquent;
 
+use App\Models\User;
 use App\Models\Course;
 use App\Support\Course\CourseHelper;
-use App\Repositories\Contracts\CourseRepositoryInterface;
+use Illuminate\Support\Facades\Auth;
 use App\Repositories\Contracts\UserRepositoryInterface;
+use App\Repositories\Contracts\CourseRepositoryInterface;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 class CourseRepository implements CourseRepositoryInterface
@@ -30,16 +32,16 @@ class CourseRepository implements CourseRepositoryInterface
             $search = $filters['search'];
             $query->where(function ($q) use ($search) {
                 $q->where('name', 'like', '%' . $search . '%')
-                  ->orWhere('description', 'like', '%' . $search . '%')
-                  ->orWhereHas('location', function ($locationQuery) use ($search) {
-                      $locationQuery->where('name', 'like', '%' . $search . '%');
-                  })
-                  ->orWhereHas('season', function ($seasonQuery) use ($search) {
-                      $seasonQuery->where('name', 'like', '%' . $search . '%');
-                  })
-                  ->orWhereHas('subject', function ($subjectQuery) use ($search) {
-                      $subjectQuery->where('name', 'like', '%' . $search . '%');
-                  });
+                    ->orWhere('description', 'like', '%' . $search . '%')
+                    ->orWhereHas('location', function ($locationQuery) use ($search) {
+                        $locationQuery->where('name', 'like', '%' . $search . '%');
+                    })
+                    ->orWhereHas('season', function ($seasonQuery) use ($search) {
+                        $seasonQuery->where('name', 'like', '%' . $search . '%');
+                    })
+                    ->orWhereHas('subject', function ($subjectQuery) use ($search) {
+                        $subjectQuery->where('name', 'like', '%' . $search . '%');
+                    });
             });
         }
 
@@ -59,7 +61,7 @@ class CourseRepository implements CourseRepositoryInterface
     public function getCoursesBySeasonAndProgram(int $seasonId, int $programId)
     {
         return Course::where('season_id', $seasonId)
-            ->whereHas('subject', function($query) use ($programId) {
+            ->whereHas('subject', function ($query) use ($programId) {
                 $query->where('program_id', $programId);
             })
             ->with(['location', 'season', 'subject'])
@@ -74,7 +76,7 @@ class CourseRepository implements CourseRepositoryInterface
     public function getAvailableCoursesForStudent(int $studentId, int $seasonId, int $programId)
     {
         return Course::where('season_id', $seasonId)
-            ->whereHas('subject', function($query) use ($programId) {
+            ->whereHas('subject', function ($query) use ($programId) {
                 $query->where('program_id', $programId);
             })
             ->with(['location', 'season', 'subject'])
@@ -84,39 +86,30 @@ class CourseRepository implements CourseRepositoryInterface
     public function getCoursesWithActiveSeasons()
     {
         $now = now();
-        
+
         return Course::with(['season', 'subject', 'location'])
-            ->whereHas('season', function($query) use ($now) {
-                $query->where(function($q) use ($now) {
-                    // Season đang diễn ra (dựa trên ngày tháng)
+            ->whereHas('season', function ($q) use ($now) {
+                $q->where(function ($q) use ($now) {
                     $q->where('start_date', '<=', $now)
-                      ->where('end_date', '>=', $now);
-                })->orWhere(function($q) use ($now) {
-                    // Season sắp diễn ra (dựa trên ngày tháng)
-                    $q->where('start_date', '>', $now);
-                });
+                        ->where('end_date', '>=', $now);
+                })
+                    ->orWhere('start_date', '>', $now);
             })
             ->orderBy('name')
             ->get()
-            ->filter(function($course) {
-                // Lọc thêm dựa trên status được tính toán
-                $currentStatus = $course->season->current_status;
-                return in_array($currentStatus, ['ongoing', 'upcoming']);
-            })
-            ->map(function($course) {
-                return [
-                    'id' => $course->id,
-                    'name' => $course->name,
-                    'code' => $course->code,
-                    'season_name' => $course->season->name,
-                    'season_code' => $course->season->code,
-                    'season_status' => $course->season->current_status,
-                    'subject_name' => $course->subject->name ?? 'N/A',
-                    'location_name' => $course->location->name ?? 'N/A',
-                    'description' => $course->description,
-                ];
-            })
-            ->values() // Reset array keys after filter
+            ->filter(fn($c) => in_array($c->season->current_status, ['ongoing', 'upcoming']))
+            ->map(fn($c) => [
+                'id'            => $c->id,
+                'name'          => $c->name,
+                'code'          => $c->code,
+                'season_name'   => $c->season->name,
+                'season_code'   => $c->season->code,
+                'season_status' => $c->season->current_status,
+                'subject_name'  => $c->subject->name ?? 'N/A',
+                'location_name' => $c->location->name ?? 'N/A',
+                'description'   => $c->description,
+            ])
+            ->values()
             ->toArray();
     }
 
@@ -147,5 +140,33 @@ class CourseRepository implements CourseRepositoryInterface
         foreach ($orderedIds as $index => $id) {
             Course::where('id', $id)->update(['ordering' => $index + 1]);
         }
+    }
+
+    public function getCoursesByAuthIdAndSeasonId()
+    {
+        $userId = Auth::id();
+        $now = now();
+
+        return Course::query()
+            ->select('courses.*')
+            ->join('course_user', 'course_user.course_id', '=', 'courses.id')
+            ->join('seasons', 'seasons.id', '=', 'courses.season_id')
+            ->where('course_user.user_id', $userId)
+            ->whereIn('seasons.status', ['ongoing', 'upcoming'])
+            ->with(['location', 'season', 'subject'])
+            ->orderBy('courses.name')
+            ->get();
+    }
+
+    public function getClassStudentsByCourseId(int $courseId)
+    {
+        return User::with(['detail', 'roles', 'courses'])
+            ->whereHas('courses', function ($q) use ($courseId) {
+                $q->where('course_id', $courseId);
+            })
+            ->whereHas('roles', function ($q) {
+                $q->where('name', 'student');
+            })
+            ->get();
     }
 }

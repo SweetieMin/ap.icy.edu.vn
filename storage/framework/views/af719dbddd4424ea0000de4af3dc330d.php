@@ -78,7 +78,7 @@
             </div>
         </div>
         <div class="relative h-full flex-1 overflow-hidden rounded-xl border border-pink-400 dark:border-pink-700">
-            <?php echo $__env->make('livewire.back.dashboard.timetable', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+            <?php echo $__env->make('livewire.back.general.dashboard.time-table', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
         </div>
     </div>
  <?php echo $__env->renderComponent(); ?>

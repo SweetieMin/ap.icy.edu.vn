@@ -22,6 +22,7 @@ class ClassAssignment extends Component
     public $filterLocationId = '';
     public $filterSeasonId = '';
     public $filterProgramId = '';
+    public $userType = 'student'; // 'student' or 'teacher'
 
     // Data
     public $students = [];
@@ -68,54 +69,90 @@ class ClassAssignment extends Component
 
     public function loadStudents()
     {
-        // Lấy học viên đã đóng học phí nhưng chưa được xếp lớp
-        $query = DB::table('users')
-            ->join('user_details', 'users.id', '=', 'user_details.user_id')
-            ->join('location_user', 'users.id', '=', 'location_user.user_id')
-            ->join('role_user', 'users.id', '=', 'role_user.user_id')
-            ->join('roles', 'role_user.role_id', '=', 'roles.id')
-            ->leftJoin('course_user', 'users.id', '=', 'course_user.user_id')
-            ->join('tuitions', function($join) {
-                $join->on('users.id', '=', 'tuitions.user_id')
-                     ->where('tuitions.status', '=', 'paid');
-            })
-            ->where('roles.name', 'student')
-            ->where('users.status', 'active')
-            ->whereNull('course_user.user_id') // Chưa được xếp lớp
-            ->select(
-                'users.id',
-                'users.name',
-                'users.account_code',
-                'user_details.phone',
-                'location_user.location_id',
-                'tuitions.program_id',
-                'tuitions.season_id',
-                'tuitions.price',
-                'tuitions.created_at as tuition_created_at'
-            )
-            ->distinct();
+        if ($this->userType === 'student') {
+            // Lấy học viên đã đóng học phí nhưng chưa được xếp lớp
+            $query = DB::table('users')
+                ->join('user_details', 'users.id', '=', 'user_details.user_id')
+                ->join('location_user', 'users.id', '=', 'location_user.user_id')
+                ->join('role_user', 'users.id', '=', 'role_user.user_id')
+                ->join('roles', 'role_user.role_id', '=', 'roles.id')
+                ->leftJoin('course_user', 'users.id', '=', 'course_user.user_id')
+                ->join('tuitions', function($join) {
+                    $join->on('users.id', '=', 'tuitions.user_id')
+                         ->where('tuitions.status', '=', 'paid');
+                })
+                ->where('roles.name', 'student')
+                ->where('users.status', 'active')
+                ->whereNull('course_user.user_id') // Chưa được xếp lớp
+                ->select(
+                    'users.id',
+                    'users.name',
+                    'users.account_code',
+                    'user_details.phone',
+                    'location_user.location_id',
+                    'tuitions.program_id',
+                    'tuitions.season_id',
+                    'tuitions.price',
+                    'tuitions.created_at as tuition_created_at'
+                )
+                ->distinct();
 
-        // Apply filters
-        if ($this->filterLocationId) {
-            $query->where('location_user.location_id', $this->filterLocationId);
-        }
+            // Apply filters
+            if ($this->filterLocationId) {
+                $query->where('location_user.location_id', $this->filterLocationId);
+            }
 
-        if ($this->filterSeasonId) {
-            $query->where('tuitions.season_id', $this->filterSeasonId);
-        }
+            if ($this->filterSeasonId) {
+                $query->where('tuitions.season_id', $this->filterSeasonId);
+            }
 
-        if ($this->filterProgramId) {
-            $query->where('tuitions.program_id', $this->filterProgramId);
-        }
+            if ($this->filterProgramId) {
+                $query->where('tuitions.program_id', $this->filterProgramId);
+            }
 
-        if ($this->searchStudent) {
-            $query->where(function($q) {
-                $q->where('users.name', 'like', '%' . $this->searchStudent . '%')
-                  ->orWhere('users.account_code', 'like', '%' . $this->searchStudent . '%');
-            });
-        }
+            if ($this->searchStudent) {
+                $query->where(function($q) {
+                    $q->where('users.name', 'like', '%' . $this->searchStudent . '%')
+                      ->orWhere('users.account_code', 'like', '%' . $this->searchStudent . '%');
+                });
+            }
 
-        $this->students = $query->get()->toArray();
+            $this->students = $query->get()->toArray();
+        } else {
+            // Lấy giáo viên và BOD
+            $query = DB::table('users')
+                ->join('user_details', 'users.id', '=', 'user_details.user_id')
+                ->join('location_user', 'users.id', '=', 'location_user.user_id')
+                ->join('role_user', 'users.id', '=', 'role_user.user_id')
+                ->join('roles', 'role_user.role_id', '=', 'roles.id')
+                ->whereIn('roles.name', ['TEACHER', 'BOD'])
+                ->where('users.status', 'active')
+                ->select(
+                    'users.id',
+                    'users.name',
+                    'users.account_code',
+                    'users.status',
+                    'user_details.phone',
+                    'location_user.location_id',
+                    'roles.name as role_name'
+                )
+                ->distinct();
+
+            // Apply filters
+            if ($this->filterLocationId) {
+                $query->where('location_user.location_id', $this->filterLocationId);
+            }
+
+            if ($this->searchStudent) {
+                $query->where(function($q) {
+                    $q->where('users.name', 'like', '%' . $this->searchStudent . '%')
+                      ->orWhere('users.account_code', 'like', '%' . $this->searchStudent . '%');
+                });
+            }
+
+            $this->students = $query->get()->toArray();
+
+            }
     }
 
     public function loadCourses()
@@ -215,6 +252,11 @@ class ClassAssignment extends Component
     }
 
     public function updatedSearchStudent()
+    {
+        $this->loadStudents();
+    }
+
+    public function updatedUserType()
     {
         $this->loadStudents();
     }
@@ -327,6 +369,60 @@ class ClassAssignment extends Component
     public function handleAssignStudentToCourse($studentId, $courseId)
     {
         $this->assignStudentToCourse($studentId, $courseId);
+    }
+
+    public function assignTeacherToCourse($teacherId, $courseId)
+    {
+        try {
+            $course = collect($this->courses)->firstWhere('id', $courseId);
+            $teacher = collect($this->students)->firstWhere('id', $teacherId);
+            
+            if (!$course || !$teacher) {
+                session()->flash('error', 'Không tìm thấy thông tin lớp học hoặc giáo viên!');
+                return;
+            }
+
+            // Kiểm tra xem giáo viên có phù hợp với lớp học không
+            if ($teacher->location_id != $course->location_id) {
+                session()->flash('error', 'Giáo viên và lớp học không cùng cơ sở!');
+                return;
+            }
+
+            // Kiểm tra xem giáo viên đã được gán vào lớp này chưa
+            $existing = DB::table('course_user')
+                ->where('course_id', $courseId)
+                ->where('user_id', $teacherId)
+                ->first();
+
+            if ($existing) {
+                session()->flash('error', 'Giáo viên đã được gán vào lớp này rồi!');
+                return;
+            }
+
+            // Thêm giáo viên vào lớp
+            DB::table('course_user')->insert([
+                'course_id' => $courseId,
+                'user_id' => $teacherId,
+                'status' => 'active',
+                'enrolled_at' => now(),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+
+            session()->flash('success', "Đã gán thành công {$teacher->role_name} {$teacher->name} vào lớp {$course->course_name}!");
+            
+            // Reload data
+            $this->loadStudents();
+
+        } catch (\Exception $e) {
+            session()->flash('error', 'Có lỗi xảy ra khi gán giáo viên: ' . $e->getMessage());
+        }
+    }
+
+    #[On('assign-teacher-to-course')]
+    public function handleAssignTeacherToCourse($teacherId, $courseId)
+    {
+        $this->assignTeacherToCourse($teacherId, $courseId);
     }
 
     public function render()

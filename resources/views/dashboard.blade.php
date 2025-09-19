@@ -12,7 +12,7 @@
             </div>
         </div>
         <div class="relative h-full flex-1 overflow-hidden rounded-xl border border-pink-400 dark:border-pink-700">
-            @include('livewire.back.dashboard.timetable')
+            @include('livewire.back.general.dashboard.time-table')
         </div>
     </div>
 </x-layouts.app>

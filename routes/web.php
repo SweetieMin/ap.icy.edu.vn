@@ -12,10 +12,10 @@ use App\Livewire\Back\Access\Role\Roles;
 
 // Access
 use App\Livewire\Back\Arrangement\TimeTable;
-use App\Livewire\Back\Arrangement\ClassAssignment;
+use App\Livewire\Settings\AuthenticationLogs;
 
 // Finance
-use App\Livewire\Settings\AuthenticationLogs;
+use App\Livewire\Back\General\Course\MyCourses;
 use App\Livewire\Back\Personnel\Employee\Staff;
 
 // Personnel
@@ -27,9 +27,11 @@ use App\Livewire\Back\Management\Course\Courses;
 // Management
 use App\Livewire\Back\Management\Season\Seasons;
 use App\Livewire\Back\Personnel\Student\Students;
+use App\Livewire\Back\Arrangement\ClassAssignment;
+use App\Livewire\Back\General\Course\LayoutCourse;
+
 use App\Livewire\Back\Management\Program\Programs;
 use App\Livewire\Back\Management\Subject\Subjects;
-
 use App\Livewire\Back\Management\Syllabus\Syllabi;
 use App\Livewire\Back\Access\Permission\Permissions;
 use App\Livewire\Back\Management\Location\Locations;
@@ -49,6 +51,10 @@ Route::view('dashboard', 'dashboard')
     ->name('dashboard');
 
 Route::prefix('admin')->middleware(['auth', 'preventBackHistory'])->name('admin.')->group(function () {
+
+    Route::prefix('general')->name('general.')->group(function () {
+        Route::get('management-course', LayoutCourse::class)->name('management-course');
+    });
 
     Route::prefix('management')->name('management.')->group(function () {
 

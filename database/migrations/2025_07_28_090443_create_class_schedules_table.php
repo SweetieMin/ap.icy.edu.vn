@@ -20,7 +20,7 @@ return new class extends Migration
             $table->time('end_time');
             $table->string('room_name');
             $table->string('note')->nullable();
-            $table->string('tag')->nullable();
+            $table->string('color')->nullable();
             $table->foreignId('created_by')->constrained('users')->onDelete('cascade');
             $table->timestamps();
         });

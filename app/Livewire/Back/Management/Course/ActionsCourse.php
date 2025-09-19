@@ -7,9 +7,11 @@ use Throwable;
 use App\Models\Subject;
 use Livewire\Component;
 use Livewire\Attributes\On;
+use App\Models\ClassSchedule;
+use Illuminate\Support\Facades\DB;
 use App\Support\Course\CourseHelper;
 use App\Support\Validation\CourseRules;
-use Illuminate\Support\Facades\DB;
+use App\Support\TimeTable\TimeTableHelper;
 use App\Repositories\Contracts\UserRepositoryInterface;
 use App\Repositories\Contracts\CourseRepositoryInterface;
 use App\Repositories\Contracts\SeasonRepositoryInterface;
@@ -37,6 +39,15 @@ class ActionsCourse extends Component
     public $showClassListModal = false;
     public $selectedCourse = null;
     public $classStudents = [];
+    public $classTeachers = [];
+    
+    // Class schedule modal properties
+    public $showClassScheduleModal = false;
+    public $selectedWeekdays = [];
+    public $selectedShift = '';
+    public $shifts = [];
+    public $startDate = '';
+    public $endDate = '';
 
     public function mount()
     {
@@ -53,6 +64,7 @@ class ActionsCourse extends Component
         $this->programs = $programs;
 
         $this->subjects = Subject::all();
+
         // Mặc định chọn location đầu tiên và season đầu tiên
         if (!empty($this->locations)) {
             $this->location_id = $locations->first()->id;
@@ -61,6 +73,7 @@ class ActionsCourse extends Component
             $this->season_id = $seasons->first()->id;
         }
     }
+
 
     public function rules()
     {
@@ -77,7 +90,7 @@ class ActionsCourse extends Component
         // Reset subject khi chọn program mới
         $this->subject_id = null;
         $this->name = null;
-        
+
         // Load subjects theo program
         if ($this->program_id) {
             $this->subjects = Subject::where('program_id', $this->program_id)->get();
@@ -90,6 +103,7 @@ class ActionsCourse extends Component
     {
         $this->name = CourseHelper::generateCourseName($this->location_id, $this->season_id, $this->subject_id);
     }
+
 
     #[On('add-course')]
     public function addCourse()
@@ -185,14 +199,17 @@ class ActionsCourse extends Component
     public function showClassList($courseId)
     {
         $this->selectedCourse = app(CourseRepositoryInterface::class)->getCourseById($courseId);
-        
+
         if ($this->selectedCourse) {
-            // Load students in this course
-            $this->classStudents = DB::table('course_user')
+            // Load teachers in this course
+            $this->classTeachers = DB::table('course_user')
                 ->join('users', 'course_user.user_id', '=', 'users.id')
                 ->join('user_details', 'users.id', '=', 'user_details.user_id')
+                ->join('role_user', 'users.id', '=', 'role_user.user_id')
+                ->join('roles', 'role_user.role_id', '=', 'roles.id')
                 ->where('course_user.course_id', $courseId)
                 ->where('course_user.status', 'active')
+                ->whereIn('roles.name', ['TEACHER', 'BOD'])
                 ->select(
                     'users.id as user_id',
                     'users.name',
@@ -200,11 +217,33 @@ class ActionsCourse extends Component
                     'user_details.birthday',
                     'user_details.avatar',
                     'course_user.status',
-                    'course_user.enrolled_at'
+                    'course_user.enrolled_at',
+                    'roles.name as role_name'
+                )
+                ->get();
+
+            // Load students in this course
+            $this->classStudents = DB::table('course_user')
+                ->join('users', 'course_user.user_id', '=', 'users.id')
+                ->join('user_details', 'users.id', '=', 'user_details.user_id')
+                ->join('role_user', 'users.id', '=', 'role_user.user_id')
+                ->join('roles', 'role_user.role_id', '=', 'roles.id')
+                ->where('course_user.course_id', $courseId)
+                ->where('course_user.status', 'active')
+                ->where('roles.name', 'student')
+                ->select(
+                    'users.id as user_id',
+                    'users.name',
+                    'users.account_code',
+                    'user_details.birthday',
+                    'user_details.avatar',
+                    'course_user.status',
+                    'course_user.enrolled_at',
+                    'roles.name as role_name'
                 )
                 ->get();
         }
-        
+
         $this->showClassListModal = true;
     }
 
@@ -213,6 +252,167 @@ class ActionsCourse extends Component
         $this->showClassListModal = false;
         $this->selectedCourse = null;
         $this->classStudents = [];
+        $this->classTeachers = [];
+    }
+
+    public function removeTeacherFromCourse($teacherId)
+    {
+        try {
+            // Xóa giáo viên khỏi lớp
+            DB::table('course_user')
+                ->where('course_id', $this->selectedCourse->id)
+                ->where('user_id', $teacherId)
+                ->delete();
+
+            // Reload danh sách giáo viên
+            $this->classTeachers = DB::table('course_user')
+                ->join('users', 'course_user.user_id', '=', 'users.id')
+                ->join('user_details', 'users.id', '=', 'user_details.user_id')
+                ->join('role_user', 'users.id', '=', 'role_user.user_id')
+                ->join('roles', 'role_user.role_id', '=', 'roles.id')
+                ->where('course_user.course_id', $this->selectedCourse->id)
+                ->where('course_user.status', 'active')
+                ->whereIn('roles.name', ['TEACHER', 'BOD'])
+                ->select(
+                    'users.id as user_id',
+                    'users.name',
+                    'users.account_code',
+                    'user_details.birthday',
+                    'user_details.avatar',
+                    'course_user.status',
+                    'course_user.enrolled_at',
+                    'roles.name as role_name'
+                )
+                ->get();
+
+            session()->flash('success', 'Giáo viên đã được xóa khỏi lớp thành công.');
+            $this->redirectRoute('admin.management.courses', navigate: true);
+        } catch (Throwable $e) {
+            session()->flash('error', 'Có lỗi xảy ra khi xóa giáo viên: ' . $e->getMessage());
+        }
+    }
+
+    public function removeStudentFromCourse($studentId)
+    {
+        try {
+            // Xóa học viên khỏi lớp
+            DB::table('course_user')
+                ->where('course_id', $this->selectedCourse->id)
+                ->where('user_id', $studentId)
+                ->delete();
+
+            // Reload danh sách học viên
+            $this->classStudents = DB::table('course_user')
+                ->join('users', 'course_user.user_id', '=', 'users.id')
+                ->join('user_details', 'users.id', '=', 'user_details.user_id')
+                ->join('role_user', 'users.id', '=', 'role_user.user_id')
+                ->join('roles', 'role_user.role_id', '=', 'roles.id')
+                ->where('course_user.course_id', $this->selectedCourse->id)
+                ->where('course_user.status', 'active')
+                ->where('roles.name', 'student')
+                ->select(
+                    'users.id as user_id',
+                    'users.name',
+                    'users.account_code',
+                    'user_details.birthday',
+                    'user_details.avatar',
+                    'course_user.status',
+                    'course_user.enrolled_at',
+                    'roles.name as role_name'
+                )
+                ->get();
+
+            session()->flash('success', 'Học viên đã được xóa khỏi lớp thành công.');
+        } catch (Throwable $e) {
+            session()->flash('error', 'Có lỗi xảy ra khi xóa học viên: ' . $e->getMessage());
+        }
+    }
+
+
+    #[On('class-schedule-modal')]
+    public function classScheduleModal($courseId)
+    {
+        $this->resetErrorBag();
+        $this->reset(['selectedWeekdays', 'selectedShift', 'startDate', 'endDate']);
+        if(ClassSchedule::where('course_id', $courseId)->exists()){
+            session()->flash('error', 'Lớp học này đã có lịch học rồi!');
+            $this->redirectRoute('admin.management.courses', navigate: true);
+            return;
+        }
+        $this->courseId = $courseId;
+        $this->shifts = $this->getShifts();
+        $course = app(CourseRepositoryInterface::class)->getCourseById($courseId);
+        $this->startDate = $course->season->start_date?->format('Y-m-d') 
+                ?? now()->format('Y-m-d');
+        $this->endDate = $course->season->end_date?->format('Y-m-d') 
+                ?? now()->addMonths(3)->format('Y-m-d');
+        $this->showClassScheduleModal = true;
+    }
+
+    public function selectedWeekdaysChanged(){}
+
+    public function getShifts()
+    {
+        $shifts = [];
+        for ($i = 1; $i <= 6; $i++) {
+            [$startTime, $endTime] = TimeTableHelper::getStartTimeAndEndTimeByShift($i);
+            $shifts[$i] = [
+                'id' => $i,
+                'name' => "Ca {$i}",
+                'time' => "{$startTime} - {$endTime}",
+                'start_time' => $startTime,
+                'end_time' => $endTime
+            ];
+        }
+        return $shifts;
+    }
+
+    public function createClassSchedule()
+    {
+        // Validation
+        if (empty($this->selectedWeekdays) || count($this->selectedWeekdays) !== 2) {
+            session()->flash('error', 'Vui lòng chọn đúng 2 ngày trong tuần!');
+            return;
+        }
+        
+        if (!$this->selectedShift) {
+            session()->flash('error', 'Vui lòng chọn 1 ca học!');
+            return;
+        }
+        
+        try {
+            // Lấy thông tin khóa học để có start_date và end_date
+            $course = app(CourseRepositoryInterface::class)->getCourseById($this->courseId);
+            if (!$course) {
+                session()->flash('error', 'Không tìm thấy thông tin khóa học!');
+                return;
+            }
+
+            $startDate = $this->startDate;
+            $endDate = $this->endDate;
+
+            // Gọi TimeTable helper để tạo lịch học
+            $result = TimeTableHelper::autoCreateClassScheduleTimeTable(
+                courseId: $this->courseId,
+                sessionA: (int) $this->selectedWeekdays[0], // Ngày đầu tiên
+                sessionB: (int) ($this->selectedWeekdays[1] ?? $this->selectedWeekdays[0]), // Ngày thứ 2 hoặc trùng ngày đầu
+                shift: (int) $this->selectedShift,
+                startDate: $startDate,
+                endDate: $endDate
+            );
+            
+            if ($result) {  
+                session()->flash('success', 'Đã tạo lịch học tự động thành công!');
+                $this->redirectRoute('admin.management.courses', navigate: true);
+                $this->reset(['selectedWeekdays', 'selectedShift']);
+            } else {
+                session()->flash('error', 'Lớp học này đã có lịch học rồi!');
+                $this->redirectRoute('admin.management.courses', navigate: true);
+            }
+        } catch (\Exception $e) {
+            session()->flash('error', 'Có lỗi xảy ra khi tạo lịch học: ' . $e->getMessage());
+            $this->redirectRoute('admin.management.courses', navigate: true);
+        }
     }
 
     public function render()

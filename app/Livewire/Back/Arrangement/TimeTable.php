@@ -3,32 +3,49 @@
 namespace App\Livewire\Back\Arrangement;
 
 use Flux\Flux;
-use Illuminate\Support\Carbon;
+use Carbon\Carbon;
+use App\Models\ClassSchedule;
 use Livewire\Attributes\Title;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Auth;
+use App\Support\TimeTable\TimeTableHelper;
+use App\Support\Validation\TimeTableRules;
 use Omnia\LivewireCalendar\LivewireCalendar;
 use App\Repositories\Contracts\CourseRepositoryInterface;
+use App\Repositories\Contracts\TimeTableRepositoryInterface;
 
 #[Title('Sắp xếp lịch học')]
 class Timetable extends LivewireCalendar
 {
     public $modalSetup = 'vendor.livewire-calendar.modal-time-table';
     public $selectedDate;
-    public $eventTitle = '';
-    public $eventDescription = '';
-    public $eventColor = 'bg-pink-500';
-    public $selectedCourseId = '';
+    public $eventColor = 'bg-blue-500';
+    public $isEdit = false;
     public $availableCourses = [];
+    public $kindOfEvents = [];
+
+    public $selectedEventType = '';
+    public $eventDescription = '';
+    public $selectedCourseId = '';
     public $startTime = '';
     public $endTime = '';
     public $roomName = '';
-    public $kindOfEvents = [];
+    public $eventId = '';
 
-    public function afterMount($extras = [])
+
+    protected function rules()
     {
-        $this->modalSetup = $extras['modalSetup'] ?? 'vendor.livewire-calendar.modal-time-table';
-        $this->loadAvailableCourses();
-        $this->kindOfEvents = $this->getKindOfEvents();
+        return TimeTableRules::rules();
+    }
+
+    protected function messages()
+    {
+        return TimeTableRules::messages();
+    }
+
+    protected function resetEvent()
+    {
+        $this->reset(['eventDescription', 'selectedEventType', 'selectedCourseId', 'startTime', 'endTime', 'roomName', 'eventColor', 'isEdit']);
     }
 
     /**
@@ -39,37 +56,27 @@ class Timetable extends LivewireCalendar
         $this->availableCourses = app(CourseRepositoryInterface::class)->getCoursesWithActiveSeasons();
     }
 
-    public function getKindOfEvents()
-    {
-        return [
-            'class_schedule' => 'Lịch học',
-            'event' => 'Sự kiện',
-            'exam' => 'Kiểm tra',
-            'meeting' => 'Họp phụ huynh',
-            'other' => 'Khác',
-        ];
-    }
-
-    public function events(): Collection
-    {
-        return collect([
-            [
-                'id' => 1,
-                'title' => 'Lịch hẹn học viên A',
-                'description' => 'Buổi học lập trình PHP',
-                'date' => Carbon::today(),
-                'color' => 'bg-pink-500',
-            ],
-        ]);
-    }
-
     /**
-     * Xử lý khi click vào ngày
+     * Lấy danh sách loại sự kiện
      */
-    public function onDayClick($year, $month, $day) {
+    public function loadKindOfEvents()
+    {
+        $this->kindOfEvents = TimeTableHelper::getKindOfEvents();
+    }
+
+    public function afterMount($extras = [])
+    {
+        $this->modalSetup = $extras['modalSetup'] ?? 'vendor.livewire-calendar.modal-time-table';
+        $this->loadAvailableCourses();
+        $this->loadKindOfEvents();
+    }
+
+    public function onDayClick($year, $month, $day)
+    {
         $this->selectedDate = Carbon::createFromDate($year, $month, $day);
-        $this->reset(['eventTitle', 'eventDescription', 'selectedCourseId', 'startTime', 'endTime', 'roomName']);
-        $this->eventColor = 'bg-pink-500';
+        $this->eventColor = 'bg-blue-500'; // Màu mặc định
+        $this->isEdit = false;
+        $this->resetEvent();
         Flux::modal('add-event')->show();
     }
 
@@ -78,59 +85,135 @@ class Timetable extends LivewireCalendar
      */
     public function saveEvent()
     {
-        dd($this->all());
-        $this->validate([
-            'eventTitle' => 'required|string|max:255',
-            'eventDescription' => 'nullable|string|max:500',
-            'selectedCourseId' => 'required|exists:courses,id',
-            'startTime' => 'required|date_format:H:i',
-            'endTime' => 'required|date_format:H:i|after:startTime',
-            'roomName' => 'nullable|string|max:100',
-        ], [
-            'eventTitle.required' => 'Tiêu đề sự kiện không được để trống.',
-            'eventTitle.max' => 'Tiêu đề không được vượt quá 255 ký tự.',
-            'eventDescription.max' => 'Mô tả không được vượt quá 500 ký tự.',
-            'selectedCourseId.required' => 'Vui lòng chọn lớp học.',
-            'selectedCourseId.exists' => 'Lớp học không tồn tại.',
-            'startTime.required' => 'Vui lòng chọn giờ bắt đầu.',
-            'startTime.date_format' => 'Giờ bắt đầu không đúng định dạng.',
-            'endTime.required' => 'Vui lòng chọn giờ kết thúc.',
-            'endTime.date_format' => 'Giờ kết thúc không đúng định dạng.',
-            'endTime.after' => 'Giờ kết thúc phải sau giờ bắt đầu.',
-            'roomName.max' => 'Tên phòng học không được vượt quá 100 ký tự.',
+        $this->validate();
+
+        $schedule = app(TimeTableRepositoryInterface::class)->create([
+            'course_id' => $this->selectedCourseId,
+            'name' => $this->selectedEventType,
+            'date' => $this->selectedDate,
+            'start_time' => $this->startTime,
+            'end_time' => $this->endTime,
+            'room_name' => $this->roomName,
+            'note' => $this->eventDescription,
+            'color' => TimeTableHelper::getColorByEventType($this->selectedEventType),
+            'created_by' => Auth::user()->id,
         ]);
 
-
-        
-
-        session()->flash('success', 'Sự kiện đã được thêm thành công!');
-        $this->closeModal();
-        $this->redirectRoute('admin.arrangement.time-table', navigate: true);
+        if ($schedule) {
+            session()->flash('success', 'Sự kiện đã được tạo thành công');
+            $this->redirectRoute('admin.arrangement.time-table', navigate: true);
+            Flux::modal('add-event')->close();
+        } else {
+            session()->flash('error', 'Sự kiện đã được tạo thành công');
+            $this->redirectRoute('admin.arrangement.time-table', navigate: true);
+            Flux::modal('add-event')->close();
+        }
     }
 
-    /**
-     * Đóng modal
-     */
-    public function closeModal()
+    public function deleteEvent()
     {
+        $event = app(TimeTableRepositoryInterface::class)->getById($this->eventId);
+        $event->delete();
+        session()->flash('success', 'Sự kiện đã được xóa thành công');
+        $this->redirectRoute('admin.arrangement.time-table', navigate: true);
         Flux::modal('add-event')->close();
-        $this->reset(['eventTitle', 'eventDescription', 'selectedDate', 'selectedCourseId', 'startTime', 'endTime', 'roomName']);
     }
 
-    /**
+        /**
      * Xử lý khi click vào sự kiện
      */
     public function onEventClick($eventId) {
+        $this->resetEvent();
+        $this->eventId = $eventId;
+        $event = app(TimeTableRepositoryInterface::class)->getById($eventId);
         
+        $this->selectedEventType = $event->name;
+        $this->selectedDate = $event->date;
+        $this->eventDescription = $event->note;
+        $this->selectedCourseId = $event->course_id;
+        $this->startTime = $event->start_time->format('H:i');
+        $this->endTime = $event->end_time->format('H:i');
+        $this->roomName = $event->room_name;
+        $this->eventColor = $event->color ?? 'bg-pink-500';
+        $this->isEdit = true;
+        Flux::modal('add-event')->show();
     }
 
     /**
-     * Xử lý khi kéo thả sự kiện
+     * Cập nhật sự kiện
      */
+    public function updateEvent()
+    {
+        $this->validate();
+
+        $data = [
+            'course_id' => $this->selectedCourseId,
+            'name' => $this->selectedEventType,
+            'date' => $this->selectedDate,
+            'start_time' => $this->startTime,
+            'end_time' => $this->endTime,
+            'room_name' => $this->roomName,
+            'note' => $this->eventDescription,
+            'color' => TimeTableHelper::getColorByEventType($this->selectedEventType),
+            'created_by' => Auth::user()->id,
+        ];
+        $event = app(TimeTableRepositoryInterface::class)->update($this->eventId, $data);
+        if ($event) {
+            session()->flash('success', 'Sự kiện đã được cập nhật thành công');
+        } else {
+            session()->flash('error', 'Sự kiện đã được cập nhật thất bại');
+        }
+        $this->redirectRoute('admin.arrangement.time-table', navigate: true);
+        Flux::modal('add-event')->close();
+    }
+
     public function onEventDropped($eventId, $year, $month, $day)
     {
         $date = Carbon::createFromDate($year, $month, $day);
-        session()->flash('success', "Sự kiện đã được di chuyển đến ngày: " . $date->format('d/m/Y'));
+
+        $event = ClassSchedule::find($eventId)->update([
+            'date' => $date,
+        ]);
+
+        if ($event) {
+            session()->flash('success', 'Sự kiện đã được di chuyển thành công');
+        } else {
+            session()->flash('error', 'Sự kiện đã được di chuyển thất bại');
+        }
         $this->redirectRoute('admin.arrangement.time-table', navigate: true);
+        Flux::modal('add-event')->close();
+
+    }
+
+    public function closeModal()
+    {
+        $this->resetEvent();
+        Flux::modal('add-event')->close();
+    }
+
+    public function events(): Collection
+    {
+        $events = app(TimeTableRepositoryInterface::class)->getAll();
+
+        return $events->map(function ($event) {
+            // Xử lý date - có thể là string hoặc Carbon instance
+            $date = is_string($event->date) ? $event->date : $event->date->format('Y-m-d');
+            
+            // Xử lý start_time và end_time - có thể là string hoặc Carbon instance
+            $startTime = is_string($event->start_time) ? date('H:i', strtotime($event->start_time)) : $event->start_time->format('H:i');
+            $endTime = is_string($event->end_time) ? date('H:i', strtotime($event->end_time)) : $event->end_time->format('H:i');
+            
+            return [
+                'id' => $event->id,
+                'title' => $event->name . ' - ' . $event->course->name,
+                'description' => $event->note,
+                'date' => $date,
+                'start_time' => $startTime,
+                'end_time' => $endTime,
+                'room_name' => $event->room_name,
+                'color' => $event->color ?? 'bg-pink-500', // Sử dụng màu từ database, fallback về màu mặc định
+                'course_name' => $event->course->name ?? 'N/A',
+            ];
+        });
     }
 }

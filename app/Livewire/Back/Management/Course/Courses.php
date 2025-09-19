@@ -6,8 +6,9 @@ use App\Models\Subject;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Livewire\Attributes\Title;
-use Livewire\WithoutUrlPagination;
 use Illuminate\Support\Facades\DB;
+use Livewire\WithoutUrlPagination;
+use App\Support\TimeTable\TimeTable;
 use App\Repositories\Contracts\UserRepositoryInterface;
 use App\Repositories\Contracts\CourseRepositoryInterface;
 use App\Repositories\Contracts\SeasonRepositoryInterface;
@@ -49,7 +50,7 @@ class Courses extends Component
     {
         $this->dispatch('add-course');
     }
-    
+
     public function deleteCourse($id)
     {
         $this->dispatch('delete-course', $id);
@@ -72,6 +73,11 @@ class Courses extends Component
         $this->dispatch('show-class-list', $courseId);
     }
 
+    public function autoCreateClassScheduleTimeTable($courseId)
+    {
+        $this->dispatch('class-schedule-modal', $courseId);
+    }
+
     public function render()
     {
         $courses = app(CourseRepositoryInterface::class)->getAllWithFilters([
@@ -82,8 +88,8 @@ class Courses extends Component
 
         $locations = app(UserRepositoryInterface::class)->getCurrentUserLocations();
         $seasons = app(SeasonRepositoryInterface::class)->getAllSeasons();
-        
-        return view('livewire.back.management.course.courses',[
+
+        return view('livewire.back.management.course.courses', [
             'courses' => $courses,
             'locations' => $locations,
             'seasons' => $seasons,

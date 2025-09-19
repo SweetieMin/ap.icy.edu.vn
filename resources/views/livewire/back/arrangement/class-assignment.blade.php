@@ -25,7 +25,7 @@
             </div>
             <div class="flex items-center space-x-3">
                 <div class="header-counter">
-                    <span>{{ count($students) }} học viên chưa xếp lớp</span>
+                    <span>{{ count($students) }} {{ $userType === 'student' ? 'học viên chưa xếp lớp' : 'giáo viên/BOD' }}</span>
                 </div>
                 <div class="header-counter">
                     <span>{{ count($courses) }} lớp học có sẵn</span>
@@ -74,9 +74,16 @@
             </div>
         </div>
         <div class="p-6">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+            <div class="grid grid-cols-1 md:grid-cols-5 gap-4">
                 <div>
-                    <label class="card-label">🔍 Tìm kiếm học viên</label>
+                    <label class="card-label">👥 Loại người dùng</label>
+                    <select wire:model.live="userType" class="card-input">
+                        <option value="student">Học viên</option>
+                        <option value="teacher">Giáo viên & BOD</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="card-label">🔍 Tìm kiếm {{ $userType === 'student' ? 'học viên' : 'giáo viên' }}</label>
                     <input type="text" wire:model.live="searchStudent" placeholder="Tìm theo tên hoặc mã số..."
                         class="card-input">
                 </div>
@@ -121,10 +128,12 @@
                                 <flux:icon.users class="w-4 h-4 text-pink-600 dark:text-pink-400" />
                             </div>
                             <div>
-                                <h3 class="text-lg font-bold text-pink-600 dark:text-pink-400">Học viên chưa xếp lớp
+                                <h3 class="text-lg font-bold text-pink-600 dark:text-pink-400">
+                                    {{ $userType === 'student' ? 'Học viên chưa xếp lớp' : 'Giáo viên & BOD' }}
                                 </h3>
-                                <p class="text-pink-600 dark:text-pink-400 text-xs">Học viên đã đóng học phí nhưng chưa
-                                    được xếp lớp</p>
+                                <p class="text-pink-600 dark:text-pink-400 text-xs">
+                                    {{ $userType === 'student' ? 'Học viên đã đóng học phí nhưng chưa được xếp lớp' : 'Giáo viên và Ban điều hành có thể được gán vào lớp' }}
+                                </p>
                             </div>
                         </div>
                         <div class="flex items-center space-x-2">
@@ -158,15 +167,26 @@
                                     </div>
 
                                     <div class="flex-1">
-                                        <div class="font-medium text-gray-900 dark:text-white">{{ $student->name }}
+                                        <div class="flex items-center space-x-2">
+                                            <div class="font-medium text-gray-900 dark:text-white">{{ $student->name }}</div>
+                                            @if ($userType === 'teacher')
+                                                
+                                                <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium
+                                                    {{ $student->role_name === 'TEACHER' ? 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200' : 'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200' }}">
+                                                    {{ $student->role_name === 'TEACHER' ? 'Giáo viên' : 'BOD' }}
+                                                </span>
+                                            @endif
                                         </div>
                                         <div class="text-sm text-gray-500 dark:text-gray-400">
                                             Mã số: {{ $student->account_code }} |
                                             SĐT: {{ $student->phone ?? 'Chưa cập nhật' }}
                                         </div>
-                                        <div class="text-xs text-gray-400 dark:text-gray-500">
-                                            Đóng học phí: {{ number_format($student->price, 0, ',', '.') }} VNĐ
-                                        </div>
+                                        @if ($userType === 'student')
+                                            <div class="text-xs text-gray-400 dark:text-gray-500">
+                                                Đóng học phí: {{ number_format($student->price, 0, ',', '.') }} VNĐ
+                                            </div>
+                                      
+                                        @endif
                                     </div>
 
                                     <div class="text-xs text-blue-600 dark:text-blue-400 font-medium">
@@ -178,9 +198,12 @@
                     @else
                         <div class="text-center py-8 flex-1 flex flex-col justify-center">
                             <flux:icon.users class="w-12 h-12 mx-auto mb-4 text-gray-400" />
-                            <p class="text-lg font-medium text-gray-500 dark:text-gray-400">Không có học viên nào</p>
-                            <p class="text-sm text-gray-400 dark:text-gray-500">Tất cả học viên đã được xếp lớp hoặc
-                                chưa đóng học phí</p>
+                            <p class="text-lg font-medium text-gray-500 dark:text-gray-400">
+                                {{ $userType === 'student' ? 'Không có học viên nào' : 'Không có giáo viên/BOD nào' }}
+                            </p>
+                            <p class="text-sm text-gray-400 dark:text-gray-500">
+                                {{ $userType === 'student' ? 'Tất cả học viên đã được xếp lớp hoặc chưa đóng học phí' : 'Không có giáo viên hoặc BOD nào phù hợp với bộ lọc hiện tại' }}
+                            </p>
                         </div>
                     @endif
                 </div>
@@ -259,65 +282,15 @@
         </div>
     </div>
 
-    <style>
-        .student-card {
-            transition: all 0.2s ease;
-        }
-
-        .student-card:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-
-        .student-card:active {
-            transform: scale(0.98);
-        }
-
-        .course-drop-zone {
-            transition: all 0.2s ease;
-        }
-
-        .course-drop-zone.drag-over {
-            border-color: #10b981 !important;
-            background-color: #ecfdf5 !important;
-            transform: scale(1.02);
-        }
-
-        .drag-handle {
-            cursor: grab;
-        }
-
-        .drag-handle:active {
-            cursor: grabbing;
-        }
-
-        /* Ensure equal height for both columns */
-        .grid.grid-cols-1.lg\\:grid-cols-2 {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1.5rem;
-        }
-
-        @media (min-width: 1024px) {
-            .grid.grid-cols-1.lg\\:grid-cols-2 {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-
-        /* Dark mode styles */
-        @media (prefers-color-scheme: dark) {
-            .course-drop-zone.drag-over {
-                background-color: #064e3b !important;
-            }
-        }
-    </style>
-
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Drag and Drop functionality
-            let draggedStudentId = null;
-            let draggedStudentName = null;
+        // Global variables for drag and drop
+        let draggedStudentId = null;
+        let draggedStudentName = null;
 
+        // Initialize drag and drop functionality
+        function initializeDragAndDrop() {
+            console.log('Initializing drag and drop...');
+            
             // Make student cards draggable
             document.addEventListener('dragstart', function(e) {
                 if (e.target.classList.contains('student-card')) {
@@ -372,12 +345,18 @@
                             courseName: courseName
                         });
 
-
-                        Livewire.dispatch('assign-student-to-course', {
-                            studentId: draggedStudentId,
-                            courseId: courseId
-                        });
-
+                        // Dispatch event based on user type
+                        if ('{{ $userType }}' === 'student') {
+                            Livewire.dispatch('assign-student-to-course', {
+                                studentId: draggedStudentId,
+                                courseId: courseId
+                            });
+                        } else {
+                            Livewire.dispatch('assign-teacher-to-course', {
+                                teacherId: draggedStudentId,
+                                courseId: courseId
+                            });
+                        }
                     }
 
                     // Reset dragged data
@@ -394,7 +373,72 @@
             document.addEventListener('drop', function(e) {
                 e.preventDefault();
             });
-        });
+        }
+
+        // Initialize when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initializeDragAndDrop);
+        } else {
+            initializeDragAndDrop();
+        }
+
+        // Re-initialize when Livewire updates the DOM
+        document.addEventListener('livewire:navigated', initializeDragAndDrop);
+        document.addEventListener('livewire:updated', initializeDragAndDrop);
     </script>
+
+    <style>
+        /* Drag and Drop Styles */
+        .drag-over {
+            border-color: #10b981 !important;
+            background-color: #ecfdf5 !important;
+            transform: scale(1.02);
+            transition: all 0.2s ease;
+        }
+        
+        /* Enhanced drag handle */
+        .drag-handle {
+            cursor: grab;
+            transition: all 0.2s ease;
+        }
+        
+        .drag-handle:active {
+            cursor: grabbing;
+        }
+        
+        .drag-handle:hover {
+            color: #6b7280;
+            transform: scale(1.1);
+        }
+        
+        /* Course drop zone enhancements */
+        .course-drop-zone {
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .course-drop-zone:hover {
+            border-color: #10b981;
+            background-color: #f0fdf4;
+        }
+        
+        .course-drop-zone::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border: 2px dashed transparent;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+            pointer-events: none;
+        }
+        
+        .course-drop-zone.drag-over::before {
+            border-color: #10b981;
+            background-color: rgba(16, 185, 129, 0.1);
+        }
+    </style>
 
 </div>

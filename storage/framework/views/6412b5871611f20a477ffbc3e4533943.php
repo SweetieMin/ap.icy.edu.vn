@@ -92,17 +92,28 @@
         <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between text-xs sm:text-sm text-gray-600 space-y-2 sm:space-y-0">
             <div class="flex flex-col sm:flex-row items-start sm:items-center space-y-1 sm:space-y-0 sm:space-x-4">
                 <div class="flex items-center">
-                    <div class="w-2 h-2 sm:w-3 sm:h-3 bg-pink-500 rounded-full mr-1 sm:mr-2"></div>
-                    <span class="text-xs sm:text-sm">Lịch hẹn học viên</span>
+                    <div class="w-2 h-2 sm:w-3 sm:h-3 bg-blue-500 rounded-full mr-1 sm:mr-2"></div>
+                    <span class="text-xs sm:text-sm">Lịch học</span>
                 </div>
                 <div class="flex items-center">
-                    <div class="w-2 h-2 sm:w-3 sm:h-3 bg-pink-600 rounded-full mr-1 sm:mr-2"></div>
-                    <span class="text-xs sm:text-sm">Kiểm tra</span>
+                    <div class="w-2 h-2 sm:w-3 sm:h-3 bg-amber-500 rounded-full mr-1 sm:mr-2"></div>
+                    <span class="text-xs sm:text-sm">Kiểm tra giữa kì</span>
+                </div>
+
+                <div class="flex items-center">
+                    <div class="w-2 h-2 sm:w-3 sm:h-3 bg-rose-500 rounded-full mr-1 sm:mr-2"></div>
+                    <span class="text-xs sm:text-sm">Kiểm tra cuối kì</span>
+                </div>
+
+                <div class="flex items-center">
+                    <div class="w-2 h-2 sm:w-3 sm:h-3 bg-violet-500 rounded-full mr-1 sm:mr-2"></div>
+                    <span class="text-xs sm:text-sm">Lịch họp phụ huynh</span>
                 </div>
                 <div class="flex items-center">
-                    <div class="w-2 h-2 sm:w-3 sm:h-3 bg-pink-400 rounded-full mr-1 sm:mr-2"></div>
-                    <span class="text-xs sm:text-sm">Họp phụ huynh</span>
+                    <div class="w-2 h-2 sm:w-3 sm:h-3 bg-emerald-500 rounded-full mr-1 sm:mr-2"></div>
+                    <span class="text-xs sm:text-sm">Sự kiện</span>
                 </div>
+                
             </div>
             <div class="text-pink-600 font-medium text-xs sm:text-sm">
                 Tổng: <?php echo e($events->count()); ?> sự kiện

@@ -15,4 +15,7 @@ interface CourseRepositoryInterface
     public function update(int $id, array $data);
     public function delete(int $id);
     public function updateOrdering(array $orderedIds);
+
+    public function getCoursesByAuthIdAndSeasonId();
+    public function getClassStudentsByCourseId(int $courseId);
 }

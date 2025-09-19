@@ -171,6 +171,10 @@
                                                 <flux:menu.item  icon="pencil"
                                                     wire:click="editCourse({{ $course->id }})">Sửa thông tin
                                                 </flux:menu.item>
+
+                                                <flux:menu.item icon="calendar"
+                                                    wire:click="autoCreateClassScheduleTimeTable({{ $course->id }})">Tạo lịch học
+                                                </flux:menu.item>
     
                                                 <flux:menu.separator />
     
