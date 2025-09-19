@@ -1,19 +1,13 @@
 <div>
     <div class="bg-white dark:bg-gray-800 rounded-xl shadow p-3 sm:p-4 w-full overflow-hidden">
-        <div class="hidden sm:flex items-center gap-2">
-            <div class="w-6 h-6 sm:w-8 sm:h-8 rounded-lg flex items-center justify-center">
-                <flux:icon.chart-pie class="w-4 h-4 text-blue-600 dark:text-blue-400" />
-            </div>
-            <h2 class="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white">Thống kê điểm danh</h2>
-        </div>
-
-        <div class="relative h-45 sm:h-48 md:h-52 lg:h-56 xl:h-60 overflow-hidden">
-            <canvas id="attendanceChart" class="block w-full h-full" style="width:100% !important;height:100% !important;border:0 !important;outline:0 !important;box-shadow:none !important;background-color:transparent !important;"></canvas>
+        <div class="relative h-37 sm:h-90  xl:h-90 overflow-hidden">
+            <canvas id="attendanceChart" class="block w-full h-full"
+                style="width:100% !important;height:100% !important;border:0 !important;outline:0 !important;box-shadow:none !important;background-color:transparent !important;"></canvas>
         </div>
 
         <!-- Legend tuỳ chỉnh cho mobile -->
         <div class="mt-3 sm:hidden">
-            <div class="flex flex-wrap gap-3 text-xs">
+            <div class="flex flex-wrap gap-2 text-xs">
                 <div class="flex items-center gap-2">
                     <span class="w-3 h-3 rounded-full" style="background-color: rgba(34, 197, 94, 0.9)"></span>
                     <span class="text-gray-700 dark:text-gray-300">Có mặt: {{ $present }}</span>
@@ -23,7 +17,7 @@
                     <span class="text-gray-700 dark:text-gray-300">Vắng mặt: {{ $absent }}</span>
                 </div>
                 <div class="flex items-center gap-2">
-                    <span class="w-3 h-3 rounded-full" style="background-color: rgba(255, 255, 0, 0.5)"></span>
+                    <span class="w-3 h-3 rounded-full" style="background-color: rgba(251, 207, 232, 0.8)"></span>
                     <span class="text-gray-700 dark:text-gray-300">Tổng số buổi: {{ $total }}</span>
                 </div>
             </div>
@@ -45,7 +39,7 @@
                 attendanceChartInstance.destroy();
             }
 
-            const isMobile = window.matchMedia('(max-width: 639.98px)').matches;
+            const isMobile = window.matchMedia('(max-width: 1023.98px)').matches;
 
             attendanceChartInstance = new Chart(canvas, {
                 type: 'pie',
@@ -55,9 +49,9 @@
                         label: 'Điểm danh',
                         data: @json($data),
                         backgroundColor: [
-                            'rgba(34, 197, 94, 0.9)', // present
-                            'rgba(239, 68, 68, 0.9)', // absent
-                            'rgba(255, 255, 0, 0.5)'  // total
+                            'rgba(34, 197, 94, 0.9)', // xanh lá
+                            'rgba(239, 68, 68, 0.9)', // đỏ
+                            'rgba(251, 207, 232, 0.8)' // total
                         ],
                         borderColor: isMobile ? [
                             'transparent',
@@ -66,7 +60,7 @@
                         ] : [
                             'rgba(34, 197, 94, 1)',
                             'rgba(239, 68, 68, 1)',
-                            'rgba(255, 163, 175, 0.5)'
+                            'rgba(236, 72, 153, 0.8)'
                         ],
                         borderWidth: isMobile ? 0 : 2
                     }]
@@ -82,7 +76,12 @@
                             labels: {
                                 usePointStyle: true,
                                 padding: 16,
-                                font: { size: 14 }
+                                font: {
+                                    size: 14
+                                }
+                            },
+                            onClick: function(event, legendItem) {
+
                             }
                         },
                         tooltip: {
@@ -91,6 +90,19 @@
                                     const value = context.parsed;
                                     return value + ' buổi';
                                 }
+                            }
+                        },
+                        title: { // Tiêu đề chart
+                            display: !isMobile,
+                            text: 'Thống kê điểm danh',
+                            color: '#be185d',
+                            font: {
+                                size: 20,
+                                weight: 'bold'
+                            },
+                            padding: {
+                                top: 10,
+                                bottom: 30
                             }
                         }
                     },
@@ -102,12 +114,16 @@
                         }
                     },
                     layout: {
-                        padding: { 
+                        padding: {
                             top: isMobile ? 8 : 20,
                             bottom: isMobile ? 8 : 20,
                             left: isMobile ? 8 : 20,
                             right: isMobile ? 8 : 20
                         }
+                    },
+                    animation: { // Hiệu ứng load chart
+                        duration: 2000,
+                        easing: 'easeInOutQuart'
                     }
                 }
             });
@@ -115,6 +131,7 @@
 
         // Khởi tạo và handle resize nhẹ nhàng
         let resizeTimer;
+
         function scheduleRerender() {
             clearTimeout(resizeTimer);
             resizeTimer = setTimeout(renderAttendanceChart, 200);
