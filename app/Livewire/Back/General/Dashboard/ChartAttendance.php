@@ -25,8 +25,8 @@ class ChartAttendance extends Component
 
         $this->labels = [
             'Có mặt',
-            'Vắng mặt',
-            'Tổng số buổi'
+            'Vắng',
+            'Tổng',
 
         ];
         $this->data = [$this->present, $this->absent, $this->total];
