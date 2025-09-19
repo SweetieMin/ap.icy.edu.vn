@@ -80,207 +80,229 @@
         @endif
 
 
-            {{-- Tab 3: Danh sách học viên --}}
-            @if ($activeTab === 'class-list')
-                {{-- Course Info Header --}}
-                <div class="theme-header-pink mb-6">
-                    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-3 sm:space-y-0">
-                        <div class="flex items-center space-x-3">
-                            <div class="w-10 h-10 bg-pink-100 dark:bg-pink-900 rounded-lg flex items-center justify-center">
-                                <flux:icon.academic-cap class="w-5 h-5 text-pink-600 dark:text-pink-400" />
-                            </div>
-                            <div>
-                                <h2 class="text-lg font-semibold text-gray-900 dark:text-white">Mã lớp: {{ $selectedCourse->name }}</h2>
-                                <p class="text-sm text-gray-600 dark:text-gray-400">Môn: {{ $selectedCourse->subject->name ?? 'Chưa xác định' }}</p>
-                            </div>
+        {{-- Tab 3: Danh sách học viên --}}
+        @if ($activeTab === 'class-list')
+            {{-- Course Info Header --}}
+            <div class="theme-header-pink mb-6">
+                <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-3 sm:space-y-0">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 bg-pink-100 dark:bg-pink-900 rounded-lg flex items-center justify-center">
+                            <flux:icon.academic-cap class="w-5 h-5 text-pink-600 dark:text-pink-400" />
                         </div>
-                        <div class="flex items-center space-x-4 text-sm">
-                            <div class="flex items-center space-x-2">
-                                <flux:icon.calendar class="w-4 h-4 text-gray-400" />
-                                <span class="text-gray-600 dark:text-gray-400">Mùa học: {{ $selectedCourse->season->name }}</span>
-                            </div>
+                        <div>
+                            <h2 class="text-lg font-semibold text-gray-900 dark:text-white">Mã lớp:
+                                {{ $selectedCourse->name }}</h2>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Môn:
+                                {{ $selectedCourse->subject->name ?? 'Chưa xác định' }}</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-4 text-sm">
+                        <div class="flex items-center space-x-2">
+                            <flux:icon.calendar class="w-4 h-4 text-gray-400" />
+                            <span class="text-gray-600 dark:text-gray-400">Mùa học:
+                                {{ $selectedCourse->season->name }}</span>
                         </div>
                     </div>
                 </div>
-                
-                <div class="theme-table-pink">
-                    {{-- Desktop Table View --}}
-                    <div class="hidden md:block overflow-x-auto">
-                        <table>
-                            <thead>
+            </div>
+
+            <div class="theme-table-pink">
+                {{-- Desktop Table View --}}
+                <div class="hidden md:block overflow-x-auto">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class="text-center">STT</th>
+                                <th>Họ và tên</th>
+                                <th class="text-center">Số điện thoại</th>
+                                <th class="text-center">Email</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @forelse ($classStudents as $i => $student)
                                 <tr>
-                                    <th class="text-center">STT</th>
-                                    <th >Họ và tên</th>
-                                    <th class="text-center">Số điện thoại</th>
-                                    <th class="text-center">Email</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @forelse ($classStudents as $i => $student)
-                                    <tr>
-                                        <td class="text-center">{{ $i + 1 }}</td>
-                                        <td >
-                                            <div class="flex items-center gap-3">
-                                                <img class="h-8 w-8 rounded-full object-cover"
-                                                    src="{{ $student->detail?->avatar ?? asset('images/default-avatar.png') }}"
-                                                    alt="{{ $student->name }}">
-                                                <div>
-                                                    <div class="font-medium">{{ $student->name }}</div>
-                                                    <div class="text-xs text-gray-500 dark:text-gray-400">ID:
-                                                        {{ $student->account_code }}</div>
-                                                </div>
+                                    <td class="text-center">{{ $i + 1 }}</td>
+                                    <td>
+                                        <div class="flex items-center gap-3">
+                                            <img class="h-8 w-8 rounded-full object-cover"
+                                                src="{{ $student->detail?->avatar ?? asset('images/default-avatar.png') }}"
+                                                alt="{{ $student->name }}">
+                                            <div>
+                                                <div class="font-medium">{{ $student->name }}</div>
+                                                <div class="text-xs text-gray-500 dark:text-gray-400">ID:
+                                                    {{ $student->account_code }}</div>
                                             </div>
-                                        </td>
-                                        <td class="text-center">{{ $student->detail->phone }}</td>
-                                        <td class="text-center">{{ $student->email }}</td>
-                                    </tr>
-                                @empty
-                                    <tr>
-                                        <td colspan="4" class="text-center">Không có học viên</td>
-                                    </tr>
-                                @endforelse
-                            </tbody>
-                        </table>
-                    </div>
-
-                    {{-- Mobile Card View --}}
-                    <div class="md:hidden space-y-3">
-
-                    </div>
+                                        </div>
+                                    </td>
+                                    <td class="text-center">{{ $student->detail->phone }}</td>
+                                    <td class="text-center">{{ $student->email }}</td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="4" class="text-center">Không có học viên</td>
+                                </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
                 </div>
-            @endif
 
-            {{-- Tab 4: Lịch sử điểm danh --}}
-            @if ($activeTab === 'attendance-history')
-                <div class="theme-table-pink">
-                    {{-- Desktop Table View --}}
-                    <div class="hidden md:block overflow-x-auto">
-                        <table>
-                            <thead>
+                {{-- Mobile Card View --}}
+                <div class="md:hidden space-y-3">
+
+                </div>
+            </div>
+        @endif
+
+        {{-- Tab 4: Lịch sử điểm danh --}}
+        @if ($activeTab === 'attendance-history')
+            <div class="theme-table-pink">
+                {{-- Desktop Table View --}}
+                <div class="hidden md:block overflow-x-auto">
+                    <table style="table-layout: fixed; width: 100%;">
+                        <thead>
+                            <tr>
+                                <th class="text-center sticky left-0 bg-white dark:bg-gray-800 z-10"
+                                    style="width: 60px;">STT</th>
+                                <th class="text-center sticky left-[60px] bg-white dark:bg-gray-800 z-10"
+                                    style="min-width: 250px !important; width: 250px !important;">Họ và tên</th>
+                                <th class="text-center sticky left-[310px] bg-white dark:bg-gray-800 z-10"
+                                    style="width: 80px;">Tổng</th>
+                                <th class="text-center sticky left-[390px] bg-white dark:bg-gray-800 z-10"
+                                    style="width: 80px;">Vắng(%)</th>
+                                @foreach ($classScheduleDates as $date)
+                                    <th class="text-center text-xs" style="width: 60px;">
+                                        {{ \Carbon\Carbon::parse($date)->format('d/m') }}
+                                    </th>
+                                @endforeach
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @forelse ($attendanceHistory as $i => $attendance)
                                 <tr>
-                                    <th class="text-center">STT</th>
-
-                                    <th class="text-center" style="min-width: 250px !important; width: 250px !important;">Họ và tên</th>
-                                    <th class="text-center">Tổng</th>
-                                    <th class="text-center">Vắng(%)</th>
-                                    @foreach ($classScheduleDates as $date)
-                                        <th class="text-center text-xs">
-                                            {{ \Carbon\Carbon::parse($date)->format('d/m') }}
-                                        </th>
-                                    @endforeach
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @forelse ($attendanceHistory as $i => $attendance)
-                                    <tr>
-                                        <td class="text-center">{{ $i + 1 }}</td>
-                                        <td style="min-width: 250px !important; width: 250px !important;">
-                                            <div class="flex items-center gap-3">
-                                                <img class="h-8 w-8 rounded-full object-cover"
-                                                    src="{{ $attendance['student']->detail?->avatar ?? asset('images/default-avatar.png') }}"
-                                                    alt="{{ $attendance['student']->name }}">
-                                                <div>
-                                                    <div class="font-medium text-sm">{{ $attendance['student']->name }}</div>
-                                                    <div class="text-xs text-gray-500 dark:text-gray-400">ID: {{ $attendance['student']->account_code }}</div>
+                                    <td class="text-center sticky left-0 bg-white dark:bg-gray-800 z-10"
+                                        style="width: 60px;">{{ $i + 1 }}</td>
+                                    <td class="sticky left-[60px] bg-white dark:bg-gray-800 z-10"
+                                        style="min-width: 250px !important; width: 250px !important;">
+                                        <div class="flex items-center gap-3">
+                                            <img class="h-8 w-8 rounded-full object-cover"
+                                                src="{{ $attendance['student']->detail?->avatar ?? asset('images/default-avatar.png') }}"
+                                                alt="{{ $attendance['student']->name }}">
+                                            <div>
+                                                <div class="font-medium text-sm">{{ $attendance['student']->name }}
                                                 </div>
+                                                <div class="text-xs text-gray-500 dark:text-gray-400">ID:
+                                                    {{ $attendance['student']->account_code }}</div>
                                             </div>
-                                        </td>
-                                        <td class="text-center">{{ $attendance['attendance_count'] }}/24</td>
-                                        <td class="text-center">
-                                            <span class="px-2 py-1 text-xs rounded-full {{ $attendance['absent_percentage'] > 20 ? 'bg-red-100 text-red-800' : ($attendance['absent_percentage'] > 10 ? 'bg-yellow-100 text-yellow-800' : 'bg-green-100 text-green-800') }}">
-                                                {{ $attendance['absent_percentage'] }}%
-                                            </span>
-                                        </td>
-                                        @foreach ($classScheduleDates as $date)
-                                            <td class="text-center">
-                                                @if ($attendance['attendances'][$date] !== null)
-                                                    @if ($attendance['attendances'][$date] === 'present')
-                                                        <span class="inline-flex items-center px-2 py-1 text-xs font-medium text-green-800 bg-green-100 rounded-full">
-                                                            <flux:icon.check class="w-3 h-3 mr-1" />
-                                                            Có
-                                                        </span>
-                                                    @else
-                                                        <span class="inline-flex items-center px-2 py-1 text-xs font-medium text-red-800 bg-red-100 rounded-full">
-                                                            <flux:icon.x-mark class="w-3 h-3 mr-1" />
-                                                            Vắng
-                                                        </span>
-                                                    @endif
-                                                @else
-                                                    <span class="inline-flex items-center px-2 py-1 text-xs font-medium text-gray-800 bg-gray-100 rounded-full">
-                                                        <flux:icon.minus class="w-3 h-3 mr-1" />
-                                                    </span>
-                                                @endif
-                                            </td>
-                                        @endforeach
-                                    </tr>
-                                @empty
-                                    <tr>
-                                        <td colspan="{{ 5 + count($classScheduleDates) }}" class="text-center py-8">
-                                            <div class="flex flex-col items-center space-y-2">
-                                                <flux:icon.user-group class="w-12 h-12 text-gray-400" />
-                                                <p class="text-gray-500">Chưa có dữ liệu điểm danh</p>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                @endforelse
-                            </tbody>
-                        </table>
-                    </div>
-
-                    {{-- Mobile Card View --}}
-                    <div class="md:hidden space-y-4">
-                        @forelse ($attendanceHistory as $i => $attendance)
-                            <div class="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-4">
-                                <div class="flex items-center space-x-3 mb-3">
-                                    <img class="h-10 w-10 rounded-full object-cover"
-                                        src="{{ $attendance['student']->detail?->avatar ?? asset('images/default-avatar.png') }}"
-                                        alt="{{ $attendance['student']->name }}">
-                                    <div class="flex-1">
-                                        <h3 class="font-medium text-gray-900 dark:text-white">{{ $attendance['student']->name }}</h3>
-                                        <p class="text-sm text-gray-500 dark:text-gray-400">Mã: {{ $attendance['student']->account_code }}</p>
-                                    </div>
-                                    <div class="text-right">
-                                        <div class="text-sm font-medium text-gray-900 dark:text-white">{{ $attendance['attendance_count'] }}/24 buổi</div>
-                                        <span class="px-2 py-1 text-xs rounded-full {{ $attendance['absent_percentage'] > 20 ? 'bg-red-100 text-red-800' : ($attendance['absent_percentage'] > 10 ? 'bg-yellow-100 text-yellow-800' : 'bg-green-100 text-green-800') }}">
-                                            {{ $attendance['absent_percentage'] }}% vắng
+                                        </div>
+                                    </td>
+                                    <td class="text-center sticky left-[310px] bg-white dark:bg-gray-800 z-10"
+                                        style="width: 80px;">{{ $attendance['attendance_count'] }}/24</td>
+                                    <td class="text-center sticky left-[390px] bg-white dark:bg-gray-800 z-10"
+                                        style="width: 80px;">
+                                        <span
+                                            class="px-2 py-1 text-xs rounded-full {{ $attendance['absent_percentage'] > 20 ? 'bg-red-100 text-red-800' : ($attendance['absent_percentage'] > 10 ? 'bg-yellow-100 text-yellow-800' : 'bg-green-100 text-green-800') }}">
+                                            {{ $attendance['absent_percentage'] }}%
                                         </span>
-                                    </div>
-                                </div>
-                                
-                                <div class="grid grid-cols-3 gap-2">
+                                    </td>
                                     @foreach ($classScheduleDates as $date)
-                                        <div class="text-center">
-                                            <div class="text-xs text-gray-500 dark:text-gray-400 mb-1">
-                                                {{ \Carbon\Carbon::parse($date)->format('d/m') }}
-                                            </div>
+                                        <td class="text-center">
                                             @if ($attendance['attendances'][$date] !== null)
                                                 @if ($attendance['attendances'][$date] === 'present')
-                                                    <span class="inline-flex items-center justify-center w-6 h-6 text-xs text-green-800 bg-green-100 rounded-full">
-                                                        <flux:icon.check class="w-3 h-3" />
+                                                    <span
+                                                        class="inline-flex items-center px-2 py-1 text-xs font-medium text-green-700  rounded-full">
+                                                        P
                                                     </span>
                                                 @else
-                                                    <span class="inline-flex items-center justify-center w-6 h-6 text-xs text-red-800 bg-red-100 rounded-full">
-                                                        <flux:icon.x-mark class="w-3 h-3" />
+                                                    <span
+                                                        class="inline-flex items-center px-2 py-1 text-xs font-medium text-rose-500  rounded-full">
+                                                        A
                                                     </span>
                                                 @endif
                                             @else
-                                                <span class="inline-flex items-center justify-center w-6 h-6 text-xs text-gray-800 bg-gray-100 rounded-full">
-                                                    <flux:icon.minus class="w-3 h-3" />
+                                                <span
+                                                    class="inline-flex items-center px-2 py-1 text-xs font-medium text-gray-800 rounded-full">
+                                                    <flux:icon.minus class="w-3 h-3 mr-1" />
                                                 </span>
                                             @endif
-                                        </div>
+                                        </td>
                                     @endforeach
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="{{ 5 + count($classScheduleDates) }}" class="text-center py-8">
+                                        <div class="flex flex-col items-center space-y-2">
+                                            <flux:icon.user-group class="w-12 h-12 text-gray-400" />
+                                            <p class="text-gray-500">Chưa có dữ liệu điểm danh</p>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
+                </div>
+
+                {{-- Mobile Card View --}}
+                <div class="md:hidden space-y-4">
+                    @forelse ($attendanceHistory as $i => $attendance)
+                        <div
+                            class="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-4">
+                            <div class="flex items-center space-x-3 mb-3">
+                                <img class="h-10 w-10 rounded-full object-cover"
+                                    src="{{ $attendance['student']->detail?->avatar ?? asset('images/default-avatar.png') }}"
+                                    alt="{{ $attendance['student']->name }}">
+                                <div class="flex-1">
+                                    <h3 class="font-medium text-gray-900 dark:text-white">
+                                        {{ $attendance['student']->name }}</h3>
+                                    <p class="text-sm text-gray-500 dark:text-gray-400">Mã:
+                                        {{ $attendance['student']->account_code }}</p>
+                                </div>
+                                <div class="text-right">
+                                    <div class="text-sm font-medium text-gray-900 dark:text-white">
+                                        {{ $attendance['attendance_count'] }}/24 buổi</div>
+                                    <span
+                                        class="px-2 py-1 text-xs rounded-full {{ $attendance['absent_percentage'] > 20 ? 'bg-red-100 text-red-800' : ($attendance['absent_percentage'] > 10 ? 'bg-yellow-100 text-yellow-800' : 'bg-green-100 text-green-800') }}">
+                                        {{ $attendance['absent_percentage'] }}% vắng
+                                    </span>
                                 </div>
                             </div>
-                        @empty
-                            <div class="text-center py-8">
-                                <flux:icon.user-group class="w-12 h-12 text-gray-400 mx-auto mb-2" />
-                                <p class="text-gray-500">Chưa có dữ liệu điểm danh</p>
+
+                            <div class="grid grid-cols-3 gap-2">
+                                @foreach ($classScheduleDates as $date)
+                                    <div class="text-center">
+                                        <div class="text-xs text-gray-500 dark:text-gray-400 mb-1">
+                                            {{ \Carbon\Carbon::parse($date)->format('d/m') }}
+                                        </div>
+                                        @if ($attendance['attendances'][$date] !== null)
+                                            @if ($attendance['attendances'][$date] === 'present')
+                                                <span
+                                                    class="inline-flex items-center justify-center w-6 h-6 text-xs text-green-800 bg-green-100 rounded-full">
+                                                    <flux:icon.check class="w-3 h-3" />
+                                                </span>
+                                            @else
+                                                <span
+                                                    class="inline-flex items-center justify-center w-6 h-6 text-xs text-red-800 bg-red-100 rounded-full">
+                                                    <flux:icon.x-mark class="w-3 h-3" />
+                                                </span>
+                                            @endif
+                                        @else
+                                            <span
+                                                class="inline-flex items-center justify-center w-6 h-6 text-xs text-gray-800 bg-gray-100 rounded-full">
+                                                <flux:icon.minus class="w-3 h-3" />
+                                            </span>
+                                        @endif
+                                    </div>
+                                @endforeach
                             </div>
-                        @endforelse
-                    </div>
+                        </div>
+                    @empty
+                        <div class="text-center py-8">
+                            <flux:icon.user-group class="w-12 h-12 text-gray-400 mx-auto mb-2" />
+                            <p class="text-gray-500">Chưa có dữ liệu điểm danh</p>
+                        </div>
+                    @endforelse
                 </div>
-            @endif
+            </div>
+        @endif
 
     </div>
 

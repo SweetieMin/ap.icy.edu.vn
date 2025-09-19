@@ -220,14 +220,14 @@ if (isset($__slots)) unset($__slots);
         <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
 
 
+        
+        <!--[if BLOCK]><![endif]--><?php if($activeTab === 'class-list'): ?>
             
-            <!--[if BLOCK]><![endif]--><?php if($activeTab === 'class-list'): ?>
-                
-                <div class="theme-header-pink mb-6">
-                    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-3 sm:space-y-0">
-                        <div class="flex items-center space-x-3">
-                            <div class="w-10 h-10 bg-pink-100 dark:bg-pink-900 rounded-lg flex items-center justify-center">
-                                <?php if (isset($component)) { $__componentOriginale0880cb6488d85d9ca54288aa080a834 = $component; } ?>
+            <div class="theme-header-pink mb-6">
+                <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-3 sm:space-y-0">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 bg-pink-100 dark:bg-pink-900 rounded-lg flex items-center justify-center">
+                            <?php if (isset($component)) { $__componentOriginale0880cb6488d85d9ca54288aa080a834 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginale0880cb6488d85d9ca54288aa080a834 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::icon.academic-cap','data' => ['class' => 'w-5 h-5 text-pink-600 dark:text-pink-400']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('flux::icon.academic-cap'); ?>
@@ -247,15 +247,17 @@ if (isset($__slots)) unset($__slots);
 <?php $component = $__componentOriginale0880cb6488d85d9ca54288aa080a834; ?>
 <?php unset($__componentOriginale0880cb6488d85d9ca54288aa080a834); ?>
 <?php endif; ?>
-                            </div>
-                            <div>
-                                <h2 class="text-lg font-semibold text-gray-900 dark:text-white">Mã lớp: <?php echo e($selectedCourse->name); ?></h2>
-                                <p class="text-sm text-gray-600 dark:text-gray-400">Môn: <?php echo e($selectedCourse->subject->name ?? 'Chưa xác định'); ?></p>
-                            </div>
                         </div>
-                        <div class="flex items-center space-x-4 text-sm">
-                            <div class="flex items-center space-x-2">
-                                <?php if (isset($component)) { $__componentOriginalf48bb55ce6fd23a8de595ceefa5f14db = $component; } ?>
+                        <div>
+                            <h2 class="text-lg font-semibold text-gray-900 dark:text-white">Mã lớp:
+                                <?php echo e($selectedCourse->name); ?></h2>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Môn:
+                                <?php echo e($selectedCourse->subject->name ?? 'Chưa xác định'); ?></p>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-4 text-sm">
+                        <div class="flex items-center space-x-2">
+                            <?php if (isset($component)) { $__componentOriginalf48bb55ce6fd23a8de595ceefa5f14db = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginalf48bb55ce6fd23a8de595ceefa5f14db = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::icon.calendar','data' => ['class' => 'w-4 h-4 text-gray-400']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('flux::icon.calendar'); ?>
@@ -275,156 +277,131 @@ if (isset($__slots)) unset($__slots);
 <?php $component = $__componentOriginalf48bb55ce6fd23a8de595ceefa5f14db; ?>
 <?php unset($__componentOriginalf48bb55ce6fd23a8de595ceefa5f14db); ?>
 <?php endif; ?>
-                                <span class="text-gray-600 dark:text-gray-400">Mùa học: <?php echo e($selectedCourse->season->name); ?></span>
-                            </div>
+                            <span class="text-gray-600 dark:text-gray-400">Mùa học:
+                                <?php echo e($selectedCourse->season->name); ?></span>
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <div class="theme-table-pink">
                 
-                <div class="theme-table-pink">
-                    
-                    <div class="hidden md:block overflow-x-auto">
-                        <table>
-                            <thead>
+                <div class="hidden md:block overflow-x-auto">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class="text-center">STT</th>
+                                <th>Họ và tên</th>
+                                <th class="text-center">Số điện thoại</th>
+                                <th class="text-center">Email</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!--[if BLOCK]><![endif]--><?php $__empty_1 = true; $__currentLoopData = $classStudents; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $i => $student): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                                 <tr>
-                                    <th class="text-center">STT</th>
-                                    <th >Họ và tên</th>
-                                    <th class="text-center">Số điện thoại</th>
-                                    <th class="text-center">Email</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <!--[if BLOCK]><![endif]--><?php $__empty_1 = true; $__currentLoopData = $classStudents; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $i => $student): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
-                                    <tr>
-                                        <td class="text-center"><?php echo e($i + 1); ?></td>
-                                        <td >
-                                            <div class="flex items-center gap-3">
-                                                <img class="h-8 w-8 rounded-full object-cover"
-                                                    src="<?php echo e($student->detail?->avatar ?? asset('images/default-avatar.png')); ?>"
-                                                    alt="<?php echo e($student->name); ?>">
-                                                <div>
-                                                    <div class="font-medium"><?php echo e($student->name); ?></div>
-                                                    <div class="text-xs text-gray-500 dark:text-gray-400">ID:
-                                                        <?php echo e($student->account_code); ?></div>
-                                                </div>
+                                    <td class="text-center"><?php echo e($i + 1); ?></td>
+                                    <td>
+                                        <div class="flex items-center gap-3">
+                                            <img class="h-8 w-8 rounded-full object-cover"
+                                                src="<?php echo e($student->detail?->avatar ?? asset('images/default-avatar.png')); ?>"
+                                                alt="<?php echo e($student->name); ?>">
+                                            <div>
+                                                <div class="font-medium"><?php echo e($student->name); ?></div>
+                                                <div class="text-xs text-gray-500 dark:text-gray-400">ID:
+                                                    <?php echo e($student->account_code); ?></div>
                                             </div>
-                                        </td>
-                                        <td class="text-center"><?php echo e($student->detail->phone); ?></td>
-                                        <td class="text-center"><?php echo e($student->email); ?></td>
-                                    </tr>
-                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
-                                    <tr>
-                                        <td colspan="4" class="text-center">Không có học viên</td>
-                                    </tr>
-                                <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
-                            </tbody>
-                        </table>
-                    </div>
-
-                    
-                    <div class="md:hidden space-y-3">
-
-                    </div>
+                                        </div>
+                                    </td>
+                                    <td class="text-center"><?php echo e($student->detail->phone); ?></td>
+                                    <td class="text-center"><?php echo e($student->email); ?></td>
+                                </tr>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+                                <tr>
+                                    <td colspan="4" class="text-center">Không có học viên</td>
+                                </tr>
+                            <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                        </tbody>
+                    </table>
                 </div>
-            <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
 
-            
-            <!--[if BLOCK]><![endif]--><?php if($activeTab === 'attendance-history'): ?>
-                <div class="theme-table-pink">
-                    
-                    <div class="hidden md:block overflow-x-auto">
-                        <table>
-                            <thead>
+                
+                <div class="md:hidden space-y-3">
+
+                </div>
+            </div>
+        <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+
+        
+        <!--[if BLOCK]><![endif]--><?php if($activeTab === 'attendance-history'): ?>
+            <div class="theme-table-pink">
+                
+                <div class="hidden md:block overflow-x-auto">
+                    <table style="table-layout: fixed; width: 100%;">
+                        <thead>
+                            <tr>
+                                <th class="text-center sticky left-0 bg-white dark:bg-gray-800 z-10"
+                                    style="width: 60px;">STT</th>
+                                <th class="text-center sticky left-[60px] bg-white dark:bg-gray-800 z-10"
+                                    style="min-width: 250px !important; width: 250px !important;">Họ và tên</th>
+                                <th class="text-center sticky left-[310px] bg-white dark:bg-gray-800 z-10"
+                                    style="width: 80px;">Tổng</th>
+                                <th class="text-center sticky left-[390px] bg-white dark:bg-gray-800 z-10"
+                                    style="width: 80px;">Vắng(%)</th>
+                                <!--[if BLOCK]><![endif]--><?php $__currentLoopData = $classScheduleDates; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $date): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <th class="text-center text-xs" style="width: 60px;">
+                                        <?php echo e(\Carbon\Carbon::parse($date)->format('d/m')); ?>
+
+                                    </th>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><!--[if ENDBLOCK]><![endif]-->
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!--[if BLOCK]><![endif]--><?php $__empty_1 = true; $__currentLoopData = $attendanceHistory; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $i => $attendance): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                                 <tr>
-                                    <th class="text-center">STT</th>
+                                    <td class="text-center sticky left-0 bg-white dark:bg-gray-800 z-10"
+                                        style="width: 60px;"><?php echo e($i + 1); ?></td>
+                                    <td class="sticky left-[60px] bg-white dark:bg-gray-800 z-10"
+                                        style="min-width: 250px !important; width: 250px !important;">
+                                        <div class="flex items-center gap-3">
+                                            <img class="h-8 w-8 rounded-full object-cover"
+                                                src="<?php echo e($attendance['student']->detail?->avatar ?? asset('images/default-avatar.png')); ?>"
+                                                alt="<?php echo e($attendance['student']->name); ?>">
+                                            <div>
+                                                <div class="font-medium text-sm"><?php echo e($attendance['student']->name); ?>
 
-                                    <th class="text-center" style="min-width: 250px !important; width: 250px !important;">Họ và tên</th>
-                                    <th class="text-center">Tổng</th>
-                                    <th class="text-center">Vắng(%)</th>
-                                    <!--[if BLOCK]><![endif]--><?php $__currentLoopData = $classScheduleDates; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $date): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                        <th class="text-center text-xs">
-                                            <?php echo e(\Carbon\Carbon::parse($date)->format('d/m')); ?>
-
-                                        </th>
-                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><!--[if ENDBLOCK]><![endif]-->
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <!--[if BLOCK]><![endif]--><?php $__empty_1 = true; $__currentLoopData = $attendanceHistory; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $i => $attendance): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
-                                    <tr>
-                                        <td class="text-center"><?php echo e($i + 1); ?></td>
-                                        <td style="min-width: 250px !important; width: 250px !important;">
-                                            <div class="flex items-center gap-3">
-                                                <img class="h-8 w-8 rounded-full object-cover"
-                                                    src="<?php echo e($attendance['student']->detail?->avatar ?? asset('images/default-avatar.png')); ?>"
-                                                    alt="<?php echo e($attendance['student']->name); ?>">
-                                                <div>
-                                                    <div class="font-medium text-sm"><?php echo e($attendance['student']->name); ?></div>
-                                                    <div class="text-xs text-gray-500 dark:text-gray-400">ID: <?php echo e($attendance['student']->account_code); ?></div>
                                                 </div>
+                                                <div class="text-xs text-gray-500 dark:text-gray-400">ID:
+                                                    <?php echo e($attendance['student']->account_code); ?></div>
                                             </div>
-                                        </td>
-                                        <td class="text-center"><?php echo e($attendance['attendance_count']); ?>/24</td>
+                                        </div>
+                                    </td>
+                                    <td class="text-center sticky left-[310px] bg-white dark:bg-gray-800 z-10"
+                                        style="width: 80px;"><?php echo e($attendance['attendance_count']); ?>/24</td>
+                                    <td class="text-center sticky left-[390px] bg-white dark:bg-gray-800 z-10"
+                                        style="width: 80px;">
+                                        <span
+                                            class="px-2 py-1 text-xs rounded-full <?php echo e($attendance['absent_percentage'] > 20 ? 'bg-red-100 text-red-800' : ($attendance['absent_percentage'] > 10 ? 'bg-yellow-100 text-yellow-800' : 'bg-green-100 text-green-800')); ?>">
+                                            <?php echo e($attendance['absent_percentage']); ?>%
+                                        </span>
+                                    </td>
+                                    <!--[if BLOCK]><![endif]--><?php $__currentLoopData = $classScheduleDates; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $date): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                         <td class="text-center">
-                                            <span class="px-2 py-1 text-xs rounded-full <?php echo e($attendance['absent_percentage'] > 20 ? 'bg-red-100 text-red-800' : ($attendance['absent_percentage'] > 10 ? 'bg-yellow-100 text-yellow-800' : 'bg-green-100 text-green-800')); ?>">
-                                                <?php echo e($attendance['absent_percentage']); ?>%
-                                            </span>
-                                        </td>
-                                        <!--[if BLOCK]><![endif]--><?php $__currentLoopData = $classScheduleDates; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $date): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                            <td class="text-center">
-                                                <!--[if BLOCK]><![endif]--><?php if($attendance['attendances'][$date] !== null): ?>
-                                                    <!--[if BLOCK]><![endif]--><?php if($attendance['attendances'][$date] === 'present'): ?>
-                                                        <span class="inline-flex items-center px-2 py-1 text-xs font-medium text-green-800 bg-green-100 rounded-full">
-                                                            <?php if (isset($component)) { $__componentOriginal9c2dfd6cb98f4df18e26d1694500af11 = $component; } ?>
-<?php if (isset($attributes)) { $__attributesOriginal9c2dfd6cb98f4df18e26d1694500af11 = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::icon.check','data' => ['class' => 'w-3 h-3 mr-1']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
-<?php $component->withName('flux::icon.check'); ?>
-<?php if ($component->shouldRender()): ?>
-<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
-<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
-<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
-<?php endif; ?>
-<?php $component->withAttributes(['class' => 'w-3 h-3 mr-1']); ?>
-<?php echo $__env->renderComponent(); ?>
-<?php endif; ?>
-<?php if (isset($__attributesOriginal9c2dfd6cb98f4df18e26d1694500af11)): ?>
-<?php $attributes = $__attributesOriginal9c2dfd6cb98f4df18e26d1694500af11; ?>
-<?php unset($__attributesOriginal9c2dfd6cb98f4df18e26d1694500af11); ?>
-<?php endif; ?>
-<?php if (isset($__componentOriginal9c2dfd6cb98f4df18e26d1694500af11)): ?>
-<?php $component = $__componentOriginal9c2dfd6cb98f4df18e26d1694500af11; ?>
-<?php unset($__componentOriginal9c2dfd6cb98f4df18e26d1694500af11); ?>
-<?php endif; ?>
-                                                            Có
-                                                        </span>
-                                                    <?php else: ?>
-                                                        <span class="inline-flex items-center px-2 py-1 text-xs font-medium text-red-800 bg-red-100 rounded-full">
-                                                            <?php if (isset($component)) { $__componentOriginal155e76c41fe51242bc25d269fabf82f5 = $component; } ?>
-<?php if (isset($attributes)) { $__attributesOriginal155e76c41fe51242bc25d269fabf82f5 = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::icon.x-mark','data' => ['class' => 'w-3 h-3 mr-1']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
-<?php $component->withName('flux::icon.x-mark'); ?>
-<?php if ($component->shouldRender()): ?>
-<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
-<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
-<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
-<?php endif; ?>
-<?php $component->withAttributes(['class' => 'w-3 h-3 mr-1']); ?>
-<?php echo $__env->renderComponent(); ?>
-<?php endif; ?>
-<?php if (isset($__attributesOriginal155e76c41fe51242bc25d269fabf82f5)): ?>
-<?php $attributes = $__attributesOriginal155e76c41fe51242bc25d269fabf82f5; ?>
-<?php unset($__attributesOriginal155e76c41fe51242bc25d269fabf82f5); ?>
-<?php endif; ?>
-<?php if (isset($__componentOriginal155e76c41fe51242bc25d269fabf82f5)): ?>
-<?php $component = $__componentOriginal155e76c41fe51242bc25d269fabf82f5; ?>
-<?php unset($__componentOriginal155e76c41fe51242bc25d269fabf82f5); ?>
-<?php endif; ?>
-                                                            Vắng
-                                                        </span>
-                                                    <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                                            <!--[if BLOCK]><![endif]--><?php if($attendance['attendances'][$date] !== null): ?>
+                                                <!--[if BLOCK]><![endif]--><?php if($attendance['attendances'][$date] === 'present'): ?>
+                                                    <span
+                                                        class="inline-flex items-center px-2 py-1 text-xs font-medium text-green-700  rounded-full">
+                                                        P
+                                                    </span>
                                                 <?php else: ?>
-                                                    <span class="inline-flex items-center px-2 py-1 text-xs font-medium text-gray-800 bg-gray-100 rounded-full">
-                                                        <?php if (isset($component)) { $__componentOriginal01ef35ccfb2d03cc6412dbe2dc9e1a50 = $component; } ?>
+                                                    <span
+                                                        class="inline-flex items-center px-2 py-1 text-xs font-medium text-rose-500  rounded-full">
+                                                        A
+                                                    </span>
+                                                <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                                            <?php else: ?>
+                                                <span
+                                                    class="inline-flex items-center px-2 py-1 text-xs font-medium text-gray-800 rounded-full">
+                                                    <?php if (isset($component)) { $__componentOriginal01ef35ccfb2d03cc6412dbe2dc9e1a50 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal01ef35ccfb2d03cc6412dbe2dc9e1a50 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::icon.minus','data' => ['class' => 'w-3 h-3 mr-1']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('flux::icon.minus'); ?>
@@ -444,16 +421,16 @@ if (isset($__slots)) unset($__slots);
 <?php $component = $__componentOriginal01ef35ccfb2d03cc6412dbe2dc9e1a50; ?>
 <?php unset($__componentOriginal01ef35ccfb2d03cc6412dbe2dc9e1a50); ?>
 <?php endif; ?>
-                                                    </span>
-                                                <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
-                                            </td>
-                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><!--[if ENDBLOCK]><![endif]-->
-                                    </tr>
-                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
-                                    <tr>
-                                        <td colspan="<?php echo e(5 + count($classScheduleDates)); ?>" class="text-center py-8">
-                                            <div class="flex flex-col items-center space-y-2">
-                                                <?php if (isset($component)) { $__componentOriginaldeeed84ca4f29f425b89c454233ef87a = $component; } ?>
+                                                </span>
+                                            <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                                        </td>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><!--[if ENDBLOCK]><![endif]-->
+                                </tr>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+                                <tr>
+                                    <td colspan="<?php echo e(5 + count($classScheduleDates)); ?>" class="text-center py-8">
+                                        <div class="flex flex-col items-center space-y-2">
+                                            <?php if (isset($component)) { $__componentOriginaldeeed84ca4f29f425b89c454233ef87a = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginaldeeed84ca4f29f425b89c454233ef87a = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::icon.user-group','data' => ['class' => 'w-12 h-12 text-gray-400']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('flux::icon.user-group'); ?>
@@ -473,46 +450,52 @@ if (isset($__slots)) unset($__slots);
 <?php $component = $__componentOriginaldeeed84ca4f29f425b89c454233ef87a; ?>
 <?php unset($__componentOriginaldeeed84ca4f29f425b89c454233ef87a); ?>
 <?php endif; ?>
-                                                <p class="text-gray-500">Chưa có dữ liệu điểm danh</p>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
-                            </tbody>
-                        </table>
-                    </div>
+                                            <p class="text-gray-500">Chưa có dữ liệu điểm danh</p>
+                                        </div>
+                                    </td>
+                                </tr>
+                            <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                        </tbody>
+                    </table>
+                </div>
 
-                    
-                    <div class="md:hidden space-y-4">
-                        <!--[if BLOCK]><![endif]--><?php $__empty_1 = true; $__currentLoopData = $attendanceHistory; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $i => $attendance): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
-                            <div class="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-4">
-                                <div class="flex items-center space-x-3 mb-3">
-                                    <img class="h-10 w-10 rounded-full object-cover"
-                                        src="<?php echo e($attendance['student']->detail?->avatar ?? asset('images/default-avatar.png')); ?>"
-                                        alt="<?php echo e($attendance['student']->name); ?>">
-                                    <div class="flex-1">
-                                        <h3 class="font-medium text-gray-900 dark:text-white"><?php echo e($attendance['student']->name); ?></h3>
-                                        <p class="text-sm text-gray-500 dark:text-gray-400">Mã: <?php echo e($attendance['student']->account_code); ?></p>
-                                    </div>
-                                    <div class="text-right">
-                                        <div class="text-sm font-medium text-gray-900 dark:text-white"><?php echo e($attendance['attendance_count']); ?>/24 buổi</div>
-                                        <span class="px-2 py-1 text-xs rounded-full <?php echo e($attendance['absent_percentage'] > 20 ? 'bg-red-100 text-red-800' : ($attendance['absent_percentage'] > 10 ? 'bg-yellow-100 text-yellow-800' : 'bg-green-100 text-green-800')); ?>">
-                                            <?php echo e($attendance['absent_percentage']); ?>% vắng
-                                        </span>
-                                    </div>
+                
+                <div class="md:hidden space-y-4">
+                    <!--[if BLOCK]><![endif]--><?php $__empty_1 = true; $__currentLoopData = $attendanceHistory; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $i => $attendance): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                        <div
+                            class="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-4">
+                            <div class="flex items-center space-x-3 mb-3">
+                                <img class="h-10 w-10 rounded-full object-cover"
+                                    src="<?php echo e($attendance['student']->detail?->avatar ?? asset('images/default-avatar.png')); ?>"
+                                    alt="<?php echo e($attendance['student']->name); ?>">
+                                <div class="flex-1">
+                                    <h3 class="font-medium text-gray-900 dark:text-white">
+                                        <?php echo e($attendance['student']->name); ?></h3>
+                                    <p class="text-sm text-gray-500 dark:text-gray-400">Mã:
+                                        <?php echo e($attendance['student']->account_code); ?></p>
                                 </div>
-                                
-                                <div class="grid grid-cols-3 gap-2">
-                                    <!--[if BLOCK]><![endif]--><?php $__currentLoopData = $classScheduleDates; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $date): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                        <div class="text-center">
-                                            <div class="text-xs text-gray-500 dark:text-gray-400 mb-1">
-                                                <?php echo e(\Carbon\Carbon::parse($date)->format('d/m')); ?>
+                                <div class="text-right">
+                                    <div class="text-sm font-medium text-gray-900 dark:text-white">
+                                        <?php echo e($attendance['attendance_count']); ?>/24 buổi</div>
+                                    <span
+                                        class="px-2 py-1 text-xs rounded-full <?php echo e($attendance['absent_percentage'] > 20 ? 'bg-red-100 text-red-800' : ($attendance['absent_percentage'] > 10 ? 'bg-yellow-100 text-yellow-800' : 'bg-green-100 text-green-800')); ?>">
+                                        <?php echo e($attendance['absent_percentage']); ?>% vắng
+                                    </span>
+                                </div>
+                            </div>
 
-                                            </div>
-                                            <!--[if BLOCK]><![endif]--><?php if($attendance['attendances'][$date] !== null): ?>
-                                                <!--[if BLOCK]><![endif]--><?php if($attendance['attendances'][$date] === 'present'): ?>
-                                                    <span class="inline-flex items-center justify-center w-6 h-6 text-xs text-green-800 bg-green-100 rounded-full">
-                                                        <?php if (isset($component)) { $__componentOriginal9c2dfd6cb98f4df18e26d1694500af11 = $component; } ?>
+                            <div class="grid grid-cols-3 gap-2">
+                                <!--[if BLOCK]><![endif]--><?php $__currentLoopData = $classScheduleDates; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $date): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <div class="text-center">
+                                        <div class="text-xs text-gray-500 dark:text-gray-400 mb-1">
+                                            <?php echo e(\Carbon\Carbon::parse($date)->format('d/m')); ?>
+
+                                        </div>
+                                        <!--[if BLOCK]><![endif]--><?php if($attendance['attendances'][$date] !== null): ?>
+                                            <!--[if BLOCK]><![endif]--><?php if($attendance['attendances'][$date] === 'present'): ?>
+                                                <span
+                                                    class="inline-flex items-center justify-center w-6 h-6 text-xs text-green-800 bg-green-100 rounded-full">
+                                                    <?php if (isset($component)) { $__componentOriginal9c2dfd6cb98f4df18e26d1694500af11 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal9c2dfd6cb98f4df18e26d1694500af11 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::icon.check','data' => ['class' => 'w-3 h-3']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('flux::icon.check'); ?>
@@ -532,10 +515,11 @@ if (isset($__slots)) unset($__slots);
 <?php $component = $__componentOriginal9c2dfd6cb98f4df18e26d1694500af11; ?>
 <?php unset($__componentOriginal9c2dfd6cb98f4df18e26d1694500af11); ?>
 <?php endif; ?>
-                                                    </span>
-                                                <?php else: ?>
-                                                    <span class="inline-flex items-center justify-center w-6 h-6 text-xs text-red-800 bg-red-100 rounded-full">
-                                                        <?php if (isset($component)) { $__componentOriginal155e76c41fe51242bc25d269fabf82f5 = $component; } ?>
+                                                </span>
+                                            <?php else: ?>
+                                                <span
+                                                    class="inline-flex items-center justify-center w-6 h-6 text-xs text-red-800 bg-red-100 rounded-full">
+                                                    <?php if (isset($component)) { $__componentOriginal155e76c41fe51242bc25d269fabf82f5 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal155e76c41fe51242bc25d269fabf82f5 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::icon.x-mark','data' => ['class' => 'w-3 h-3']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('flux::icon.x-mark'); ?>
@@ -555,11 +539,12 @@ if (isset($__slots)) unset($__slots);
 <?php $component = $__componentOriginal155e76c41fe51242bc25d269fabf82f5; ?>
 <?php unset($__componentOriginal155e76c41fe51242bc25d269fabf82f5); ?>
 <?php endif; ?>
-                                                    </span>
-                                                <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
-                                            <?php else: ?>
-                                                <span class="inline-flex items-center justify-center w-6 h-6 text-xs text-gray-800 bg-gray-100 rounded-full">
-                                                    <?php if (isset($component)) { $__componentOriginal01ef35ccfb2d03cc6412dbe2dc9e1a50 = $component; } ?>
+                                                </span>
+                                            <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                                        <?php else: ?>
+                                            <span
+                                                class="inline-flex items-center justify-center w-6 h-6 text-xs text-gray-800 bg-gray-100 rounded-full">
+                                                <?php if (isset($component)) { $__componentOriginal01ef35ccfb2d03cc6412dbe2dc9e1a50 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal01ef35ccfb2d03cc6412dbe2dc9e1a50 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::icon.minus','data' => ['class' => 'w-3 h-3']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('flux::icon.minus'); ?>
@@ -579,15 +564,15 @@ if (isset($__slots)) unset($__slots);
 <?php $component = $__componentOriginal01ef35ccfb2d03cc6412dbe2dc9e1a50; ?>
 <?php unset($__componentOriginal01ef35ccfb2d03cc6412dbe2dc9e1a50); ?>
 <?php endif; ?>
-                                                </span>
-                                            <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
-                                        </div>
-                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><!--[if ENDBLOCK]><![endif]-->
-                                </div>
+                                            </span>
+                                        <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                                    </div>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><!--[if ENDBLOCK]><![endif]-->
                             </div>
-                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
-                            <div class="text-center py-8">
-                                <?php if (isset($component)) { $__componentOriginaldeeed84ca4f29f425b89c454233ef87a = $component; } ?>
+                        </div>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+                        <div class="text-center py-8">
+                            <?php if (isset($component)) { $__componentOriginaldeeed84ca4f29f425b89c454233ef87a = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginaldeeed84ca4f29f425b89c454233ef87a = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::icon.user-group','data' => ['class' => 'w-12 h-12 text-gray-400 mx-auto mb-2']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('flux::icon.user-group'); ?>
@@ -607,12 +592,12 @@ if (isset($__slots)) unset($__slots);
 <?php $component = $__componentOriginaldeeed84ca4f29f425b89c454233ef87a; ?>
 <?php unset($__componentOriginaldeeed84ca4f29f425b89c454233ef87a); ?>
 <?php endif; ?>
-                                <p class="text-gray-500">Chưa có dữ liệu điểm danh</p>
-                            </div>
-                        <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
-                    </div>
+                            <p class="text-gray-500">Chưa có dữ liệu điểm danh</p>
+                        </div>
+                    <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
                 </div>
-            <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+            </div>
+        <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
 
     </div>
 
