@@ -23,20 +23,21 @@ class TimeTableRepository implements TimeTableRepositoryInterface
         $userId = Auth::id();
         $today = now()->toDateString();
 
-        // Tìm kiếm theo created_by (giáo viên tạo lịch)
         $schedules = ClassSchedule::with(['course.subject'])
-            ->where('created_by', $userId)
             ->whereDate('date', $today)
+            ->whereHas('course.users', function ($q) use ($userId) {
+                $q->where('users.id', $userId);
+            })
             ->orderBy('start_time')
             ->get()
             ->map(function ($row) {
                 $startTs = strtotime($row->start_time);
-                $endTs = strtotime($row->end_time);
+                $endTs   = strtotime($row->end_time);
                 $startHm = date('H:i', $startTs);
-                $endHm = date('H:i', $endTs);
+                $endHm   = date('H:i', $endTs);
 
-                $shift = TimeTableHelper::calculateShiftByHour($startTs, $endTs);
-                $shiftName = TimeTableHelper::getShiftName($shift);
+                $shift      = TimeTableHelper::calculateShiftByHour($startTs, $endTs);
+                $shiftName  = TimeTableHelper::getShiftName($shift);
                 $shiftColor = TimeTableHelper::getShiftBadgeColor($shift);
 
                 return [

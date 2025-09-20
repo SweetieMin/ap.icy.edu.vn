@@ -15,6 +15,7 @@
             }
         })();
     </script>
+    <?php echo $__env->yieldPushContent('styles'); ?>
 </head>
 
 <body class="h-screen bg-white dark:bg-zinc-800 overflow-hidden">
