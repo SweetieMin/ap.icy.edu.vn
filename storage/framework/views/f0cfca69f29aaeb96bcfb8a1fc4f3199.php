@@ -451,25 +451,7 @@ if (isset($__slots)) unset($__slots);
                                  class="border-t border-gray-100 bg-gray-50">
                                 
                                 <div class="p-4 space-y-3">
-                                    
-                                    <div class="flex justify-between items-center">
-                                        <span class="text-sm font-medium text-gray-600">STT:</span>
-                                        <span class="text-sm text-gray-900 font-mono"><?php echo e($course->ordering); ?></span>
-                                    </div>
-
-                                    
-                                    <div class="flex justify-between items-center">
-                                        <span class="text-sm font-medium text-gray-600">Tên lớp học:</span>
-                                        <span class="text-sm text-gray-900 text-right max-w-[200px]"><?php echo e($course->name); ?></span>
-                                    </div>
-
-                                    
-                                    <div class="flex justify-between items-center">
-                                        <span class="text-sm font-medium text-gray-600">Cơ sở:</span>
-                                        <span class="text-sm text-gray-900 text-right max-w-[200px]"><?php echo e($course->location->name); ?></span>
-                                    </div>
-
-                                    
+                                                                        
                                     <div class="flex justify-between items-center">
                                         <span class="text-sm font-medium text-gray-600">Học kỳ:</span>
                                         <span class="text-sm text-gray-900 text-right max-w-[200px]"><?php echo e($course->season->name); ?></span>

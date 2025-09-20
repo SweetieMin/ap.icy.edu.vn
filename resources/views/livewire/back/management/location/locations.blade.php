@@ -51,7 +51,7 @@
                     <thead>
                         <tr>
                             <th class="text-center">Tên cơ sở</th>
-                            <th class="text-center">Địa chỉ</th>
+                            <th class="text-center">Địa chỉ</th>    
                             <th class="text-center">Người tạo</th>
                             <th class="text-center">Thao tác</th>
                         </tr>
@@ -137,18 +137,7 @@
                              class="border-t border-gray-100 bg-gray-50">
                             
                             <div class="p-4 space-y-3">
-                                {{-- Tên cơ sở --}}
-                                <div class="flex justify-between items-center">
-                                    <span class="text-sm font-medium text-gray-600">Tên cơ sở:</span>
-                                    <span class="text-sm text-gray-900">{{ $location->name }}</span>
-                                </div>
-
-                                {{-- Địa chỉ --}}
-                                <div class="flex justify-between items-center">
-                                    <span class="text-sm font-medium text-gray-600">Địa chỉ:</span>
-                                    <span class="text-sm text-gray-900 text-right max-w-[200px]">{{ $location->address }}</span>
-                                </div>
-
+                                
                                 {{-- Người tạo --}}
                                 <div class="flex justify-between items-center">
                                     <span class="text-sm font-medium text-gray-600">Người tạo:</span>

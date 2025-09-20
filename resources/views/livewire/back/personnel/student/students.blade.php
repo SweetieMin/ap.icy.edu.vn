@@ -176,22 +176,18 @@
                         
                         {{-- Main Row --}}
                         <div class="p-4 flex items-center justify-between">
-                            <div class="flex items-center space-x-3">
-                                <div class="w-8 h-8 bg-sky-100 rounded-full flex items-center justify-center">
-                                    <flux:icon.academic-cap class="w-4 h-4 text-sky-600" />
-                                </div>
-                                <div>
-                                    <div class="font-medium text-gray-900">{{ $student->name }}</div>
-                                    <div class="text-sm text-gray-500">ID: {{ $student->account_code }}</div>
-                                </div>
+                        <div class="flex items-center space-x-3">
+                            <img class="h-8 w-8 rounded-full object-cover"
+                                src="{{ $student->detail?->avatar ?? asset('images/default-avatar.png') }}"
+                                alt="{{ $student->name }}">
+                            <div>
+                                <div class="font-medium text-gray-900">{{ $student->name }}</div>
+                                <div class="text-sm text-gray-500">ID: {{ $student->account_code }}</div>
                             </div>
+                        </div>
                             
                             <div class="flex items-center space-x-2">
-                                @if (auth()->user()->locations()->count() > 1 && $student->locations->count() > 0)
-                                    <flux:badge color="blue" size="sm">
-                                        {{ $student->locations->first()->name }}
-                                    </flux:badge>
-                                @endif
+
                                 
                                 <button @click="expanded = !expanded" 
                                         class="p-2 rounded-full hover:bg-gray-100">
@@ -209,16 +205,7 @@
                              class="border-t border-gray-100 bg-gray-50">
                             
                             <div class="p-4 space-y-3">
-                                {{-- Họ và tên --}}
-                                <div class="flex justify-between items-center">
-                                    <span class="text-sm font-medium text-gray-600">Họ và tên:</span>
-                                    <div class="flex items-center space-x-2">
-                                        <img class="h-6 w-6 rounded-full object-cover"
-                                            src="{{ $student->detail?->avatar ?? asset('images/default-avatar.png') }}"
-                                            alt="{{ $student->name }}">
-                                        <span class="text-sm text-gray-900">{{ $student->name }}</span>
-                                    </div>
-                                </div>
+
 
                                 {{-- Số điện thoại --}}
                                 <div class="flex justify-between items-center">
@@ -429,9 +416,9 @@
                             {{-- Main Row --}}
                             <div class="p-4 flex items-center justify-between">
                                 <div class="flex items-center space-x-3">
-                                    <div class="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center">
-                                        <flux:icon.exclamation-triangle class="w-4 h-4 text-red-600" />
-                                    </div>
+                                    <img class="h-8 w-8 rounded-full object-cover"
+                                        src="{{ $student->detail?->avatar ?? asset('images/default-avatar.png') }}"
+                                        alt="{{ $student->name }}">
                                     <div>
                                         <div class="font-medium text-gray-900">{{ $student->name }}</div>
                                         <div class="text-sm text-gray-500">ID: {{ $student->account_code }}</div>

@@ -59,7 +59,8 @@
                     </div>
                     <div>
                         <h2 class="text-xl font-bold text-pink-600 dark:text-pink-400">Chọn học viên</h2>
-                        <p class="text-pink-600 dark:text-pink-400 text-xs">Chọn học viên để xử lý thanh toán học phí</p>
+                        <p class="text-pink-600 dark:text-pink-400 text-xs">Chọn học viên để xử lý thanh toán học phí
+                        </p>
                     </div>
                 </div>
             </div>
@@ -174,7 +175,7 @@
                                 if (isset($item['discount_amount']) && $item['discount_amount'] > 0) {
                                     // Chỉ tính giảm giá trên base_price, không tính trên giá sách
                                     $basePrice = isset($item['base_price']) ? $item['base_price'] : $item['price'];
-                                    
+
                                     if (($item['discount_type'] ?? 'vnd') === 'percent') {
                                         $totalItemDiscounts += ($basePrice * $item['discount_amount']) / 100;
                                     } else {
@@ -322,11 +323,13 @@
                         <div class="max-h-64 overflow-y-auto space-y-2">
                             {{-- Uniform Item - Show when focused or when not searching --}}
                             @if ($isProgramSearchFocused || empty($searchProgram))
-                                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-3 hover:bg-purple-100 dark:hover:bg-purple-800/30 border border-purple-200 dark:border-purple-700">
+                                <div
+                                    class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-3 hover:bg-purple-100 dark:hover:bg-purple-800/30 border border-purple-200 dark:border-purple-700">
                                     <button wire:click="addUniform"
                                         class="w-full flex items-center justify-between text-left">
                                         <div class="flex-1">
-                                            <div class="text-purple-900 dark:text-purple-100 font-medium mb-1 flex items-center">
+                                            <div
+                                                class="text-purple-900 dark:text-purple-100 font-medium mb-1 flex items-center">
                                                 <flux:icon.shirt class="w-4 h-4 mr-2" />
                                                 Đồng phục
                                             </div>
@@ -347,7 +350,8 @@
 
                             {{-- Programs List --}}
                             @foreach ($filteredPrograms as $program)
-                                <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-3 hover:bg-gray-100 dark:hover:bg-gray-600">
+                                <div
+                                    class="bg-gray-50 dark:bg-gray-700 rounded-lg p-3 hover:bg-gray-100 dark:hover:bg-gray-600">
                                     <button wire:click="addProgram({{ $program['id'] }})"
                                         class="w-full flex items-center justify-between text-left">
                                         <div class="flex-1">
@@ -393,7 +397,8 @@
                                 </path>
                             </svg>
                             <div class="text-gray-500 dark:text-gray-400">Không tìm thấy chương trình nào</div>
-                            <div class="text-gray-400 dark:text-gray-500 text-sm mt-1">Hãy thử tìm kiếm với từ khóa khác
+                            <div class="text-gray-400 dark:text-gray-500 text-sm mt-1">Hãy thử tìm kiếm với từ khóa
+                                khác
                             </div>
                         </div>
                     @else
@@ -432,7 +437,7 @@
                             @foreach ($selectedItems as $index => $item)
                                 <div
                                     class="bg-white dark:bg-gray-800 rounded-lg p-4 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200">
-                                    
+
                                     {{-- Mobile Layout --}}
                                     <div class="block sm:hidden">
                                         {{-- Header Row --}}
@@ -466,8 +471,9 @@
                                                 @endphp
                                                 @if ($hasBookPrice)
                                                     <div>
-                                                        <label class="flex items-center text-xs text-gray-600 dark:text-gray-400">
-                                                            <input type="checkbox" 
+                                                        <label
+                                                            class="flex items-center text-xs text-gray-600 dark:text-gray-400">
+                                                            <input type="checkbox"
                                                                 wire:change="toggleItemBookPurchase({{ $index }}, $event.target.checked)"
                                                                 {{ isset($item['include_book']) && $item['include_book'] ? 'checked' : '' }}
                                                                 class="w-3 h-3 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-1 dark:bg-gray-700 dark:border-gray-600">
@@ -506,14 +512,16 @@
                                         {{-- Discount Row --}}
                                         <div class="grid grid-cols-2 gap-3 mb-3">
                                             <div>
-                                                <label class="block text-xs text-gray-600 dark:text-gray-400 mb-1">Giảm giá</label>
+                                                <label class="block text-xs text-gray-600 dark:text-gray-400 mb-1">Giảm
+                                                    giá</label>
                                                 <input type="number"
                                                     wire:change="updateItemDiscount({{ $index }}, $event.target.value)"
                                                     value="{{ $item['discount_amount'] ?? 0 }}" placeholder="0"
                                                     class="w-full px-2 py-1 text-xs rounded border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white">
                                             </div>
                                             <div>
-                                                <label class="block text-xs text-gray-600 dark:text-gray-400 mb-1">Loại</label>
+                                                <label
+                                                    class="block text-xs text-gray-600 dark:text-gray-400 mb-1">Loại</label>
                                                 <select
                                                     wire:change="updateItemDiscountType({{ $index }}, $event.target.value)"
                                                     class="w-full px-2 py-1 text-xs rounded border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white">
@@ -542,7 +550,9 @@
                                             </div>
                                             @if (isset($item['discount_amount']) && $item['discount_amount'] > 0)
                                                 @php
-                                                    $basePrice = isset($item['base_price']) ? $item['base_price'] : $item['price'];
+                                                    $basePrice = isset($item['base_price'])
+                                                        ? $item['base_price']
+                                                        : $item['price'];
                                                     $discountValue =
                                                         ($item['discount_type'] ?? 'vnd') === 'percent'
                                                             ? ($basePrice * $item['discount_amount']) / 100
@@ -591,8 +601,9 @@
                                                 @endphp
                                                 @if ($hasBookPrice)
                                                     <div class="w-24">
-                                                        <label class="flex items-center text-xs text-gray-600 dark:text-gray-400">
-                                                            <input type="checkbox" 
+                                                        <label
+                                                            class="flex items-center text-xs text-gray-600 dark:text-gray-400">
+                                                            <input type="checkbox"
                                                                 wire:change="toggleItemBookPurchase({{ $index }}, $event.target.checked)"
                                                                 {{ isset($item['include_book']) && $item['include_book'] ? 'checked' : '' }}
                                                                 class="w-3 h-3 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-1 dark:bg-gray-700 dark:border-gray-600">
@@ -665,7 +676,9 @@
                                                 </div>
                                                 @if (isset($item['discount_amount']) && $item['discount_amount'] > 0)
                                                     @php
-                                                        $basePrice = isset($item['base_price']) ? $item['base_price'] : $item['price'];
+                                                        $basePrice = isset($item['base_price'])
+                                                            ? $item['base_price']
+                                                            : $item['price'];
                                                         $discountValue =
                                                             ($item['discount_type'] ?? 'vnd') === 'percent'
                                                                 ? ($basePrice * $item['discount_amount']) / 100
@@ -697,7 +710,7 @@
             </div>
         </div>
 
-        
+
     </div>
 
     {{-- Transaction History Section - Separate from payment section --}}
@@ -751,7 +764,8 @@
                                     <td class="whitespace-nowrap text-center">
                                         {{ $transaction['season']['name'] ?? '--' }}
                                     </td>
-                                    <td class="whitespace-nowrap text-center font-bold text-green-600 dark:text-green-400">
+                                    <td
+                                        class="whitespace-nowrap text-center font-bold text-green-600 dark:text-green-400">
                                         {{ number_format($transaction['price'], 0, ',', '.') }} VNĐ
                                     </td>
                                     <td class="whitespace-nowrap text-center">
@@ -811,7 +825,8 @@
                                         <div class="empty-state flex flex-col items-center">
                                             <flux:icon.document-text class="w-8 h-8 mb-2" />
                                             <div class="text-sm">Chưa có giao dịch nào</div>
-                                            <div class="text-xs text-gray-500 dark:text-gray-400 mt-1">Học sinh này chưa có lịch sử giao dịch nào trong hệ thống.</div>
+                                            <div class="text-xs text-gray-500 dark:text-gray-400 mt-1">Học sinh này
+                                                chưa có lịch sử giao dịch nào trong hệ thống.</div>
                                         </div>
                                     </td>
                                 </tr>
@@ -823,131 +838,128 @@
                 {{-- Mobile Card View --}}
                 <div class="md:hidden space-y-3">
                     @forelse ($transactionHistory as $transaction)
-                        <div class="bg-white rounded-lg border border-gray-200 shadow-sm" 
-                             x-data="{ expanded: false }" 
-                             wire:key="transaction-mobile-{{ $transaction['id'] }}">
-                            
+                        <div class="bg-white rounded-lg border border-gray-200 shadow-sm" x-data="{ expanded: false }"
+                            wire:key="transaction-mobile-{{ $transaction['id'] }}">
+
                             {{-- Main Row --}}
                             <div class="p-4 flex items-center justify-between">
                                 <div class="flex items-center space-x-3">
                                     <div class="w-8 h-8 bg-teal-100 rounded-full flex items-center justify-center">
-                                        <svg class="w-4 h-4 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                                        <svg class="w-4 h-4 text-teal-600" fill="none" stroke="currentColor"
+                                            viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
+                                            </path>
                                         </svg>
                                     </div>
                                     <div>
-                                        <div class="font-medium text-gray-900">{{ $transaction['note'] ?? ($transaction['program']['name'] ?? 'Đồng phục') }}</div>
-                                        <div class="text-sm text-gray-500">{{ $transaction['created_at_formatted'] }}</div>
+                                        <div class="font-medium text-gray-900">
+                                            {{ $transaction['note'] ?? ($transaction['program']['name'] ?? 'Đồng phục') }}
+                                        </div>
+                                        @if ($transaction['status'] === 'pending')
+                                            <span
+                                                class="px-2 py-1 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
+                                                ⏳ Chờ xử lý
+                                            </span>
+                                        @elseif($transaction['status'] === 'paid')
+                                            <span
+                                                class="px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                                ✅ Hoàn thành
+                                            </span>
+                                        @else
+                                            <span
+                                                class="px-2 py-1 rounded-full text-xs font-medium bg-red-100 text-red-800">
+                                                ❌ Hủy bỏ
+                                            </span>
+                                        @endif
                                     </div>
                                 </div>
-                                
+
                                 <div class="flex items-center space-x-2">
-                                    @if ($transaction['status'] === 'pending')
-                                        <span class="px-2 py-1 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
-                                            ⏳ Chờ xử lý
-                                        </span>
-                                    @elseif($transaction['status'] === 'paid')
-                                        <span class="px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
-                                            ✅ Hoàn thành
-                                        </span>
-                                    @else
-                                        <span class="px-2 py-1 rounded-full text-xs font-medium bg-red-100 text-red-800">
-                                            ❌ Hủy bỏ
-                                        </span>
-                                    @endif
-                                    
-                                    <button @click="expanded = !expanded" 
-                                            class="p-2 rounded-full hover:bg-gray-100">
-                                        <svg class="w-5 h-5 text-gray-400" 
-                                             :class="{ 'rotate-180': expanded }" 
-                                             fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+
+
+                                    <button @click="expanded = !expanded" class="p-2 rounded-full hover:bg-gray-100">
+                                        <svg class="w-5 h-5 text-gray-400" :class="{ 'rotate-180': expanded }"
+                                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M19 9l-7 7-7-7"></path>
                                         </svg>
                                     </button>
                                 </div>
                             </div>
 
                             {{-- Expanded Details --}}
-                            <div x-show="expanded" 
-                                 class="border-t border-gray-100 bg-gray-50">
-                                
+                            <div x-show="expanded" class="border-t border-gray-100 bg-gray-50">
+
                                 <div class="p-4 space-y-3">
-                                    {{-- Chương trình --}}
-                                    <div class="flex justify-between items-center">
-                                        <span class="text-sm font-medium text-gray-600">Chương trình:</span>
-                                        <span class="text-sm text-gray-900 text-right max-w-[200px]">{{ $transaction['note'] ?? ($transaction['program']['name'] ?? 'Đồng phục') }}</span>
-                                    </div>
+
 
                                     {{-- Mùa học --}}
                                     <div class="flex justify-between items-center">
                                         <span class="text-sm font-medium text-gray-600">Mùa học:</span>
-                                        <span class="text-sm text-gray-900">{{ $transaction['season']['name'] ?? '--' }}</span>
+                                        <span
+                                            class="text-sm text-gray-900">{{ $transaction['season']['name'] ?? '--' }}</span>
                                     </div>
 
                                     {{-- Số tiền --}}
                                     <div class="flex justify-between items-center">
                                         <span class="text-sm font-medium text-gray-600">Số tiền:</span>
-                                        <span class="text-sm font-bold text-green-600">{{ number_format($transaction['price'], 0, ',', '.') }} VNĐ</span>
+                                        <span
+                                            class="text-sm font-bold text-green-600">{{ number_format($transaction['price'], 0, ',', '.') }}
+                                            VNĐ</span>
                                     </div>
 
                                     {{-- Phương thức thanh toán --}}
                                     <div class="flex justify-between items-center">
                                         <span class="text-sm font-medium text-gray-600">Phương thức:</span>
                                         @if ($transaction['payment_method'] === 'cash')
-                                            <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                            <span
+                                                class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
                                                 💵 Tiền mặt
                                             </span>
                                         @else
-                                            <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                                            <span
+                                                class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
                                                 🏦 Chuyển khoản
                                             </span>
                                         @endif
                                     </div>
 
-                                    {{-- Trạng thái --}}
-                                    <div class="flex justify-between items-center">
-                                        <span class="text-sm font-medium text-gray-600">Trạng thái:</span>
-                                        @if ($transaction['status'] === 'pending')
-                                            <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
-                                                ⏳ Chờ xử lý
-                                            </span>
-                                        @elseif($transaction['status'] === 'paid')
-                                            <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
-                                                ✅ Hoàn thành
-                                            </span>
-                                        @else
-                                            <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-red-100 text-red-800">
-                                                ❌ Hủy bỏ
-                                            </span>
-                                        @endif
-                                    </div>
 
                                     {{-- Ngày tạo --}}
                                     <div class="flex justify-between items-center">
                                         <span class="text-sm font-medium text-gray-600">Ngày tạo:</span>
-                                        <span class="text-sm text-gray-900">{{ $transaction['created_at_formatted'] }}</span>
+                                        <span
+                                            class="text-sm text-gray-900">{{ $transaction['created_at_formatted'] }}</span>
                                     </div>
 
                                     {{-- Actions --}}
-                                    @if (($transaction['payment_method'] === 'bank_transfer' && $transaction['status'] !== 'paid') || 
-                                         ($transaction['payment_method'] === 'cash' && $transaction['status'] !== 'paid'))
+                                    @if (
+                                        ($transaction['payment_method'] === 'bank_transfer' && $transaction['status'] !== 'paid') ||
+                                            ($transaction['payment_method'] === 'cash' && $transaction['status'] !== 'paid'))
                                         <div class="pt-3 border-t border-gray-200">
                                             <div class="flex space-x-2">
                                                 @if ($transaction['payment_method'] === 'bank_transfer' && $transaction['status'] !== 'paid')
                                                     <button wire:click="showQrCode({{ $transaction['id'] }})"
-                                                            class="flex-1 bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700 transition-colors flex items-center justify-center space-x-2">
-                                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"></path>
+                                                        class="flex-1 bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700 transition-colors flex items-center justify-center space-x-2">
+                                                        <svg class="w-4 h-4" fill="none" stroke="currentColor"
+                                                            viewBox="0 0 24 24">
+                                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                                stroke-width="2"
+                                                                d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z">
+                                                            </path>
                                                         </svg>
                                                         <span>QR Code</span>
                                                     </button>
                                                 @endif
-                                                
+
                                                 @if ($transaction['payment_method'] === 'cash' && $transaction['status'] !== 'paid')
                                                     <button wire:click="paidCash({{ $transaction['id'] }})"
-                                                            class="flex-1 bg-green-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-green-700 transition-colors flex items-center justify-center space-x-2">
-                                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                                        class="flex-1 bg-green-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-green-700 transition-colors flex items-center justify-center space-x-2">
+                                                        <svg class="w-4 h-4" fill="none" stroke="currentColor"
+                                                            viewBox="0 0 24 24">
+                                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                                stroke-width="2" d="M5 13l4 4L19 7"></path>
                                                         </svg>
                                                         <span>Đã thanh toán</span>
                                                     </button>
@@ -963,7 +975,8 @@
                             <div class="empty-state flex flex-col items-center">
                                 <flux:icon.document-text class="w-8 h-8 mb-2 text-gray-400" />
                                 <div class="text-sm text-gray-500">Chưa có giao dịch nào</div>
-                                <div class="text-xs text-gray-400 mt-1">Học sinh này chưa có lịch sử giao dịch nào trong hệ thống.</div>
+                                <div class="text-xs text-gray-400 mt-1">Học sinh này chưa có lịch sử giao dịch nào
+                                    trong hệ thống.</div>
                             </div>
                         </div>
                     @endforelse

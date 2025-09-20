@@ -223,15 +223,6 @@
                              class="border-t border-gray-100 bg-gray-50">
                             
                             <div class="p-4 space-y-4">
-                                {{-- Program Info --}}
-                                <div class="flex flex-col space-y-1">
-                                    <span class="text-sm font-medium text-gray-600">Chương trình:</span>
-                                    <span class="text-sm text-gray-900">{{ $program->name }}</span>
-                                    @if($program->english_name)
-                                        <span class="text-sm text-gray-500">{{ $program->english_name }}</span>
-                                    @endif
-                                </div>
-
                                 {{-- Prices for each location --}}
                                 <div class="space-y-3">
                                     <span class="text-sm font-medium text-gray-600">Giá tại các cơ sở:</span>

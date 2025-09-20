@@ -488,16 +488,7 @@
                              class="border-t border-gray-100 bg-gray-50">
                             
                             <div class="p-4 space-y-3">
-                                
-                                <div class="flex justify-between items-center">
-                                    <span class="text-sm font-medium text-gray-600">Học viên:</span>
-                                    <div class="flex items-center space-x-2">
-                                        <img class="h-6 w-6 rounded-full object-cover"
-                                            src="<?php echo e($tuition->user->detail?->avatar ?? asset('storage/images/avatars/default-avatar.png')); ?>"
-                                            alt="<?php echo e($tuition->user->name); ?>">
-                                        <span class="text-sm text-gray-900"><?php echo e($tuition->user->name); ?></span>
-                                    </div>
-                                </div>
+
 
                                 
                                 <div class="flex justify-between items-center">

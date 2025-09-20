@@ -374,28 +374,9 @@ if (isset($__slots)) unset($__slots);
                     
                     <div class="p-4 flex items-center justify-between">
                         <div class="flex items-center space-x-3">
-                            <div class="w-8 h-8 bg-slate-100 rounded-full flex items-center justify-center">
-                                <?php if (isset($component)) { $__componentOriginal4e4f522adb19cc742fb2b199df7e6c95 = $component; } ?>
-<?php if (isset($attributes)) { $__attributesOriginal4e4f522adb19cc742fb2b199df7e6c95 = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::icon.users','data' => ['class' => 'w-4 h-4 text-slate-600']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
-<?php $component->withName('flux::icon.users'); ?>
-<?php if ($component->shouldRender()): ?>
-<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
-<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
-<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
-<?php endif; ?>
-<?php $component->withAttributes(['class' => 'w-4 h-4 text-slate-600']); ?>
-<?php echo $__env->renderComponent(); ?>
-<?php endif; ?>
-<?php if (isset($__attributesOriginal4e4f522adb19cc742fb2b199df7e6c95)): ?>
-<?php $attributes = $__attributesOriginal4e4f522adb19cc742fb2b199df7e6c95; ?>
-<?php unset($__attributesOriginal4e4f522adb19cc742fb2b199df7e6c95); ?>
-<?php endif; ?>
-<?php if (isset($__componentOriginal4e4f522adb19cc742fb2b199df7e6c95)): ?>
-<?php $component = $__componentOriginal4e4f522adb19cc742fb2b199df7e6c95; ?>
-<?php unset($__componentOriginal4e4f522adb19cc742fb2b199df7e6c95); ?>
-<?php endif; ?>
-                            </div>
+                            <img class="h-8 w-8 rounded-full object-cover"
+                                src="<?php echo e($staff->detail?->avatar ?? asset('storage/images/avatars/default-avatar.png')); ?>"
+                                alt="<?php echo e($staff->name); ?>">
                             <div>
                                 <div class="font-medium text-gray-900"><?php echo e($staff->name); ?></div>
                                 <div class="text-sm text-gray-500">ID: <?php echo e($staff->account_code); ?></div>
@@ -403,30 +384,7 @@ if (isset($__slots)) unset($__slots);
                         </div>
                         
                         <div class="flex items-center space-x-2">
-                            <!--[if BLOCK]><![endif]--><?php if($staff->locations->count() > 0): ?>
-                                <?php if (isset($component)) { $__componentOriginal4cc377eda9b63b796b6668ee7832d023 = $component; } ?>
-<?php if (isset($attributes)) { $__attributesOriginal4cc377eda9b63b796b6668ee7832d023 = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::badge.index','data' => ['color' => 'blue','size' => 'sm']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
-<?php $component->withName('flux::badge'); ?>
-<?php if ($component->shouldRender()): ?>
-<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
-<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
-<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
-<?php endif; ?>
-<?php $component->withAttributes(['color' => 'blue','size' => 'sm']); ?>
-                                    <?php echo e($staff->locations->first()->name); ?>
 
-                                 <?php echo $__env->renderComponent(); ?>
-<?php endif; ?>
-<?php if (isset($__attributesOriginal4cc377eda9b63b796b6668ee7832d023)): ?>
-<?php $attributes = $__attributesOriginal4cc377eda9b63b796b6668ee7832d023; ?>
-<?php unset($__attributesOriginal4cc377eda9b63b796b6668ee7832d023); ?>
-<?php endif; ?>
-<?php if (isset($__componentOriginal4cc377eda9b63b796b6668ee7832d023)): ?>
-<?php $component = $__componentOriginal4cc377eda9b63b796b6668ee7832d023; ?>
-<?php unset($__componentOriginal4cc377eda9b63b796b6668ee7832d023); ?>
-<?php endif; ?>
-                            <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
                             
                             <button @click="expanded = !expanded" 
                                     class="p-2 rounded-full hover:bg-gray-100">
@@ -444,16 +402,7 @@ if (isset($__slots)) unset($__slots);
                          class="border-t border-gray-100 bg-gray-50">
                         
                         <div class="p-4 space-y-3">
-                            
-                            <div class="flex justify-between items-center">
-                                <span class="text-sm font-medium text-gray-600">Họ và tên:</span>
-                                <div class="flex items-center space-x-2">
-                                    <img class="h-6 w-6 rounded-full object-cover"
-                                        src="<?php echo e($staff->detail?->avatar ?? asset('storage/images/avatars/default-avatar.png')); ?>"
-                                        alt="<?php echo e($staff->name); ?>">
-                                    <span class="text-sm text-gray-900"><?php echo e($staff->name); ?></span>
-                                </div>
-                            </div>
+
 
                             
                             <div class="flex justify-between items-center">
@@ -832,28 +781,9 @@ if (isset($__slots)) unset($__slots);
                             
                             <div class="p-4 flex items-center justify-between">
                                 <div class="flex items-center space-x-3">
-                                    <div class="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center">
-                                        <?php if (isset($component)) { $__componentOriginal7f0e8d69add49581695c1337b3f85fff = $component; } ?>
-<?php if (isset($attributes)) { $__attributesOriginal7f0e8d69add49581695c1337b3f85fff = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::icon.exclamation-triangle','data' => ['class' => 'w-4 h-4 text-red-600']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
-<?php $component->withName('flux::icon.exclamation-triangle'); ?>
-<?php if ($component->shouldRender()): ?>
-<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
-<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
-<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
-<?php endif; ?>
-<?php $component->withAttributes(['class' => 'w-4 h-4 text-red-600']); ?>
-<?php echo $__env->renderComponent(); ?>
-<?php endif; ?>
-<?php if (isset($__attributesOriginal7f0e8d69add49581695c1337b3f85fff)): ?>
-<?php $attributes = $__attributesOriginal7f0e8d69add49581695c1337b3f85fff; ?>
-<?php unset($__attributesOriginal7f0e8d69add49581695c1337b3f85fff); ?>
-<?php endif; ?>
-<?php if (isset($__componentOriginal7f0e8d69add49581695c1337b3f85fff)): ?>
-<?php $component = $__componentOriginal7f0e8d69add49581695c1337b3f85fff; ?>
-<?php unset($__componentOriginal7f0e8d69add49581695c1337b3f85fff); ?>
-<?php endif; ?>
-                                    </div>
+                                    <img class="h-8 w-8 rounded-full object-cover"
+                                        src="<?php echo e($staff->detail?->avatar ?? asset('storage/images/avatars/default-avatar.png')); ?>"
+                                        alt="<?php echo e($staff->name); ?>">
                                     <div>
                                         <div class="font-medium text-gray-900"><?php echo e($staff->name); ?></div>
                                         <div class="text-sm text-gray-500">ID: <?php echo e($staff->account_code); ?></div>
@@ -881,16 +811,7 @@ if (isset($__slots)) unset($__slots);
                                  class="border-t border-gray-100 bg-gray-50">
                                 
                                 <div class="p-4 space-y-3">
-                                    
-                                    <div class="flex justify-between items-center">
-                                        <span class="text-sm font-medium text-gray-600">Họ và tên:</span>
-                                        <div class="flex items-center space-x-2">
-                                            <img class="h-6 w-6 rounded-full object-cover"
-                                                src="<?php echo e($staff->detail?->avatar ?? asset('storage/images/avatars/default-avatar.png')); ?>"
-                                                alt="<?php echo e($staff->name); ?>">
-                                            <span class="text-sm text-gray-900"><?php echo e($staff->name); ?></span>
-                                        </div>
-                                    </div>
+
 
                                     
                                     <div class="flex justify-between items-center">

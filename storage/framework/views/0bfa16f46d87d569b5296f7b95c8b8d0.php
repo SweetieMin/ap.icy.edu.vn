@@ -2,9 +2,9 @@
 
     
     <div class="theme-header-pink">
-        <div class="flex items-center justify-between">
+        <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between space-y-4 lg:space-y-0">
             <div class="header-content">
-                <div class="flex items-center space-x-3 mb-2">
+                <div class="flex items-center space-x-2 sm:space-x-3 mb-2">
                     <div class="header-icon">
                         <?php if (isset($component)) { $__componentOriginale0880cb6488d85d9ca54288aa080a834 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginale0880cb6488d85d9ca54288aa080a834 = $attributes; } ?>
@@ -42,7 +42,7 @@
                     <span>Xếp lớp học</span>
                 </div>
             </div>
-            <div class="flex items-center space-x-3">
+            <div class="flex flex-col sm:flex-row items-start sm:items-center space-y-2 sm:space-y-0 sm:space-x-3">
                 <div class="header-counter">
                     <span><?php echo e(count($students)); ?> <?php echo e($userType === 'student' ? 'học viên chưa xếp lớp' : 'giáo viên/BOD'); ?></span>
                 </div>
@@ -367,7 +367,7 @@
                                         </div>
 
                                         <div class="text-xs text-green-600 dark:text-green-400 font-medium">
-                                            Thả học viên vào đây
+                                            Thả vào đây
                                         </div>
                                     </div>
                                 </div>

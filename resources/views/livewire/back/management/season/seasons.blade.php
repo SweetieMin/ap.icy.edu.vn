@@ -141,26 +141,7 @@
                              class="border-t border-gray-100 bg-gray-50">
                             
                             <div class="p-4 space-y-3">
-                                {{-- Mã học kỳ --}}
-                                <div class="flex justify-between items-center">
-                                    <span class="text-sm font-medium text-gray-600">Mã học kỳ:</span>
-                                    <span class="text-sm text-gray-900 font-mono">{{ $season->code }}</span>
-                                </div>
-
-                                {{-- Tên học kỳ --}}
-                                <div class="flex justify-between items-center">
-                                    <span class="text-sm font-medium text-gray-600">Tên học kỳ:</span>
-                                    <span class="text-sm text-gray-900 text-right max-w-[200px]">{{ $season->name }}</span>
-                                </div>
-
-                                {{-- Trạng thái --}}
-                                <div class="flex justify-between items-center">
-                                    <span class="text-sm font-medium text-gray-600">Trạng thái:</span>
-                                    <flux:badge variant="solid" color="{{ $season->status_badge_color }}">
-                                        {{ $season->status_badge_label }}
-                                    </flux:badge>
-                                </div>
-
+                                
                                 {{-- Ngày tạo --}}
                                 <div class="flex justify-between items-center">
                                     <span class="text-sm font-medium text-gray-600">Ngày tạo:</span>

@@ -152,6 +152,12 @@
 
                             
                             <div class="flex justify-between items-center">
+                                <span class="text-sm font-medium text-gray-600">Mùa học:</span>
+                                <span class="text-sm text-gray-900"><?php echo e($course->season->name); ?></span>
+                            </div>
+
+                            
+                            <div class="flex justify-between items-center">
                                 <span class="text-sm font-medium text-gray-600">Môn học:</span>
                                 <span
                                     class="text-sm text-gray-900"><?php echo e($course->subject->name ?? 'Chưa xác định'); ?></span>
@@ -161,6 +167,34 @@
                             <div class="flex justify-between items-center">
                                 <span class="text-sm font-medium text-gray-600">Lớp:</span>
                                 <span class="text-sm text-gray-900"><?php echo e($course->name); ?></span>
+                            </div>
+
+                            
+                            <div class="pt-3 border-t border-gray-200">
+                                <button wire:click="showClassList(<?php echo e($course->id); ?>)"
+                                        class="w-full bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700 transition-colors flex items-center justify-center space-x-2">
+                                    <?php if (isset($component)) { $__componentOriginaldeeed84ca4f29f425b89c454233ef87a = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginaldeeed84ca4f29f425b89c454233ef87a = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::icon.user-group','data' => ['class' => 'w-4 h-4']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('flux::icon.user-group'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['class' => 'w-4 h-4']); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginaldeeed84ca4f29f425b89c454233ef87a)): ?>
+<?php $attributes = $__attributesOriginaldeeed84ca4f29f425b89c454233ef87a; ?>
+<?php unset($__attributesOriginaldeeed84ca4f29f425b89c454233ef87a); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginaldeeed84ca4f29f425b89c454233ef87a)): ?>
+<?php $component = $__componentOriginaldeeed84ca4f29f425b89c454233ef87a; ?>
+<?php unset($__componentOriginaldeeed84ca4f29f425b89c454233ef87a); ?>
+<?php endif; ?>
+                                    <span>Xem danh sách học viên</span>
+                                </button>
                             </div>
                         </div>
                     </div>

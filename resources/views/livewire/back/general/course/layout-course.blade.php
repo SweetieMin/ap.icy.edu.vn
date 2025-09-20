@@ -148,7 +148,70 @@
 
                 {{-- Mobile Card View --}}
                 <div class="md:hidden space-y-3">
+                    @forelse ($classStudents as $i => $student)
+                        <div class="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 shadow-sm" 
+                             x-data="{ expanded: false }" 
+                             wire:key="student-mobile-{{ $student->id }}">
+                            
+                            {{-- Main Row --}}
+                            <div class="p-4 flex items-center justify-between">
+                                <div class="flex items-center space-x-3">
+                                    <img class="h-8 w-8 rounded-full object-cover"
+                                        src="{{ $student->detail?->avatar ?? asset('images/default-avatar.png') }}"
+                                        alt="{{ $student->name }}">
+                                    <div>
+                                        <div class="font-medium text-gray-900 dark:text-white">{{ $student->name }}</div>
+                                        <div class="text-sm text-gray-500 dark:text-gray-400">ID: {{ $student->account_code }}</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-center space-x-2">
+                                    <span class="text-sm font-medium text-gray-600 dark:text-gray-400">#{{ $i + 1 }}</span>
+                                    
+                                    <button @click="expanded = !expanded" 
+                                            class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700">
+                                        <svg class="w-5 h-5 text-gray-400" 
+                                             :class="{ 'rotate-180': expanded }" 
+                                             fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
 
+                            {{-- Expanded Details --}}
+                            <div x-show="expanded" 
+                                 class="border-t border-gray-100 dark:border-gray-700 bg-gray-50 dark:bg-gray-900">
+                                
+                                <div class="p-4 space-y-3">
+                                   
+                                    {{-- Số điện thoại --}}
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-sm font-medium text-gray-600 dark:text-gray-300">Số điện thoại:</span>
+                                        <span class="text-sm text-gray-900 dark:text-white">{{ $student->detail->phone ?? 'Chưa cập nhật' }}</span>
+                                    </div>
+
+                                    {{-- Email --}}
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-sm font-medium text-gray-600 dark:text-gray-300">Email:</span>
+                                        <span class="text-sm text-gray-900 dark:text-white break-all">{{ $student->email }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @empty
+                        <div class="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-8">
+                            <div class="empty-state flex flex-col items-center">
+                                <flux:icon.user-group class="w-12 h-12 mb-4 text-gray-400" />
+                                <h3 class="text-lg font-medium mb-2 text-gray-500">
+                                    Không có học viên
+                                </h3>
+                                <p class="text-gray-400">
+                                    Hiện tại lớp học này chưa có học viên nào
+                                </p>
+                            </div>
+                        </div>
+                    @endforelse
                 </div>
             </div>
         @endif
@@ -242,62 +305,92 @@
                 </div>
 
                 {{-- Mobile Card View --}}
-                <div class="md:hidden space-y-4">
+                <div class="md:hidden space-y-3">
                     @forelse ($attendanceHistory as $i => $attendance)
-                        <div
-                            class="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-4">
-                            <div class="flex items-center space-x-3 mb-3">
-                                <img class="h-10 w-10 rounded-full object-cover"
-                                    src="{{ $attendance['student']->detail?->avatar ?? asset('images/default-avatar.png') }}"
-                                    alt="{{ $attendance['student']->name }}">
-                                <div class="flex-1">
-                                    <h3 class="font-medium text-gray-900 dark:text-white">
-                                        {{ $attendance['student']->name }}</h3>
-                                    <p class="text-sm text-gray-500 dark:text-gray-400">Mã:
-                                        {{ $attendance['student']->account_code }}</p>
+                        <div class="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 shadow-sm" 
+                             x-data="{ expanded: false }" 
+                             wire:key="attendance-mobile-{{ $attendance['student']->id }}">
+                            
+                            {{-- Main Row --}}
+                            <div class="p-4 flex items-center justify-between">
+                                <div class="flex items-center space-x-3">
+                                    <img class="h-8 w-8 rounded-full object-cover"
+                                        src="{{ $attendance['student']->detail?->avatar ?? asset('images/default-avatar.png') }}"
+                                        alt="{{ $attendance['student']->name }}">
+                                    <div>
+                                        <div class="font-medium text-gray-900 dark:text-white">{{ $attendance['student']->name }}</div>
+                                        <div class="text-sm text-gray-500 dark:text-gray-400">ID: {{ $attendance['student']->account_code }}</div>
+                                    </div>
                                 </div>
-                                <div class="text-right">
-                                    <div class="text-sm font-medium text-gray-900 dark:text-white">
-                                        {{ $attendance['attendance_count'] }}/24 buổi</div>
-                                    <span
-                                        class="px-2 py-1 text-xs rounded-full {{ $attendance['absent_percentage'] > 20 ? 'bg-red-100 text-red-800' : ($attendance['absent_percentage'] > 10 ? 'bg-yellow-100 text-yellow-800' : 'bg-green-100 text-green-800') }}">
-                                        {{ $attendance['absent_percentage'] }}% vắng
-                                    </span>
+                                
+                                <div class="flex items-center space-x-2">
+                                    <div class="text-right">
+                                        <div class="text-sm font-medium text-gray-900 dark:text-white">
+                                            {{ $attendance['attendance_count'] }}/24 buổi
+                                        </div>
+                                        <span class="px-2 py-1 text-xs rounded-full {{ $attendance['absent_percentage'] > 20 ? 'bg-red-100 text-red-800' : ($attendance['absent_percentage'] > 10 ? 'bg-yellow-100 text-yellow-800' : 'bg-green-100 text-green-800') }}">
+                                            {{ $attendance['absent_percentage'] }}% vắng
+                                        </span>
+                                    </div>
+                                    
+                                    <button @click="expanded = !expanded" 
+                                            class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700">
+                                        <svg class="w-5 h-5 text-gray-400" 
+                                             :class="{ 'rotate-180': expanded }" 
+                                             fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                        </svg>
+                                    </button>
                                 </div>
                             </div>
 
-                            <div class="grid grid-cols-3 gap-2">
-                                @foreach ($classScheduleDates as $date)
-                                    <div class="text-center">
-                                        <div class="text-xs text-gray-500 dark:text-gray-400 mb-1">
-                                            {{ \Carbon\Carbon::parse($date)->format('d/m') }}
-                                        </div>
-                                        @if ($attendance['attendances'][$date] !== null)
-                                            @if ($attendance['attendances'][$date] === 'present')
-                                                <span
-                                                    class="inline-flex items-center justify-center w-6 h-6 text-xs text-green-800 bg-green-100 rounded-full">
-                                                    <flux:icon.check class="w-3 h-3" />
-                                                </span>
-                                            @else
-                                                <span
-                                                    class="inline-flex items-center justify-center w-6 h-6 text-xs text-red-800 bg-red-100 rounded-full">
-                                                    <flux:icon.x-mark class="w-3 h-3" />
-                                                </span>
-                                            @endif
-                                        @else
-                                            <span
-                                                class="inline-flex items-center justify-center w-6 h-6 text-xs text-gray-800 bg-gray-100 rounded-full">
-                                                <flux:icon.minus class="w-3 h-3" />
-                                            </span>
-                                        @endif
+                            {{-- Expanded Details --}}
+                            <div x-show="expanded" 
+                                 class="border-t border-gray-100 dark:border-gray-700 bg-gray-50 dark:bg-gray-900">
+                                
+                                <div class="p-4">
+                                    <div class="mb-3">
+                                        <h4 class="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Chi tiết điểm danh:</h4>
                                     </div>
-                                @endforeach
+                                    
+                                    <div class="grid grid-cols-4 gap-2">
+                                        @foreach ($classScheduleDates as $date)
+                                            <div class="text-center">
+                                                <div class="text-xs text-gray-500 dark:text-gray-400 mb-1">
+                                                    {{ \Carbon\Carbon::parse($date)->format('d/m') }}
+                                                </div>
+                                                @if ($attendance['attendances'][$date] !== null)
+                                                    @if ($attendance['attendances'][$date] === 'present')
+                                                        <span class="inline-flex items-center justify-center w-6 h-6 text-xs text-green-800 bg-green-100 rounded-full">
+                                                            <flux:icon.check class="w-3 h-3" />
+                                                        </span>
+                                                    @else
+                                                        <span class="inline-flex items-center justify-center w-6 h-6 text-xs text-red-800 bg-red-100 rounded-full">
+                                                            <flux:icon.x-mark class="w-3 h-3" />
+                                                        </span>
+                                                    @endif
+                                                @else
+                                                    <span class="inline-flex items-center justify-center w-6 h-6 text-xs text-gray-800 bg-gray-100 rounded-full">
+                                                        <flux:icon.minus class="w-3 h-3" />
+                                                    </span>
+                                                @endif
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     @empty
-                        <div class="text-center py-8">
-                            <flux:icon.user-group class="w-12 h-12 text-gray-400 mx-auto mb-2" />
-                            <p class="text-gray-500">Chưa có dữ liệu điểm danh</p>
+                        <div class="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-8">
+                            <div class="empty-state flex flex-col items-center">
+                                <flux:icon.user-group class="w-12 h-12 mb-4 text-gray-400" />
+                                <h3 class="text-lg font-medium mb-2 text-gray-500">
+                                    Chưa có dữ liệu điểm danh
+                                </h3>
+                                <p class="text-gray-400">
+                                    Hiện tại chưa có dữ liệu điểm danh cho lớp học này
+                                </p>
+                            </div>
                         </div>
                     @endforelse
                 </div>

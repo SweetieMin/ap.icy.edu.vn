@@ -90,6 +90,12 @@
                                 <span class="text-sm text-gray-900">{{ $i + 1 }}</span>
                             </div>
 
+                            {{-- Mùa học --}}
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm font-medium text-gray-600">Mùa học:</span>
+                                <span class="text-sm text-gray-900">{{ $course->season->name }}</span>
+                            </div>
+
                             {{-- Môn học --}}
                             <div class="flex justify-between items-center">
                                 <span class="text-sm font-medium text-gray-600">Môn học:</span>
@@ -101,6 +107,15 @@
                             <div class="flex justify-between items-center">
                                 <span class="text-sm font-medium text-gray-600">Lớp:</span>
                                 <span class="text-sm text-gray-900">{{ $course->name }}</span>
+                            </div>
+
+                            {{-- Actions --}}
+                            <div class="pt-3 border-t border-gray-200">
+                                <button wire:click="showClassList({{ $course->id }})"
+                                        class="w-full bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700 transition-colors flex items-center justify-center space-x-2">
+                                    <flux:icon.user-group class="w-4 h-4" />
+                                    <span>Xem danh sách học viên</span>
+                                </button>
                             </div>
                         </div>
                     </div>

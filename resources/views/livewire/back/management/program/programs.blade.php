@@ -186,24 +186,7 @@
                                  class="border-t border-gray-100 bg-gray-50">
                                 
                                 <div class="p-4 space-y-3">
-                                    {{-- STT --}}
-                                    <div class="flex justify-between items-center">
-                                        <span class="text-sm font-medium text-gray-600">STT:</span>
-                                        <span class="text-sm text-gray-900 font-mono">{{ $program->ordering }}</span>
-                                    </div>
-
-                                    {{-- Tên chương trình --}}
-                                    <div class="flex justify-between items-center">
-                                        <span class="text-sm font-medium text-gray-600">Tên chương trình:</span>
-                                        <span class="text-sm text-gray-900 text-right max-w-[200px]">{{ $program->name }}</span>
-                                    </div>
-
-                                    {{-- Tên tiếng Anh --}}
-                                    <div class="flex justify-between items-center">
-                                        <span class="text-sm font-medium text-gray-600">Tên tiếng Anh:</span>
-                                        <span class="text-sm text-gray-500 text-right max-w-[200px]">{{ $program->english_name }}</span>
-                                    </div>
-
+                                    
                                     {{-- Mô tả --}}
                                     <div class="flex flex-col space-y-1">
                                         <span class="text-sm font-medium text-gray-600">Mô tả:</span>

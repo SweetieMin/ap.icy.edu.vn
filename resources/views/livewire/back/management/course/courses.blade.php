@@ -252,25 +252,7 @@
                                  class="border-t border-gray-100 bg-gray-50">
                                 
                                 <div class="p-4 space-y-3">
-                                    {{-- STT --}}
-                                    <div class="flex justify-between items-center">
-                                        <span class="text-sm font-medium text-gray-600">STT:</span>
-                                        <span class="text-sm text-gray-900 font-mono">{{ $course->ordering }}</span>
-                                    </div>
-
-                                    {{-- Tên lớp học --}}
-                                    <div class="flex justify-between items-center">
-                                        <span class="text-sm font-medium text-gray-600">Tên lớp học:</span>
-                                        <span class="text-sm text-gray-900 text-right max-w-[200px]">{{ $course->name }}</span>
-                                    </div>
-
-                                    {{-- Cơ sở --}}
-                                    <div class="flex justify-between items-center">
-                                        <span class="text-sm font-medium text-gray-600">Cơ sở:</span>
-                                        <span class="text-sm text-gray-900 text-right max-w-[200px]">{{ $course->location->name }}</span>
-                                    </div>
-
-                                    {{-- Học kỳ --}}
+                                                                        {{-- Học kỳ --}}
                                     <div class="flex justify-between items-center">
                                         <span class="text-sm font-medium text-gray-600">Học kỳ:</span>
                                         <span class="text-sm text-gray-900 text-right max-w-[200px]">{{ $course->season->name }}</span>

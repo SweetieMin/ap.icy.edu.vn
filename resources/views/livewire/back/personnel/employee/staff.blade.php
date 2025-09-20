@@ -173,9 +173,9 @@
                     {{-- Main Row --}}
                     <div class="p-4 flex items-center justify-between">
                         <div class="flex items-center space-x-3">
-                            <div class="w-8 h-8 bg-slate-100 rounded-full flex items-center justify-center">
-                                <flux:icon.users class="w-4 h-4 text-slate-600" />
-                            </div>
+                            <img class="h-8 w-8 rounded-full object-cover"
+                                src="{{ $staff->detail?->avatar ?? asset('storage/images/avatars/default-avatar.png') }}"
+                                alt="{{ $staff->name }}">
                             <div>
                                 <div class="font-medium text-gray-900">{{ $staff->name }}</div>
                                 <div class="text-sm text-gray-500">ID: {{ $staff->account_code }}</div>
@@ -183,11 +183,7 @@
                         </div>
                         
                         <div class="flex items-center space-x-2">
-                            @if ($staff->locations->count() > 0)
-                                <flux:badge color="blue" size="sm">
-                                    {{ $staff->locations->first()->name }}
-                                </flux:badge>
-                            @endif
+
                             
                             <button @click="expanded = !expanded" 
                                     class="p-2 rounded-full hover:bg-gray-100">
@@ -205,16 +201,7 @@
                          class="border-t border-gray-100 bg-gray-50">
                         
                         <div class="p-4 space-y-3">
-                            {{-- Họ và tên --}}
-                            <div class="flex justify-between items-center">
-                                <span class="text-sm font-medium text-gray-600">Họ và tên:</span>
-                                <div class="flex items-center space-x-2">
-                                    <img class="h-6 w-6 rounded-full object-cover"
-                                        src="{{ $staff->detail?->avatar ?? asset('storage/images/avatars/default-avatar.png') }}"
-                                        alt="{{ $staff->name }}">
-                                    <span class="text-sm text-gray-900">{{ $staff->name }}</span>
-                                </div>
-                            </div>
+
 
                             {{-- Số điện thoại --}}
                             <div class="flex justify-between items-center">
@@ -411,9 +398,9 @@
                             {{-- Main Row --}}
                             <div class="p-4 flex items-center justify-between">
                                 <div class="flex items-center space-x-3">
-                                    <div class="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center">
-                                        <flux:icon.exclamation-triangle class="w-4 h-4 text-red-600" />
-                                    </div>
+                                    <img class="h-8 w-8 rounded-full object-cover"
+                                        src="{{ $staff->detail?->avatar ?? asset('storage/images/avatars/default-avatar.png') }}"
+                                        alt="{{ $staff->name }}">
                                     <div>
                                         <div class="font-medium text-gray-900">{{ $staff->name }}</div>
                                         <div class="text-sm text-gray-500">ID: {{ $staff->account_code }}</div>
@@ -441,16 +428,7 @@
                                  class="border-t border-gray-100 bg-gray-50">
                                 
                                 <div class="p-4 space-y-3">
-                                    {{-- Họ và tên --}}
-                                    <div class="flex justify-between items-center">
-                                        <span class="text-sm font-medium text-gray-600">Họ và tên:</span>
-                                        <div class="flex items-center space-x-2">
-                                            <img class="h-6 w-6 rounded-full object-cover"
-                                                src="{{ $staff->detail?->avatar ?? asset('storage/images/avatars/default-avatar.png') }}"
-                                                alt="{{ $staff->name }}">
-                                            <span class="text-sm text-gray-900">{{ $staff->name }}</span>
-                                        </div>
-                                    </div>
+
 
                                     {{-- Số điện thoại --}}
                                     <div class="flex justify-between items-center">

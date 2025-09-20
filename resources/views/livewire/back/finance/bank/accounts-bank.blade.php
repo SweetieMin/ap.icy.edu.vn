@@ -147,11 +147,6 @@
                              class="border-t border-gray-100 bg-gray-50">
                             
                             <div class="p-4 space-y-3">
-                                {{-- Tên ngân hàng --}}
-                                <div class="flex justify-between items-center">
-                                    <span class="text-sm font-medium text-gray-600">Ngân hàng:</span>
-                                    <span class="text-sm text-gray-900 text-right max-w-[200px]">{{ $bank->bank_name }}</span>
-                                </div>
 
                                 {{-- Mã ngân hàng --}}
                                 <div class="flex justify-between items-center">
@@ -159,24 +154,10 @@
                                     <span class="text-sm text-gray-900 font-mono">{{ $bank->bank_code }}</span>
                                 </div>
 
-                                {{-- Số tài khoản --}}
-                                <div class="flex justify-between items-center">
-                                    <span class="text-sm font-medium text-gray-600">Số tài khoản:</span>
-                                    <span class="text-sm text-gray-900 font-mono">{{ $bank->account_number }}</span>
-                                </div>
-
                                 {{-- Chủ tài khoản --}}
                                 <div class="flex justify-between items-center">
                                     <span class="text-sm font-medium text-gray-600">Chủ tài khoản:</span>
                                     <span class="text-sm text-gray-900 text-right max-w-[200px]">{{ $bank->account_name }}</span>
-                                </div>
-
-                                {{-- Trạng thái --}}
-                                <div class="flex justify-between items-center">
-                                    <span class="text-sm font-medium text-gray-600">Trạng thái:</span>
-                                    <span class="px-2 py-1 rounded-full text-xs {{ $bank->status === 'active' ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-700' }}">
-                                        {{ $bank->status === 'active' ? 'Hoạt động' : 'Ngưng' }}
-                                    </span>
                                 </div>
 
                                 {{-- Ngày tạo --}}
