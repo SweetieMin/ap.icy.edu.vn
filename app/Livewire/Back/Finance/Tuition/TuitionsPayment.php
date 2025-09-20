@@ -554,11 +554,7 @@ class TuitionsPayment extends Component
                 // Tạo content_transaction (chỉ cho chuyển khoản)
                 $contentTransaction = null;
                 if ($this->paymentMethod === 'bank_transfer') {
-                    if ($programItem['include_book']) {
-                        $contentTransaction = BankHelper::generateDescriptionTransactionBankTransfer($student->id, $programItem['season_id'], $programItem['id'])."_Book";
-                    } else {
-                        $contentTransaction = BankHelper::generateDescriptionTransactionBankTransfer($student->id, $programItem['season_id'], $programItem['id']);
-                    }
+                    $contentTransaction = BankHelper::generateDescriptionTransactionBankTransfer($student->id, $programItem['season_id'], $programItem['id']);
                 }
 
                 $tuition = [

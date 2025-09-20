@@ -10,22 +10,22 @@
             <div class="flex flex-wrap gap-2 text-xs">
                 <div class="flex items-center gap-2">
                     <span class="w-3 h-3 rounded-full" style="background-color: rgba(34, 197, 94, 0.9)"></span>
-                    <span class="text-gray-700 dark:text-gray-300">Có mặt: {{ $present }}</span>
+                    <span class="text-gray-700 dark:text-gray-300">Có mặt: <?php echo e($present); ?></span>
                 </div>
                 <div class="flex items-center gap-2">
                     <span class="w-3 h-3 rounded-full" style="background-color: rgba(239, 68, 68, 0.9)"></span>
-                    <span class="text-gray-700 dark:text-gray-300">Vắng mặt: {{ $absent }}</span>
+                    <span class="text-gray-700 dark:text-gray-300">Vắng mặt: <?php echo e($absent); ?></span>
                 </div>
                 <div class="flex items-center gap-2">
                     <span class="w-3 h-3 rounded-full" style="background-color: rgba(251, 207, 232, 0.8)"></span>
-                    <span class="text-gray-700 dark:text-gray-300">Tổng số buổi: {{ $total }}</span>
+                    <span class="text-gray-700 dark:text-gray-300">Tổng số buổi: <?php echo e($total); ?></span>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-@push('scripts')
+<?php $__env->startPush('scripts'); ?>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         let attendanceChartInstance = null;
@@ -50,10 +50,10 @@
             attendanceChartInstance = new Chart(canvas, {
                 type: 'pie',
                 data: {
-                    labels: @json($labels),
+                    labels: <?php echo json_encode($labels, 15, 512) ?>,
                     datasets: [{
                         label: 'Điểm danh',
-                        data: @json($data),
+                        data: <?php echo json_encode($data, 15, 512) ?>,
                         backgroundColor: [
                             'rgba(34, 197, 94, 0.9)', // xanh lá
                             'rgba(239, 68, 68, 0.9)', // đỏ
@@ -156,4 +156,5 @@
 
         window.addEventListener('resize', scheduleRerender);
     </script>
-@endpush
+<?php $__env->stopPush(); ?>
+<?php /**PATH /Users/smyth/Herd/ap.icy.edu.vn/resources/views/livewire/back/general/dashboard/chart-attendance.blade.php ENDPATH**/ ?>
