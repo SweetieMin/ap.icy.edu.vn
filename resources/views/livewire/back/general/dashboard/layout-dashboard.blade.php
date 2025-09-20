@@ -12,7 +12,9 @@
                 </video>
             </div>
             <div class="relative aspect-video overflow-hidden rounded-xl border border-pink-400 dark:border-pink-700">
-                <livewire:back.general.dashboard.chart-attendance />
+                @if($isShowChartAttendance)
+                    <livewire:back.general.dashboard.chart-attendance />
+                @endif
             </div>
         </div>
         <div class="relative h-full flex-1 overflow-hidden rounded-xl border border-pink-400 dark:border-pink-700">

@@ -43,10 +43,12 @@
                             Bảng điều khiển
                         </flux:navlist.item>
 
-                        <flux:navlist.item icon="queue-list" :href="route('admin.general.management-course')"
-                            :current="request()->routeIs('admin.general.management-course')" wire:navigate>
-                            Lớp học của tôi
-                        </flux:navlist.item>
+                        @if (auth()->user()->hasPermission('admin.general.management-course'))
+                            <flux:navlist.item icon="queue-list" :href="route('admin.general.management-course')"
+                                :current="request()->routeIs('admin.general.management-course')" wire:navigate>
+                                Lớp học của tôi
+                            </flux:navlist.item>
+                        @endif
 
                     </flux:navlist.group>
 

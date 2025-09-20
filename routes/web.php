@@ -52,7 +52,7 @@ Route::get('dashboard', LayoutDashboard::class)->name('dashboard')->middleware([
 Route::prefix('admin')->middleware(['auth', 'preventBackHistory'])->name('admin.')->group(function () {
 
     Route::prefix('general')->name('general.')->group(function () {
-        Route::get('management-course', LayoutCourse::class)->name('management-course');
+        Route::get('management-course', LayoutCourse::class)->name('management-course')->middleware('checkPermission:admin.general.management-course');
     });
 
     Route::prefix('management')->name('management.')->group(function () {
