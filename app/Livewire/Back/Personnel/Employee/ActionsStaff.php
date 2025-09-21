@@ -4,6 +4,7 @@ namespace App\Livewire\Back\Personnel\Employee;
 
 use Flux\Flux;
 use Livewire\Component;
+use Illuminate\Support\Str;
 use Livewire\Attributes\On;
 use App\Support\User\UserHelper;
 use Illuminate\Support\Facades\Hash;
@@ -120,6 +121,7 @@ class ActionsStaff extends Component
                 'email' => $this->email,
                 'username' => $this->username,
                 'account_code' => $this->account_code,
+                'token' => Str::random(64),
                 'password' => Hash::make($this->account_code),
                 'status' => 'active',
             ],

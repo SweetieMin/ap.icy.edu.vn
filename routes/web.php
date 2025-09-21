@@ -117,4 +117,4 @@ Route::prefix('admin')->middleware(['auth', 'preventBackHistory'])->name('admin.
 
 require __DIR__ . '/auth.php';
 
-Route::get('pdf/student-registration/{student}', [StudentRegistrationController::class, 'generate'])->name('pdf.student-registration');
+Route::get('pdf/student-registration/{token}', [StudentRegistrationController::class, 'generate'])->name('pdf.student-registration')->middleware('auth', 'preventBackHistory');

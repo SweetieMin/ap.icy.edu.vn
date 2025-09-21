@@ -2,17 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\User;
 use Barryvdh\DomPDF\Facade\Pdf;
-use App\Repositories\Contracts\StudentRepositoryInterface;
 use Illuminate\Support\Facades\Auth;
 
 class StudentRegistrationController extends Controller
 {
-    public function generate($studentId)
+    public function generate($token)
     {
-        $student = app(StudentRepositoryInterface::class)->getStudentById($studentId);
-        //return view('pdf.student-registration', ['student' => $student]);
+        $student = User::where('token', $token)->first();
 
         $pdf = Pdf::loadView('pdf.student-registration', [
             'student' => $student,

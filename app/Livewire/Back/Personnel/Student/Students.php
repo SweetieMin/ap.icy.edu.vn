@@ -67,10 +67,10 @@ class Students extends Component
         $this->studentsWithoutLocation = app(StudentRepositoryInterface::class)->getStudentsWithoutLocation($filtersWithoutLocation);
     }
 
-    public function printStudentRegistration($studentId)
+    public function printStudentRegistration($studentToken)
     {
         $url = route('pdf.student-registration', [
-            'student' => $studentId,
+            'token' => $studentToken,
         ]);
         $this->dispatch('open-pdf', ['url' => $url]);
     }

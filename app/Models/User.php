@@ -24,6 +24,7 @@ class User extends Authenticatable
         'email',
         'username',
         'account_code',
+        'token',
         'password',
         'status',
         'login_attempts',

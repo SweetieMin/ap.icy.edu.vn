@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('email')->unique()->nullable();
             $table->string('username')->unique();
             $table->string('account_code')->unique();
+            $table->string('token')->unique();
             $table->string('password');
             $table->enum('status', ['active', 'locked', 'resigned', 'pending'])->default('pending');
             $table->unsignedTinyInteger('login_attempts')->default(0); 
