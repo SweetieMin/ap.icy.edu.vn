@@ -10,7 +10,7 @@ class StudentRegistrationController extends Controller
 {
     public function generate($token)
     {
-        $student = User::where('token', $token)->first();
+        $student = User::where('token', $token)->firstOrFail();
 
         $pdf = Pdf::loadView('pdf.student-registration', [
             'student' => $student,
