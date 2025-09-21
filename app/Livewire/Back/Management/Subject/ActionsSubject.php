@@ -56,7 +56,7 @@ class ActionsSubject extends Component
         $this->url_book = $subject->url_book;
         $this->program_id = $subject->program_id;
         $this->isEditSubjectMode = true;
-        
+
         Flux::modal('modal-subject')->show();
     }
 
@@ -74,7 +74,9 @@ class ActionsSubject extends Component
 
         session()->flash('success', 'Môn học đã được cập nhật thành công.');
         Flux::modal('modal-subject')->close();
+        $this->redirectRoute('admin.management.subjects', navigate: true, parameters: ['program' => $this->program_id]);
         $this->dispatch('subject-created', $this->program_id);
+
         $this->reset(['subjectId', 'name', 'code', 'curriculum_name', 'url_book', 'program_id', 'isEditSubjectMode']);
     }
 
@@ -90,11 +92,12 @@ class ActionsSubject extends Component
         try {
             $subject = app(SubjectRepositoryInterface::class)->getSubjectById($this->subjectId);
             $programId = $subject->program_id;
-            
+
             app(SubjectRepositoryInterface::class)->delete($this->subjectId);
             session()->flash('success', 'Xoá môn học thành công.');
             $this->reset(['subjectId']);
             $this->dispatch('subject-created', $programId);
+            $this->redirectRoute('admin.management.subjects', navigate: true, parameters: ['program' => $programId]);
         } catch (Throwable $e) {
             session()->flash('error', 'Đã có lỗi xảy ra. Vui lòng thử lại sau.');
             return;
@@ -111,7 +114,7 @@ class ActionsSubject extends Component
     {
         return SubjectRules::messages();
     }
-    
+
 
     public function render()
     {
