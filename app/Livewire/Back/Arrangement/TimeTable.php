@@ -32,6 +32,7 @@ class Timetable extends LivewireCalendar
     public $roomName = '';
     public $eventId = '';
 
+    public $modalView = '';
 
     protected function rules()
     {
