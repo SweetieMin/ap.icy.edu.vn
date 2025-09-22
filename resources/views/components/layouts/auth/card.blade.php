@@ -15,22 +15,25 @@
     {{-- Open Graph Meta Tags --}}
     <meta property="og:title" content="{{ config('app.name') }} - Đăng nhập hệ thống">
     <meta property="og:description"
-        content="Đăng nhập vào hệ thống quản lý giáo dục ICY - Nền tảng quản lý chương trình học, lớp học và học viên chuyên nghiệp">
+        content="Hệ thống quản lý giáo dục ICY - Nền tảng quản lý chương trình học, lớp học và học viên chuyên nghiệp">
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ url()->current() }}">
     <meta property="og:site_name" content="{{ config('app.name') }}">
     <meta property="og:locale" content="vi_VN">
-    <meta property="og:image" content="{{ asset('logo.png') }}">
+    <meta property="og:image" content="{{ asset('OG-image.png') }}">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:image:alt" content="Logo ICY Education">
+
+    {{-- Facebook app id --}}
+    <meta property="fb:app_id" content="802740835544615" />
 
     {{-- Twitter Card Meta Tags --}}
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="{{ config('app.name') }} - Đăng nhập hệ thống">
     <meta name="twitter:description"
-        content="Đăng nhập vào hệ thống quản lý giáo dục ICY - Nền tảng quản lý chương trình học, lớp học và học viên chuyên nghiệp">
-    <meta name="twitter:image" content="{{ asset('logo.png') }}">
+        content="Hệ thống quản lý giáo dục ICY - Nền tảng quản lý chương trình học, lớp học và học viên chuyên nghiệp">
+    <meta name="twitter:image" content="{{ asset('OG-image.png') }}">
     <meta name="twitter:image:alt" content="Logo ICY Education">
 
     {{-- Structured Data --}}
