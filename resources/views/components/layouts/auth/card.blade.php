@@ -3,10 +3,63 @@
 
 <head>
     @include('partials.head')
+
+    {{-- SEO Meta Tags --}}
+    <meta name="description"
+        content="Đăng nhập vào hệ thống quản lý giáo dục ICY - Nền tảng quản lý chương trình học, lớp học và học viên chuyên nghiệp">
+    <meta name="keywords" content="đăng nhập, ICY, giáo dục, quản lý học viên, hệ thống giáo dục, ap.icy.edu.vn">
+    <meta name="author" content="ICY Education">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="{{ url()->current() }}">
+
+    {{-- Open Graph Meta Tags --}}
+    <meta property="og:title" content="{{ config('app.name') }} - Đăng nhập hệ thống">
+    <meta property="og:description"
+        content="Đăng nhập vào hệ thống quản lý giáo dục ICY - Nền tảng quản lý chương trình học, lớp học và học viên chuyên nghiệp">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:site_name" content="{{ config('app.name') }}">
+    <meta property="og:locale" content="vi_VN">
+    <meta property="og:image" content="{{ asset('logo.png') }}">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Logo ICY Education">
+
+    {{-- Twitter Card Meta Tags --}}
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ config('app.name') }} - Đăng nhập hệ thống">
+    <meta name="twitter:description"
+        content="Đăng nhập vào hệ thống quản lý giáo dục ICY - Nền tảng quản lý chương trình học, lớp học và học viên chuyên nghiệp">
+    <meta name="twitter:image" content="{{ asset('logo.png') }}">
+    <meta name="twitter:image:alt" content="Logo ICY Education">
+
+    {{-- Structured Data --}}
+    <script type="application/ld+json">
+        {!! json_encode([
+            '@context' => 'https://schema.org',
+            '@type' => 'WebPage',
+            'name' => config('app.name') . ' - Đăng nhập',
+            'description' => 'Đăng nhập vào hệ thống quản lý giáo dục ICY',
+            'url' => url()->current(),
+            'isPartOf' => [
+                '@type' => 'WebSite',
+                'name' => config('app.name'),
+                'url' => config('app.url'),
+            ],
+            'publisher' => [
+                '@type' => 'Organization',
+                'name' => 'ICY Education',
+                'url' => config('app.url'),
+            ],
+        ], JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES|JSON_PRETTY_PRINT) !!}
+    </script>
+
+
     <script>
         // Apply dark mode immediately to prevent flash
         (function() {
-            const isDark = localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches);
+            const isDark = localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia(
+                '(prefers-color-scheme: dark)').matches);
             if (isDark) {
                 document.documentElement.classList.add('dark');
             } else {
@@ -43,17 +96,19 @@
     class="min-h-screen bg-neutral-100 antialiased dark:bg-linear-to-b dark:from-neutral-950 dark:to-neutral-900 auth-bg">
     <div class="flex min-h-svh flex-col items-center justify-center p-4 sm:p-6 md:p-10">
         <div class="flex w-full max-w-sm sm:max-w-md flex-col gap-4 sm:gap-6">
-            <a href="{{ route('dashboard') }}" class="flex flex-col items-center gap-2 font-medium" wire:navigate>
-                <span class="flex h-20 w-20 sm:h-30 sm:w-30 items-center justify-center rounded-md text-pink-500">
-                    <x-app-logo-icon class="w-90 h-90" />
-                </span>
-                <span class="sr-only">{{ config('app.name', 'Laravel') }}</span>
-            </a>
-            <div class="flex flex-col gap-4 sm:gap-6">
+            <header>
+                <a href="{{ route('dashboard') }}" class="flex flex-col items-center gap-2 font-medium" wire:navigate>
+                    <span class="flex h-20 w-20 sm:h-30 sm:w-30 items-center justify-center rounded-md text-pink-500">
+                        <x-app-logo-icon class="w-90 h-90" alt="Logo ICY Education" />
+                    </span>
+                    <h1 class="sr-only">{{ config('app.name', 'Laravel') }} - Hệ thống quản lý giáo dục</h1>
+                </a>
+            </header>
+            <main class="flex flex-col gap-4 sm:gap-6">
                 <div class="rounded-2xl border-3 border-pink-500 bg-white dark:bg-stone-950 text-stone-800 shadow-xs">
                     <div class="px-4 py-6 sm:px-6 sm:py-8">{{ $slot }}</div>
                 </div>
-            </div>
+            </main>
         </div>
     </div>
     {{-- Theme Toggle (Optional) --}}
