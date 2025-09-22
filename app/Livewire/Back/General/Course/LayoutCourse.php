@@ -110,7 +110,7 @@ class LayoutCourse extends Component
             $attendanceDates = $studentAttendances->pluck('date')->toArray();
             $absentCount = $studentAttendances->where('status', 'absent')->count();
             $attendanceCount = count($attendanceDates);
-            $absentPercentage = $attendanceCount > 0 ? round(($absentCount / $attendanceCount) * 100, 1) : 0;
+            $absentPercentage = $attendanceCount > 0 ? round(($absentCount / $totalClasses) * 100, 1) : 0;
 
             $attendanceData = [
                 'student' => $student,
