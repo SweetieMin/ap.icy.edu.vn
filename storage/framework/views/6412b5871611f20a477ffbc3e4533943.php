@@ -1,15 +1,15 @@
-{{-- Custom Calendar with Navigation Controls --}}
+
 <div class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden"
-    @if($pollMillis !== null && $pollAction !== null)
-        wire:poll.{{ $pollMillis }}ms="{{ $pollAction }}"
-    @elseif($pollMillis !== null)
-        wire:poll.{{ $pollMillis }}ms
-    @endif
+    <?php if($pollMillis !== null && $pollAction !== null): ?>
+        wire:poll.<?php echo e($pollMillis); ?>ms="<?php echo e($pollAction); ?>"
+    <?php elseif($pollMillis !== null): ?>
+        wire:poll.<?php echo e($pollMillis); ?>ms
+    <?php endif; ?>
 >
-    {{-- Navigation Controls --}}
+    
     <div class="bg-white shadow-sm rounded-t-lg p-2 sm:p-4 border-b border-gray-200">
         <div class="flex items-center justify-between">
-            {{-- Previous Month Button --}}
+            
             <button 
                 wire:click="goToPreviousMonth"
                 class="flex items-center px-2 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-pink-50 hover:border-pink-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500 transition-colors duration-200 min-h-[44px] touch-manipulation"
@@ -21,17 +21,19 @@
                 <span class="sm:hidden">Trước</span>
             </button>
 
-            {{-- Current Month Display --}}
+            
             <div class="text-center flex-1 mx-2">
                 <h2 class="text-lg sm:text-2xl font-semibold text-pink-600 cursor-pointer touch-manipulation" wire:click="goToCurrentMonth">
-                    {{ ucwords(now()->locale('vi')->translatedFormat('l, d F Y')) }}
+                    <?php echo e(ucwords(now()->locale('vi')->translatedFormat('l, d F Y'))); ?>
+
                 </h2>
                 <p class="text-xs sm:text-sm text-gray-500">
-                    {{ $startsAt->format('d/m/Y') }} - {{ $endsAt->format('d/m/Y') }}
+                    <?php echo e($startsAt->format('d/m/Y')); ?> - <?php echo e($endsAt->format('d/m/Y')); ?>
+
                 </p>
             </div>
 
-            {{-- Next Month Button --}}
+            
             <button 
                 wire:click="goToNextMonth"
                 class="flex items-center px-2 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-pink-50 hover:border-pink-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500 transition-colors duration-200 min-h-[44px] touch-manipulation"
@@ -46,46 +48,46 @@
 
     </div>
 
-    {{-- Calendar Header --}}
+    
     <div class="bg-gradient-to-r from-pink-500 to-pink-600 text-white p-2 sm:p-4">
         <h1 class="text-lg sm:text-2xl font-bold text-center">Lịch học tập</h1>
     </div>
 
-    {{-- Before Calendar View (if any) --}}
+    
     <div>
-        @includeIf($beforeCalendarView)
+        <?php if ($__env->exists($beforeCalendarView)) echo $__env->make($beforeCalendarView, array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
     </div>
 
-    {{-- Calendar Grid --}}
+    
     <div class="w-full">
         <div class="overflow-x-auto">
             <div class="min-w-full sm:w-full" style="min-width: 38.5rem;">
-                {{-- Days of Week Header --}}
+                
                 <div class="w-full flex bg-gray-50 border-b border-gray-200">
-                    @foreach($monthGrid->first() as $day)
-                        @include($dayOfWeekView, ['day' => $day])
-                    @endforeach
+                    <!--[if BLOCK]><![endif]--><?php $__currentLoopData = $monthGrid->first(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $day): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <?php echo $__env->make($dayOfWeekView, ['day' => $day], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><!--[if ENDBLOCK]><![endif]-->
                 </div>
 
-                {{-- Calendar Days --}}
-                @foreach($monthGrid as $week)
+                
+                <!--[if BLOCK]><![endif]--><?php $__currentLoopData = $monthGrid; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $week): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <div class="w-full flex">
-                        @foreach($week as $day)
-                            @include($dayView, [
+                        <!--[if BLOCK]><![endif]--><?php $__currentLoopData = $week; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $day): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <?php echo $__env->make($dayView, [
                                     'componentId' => $componentId,
                                     'day' => $day,
                                     'dayInMonth' => $day->isSameMonth($startsAt),
                                     'isToday' => $day->isToday(),
                                     'events' => $getEventsForDay($day, $events),
-                                ])
-                        @endforeach
+                                ], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><!--[if ENDBLOCK]><![endif]-->
                     </div>
-                @endforeach
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><!--[if ENDBLOCK]><![endif]-->
             </div>
         </div>
     </div>
 
-    {{-- Calendar Footer with Legend --}}
+    
     <div class="bg-pink-50 px-2 sm:px-4 py-2 sm:py-3 border-t border-pink-200">
         <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between text-xs sm:text-sm text-gray-600 space-y-2 sm:space-y-0">
             <div class="flex flex-col sm:flex-row items-start sm:items-center space-y-1 sm:space-y-0 sm:space-x-4">
@@ -114,22 +116,23 @@
                 
             </div>
             <div class="text-pink-600 font-medium text-xs sm:text-sm">
-                Tổng: {{ $events->count() }} sự kiện
+                Tổng: <?php echo e($events->count()); ?> sự kiện
             </div>
         </div>
     </div>
 
-    {{-- After Calendar View (if any) --}}
+    
     <div>
-        @includeIf($afterCalendarView)
+        <?php if ($__env->exists($afterCalendarView)) echo $__env->make($afterCalendarView, array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
     </div>
 
-    {{-- Modal Setup View (if any) --}}
+    
     <div>
-        @includeIf($modalSetup)
+        <?php if ($__env->exists($modalSetup)) echo $__env->make($modalSetup, array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
     </div>
 
     <div>
-        @includeIf($modalView)
+        <?php if ($__env->exists($modalView)) echo $__env->make($modalView, array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
     </div>
 </div>
+<?php /**PATH /Users/smyth/Herd/ap.icy.edu.vn/resources/views/vendor/livewire-calendar/calendar.blade.php ENDPATH**/ ?>

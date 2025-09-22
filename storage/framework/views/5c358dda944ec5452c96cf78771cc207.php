@@ -38,7 +38,7 @@
             <h2 class="font-bold text-lg dark:text-white"><?php echo e($lastUser['name'] ?? 'User'); ?></h2>
 
             <form wire:submit="login" class="flex flex-col gap-4 sm:gap-6">
-                <input type="hidden" wire:model="login_id" value="<?php echo e($lastUser['email'] ?? $lastUser['username']); ?>">
+                <input type="hidden" wire:model="login_id" value="<?php echo e($lastUser['email'] ?? $lastUser['username']); ?>" autocomplete="on">
                 <?php if (isset($component)) { $__componentOriginal7c1bf3a9346f208f66ee83b06b607fb5 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal7c1bf3a9346f208f66ee83b06b607fb5 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.auth-session-status','data' => ['class' => 'text-center','status' => session('status')]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
@@ -218,14 +218,14 @@
         <form wire:submit="login" class="flex flex-col gap-4 sm:gap-6">
             <?php if (isset($component)) { $__componentOriginal26c546557cdc09040c8dd00b2090afd0 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal26c546557cdc09040c8dd00b2090afd0 = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::input.index','data' => ['wire:model' => 'login_id','label' => __('Địa chỉ Email / Username'),'type' => 'text','required' => true,'placeholder' => 'email@example.com / Username','autofocus' => true]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::input.index','data' => ['wire:model' => 'login_id','label' => __('Địa chỉ Email / Username'),'type' => 'text','required' => true,'placeholder' => 'email@example.com / Username','autofocus' => true,'autocomplete' => 'on']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('flux::input'); ?>
 <?php if ($component->shouldRender()): ?>
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>
 <?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
-<?php $component->withAttributes(['wire:model' => 'login_id','label' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(__('Địa chỉ Email / Username')),'type' => 'text','required' => true,'placeholder' => 'email@example.com / Username','autofocus' => true]); ?>
+<?php $component->withAttributes(['wire:model' => 'login_id','label' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(__('Địa chỉ Email / Username')),'type' => 'text','required' => true,'placeholder' => 'email@example.com / Username','autofocus' => true,'autocomplete' => 'on']); ?>
 <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php if (isset($__attributesOriginal26c546557cdc09040c8dd00b2090afd0)): ?>

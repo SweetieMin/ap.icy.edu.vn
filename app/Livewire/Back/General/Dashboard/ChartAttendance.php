@@ -2,7 +2,11 @@
 
 namespace App\Livewire\Back\General\Dashboard;
 
+use App\Models\User;
 use Livewire\Component;
+use App\Models\Attendance;
+use App\Models\ClassSchedule;
+use Illuminate\Support\Facades\Auth;
 
 class ChartAttendance extends Component
 {
@@ -19,19 +23,29 @@ class ChartAttendance extends Component
 
     public function loadData()
     {
-        $this->present = 1;
-        $this->absent = 1;
-        $this->total = 24;
+        $user = User::with('courses')->find(Auth::id());
 
-        $this->labels = [
-            'Có mặt',
-            'Vắng',
-            'Tổng',
+        $lastCourseId = $user->courses->last()?->id;
 
-        ];
-        $this->data = [$this->present, $this->absent, $this->total];
+        // Lấy danh sách schedule_id
+        $classScheduleIds = ClassSchedule::where('course_id', $lastCourseId)->pluck('id');
+
+        $this->present = Attendance::where('student_id', $user->id)
+            ->where('status', 'present')
+            ->whereIn('class_schedule_id', $classScheduleIds)
+            ->count();
+
+        $this->absent = Attendance::where('student_id', $user->id)
+            ->where('status', 'absent')
+            ->whereIn('class_schedule_id', $classScheduleIds)
+            ->count();
+
+        $this->total = $classScheduleIds->count();
+
+        $this->labels = ['Có mặt ' . $this->present, 'Vắng ' . $this->absent, 'Tổng ' . $this->total];
+        $this->data   = [$this->present, $this->absent, $this->total];
     }
-    
+
     public function render()
     {
         $this->loadData();

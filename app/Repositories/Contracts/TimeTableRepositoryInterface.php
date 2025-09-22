@@ -11,4 +11,5 @@ interface TimeTableRepositoryInterface
     public function update(int $id, array $data);
 
     public function getTodaySchedulesByAuthId();
+    public function getSchedulesByRole();
 }

@@ -19,7 +19,7 @@
             <h2 class="font-bold text-lg dark:text-white">{{ $lastUser['name'] ?? 'User' }}</h2>
 
             <form wire:submit="login" class="flex flex-col gap-4 sm:gap-6">
-                <input type="hidden" wire:model="login_id" value="{{ $lastUser['email'] ?? $lastUser['username'] }}">
+                <input type="hidden" wire:model="login_id" value="{{ $lastUser['email'] ?? $lastUser['username'] }}" autocomplete="on">
                 <x-auth-session-status class="text-center" :status="session('status')" />
 
 
@@ -66,7 +66,7 @@
         @endif
         <form wire:submit="login" class="flex flex-col gap-4 sm:gap-6">
             <flux:input wire:model="login_id" :label="__('Địa chỉ Email / Username')" type="text" required
-                placeholder="email@example.com / Username" autofocus />
+                placeholder="email@example.com / Username" autofocus autocomplete="on" />
 
             <div class="relative">
                 <flux:input wire:model="password" :label="__('Password')" type="password" required

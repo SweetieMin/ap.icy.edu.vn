@@ -223,4 +223,24 @@ class TimeTableHelper
             7 => 'Sunday',
         };
     }
+
+    public static function getTimeTableByRole($role)
+    {
+        $userId = Auth::id();
+        switch ($role) {
+            case 'BOD':
+                return ClassSchedule::with('course')->get();
+            case 'CENTER MANAGER':
+                return ClassSchedule::with('course')->get();
+            case 'RECEPTIONIST':
+                return ClassSchedule::with('course')->get();
+            default:
+                return ClassSchedule::with(['course.subject'])
+                ->whereHas('course.users', function ($q) use ($userId) {
+                    $q->where('users.id', $userId);
+                })
+                ->orderBy('start_time')
+                ->get();
+        }
+    }
 }

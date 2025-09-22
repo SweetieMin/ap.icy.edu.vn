@@ -92,4 +92,10 @@ class TimeTableRepository implements TimeTableRepositoryInterface
         $event->update($this->prepareData($data));
         return $event;
     }
+
+    public function getSchedulesByRole()
+    {
+        $role = Auth::user()->roles->first();
+        return TimeTableHelper::getTimeTableByRole($role->name);
+    }
 }

@@ -7,7 +7,7 @@
 
 </div>
 
-@push('styles')
+<?php $__env->startPush('styles'); ?>
     <style>
         .chart-container {
             width: 100%;
@@ -44,9 +44,9 @@
             }
         }
     </style>
-@endpush
+<?php $__env->stopPush(); ?>
 
-@push('scripts')
+<?php $__env->startPush('scripts'); ?>
     <script>
         let attendanceChartInstance = null;
 
@@ -61,10 +61,10 @@
             attendanceChartInstance = new Chart(canvas, {
                 type: 'pie',
                 data: {
-                    labels: @json($labels),
+                    labels: <?php echo json_encode($labels, 15, 512) ?>,
                     datasets: [{
                         label: 'Điểm danh',
-                        data: @json($data),
+                        data: <?php echo json_encode($data, 15, 512) ?>,
                         backgroundColor: [
                             'rgba(34, 197, 94, 0.9)',
                             'rgba(239, 68, 68, 0.9)',
@@ -124,5 +124,6 @@
             setTimeout(renderAttendanceChart, 500);
         });
     </script>
-@endpush
+<?php $__env->stopPush(); ?>
 
+<?php /**PATH /Users/smyth/Herd/ap.icy.edu.vn/resources/views/livewire/back/general/dashboard/chart-attendance.blade.php ENDPATH**/ ?>
