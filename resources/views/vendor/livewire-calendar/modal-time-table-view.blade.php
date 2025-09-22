@@ -1,5 +1,5 @@
 {{-- Modal xem thông tin lịch học --}}
-<flux:modal wire:ignore.self name="view-event" class="md:w-120">
+<flux:modal wire:ignore.self name="view-event" class="md:w-150">
     <div class="space-y-6">
         <div>
             <flux:heading size="lg">{{ $eventName ?? '' }} {{ $courseName ?? '' }}</flux:heading>
