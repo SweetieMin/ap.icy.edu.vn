@@ -229,11 +229,11 @@ class TimeTableHelper
         $userId = Auth::id();
         switch ($role) {
             case 'BOD':
-                return ClassSchedule::with('course')->get();
+                return ClassSchedule::with('course')->orderBy('start_time')->get();
             case 'CENTER MANAGER':
-                return ClassSchedule::with('course')->get();
+                return ClassSchedule::with('course')->orderBy('start_time')->get();
             case 'RECEPTIONIST':
-                return ClassSchedule::with('course')->get();
+                return ClassSchedule::with('course')->orderBy('start_time')->get();
             default:
                 return ClassSchedule::with(['course.subject'])
                 ->whereHas('course.users', function ($q) use ($userId) {

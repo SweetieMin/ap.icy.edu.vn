@@ -13,10 +13,11 @@ return new class extends Migration
     {
         Schema::create('attendances', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('class_schedule_id')->constrained('class_schedules');
-            $table->foreignId('student_id')->constrained('users');
+            $table->foreignId('class_schedule_id')->nullable()->constrained('class_schedules')->nullOnDelete();
+            $table->foreignId('student_id')->nullable()->constrained('users')->nullOnDelete();
             $table->date('date');
             $table->enum('status', ['absent', 'present']);
+            $table->enum('student_care_status', ['no_answer', 'success', 'not_contact'])->nullable();
             $table->string('note')->nullable();
             $table->timestamps();
         });

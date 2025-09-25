@@ -283,6 +283,14 @@
                                                     </svg>
                                                     <span>Sửa</span>
                                                 </button>
+
+                                                <button wire:click="autoCreateClassScheduleTimeTable({{ $course->id }})"
+                                                        class="flex-1 bg-purple-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-purple-700 transition-colors flex items-center justify-center space-x-2">
+                                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                                    </svg>
+                                                    <span>Tạo lịch</span>
+                                                </button>
                                                 
                                                 <button wire:click="deleteCourse({{ $course->id }})"
                                                         class="flex-1 bg-red-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-red-700 transition-colors flex items-center justify-center space-x-2">

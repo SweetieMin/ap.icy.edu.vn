@@ -2,18 +2,20 @@
 # Website: ap.icy.edu.vn
 
 User-agent: *
-
-# Cho phép truy cập các tài nguyên công khai
 Allow: /favicon.ico
 Allow: /favicon.svg
 Allow: /apple-touch-icon.png
 Allow: /logo.png
 Allow: /logo.gif
+Allow: /OG-image.png
+Allow: /images/logo.png
 Allow: /robots.txt
-
-#Cho phép truy cập các trang
 Allow: /login
 Allow: /forgot-password
+Allow: /css/
+Allow: /js/
+Allow: /images/
+Allow: /fonts/
 
 # Cấm truy cập các thư mục và file nhạy cảm
 Disallow: /admin/
@@ -55,6 +57,10 @@ Disallow: /*.ini
 Disallow: /tmp/
 Disallow: /temp/
 Disallow: /cache/
+
+# Facebook bot
+User-agent: facebookexternalhit
+Allow: /
 
 # Sitemap
 Sitemap: https://ap.icy.edu.vn/sitemap.xml

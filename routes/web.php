@@ -15,7 +15,6 @@ use App\Livewire\Back\Arrangement\TimeTable;
 use App\Livewire\Settings\AuthenticationLogs;
 
 // Finance
-use App\Livewire\Back\General\Course\MyCourses;
 use App\Livewire\Back\Personnel\Employee\Staff;
 
 // Personnel
@@ -40,11 +39,12 @@ use App\Livewire\Back\Finance\Tuition\TuitionsPayment;
 use App\Livewire\Back\Management\Curriculum\Curricula;
 use App\Http\Controllers\StudentRegistrationController;
 use App\Livewire\Back\General\Dashboard\LayoutDashboard;
+use App\Livewire\Back\Personnel\Service\StudentsCareLayout;
 use App\Livewire\Back\Finance\Price\ProgramPricesManagement;
 
 
 Route::get('/', function () {
-    return redirect()->route('login');
+    return view('wellcome');
 });
 
 Route::get('dashboard', LayoutDashboard::class)->name('dashboard')->middleware(['auth', 'preventBackHistory']);
@@ -88,6 +88,8 @@ Route::prefix('admin')->middleware(['auth', 'preventBackHistory'])->name('admin.
         Route::get('students', Students::class)->name('students')->middleware('checkPermission:admin.personnel.students');
 
         //Route::get('student-registration', StudentsRegistration::class)->name('student-registration');
+
+        Route::get('student-care', StudentsCareLayout::class)->name('student-care')->middleware('checkPermission:admin.personnel.student-care');
     });
 
     Route::prefix('finance')->name('finance.')->group(function () {

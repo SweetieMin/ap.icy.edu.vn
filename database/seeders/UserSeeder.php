@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use App\Models\UserDetail;
+use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
 
 class UserSeeder extends Seeder
@@ -18,6 +19,7 @@ class UserSeeder extends Seeder
                 'account_code' => 'ICY00001',
                 'status' => 'active',
                 'password' => bcrypt('ICY@2025!!'),
+                'token' => Str::random(64),
                 'must_change_password' => 0,
                 'first_login_at' => now(),
                 'last_password_change_at' => now(),
@@ -30,6 +32,7 @@ class UserSeeder extends Seeder
                 'account_code' => 'ICY00000',
                 'status' => 'active',
                 'password' => bcrypt('ICY@2025!!'),
+                'token' => Str::random(64),
                 'must_change_password' => 0,
                 'first_login_at' => now(),
                 'last_password_change_at' => now(),

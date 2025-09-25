@@ -57,11 +57,17 @@ class AttendanceStudents extends Component
         // Khởi tạo dữ liệu cho tất cả học viên
         $this->attendances = [];
         foreach ($this->students as $student) {
+            $status = $existingAttendances[$student->id]['status'] ?? 'present';
+        
             $this->attendances[$student->id] = [
-                'status' => $existingAttendances[$student->id]['status'] ?? 'present',
-                'note' => $existingAttendances[$student->id]['note'] ?? ''
+                'status' => $status,
+                'note'   => $existingAttendances[$student->id]['note'] ?? '',
+                'student_care_status' => $status === 'absent'
+                    ? ($existingAttendances[$student->id]['student_care_status'] ?? 'not_contact')
+                    : null,
             ];
         }
+        
     }
 
     public function updateAttendance($studentId, $status)

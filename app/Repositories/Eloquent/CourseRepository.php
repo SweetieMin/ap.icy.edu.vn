@@ -144,18 +144,35 @@ class CourseRepository implements CourseRepositoryInterface
 
     public function getCoursesByAuthIdAndSeasonId()
     {
-        $userId = Auth::id();
+        $user = Auth::user();
         $now = now();
 
-        return Course::query()
-            ->select('courses.*')
-            ->join('course_user', 'course_user.course_id', '=', 'courses.id')
-            ->join('seasons', 'seasons.id', '=', 'courses.season_id')
-            ->where('course_user.user_id', $userId)
-            ->whereIn('seasons.status', ['ongoing', 'upcoming'])
-            ->with(['location', 'season', 'subject'])
-            ->orderBy('courses.name')
-            ->get();
+        if ($user->hasRole('BOD')) {
+            $courses = Course::query()
+                ->select('courses.*')
+                ->join('course_user', 'course_user.course_id', '=', 'courses.id')
+                ->join('seasons', 'seasons.id', '=', 'courses.season_id')
+                ->when(!$user->hasRole('BOD'), function ($query) use ($user) {
+                    $query->where('course_user.user_id', $user->id);
+                })
+                ->whereIn('seasons.status', ['ongoing', 'upcoming'])
+                ->with(['location', 'season', 'subject'])
+                ->orderBy('courses.name')
+                ->distinct()
+                ->get();
+        } else {
+            $courses = Course::query()
+                ->select('courses.*')
+                ->join('course_user', 'course_user.course_id', '=', 'courses.id')
+                ->join('seasons', 'seasons.id', '=', 'courses.season_id')
+                ->where('course_user.user_id', $user->id)
+                ->whereIn('seasons.status', ['ongoing', 'upcoming'])
+                ->with(['location', 'season', 'subject'])
+                ->orderBy('courses.name')
+                ->get();
+        }
+
+        return $courses;
     }
 
     public function getClassStudentsByCourseId(int $courseId)

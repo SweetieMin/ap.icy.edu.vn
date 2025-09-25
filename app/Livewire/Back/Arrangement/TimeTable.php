@@ -206,7 +206,7 @@ class Timetable extends LivewireCalendar
             
             return [
                 'id' => $event->id,
-                'title' => $event->name . ' - ' . $event->course->name,
+                'title' =>$startTime . ': Lớp - ' . $event->course->name,
                 'description' => $event->note,
                 'date' => $date,
                 'start_time' => $startTime,

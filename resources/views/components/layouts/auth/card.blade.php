@@ -25,7 +25,7 @@
     <meta property="og:image:height" content="630">
     <meta property="og:image:alt" content="Logo ICY Education">
 
-    {{-- Facebook app id --}}
+    {{-- Facebook App ID --}}
     <meta property="fb:app_id" content="802740835544615" />
 
     {{-- Twitter Card Meta Tags --}}
@@ -36,26 +36,37 @@
     <meta name="twitter:image" content="{{ asset('OG-image.png') }}">
     <meta name="twitter:image:alt" content="Logo ICY Education">
 
-    {{-- Structured Data --}}
+    {{-- Structured Data: WebPage --}}
     <script type="application/ld+json">
         {!! json_encode([
-            '@context' => 'https://schema.org',
-            '@type' => 'WebPage',
-            'name' => config('app.name') . ' - Đăng nhập',
-            'description' => 'Đăng nhập vào hệ thống quản lý giáo dục ICY',
-            'url' => url()->current(),
-            'isPartOf' => [
-                '@type' => 'WebSite',
-                'name' => config('app.name'),
-                'url' => config('app.url'),
-            ],
-            'publisher' => [
-                '@type' => 'Organization',
-                'name' => 'ICY Education',
-                'url' => config('app.url'),
-            ],
+        '@context' => 'https://schema.org',
+        '@type' => 'WebPage',
+        'name' => config('app.name') . ' - Đăng nhập',
+        'description' => 'Đăng nhập vào hệ thống quản lý giáo dục ICY',
+        'url' => url()->current(),
+        'isPartOf' => [
+        '@type' => 'WebSite',
+        'name' => config('app.name'),
+        'url' => config('app.url'),
+        ],
+        'publisher' => [
+        '@type' => 'Organization',
+        'name' => 'ICY Education',
+        'url' => config('app.url'),
+        ],
         ], JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES|JSON_PRETTY_PRINT) !!}
     </script>
+
+    {{-- Structured Data: Organization (Logo cho Google Search) --}}
+    <script type="application/ld+json">
+        {!! json_encode([
+        '@context' => 'https://schema.org',
+        '@type' => 'Organization',
+        'url' => config('app.url'),
+        'name' => 'ICY Education',
+        'logo' => asset('images/logo.png'),
+        ], JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES|JSON_PRETTY_PRINT) !!}
+</script>
 
 
     <script>

@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('room_name');
             $table->string('note')->nullable();
             $table->string('color')->nullable();
-            $table->foreignId('created_by')->constrained('users')->onDelete('cascade');
+            $table->foreignId('created_by')->nullable()->constrained('users')->nullOnDelete();
             $table->timestamps();
         });
     }

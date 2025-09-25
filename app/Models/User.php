@@ -161,4 +161,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Attendance::class);
     }
+
+    public function studentCareHistories()
+    {
+        return $this->hasMany(StudentCareHistory::class);
+    }
 }

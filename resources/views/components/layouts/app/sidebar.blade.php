@@ -194,7 +194,7 @@
                         </flux:navlist.group>
                     @endif
 
-                    @if (auth()->user()->hasPermission('admin.personnel.staff') || auth()->user()->hasPermission('admin.personnel.students'))
+                    @if (auth()->user()->hasPermission('admin.personnel.staff') || auth()->user()->hasPermission('admin.personnel.students') || auth()->user()->hasPermission('admin.personnel.student-care'))
 
                         <hr class="h-px my-2 bg-gray-200 border-0 dark:bg-gray-700">
                         <flux:navlist.group :heading="__('Human resources')" class="grid">
@@ -209,6 +209,13 @@
                                 <flux:navlist.item icon="user-group" :href="route('admin.personnel.students')"
                                     :current="request()->routeIs('admin.personnel.students')" wire:navigate>
                                     Học viên
+                                </flux:navlist.item>
+                            @endif
+
+                            @if (auth()->user()->hasPermission('admin.personnel.student-care'))
+                                <flux:navlist.item icon="chat-bubble-left-right" :href="route('admin.personnel.student-care')"
+                                    :current="request()->routeIs('admin.personnel.student-care')" wire:navigate>
+                                    Chăm sóc học viên
                                 </flux:navlist.item>
                             @endif
                         </flux:navlist.group>

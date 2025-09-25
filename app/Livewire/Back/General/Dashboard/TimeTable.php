@@ -3,6 +3,7 @@
 namespace App\Livewire\Back\General\Dashboard;
 
 use Flux\Flux;
+use App\Models\Course;
 use Illuminate\Support\Carbon;
 use Livewire\Attributes\Title;
 use Illuminate\Support\Collection;
@@ -21,6 +22,7 @@ class Timetable extends LivewireCalendar
     public $eventColor;
     public $courseName;
     public $eventName;
+    public $teacherName;
 
     public function afterMount($extras = [])
     {
@@ -34,14 +36,14 @@ class Timetable extends LivewireCalendar
         return $events->map(function ($event) {
             // Xử lý date - có thể là string hoặc Carbon instance
             $date = is_string($event->date) ? $event->date : $event->date->format('Y-m-d');
-            
+
             // Xử lý start_time và end_time - có thể là string hoặc Carbon instance
             $startTime = is_string($event->start_time) ? date('H:i', strtotime($event->start_time)) : $event->start_time->format('H:i');
             $endTime = is_string($event->end_time) ? date('H:i', strtotime($event->end_time)) : $event->end_time->format('H:i');
-            
+
             return [
                 'id' => $event->id,
-                'title' =>$startTime . ': Lớp - ' . $event->course->name,
+                'title' => $startTime . ': Lớp - ' . $event->course->name,
                 'description' => $event->note,
                 'date' => $date,
                 'start_time' => $startTime,
@@ -56,10 +58,7 @@ class Timetable extends LivewireCalendar
     /**
      * Xử lý khi click vào ngày
      */
-    public function onDayClick($year, $month, $day)
-    {
-
-    }
+    public function onDayClick($year, $month, $day) {}
 
     /**
      * Xử lý khi click vào sự kiện
@@ -67,7 +66,7 @@ class Timetable extends LivewireCalendar
     public function onEventClick($eventId)
     {
         $event = app(TimeTableRepositoryInterface::class)->getById($eventId);
-        
+
         $this->courseName = $event->course->name;
         $this->startTime = $event->start_time->format('H:i');
         $this->endTime = $event->end_time->format('H:i');
@@ -75,16 +74,21 @@ class Timetable extends LivewireCalendar
         $this->eventColor = $event->color ?? 'bg-pink-500';
         $this->eventName = $event->name;
 
+        $course = Course::with(['users.roles'])->find($event->course_id);
+
+        $classTeachers = $course->users
+            ->filter(function ($user) {
+                return $user->roles->pluck('name')->intersect(['TEACHER', 'BOD'])->isNotEmpty();
+            });
+
+        // Lấy tên giáo viên đầu tiên
+        $this->teacherName = $classTeachers->first()?->name;
+
         Flux::modal('view-event')->show();
     }
 
     /**
      * Xử lý khi kéo thả sự kiện
      */
-    public function onEventDropped($eventId, $year, $month, $day)
-    {
-        
-    }
-
+    public function onEventDropped($eventId, $year, $month, $day) {}
 }
-

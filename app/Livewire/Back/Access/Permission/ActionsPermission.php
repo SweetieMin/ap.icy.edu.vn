@@ -11,7 +11,7 @@ use App\Repositories\Contracts\PermissionRepositoryInterface;
 class ActionsPermission extends Component
 {
     public $permissionId;
-    public $router, $displayName, $isShow = false;
+    public $router, $displayName, $isShow = true;
     public $isEditPermissionMode = false;
     public $routeOptions = [];
     
@@ -45,7 +45,7 @@ class ActionsPermission extends Component
     public function addPermission()
     {
         $this->resetErrorBag();
-        $this->reset(['permissionId', 'router', 'displayName', 'isShow', 'selectedRoutes', 'bulkPermissions', 'showBulkForm']);
+        $this->reset(['permissionId', 'router', 'displayName', 'selectedRoutes', 'bulkPermissions', 'showBulkForm']);
         $this->isEditPermissionMode = false;
         $this->routeOptions = $this->getAvailableAdminRoutes();
         Flux::modal('modal-permission')->show();
@@ -55,7 +55,7 @@ class ActionsPermission extends Component
     public function addBulkPermission()
     {
         $this->resetErrorBag();
-        $this->reset(['permissionId', 'router', 'displayName', 'isShow', 'selectedRoutes', 'bulkPermissions', 'showBulkForm']);
+        $this->reset(['permissionId', 'router', 'displayName', 'selectedRoutes', 'bulkPermissions', 'showBulkForm']);
         $this->isEditPermissionMode = false;
         $this->routeOptions = $this->getAvailableAdminRoutes();
         $this->showBulkForm = true;

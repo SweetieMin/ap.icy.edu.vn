@@ -2,9 +2,11 @@
     <div class="flex h-full w-full flex-1 flex-col gap-4 rounded-xl">
         <div class=" grid auto-rows-min gap-4 xl:grid-cols-3">
             <div class="relative aspect-video overflow-hidden rounded-xl border border-pink-400 dark:border-pink-700">
-                <video autoplay playsinline preload="auto" >
-                    <source src="{{ asset('INTRO.mp4') }}" type="video/mp4">
-                </video>
+                @if (env('APP_ENV') === 'production')
+                    <video autoplay playsinline preload="auto">
+                        <source src="{{ asset('INTRO.mp4') }}" type="video/mp4">
+                    </video>
+                @endif
             </div>
             <div class="relative aspect-video overflow-hidden rounded-xl border border-pink-400 dark:border-pink-700">
                 <video autoplay muted playsinline loop class="w-full h-full " preload="auto">
@@ -12,7 +14,7 @@
                 </video>
             </div>
             <div class="relative aspect-video overflow-hidden rounded-xl border border-pink-400 dark:border-pink-700">
-                @if($isShowChartAttendance)
+                @if ($isShowChartAttendance)
                     <livewire:back.general.dashboard.chart-attendance />
                 @endif
             </div>

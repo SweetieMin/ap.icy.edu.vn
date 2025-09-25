@@ -2,10 +2,12 @@
 
 namespace App\Repositories\Eloquent;
 
+use App\Models\Role;
 use App\Models\Permission;
-use App\Repositories\Contracts\PermissionRepositoryInterface;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Database\Eloquent\Collection;
+use App\Repositories\Contracts\PermissionRepositoryInterface;
+use phpDocumentor\Reflection\PseudoTypes\True_;
 
 class PermissionRepository implements PermissionRepositoryInterface
 {
@@ -58,7 +60,11 @@ class PermissionRepository implements PermissionRepositoryInterface
      */
     public function create(array $data): Permission
     {
-        return $this->model->create($data);
+        $permission = $this->model->create($data);
+        $roleBOD = Role::where('name', 'BOD')->first();
+        $roleBOD->permissions()->attach($permission->id);
+        //dd($roleBOD->permissions());
+        return $permission;
     }
 
     /**
@@ -70,8 +76,11 @@ class PermissionRepository implements PermissionRepositoryInterface
         if (!$permission) {
             return false;
         }
+        $permission->update($data);
+        $roleBOD = Role::where('name', 'BOD')->first();
+        $roleBOD->permissions()->attach($permission->id);
 
-        return $permission->update($data);
+        return true;
     }
 
     /**
@@ -83,8 +92,10 @@ class PermissionRepository implements PermissionRepositoryInterface
         if (!$permission) {
             return false;
         }
-
-        return $permission->delete();
+        $permission->delete();
+        $roleBOD = Role::where('name', 'BOD')->first();
+        $roleBOD->permissions()->detach($permission->id);
+        return true;
     }
 
     /**

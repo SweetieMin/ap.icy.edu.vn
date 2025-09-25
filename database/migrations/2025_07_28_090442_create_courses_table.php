@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('courses', function (Blueprint $table) {
             $table->id();
             $table->integer('ordering')->default(1000);
-            $table->foreignId('location_id')->constrained('locations')->onDelete('restrict');
-            $table->foreignId('season_id')->constrained('seasons')->onDelete('restrict');
-            $table->foreignId('subject_id')->constrained('subjects')->onDelete('restrict');
+            $table->foreignId('location_id')->nullable()->constrained('locations')->nullOnDelete();
+            $table->foreignId('season_id')->nullable()->constrained('seasons')->nullOnDelete();
+            $table->foreignId('subject_id')->nullable()->constrained('subjects')->nullOnDelete();
             $table->string('name');
             $table->text('description')->nullable();
             $table->timestamps();
