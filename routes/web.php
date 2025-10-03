@@ -34,6 +34,7 @@ use App\Livewire\Back\Management\Subject\Subjects;
 use App\Livewire\Back\Management\Syllabus\Syllabi;
 use App\Livewire\Back\Access\Permission\Permissions;
 use App\Livewire\Back\Management\Location\Locations;
+use App\Livewire\Back\Management\Test\PlacementTests;
 use App\Livewire\Back\Finance\Tuition\TuitionsHistory;
 use App\Livewire\Back\Finance\Tuition\TuitionsPayment;
 use App\Livewire\Back\Management\Curriculum\Curricula;
@@ -68,6 +69,8 @@ Route::prefix('admin')->middleware(['auth', 'preventBackHistory'])->name('admin.
         Route::get('courses', Courses::class)->name('courses')->middleware('checkPermission:admin.management.courses');
 
         Route::get('syllabi', Syllabi::class)->name('syllabi')->middleware('checkPermission:admin.management.syllabi');
+
+        Route::get('placement-tests', PlacementTests::class)->name('placement-tests')->middleware('checkPermission:admin.management.placement-tests');
 
         Route::get('curricula', Curricula::class)->name('curricula');
     });

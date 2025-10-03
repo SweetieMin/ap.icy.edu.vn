@@ -60,7 +60,8 @@
                             auth()->user()->hasPermission('admin.management.subjects') ||
                             auth()->user()->hasPermission('admin.management.courses') ||
                             auth()->user()->hasPermission('admin.management.syllabi') ||
-                            auth()->user()->hasPermission('admin.management.curricula'))
+                            auth()->user()->hasPermission('admin.management.curricula') ||
+                            auth()->user()->hasPermission('admin.management.placement-tests'))
                         <hr class="h-px my-2 bg-gray-200 border-0 dark:bg-gray-700">
                         <flux:navlist.group :heading="__('Management')" class="grid">
 
@@ -103,6 +104,13 @@
                                 <flux:navlist.item icon="list-bullet" :href="route('admin.management.syllabi')"
                                     :current="request()->routeIs('admin.management.syllabi')" wire:navigate>
                                     Syllabus
+                                </flux:navlist.item>
+                            @endif
+
+                            @if (auth()->user()->hasPermission('admin.management.placement-tests'))
+                                <flux:navlist.item icon="list-bullet" :href="route('admin.management.placement-tests')"
+                                    :current="request()->routeIs('admin.management.placement-tests')" wire:navigate>
+                                    Kiểm tra đầu vào
                                 </flux:navlist.item>
                             @endif
 
