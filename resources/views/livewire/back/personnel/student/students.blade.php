@@ -139,11 +139,12 @@
                                                 wire:click="paymentStudent({{ $student->id }})">Thanh toán học phí
                                             </flux:menu.item>
 
-                                            <flux:menu.separator />
-
-                                            <flux:menu.item variant="danger" icon="trash"
-                                                wire:click="deleteStudent({{ $student->id }})">Xóa
-                                            </flux:menu.item>
+                                            @can('delete', $student)
+                                                <flux:menu.separator />
+                                                <flux:menu.item variant="danger" icon="trash"
+                                                    wire:click="deleteStudent({{ $student->id }})">Xóa
+                                                </flux:menu.item>
+                                            @endcan
                                         </flux:menu>
                                     </flux:dropdown>
                                 </td>
@@ -170,47 +171,45 @@
             {{-- Mobile Card View --}}
             <div class="md:hidden space-y-3">
                 @forelse ($students as $index => $student)
-                    <div class="bg-white rounded-lg border border-gray-200 shadow-sm" 
-                         x-data="{ expanded: false }" 
-                         wire:key="student-mobile-{{ $student->id }}">
-                        
+                    <div class="bg-white rounded-lg border border-gray-200 shadow-sm" x-data="{ expanded: false }"
+                        wire:key="student-mobile-{{ $student->id }}">
+
                         {{-- Main Row --}}
                         <div class="p-4 flex items-center justify-between">
-                        <div class="flex items-center space-x-3">
-                            <img class="h-8 w-8 rounded-full object-cover"
-                                src="{{ $student->detail?->avatar ?? asset('images/default-avatar.png') }}"
-                                alt="{{ $student->name }}">
-                            <div>
-                                <div class="font-medium text-gray-900">{{ $student->name }}</div>
-                                <div class="text-sm text-gray-500">ID: {{ $student->account_code }}</div>
+                            <div class="flex items-center space-x-3">
+                                <img class="h-8 w-8 rounded-full object-cover"
+                                    src="{{ $student->detail?->avatar ?? asset('images/default-avatar.png') }}"
+                                    alt="{{ $student->name }}">
+                                <div>
+                                    <div class="font-medium text-gray-900">{{ $student->name }}</div>
+                                    <div class="text-sm text-gray-500">ID: {{ $student->account_code }}</div>
+                                </div>
                             </div>
-                        </div>
-                            
+
                             <div class="flex items-center space-x-2">
 
-                                
-                                <button @click="expanded = !expanded" 
-                                        class="p-2 rounded-full hover:bg-gray-100">
-                                    <svg class="w-5 h-5 text-gray-400" 
-                                         :class="{ 'rotate-180': expanded }" 
-                                         fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+
+                                <button @click="expanded = !expanded" class="p-2 rounded-full hover:bg-gray-100">
+                                    <svg class="w-5 h-5 text-gray-400" :class="{ 'rotate-180': expanded }"
+                                        fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M19 9l-7 7-7-7"></path>
                                     </svg>
                                 </button>
                             </div>
                         </div>
 
                         {{-- Expanded Details --}}
-                        <div x-show="expanded" 
-                             class="border-t border-gray-100 bg-gray-50">
-                            
+                        <div x-show="expanded" class="border-t border-gray-100 bg-gray-50">
+
                             <div class="p-4 space-y-3">
 
 
                                 {{-- Số điện thoại --}}
                                 <div class="flex justify-between items-center">
                                     <span class="text-sm font-medium text-gray-600">Số điện thoại:</span>
-                                    <span class="text-sm text-gray-900">{{ $student->detail?->phone ?? 'Chưa cập nhật' }}</span>
+                                    <span
+                                        class="text-sm text-gray-900">{{ $student->detail?->phone ?? 'Chưa cập nhật' }}</span>
                                 </div>
 
                                 {{-- Cơ sở --}}
@@ -238,33 +237,45 @@
                                 <div class="pt-3 border-t border-gray-200">
                                     <div class="grid grid-cols-2 gap-2">
                                         <button wire:click="editStudent({{ $student->id }})"
-                                                class="bg-blue-600 text-white px-3 py-2 rounded-md text-sm font-medium hover:bg-blue-700 transition-colors flex items-center justify-center space-x-1">
-                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+                                            class="bg-blue-600 text-white px-3 py-2 rounded-md text-sm font-medium hover:bg-blue-700 transition-colors flex items-center justify-center space-x-1">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor"
+                                                viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z">
+                                                </path>
                                             </svg>
                                             <span>Sửa</span>
                                         </button>
-                                        
+
                                         <button wire:click="printStudentRegistration('{{ $student->token }}')"
-                                                class="bg-gray-600 text-white px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors flex items-center justify-center space-x-1">
-                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path>
+                                            class="bg-gray-600 text-white px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors flex items-center justify-center space-x-1">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor"
+                                                viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z">
+                                                </path>
                                             </svg>
                                             <span>In đơn</span>
                                         </button>
-                                        
+
                                         <button wire:click="paymentStudent({{ $student->id }})"
-                                                class="bg-green-600 text-white px-3 py-2 rounded-md text-sm font-medium hover:bg-green-700 transition-colors flex items-center justify-center space-x-1">
-                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path>
+                                            class="bg-green-600 text-white px-3 py-2 rounded-md text-sm font-medium hover:bg-green-700 transition-colors flex items-center justify-center space-x-1">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor"
+                                                viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z">
+                                                </path>
                                             </svg>
                                             <span>Thanh toán</span>
                                         </button>
-                                        
+
                                         <button wire:click="deleteStudent({{ $student->id }})"
-                                                class="bg-red-600 text-white px-3 py-2 rounded-md text-sm font-medium hover:bg-red-700 transition-colors flex items-center justify-center space-x-1">
-                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                                            class="bg-red-600 text-white px-3 py-2 rounded-md text-sm font-medium hover:bg-red-700 transition-colors flex items-center justify-center space-x-1">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor"
+                                                viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16">
+                                                </path>
                                             </svg>
                                             <span>Xóa</span>
                                         </button>
@@ -375,7 +386,8 @@
                                                 </flux:menu.item>
 
                                                 <flux:menu.item icon="printer"
-                                                    wire:click="printStudentRegistration('{{ $student->token }}')">In đơn
+                                                    wire:click="printStudentRegistration('{{ $student->token }}')">In
+                                                    đơn
                                                     đăng ký</flux:menu.item>
 
                                                 <flux:menu.separator />
@@ -409,10 +421,9 @@
                 {{-- Mobile Card View --}}
                 <div class="md:hidden space-y-3">
                     @forelse ($studentsWithoutLocation as $index => $student)
-                        <div class="bg-white rounded-lg border border-gray-200 shadow-sm" 
-                             x-data="{ expanded: false }" 
-                             wire:key="student-no-location-mobile-{{ $student->id }}">
-                            
+                        <div class="bg-white rounded-lg border border-gray-200 shadow-sm" x-data="{ expanded: false }"
+                            wire:key="student-no-location-mobile-{{ $student->id }}">
+
                             {{-- Main Row --}}
                             <div class="p-4 flex items-center justify-between">
                                 <div class="flex items-center space-x-3">
@@ -424,27 +435,25 @@
                                         <div class="text-sm text-gray-500">ID: {{ $student->account_code }}</div>
                                     </div>
                                 </div>
-                                
+
                                 <div class="flex items-center space-x-2">
                                     <span class="px-2 py-1 rounded-full text-xs font-medium bg-red-100 text-red-800">
                                         Chưa có cơ sở
                                     </span>
-                                    
-                                    <button @click="expanded = !expanded" 
-                                            class="p-2 rounded-full hover:bg-gray-100">
-                                        <svg class="w-5 h-5 text-gray-400" 
-                                             :class="{ 'rotate-180': expanded }" 
-                                             fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+
+                                    <button @click="expanded = !expanded" class="p-2 rounded-full hover:bg-gray-100">
+                                        <svg class="w-5 h-5 text-gray-400" :class="{ 'rotate-180': expanded }"
+                                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M19 9l-7 7-7-7"></path>
                                         </svg>
                                     </button>
                                 </div>
                             </div>
 
                             {{-- Expanded Details --}}
-                            <div x-show="expanded" 
-                                 class="border-t border-gray-100 bg-gray-50">
-                                
+                            <div x-show="expanded" class="border-t border-gray-100 bg-gray-50">
+
                                 <div class="p-4 space-y-3">
                                     {{-- Họ và tên --}}
                                     <div class="flex justify-between items-center">
@@ -460,14 +469,16 @@
                                     {{-- Số điện thoại --}}
                                     <div class="flex justify-between items-center">
                                         <span class="text-sm font-medium text-gray-600">Số điện thoại:</span>
-                                        <span class="text-sm text-gray-900">{{ $student->detail?->phone ?? 'Chưa cập nhật' }}</span>
+                                        <span
+                                            class="text-sm text-gray-900">{{ $student->detail?->phone ?? 'Chưa cập nhật' }}</span>
                                     </div>
 
                                     {{-- Cơ sở --}}
                                     @if (auth()->user()->locations()->count() > 1)
                                         <div class="flex justify-between items-center">
                                             <span class="text-sm font-medium text-gray-600">Cơ sở:</span>
-                                            <span class="px-2 py-1 rounded-full text-xs font-medium bg-red-100 text-red-800">
+                                            <span
+                                                class="px-2 py-1 rounded-full text-xs font-medium bg-red-100 text-red-800">
                                                 Chưa có cơ sở
                                             </span>
                                         </div>
@@ -477,25 +488,37 @@
                                     <div class="pt-3 border-t border-gray-200">
                                         <div class="grid grid-cols-2 gap-2">
                                             <button wire:click="editStudent({{ $student->id }})"
-                                                    class="bg-blue-600 text-white px-3 py-2 rounded-md text-sm font-medium hover:bg-blue-700 transition-colors flex items-center justify-center space-x-1">
-                                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+                                                class="bg-blue-600 text-white px-3 py-2 rounded-md text-sm font-medium hover:bg-blue-700 transition-colors flex items-center justify-center space-x-1">
+                                                <svg class="w-4 h-4" fill="none" stroke="currentColor"
+                                                    viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="2"
+                                                        d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z">
+                                                    </path>
                                                 </svg>
                                                 <span>Sửa</span>
                                             </button>
-                                            
+
                                             <button wire:click="printStudentRegistration('{{ $student->token }}')"
-                                                    class="bg-gray-600 text-white px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors flex items-center justify-center space-x-1">
-                                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path>
+                                                class="bg-gray-600 text-white px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors flex items-center justify-center space-x-1">
+                                                <svg class="w-4 h-4" fill="none" stroke="currentColor"
+                                                    viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="2"
+                                                        d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z">
+                                                    </path>
                                                 </svg>
                                                 <span>In đơn</span>
                                             </button>
-                                            
+
                                             <button wire:click="deleteStudent({{ $student->id }})"
-                                                    class="bg-red-600 text-white px-3 py-2 rounded-md text-sm font-medium hover:bg-red-700 transition-colors flex items-center justify-center space-x-1 col-span-2">
-                                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                                                class="bg-red-600 text-white px-3 py-2 rounded-md text-sm font-medium hover:bg-red-700 transition-colors flex items-center justify-center space-x-1 col-span-2">
+                                                <svg class="w-4 h-4" fill="none" stroke="currentColor"
+                                                    viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="2"
+                                                        d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16">
+                                                    </path>
                                                 </svg>
                                                 <span>Xóa</span>
                                             </button>

@@ -34,6 +34,7 @@ class Students extends Component
 
     public function deleteStudent($studentId)
     {
+        $this->authorize('delete', app(UserRepositoryInterface::class)->getUserById($studentId));
         $this->dispatch('delete-student', $studentId);
     }
 
