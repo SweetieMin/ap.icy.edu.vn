@@ -22,7 +22,6 @@ use Illuminate\Validation\ValidationException;
 class Login extends Component
 {
     private const MAX_LOGIN_ATTEMPTS = 5;
-    private const COOKIE_EXPIRY_MINUTES = 60 * 24 * 7;
 
     private const STATUS_PENDING = 'pending';
     private const STATUS_LOCKED = 'locked';
@@ -72,6 +71,7 @@ class Login extends Component
             return;
         }
 
+        /** @var \App\Models\User $user */
         $user = Auth::user();
 
         // Reset attempts + first login
@@ -81,6 +81,11 @@ class Login extends Component
         ]);
 
         if (!$this->validateUserStatus($user)) {
+            return;
+        }
+
+        // Only check email verification if user logged in with email
+        if ($loginField === 'email' && !$this->checkEmailVerification($user)) {
             return;
         }
 
@@ -125,7 +130,6 @@ class Login extends Component
 
         throw ValidationException::withMessages([
             'login_id' => self::ERROR_INVALID_CREDENTIALS,
-            'password' => self::ERROR_INVALID_CREDENTIALS,
         ]);
     }
 
@@ -236,9 +240,4 @@ class Login extends Component
         $this->password = '';
     }
 
-    // private function verifyCaptcha(): bool
-    // {
-    //     // Tích hợp Google reCAPTCHA hoặc hCaptcha tại đây
-    //     return true;
-    // }
 }
