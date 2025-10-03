@@ -84,10 +84,6 @@ class Login extends Component
             return;
         }
 
-        if (!$this->checkEmailVerification($user)) {
-            return;
-        }
-
         $this->handleSuccessfulLogin($user);
     }
 

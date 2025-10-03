@@ -1,45 +1,48 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="<?php echo e(str_replace('_', '-', app()->getLocale())); ?>">
 
 <head>
-    @include('partials.head')
+    <?php echo $__env->make('partials.head', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
 
-    {{-- SEO Meta Tags --}}
+    
     <meta name="description"
         content="Đăng nhập vào hệ thống quản lý giáo dục ICY - Nền tảng quản lý chương trình học, lớp học và học viên chuyên nghiệp">
     <meta name="keywords" content="đăng nhập, ICY, giáo dục, quản lý học viên, hệ thống giáo dục, ap.icy.edu.vn">
     <meta name="author" content="ICY Education">
     <meta name="robots" content="noindex,nofollow">
-    <link rel="canonical" href="{{ url()->current() }}">
+    <link rel="canonical" href="<?php echo e(url()->current()); ?>">
 
-    {{-- Open Graph Meta Tags --}}
-    <meta property="og:title" content="{{ config('app.name') }} - Đăng nhập hệ thống">
+    
+    <meta property="og:title" content="<?php echo e(config('app.name')); ?> - Đăng nhập hệ thống">
     <meta property="og:description"
         content="Hệ thống quản lý giáo dục ICY - Nền tảng quản lý chương trình học, lớp học và học viên chuyên nghiệp">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="{{ url()->current() }}">
-    <meta property="og:site_name" content="{{ config('app.name') }}">
+    <meta property="og:url" content="<?php echo e(url()->current()); ?>">
+    <meta property="og:site_name" content="<?php echo e(config('app.name')); ?>">
     <meta property="og:locale" content="vi_VN">
-    <meta property="og:image" content="{{ asset('OG-image.png') }}">
+    <meta property="og:image" content="<?php echo e(asset('OG-image.png')); ?>">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:image:alt" content="Logo ICY Education">
 
-    {{-- Facebook App ID --}}
+    
     <meta property="fb:app_id" content="802740835544615" />
 
-    {{-- Twitter Card Meta Tags --}}
+    
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="{{ config('app.name') }} - Đăng nhập hệ thống">
+    <meta name="twitter:title" content="<?php echo e(config('app.name')); ?> - Đăng nhập hệ thống">
     <meta name="twitter:description"
         content="Hệ thống quản lý giáo dục ICY - Nền tảng quản lý chương trình học, lớp học và học viên chuyên nghiệp">
-    <meta name="twitter:image" content="{{ asset('OG-image.png') }}">
+    <meta name="twitter:image" content="<?php echo e(asset('OG-image.png')); ?>">
     <meta name="twitter:image:alt" content="Logo ICY Education">
 
-    {{-- Structured Data: WebPage --}}
+    
     <script type="application/ld+json">
-        {!! json_encode([
-        '@context' => 'https://schema.org',
+        <?php echo json_encode([
+        '<?php $__contextArgs = [];
+if (context()->has($__contextArgs[0])) :
+if (isset($value)) { $__contextPrevious[] = $value; }
+$value = context()->get($__contextArgs[0]); ?>' => 'https://schema.org',
         '@type' => 'WebPage',
         'name' => config('app.name') . ' - Đăng nhập',
         'description' => 'Đăng nhập vào hệ thống quản lý giáo dục ICY',
@@ -54,18 +57,23 @@
         'name' => 'ICY Education',
         'url' => config('app.url'),
         ],
-        ], JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES|JSON_PRETTY_PRINT) !!}
+        ], JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES|JSON_PRETTY_PRINT); ?>
+
     </script>
 
-    {{-- Structured Data: Organization (Logo cho Google Search) --}}
+    
     <script type="application/ld+json">
-        {!! json_encode([
-        '@context' => 'https://schema.org',
+        <?php echo json_encode([
+        '<?php $__contextArgs = [];
+if (context()->has($__contextArgs[0])) :
+if (isset($value)) { $__contextPrevious[] = $value; }
+$value = context()->get($__contextArgs[0]); ?>' => 'https://schema.org',
         '@type' => 'Organization',
         'url' => config('app.url'),
         'name' => 'ICY Education',
         'logo' => asset('images/logo.png'),
-        ], JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES|JSON_PRETTY_PRINT) !!}
+        ], JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES|JSON_PRETTY_PRINT); ?>
+
 </script>
 
 
@@ -111,21 +119,40 @@
     <div class="flex min-h-svh flex-col items-center justify-center p-4 sm:p-6 md:p-10">
         <div class="flex w-full max-w-sm sm:max-w-md flex-col gap-4 sm:gap-6">
             <header>
-                <a href="{{ route('dashboard') }}" class="flex flex-col items-center gap-2 font-medium" wire:navigate>
+                <a href="<?php echo e(route('dashboard')); ?>" class="flex flex-col items-center gap-2 font-medium" wire:navigate>
                     <span class="flex h-20 w-20 sm:h-30 sm:w-30 items-center justify-center rounded-md text-pink-500">
-                        <x-app-logo-icon class="w-90 h-90" alt="Logo ICY Education" />
+                        <?php if (isset($component)) { $__componentOriginal159d6670770cb479b1921cea6416c26c = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal159d6670770cb479b1921cea6416c26c = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.app-logo-icon','data' => ['class' => 'w-90 h-90','alt' => 'Logo ICY Education']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('app-logo-icon'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['class' => 'w-90 h-90','alt' => 'Logo ICY Education']); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal159d6670770cb479b1921cea6416c26c)): ?>
+<?php $attributes = $__attributesOriginal159d6670770cb479b1921cea6416c26c; ?>
+<?php unset($__attributesOriginal159d6670770cb479b1921cea6416c26c); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal159d6670770cb479b1921cea6416c26c)): ?>
+<?php $component = $__componentOriginal159d6670770cb479b1921cea6416c26c; ?>
+<?php unset($__componentOriginal159d6670770cb479b1921cea6416c26c); ?>
+<?php endif; ?>
                     </span>
-                    <h1 class="sr-only">{{ config('app.name', 'Laravel') }} - Hệ thống quản lý giáo dục</h1>
+                    <h1 class="sr-only"><?php echo e(config('app.name', 'Laravel')); ?> - Hệ thống quản lý giáo dục</h1>
                 </a>
             </header>
             <main class="flex flex-col gap-4 sm:gap-6">
                 <div class="rounded-2xl border-3 border-pink-500 bg-white dark:bg-stone-950 text-stone-800 shadow-xs">
-                    <div class="px-4 py-6 sm:px-6 sm:py-8">{{ $slot }}</div>
+                    <div class="px-4 py-6 sm:px-6 sm:py-8"><?php echo e($slot); ?></div>
                 </div>
             </main>
         </div>
     </div>
-    {{-- Theme Toggle (Optional) --}}
+    
     <div class="fixed top-4 right-4">
         <button onclick="document.documentElement.classList.toggle('dark')"
             class="p-3 bg-white dark:bg-gray-800 rounded-lg shadow-lg border-2 border-gray-100 dark:border-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200">
@@ -135,7 +162,10 @@
             </svg>
         </button>
     </div>
-    @fluxScripts
+    <?php app('livewire')->forceAssetInjection(); ?>
+<?php echo app('flux')->scripts(); ?>
+
 </body>
 
 </html>
+<?php /**PATH /Users/smyth/Herd/ap.icy.edu.vn/resources/views/components/layouts/auth/card.blade.php ENDPATH**/ ?>

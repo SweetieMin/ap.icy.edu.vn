@@ -76,7 +76,7 @@
                                 </span>
                             </td>
                             <td class="text-center">
-                                {{ $attendance->student?->detail?->phone ?? '—' }}/{{ $attendance->student?->parent?->detail?->phone ?? '—' }}
+                                {{ $attendance->student?->detail?->phone ?? '—' }} / {{ $attendance->student?->detail?->guardian_phone ?? '—' }}
                             </td>
                             <td class="text-center">
                                 @if ($attendance->student_care_status !== 'success')

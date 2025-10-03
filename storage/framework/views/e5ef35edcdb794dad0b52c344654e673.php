@@ -55,46 +55,42 @@
         content="Nền tảng quản lý học viên, khóa học và lịch học trực tuyến dành riêng cho các trung tâm tiếng Anh ICY">
     <meta name="twitter:image" content="<?php echo e(asset('OG-image.png')); ?>">
     <meta name="twitter:image:alt" content="Logo ICY English">
-
     
     <script type="application/ld+json">
-        <?php echo json_encode([
-            '<?php $__contextArgs = [];
-if (context()->has($__contextArgs[0])) :
-if (isset($value)) { $__contextPrevious[] = $value; }
-$value = context()->get($__contextArgs[0]); ?>' => 'https://schema.org',
-            '@type' => 'WebPage',
-            'name' => 'NGOẠI NGỮ SÁNG TẠO QUỐC TẾ - ICY',
-            'description' => 'Nền tảng quản lý học viên, khóa học và lịch học trực tuyến dành riêng cho các trung tâm tiếng Anh ICY',
-            'url' => url()->current(),
-            'isPartOf' => [
-                '@type' => 'WebSite',
-                'name' => 'NGOẠI NGỮ SÁNG TẠO QUỐC TẾ - ICY',
-                'url' => config('app.url'),
-            ],
-            'publisher' => [
-                '@type' => 'Organization',
-                'name' => 'NGOẠI NGỮ SÁNG TẠO QUỐC TẾ - ICY',
-                'url' => config('app.url'),
-            ],
-        ], JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES|JSON_PRETTY_PRINT); ?>
-
+        {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "NGOẠI NGỮ SÁNG TẠO QUỐC TẾ - ICY",
+      "description": "Nền tảng quản lý học viên, khóa học và lịch học trực tuyến dành riêng cho các trung tâm tiếng Anh ICY",
+      "url": "https://ap.icy.edu.vn",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "NGOẠI NGỮ SÁNG TẠO QUỐC TẾ - ICY",
+        "url": "https://ap.icy.edu.vn"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "NGOẠI NGỮ SÁNG TẠO QUỐC TẾ - ICY",
+        "url": "https://ap.icy.edu.vn"
+      }
+    }
     </script>
-
     
     <script type="application/ld+json">
-        <?php echo json_encode([
-            '<?php $__contextArgs = [];
-if (context()->has($__contextArgs[0])) :
-if (isset($value)) { $__contextPrevious[] = $value; }
-$value = context()->get($__contextArgs[0]); ?>' => 'https://schema.org',
-            '@type' => 'Organization',
-            'url' => config('app.url'),
-            'name' => 'NGOẠI NGỮ SÁNG TẠO QUỐC TẾ - ICY',
-            'logo' => asset('images/logo.png'),
-        ], JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES|JSON_PRETTY_PRINT); ?>
-
+        {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "url": "https://ap.icy.edu.vn",
+      "name": "NGOẠI NGỮ SÁNG TẠO QUỐC TẾ - ICY",
+      "logo": "https://ap.icy.edu.vn/logo.png",
+      "sameAs": [
+        "https://www.facebook.com/profile.php?id=61574962657249",
+        "https://www.youtube.com/@ICY-English",
+        "https://www.tiktok.com/@icy.english.ng.na"
+      ]
+    }
     </script>
+    
 </head>
 
 <body class="bg-white text-slate-800">
@@ -102,7 +98,7 @@ $value = context()->get($__contextArgs[0]); ?>' => 'https://schema.org',
         <div class="max-w-6xl mx-auto px-4 md:px-6 py-6 md:py-10">
             <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
                 <div class="flex items-center gap-3 md:gap-4">
-                    <img src="/logo.png" alt="ICY Logo" class="h-12 w-12 md:h-16 md:w-16 select-none" />
+                    <img src="/favicon.svg" alt="ICY Logo" class="h-12 w-12 md:h-16 md:w-16 select-none" />
                     <div>
                         <h1 class="text-xl md:text-3xl font-extrabold tracking-tight text-pink-700">NGOẠI NGỮ SÁNG TẠO
                             QUỐC
@@ -210,5 +206,4 @@ $value = context()->get($__contextArgs[0]); ?>' => 'https://schema.org',
     </div>
 </body>
 
-</html>
-<?php /**PATH /Users/smyth/Herd/ap.icy.edu.vn/resources/views/wellcome.blade.php ENDPATH**/ ?>
+</html><?php /**PATH /Users/smyth/Herd/ap.icy.edu.vn/resources/views/wellcome.blade.php ENDPATH**/ ?>

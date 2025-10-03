@@ -30,7 +30,8 @@
     {{-- Tab Navigation --}}
     <div class="mb-6">
         <div class="border-b border-gray-200 dark:border-gray-700">
-            <nav class="-mb-px flex space-x-8">
+            {{-- Desktop Navigation --}}
+            <nav class="-mb-px hidden sm:flex space-x-8">
                 <button wire:click="setActiveTab('schedule')"
                     class="py-2 px-1 border-b-2 font-medium text-sm transition-colors duration-200 {{ $activeTab === 'schedule' ? 'border-pink-500 text-pink-600 dark:text-pink-400' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300' }}">
                     <div class="flex items-center space-x-2">
@@ -59,6 +60,41 @@
                         <div class="flex items-center space-x-2">
                             <flux:icon.check-circle class="size-4" />
                             <span>Lịch sử điểm danh</span>
+                        </div>
+                    </button>
+                @endif
+            </nav>
+
+            {{-- Mobile Navigation - 2 columns grid --}}
+            <nav class="-mb-px grid grid-cols-2 gap-2 sm:hidden">
+                <button wire:click="setActiveTab('schedule')"
+                    class="py-3 px-3 border-b-2 font-medium text-sm transition-colors duration-200 {{ $activeTab === 'schedule' ? 'border-pink-500 text-pink-600 dark:text-pink-400' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300' }}">
+                    <div class="flex items-center justify-center space-x-2">
+                        <flux:icon.calendar class="size-4" />
+                        <span>Lịch hôm nay</span>
+                    </div>
+                </button>
+                <button wire:click="setActiveTab('courses')"
+                    class="py-3 px-3 border-b-2 font-medium text-sm transition-colors duration-200 {{ $activeTab === 'courses' ? 'border-pink-500 text-pink-600 dark:text-pink-400' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300' }}">
+                    <div class="flex items-center justify-center space-x-2">
+                        <flux:icon.academic-cap class="size-4" />
+                        <span>Lớp của tôi</span>
+                    </div>
+                </button>
+
+                @if ($selectedCourse)
+                    <button wire:click="setActiveTab('class-list')"
+                        class="py-3 px-3 border-b-2 font-medium text-sm transition-colors duration-200 {{ $activeTab === 'class-list' ? 'border-pink-500 text-pink-600 dark:text-pink-400' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300' }}">
+                        <div class="flex items-center justify-center space-x-2">
+                            <flux:icon.user-group class="size-4" />
+                            <span>Học viên</span>
+                        </div>
+                    </button>
+                    <button wire:click="setActiveTab('attendance-history')"
+                        class="py-3 px-3 border-b-2 font-medium text-sm transition-colors duration-200 {{ $activeTab === 'attendance-history' ? 'border-pink-500 text-pink-600 dark:text-pink-400' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300' }}">
+                        <div class="flex items-center justify-center space-x-2">
+                            <flux:icon.check-circle class="size-4" />
+                            <span>Điểm danh</span>
                         </div>
                     </button>
                 @endif
