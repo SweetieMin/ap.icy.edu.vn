@@ -139,8 +139,8 @@
                             </td>
                             <td class="table-cell">
                                 @if ($syllabus->is_url)
-                                    @if ($syllabus->CLO)
-                                        <a href="{{ $syllabus->CLO }}" target="_blank">
+                                    @if ($syllabus->CLO !== null && $syllabus->CLO !== "")
+                                        <a href="{{ $syllabus->CLO }}" target="_blank" rel="noopener noreferrer">
                                             <flux:badge color="green">Link bài test</flux:badge>
                                         </a>
                                     @else

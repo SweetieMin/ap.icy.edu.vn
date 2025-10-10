@@ -23,6 +23,7 @@ class ActionsSyllabus extends Component
     public $grammar;
     public $assignment;
     public $CLO;
+    public $is_url;
 
     public $isEditing = false;
 
@@ -60,6 +61,12 @@ class ActionsSyllabus extends Component
     public function createSyllabus()
     {
         $this->validate();
+
+        if (filter_var($this->CLO, FILTER_VALIDATE_URL)) {
+            $this->is_url = true;
+        } else {
+            $this->is_url = false;
+        }
         
         $this->syllabusRepository->create([
             'subject_id' => $this->subject_id,
@@ -69,6 +76,7 @@ class ActionsSyllabus extends Component
             'grammar' => $this->grammar,
             'assignment' => $this->assignment,
             'CLO' => $this->CLO,
+            'is_url' => $this->is_url,
         ]);
         $this->reset(['syllabusId', 'subject_id', 'lesson_number', 'content', 'vocabulary', 'grammar', 'assignment', 'CLO']);
         Flux::modal('modal-syllabus')->close();
@@ -90,6 +98,12 @@ class ActionsSyllabus extends Component
     public function updateSyllabus()
     {
         $this->validate();
+
+        if (filter_var($this->CLO, FILTER_VALIDATE_URL)) {
+            $this->is_url = true;
+        } else {
+            $this->is_url = false;
+        }
         
         $this->syllabusRepository->update($this->syllabusId, [
             'subject_id' => $this->subject_id,
@@ -99,6 +113,7 @@ class ActionsSyllabus extends Component
             'grammar' => $this->grammar,
             'assignment' => $this->assignment,
             'CLO' => $this->CLO,
+            'is_url' => $this->is_url,
         ]);
 
         $this->reset(['syllabusId', 'subject_id', 'lesson_number', 'content', 'vocabulary', 'grammar', 'assignment', 'CLO']);

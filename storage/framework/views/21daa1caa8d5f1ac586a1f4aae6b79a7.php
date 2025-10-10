@@ -60,9 +60,9 @@
 <?php endif; ?>
             </div>
 
-            <?php if($isEditing): ?>
+            <!--[if BLOCK]><![endif]--><?php if($isEditing): ?>
                 <input type="text" wire:model='syllabusId' hidden />
-            <?php endif; ?>
+            <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
 
             <div class="form-group">
                 <?php if (isset($component)) { $__componentOriginala467913f9ff34913553be64599ec6e92 = $component; } ?>
@@ -76,11 +76,11 @@
 <?php endif; ?>
 <?php $component->withAttributes(['wire:model' => 'subject_id','label' => 'Môn học','placeholder' => 'Chọn môn học']); ?>
                     <option value="">Chọn môn học</option>
-                    <?php $__currentLoopData = $subjects; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $subject): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <!--[if BLOCK]><![endif]--><?php $__currentLoopData = $subjects; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $subject): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                         <option value="<?php echo e($subject->id); ?>">
                             <?php echo e($subject->name); ?> (<?php echo e($subject->code); ?>)
                         </option>
-                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><!--[if ENDBLOCK]><![endif]-->
                  <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php if (isset($__attributesOriginala467913f9ff34913553be64599ec6e92)): ?>
@@ -211,14 +211,14 @@
             <div class="form-group">
                 <?php if (isset($component)) { $__componentOriginal0ee30026125d1a66523211147b00e4dc = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal0ee30026125d1a66523211147b00e4dc = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::textarea','data' => ['wire:model' => 'CLO','label' => 'Mục tiêu (CLO)','rows' => '3','placeholder' => 'Nhập mục tiêu học tập...']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::textarea','data' => ['wire:model' => 'CLO','label' => 'Mục tiêu (CLO)/Url bài kiểm tra','rows' => '3','placeholder' => 'Nhập mục tiêu học tập hoặc url bài kiểm tra...']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('flux::textarea'); ?>
 <?php if ($component->shouldRender()): ?>
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>
 <?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
-<?php $component->withAttributes(['wire:model' => 'CLO','label' => 'Mục tiêu (CLO)','rows' => '3','placeholder' => 'Nhập mục tiêu học tập...']); ?>
+<?php $component->withAttributes(['wire:model' => 'CLO','label' => 'Mục tiêu (CLO)/Url bài kiểm tra','rows' => '3','placeholder' => 'Nhập mục tiêu học tập hoặc url bài kiểm tra...']); ?>
 <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php if (isset($__attributesOriginal0ee30026125d1a66523211147b00e4dc)): ?>

@@ -82,9 +82,9 @@
             <div class="form-group">
                 <flux:textarea 
                     wire:model="CLO" 
-                    label="Mục tiêu (CLO)"
+                    label="Mục tiêu (CLO)/Url bài kiểm tra"
                     rows="3"
-                    placeholder="Nhập mục tiêu học tập..."
+                    placeholder="Nhập mục tiêu học tập hoặc url bài kiểm tra..."
                 />
             </div>
 

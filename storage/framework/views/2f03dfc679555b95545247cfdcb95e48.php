@@ -232,8 +232,8 @@ if (isset($__slots)) unset($__slots);
                             </td>
                             <td class="table-cell">
                                 <!--[if BLOCK]><![endif]--><?php if($syllabus->is_url): ?>
-                                    <!--[if BLOCK]><![endif]--><?php if($syllabus->CLO): ?>
-                                        <a href="<?php echo e($syllabus->CLO); ?>" target="_blank">
+                                    <!--[if BLOCK]><![endif]--><?php if($syllabus->CLO !== null && $syllabus->CLO !== ""): ?>
+                                        <a href="<?php echo e($syllabus->CLO); ?>" target="_blank" rel="noopener noreferrer">
                                             <?php if (isset($component)) { $__componentOriginal4cc377eda9b63b796b6668ee7832d023 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal4cc377eda9b63b796b6668ee7832d023 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::badge.index','data' => ['color' => 'green']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>

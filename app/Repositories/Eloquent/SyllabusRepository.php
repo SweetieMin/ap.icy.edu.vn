@@ -19,6 +19,7 @@ class SyllabusRepository implements SyllabusRepositoryInterface
             'grammar' => isset($data['grammar']) ? trim($data['grammar']) : null,
             'assignment' => isset($data['assignment']) ? trim($data['assignment']) : null,
             'CLO' => isset($data['CLO']) ? trim($data['CLO']) : null,
+            'is_url' => isset($data['is_url']) ? $data['is_url'] : false,
         ];
     }
 
