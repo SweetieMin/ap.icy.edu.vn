@@ -10,7 +10,7 @@
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
 <?php $component->withAttributes(['dismissible' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(false),'name' => 'modal-permission','class' => 'md:w-900']); ?>
-        <!--[if BLOCK]><![endif]--><?php if($showBulkForm): ?>
+        <?php if($showBulkForm): ?>
             
             <form wire:submit='createBulkPermission' class="space-y-6">
                 <div>
@@ -90,7 +90,7 @@
 <?php unset($__componentOriginal7f5ad8f19de0f492bb71dc13ca0a19cd); ?>
 <?php endif; ?>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-2 max-h-60 overflow-y-auto border border-gray-200 dark:border-gray-700 rounded-lg p-4">
-                            <!--[if BLOCK]><![endif]--><?php $__currentLoopData = $routeOptions; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $route): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <?php $__currentLoopData = $routeOptions; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $route): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <?php if (isset($component)) { $__componentOriginal9384bd05e996fcc8c16dc84e6bbc1c8f = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal9384bd05e996fcc8c16dc84e6bbc1c8f = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::checkbox.index','data' => ['wire:model.live' => 'selectedRoutes','value' => ''.e($route).'','label' => ''.e($route).'']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
@@ -111,7 +111,7 @@
 <?php $component = $__componentOriginal9384bd05e996fcc8c16dc84e6bbc1c8f; ?>
 <?php unset($__componentOriginal9384bd05e996fcc8c16dc84e6bbc1c8f); ?>
 <?php endif; ?>
-                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><!--[if ENDBLOCK]><![endif]-->
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </div>
                      <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
@@ -148,7 +148,7 @@
 <?php $component = $__componentOriginal4a4f7aa062a095c651c2f80bb685a42a; ?>
 <?php unset($__componentOriginal4a4f7aa062a095c651c2f80bb685a42a); ?>
 <?php endif; ?>
-                    <!--[if BLOCK]><![endif]--><?php if(empty($bulkPermissions)): ?>
+                    <?php if(empty($bulkPermissions)): ?>
                         <?php if (isset($component)) { $__componentOriginalc04b147acd0e65cc1a77f86fb0e81580 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginalc04b147acd0e65cc1a77f86fb0e81580 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::button.index','data' => ['type' => 'submit','class' => 'cursor-pointer','variant' => 'primary','disabled' => true]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
@@ -192,7 +192,7 @@
 <?php $component = $__componentOriginalc04b147acd0e65cc1a77f86fb0e81580; ?>
 <?php unset($__componentOriginalc04b147acd0e65cc1a77f86fb0e81580); ?>
 <?php endif; ?>
-                    <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                    <?php endif; ?>
                 </div>
             </form>
         <?php else: ?>
@@ -245,7 +245,7 @@
 <?php endif; ?>
                 </div>
 
-                <!--[if BLOCK]><![endif]--><?php if($isEditPermissionMode): ?>
+                <?php if($isEditPermissionMode): ?>
                     <input type="text" wire:model='permissionId' hidden />
                 <?php else: ?>
                     <div class="form-group">
@@ -278,7 +278,7 @@
 <?php $component = $__componentOriginalc7395a5f1f6c2e275d1dc4ea0be0c745; ?>
 <?php unset($__componentOriginalc7395a5f1f6c2e275d1dc4ea0be0c745); ?>
 <?php endif; ?>
-                            <!--[if BLOCK]><![endif]--><?php $__currentLoopData = $routeOptions; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $route): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <?php $__currentLoopData = $routeOptions; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $route): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <?php if (isset($component)) { $__componentOriginalc7395a5f1f6c2e275d1dc4ea0be0c745 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginalc7395a5f1f6c2e275d1dc4ea0be0c745 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::select.option.index','data' => ['value' => ''.e($route).'']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
@@ -298,7 +298,7 @@
 <?php $component = $__componentOriginalc7395a5f1f6c2e275d1dc4ea0be0c745; ?>
 <?php unset($__componentOriginalc7395a5f1f6c2e275d1dc4ea0be0c745); ?>
 <?php endif; ?>
-                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><!--[if ENDBLOCK]><![endif]-->
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                          <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php if (isset($__attributesOriginala467913f9ff34913553be64599ec6e92)): ?>
@@ -310,7 +310,7 @@
 <?php unset($__componentOriginala467913f9ff34913553be64599ec6e92); ?>
 <?php endif; ?>
                     </div>
-                <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                <?php endif; ?>
 
                 <div class="form-group">
                     <?php if (isset($component)) { $__componentOriginal26c546557cdc09040c8dd00b2090afd0 = $component; } ?>
@@ -403,7 +403,7 @@
 <?php endif; ?>
                 </div>
             </form>
-        <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+        <?php endif; ?>
      <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php if (isset($__attributesOriginal8cc9d3143946b992b324617832699c5f)): ?>

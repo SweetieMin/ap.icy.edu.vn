@@ -100,24 +100,24 @@ if (isset($__slots)) unset($__slots);
                     <input type="text" wire:model.live="search" placeholder="Họ và tên hoặc Account code..."
                         class="card-input">
                 </div>
-                <!--[if BLOCK]><![endif]--><?php if($locations->count() > 1): ?>
+                <?php if($locations->count() > 1): ?>
                     <div>
                         <label class="card-label">Cơ sở</label>
                         <select wire:model.live="filterLocationId" class="card-input">
                             <option value="">Tất cả cơ sở</option>
-                            <!--[if BLOCK]><![endif]--><?php $__currentLoopData = $locations; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $location): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <?php $__currentLoopData = $locations; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $location): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <option value="<?php echo e($location->id); ?>"><?php echo e($location->name); ?></option>
-                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><!--[if ENDBLOCK]><![endif]-->
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </select>
                     </div>
-                <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                <?php endif; ?>
                 <div>
                     <label class="card-label">Chức vụ</label>
                     <select wire:model.live="filterRoleId" class="card-input">
                         <option value="">Tất cả chức vụ</option>
-                        <!--[if BLOCK]><![endif]--><?php $__currentLoopData = $roles; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $role): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <?php $__currentLoopData = $roles; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $role): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <option value="<?php echo e($role->id); ?>"><?php echo e($role->name); ?></option>
-                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><!--[if ENDBLOCK]><![endif]-->
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </select>
                 </div>
             </div>
@@ -140,7 +140,7 @@ if (isset($__slots)) unset($__slots);
                         </tr>
                     </thead>
                     <tbody>
-                    <!--[if BLOCK]><![endif]--><?php $__empty_1 = true; $__currentLoopData = $staffs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $staff): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                    <?php $__empty_1 = true; $__currentLoopData = $staffs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $staff): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                         <tr wire:key="staff-desktop-<?php echo e($staff->id); ?>">
                             <td class="text-center font-medium">
                                 <?php echo e($loop->iteration); ?>
@@ -163,8 +163,8 @@ if (isset($__slots)) unset($__slots);
 
                             </td>
                             <td class="text-center">
-                                <!--[if BLOCK]><![endif]--><?php if($staff->locations->count() > 0): ?>
-                                    <!--[if BLOCK]><![endif]--><?php $__currentLoopData = $staff->locations; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $location): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <?php if($staff->locations->count() > 0): ?>
+                                    <?php $__currentLoopData = $staff->locations; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $location): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                         <?php if (isset($component)) { $__componentOriginal4cc377eda9b63b796b6668ee7832d023 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal4cc377eda9b63b796b6668ee7832d023 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::badge.index','data' => ['color' => 'blue','size' => 'sm','class' => 'mb-1']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
@@ -187,13 +187,13 @@ if (isset($__slots)) unset($__slots);
 <?php $component = $__componentOriginal4cc377eda9b63b796b6668ee7832d023; ?>
 <?php unset($__componentOriginal4cc377eda9b63b796b6668ee7832d023); ?>
 <?php endif; ?>
-                                        <!--[if BLOCK]><![endif]--><?php if(!$loop->last): ?>
+                                        <?php if(!$loop->last): ?>
                                             <br>
-                                        <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
-                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><!--[if ENDBLOCK]><![endif]-->
+                                        <?php endif; ?>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 <?php else: ?>
                                     <span class="text-gray-500 dark:text-gray-400 text-xs">Chưa có cơ sở</span>
-                                <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                                <?php endif; ?>
                             </td>
                             <td class="text-center hidden sm:table-cell">
                                 <div>
@@ -359,14 +359,14 @@ if (isset($__slots)) unset($__slots);
                                 </div>
                             </td>
                         </tr>
-                    <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                    <?php endif; ?>
                 </tbody>
             </table>
         </div>
 
         
         <div class="md:hidden space-y-3">
-            <!--[if BLOCK]><![endif]--><?php $__empty_1 = true; $__currentLoopData = $staffs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $staff): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+            <?php $__empty_1 = true; $__currentLoopData = $staffs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $staff): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                 <div class="bg-white rounded-lg border border-gray-200 shadow-sm" 
                      x-data="{ expanded: false }" 
                      wire:key="staff-mobile-<?php echo e($staff->id); ?>">
@@ -414,8 +414,8 @@ if (isset($__slots)) unset($__slots);
                             <div class="flex justify-between items-center">
                                 <span class="text-sm font-medium text-gray-600">Cơ sở:</span>
                                 <div class="text-right">
-                                    <!--[if BLOCK]><![endif]--><?php if($staff->locations->count() > 0): ?>
-                                        <!--[if BLOCK]><![endif]--><?php $__currentLoopData = $staff->locations; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $location): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <?php if($staff->locations->count() > 0): ?>
+                                        <?php $__currentLoopData = $staff->locations; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $location): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                             <?php if (isset($component)) { $__componentOriginal4cc377eda9b63b796b6668ee7832d023 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal4cc377eda9b63b796b6668ee7832d023 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::badge.index','data' => ['color' => 'blue','size' => 'sm','class' => 'mb-1']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
@@ -438,13 +438,13 @@ if (isset($__slots)) unset($__slots);
 <?php $component = $__componentOriginal4cc377eda9b63b796b6668ee7832d023; ?>
 <?php unset($__componentOriginal4cc377eda9b63b796b6668ee7832d023); ?>
 <?php endif; ?>
-                                            <!--[if BLOCK]><![endif]--><?php if(!$loop->last): ?>
+                                            <?php if(!$loop->last): ?>
                                                 <br>
-                                            <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
-                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><!--[if ENDBLOCK]><![endif]-->
+                                            <?php endif; ?>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     <?php else: ?>
                                         <span class="text-gray-500 text-xs">Chưa có cơ sở</span>
-                                    <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                                    <?php endif; ?>
                                 </div>
                             </div>
 
@@ -508,7 +508,7 @@ if (isset($__slots)) unset($__slots);
                         </p>
                     </div>
                 </div>
-            <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+            <?php endif; ?>
         </div>
         
         
@@ -516,7 +516,7 @@ if (isset($__slots)) unset($__slots);
 </div>
 
     
-    <!--[if BLOCK]><![endif]--><?php if($staffsWithoutLocation->count() > 0): ?>
+    <?php if($staffsWithoutLocation->count() > 0): ?>
         
         <div class="theme-header-pink mt-6">
             <div class="flex items-center justify-between">
@@ -575,7 +575,7 @@ if (isset($__slots)) unset($__slots);
                             </tr>
                         </thead>
                         <tbody>
-                            <!--[if BLOCK]><![endif]--><?php $__empty_1 = true; $__currentLoopData = $staffsWithoutLocation; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $staff): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                            <?php $__empty_1 = true; $__currentLoopData = $staffsWithoutLocation; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $staff): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                                 <tr wire:key="staff-no-location-desktop-<?php echo e($staff->id); ?>">
                                     <td class="text-center font-medium">
                                         <?php echo e($loop->iteration); ?>
@@ -766,14 +766,14 @@ if (isset($__slots)) unset($__slots);
                                         </div>
                                     </td>
                                 </tr>
-                            <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                            <?php endif; ?>
                         </tbody>
                     </table>
                 </div>
 
                 
                 <div class="md:hidden space-y-3">
-                    <!--[if BLOCK]><![endif]--><?php $__empty_1 = true; $__currentLoopData = $staffsWithoutLocation; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $staff): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                    <?php $__empty_1 = true; $__currentLoopData = $staffsWithoutLocation; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $staff): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                         <div class="bg-white rounded-lg border border-gray-200 shadow-sm" 
                              x-data="{ expanded: false }" 
                              wire:key="staff-no-location-mobile-<?php echo e($staff->id); ?>">
@@ -887,11 +887,11 @@ if (isset($__slots)) unset($__slots);
                                 </p>
                             </div>
                         </div>
-                    <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
-    <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+    <?php endif; ?>
 
 </div>
 <?php /**PATH /Users/smyth/Herd/ap.icy.edu.vn/resources/views/livewire/back/personnel/employee/staff.blade.php ENDPATH**/ ?>

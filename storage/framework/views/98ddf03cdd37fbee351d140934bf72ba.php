@@ -104,7 +104,7 @@
                     </div>
                 </button>
 
-                <!--[if BLOCK]><![endif]--><?php if($selectedCourse): ?>
+                <?php if($selectedCourse): ?>
                     <button wire:click="setActiveTab('class-list')"
                         class="py-2 px-1 border-b-2 font-medium text-sm transition-colors duration-200 <?php echo e($activeTab === 'class-list' ? 'border-pink-500 text-pink-600 dark:text-pink-400' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300'); ?>">
                         <div class="flex items-center space-x-2">
@@ -157,7 +157,7 @@
                             <span>Lịch sử điểm danh</span>
                         </div>
                     </button>
-                <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                <?php endif; ?>
             </nav>
 
             
@@ -215,7 +215,7 @@
                     </div>
                 </button>
 
-                <!--[if BLOCK]><![endif]--><?php if($selectedCourse): ?>
+                <?php if($selectedCourse): ?>
                     <button wire:click="setActiveTab('class-list')"
                         class="py-3 px-3 border-b-2 font-medium text-sm transition-colors duration-200 <?php echo e($activeTab === 'class-list' ? 'border-pink-500 text-pink-600 dark:text-pink-400' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300'); ?>">
                         <div class="flex items-center justify-center space-x-2">
@@ -268,7 +268,7 @@
                             <span>Điểm danh</span>
                         </div>
                     </button>
-                <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                <?php endif; ?>
             </nav>
         </div>
     </div>
@@ -276,7 +276,7 @@
     
     <div class="mt-6">
         
-        <!--[if BLOCK]><![endif]--><?php if($activeTab === 'schedule'): ?>
+        <?php if($activeTab === 'schedule'): ?>
             <?php
 $__split = function ($name, $params = []) {
     return [$name, $params];
@@ -309,10 +309,10 @@ unset($__params);
 unset($__split);
 if (isset($__slots)) unset($__slots);
 ?>
-        <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+        <?php endif; ?>
 
         
-        <!--[if BLOCK]><![endif]--><?php if($activeTab === 'courses'): ?>
+        <?php if($activeTab === 'courses'): ?>
             <?php
 $__split = function ($name, $params = []) {
     return [$name, $params];
@@ -329,11 +329,11 @@ unset($__params);
 unset($__split);
 if (isset($__slots)) unset($__slots);
 ?>
-        <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+        <?php endif; ?>
 
 
         
-        <!--[if BLOCK]><![endif]--><?php if($activeTab === 'class-list'): ?>
+        <?php if($activeTab === 'class-list'): ?>
             
             <div class="theme-header-pink mb-6">
                 <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-3 sm:space-y-0">
@@ -409,7 +409,7 @@ if (isset($__slots)) unset($__slots);
                             </tr>
                         </thead>
                         <tbody>
-                            <!--[if BLOCK]><![endif]--><?php $__empty_1 = true; $__currentLoopData = $classStudents; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $i => $student): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                            <?php $__empty_1 = true; $__currentLoopData = $classStudents; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $i => $student): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                                 <tr>
                                     <td class="text-center"><?php echo e($i + 1); ?></td>
                                     <td>
@@ -431,14 +431,14 @@ if (isset($__slots)) unset($__slots);
                                 <tr>
                                     <td colspan="4" class="text-center">Không có học viên</td>
                                 </tr>
-                            <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                            <?php endif; ?>
                         </tbody>
                     </table>
                 </div>
 
                 
                 <div class="md:hidden space-y-3">
-                    <!--[if BLOCK]><![endif]--><?php $__empty_1 = true; $__currentLoopData = $classStudents; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $i => $student): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                    <?php $__empty_1 = true; $__currentLoopData = $classStudents; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $i => $student): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                         <div class="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 shadow-sm" 
                              x-data="{ expanded: false }" 
                              wire:key="student-mobile-<?php echo e($student->id); ?>">
@@ -520,13 +520,13 @@ if (isset($__slots)) unset($__slots);
                                 </p>
                             </div>
                         </div>
-                    <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                    <?php endif; ?>
                 </div>
             </div>
-        <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+        <?php endif; ?>
 
         
-        <!--[if BLOCK]><![endif]--><?php if($activeTab === 'attendance-history'): ?>
+        <?php if($activeTab === 'attendance-history'): ?>
             <div class="theme-table-pink">
                 
                 <div class="hidden md:block overflow-x-auto">
@@ -541,16 +541,16 @@ if (isset($__slots)) unset($__slots);
                                     style="width: 80px;">Tổng</th>
                                 <th class="text-center sticky left-[390px] bg-white dark:bg-gray-800 z-10"
                                     style="width: 80px;">Vắng(%)</th>
-                                <!--[if BLOCK]><![endif]--><?php $__currentLoopData = $classScheduleDates; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $date): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <?php $__currentLoopData = $classScheduleDates; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $date): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                     <th class="text-center text-xs" style="width: 60px;">
                                         <?php echo e(\Carbon\Carbon::parse($date)->format('d/m')); ?>
 
                                     </th>
-                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><!--[if ENDBLOCK]><![endif]-->
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </tr>
                         </thead>
                         <tbody>
-                            <!--[if BLOCK]><![endif]--><?php $__empty_1 = true; $__currentLoopData = $attendanceHistory; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $i => $attendance): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                            <?php $__empty_1 = true; $__currentLoopData = $attendanceHistory; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $i => $attendance): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                                 <tr>
                                     <td class="text-center sticky left-0 bg-white dark:bg-gray-800 z-10"
                                         style="width: 60px;"><?php echo e($i + 1); ?></td>
@@ -578,10 +578,10 @@ if (isset($__slots)) unset($__slots);
                                             <?php echo e($attendance['absent_percentage']); ?>%
                                         </span>
                                     </td>
-                                    <!--[if BLOCK]><![endif]--><?php $__currentLoopData = $classScheduleDates; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $date): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <?php $__currentLoopData = $classScheduleDates; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $date): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                         <td class="text-center">
-                                            <!--[if BLOCK]><![endif]--><?php if($attendance['attendances'][$date] !== null): ?>
-                                                <!--[if BLOCK]><![endif]--><?php if($attendance['attendances'][$date] === 'present'): ?>
+                                            <?php if($attendance['attendances'][$date] !== null): ?>
+                                                <?php if($attendance['attendances'][$date] === 'present'): ?>
                                                     <span
                                                         class="inline-flex items-center px-2 py-1 text-xs font-medium text-green-700  rounded-full">
                                                         P
@@ -591,7 +591,7 @@ if (isset($__slots)) unset($__slots);
                                                         class="inline-flex items-center px-2 py-1 text-xs font-medium text-rose-500  rounded-full">
                                                         A
                                                     </span>
-                                                <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                                                <?php endif; ?>
                                             <?php else: ?>
                                                 <span
                                                     class="inline-flex items-center px-2 py-1 text-xs font-medium text-gray-800 rounded-full">
@@ -616,9 +616,9 @@ if (isset($__slots)) unset($__slots);
 <?php unset($__componentOriginal01ef35ccfb2d03cc6412dbe2dc9e1a50); ?>
 <?php endif; ?>
                                                 </span>
-                                            <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                                            <?php endif; ?>
                                         </td>
-                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><!--[if ENDBLOCK]><![endif]-->
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </tr>
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
                                 <tr>
@@ -648,14 +648,14 @@ if (isset($__slots)) unset($__slots);
                                         </div>
                                     </td>
                                 </tr>
-                            <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                            <?php endif; ?>
                         </tbody>
                     </table>
                 </div>
 
                 
                 <div class="md:hidden space-y-3">
-                    <!--[if BLOCK]><![endif]--><?php $__empty_1 = true; $__currentLoopData = $attendanceHistory; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $i => $attendance): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                    <?php $__empty_1 = true; $__currentLoopData = $attendanceHistory; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $i => $attendance): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                         <div class="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 shadow-sm" 
                              x-data="{ expanded: false }" 
                              wire:key="attendance-mobile-<?php echo e($attendance['student']->id); ?>">
@@ -703,14 +703,14 @@ if (isset($__slots)) unset($__slots);
                                     </div>
                                     
                                     <div class="grid grid-cols-4 gap-2">
-                                        <!--[if BLOCK]><![endif]--><?php $__currentLoopData = $classScheduleDates; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $date): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <?php $__currentLoopData = $classScheduleDates; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $date): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                             <div class="text-center">
                                                 <div class="text-xs text-gray-500 dark:text-gray-400 mb-1">
                                                     <?php echo e(\Carbon\Carbon::parse($date)->format('d/m')); ?>
 
                                                 </div>
-                                                <!--[if BLOCK]><![endif]--><?php if($attendance['attendances'][$date] !== null): ?>
-                                                    <!--[if BLOCK]><![endif]--><?php if($attendance['attendances'][$date] === 'present'): ?>
+                                                <?php if($attendance['attendances'][$date] !== null): ?>
+                                                    <?php if($attendance['attendances'][$date] === 'present'): ?>
                                                         <span class="inline-flex items-center justify-center w-6 h-6 text-xs text-green-800 bg-green-100 rounded-full">
                                                             <?php if (isset($component)) { $__componentOriginal9c2dfd6cb98f4df18e26d1694500af11 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal9c2dfd6cb98f4df18e26d1694500af11 = $attributes; } ?>
@@ -756,7 +756,7 @@ if (isset($__slots)) unset($__slots);
 <?php unset($__componentOriginal155e76c41fe51242bc25d269fabf82f5); ?>
 <?php endif; ?>
                                                         </span>
-                                                    <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                                                    <?php endif; ?>
                                                 <?php else: ?>
                                                     <span class="inline-flex items-center justify-center w-6 h-6 text-xs text-gray-800 bg-gray-100 rounded-full">
                                                         <?php if (isset($component)) { $__componentOriginal01ef35ccfb2d03cc6412dbe2dc9e1a50 = $component; } ?>
@@ -780,9 +780,9 @@ if (isset($__slots)) unset($__slots);
 <?php unset($__componentOriginal01ef35ccfb2d03cc6412dbe2dc9e1a50); ?>
 <?php endif; ?>
                                                     </span>
-                                                <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                                                <?php endif; ?>
                                             </div>
-                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><!--[if ENDBLOCK]><![endif]-->
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     </div>
                                 </div>
                             </div>
@@ -818,10 +818,10 @@ if (isset($__slots)) unset($__slots);
                                 </p>
                             </div>
                         </div>
-                    <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                    <?php endif; ?>
                 </div>
             </div>
-        <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+        <?php endif; ?>
 
     </div>
 

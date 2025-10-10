@@ -98,15 +98,15 @@
             <div class="flex items-center space-x-2 text-sm">
 
                 <?php $__currentLoopData = $breadcrumbs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $breadcrumb): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    <!--[if BLOCK]><![endif]--><?php if($index > 0): ?>
+                    <?php if($index > 0): ?>
                         <svg fill="currentColor" viewBox="0 0 20 20" class="size-4 text-gray-400">
                             <path fill-rule="evenodd"
                                 d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
                                 clip-rule="evenodd"></path>
                         </svg>
-                    <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                    <?php endif; ?>
 
-                    <!--[if BLOCK]><![endif]--><?php if($index === count($breadcrumbs) - 1): ?>
+                    <?php if($index === count($breadcrumbs) - 1): ?>
                         <span class="text-gray-900 dark:text-white font-medium"><?php echo e($breadcrumb['name']); ?></span>
                     <?php else: ?>
                         <button wire:click="navigateToDirectory('<?php echo e($breadcrumb['path']); ?>')"
@@ -114,8 +114,8 @@
                             <?php echo e($breadcrumb['name']); ?>
 
                         </button>
-                    <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
-                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><!--[if ENDBLOCK]><![endif]-->
+                    <?php endif; ?>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </div>
         </div>
     </div>
@@ -180,7 +180,7 @@
 
     
     <div class="theme-table-pink">
-        <!--[if BLOCK]><![endif]--><?php if(count($filteredItems) > 0): ?>
+        <?php if(count($filteredItems) > 0): ?>
             
             <div class="hidden md:block overflow-x-auto">
                 <table>
@@ -193,13 +193,13 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <!--[if BLOCK]><![endif]--><?php $__currentLoopData = $filteredItems; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <?php $__currentLoopData = $filteredItems; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <tr>
                                 <td>
                                     <div class="flex items-center space-x-3">
                                         <div
                                             class="w-8 h-8 bg-pink-100 dark:bg-pink-900 rounded-lg flex items-center justify-center">
-                                            <!--[if BLOCK]><![endif]--><?php if($item['type'] === 'directory'): ?>
+                                            <?php if($item['type'] === 'directory'): ?>
                                                 <?php if (isset($component)) { $__componentOriginal9d976d16d2d40e73349b791bdc546089 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal9d976d16d2d40e73349b791bdc546089 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::icon.folder','data' => ['class' => 'size-4 text-pink-600']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
@@ -346,11 +346,11 @@
 <?php $component = $__componentOriginalcd5e2a7f8ed74ae073a6098cd6bb0fbf; ?>
 <?php unset($__componentOriginalcd5e2a7f8ed74ae073a6098cd6bb0fbf); ?>
 <?php endif; ?>
-                                            <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                                            <?php endif; ?>
                                         </div>
                                         <div>
                                             <div class="font-medium text-gray-900 dark:text-white break-words">
-                                                <!--[if BLOCK]><![endif]--><?php if($item['type'] === 'directory'): ?>
+                                                <?php if($item['type'] === 'directory'): ?>
                                                     <button wire:click="navigateToDirectory('<?php echo e($item['path']); ?>')"
                                                         class="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300">
                                                         <?php echo e($item['name']); ?>
@@ -359,13 +359,13 @@
                                                 <?php else: ?>
                                                     <?php echo e($item['name']); ?>
 
-                                                <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                                                <?php endif; ?>
                                             </div>
                                         </div>
                                     </div>
                                 </td>
                                 <td class="text-center">
-                                    <!--[if BLOCK]><![endif]--><?php if($item['type'] === 'directory'): ?>
+                                    <?php if($item['type'] === 'directory'): ?>
                                         <span
                                             class="px-2 py-1 text-xs font-medium bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full">
                                             THƯ MỤC
@@ -376,7 +376,7 @@
                                             <?php echo e(strtoupper($item['extension'] ?? 'FILE')); ?>
 
                                         </span>
-                                    <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                                    <?php endif; ?>
                                 </td>
 
                                 <td class="text-center text-sm text-gray-600 dark:text-gray-400">
@@ -385,7 +385,7 @@
                                 </td>
                                 <td class="text-center">
                                     <div class="flex items-center justify-center space-x-2">
-                                        <!--[if BLOCK]><![endif]--><?php if($item['type'] === 'directory'): ?>
+                                        <?php if($item['type'] === 'directory'): ?>
                                             <button wire:click="navigateToDirectory('<?php echo e($item['path']); ?>')"
                                                 class="p-2 text-blue-600 hover:text-blue-800 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-lg transition-all duration-200">
                                                 <?php if (isset($component)) { $__componentOriginal5c84e1af936cb00c34687173a7f14ca8 = $component; } ?>
@@ -456,7 +456,7 @@
 <?php unset($__componentOriginal2ec15606c28ac475c0acbe5c53b8b490); ?>
 <?php endif; ?>
                                             </button>
-                                        <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                                        <?php endif; ?>
                                         <button wire:click="deleteItem('<?php echo e($item['name']); ?>', '<?php echo e($item['type']); ?>')"
                                             wire:confirm="Bạn có chắc chắn muốn xóa <?php echo e($item['type'] === 'directory' ? 'thư mục' : 'file'); ?> này?"
                                             class="p-2 text-red-600 hover:text-red-800 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-all duration-200">
@@ -484,14 +484,14 @@
                                     </div>
                                 </td>
                             </tr>
-                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><!--[if ENDBLOCK]><![endif]-->
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </tbody>
                 </table>
             </div>
 
             
             <div class="md:hidden space-y-2 p-3">
-                <!--[if BLOCK]><![endif]--><?php $__currentLoopData = $filteredItems; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <?php $__currentLoopData = $filteredItems; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <div
                         class="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 shadow-sm">
                         <div class="p-3">
@@ -502,7 +502,7 @@
 
                                     <div
                                         class="w-8 h-8 bg-pink-100 dark:bg-pink-900 rounded-lg flex items-center justify-center flex-shrink-0">
-                                        <!--[if BLOCK]><![endif]--><?php if($item['type'] === 'directory'): ?>
+                                        <?php if($item['type'] === 'directory'): ?>
                                             <?php if (isset($component)) { $__componentOriginal9d976d16d2d40e73349b791bdc546089 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal9d976d16d2d40e73349b791bdc546089 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::icon.folder','data' => ['class' => 'size-4 text-pink-600']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
@@ -649,12 +649,12 @@
 <?php $component = $__componentOriginalcd5e2a7f8ed74ae073a6098cd6bb0fbf; ?>
 <?php unset($__componentOriginalcd5e2a7f8ed74ae073a6098cd6bb0fbf); ?>
 <?php endif; ?>
-                                        <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                                        <?php endif; ?>
                                     </div>
 
                                     <div class="flex-1 min-w-0">
                                         <div class="font-medium text-gray-900 dark:text-white text-sm leading-tight">
-                                            <!--[if BLOCK]><![endif]--><?php if($item['type'] === 'directory'): ?>
+                                            <?php if($item['type'] === 'directory'): ?>
                                                 <button wire:click="navigateToDirectory('<?php echo e($item['path']); ?>')"
                                                     class="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 text-left">
                                                     <?php echo e($item['name']); ?>
@@ -662,13 +662,13 @@
                                                 </button>
                                             <?php else: ?>
                                                 <span class="break-words"><?php echo e($item['name']); ?></span>
-                                            <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                                            <?php endif; ?>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="flex items-center space-x-1 flex-shrink-0">
-                                    <!--[if BLOCK]><![endif]--><?php if($item['type'] === 'directory'): ?>
+                                    <?php if($item['type'] === 'directory'): ?>
                                         <button wire:click="navigateToDirectory('<?php echo e($item['path']); ?>')"
                                             class="p-1.5 text-blue-600 hover:text-blue-800 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-lg transition-all duration-200">
                                             <?php if (isset($component)) { $__componentOriginal5c84e1af936cb00c34687173a7f14ca8 = $component; } ?>
@@ -739,7 +739,7 @@
 <?php unset($__componentOriginal2ec15606c28ac475c0acbe5c53b8b490); ?>
 <?php endif; ?>
                                         </button>
-                                    <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                                    <?php endif; ?>
                                     <button wire:click="deleteItem('<?php echo e($item['name']); ?>', '<?php echo e($item['type']); ?>')"
                                         wire:confirm="Bạn có chắc chắn muốn xóa <?php echo e($item['type'] === 'directory' ? 'thư mục' : 'file'); ?> này?"
                                         class="p-1.5 text-red-600 hover:text-red-800 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-all duration-200">
@@ -770,7 +770,7 @@
                             
                             <div class="flex items-center justify-between text-xs text-gray-500 dark:text-gray-400">
                                 <div class="flex items-center space-x-2">
-                                    <!--[if BLOCK]><![endif]--><?php if($item['type'] === 'directory'): ?>
+                                    <?php if($item['type'] === 'directory'): ?>
                                         <span
                                             class="px-2 py-0.5 text-xs font-medium bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full">
                                             THƯ MỤC
@@ -785,7 +785,7 @@
                                             <?php echo e($this->formatFileSize($item['size'] ?? 0)); ?>
 
                                         </span>
-                                    <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                                    <?php endif; ?>
                                 </div>
                                 <div class="text-xs text-gray-500 dark:text-gray-400">
                                     <?php echo e($this->formatDate($item['modified'])); ?>
@@ -794,7 +794,7 @@
                             </div>
                         </div>
                     </div>
-                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><!--[if ENDBLOCK]><![endif]-->
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </div>
         <?php else: ?>
             
@@ -821,20 +821,20 @@
 <?php unset($__componentOriginalaf2fb790fcb67bb9dde08c2ddc18df9a); ?>
 <?php endif; ?>
                     <h3 class="text-lg font-medium mb-2 text-gray-500">
-                        <!--[if BLOCK]><![endif]--><?php if($search): ?>
+                        <?php if($search): ?>
                             Không tìm thấy mục nào
                         <?php else: ?>
                             Thư mục trống
-                        <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                        <?php endif; ?>
                     </h3>
                     <p class="text-gray-400 text-center mb-4">
-                        <!--[if BLOCK]><![endif]--><?php if($search): ?>
+                        <?php if($search): ?>
                             Thử tìm kiếm với từ khóa khác
                         <?php else: ?>
                             Tạo thư mục hoặc upload file để bắt đầu
-                        <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                        <?php endif; ?>
                     </p>
-                    <!--[if BLOCK]><![endif]--><?php if(!$search): ?>
+                    <?php if(!$search): ?>
                         <div class="flex flex-col sm:flex-row gap-2">
                             <button wire:click="$set('showCreateFolderModal', true)"
                                 class="theme-header-pink header-button">
@@ -885,14 +885,14 @@
                                 <span>Upload File</span>
                             </button>
                         </div>
-                    <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                    <?php endif; ?>
                 </div>
             </div>
-        <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+        <?php endif; ?>
     </div>
 
     
-    <!--[if BLOCK]><![endif]--><?php if($showUploadModal): ?>
+    <?php if($showUploadModal): ?>
         <div class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
             wire:click.self="$set('showUploadModal', false)">
             <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 w-full max-w-md mx-4">
@@ -930,7 +930,7 @@
                         </label>
                         <input type="file" wire:model="uploadedFiles" multiple
                             class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-pink-500 bg-white dark:bg-gray-800 text-gray-900 dark:text-white">
-                        <!--[if BLOCK]><![endif]--><?php $__errorArgs = ['uploadedFiles.*'];
+                        <?php $__errorArgs = ['uploadedFiles.*'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -939,7 +939,7 @@ $message = $__bag->first($__errorArgs[0]); ?>
                         <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?><!--[if ENDBLOCK]><![endif]-->
+unset($__errorArgs, $__bag); ?>
                     </div>
 
                     <div class="flex justify-end space-x-3">
@@ -974,10 +974,10 @@ unset($__errorArgs, $__bag); ?><!--[if ENDBLOCK]><![endif]-->
                 </div>
             </div>
         </div>
-    <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+    <?php endif; ?>
 
     
-    <!--[if BLOCK]><![endif]--><?php if($showCreateFolderModal): ?>
+    <?php if($showCreateFolderModal): ?>
         <div class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
             wire:click.self="$set('showCreateFolderModal', false)">
             <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 w-full max-w-md mx-4">
@@ -1015,7 +1015,7 @@ unset($__errorArgs, $__bag); ?><!--[if ENDBLOCK]><![endif]-->
                         </label>
                         <input type="text" wire:model="newFolderName" placeholder="Nhập tên thư mục..."
                             class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-pink-500 focus:border-pink-500 bg-white dark:bg-gray-800 text-gray-900 dark:text-white">
-                        <!--[if BLOCK]><![endif]--><?php $__errorArgs = ['newFolderName'];
+                        <?php $__errorArgs = ['newFolderName'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
@@ -1024,7 +1024,7 @@ $message = $__bag->first($__errorArgs[0]); ?>
                         <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?><!--[if ENDBLOCK]><![endif]-->
+unset($__errorArgs, $__bag); ?>
                     </div>
 
                     <div class="flex justify-end space-x-3">
@@ -1059,7 +1059,7 @@ unset($__errorArgs, $__bag); ?><!--[if ENDBLOCK]><![endif]-->
                 </div>
             </div>
         </div>
-    <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+    <?php endif; ?>
 
 </div>
 <?php /**PATH /Users/smyth/Herd/ap.icy.edu.vn/resources/views/livewire/back/management/test/placement-tests.blade.php ENDPATH**/ ?>

@@ -587,7 +587,7 @@ class TuitionsPayment extends Component
 
                 $contentTransaction = null;
                 if ($this->paymentMethod === 'bank_transfer') {
-                    $contentTransaction = "Uniform_" . $student->username.'_'.uniqid();
+                    $contentTransaction = "Uniform." . $student->username.'.'.uniqid();
                 }
 
                 $tuition = [

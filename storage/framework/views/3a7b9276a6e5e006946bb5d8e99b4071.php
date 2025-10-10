@@ -132,7 +132,7 @@ if (isset($__slots)) unset($__slots);
                         </tr>
                     </thead>
                     <tbody>
-                    <!--[if BLOCK]><![endif]--><?php $__empty_1 = true; $__currentLoopData = $permissions; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $permission): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                    <?php $__empty_1 = true; $__currentLoopData = $permissions; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $permission): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                         <tr wire:key="permission-desktop-<?php echo e($permission->id); ?>">
                             <td>
                                 <?php echo e($permission->router); ?>
@@ -246,14 +246,14 @@ if (isset($__slots)) unset($__slots);
                                 </div>
                             </td>
                         </tr>
-                    <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                    <?php endif; ?>
                 </tbody>
             </table>
         </div>
 
         
         <div class="md:hidden space-y-3">
-            <!--[if BLOCK]><![endif]--><?php $__empty_1 = true; $__currentLoopData = $permissions; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $permission): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+            <?php $__empty_1 = true; $__currentLoopData = $permissions; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $permission): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                 <div class="bg-white rounded-lg border border-gray-200 shadow-sm" 
                      x-data="{ expanded: false }" 
                      wire:key="permission-mobile-<?php echo e($permission->id); ?>">
@@ -422,15 +422,15 @@ if (isset($__slots)) unset($__slots);
                         </p>
                     </div>
                 </div>
-            <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+            <?php endif; ?>
         </div>
         
-        <!--[if BLOCK]><![endif]--><?php if($permissions->hasPages()): ?>
+        <?php if($permissions->hasPages()): ?>
             <div class="pagination-container">
                 <?php echo e($permissions->links()); ?>
 
             </div>
-        <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+        <?php endif; ?>
     </div>
 </div>
 </div>

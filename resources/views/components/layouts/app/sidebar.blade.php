@@ -50,6 +50,13 @@
                             </flux:navlist.item>
                         @endif
 
+                        @if (auth()->user()->hasPermission('admin.general.libraries'))
+                            <flux:navlist.item icon="briefcase" :href="route('admin.general.libraries')"
+                                :current="request()->routeIs('admin.general.libraries')" wire:navigate>
+                                Thư viện
+                            </flux:navlist.item>
+                        @endif
+
                     </flux:navlist.group>
 
 

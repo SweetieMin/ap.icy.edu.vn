@@ -43,7 +43,7 @@
 <?php unset($__componentOriginal7c1bf3a9346f208f66ee83b06b607fb5); ?>
 <?php endif; ?>
         
-        <!--[if BLOCK]><![endif]--><?php if(session('error')): ?>
+        <?php if(session('error')): ?>
             <div class="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-700 rounded-lg p-4">
                 <div class="flex items-center">
                     <svg class="w-5 h-5 text-red-600 dark:text-red-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
@@ -55,7 +55,7 @@
                     </span>
                 </div>
             </div>
-        <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+        <?php endif; ?>
         <form wire:submit="login" class="flex flex-col gap-4 sm:gap-6">
             <?php if (isset($component)) { $__componentOriginal26c546557cdc09040c8dd00b2090afd0 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal26c546557cdc09040c8dd00b2090afd0 = $attributes; } ?>
@@ -100,7 +100,7 @@
 <?php unset($__componentOriginal26c546557cdc09040c8dd00b2090afd0); ?>
 <?php endif; ?>
 
-                <!--[if BLOCK]><![endif]--><?php if(Route::has('password.request')): ?>
+                <?php if(Route::has('password.request')): ?>
                     <?php if (isset($component)) { $__componentOriginal54ddb5b70b37b1e1cf0f2f95e4c53477 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal54ddb5b70b37b1e1cf0f2f95e4c53477 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::link','data' => ['class' => 'absolute end-0 top-0 text-sm text-pink-600 hover:text-pink-700','href' => route('password.request'),'wire:navigate' => true]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
@@ -123,7 +123,7 @@
 <?php $component = $__componentOriginal54ddb5b70b37b1e1cf0f2f95e4c53477; ?>
 <?php unset($__componentOriginal54ddb5b70b37b1e1cf0f2f95e4c53477); ?>
 <?php endif; ?>
-                <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                <?php endif; ?>
             </div>
 
             <?php if (isset($component)) { $__componentOriginal9384bd05e996fcc8c16dc84e6bbc1c8f = $component; } ?>

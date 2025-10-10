@@ -61,9 +61,9 @@
 
         <form wire:submit.prevent='<?php echo e($isEditStudentMode ? 'updateStudent' : 'createStudent'); ?>'
             class="px-8 py-6 space-y-8">
-            <!--[if BLOCK]><![endif]--><?php if($isEditStudentMode): ?>
+            <?php if($isEditStudentMode): ?>
                 <input type="hidden" wire:model='studentId' />
-            <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+            <?php endif; ?>
 
             
 
@@ -91,7 +91,7 @@
 <?php endif; ?>
             </div>
 
-            <!--[if BLOCK]><![endif]--><?php if(auth()->user()->locations()->count() > 1): ?>
+            <?php if(auth()->user()->locations()->count() > 1): ?>
                 <div class="space-y-6">
                     <div class="form-group">
                         <?php if (isset($component)) { $__componentOriginala467913f9ff34913553be64599ec6e92 = $component; } ?>
@@ -105,7 +105,7 @@
 <?php endif; ?>
 <?php $component->withAttributes(['wire:model' => 'location_id','label' => '🏢 Cơ sở','placeholder' => 'Chọn cơ sở','class' => 'rounded-xl border-gray-300 focus:border-blue-500 focus:ring-blue-500 transition-all duration-300']); ?>
                            
-                            <!--[if BLOCK]><![endif]--><?php $__currentLoopData = $locationStudent; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $location): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <?php $__currentLoopData = $locationStudent; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $location): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <?php if (isset($component)) { $__componentOriginalc7395a5f1f6c2e275d1dc4ea0be0c745 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginalc7395a5f1f6c2e275d1dc4ea0be0c745 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::select.option.index','data' => ['value' => $location->id,'label' => ''.e($location->name).'']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
@@ -126,7 +126,7 @@
 <?php $component = $__componentOriginalc7395a5f1f6c2e275d1dc4ea0be0c745; ?>
 <?php unset($__componentOriginalc7395a5f1f6c2e275d1dc4ea0be0c745); ?>
 <?php endif; ?>
-                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><!--[if ENDBLOCK]><![endif]-->
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                          <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php if (isset($__attributesOriginala467913f9ff34913553be64599ec6e92)): ?>
@@ -139,14 +139,14 @@
 <?php endif; ?>
                     </div>
                 </div>
-            <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+            <?php endif; ?>
            
 
             <div class="space-y-2">
                 
                 <div class="grid grid-cols-1 md:grid-cols-5 gap-4">
                     <div class="form-group md:col-span-3">
-                        <!--[if BLOCK]><![endif]--><?php if($isEditStudentMode): ?>
+                        <?php if($isEditStudentMode): ?>
                             <?php if (isset($component)) { $__componentOriginal26c546557cdc09040c8dd00b2090afd0 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal26c546557cdc09040c8dd00b2090afd0 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::input.index','data' => ['wire:model' => 'name','label' => '👨‍🎓 Họ và tên 🚩','placeholder' => 'Nhập họ và tên đầy đủ','wire:change' => 'updateUsername','class' => 'rounded-xl border-gray-300 focus:border-blue-500 focus:ring-blue-500 transition-all duration-300','autofocus' => true,'disabled' => true]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
@@ -188,7 +188,7 @@
 <?php $component = $__componentOriginal26c546557cdc09040c8dd00b2090afd0; ?>
 <?php unset($__componentOriginal26c546557cdc09040c8dd00b2090afd0); ?>
 <?php endif; ?>
-                        <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                        <?php endif; ?>
                     </div>
                     <div class="form-group md:col-span-2">
                         <?php if (isset($component)) { $__componentOriginal26c546557cdc09040c8dd00b2090afd0 = $component; } ?>

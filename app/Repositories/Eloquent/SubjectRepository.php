@@ -70,6 +70,18 @@ class SubjectRepository implements SubjectRepositoryInterface
         return $this->subjectCache[$id] ??= Subject::findOrFail($id);
     }
 
+    public function getSubjectsByIds(array $ids)
+    {
+        if (empty($ids)) {
+            return collect();
+        }
+        
+        return Subject::with('program')
+            ->whereIn('id', $ids)
+            ->orderBy('ordering')
+            ->get();
+    }
+
     public function update(int $id, array $data): Subject
     {
         $subject = $this->getSubjectById($id);

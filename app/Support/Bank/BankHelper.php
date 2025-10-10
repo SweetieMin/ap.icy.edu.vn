@@ -120,7 +120,7 @@ class BankHelper
         $season = app(SeasonRepositoryInterface::class)->getSeasonById($seasonId);
         $subject_code = substr(Subject::find($programId)?->code, 0, 2);
         $uniqid = uniqid();
-        return "{$student}_{$season->code}_{$subject_code}_{$uniqid}";
+        return "{$student}.{$season->code}.{$subject_code}.{$uniqid}";
     }
 
 }

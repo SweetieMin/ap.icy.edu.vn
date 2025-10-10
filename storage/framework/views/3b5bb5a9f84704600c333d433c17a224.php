@@ -14,7 +14,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <!--[if BLOCK]><![endif]--><?php $__empty_1 = true; $__currentLoopData = $courses; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $i => $course): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                    <?php $__empty_1 = true; $__currentLoopData = $courses; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $i => $course): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                         <tr wire:key="course-desktop-<?php echo e($course->id); ?>">
                             <td class="whitespace-nowrap font-medium text-center">
                                 <?php echo e($i + 1); ?>
@@ -83,14 +83,14 @@
                                 </div>
                             </td>
                         </tr>
-                    <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                    <?php endif; ?>
                 </tbody>
             </table>
         </div>
 
         
         <div class="md:hidden space-y-3">
-            <!--[if BLOCK]><![endif]--><?php $__empty_1 = true; $__currentLoopData = $courses; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $i => $course): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+            <?php $__empty_1 = true; $__currentLoopData = $courses; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $i => $course): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                 <div class="bg-white rounded-lg border border-gray-200 shadow-sm" x-data="{ expanded: false }"
                     wire:key="course-mobile-<?php echo e($course->id); ?>">
 
@@ -225,7 +225,7 @@
                         <div class="text-sm text-gray-500">Bạn chưa có lớp nào trong season hiện tại</div>
                     </div>
                 </div>
-            <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+            <?php endif; ?>
         </div>
     </div>
 

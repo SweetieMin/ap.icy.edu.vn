@@ -12,5 +12,6 @@ interface SubjectRepositoryInterface
     public function update(int $id, array $data);
     public function delete(int $id);
     public function getSubjectById(int $id);
+    public function getSubjectsByIds(array $ids);
     public function updateOrdering(array $orderedIds);
 }

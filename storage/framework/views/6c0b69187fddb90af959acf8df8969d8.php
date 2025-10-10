@@ -121,7 +121,7 @@ if (isset($__slots)) unset($__slots);
                         </div>
                         <div class="p-4">
                             <div class="space-y-2">
-                                <!--[if BLOCK]><![endif]--><?php $__empty_1 = true; $__currentLoopData = $programs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $program): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                                <?php $__empty_1 = true; $__currentLoopData = $programs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $program): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                                     <div wire:key="program-<?php echo e($program->id); ?>" class="group">
                                         <button wire:click="selectProgram(<?php echo e($program->id); ?>)"
                                             class="w-full text-left px-4 py-3 rounded-xl text-sm  hover:scale-[1.02] <?php echo e((int) $selectedProgramId === (int) $program->id ? 'bg-pink-50 dark:bg-pink-900/20 text-pink-600 dark:text-white border border-pink-200 dark:border-pink-800 shadow-lg' : 'text-zinc-600 dark:text-zinc-400 hover:text-pink-600 dark:hover:text-pink-400 hover:bg-pink-100 dark:hover:bg-zinc-800 border border-transparent hover:border-zinc-200 dark:hover:border-zinc-700'); ?>">
@@ -133,13 +133,13 @@ if (isset($__slots)) unset($__slots);
                                                 </div>
                                                 <div class="flex-1 min-w-0">
                                                     <p class="font-medium truncate"><?php echo e($program->name); ?></p>
-                                                    <!--[if BLOCK]><![endif]--><?php if($program->english_name): ?>
+                                                    <?php if($program->english_name): ?>
                                                         <p class="text-xs opacity-75 truncate"><?php echo e($program->english_name); ?></p>
-                                                    <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                                                    <?php endif; ?>
                                                 </div>
-                                                <!--[if BLOCK]><![endif]--><?php if((int) $selectedProgramId === (int) $program->id): ?>
+                                                <?php if((int) $selectedProgramId === (int) $program->id): ?>
                                                     <div class="w-2 h-2 bg-pink-400 dark:bg-pink-800/30 rounded-full"></div>
-                                                <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                                                <?php endif; ?>
                                             </div>
                                         </button>
                                     </div>
@@ -152,7 +152,7 @@ if (isset($__slots)) unset($__slots);
                                         </div>
                                         <p class="text-sm text-zinc-500 dark:text-zinc-400">Không có chương trình nào</p>
                                     </div>
-                                <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                                <?php endif; ?>
                             </div>
                         </div>
                     </div>
@@ -164,7 +164,7 @@ if (isset($__slots)) unset($__slots);
 
                     
                     <div id="sortable-subject" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6" wire:key="subjects-grid-<?php echo e($selectedProgramId); ?>">
-                        <!--[if BLOCK]><![endif]--><?php $__empty_1 = true; $__currentLoopData = $subjects; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $subject): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                        <?php $__empty_1 = true; $__currentLoopData = $subjects; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $subject): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                             <div wire:key="subject-<?php echo e($subject->id); ?>" data-id="<?php echo e($subject->id); ?>"
                                 class="group bg-white dark:bg-zinc-900 rounded-2xl border border-zinc-200 dark:border-zinc-700 shadow-lg hover:shadow-2xl  hover:scale-[1.02]  overflow-hidden">
                                 
@@ -177,9 +177,9 @@ if (isset($__slots)) unset($__slots);
                                             </div>
                                             <div>
                                                 <h3 class="text-lg font-bold text-pink-600 dark:text-white truncate"><?php echo e($subject->name); ?></h3>
-                                                <!--[if BLOCK]><![endif]--><?php if($subject->code): ?>
+                                                <?php if($subject->code): ?>
                                                     <p class="text-pink-600 dark:text-white text-sm"><?php echo e($subject->code); ?></p>
-                                                <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                                                <?php endif; ?>
                                             </div>
                                         </div>
                                         <div class="flex items-center space-x-2 cursor-move drag-handle">
@@ -192,14 +192,14 @@ if (isset($__slots)) unset($__slots);
 
                                 
                                 <div class="p-6">
-                                    <!--[if BLOCK]><![endif]--><?php if($subject->curriculum_name): ?>
+                                    <?php if($subject->curriculum_name): ?>
                                         <div class="mb-4">
                                             <p class="text-zinc-600 dark:text-zinc-300 text-sm line-clamp-3">
                                                 <?php echo e($subject->curriculum_name); ?>
 
                                             </p>
                                         </div>
-                                    <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                                    <?php endif; ?>
 
                                     
                                     <div class="flex items-center justify-between pt-4 border-t border-zinc-100 dark:border-zinc-700">
@@ -243,18 +243,18 @@ if (isset($__slots)) unset($__slots);
                                     </button>
                                 </div>
                             </div>
-                        <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                        <?php endif; ?>
                     </div>
 
                     
-                    <!--[if BLOCK]><![endif]--><?php if($subjects->hasPages()): ?>
+                    <?php if($subjects->hasPages()): ?>
                         <div class="mt-8 flex justify-center" wire:key="pagination-<?php echo e($selectedProgramId); ?>">
                             <div class="bg-white dark:bg-zinc-900 rounded-2xl border border-zinc-200 dark:border-zinc-700 shadow-lg p-4">
                                 <?php echo e($subjects->links()); ?>
 
                             </div>
                         </div>
-                    <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                    <?php endif; ?>
                 </div>
             </div>
         </div>

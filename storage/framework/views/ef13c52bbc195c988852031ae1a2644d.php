@@ -33,7 +33,7 @@
 <?php $component = $__componentOriginale0fd5b6a0986beffac17a0a103dfd7b9; ?>
 <?php unset($__componentOriginale0fd5b6a0986beffac17a0a103dfd7b9); ?>
 <?php endif; ?>
-                <!--[if BLOCK]><![endif]--><?php if($classSchedule): ?>
+                <?php if($classSchedule): ?>
                     <?php if (isset($component)) { $__componentOriginal0638ebfbd490c7a414275d493e14cb4e = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal0638ebfbd490c7a414275d493e14cb4e = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::text','data' => ['class' => 'mt-2 text-sm md:text-base']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
@@ -57,10 +57,10 @@
 <?php $component = $__componentOriginal0638ebfbd490c7a414275d493e14cb4e; ?>
 <?php unset($__componentOriginal0638ebfbd490c7a414275d493e14cb4e); ?>
 <?php endif; ?>
-                <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                <?php endif; ?>
             </div>
 
-            <!--[if BLOCK]><![endif]--><?php if($classSchedule): ?>
+            <?php if($classSchedule): ?>
                 
                 <div class="form-group">
                     <div class="bg-gray-50 dark:bg-gray-800 rounded-lg p-3 md:p-4 mb-4 md:mb-6">
@@ -154,7 +154,7 @@
                         Danh sách học viên (<?php echo e(count($students)); ?> người)
                     </h3>
 
-                    <!--[if BLOCK]><![endif]--><?php $__empty_1 = true; $__currentLoopData = $students; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $student): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                    <?php $__empty_1 = true; $__currentLoopData = $students; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $student): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                         <div
                             class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-3 md:p-4">
                             
@@ -180,7 +180,7 @@
 
                                 <div class="flex items-center justify-between">
                                     <div class="flex items-center space-x-2">
-                                        <!--[if BLOCK]><![endif]--><?php if($action !== 'view'): ?>
+                                        <?php if($action !== 'view'): ?>
                                             <div class="flex items-center space-x-2">
                                                 <div key="switch-<?php echo e($student->id); ?>">
                                                     <?php if (isset($component)) { $__componentOriginal588f41139f2abb21ceb2672b8ca8b135 = $component; } ?>
@@ -212,7 +212,7 @@
                                         <?php else: ?>
                                             <div class="flex items-center space-x-2">
                                                 <div class="w-6 h-6 rounded-full flex items-center justify-center <?php echo e($currentStatus === 'present' ? 'bg-green-100 dark:bg-green-900' : 'bg-red-100 dark:bg-red-900'); ?>">
-                                                    <!--[if BLOCK]><![endif]--><?php if($currentStatus === 'present'): ?>
+                                                    <?php if($currentStatus === 'present'): ?>
                                                         <?php if (isset($component)) { $__componentOriginal9c2dfd6cb98f4df18e26d1694500af11 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal9c2dfd6cb98f4df18e26d1694500af11 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::icon.check','data' => ['class' => 'w-4 h-4 text-green-600 dark:text-green-400']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
@@ -254,18 +254,18 @@
 <?php $component = $__componentOriginal155e76c41fe51242bc25d269fabf82f5; ?>
 <?php unset($__componentOriginal155e76c41fe51242bc25d269fabf82f5); ?>
 <?php endif; ?>
-                                                    <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                                                    <?php endif; ?>
                                                 </div>
                                                 <span class="text-xs text-gray-600 dark:text-gray-400">
                                                     <?php echo e($currentStatus === 'present' ? 'Có mặt' : 'Vắng mặt'); ?>
 
                                                 </span>
                                             </div>
-                                        <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                                        <?php endif; ?>
                                     </div>
                                 </div>
 
-                                <!--[if BLOCK]><![endif]--><?php if($action !== 'view'): ?>
+                                <?php if($action !== 'view'): ?>
                                     <div>
                                         <?php if (isset($component)) { $__componentOriginal26c546557cdc09040c8dd00b2090afd0 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal26c546557cdc09040c8dd00b2090afd0 = $attributes; } ?>
@@ -293,7 +293,7 @@
                                         Ghi chú: <?php echo e($currentNote); ?>
 
                                     </div>
-                                <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                                <?php endif; ?>
                             </div>
 
                             
@@ -312,7 +312,7 @@
                                 <div class="flex items-center space-x-4">
                                     
                                     <div class="flex items-center space-x-2 mr-6">
-                                        <!--[if BLOCK]><![endif]--><?php if($action !== 'view'): ?>
+                                        <?php if($action !== 'view'): ?>
                                             <?php if (isset($component)) { $__componentOriginal588f41139f2abb21ceb2672b8ca8b135 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal588f41139f2abb21ceb2672b8ca8b135 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::switch','data' => ['wire:model' => 'attendances.'.e($student->id).'.status','wire:change' => 'updateAttendance('.e($student->id).', $event.target.checked ? \'present\' : \'absent\')','checked' => $currentStatus === 'present','class' => 'data-[state=checked]:bg-green-600 data-[state=unchecked]:bg-red-600']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
@@ -335,7 +335,7 @@
 <?php endif; ?>
                                         <?php else: ?>
                                             <div class="w-6 h-6 rounded-full flex items-center justify-center <?php echo e($currentStatus === 'present' ? 'bg-green-100 dark:bg-green-900' : 'bg-red-100 dark:bg-red-900'); ?>">
-                                                <!--[if BLOCK]><![endif]--><?php if($currentStatus === 'present'): ?>
+                                                <?php if($currentStatus === 'present'): ?>
                                                     <?php if (isset($component)) { $__componentOriginal9c2dfd6cb98f4df18e26d1694500af11 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal9c2dfd6cb98f4df18e26d1694500af11 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::icon.check','data' => ['class' => 'w-4 h-4 text-green-600 dark:text-green-400']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
@@ -377,9 +377,9 @@
 <?php $component = $__componentOriginal155e76c41fe51242bc25d269fabf82f5; ?>
 <?php unset($__componentOriginal155e76c41fe51242bc25d269fabf82f5); ?>
 <?php endif; ?>
-                                                <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                                                <?php endif; ?>
                                             </div>
-                                        <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                                        <?php endif; ?>
 
                                         <span class="text-sm text-gray-600 dark:text-gray-400 min-w-[75px]">
                                             <?php echo e($currentStatus === 'present' ? 'Có mặt' : 'Vắng mặt'); ?>
@@ -388,7 +388,7 @@
                                     </div>
 
                                     
-                                    <!--[if BLOCK]><![endif]--><?php if($action !== 'view'): ?>
+                                    <?php if($action !== 'view'): ?>
                                         <div class="flex-1 max-w-xs">
                                             <?php if (isset($component)) { $__componentOriginal26c546557cdc09040c8dd00b2090afd0 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal26c546557cdc09040c8dd00b2090afd0 = $attributes; } ?>
@@ -418,7 +418,7 @@
 
                                             </div>
                                         </div>
-                                    <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                                    <?php endif; ?>
                                 </div>
                             </div>
                         </div>
@@ -446,9 +446,9 @@
 <?php endif; ?>
                             <p class="text-gray-500 text-sm md:text-base">Không có học viên nào</p>
                         </div>
-                    <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                    <?php endif; ?>
                 </div>
-            <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+            <?php endif; ?>
 
             <div class="flex flex-col sm:flex-row gap-3 mt-4 md:mt-6">
                 <?php if (isset($component)) { $__componentOriginal4a4f7aa062a095c651c2f80bb685a42a = $component; } ?>
@@ -471,7 +471,7 @@
 <?php $component = $__componentOriginal4a4f7aa062a095c651c2f80bb685a42a; ?>
 <?php unset($__componentOriginal4a4f7aa062a095c651c2f80bb685a42a); ?>
 <?php endif; ?>
-                <!--[if BLOCK]><![endif]--><?php if($action !== 'view'): ?>
+                <?php if($action !== 'view'): ?>
                     <div class="flex gap-3 w-full sm:w-auto">
                         <?php if (isset($component)) { $__componentOriginalc04b147acd0e65cc1a77f86fb0e81580 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginalc04b147acd0e65cc1a77f86fb0e81580 = $attributes; } ?>
@@ -516,7 +516,7 @@
 <?php unset($__componentOriginalc04b147acd0e65cc1a77f86fb0e81580); ?>
 <?php endif; ?>
                     </div>
-                <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                <?php endif; ?>
             </div>
         </div>
      <?php echo $__env->renderComponent(); ?>

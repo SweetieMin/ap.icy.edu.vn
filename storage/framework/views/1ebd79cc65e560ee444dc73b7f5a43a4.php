@@ -14,7 +14,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <!--[if BLOCK]><![endif]--><?php $__empty_1 = true; $__currentLoopData = $todaySchedules; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $schedule): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                    <?php $__empty_1 = true; $__currentLoopData = $todaySchedules; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $schedule): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                         <tr wire:key="schedule-desktop-<?php echo e($schedule['id']); ?>">
                             <td class="whitespace-nowrap font-medium">
                                 <?php echo e($schedule['course_name']); ?>
@@ -48,7 +48,7 @@
                                     $isPast = $currentTime->gt($endTime);
                                 ?>
 
-                                <!--[if BLOCK]><![endif]--><?php if($isPast): ?>
+                                <?php if($isPast): ?>
                                     <?php if (isset($component)) { $__componentOriginalc04b147acd0e65cc1a77f86fb0e81580 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginalc04b147acd0e65cc1a77f86fb0e81580 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::button.index','data' => ['variant' => 'primary','color' => 'gray','icon' => 'x-mark','disabled' => true]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
@@ -69,7 +69,7 @@
 <?php unset($__componentOriginalc04b147acd0e65cc1a77f86fb0e81580); ?>
 <?php endif; ?>
                                 <?php elseif($isInTime): ?>
-                                    <!--[if BLOCK]><![endif]--><?php if($schedule['has_attendance'] ?? false): ?>
+                                    <?php if($schedule['has_attendance'] ?? false): ?>
                                         <?php if (isset($component)) { $__componentOriginalc04b147acd0e65cc1a77f86fb0e81580 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginalc04b147acd0e65cc1a77f86fb0e81580 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::button.index','data' => ['wire:click' => 'attendance('.e($schedule['id']).',\'view\')','variant' => 'primary','color' => 'zinc','icon' => 'eye']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
@@ -128,7 +128,7 @@
 <?php $component = $__componentOriginalc04b147acd0e65cc1a77f86fb0e81580; ?>
 <?php unset($__componentOriginalc04b147acd0e65cc1a77f86fb0e81580); ?>
 <?php endif; ?>
-                                    <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                                    <?php endif; ?>
                                 <?php else: ?>
                                     <?php if (isset($component)) { $__componentOriginalc04b147acd0e65cc1a77f86fb0e81580 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginalc04b147acd0e65cc1a77f86fb0e81580 = $attributes; } ?>
@@ -149,7 +149,7 @@
 <?php $component = $__componentOriginalc04b147acd0e65cc1a77f86fb0e81580; ?>
 <?php unset($__componentOriginalc04b147acd0e65cc1a77f86fb0e81580); ?>
 <?php endif; ?>
-                                <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                                <?php endif; ?>
                             </td>
                         </tr>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
@@ -180,14 +180,14 @@
                                 </div>
                             </td>
                         </tr>
-                    <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                    <?php endif; ?>
                 </tbody>
             </table>
         </div>
 
         
         <div class="md:hidden space-y-3">
-            <!--[if BLOCK]><![endif]--><?php $__empty_1 = true; $__currentLoopData = $todaySchedules; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $schedule): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+            <?php $__empty_1 = true; $__currentLoopData = $todaySchedules; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $schedule): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                 <div class="bg-white rounded-lg border border-gray-200 shadow-sm" x-data="{ expanded: false }"
                     wire:key="schedule-mobile-<?php echo e($schedule['id']); ?>">
 
@@ -290,7 +290,7 @@
                                     $isPast = $currentTime->gt($endTime);
                                 ?>
 
-                                <!--[if BLOCK]><![endif]--><?php if($isPast): ?>
+                                <?php if($isPast): ?>
                                     <button
                                         class="w-full bg-gray-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors flex items-center justify-center space-x-2">
                                         <?php if (isset($component)) { $__componentOriginal4a4fffe04433d6d6be16f26ad2650578 = $component; } ?>
@@ -316,7 +316,7 @@
                                         <span>Đã kết thúc</span>
                                     </button>
                                 <?php elseif($isInTime): ?>
-                                    <!--[if BLOCK]><![endif]--><?php if($schedule['has_attendance'] ?? false): ?>
+                                    <?php if($schedule['has_attendance'] ?? false): ?>
                                         <button wire:click="attendance(<?php echo e($schedule['id']); ?>,'view')"
                                             class="mb-1 w-full bg-zinc-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-zinc-700 transition-colors flex items-center justify-center space-x-2">
                                             <?php if (isset($component)) { $__componentOriginal2e57535a42d25d5415c31aa83132341b = $component; } ?>
@@ -390,13 +390,13 @@
 <?php endif; ?>
                                             <span>Điểm danh</span>
                                         </button>
-                                    <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                                    <?php endif; ?>
                                 <?php else: ?>
                                     <button
                                         class="w-full bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700 transition-colors flex items-center justify-center space-x-2">
                                         <span>Chưa đến giờ</span>
                                     </button>
-                                <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                                <?php endif; ?>
                             </div>
                         </div>
                     </div>
@@ -427,7 +427,7 @@
                         <div class="text-sm text-gray-500">Không có lịch dạy hôm nay</div>
                     </div>
                 </div>
-            <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+            <?php endif; ?>
         </div>
     </div>
 </div>

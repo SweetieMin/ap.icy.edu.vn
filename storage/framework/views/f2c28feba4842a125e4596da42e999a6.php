@@ -2,7 +2,7 @@
      style="flex: 1 1 0%; min-width:5.5rem;">
 
     <p class="text-xs sm:text-md">
-        <!--[if BLOCK]><![endif]--><?php switch($day->dayOfWeek):
+        <?php switch($day->dayOfWeek):
             case (0): ?>
                 <span class="hidden sm:inline">Chủ Nhật</span>
                 <span class="sm:hidden">CN</span>
@@ -31,7 +31,7 @@
                 <span class="hidden sm:inline">Thứ Bảy</span>
                 <span class="sm:hidden">T7</span>
                 <?php break; ?>
-        <?php endswitch; ?><!--[if ENDBLOCK]><![endif]-->
+        <?php endswitch; ?>
     </p>
 
 </div>

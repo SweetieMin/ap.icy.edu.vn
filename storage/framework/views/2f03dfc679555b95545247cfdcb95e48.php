@@ -109,9 +109,9 @@ if (isset($__slots)) unset($__slots);
                     <div>
                         <label for="selectedProgramId" class="card-label">Chọn chương trình</label>
                         <select wire:model.live="selectedProgramId" id="selectedProgramId" class="card-input">
-                            <!--[if BLOCK]><![endif]--><?php $__currentLoopData = $programs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $program): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <?php $__currentLoopData = $programs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $program): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <option value="<?php echo e($program->id); ?>"><?php echo e($program->name); ?></option>
-                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><!--[if ENDBLOCK]><![endif]-->
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </select>
                     </div>
 
@@ -119,20 +119,20 @@ if (isset($__slots)) unset($__slots);
                     <div>
                         <label for="selectedSubjectId" class="card-label">Chọn môn học</label>
                         <select wire:model.live="selectedSubjectId" id="selectedSubjectId" class="card-input">
-                            <!--[if BLOCK]><![endif]--><?php $__currentLoopData = $subjects; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $subject): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <?php $__currentLoopData = $subjects; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $subject): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <option value="<?php echo e($subject->id); ?>"><?php echo e($subject->name); ?> (<?php echo e($subject->code); ?>)</option>
-                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><!--[if ENDBLOCK]><![endif]-->
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </select>
                     </div>
 
 
                     <!-- URL Book Display -->
                     <div>
-                        <!--[if BLOCK]><![endif]--><?php if($selectedSubjectId): ?>
+                        <?php if($selectedSubjectId): ?>
                             <?php
                                 $selectedSubject = $subjects->firstWhere('id', $selectedSubjectId);
                             ?>
-                            <!--[if BLOCK]><![endif]--><?php if($selectedSubject && $selectedSubject->url_book): ?>
+                            <?php if($selectedSubject && $selectedSubject->url_book): ?>
                                 <div class="mt-2 md:mt-7">
                                     <?php if (isset($component)) { $__componentOriginalf5109f209df079b3a83484e1e6310749 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginalf5109f209df079b3a83484e1e6310749 = $attributes; } ?>
@@ -184,12 +184,12 @@ if (isset($__slots)) unset($__slots);
                                 <div class="mt-4 md:mt-10 text-sm text-gray-500 dark:text-gray-400">
                                     Chưa có link sách giáo khoa
                                 </div>
-                            <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                            <?php endif; ?>
                         <?php else: ?>
                             <div class="mt-2 text-sm text-gray-500 dark:text-gray-400">
                                 Vui lòng chọn môn học
                             </div>
-                        <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                        <?php endif; ?>
                     </div>
 
                 </div>
@@ -209,15 +209,15 @@ if (isset($__slots)) unset($__slots);
                         <th class="text-center  w-30">Bài học</th>
                         <th class="text-left">Nội dung</th>
                         <th class="text-left">Mục tiêu (CLO)</th>
-                        <!--[if BLOCK]><![endif]--><?php if(
+                        <?php if(
                             $syllabi->first() &&
                                 (auth()->user()->can('update', $syllabi->first()) || auth()->user()->can('delete', $syllabi->first()))): ?>
                             <th class="text-center">Thao tác</th>
-                        <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                        <?php endif; ?>
                     </tr>
                 </thead>
                 <tbody id="sortable-syllabi">
-                    <!--[if BLOCK]><![endif]--><?php $__empty_1 = true; $__currentLoopData = $syllabi; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $syllabus): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                    <?php $__empty_1 = true; $__currentLoopData = $syllabi; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $syllabus): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                         <tr class="table-row sortable-row" data-id="<?php echo e($syllabus->id); ?>">
                             <td
                                 class="table-cell text-center font-medium <?php echo e($syllabi->first() && (auth()->user()->can('update', $syllabi->first()) || auth()->user()->can('delete', $syllabi->first())) ? 'drag-handle cursor-move' : ''); ?>">
@@ -236,7 +236,7 @@ if (isset($__slots)) unset($__slots);
 
                                 </div>
                             </td>
-                            <!--[if BLOCK]><![endif]--><?php if(auth()->user()->can('update', $syllabus) || auth()->user()->can('delete', $syllabus)): ?>
+                            <?php if(auth()->user()->can('update', $syllabus) || auth()->user()->can('delete', $syllabus)): ?>
                                 <td class="table-cell text-center">
                                     <?php if (isset($component)) { $__componentOriginal2b4bb2cd4b8f1a3c08bae49ea918b888 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal2b4bb2cd4b8f1a3c08bae49ea918b888 = $attributes; } ?>
@@ -364,7 +364,7 @@ if (isset($__slots)) unset($__slots);
 <?php unset($__componentOriginal2b4bb2cd4b8f1a3c08bae49ea918b888); ?>
 <?php endif; ?>
                                 </td>
-                            <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                            <?php endif; ?>
                         </tr>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
                         <tr>
@@ -394,7 +394,7 @@ if (isset($__slots)) unset($__slots);
                                 </div>
                             </td>
                         </tr>
-                    <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                    <?php endif; ?>
                 </tbody>
             </table>
         </div>
@@ -419,7 +419,7 @@ if (isset($__slots)) unset($__slots);
                 }
              "
              id="sortable-syllabi-mobile">
-            <!--[if BLOCK]><![endif]--><?php $__empty_1 = true; $__currentLoopData = $syllabi; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $syllabus): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+            <?php $__empty_1 = true; $__currentLoopData = $syllabi; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $syllabus): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                 <div class="bg-white rounded-lg border border-gray-200 shadow-sm" 
                      x-data="{ expanded: false }" 
                      wire:key="syllabus-mobile-<?php echo e($syllabus->id); ?>"
@@ -472,7 +472,7 @@ if (isset($__slots)) unset($__slots);
                             </div>
 
                             
-                            <!--[if BLOCK]><![endif]--><?php if(auth()->user()->can('update', $syllabus) || auth()->user()->can('delete', $syllabus)): ?>
+                            <?php if(auth()->user()->can('update', $syllabus) || auth()->user()->can('delete', $syllabus)): ?>
                                 <div class="pt-3 border-t border-gray-200">
                                     <div class="flex space-x-2">
                                         <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('update', $syllabus)): ?>
@@ -496,7 +496,7 @@ if (isset($__slots)) unset($__slots);
                                         <?php endif; ?>
                                     </div>
                                 </div>
-                            <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>
@@ -526,7 +526,7 @@ if (isset($__slots)) unset($__slots);
                         <div class="text-sm text-gray-500">Không có syllabus nào cho môn học này</div>
                     </div>
                 </div>
-            <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+            <?php endif; ?>
         </div>
     </div>
 

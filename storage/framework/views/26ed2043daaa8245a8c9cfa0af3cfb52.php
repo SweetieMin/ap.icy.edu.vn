@@ -17,23 +17,23 @@
                     <?php echo e($day->format('j')); ?>
 
                 </p>
-                <!--[if BLOCK]><![endif]--><?php if($isToday): ?>
+                <?php if($isToday): ?>
                     <div class="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-pink-500 rounded-full"></div>
-                <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                <?php endif; ?>
             </div>
 
             
-            <!--[if BLOCK]><![endif]--><?php if($events->isNotEmpty()): ?>
+            <?php if($events->isNotEmpty()): ?>
                 <p class="text-xs sm:text-sm text-gray-500 mt-1">
                     <span class="hidden sm:inline"><?php echo e($events->count()); ?> sự kiện</span>
                     <span class="sm:hidden"><?php echo e($events->count()); ?></span>
                 </p>
-            <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+            <?php endif; ?>
 
             
             <div class="mt-1 sm:mt-2 flex-1 overflow-y-auto">
                 <div class="space-y-0.5 sm:space-y-1">
-                    <!--[if BLOCK]><![endif]--><?php $__currentLoopData = $events; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $event): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <?php $__currentLoopData = $events; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $event): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                         <div <?php if($dragAndDropEnabled): ?> draggable="true" <?php endif; ?>
                             ondragstart="onLivewireCalendarEventDragStart(event, '<?php echo e($event['id']); ?>')"
                             <?php if($eventClickEnabled): ?> wire:click="onEventClick(<?php echo e($event['id']); ?>)" <?php endif; ?>
@@ -42,7 +42,7 @@
                             title="<?php echo e($event['title']); ?> - <?php echo e($event['description'] ?? ''); ?>">
                             <span class="truncate"><?php echo e($event['title']); ?></span>
                         </div>
-                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><!--[if ENDBLOCK]><![endif]-->
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </div>
             </div>
 

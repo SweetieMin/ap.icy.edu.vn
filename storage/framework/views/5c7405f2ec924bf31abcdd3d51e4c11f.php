@@ -42,13 +42,13 @@
                     <div class="rounded-2xl bg-white p-4 shadow-sm dark:bg-stone-950">
                         <p class="text-[11px] uppercase tracking-wide text-gray-500">Ngày</p>
                         <p class="mt-1 text-base font-semibold text-gray-900 dark:text-gray-100">
-                            <!--[if BLOCK]><![endif]--><?php if(!empty($selectedDate)): ?>
+                            <?php if(!empty($selectedDate)): ?>
                                 <?php echo e($selectedDate instanceof \Carbon\Carbon ? $selectedDate->format('d/m/Y') : (is_string($selectedDate) ? \Carbon\Carbon::parse($selectedDate)->format('d/m/Y') : now()->format('d/m/Y'))); ?>
 
                             <?php else: ?>
                                 <?php echo e(now()->format('d/m/Y')); ?>
 
-                            <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                            <?php endif; ?>
                         </p>
                     </div>
 

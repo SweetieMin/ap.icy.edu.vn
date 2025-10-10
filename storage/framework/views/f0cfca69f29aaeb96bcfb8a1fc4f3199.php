@@ -100,9 +100,9 @@ if (isset($__slots)) unset($__slots);
                             class="card-input"
                         >
                             <option value="">Tất cả cơ sở</option>
-                            <!--[if BLOCK]><![endif]--><?php $__currentLoopData = $locations; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $location): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <?php $__currentLoopData = $locations; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $location): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <option value="<?php echo e($location->id); ?>"><?php echo e($location->name); ?></option>
-                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><!--[if ENDBLOCK]><![endif]-->
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </select>
                     </div>
                     
@@ -115,9 +115,9 @@ if (isset($__slots)) unset($__slots);
                             class="card-input"
                         >
                             <option value="">Tất cả học kỳ</option>
-                            <!--[if BLOCK]><![endif]--><?php $__currentLoopData = $seasons; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $season): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <?php $__currentLoopData = $seasons; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $season): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <option value="<?php echo e($season->id); ?>"><?php echo e($season->name); ?></option>
-                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><!--[if ENDBLOCK]><![endif]-->
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </select>
                     </div>
                     
@@ -177,7 +177,7 @@ if (isset($__slots)) unset($__slots);
                             </tr>
                         </thead>
                         <tbody id="sortable-courses">
-                            <!--[if BLOCK]><![endif]--><?php $__empty_1 = true; $__currentLoopData = $courses; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $course): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                            <?php $__empty_1 = true; $__currentLoopData = $courses; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $course): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                                 <tr wire:key="course-desktop-<?php echo e($course->id); ?>" data-id="<?php echo e($course->id); ?>" class="table-row ">
                                     <td class="table-cell text-center drag-handle cursor-move w-16">
                                         <?php echo e($course->ordering); ?>
@@ -393,7 +393,7 @@ if (isset($__slots)) unset($__slots);
                                         </div>
                                     </td>
                                 </tr>
-                            <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                            <?php endif; ?>
                         </tbody>
                     </table>
                 </div>
@@ -418,7 +418,7 @@ if (isset($__slots)) unset($__slots);
                         }
                      "
                      id="sortable-courses-mobile">
-                    <!--[if BLOCK]><![endif]--><?php $__empty_1 = true; $__currentLoopData = $courses; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $course): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                    <?php $__empty_1 = true; $__currentLoopData = $courses; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $course): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                         <div class="bg-white rounded-lg border border-gray-200 shadow-sm" 
                              x-data="{ expanded: false }" 
                              wire:key="course-mobile-<?php echo e($course->id); ?>"
@@ -530,15 +530,15 @@ if (isset($__slots)) unset($__slots);
                                 <div class="text-sm text-gray-500">Không có lớp học nào</div>
                             </div>
                         </div>
-                    <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                    <?php endif; ?>
                 </div>
                 
-                <!--[if BLOCK]><![endif]--><?php if($courses->hasPages()): ?>
+                <?php if($courses->hasPages()): ?>
                     <div class="pagination-container mt-6">
                         <?php echo e($courses->links()); ?>
 
                     </div>
-                <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                <?php endif; ?>
             </div>
         </div>
     </div>
