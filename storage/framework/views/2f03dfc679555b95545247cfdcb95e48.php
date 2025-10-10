@@ -109,9 +109,9 @@ if (isset($__slots)) unset($__slots);
                     <div>
                         <label for="selectedProgramId" class="card-label">Chọn chương trình</label>
                         <select wire:model.live="selectedProgramId" id="selectedProgramId" class="card-input">
-                            <?php $__currentLoopData = $programs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $program): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <!--[if BLOCK]><![endif]--><?php $__currentLoopData = $programs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $program): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <option value="<?php echo e($program->id); ?>"><?php echo e($program->name); ?></option>
-                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><!--[if ENDBLOCK]><![endif]-->
                         </select>
                     </div>
 
@@ -119,20 +119,20 @@ if (isset($__slots)) unset($__slots);
                     <div>
                         <label for="selectedSubjectId" class="card-label">Chọn môn học</label>
                         <select wire:model.live="selectedSubjectId" id="selectedSubjectId" class="card-input">
-                            <?php $__currentLoopData = $subjects; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $subject): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <!--[if BLOCK]><![endif]--><?php $__currentLoopData = $subjects; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $subject): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <option value="<?php echo e($subject->id); ?>"><?php echo e($subject->name); ?> (<?php echo e($subject->code); ?>)</option>
-                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><!--[if ENDBLOCK]><![endif]-->
                         </select>
                     </div>
 
 
                     <!-- URL Book Display -->
                     <div>
-                        <?php if($selectedSubjectId): ?>
+                        <!--[if BLOCK]><![endif]--><?php if($selectedSubjectId): ?>
                             <?php
                                 $selectedSubject = $subjects->firstWhere('id', $selectedSubjectId);
                             ?>
-                            <?php if($selectedSubject && $selectedSubject->url_book): ?>
+                            <!--[if BLOCK]><![endif]--><?php if($selectedSubject && $selectedSubject->url_book): ?>
                                 <div class="mt-2 md:mt-7">
                                     <?php if (isset($component)) { $__componentOriginalf5109f209df079b3a83484e1e6310749 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginalf5109f209df079b3a83484e1e6310749 = $attributes; } ?>
@@ -184,12 +184,12 @@ if (isset($__slots)) unset($__slots);
                                 <div class="mt-4 md:mt-10 text-sm text-gray-500 dark:text-gray-400">
                                     Chưa có link sách giáo khoa
                                 </div>
-                            <?php endif; ?>
+                            <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
                         <?php else: ?>
                             <div class="mt-2 text-sm text-gray-500 dark:text-gray-400">
                                 Vui lòng chọn môn học
                             </div>
-                        <?php endif; ?>
+                        <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
                     </div>
 
                 </div>
@@ -209,15 +209,15 @@ if (isset($__slots)) unset($__slots);
                         <th class="text-center  w-30">Bài học</th>
                         <th class="text-left">Nội dung</th>
                         <th class="text-left">Mục tiêu (CLO)</th>
-                        <?php if(
+                        <!--[if BLOCK]><![endif]--><?php if(
                             $syllabi->first() &&
                                 (auth()->user()->can('update', $syllabi->first()) || auth()->user()->can('delete', $syllabi->first()))): ?>
                             <th class="text-center">Thao tác</th>
-                        <?php endif; ?>
+                        <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
                     </tr>
                 </thead>
                 <tbody id="sortable-syllabi">
-                    <?php $__empty_1 = true; $__currentLoopData = $syllabi; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $syllabus): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                    <!--[if BLOCK]><![endif]--><?php $__empty_1 = true; $__currentLoopData = $syllabi; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $syllabus): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                         <tr class="table-row sortable-row" data-id="<?php echo e($syllabus->id); ?>">
                             <td
                                 class="table-cell text-center font-medium <?php echo e($syllabi->first() && (auth()->user()->can('update', $syllabi->first()) || auth()->user()->can('delete', $syllabi->first())) ? 'drag-handle cursor-move' : ''); ?>">
@@ -231,12 +231,58 @@ if (isset($__slots)) unset($__slots);
                                 </div>
                             </td>
                             <td class="table-cell">
-                                <div title="<?php echo e($syllabus->CLO); ?>">
-                                    <?php echo e($syllabus->CLO); ?>
+                                <!--[if BLOCK]><![endif]--><?php if($syllabus->is_url): ?>
+                                    <!--[if BLOCK]><![endif]--><?php if($syllabus->CLO): ?>
+                                        <a href="<?php echo e($syllabus->CLO); ?>" target="_blank">
+                                            <?php if (isset($component)) { $__componentOriginal4cc377eda9b63b796b6668ee7832d023 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal4cc377eda9b63b796b6668ee7832d023 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::badge.index','data' => ['color' => 'green']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('flux::badge'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['color' => 'green']); ?>Link bài test <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal4cc377eda9b63b796b6668ee7832d023)): ?>
+<?php $attributes = $__attributesOriginal4cc377eda9b63b796b6668ee7832d023; ?>
+<?php unset($__attributesOriginal4cc377eda9b63b796b6668ee7832d023); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal4cc377eda9b63b796b6668ee7832d023)): ?>
+<?php $component = $__componentOriginal4cc377eda9b63b796b6668ee7832d023; ?>
+<?php unset($__componentOriginal4cc377eda9b63b796b6668ee7832d023); ?>
+<?php endif; ?>
+                                        </a>
+                                    <?php else: ?>
+                                        <?php if (isset($component)) { $__componentOriginal4cc377eda9b63b796b6668ee7832d023 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal4cc377eda9b63b796b6668ee7832d023 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::badge.index','data' => ['color' => 'red']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('flux::badge'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['color' => 'red']); ?>Chưa có link bài test <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal4cc377eda9b63b796b6668ee7832d023)): ?>
+<?php $attributes = $__attributesOriginal4cc377eda9b63b796b6668ee7832d023; ?>
+<?php unset($__attributesOriginal4cc377eda9b63b796b6668ee7832d023); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal4cc377eda9b63b796b6668ee7832d023)): ?>
+<?php $component = $__componentOriginal4cc377eda9b63b796b6668ee7832d023; ?>
+<?php unset($__componentOriginal4cc377eda9b63b796b6668ee7832d023); ?>
+<?php endif; ?>
+                                    <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                                <?php else: ?>
+                                    <div title="<?php echo e($syllabus->CLO); ?>">
+                                        <?php echo e($syllabus->CLO); ?>
 
-                                </div>
+                                    </div>
+                                <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
                             </td>
-                            <?php if(auth()->user()->can('update', $syllabus) || auth()->user()->can('delete', $syllabus)): ?>
+                            <!--[if BLOCK]><![endif]--><?php if(auth()->user()->can('update', $syllabus) || auth()->user()->can('delete', $syllabus)): ?>
                                 <td class="table-cell text-center">
                                     <?php if (isset($component)) { $__componentOriginal2b4bb2cd4b8f1a3c08bae49ea918b888 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal2b4bb2cd4b8f1a3c08bae49ea918b888 = $attributes; } ?>
@@ -364,7 +410,7 @@ if (isset($__slots)) unset($__slots);
 <?php unset($__componentOriginal2b4bb2cd4b8f1a3c08bae49ea918b888); ?>
 <?php endif; ?>
                                 </td>
-                            <?php endif; ?>
+                            <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
                         </tr>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
                         <tr>
@@ -394,63 +440,57 @@ if (isset($__slots)) unset($__slots);
                                 </div>
                             </td>
                         </tr>
-                    <?php endif; ?>
+                    <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
                 </tbody>
             </table>
         </div>
 
         
-        <div class="md:hidden space-y-3" 
-             x-data 
-             x-init="
-                const mobileEl = document.getElementById('sortable-syllabi-mobile');
-                if (mobileEl) {
-                    new Sortable(mobileEl, {
-                        animation: 150,
-                        handle: '.drag-handle',
-                        onEnd: function() {
-                            let orderedIds = [];
-                            mobileEl.querySelectorAll('[data-id]').forEach(item => {
-                                orderedIds.push(item.getAttribute('data-id'));
-                            });
-                            window.Livewire.find('<?php echo e($_instance->getId()); ?>').call('updateLessonOrder', orderedIds);
-                        }
+        <div class="md:hidden space-y-3" x-data x-init="const mobileEl = document.getElementById('sortable-syllabi-mobile');
+        if (mobileEl) {
+            new Sortable(mobileEl, {
+                animation: 150,
+                handle: '.drag-handle',
+                onEnd: function() {
+                    let orderedIds = [];
+                    mobileEl.querySelectorAll('[data-id]').forEach(item => {
+                        orderedIds.push(item.getAttribute('data-id'));
                     });
+                    window.Livewire.find('<?php echo e($_instance->getId()); ?>').call('updateLessonOrder', orderedIds);
                 }
-             "
-             id="sortable-syllabi-mobile">
-            <?php $__empty_1 = true; $__currentLoopData = $syllabi; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $syllabus): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
-                <div class="bg-white rounded-lg border border-gray-200 shadow-sm" 
-                     x-data="{ expanded: false }" 
-                     wire:key="syllabus-mobile-<?php echo e($syllabus->id); ?>"
-                     data-id="<?php echo e($syllabus->id); ?>">
-                    
+            });
+        }" id="sortable-syllabi-mobile">
+            <!--[if BLOCK]><![endif]--><?php $__empty_1 = true; $__currentLoopData = $syllabi; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $syllabus): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                <div class="bg-white rounded-lg border border-gray-200 shadow-sm" x-data="{ expanded: false }"
+                    wire:key="syllabus-mobile-<?php echo e($syllabus->id); ?>" data-id="<?php echo e($syllabus->id); ?>">
+
                     
                     <div class="p-4 flex items-center justify-between">
                         <div class="flex items-center space-x-3">
-                            <div class="w-8 h-8 bg-indigo-100 rounded-full flex items-center justify-center cursor-move drag-handle">
+                            <div
+                                class="w-8 h-8 bg-indigo-100 rounded-full flex items-center justify-center cursor-move drag-handle">
                                 <span class="text-xs font-bold text-indigo-600"><?php echo e($syllabus->lesson_number); ?></span>
                             </div>
                             <div>
                                 <div class="font-medium text-gray-900">Bài <?php echo e($syllabus->lesson_number); ?></div>
-                                <div class="text-sm text-gray-500 truncate max-w-[200px]"><?php echo e($syllabus->content); ?></div>
+                                <div class="text-sm text-gray-500 truncate max-w-[200px]"><?php echo e($syllabus->content); ?>
+
+                                </div>
                             </div>
                         </div>
-                        
-                        <button @click="expanded = !expanded" 
-                                class="p-2 rounded-full hover:bg-gray-100">
-                            <svg class="w-5 h-5 text-gray-400" 
-                                 :class="{ 'rotate-180': expanded }" 
-                                 fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+
+                        <button @click="expanded = !expanded" class="p-2 rounded-full hover:bg-gray-100">
+                            <svg class="w-5 h-5 text-gray-400" :class="{ 'rotate-180': expanded }" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 9l-7 7-7-7"></path>
                             </svg>
                         </button>
                     </div>
 
                     
-                    <div x-show="expanded" 
-                         class="border-t border-gray-100 bg-gray-50">
-                        
+                    <div x-show="expanded" class="border-t border-gray-100 bg-gray-50">
+
                         <div class="p-4 space-y-3">
 
                             
@@ -468,35 +508,42 @@ if (isset($__slots)) unset($__slots);
                             
                             <div class="flex justify-between items-center">
                                 <span class="text-sm font-medium text-gray-600">Ngày tạo:</span>
-                                <span class="text-sm text-gray-900"><?php echo e($syllabus->created_at->format('d/m/Y H:i')); ?></span>
+                                <span
+                                    class="text-sm text-gray-900"><?php echo e($syllabus->created_at->format('d/m/Y H:i')); ?></span>
                             </div>
 
                             
-                            <?php if(auth()->user()->can('update', $syllabus) || auth()->user()->can('delete', $syllabus)): ?>
+                            <!--[if BLOCK]><![endif]--><?php if(auth()->user()->can('update', $syllabus) || auth()->user()->can('delete', $syllabus)): ?>
                                 <div class="pt-3 border-t border-gray-200">
                                     <div class="flex space-x-2">
                                         <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('update', $syllabus)): ?>
                                             <button wire:click="editSyllabus(<?php echo e($syllabus->id); ?>)"
-                                                    class="flex-1 bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700 transition-colors flex items-center justify-center space-x-2">
-                                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+                                                class="flex-1 bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700 transition-colors flex items-center justify-center space-x-2">
+                                                <svg class="w-4 h-4" fill="none" stroke="currentColor"
+                                                    viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                        d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z">
+                                                    </path>
                                                 </svg>
                                                 <span>Sửa</span>
                                             </button>
                                         <?php endif; ?>
-                                        
+
                                         <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('delete', $syllabus)): ?>
                                             <button wire:click="deleteSyllabus(<?php echo e($syllabus->id); ?>)"
-                                                    class="flex-1 bg-red-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-red-700 transition-colors flex items-center justify-center space-x-2">
-                                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                                                class="flex-1 bg-red-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-red-700 transition-colors flex items-center justify-center space-x-2">
+                                                <svg class="w-4 h-4" fill="none" stroke="currentColor"
+                                                    viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                        d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16">
+                                                    </path>
                                                 </svg>
                                                 <span>Xóa</span>
                                             </button>
                                         <?php endif; ?>
                                     </div>
                                 </div>
-                            <?php endif; ?>
+                            <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
                         </div>
                     </div>
                 </div>
@@ -526,7 +573,7 @@ if (isset($__slots)) unset($__slots);
                         <div class="text-sm text-gray-500">Không có syllabus nào cho môn học này</div>
                     </div>
                 </div>
-            <?php endif; ?>
+            <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
         </div>
     </div>
 

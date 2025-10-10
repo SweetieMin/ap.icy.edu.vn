@@ -81,7 +81,7 @@
                             @endphp
                             @if ($selectedSubject && $selectedSubject->url_book)
                                 <div class="mt-2 md:mt-7">
-                                    <flux:tooltip  content="Xem sách giáo khoa">
+                                    <flux:tooltip content="Xem sách giáo khoa">
                                         <a href="{{ $selectedSubject->url_book }}" target="_blank"
                                             class="inline-flex items-center px-3 py-3 text-sm font-medium text-pink-600 bg-pink-50 border border-pink-200 rounded-lg hover:bg-pink-100 hover:text-pink-700 transition-colors duration-200 dark:bg-pink-900/20 dark:border-pink-800 dark:text-pink-400 dark:hover:bg-pink-900/30">
                                             <flux:icon.bookmark-square class="w-4 h-4 mr-2" />
@@ -138,9 +138,19 @@
                                 </div>
                             </td>
                             <td class="table-cell">
-                                <div title="{{ $syllabus->CLO }}">
-                                    {{ $syllabus->CLO }}
-                                </div>
+                                @if ($syllabus->is_url)
+                                    @if ($syllabus->CLO)
+                                        <a href="{{ $syllabus->CLO }}" target="_blank">
+                                            <flux:badge color="green">Link bài test</flux:badge>
+                                        </a>
+                                    @else
+                                        <flux:badge color="red">Chưa có link bài test</flux:badge>
+                                    @endif
+                                @else
+                                    <div title="{{ $syllabus->CLO }}">
+                                        {{ $syllabus->CLO }}
+                                    </div>
+                                @endif
                             </td>
                             @if (auth()->user()->can('update', $syllabus) || auth()->user()->can('delete', $syllabus))
                                 <td class="table-cell text-center">
@@ -180,57 +190,50 @@
         </div>
 
         {{-- Mobile Card View --}}
-        <div class="md:hidden space-y-3" 
-             x-data 
-             x-init="
-                const mobileEl = document.getElementById('sortable-syllabi-mobile');
-                if (mobileEl) {
-                    new Sortable(mobileEl, {
-                        animation: 150,
-                        handle: '.drag-handle',
-                        onEnd: function() {
-                            let orderedIds = [];
-                            mobileEl.querySelectorAll('[data-id]').forEach(item => {
-                                orderedIds.push(item.getAttribute('data-id'));
-                            });
-                            @this.call('updateLessonOrder', orderedIds);
-                        }
+        <div class="md:hidden space-y-3" x-data x-init="const mobileEl = document.getElementById('sortable-syllabi-mobile');
+        if (mobileEl) {
+            new Sortable(mobileEl, {
+                animation: 150,
+                handle: '.drag-handle',
+                onEnd: function() {
+                    let orderedIds = [];
+                    mobileEl.querySelectorAll('[data-id]').forEach(item => {
+                        orderedIds.push(item.getAttribute('data-id'));
                     });
+                    @this.call('updateLessonOrder', orderedIds);
                 }
-             "
-             id="sortable-syllabi-mobile">
+            });
+        }" id="sortable-syllabi-mobile">
             @forelse($syllabi as $syllabus)
-                <div class="bg-white rounded-lg border border-gray-200 shadow-sm" 
-                     x-data="{ expanded: false }" 
-                     wire:key="syllabus-mobile-{{ $syllabus->id }}"
-                     data-id="{{ $syllabus->id }}">
-                    
+                <div class="bg-white rounded-lg border border-gray-200 shadow-sm" x-data="{ expanded: false }"
+                    wire:key="syllabus-mobile-{{ $syllabus->id }}" data-id="{{ $syllabus->id }}">
+
                     {{-- Main Row --}}
                     <div class="p-4 flex items-center justify-between">
                         <div class="flex items-center space-x-3">
-                            <div class="w-8 h-8 bg-indigo-100 rounded-full flex items-center justify-center cursor-move drag-handle">
+                            <div
+                                class="w-8 h-8 bg-indigo-100 rounded-full flex items-center justify-center cursor-move drag-handle">
                                 <span class="text-xs font-bold text-indigo-600">{{ $syllabus->lesson_number }}</span>
                             </div>
                             <div>
                                 <div class="font-medium text-gray-900">Bài {{ $syllabus->lesson_number }}</div>
-                                <div class="text-sm text-gray-500 truncate max-w-[200px]">{{ $syllabus->content }}</div>
+                                <div class="text-sm text-gray-500 truncate max-w-[200px]">{{ $syllabus->content }}
+                                </div>
                             </div>
                         </div>
-                        
-                        <button @click="expanded = !expanded" 
-                                class="p-2 rounded-full hover:bg-gray-100">
-                            <svg class="w-5 h-5 text-gray-400" 
-                                 :class="{ 'rotate-180': expanded }" 
-                                 fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+
+                        <button @click="expanded = !expanded" class="p-2 rounded-full hover:bg-gray-100">
+                            <svg class="w-5 h-5 text-gray-400" :class="{ 'rotate-180': expanded }" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 9l-7 7-7-7"></path>
                             </svg>
                         </button>
                     </div>
 
                     {{-- Expanded Details --}}
-                    <div x-show="expanded" 
-                         class="border-t border-gray-100 bg-gray-50">
-                        
+                    <div x-show="expanded" class="border-t border-gray-100 bg-gray-50">
+
                         <div class="p-4 space-y-3">
 
                             {{-- Nội dung --}}
@@ -248,7 +251,8 @@
                             {{-- Ngày tạo --}}
                             <div class="flex justify-between items-center">
                                 <span class="text-sm font-medium text-gray-600">Ngày tạo:</span>
-                                <span class="text-sm text-gray-900">{{ $syllabus->created_at->format('d/m/Y H:i') }}</span>
+                                <span
+                                    class="text-sm text-gray-900">{{ $syllabus->created_at->format('d/m/Y H:i') }}</span>
                             </div>
 
                             {{-- Actions --}}
@@ -257,19 +261,25 @@
                                     <div class="flex space-x-2">
                                         @can('update', $syllabus)
                                             <button wire:click="editSyllabus({{ $syllabus->id }})"
-                                                    class="flex-1 bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700 transition-colors flex items-center justify-center space-x-2">
-                                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+                                                class="flex-1 bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700 transition-colors flex items-center justify-center space-x-2">
+                                                <svg class="w-4 h-4" fill="none" stroke="currentColor"
+                                                    viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                        d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z">
+                                                    </path>
                                                 </svg>
                                                 <span>Sửa</span>
                                             </button>
                                         @endcan
-                                        
+
                                         @can('delete', $syllabus)
                                             <button wire:click="deleteSyllabus({{ $syllabus->id }})"
-                                                    class="flex-1 bg-red-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-red-700 transition-colors flex items-center justify-center space-x-2">
-                                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                                                class="flex-1 bg-red-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-red-700 transition-colors flex items-center justify-center space-x-2">
+                                                <svg class="w-4 h-4" fill="none" stroke="currentColor"
+                                                    viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                        d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16">
+                                                    </path>
                                                 </svg>
                                                 <span>Xóa</span>
                                             </button>

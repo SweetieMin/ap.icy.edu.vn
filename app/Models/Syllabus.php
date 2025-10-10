@@ -14,7 +14,8 @@ class Syllabus extends Model
         'vocabulary',
         'grammar',
         'assignment',
-        'CLO'
+        'CLO',
+        'is_url',
     ];
 
     public function subject()

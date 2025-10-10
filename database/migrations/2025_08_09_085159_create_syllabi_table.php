@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('grammar')->nullable();
             $table->string('assignment')->nullable();
             $table->string('CLO')->nullable();
+            $table->boolean('is_url')->default(false);
             $table->timestamps();
         });
     }

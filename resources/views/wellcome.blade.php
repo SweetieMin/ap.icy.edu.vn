@@ -56,7 +56,7 @@
     <meta name="twitter:image" content="{{ asset('OG-image.png') }}">
     <meta name="twitter:image:alt" content="Logo ICY English">
     @verbatim
-    <script type="application/ld+json">
+        <script type="application/ld+json">
         {
       "@context": "https://schema.org",
       "@type": "WebPage",
@@ -75,8 +75,8 @@
       }
     }
     </script>
-    
-    <script type="application/ld+json">
+
+        <script type="application/ld+json">
         {
       "@context": "https://schema.org",
       "@type": "Organization",
@@ -108,16 +108,30 @@
                     </div>
                 </div>
                 <div class="flex md:justify-end">
-                    <a href="{{ route('login') }}"
-                        class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-pink-600 text-white shadow hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-pink-400 focus:ring-offset-2 focus:ring-offset-pink-50 text-sm md:text-base">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
-                            <path fill-rule="evenodd"
-                                d="M11.78 2.97a.75.75 0 01.53-.22h5.94a.75.75 0 01.75.75v16.5a.75.75 0 01-.75.75h-5.94a.75.75 0 110-1.5h5.19V4.5h-5.19a.75.75 0 01-.53-1.28zM3.22 12.53a.75.75 0 010-1.06l3.97-3.97a.75.75 0 111.06 1.06L5.81 11H15a.75.75 0 010 1.5H5.81l2.44 2.44a.75.75 0 11-1.06 1.06l-3.97-3.97z"
-                                clip-rule="evenodd" />
-                        </svg>
-                        Đăng nhập
-                    </a>
+                    @auth
+                        <a href="{{ route('dashboard') }}"
+                            class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-pink-600 text-white shadow hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-pink-400 focus:ring-offset-2 focus:ring-offset-pink-50 text-sm md:text-base">
+                            <!-- icon -->
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M3 6a3 3 0 013-3h4v6H3V6zM3 11h7v10H6a3 3 0 01-3-3v-7zm9-8h6a3 3 0 013 3v4h-9V3zm9 8v7a3 3 0 01-3 3h-6v-10h9z" />
+                            </svg>
+                            Dashboard
+                        </a>
+                    @else
+                        <a href="{{ route('login') }}"
+                            class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-pink-600 text-white shadow hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-pink-400 focus:ring-offset-2 focus:ring-offset-pink-50 text-sm md:text-base">
+                            <!-- icon -->
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4">
+                                <path fill-rule="evenodd"
+                                    d="M11.78 2.97a.75.75 0 01.53-.22h5.94a.75.75 0 01.75.75v16.5a.75.75 0 01-.75.75h-5.94a.75.75 0 110-1.5h5.19V4.5h-5.19a.75.75 0 01-.53-1.28zM3.22 12.53a.75.75 0 010-1.06l3.97-3.97a.75.75 0 111.06 1.06L5.81 11H15a.75.75 0 010 1.5H5.81l2.44 2.44a.75.75 0 11-1.06 1.06l-3.97-3.97z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            Đăng nhập
+                        </a>
+                    @endauth
                 </div>
+
             </div>
             <p class="mt-4 text-slate-700 leading-7 text-sm md:text-base">
                 Chào mừng bạn đến với <strong>Ngoại ngữ Sáng Tạo Quốc Tế - ICY</strong> –
@@ -169,7 +183,8 @@
             <div
                 class="bg-white border border-pink-200 rounded-lg md:rounded-xl p-4 md:p-5 shadow-sm transition-transform  duration-200 active:scale-95 md:hover:-translate-y-2 md:hover:shadow-md md:hover:border-pink-300 md:hover:bg-pink-50/50">
                 <h2 class="font-bold text-slate-900 mb-2 hover:text-pink-700">Lớp học tư duy thông minh</h2>
-                <p class="text-slate-700 leading-7 text-sm md:text-base">Lớp học Tư Duy Thông Minh tại ICY giúp học viên
+                <p class="text-slate-700 leading-7 text-sm md:text-base">Lớp học Tư Duy Thông Minh tại ICY giúp học
+                    viên
                     không chỉ giỏi tiếng
                     Anh mà còn rèn luyện khả năng tư duy phản biện, sáng tạo và giải quyết vấn đề. Thông qua phương pháp
                     giảng dạy tương tác, tình huống thực tế và các hoạt động nhóm, học viên phát triển tư duy logic, khả
@@ -180,7 +195,8 @@
                 class="bg-white border border-pink-200 rounded-lg md:rounded-xl p-4 md:p-5 shadow-sm transition-transform  duration-200 active:scale-95 md:hover:-translate-y-2 md:hover:shadow-md md:hover:border-pink-300 md:hover:bg-pink-50/50">
                 <h2 class="font-bold text-slate-900 mb-2 hover:text-pink-700">Xây dựng văn hoá đọc và động lực học tập
                 </h2>
-                <p class="text-slate-700 leading-7 text-sm md:text-base">ICY khuyến khích thói quen đọc chủ động để nâng
+                <p class="text-slate-700 leading-7 text-sm md:text-base">ICY khuyến khích thói quen đọc chủ động để
+                    nâng
                     cao tư duy, mở rộng
                     kiến thức và rèn luyện tiếng Anh hiệu quả. Chúng tôi tạo môi trường học tập truyền cảm hứng, kết hợp
                     phương pháp giảng dạy sáng tạo và thực tiễn, giúp học viên duy trì động lực, phát triển tư duy phản
