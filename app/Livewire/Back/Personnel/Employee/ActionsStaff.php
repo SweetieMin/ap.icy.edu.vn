@@ -1,0 +1,229 @@
+<?php
+
+namespace App\Livewire\Back\Personnel\Employee;
+
+use Flux\Flux;
+use Livewire\Component;
+use Illuminate\Support\Str;
+use Livewire\Attributes\On;
+use App\Support\User\UserHelper;
+use Illuminate\Support\Facades\Hash;
+use App\Support\Validation\UserRules;
+use App\Repositories\Contracts\RoleRepositoryInterface;
+use App\Repositories\Contracts\UserRepositoryInterface;
+
+class ActionsStaff extends Component
+{
+    public $isEditStaffMode = false;
+    public $staffId;
+    public $name, $email, $username, $password, $account_code;
+    public $phone, $address, $birthday, $avatar, $id_card, $gender = false, $guardian_name, $guardian_phone;
+    public $location_id;
+    public $role_id;
+    public $avatarFile;
+    public $roleStaff;
+    public $locationStaff;
+
+    public function updateUsername()
+    {
+        $this->username = UserHelper::randomUsername($this->name);
+        $this->name = UserHelper::convertNameToTitleCase($this->name);
+    }
+
+    public function updateGuardian()
+    {
+        $this->guardian_name = UserHelper::convertNameToTitleCase($this->guardian_name);
+    }
+
+    public function resetForm()
+    {
+        $this->reset([
+            'name',
+            'email',
+            'username',
+            'password',
+            'account_code',
+            'phone',
+            'address',
+            'birthday',
+            'avatar',
+            'id_card',
+            'gender',
+            'guardian_name',
+            'guardian_phone',
+            'location_id',
+            'role_id',
+            'avatarFile',
+        ]);
+        $this->isEditStaffMode = false;
+    }
+
+    public function mount()
+    {
+        $this->loadData();
+    }
+
+    public function loadData()
+    {
+        $this->roleStaff = app(RoleRepositoryInterface::class)->managerAccessPersonnel();
+        $this->role_id = $this->roleStaff->first()->id;
+
+        $this->locationStaff = app(UserRepositoryInterface::class)->getCurrentUserLocations();
+        $this->location_id = $this->locationStaff->first()->id;
+    }
+
+    public function render()
+    {
+        return view('livewire.back.personnel.employee.actions-staff');
+    }
+
+    public function rules()
+    {
+        $userRules = UserRules::rules($this->staffId);
+        $detailRules = UserRules::detailRules($this->staffId);
+
+        $roleRules = [
+            'role_id' => ['required', 'exists:roles,id'],
+        ];
+
+        // Gộp id_card của detailRules với required
+        $detailRules['id_card'] = array_merge(
+            $detailRules['id_card'],
+            ['required']
+        );
+
+        return array_merge($userRules, $detailRules, $roleRules);
+    }
+
+    #[On('add-staff')]
+    public function addStaff()
+    {
+        $this->resetForm();
+        Flux::modal('modal-employee')->show();
+    }
+
+    public function createStaff()
+    {
+        $this->validate();
+        $selectedLocationId = $this->location_id;
+        if (!$selectedLocationId) {
+            $location = app(UserRepositoryInterface::class)->getCurrentUserLocations()->first();
+            $selectedLocationId = $location?->id;
+        }
+
+        $role = app(RoleRepositoryInterface::class)->getRoleById($this->role_id);
+
+        $this->account_code = UserHelper::randomAccountCode();
+
+        $staff = app(UserRepositoryInterface::class)->create([
+            'user' => [
+                'name' => $this->name,
+                'email' => $this->email,
+                'username' => $this->username,
+                'account_code' => $this->account_code,
+                'token' => Str::random(64),
+                'password' => Hash::make($this->account_code),
+                'status' => 'active',
+            ],
+            'locations' => [$selectedLocationId],
+            'roles' => [$role->name],
+            'detail' => [
+                'phone' => $this->phone,
+                'address' => $this->address,
+                'birthday' => $this->birthday,
+                'avatar' => $this->avatar,
+                'id_card' => $this->id_card,
+                'gender' => $this->gender,
+                'guardian_name' => $this->guardian_name,
+                'guardian_phone' => $this->guardian_phone,
+            ]
+        ]);
+
+        if ($staff) {
+            session()->flash('success', 'Thêm nhân viên thành công.');
+        } else {
+            session()->flash('error', 'Thêm nhân viên thất bại.');
+        }
+        Flux::modal('modal-employee')->close();
+        $this->redirectRoute('admin.personnel.staff', navigate: true);
+    }
+
+    public function messages()
+    {
+        return array_merge(UserRules::messages(), [
+            'role_id.required' => 'Vai trò là bắt buộc.',
+            'role_id.exists' => 'Vai trò không hợp lệ.',
+            'id_card.required' => 'Số CCCD là bắt buộc.',
+        ]);
+    }
+
+    #[On('edit-staff')]
+    public function editStaff($id)
+    {
+        $this->resetForm();
+        $staff = app(UserRepositoryInterface::class)->getUserById($id);
+        $this->staffId = $staff->id;
+        $this->name = $staff->name;
+        $this->email = $staff->email;
+        $this->username = $staff->username;
+        $this->account_code = $staff->account_code;
+        $this->phone = $staff->detail->phone;
+        $this->address = $staff->detail->address;
+        $this->birthday = $staff->detail->birthday;
+        $this->id_card = $staff->detail->id_card;
+        $this->gender = $staff->detail->gender;
+        $this->guardian_name = $staff->detail->guardian_name;
+        $this->guardian_phone = $staff->detail->guardian_phone;
+        $this->location_id = $staff->locations->first()->id ?? null;
+        $this->role_id = $staff->roles->first()->id;
+        $this->isEditStaffMode = true;
+        Flux::modal('modal-employee')->show();
+    }
+
+    public function updateStaff()
+    {
+        $this->validate();
+        $staff = app(UserRepositoryInterface::class)->update($this->staffId, [
+            'user' => [
+                'name' => $this->name,
+                'email' => $this->email,
+                'username' => $this->username,
+            ],
+            'detail' => [
+                'phone' => $this->phone,
+                'address' => $this->address,
+                'birthday' => $this->birthday ?: null,
+                'id_card' => $this->id_card,
+                'gender' => $this->gender,
+                'guardian_name' => $this->guardian_name,
+                'guardian_phone' => $this->guardian_phone,
+            ],
+            'locations' => [$this->location_id],
+            'roles' => [$this->role_id],
+        ]);
+        if ($staff) {
+            session()->flash('success', 'Cập nhật nhân viên thành công.');
+        } else {
+            session()->flash('error', 'Cập nhật nhân viên thất bại.');
+        }
+        Flux::modal('modal-employee')->close();
+        $this->redirectRoute('admin.personnel.staff', navigate: true);
+    }
+
+    #[On('delete-staff')]
+    public function deleteStaff($id)
+    {
+        $this->resetForm();
+        $this->staffId = $id;
+        Flux::modal('delete-staff')->show();
+    }
+
+    public function deleteStaffConfirm()
+    {
+        $staff = app(UserRepositoryInterface::class)->getUserById($this->staffId);
+        $staff->delete();
+        session()->flash('success', 'Xóa nhân viên thành công.');
+        Flux::modal('delete-staff')->close();
+        $this->redirectRoute('admin.personnel.staff', navigate: true);
+    }
+}

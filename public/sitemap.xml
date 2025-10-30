@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+    <!-- Trang chủ -->
+    <url>
+        <loc>https://ap.icy.edu.vn/</loc>
+        <lastmod>2025-09-25</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>1.0</priority>
+    </url>
+
+    <!-- Trang đăng nhập -->
+    <url>
+        <loc>https://ap.icy.edu.vn/login</loc>
+        <lastmod>2025-09-25</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.5</priority>
+    </url>
+
+    <!-- Trang quên mật khẩu -->
+    <url>
+        <loc>https://ap.icy.edu.vn/forgot-password</loc>
+        <lastmod>2025-09-25</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.4</priority>
+    </url>
+
+    <!-- Trang xác thực email -->
+    <url>
+        <loc>https://ap.icy.edu.vn/verify-email</loc>
+        <lastmod>2025-09-25</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.3</priority>
+    </url>
+
+</urlset>

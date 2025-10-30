@@ -1,0 +1,66 @@
+# Robots.txt cho hệ thống quản lý giáo dục ICY
+# Website: ap.icy.edu.vn
+
+User-agent: *
+Allow: /favicon.ico
+Allow: /favicon.svg
+Allow: /apple-touch-icon.png
+Allow: /logo.png
+Allow: /logo.gif
+Allow: /OG-image.png
+Allow: /images/logo.png
+Allow: /robots.txt
+Allow: /login
+Allow: /forgot-password
+Allow: /css/
+Allow: /js/
+Allow: /images/
+Allow: /fonts/
+
+# Cấm truy cập các thư mục và file nhạy cảm
+Disallow: /admin/
+Disallow: /dashboard/
+Disallow: /api/
+Disallow: /storage/
+Disallow: /vendor/
+Disallow: /bootstrap/
+Disallow: /config/
+Disallow: /database/
+Disallow: /app/
+Disallow: /resources/
+Disallow: /routes/
+Disallow: /tests/
+Disallow: /node_modules/
+Disallow: /.env
+Disallow: /.git/
+Disallow: /composer.json
+Disallow: /composer.lock
+Disallow: /package.json
+Disallow: /package-lock.json
+Disallow: /artisan
+Disallow: /phpunit.xml
+Disallow: /vite.config.js
+
+# Cấm truy cập các file backup và log
+Disallow: /*.log
+Disallow: /*.sql
+Disallow: /*.zip
+Disallow: /*.tar.gz
+Disallow: /*.bak
+
+# Cấm truy cập các file cấu hình
+Disallow: /*.env*
+Disallow: /*.config
+Disallow: /*.ini
+
+# Cấm truy cập các thư mục upload tạm thời
+Disallow: /tmp/
+Disallow: /temp/
+Disallow: /cache/
+
+# Facebook bot
+User-agent: facebookexternalhit
+Allow: /
+
+# Sitemap
+Sitemap: https://ap.icy.edu.vn/sitemap.xml
