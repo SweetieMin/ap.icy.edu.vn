@@ -116,11 +116,14 @@ class BankHelper
 
     public static function generateDescriptionTransactionBankTransfer(int $studentId, int $seasonId, int $programId): string
     {
+
         $student = strtoupper(app(StudentRepositoryInterface::class)->getStudentById($studentId)->username);
         $season = app(SeasonRepositoryInterface::class)->getSeasonById($seasonId);
-        $subject_code = substr(Subject::find($programId)?->code, 0, 2);
+
+        $subject = Subject::where('program_id', $programId)->first();
+        $subject_code = substr($subject?->code, 0, 2);
+
         $uniqid = uniqid();
         return "{$student}.{$season->code}.{$subject_code}.{$uniqid}";
     }
-
 }

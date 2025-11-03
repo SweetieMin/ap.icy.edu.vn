@@ -3,6 +3,7 @@
 namespace App\Livewire\Back\Finance\Tuition;
 
 use Flux\Flux;
+use App\Models\Program;
 use Livewire\Component;
 use Livewire\Attributes\On;
 use Livewire\Attributes\Url;
@@ -56,6 +57,8 @@ class TuitionsPayment extends Component
     public $finalAmount = 0;
     public $note = '';
     public $paymentMethod = 'cash';
+
+    public $programId = null;
 
     #[Url(except: '')]
     public $student;
@@ -543,7 +546,7 @@ class TuitionsPayment extends Component
                 $totalPrice = $finalProgramPrice + $totalUniformPrice;
 
                 // Tạo note cho hạng mục
-                $itemName = 'Khoá học';
+                $itemName = $programItem['name'];
                 if ($programItem['include_book']) {
                     $itemName .= ' + Sách';
                 }
@@ -551,10 +554,11 @@ class TuitionsPayment extends Component
                     $itemName .= ' + Đồng phục';
                 }
 
+                $this->programId = Program::where('name', $programItem['name'])->first()->id;
                 // Tạo content_transaction (chỉ cho chuyển khoản)
                 $contentTransaction = null;
                 if ($this->paymentMethod === 'bank_transfer') {
-                    $contentTransaction = BankHelper::generateDescriptionTransactionBankTransfer($student->id, $programItem['season_id'], $programItem['id']);
+                    $contentTransaction = BankHelper::generateDescriptionTransactionBankTransfer($student->id, $programItem['season_id'], $this->programId);
                 }
 
                 $tuition = [

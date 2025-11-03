@@ -2558,16 +2558,16 @@
         },
         {
             "name": "livewire/flux",
-            "version": "v2.3.2",
+            "version": "v2.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/livewire/flux.git",
-                "reference": "e0704b125d5f9544aa32e0cfccb11baaf44d77a0"
+                "reference": "227b88db0a02db91666af2303ea6727a3af78c51"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/livewire/flux/zipball/e0704b125d5f9544aa32e0cfccb11baaf44d77a0",
-                "reference": "e0704b125d5f9544aa32e0cfccb11baaf44d77a0",
+                "url": "https://api.github.com/repos/livewire/flux/zipball/227b88db0a02db91666af2303ea6727a3af78c51",
+                "reference": "227b88db0a02db91666af2303ea6727a3af78c51",
                 "shasum": ""
             },
             "require": {
@@ -2575,7 +2575,7 @@
                 "illuminate/support": "^10.0|^11.0|^12.0",
                 "illuminate/view": "^10.0|^11.0|^12.0",
                 "laravel/prompts": "^0.1|^0.2|^0.3",
-                "livewire/livewire": "^3.5.19",
+                "livewire/livewire": "^3.5.19|^4.0",
                 "php": "^8.1",
                 "symfony/console": "^6.0|^7.0"
             },
@@ -2618,26 +2618,26 @@
             ],
             "support": {
                 "issues": "https://github.com/livewire/flux/issues",
-                "source": "https://github.com/livewire/flux/tree/v2.3.2"
+                "source": "https://github.com/livewire/flux/tree/v2.6.1"
             },
-            "time": "2025-09-08T01:11:34+00:00"
+            "time": "2025-10-28T21:12:05+00:00"
         },
         {
             "name": "livewire/flux-pro",
-            "version": "2.3.2",
+            "version": "2.6.1",
             "dist": {
                 "type": "zip",
-                "url": "https://composer.fluxui.dev/download/9fd33076-beb0-4f3b-a1c7-3dd5e606dfe2/flux-pro-2.3.2.zip",
-                "reference": "9a9d6fc027e1e34df9bfa32f105455dc641be585",
-                "shasum": "38da379ced75160a71612bd37bd707c8d2f0aaef"
+                "url": "https://composer.fluxui.dev/download/a0397651-df75-43ac-b21a-8a5ac8ad46b4/flux-pro-2.6.1.zip",
+                "reference": "12a6570b061c858739b40a9509424c4b4cc42b62",
+                "shasum": "10e8f4dad0b0232e5b47ce291ef1c55610be5298"
             },
             "require": {
                 "illuminate/console": "^10.0|^11.0|^12.0",
                 "illuminate/support": "^10.0|^11.0|^12.0",
                 "illuminate/view": "^10.0|^11.0|^12.0",
                 "laravel/prompts": "^0.1.24|^0.2|^0.3",
-                "livewire/flux": "2.3.2|dev-main",
-                "livewire/livewire": "^3.6.2",
+                "livewire/flux": "2.6.1|dev-main",
+                "livewire/livewire": "^3.6.2|^4.0",
                 "php": "^8.1",
                 "symfony/console": "^6.0|^7.0"
             },
@@ -2677,7 +2677,7 @@
                 "livewire",
                 "ui"
             ],
-            "time": "2025-09-08T01:13:22+00:00"
+            "time": "2025-10-28T21:23:07+00:00"
         },
         {
             "name": "livewire/livewire",
