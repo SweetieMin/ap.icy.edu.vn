@@ -18,14 +18,14 @@ class StudentCareHistory extends Model
         'note',
     ];
 
-    public function getCreatedAtDateAttribute($value)
+    public function getCreatedAtDateAttribute()
     {
-        return Carbon::parse($value)->format('d/m/Y');
+        return $this->created_at ? $this->created_at->format('d/m/Y') : null;
     }
 
-    public function getCreatedAtTimeAttribute($value)
+    public function getCreatedAtTimeAttribute()
     {
-        return Carbon::parse($value)->format('H:i:s');
+        return $this->created_at ? $this->created_at->format('H:i:s') : null;
     }
 
     public function attendance()

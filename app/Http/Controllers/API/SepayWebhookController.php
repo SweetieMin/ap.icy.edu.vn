@@ -15,7 +15,10 @@ class SepayWebhookController extends Controller
         $expected = 'Apikey ' . trim(env('SEPAY_SECRET_KEY'));
 
         if ($apiKey !== $expected) {
-            Log::warning('Sepay Webhook - Invalid API Key', ['received' => $apiKey, 'expected' => $expected]);
+            Log::warning('Sepay Webhook - Invalid API Key', [
+                'received' => $apiKey,
+                'expected' => $expected
+            ]);
             return response()->json(['error' => 'Unauthorized'], 401);
         }
 
@@ -24,23 +27,24 @@ class SepayWebhookController extends Controller
         $content = $payload['content'] ?? '';
         $transferAmount = $payload['transferAmount'] ?? 0;
 
-        // ✅ Chuẩn hóa: lấy phần giữa dấu . thứ 3 và dấu . thứ 4
+        // ✅ Tách bằng dấu chấm
         $parts = explode('.', $content);
-        $normalizedContent = isset($parts[3]) ? trim($parts[3]) : $content;
 
-        // ✅ Lấy mã giao dịch trước dấu '-'
-        $transactionCodeParts = explode('-', $normalizedContent);
-        $transactionCode = trim($transactionCodeParts[0]);
+        // ✅ Chỉ lấy 4 phần: TRIHD, WI25, IW, 6905e5c66dc5a
+        $transactionCode = implode('.', array_slice($parts, 3, 4));
 
-        // Ghi log để kiểm tra
+        // ✅ Cắt khoảng trắng nếu có gì thừa
+        $transactionCode = preg_split('/\s+/', $transactionCode)[0];
+
+        // ✅ Loại bỏ chấm thừa
+        $transactionCode = rtrim($transactionCode, '.');
+
         Log::info('Sepay Webhook - Payload nhận được', [
             'original_content' => $content,
-            'normalized_content' => $normalizedContent,
-            'transaction_code' => $transactionCode,
+            'parsed_transaction_code' => $transactionCode,
             'transferAmount' => $transferAmount,
         ]);
 
-        // Gọi repository để cập nhật theo transaction code
         app(TuitionRepositoryInterface::class)->updateStatus($transactionCode, $transferAmount);
 
         return response()->json(['status' => 'ok'], 200);

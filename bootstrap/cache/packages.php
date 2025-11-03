@@ -54,6 +54,17 @@
       0 => 'Flux\\FluxServiceProvider',
     ),
   ),
+  'livewire/flux-pro' => 
+  array (
+    'aliases' => 
+    array (
+      'Flux' => 'FluxPro\\FluxPro',
+    ),
+    'providers' => 
+    array (
+      0 => 'FluxPro\\FluxProServiceProvider',
+    ),
+  ),
   'livewire/livewire' => 
   array (
     'aliases' => 
