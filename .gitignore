@@ -1,25 +1,105 @@
-/.phpunit.cache
+# Laravel
+/vendor
 /node_modules
-/public/build
-/public/hot
 /public/storage
 /storage/*.key
-/storage/pail
-/vendor
+/storage/app/public
+/storage/framework/cache/data
+/storage/framework/cache/*
+/storage/framework/sessions/*
+/storage/framework/testing/*
+/storage/framework/views/*
+/storage/logs/*
+/bootstrap/cache/*.php
+
+# Ignore Laravel mix & vite builds
+/public/hot
+/public/build
+/public/mix-manifest.json
+/public/js/*.map
+/public/css/*.map
+
+# Environment Files
 .env
-.env.backup
+.env.*.backup
 .env.production
-.phpactor.json
-.phpunit.result.cache
-.DS_Store
-*.zip
-Homestead.json
-Homestead.yaml
+.env.local
+.env.backup
+.env.staging
+
+# Composer
+composer.lock
+
+# NPM/Yarn debug
 npm-debug.log
 yarn-error.log
-/auth.json
+pnpm-debug.log
+
+# MacOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Thumbnails
+._*
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# IDEs + Editors
+.idea
+.vscode
+.phpactor.json
+.phpunit.result.cache
 /.fleet
-/.idea
 /.nova
-/.vscode
 /.zed
+
+# PHPUnit
+.phpunit.cache
+
+# JetBrains Rider
+*.sublime-workspace
+*.sublime-project
+
+# Archives
+*.zip
+*.tar.gz
+
+# Laravel Vapor
+/.vapor
+
+# Generated metadata
+*.symfony.cache
+
+# Laravel Homestead
+Homestead.yaml
+Homestead.json
+
+# Laravel Forge
+forge.env
+
+# Cache
+*.cache
+*.lock
+
+# Logs
+*.log
+*.pid
+*.seed
+*.coverprofile
+*.DS_Store
+
+# Binaries
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Sensitive token files
+auth.json
+
+# Other storage/pail (Laravel Reverb, Pail logs…)
+storage/pail
