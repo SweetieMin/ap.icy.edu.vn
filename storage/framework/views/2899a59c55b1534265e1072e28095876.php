@@ -445,6 +445,74 @@
                     </div>
                 </div>
 
+                <?php if (isset($component)) { $__componentOriginalc481942d30cc0ab06077963cf20a45e8 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginalc481942d30cc0ab06077963cf20a45e8 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::separator','data' => ['class' => 'my-4']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('flux::separator'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['class' => 'my-4']); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginalc481942d30cc0ab06077963cf20a45e8)): ?>
+<?php $attributes = $__attributesOriginalc481942d30cc0ab06077963cf20a45e8; ?>
+<?php unset($__attributesOriginalc481942d30cc0ab06077963cf20a45e8); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginalc481942d30cc0ab06077963cf20a45e8)): ?>
+<?php $component = $__componentOriginalc481942d30cc0ab06077963cf20a45e8; ?>
+<?php unset($__componentOriginalc481942d30cc0ab06077963cf20a45e8); ?>
+<?php endif; ?>
+
+                <div class="mb-4 text-center">
+                    <?php if (isset($component)) { $__componentOriginale0fd5b6a0986beffac17a0a103dfd7b9 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginale0fd5b6a0986beffac17a0a103dfd7b9 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::heading','data' => ['size' => 'md','class' => 'text-gray-800 dark:text-gray-200 font-semibold']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('flux::heading'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['size' => 'md','class' => 'text-gray-800 dark:text-gray-200 font-semibold']); ?>
+                        Nguyện vọng học tập
+                     <?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginale0fd5b6a0986beffac17a0a103dfd7b9)): ?>
+<?php $attributes = $__attributesOriginale0fd5b6a0986beffac17a0a103dfd7b9; ?>
+<?php unset($__attributesOriginale0fd5b6a0986beffac17a0a103dfd7b9); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginale0fd5b6a0986beffac17a0a103dfd7b9)): ?>
+<?php $component = $__componentOriginale0fd5b6a0986beffac17a0a103dfd7b9; ?>
+<?php unset($__componentOriginale0fd5b6a0986beffac17a0a103dfd7b9); ?>
+<?php endif; ?>
+                </div>
+
+                <div class="form-group">
+                    <?php if (isset($component)) { $__componentOriginal26c546557cdc09040c8dd00b2090afd0 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal26c546557cdc09040c8dd00b2090afd0 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::input.index','data' => ['wire:model' => 'aspiration','label' => 'Nguyện vọng','placeholder' => 'Nhập nguyện vọng học tập của học viên (nếu có)','class' => 'rounded-xl border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 transition-all duration-300']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('flux::input'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['wire:model' => 'aspiration','label' => 'Nguyện vọng','placeholder' => 'Nhập nguyện vọng học tập của học viên (nếu có)','class' => 'rounded-xl border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 transition-all duration-300']); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal26c546557cdc09040c8dd00b2090afd0)): ?>
+<?php $attributes = $__attributesOriginal26c546557cdc09040c8dd00b2090afd0; ?>
+<?php unset($__attributesOriginal26c546557cdc09040c8dd00b2090afd0); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal26c546557cdc09040c8dd00b2090afd0)): ?>
+<?php $component = $__componentOriginal26c546557cdc09040c8dd00b2090afd0; ?>
+<?php unset($__componentOriginal26c546557cdc09040c8dd00b2090afd0); ?>
+<?php endif; ?>
+                </div>
+
             </div>
 
 

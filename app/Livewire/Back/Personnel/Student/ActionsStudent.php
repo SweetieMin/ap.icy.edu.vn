@@ -20,7 +20,7 @@ class ActionsStudent extends Component
     public $name, $email, $username, $password, $account_code;
 
     // UserDetail fields  
-    public $phone, $address, $birthday, $avatar, $id_card, $gender = false, $guardian_name, $guardian_phone;
+    public $phone, $address, $birthday, $avatar, $id_card, $gender = false, $guardian_name, $guardian_phone, $aspiration;
 
     // Location fields
     public $location_id;
@@ -87,6 +87,7 @@ class ActionsStudent extends Component
             'guardian_name',
             'guardian_phone',
             'location_id',
+            'aspiration',
         ]);
         $this->isEditStudentMode = false;
     }
@@ -112,7 +113,7 @@ class ActionsStudent extends Component
         $student = app(UserRepositoryInterface::class)->create([
             'user' => [
                 'name' => $this->name,
-                'email' => $this->email,
+                'email' => $this->email ?: null,
                 'username' => $this->username,
                 'account_code' => $this->account_code,
                 'token' => Str::random(64),
@@ -126,6 +127,7 @@ class ActionsStudent extends Component
                 'address' => $this->address,
                 'birthday' => $this->birthday,
                 'avatar' => $this->avatar,
+                'aspiration' => $this->aspiration,
                 'id_card' => $this->id_card,
                 'gender' => $this->gender,
                 'guardian_name' => $this->guardian_name,
@@ -155,6 +157,7 @@ class ActionsStudent extends Component
         $this->address = $student->detail->address;
         $this->birthday = $student->detail->birthday;
         $this->id_card = $student->detail->id_card;
+        $this->aspiration = $student->detail->aspiration;
         $this->gender = $student->detail->gender;
         $this->guardian_name = $student->detail->guardian_name;
         $this->guardian_phone = $student->detail->guardian_phone;
@@ -169,7 +172,7 @@ class ActionsStudent extends Component
         $student = app(UserRepositoryInterface::class)->update($this->studentId, [
             'user' => [
                 'name' => $this->name,
-                'email' => $this->email,
+                'email' => $this->email ?: null,
                 'username' => $this->username,
             ],
             'detail' => [

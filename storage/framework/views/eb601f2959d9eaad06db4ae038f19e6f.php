@@ -104,15 +104,15 @@ if (isset($__slots)) unset($__slots);
                         class="card-input">
                 </div>
                 <!--[if BLOCK]><![endif]--><?php if($locations->count() > 1): ?>
-                <div>
-                    <label class="card-label">Cơ sở</label>
-                    <select wire:model.live="filterLocationId" class="card-input">
+                    <div>
+                        <label class="card-label">Cơ sở</label>
+                        <select wire:model.live="filterLocationId" class="card-input">
                             <option value="">Tất cả cơ sở</option>
                             <!--[if BLOCK]><![endif]--><?php $__currentLoopData = $locations; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $location): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <option value="<?php echo e($location->id); ?>"><?php echo e($location->name); ?></option>
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><!--[if ENDBLOCK]><![endif]-->
                         </select>
-                </div>
+                    </div>
                 <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
             </div>
         </div>
@@ -130,39 +130,40 @@ if (isset($__slots)) unset($__slots);
                             <th>Họ và tên</th>
                             <th class="hidden md:table-cell">Số điện thoại</th>
                             <!--[if BLOCK]><![endif]--><?php if(auth()->user()->locations()->count() > 1): ?>
-                            <th class="text-center">Cơ sở</th>
+                                <th class="text-center">Cơ sở</th>
                             <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                            <th class="hidden md:table-cell">Nguyện vọng</th>
                             <th class="text-center">Thao tác</th>
                         </tr>
                     </thead>
                     <tbody>
                         <!--[if BLOCK]><![endif]--><?php $__empty_1 = true; $__currentLoopData = $students; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $student): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
-                        <tr wire:key="student-desktop-<?php echo e($student->id); ?>">
-                            <td class="text-center font-medium">
-                                <?php echo e($loop->iteration); ?>
+                            <tr wire:key="student-desktop-<?php echo e($student->id); ?>">
+                                <td class="text-center font-medium">
+                                    <?php echo e($loop->iteration); ?>
 
-                            </td>
-                            <td>
-                                <div class="flex items-center gap-3">
-                                    <img class="h-8 w-8 rounded-full object-cover"
+                                </td>
+                                <td>
+                                    <div class="flex items-center gap-3">
+                                        <img class="h-8 w-8 rounded-full object-cover"
                                             src="<?php echo e($student->detail?->avatar ?? asset('images/default-avatar.png')); ?>"
                                             alt="<?php echo e($student->name); ?>">
-                                    <div>
-                                        <div class="font-medium"><?php echo e($student->name); ?></div>
-                                        <div class="text-xs text-gray-500 dark:text-gray-400">ID:
-                                            <?php echo e($student->account_code); ?></div>
+                                        <div>
+                                            <div class="font-medium"><?php echo e($student->name); ?></div>
+                                            <div class="text-xs text-gray-500 dark:text-gray-400">ID:
+                                                <?php echo e($student->account_code); ?></div>
+                                        </div>
                                     </div>
-                                </div>
-                            </td>
-                            <td class="hidden md:table-cell">
-                                <?php echo e($student->detail?->phone ?? 'Chưa cập nhật'); ?>
+                                </td>
+                                <td class="hidden md:table-cell">
+                                    <?php echo e($student->detail?->phone ?? 'Chưa cập nhật'); ?>
 
-                            </td>
-                            <!--[if BLOCK]><![endif]--><?php if(auth()->user()->locations()->count() > 1): ?>
-                            <td class="text-center">
-                                <!--[if BLOCK]><![endif]--><?php if($student->locations->count() > 0): ?>
-                                <!--[if BLOCK]><![endif]--><?php $__currentLoopData = $student->locations; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $location): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                <?php if (isset($component)) { $__componentOriginal4cc377eda9b63b796b6668ee7832d023 = $component; } ?>
+                                </td>
+                                <!--[if BLOCK]><![endif]--><?php if(auth()->user()->locations()->count() > 1): ?>
+                                    <td class="text-center">
+                                        <!--[if BLOCK]><![endif]--><?php if($student->locations->count() > 0): ?>
+                                            <!--[if BLOCK]><![endif]--><?php $__currentLoopData = $student->locations; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $location): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                <?php if (isset($component)) { $__componentOriginal4cc377eda9b63b796b6668ee7832d023 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal4cc377eda9b63b796b6668ee7832d023 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::badge.index','data' => ['color' => 'blue','size' => 'sm','class' => 'mb-1']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('flux::badge'); ?>
@@ -172,9 +173,9 @@ if (isset($__slots)) unset($__slots);
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
 <?php $component->withAttributes(['color' => 'blue','size' => 'sm','class' => 'mb-1']); ?>
-                                    <?php echo e($location->name); ?>
+                                                    <?php echo e($location->name); ?>
 
-                                 <?php echo $__env->renderComponent(); ?>
+                                                 <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php if (isset($__attributesOriginal4cc377eda9b63b796b6668ee7832d023)): ?>
 <?php $attributes = $__attributesOriginal4cc377eda9b63b796b6668ee7832d023; ?>
@@ -184,18 +185,23 @@ if (isset($__slots)) unset($__slots);
 <?php $component = $__componentOriginal4cc377eda9b63b796b6668ee7832d023; ?>
 <?php unset($__componentOriginal4cc377eda9b63b796b6668ee7832d023); ?>
 <?php endif; ?>
-                                <!--[if BLOCK]><![endif]--><?php if(!$loop->last): ?>
-                                <br>
+                                                <!--[if BLOCK]><![endif]--><?php if(!$loop->last): ?>
+                                                    <br>
                                                 <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
                                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><!--[if ENDBLOCK]><![endif]-->
                                         <?php else: ?>
-                                <span class="text-gray-500 dark:text-gray-400 text-xs">Chưa có cơ
+                                            <span class="text-gray-500 dark:text-gray-400 text-xs">Chưa có cơ
                                                 sở</span>
+                                        <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                                    </td>
                                 <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
-                            </td>
-                            <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
-                            <td class="text-center">
-                                <?php if (isset($component)) { $__componentOriginal2b4bb2cd4b8f1a3c08bae49ea918b888 = $component; } ?>
+                                <td class="hidden md:table-cell">
+                                    <?php echo e($student->detail?->aspiration ?? ''); ?>
+
+                                </td>
+
+                                <td class="text-center">
+                                    <?php if (isset($component)) { $__componentOriginal2b4bb2cd4b8f1a3c08bae49ea918b888 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal2b4bb2cd4b8f1a3c08bae49ea918b888 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::dropdown','data' => []] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('flux::dropdown'); ?>
@@ -205,7 +211,7 @@ if (isset($__slots)) unset($__slots);
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
 <?php $component->withAttributes([]); ?>
-                                    <?php if (isset($component)) { $__componentOriginalc04b147acd0e65cc1a77f86fb0e81580 = $component; } ?>
+                                        <?php if (isset($component)) { $__componentOriginalc04b147acd0e65cc1a77f86fb0e81580 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginalc04b147acd0e65cc1a77f86fb0e81580 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::button.index','data' => ['icon:trailing' => 'chevron-down']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('flux::button'); ?>
@@ -225,7 +231,7 @@ if (isset($__slots)) unset($__slots);
 <?php unset($__componentOriginalc04b147acd0e65cc1a77f86fb0e81580); ?>
 <?php endif; ?>
 
-                                    <?php if (isset($component)) { $__componentOriginalf7749b857446d2788d0b6ca0c63f9d3a = $component; } ?>
+                                        <?php if (isset($component)) { $__componentOriginalf7749b857446d2788d0b6ca0c63f9d3a = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginalf7749b857446d2788d0b6ca0c63f9d3a = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::menu.index','data' => []] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('flux::menu'); ?>
@@ -235,7 +241,7 @@ if (isset($__slots)) unset($__slots);
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
 <?php $component->withAttributes([]); ?>
-                                        <?php if (isset($component)) { $__componentOriginal5027d420cfeeb03dd925cfc08ae44851 = $component; } ?>
+                                            <?php if (isset($component)) { $__componentOriginal5027d420cfeeb03dd925cfc08ae44851 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal5027d420cfeeb03dd925cfc08ae44851 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::menu.item','data' => ['icon' => 'pencil','wire:click' => 'editStudent('.e($student->id).')']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('flux::menu.item'); ?>
@@ -245,8 +251,8 @@ if (isset($__slots)) unset($__slots);
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
 <?php $component->withAttributes(['icon' => 'pencil','wire:click' => 'editStudent('.e($student->id).')']); ?>Sửa
-                                            thông tin
-                                         <?php echo $__env->renderComponent(); ?>
+                                                thông tin
+                                             <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php if (isset($__attributesOriginal5027d420cfeeb03dd925cfc08ae44851)): ?>
 <?php $attributes = $__attributesOriginal5027d420cfeeb03dd925cfc08ae44851; ?>
@@ -257,7 +263,7 @@ if (isset($__slots)) unset($__slots);
 <?php unset($__componentOriginal5027d420cfeeb03dd925cfc08ae44851); ?>
 <?php endif; ?>
 
-                                        <?php if (isset($component)) { $__componentOriginal5027d420cfeeb03dd925cfc08ae44851 = $component; } ?>
+                                            <?php if (isset($component)) { $__componentOriginal5027d420cfeeb03dd925cfc08ae44851 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal5027d420cfeeb03dd925cfc08ae44851 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::menu.item','data' => ['icon' => 'printer','wire:click' => 'printStudentRegistration(\''.e($student->token).'\')']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('flux::menu.item'); ?>
@@ -267,7 +273,7 @@ if (isset($__slots)) unset($__slots);
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
 <?php $component->withAttributes(['icon' => 'printer','wire:click' => 'printStudentRegistration(\''.e($student->token).'\')']); ?>In đơn
-                                            đăng ký <?php echo $__env->renderComponent(); ?>
+                                                đăng ký <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php if (isset($__attributesOriginal5027d420cfeeb03dd925cfc08ae44851)): ?>
 <?php $attributes = $__attributesOriginal5027d420cfeeb03dd925cfc08ae44851; ?>
@@ -278,7 +284,7 @@ if (isset($__slots)) unset($__slots);
 <?php unset($__componentOriginal5027d420cfeeb03dd925cfc08ae44851); ?>
 <?php endif; ?>
 
-                                        <?php if (isset($component)) { $__componentOriginald5e1eb3ae521062f8474178ba08933ca = $component; } ?>
+                                            <?php if (isset($component)) { $__componentOriginald5e1eb3ae521062f8474178ba08933ca = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginald5e1eb3ae521062f8474178ba08933ca = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::menu.separator','data' => []] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('flux::menu.separator'); ?>
@@ -299,7 +305,7 @@ if (isset($__slots)) unset($__slots);
 <?php unset($__componentOriginald5e1eb3ae521062f8474178ba08933ca); ?>
 <?php endif; ?>
 
-                                        <?php if (isset($component)) { $__componentOriginal5027d420cfeeb03dd925cfc08ae44851 = $component; } ?>
+                                            <?php if (isset($component)) { $__componentOriginal5027d420cfeeb03dd925cfc08ae44851 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal5027d420cfeeb03dd925cfc08ae44851 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::menu.item','data' => ['icon' => 'credit-card','wire:click' => 'paymentStudent('.e($student->id).')']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('flux::menu.item'); ?>
@@ -309,7 +315,7 @@ if (isset($__slots)) unset($__slots);
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
 <?php $component->withAttributes(['icon' => 'credit-card','wire:click' => 'paymentStudent('.e($student->id).')']); ?>Thanh toán học phí
-                                         <?php echo $__env->renderComponent(); ?>
+                                             <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php if (isset($__attributesOriginal5027d420cfeeb03dd925cfc08ae44851)): ?>
 <?php $attributes = $__attributesOriginal5027d420cfeeb03dd925cfc08ae44851; ?>
@@ -320,8 +326,8 @@ if (isset($__slots)) unset($__slots);
 <?php unset($__componentOriginal5027d420cfeeb03dd925cfc08ae44851); ?>
 <?php endif; ?>
 
-                                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('delete', $student)): ?>
-                                        <?php if (isset($component)) { $__componentOriginald5e1eb3ae521062f8474178ba08933ca = $component; } ?>
+                                            <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('delete', $student)): ?>
+                                                <?php if (isset($component)) { $__componentOriginald5e1eb3ae521062f8474178ba08933ca = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginald5e1eb3ae521062f8474178ba08933ca = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::menu.separator','data' => []] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('flux::menu.separator'); ?>
@@ -341,7 +347,7 @@ if (isset($__slots)) unset($__slots);
 <?php $component = $__componentOriginald5e1eb3ae521062f8474178ba08933ca; ?>
 <?php unset($__componentOriginald5e1eb3ae521062f8474178ba08933ca); ?>
 <?php endif; ?>
-                                        <?php if (isset($component)) { $__componentOriginal5027d420cfeeb03dd925cfc08ae44851 = $component; } ?>
+                                                <?php if (isset($component)) { $__componentOriginal5027d420cfeeb03dd925cfc08ae44851 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal5027d420cfeeb03dd925cfc08ae44851 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::menu.item','data' => ['variant' => 'danger','icon' => 'trash','wire:click' => 'deleteStudent('.e($student->id).')']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('flux::menu.item'); ?>
@@ -351,7 +357,7 @@ if (isset($__slots)) unset($__slots);
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
 <?php $component->withAttributes(['variant' => 'danger','icon' => 'trash','wire:click' => 'deleteStudent('.e($student->id).')']); ?>Xóa
-                                         <?php echo $__env->renderComponent(); ?>
+                                                 <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php if (isset($__attributesOriginal5027d420cfeeb03dd925cfc08ae44851)): ?>
 <?php $attributes = $__attributesOriginal5027d420cfeeb03dd925cfc08ae44851; ?>
@@ -361,8 +367,8 @@ if (isset($__slots)) unset($__slots);
 <?php $component = $__componentOriginal5027d420cfeeb03dd925cfc08ae44851; ?>
 <?php unset($__componentOriginal5027d420cfeeb03dd925cfc08ae44851); ?>
 <?php endif; ?>
-                                        <?php endif; ?>
-                                     <?php echo $__env->renderComponent(); ?>
+                                            <?php endif; ?>
+                                         <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php if (isset($__attributesOriginalf7749b857446d2788d0b6ca0c63f9d3a)): ?>
 <?php $attributes = $__attributesOriginalf7749b857446d2788d0b6ca0c63f9d3a; ?>
@@ -372,7 +378,7 @@ if (isset($__slots)) unset($__slots);
 <?php $component = $__componentOriginalf7749b857446d2788d0b6ca0c63f9d3a; ?>
 <?php unset($__componentOriginalf7749b857446d2788d0b6ca0c63f9d3a); ?>
 <?php endif; ?>
-                                 <?php echo $__env->renderComponent(); ?>
+                                     <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php if (isset($__attributesOriginal2b4bb2cd4b8f1a3c08bae49ea918b888)): ?>
 <?php $attributes = $__attributesOriginal2b4bb2cd4b8f1a3c08bae49ea918b888; ?>
@@ -382,13 +388,13 @@ if (isset($__slots)) unset($__slots);
 <?php $component = $__componentOriginal2b4bb2cd4b8f1a3c08bae49ea918b888; ?>
 <?php unset($__componentOriginal2b4bb2cd4b8f1a3c08bae49ea918b888); ?>
 <?php endif; ?>
-                            </td>
-                        </tr>
+                                </td>
+                            </tr>
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
-                        <tr>
-                            <td colspan="5" class="text-center py-12">
-                                <div class="empty-state flex flex-col items-center">
-                                    <?php if (isset($component)) { $__componentOriginale0880cb6488d85d9ca54288aa080a834 = $component; } ?>
+                            <tr>
+                                <td colspan="5" class="text-center py-12">
+                                    <div class="empty-state flex flex-col items-center">
+                                        <?php if (isset($component)) { $__componentOriginale0880cb6488d85d9ca54288aa080a834 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginale0880cb6488d85d9ca54288aa080a834 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::icon.academic-cap','data' => ['class' => 'w-12 h-12 mb-4']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('flux::icon.academic-cap'); ?>
@@ -408,15 +414,15 @@ if (isset($__slots)) unset($__slots);
 <?php $component = $__componentOriginale0880cb6488d85d9ca54288aa080a834; ?>
 <?php unset($__componentOriginale0880cb6488d85d9ca54288aa080a834); ?>
 <?php endif; ?>
-                                    <h3 class="text-lg font-medium mb-2">
-                                        Không có học viên nào
-                                    </h3>
-                                    <p>
-                                        Hiện tại không có học viên nào trong các cơ sở của bạn
-                                    </p>
-                                </div>
-                            </td>
-                        </tr>
+                                        <h3 class="text-lg font-medium mb-2">
+                                            Không có học viên nào
+                                        </h3>
+                                        <p>
+                                            Hiện tại không có học viên nào trong các cơ sở của bạn
+                                        </p>
+                                    </div>
+                                </td>
+                            </tr>
                         <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
                     </tbody>
                 </table>
@@ -425,55 +431,55 @@ if (isset($__slots)) unset($__slots);
             
             <div class="md:hidden space-y-3">
                 <!--[if BLOCK]><![endif]--><?php $__empty_1 = true; $__currentLoopData = $students; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $student): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
-                <div class="bg-white rounded-lg border border-gray-200 shadow-sm" x-data="{ expanded: false }"
-                    wire:key="student-mobile-<?php echo e($student->id); ?>">
+                    <div class="bg-white rounded-lg border border-gray-200 shadow-sm" x-data="{ expanded: false }"
+                        wire:key="student-mobile-<?php echo e($student->id); ?>">
 
-                    
-                    <div class="p-4 flex items-center justify-between">
-                        <div class="flex items-center space-x-3">
-                            <img class="h-8 w-8 rounded-full object-cover"
+                        
+                        <div class="p-4 flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <img class="h-8 w-8 rounded-full object-cover"
                                     src="<?php echo e($student->detail?->avatar ?? asset('images/default-avatar.png')); ?>"
                                     alt="<?php echo e($student->name); ?>">
-                            <div>
-                                <div class="font-medium text-gray-900"><?php echo e($student->name); ?></div>
-                                <div class="text-sm text-gray-500">ID: <?php echo e($student->account_code); ?></div>
+                                <div>
+                                    <div class="font-medium text-gray-900"><?php echo e($student->name); ?></div>
+                                    <div class="text-sm text-gray-500">ID: <?php echo e($student->account_code); ?></div>
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="flex items-center space-x-2">
+                            <div class="flex items-center space-x-2">
 
 
-                            <button @click="expanded = !expanded" class="p-2 rounded-full hover:bg-gray-100">
+                                <button @click="expanded = !expanded" class="p-2 rounded-full hover:bg-gray-100">
                                     <svg class="w-5 h-5 text-gray-400" :class="{ 'rotate-180': expanded }"
                                         fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                             d="M19 9l-7 7-7-7"></path>
                                     </svg>
                                 </button>
-                        </div>
-                    </div>
-
-                    
-                    <div x-show="expanded" class="border-t border-gray-100 bg-gray-50">
-
-                        <div class="p-4 space-y-3">
-
-
-                            
-                            <div class="flex justify-between items-center">
-                                <span class="text-sm font-medium text-gray-600">Số điện thoại:</span>
-                                <span
-                                        class="text-sm text-gray-900"><?php echo e($student->detail?->phone ?? 'Chưa cập nhật'); ?></span>
                             </div>
+                        </div>
 
-                            
-                            <!--[if BLOCK]><![endif]--><?php if(auth()->user()->locations()->count() > 1): ?>
-                            <div class="flex justify-between items-center">
-                                <span class="text-sm font-medium text-gray-600">Cơ sở:</span>
-                                <div class="text-right">
-                                    <!--[if BLOCK]><![endif]--><?php if($student->locations->count() > 0): ?>
-                                    <!--[if BLOCK]><![endif]--><?php $__currentLoopData = $student->locations; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $location): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <?php if (isset($component)) { $__componentOriginal4cc377eda9b63b796b6668ee7832d023 = $component; } ?>
+                        
+                        <div x-show="expanded" class="border-t border-gray-100 bg-gray-50">
+
+                            <div class="p-4 space-y-3">
+
+
+                                
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm font-medium text-gray-600">Số điện thoại:</span>
+                                    <span
+                                        class="text-sm text-gray-900"><?php echo e($student->detail?->phone ?? 'Chưa cập nhật'); ?></span>
+                                </div>
+
+                                
+                                <!--[if BLOCK]><![endif]--><?php if(auth()->user()->locations()->count() > 1): ?>
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-sm font-medium text-gray-600">Cơ sở:</span>
+                                        <div class="text-right">
+                                            <!--[if BLOCK]><![endif]--><?php if($student->locations->count() > 0): ?>
+                                                <!--[if BLOCK]><![endif]--><?php $__currentLoopData = $student->locations; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $location): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                    <?php if (isset($component)) { $__componentOriginal4cc377eda9b63b796b6668ee7832d023 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal4cc377eda9b63b796b6668ee7832d023 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::badge.index','data' => ['color' => 'blue','size' => 'sm','class' => 'mb-1']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('flux::badge'); ?>
@@ -483,9 +489,9 @@ if (isset($__slots)) unset($__slots);
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
 <?php $component->withAttributes(['color' => 'blue','size' => 'sm','class' => 'mb-1']); ?>
-                                        <?php echo e($location->name); ?>
+                                                        <?php echo e($location->name); ?>
 
-                                     <?php echo $__env->renderComponent(); ?>
+                                                     <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php if (isset($__attributesOriginal4cc377eda9b63b796b6668ee7832d023)): ?>
 <?php $attributes = $__attributesOriginal4cc377eda9b63b796b6668ee7832d023; ?>
@@ -495,21 +501,21 @@ if (isset($__slots)) unset($__slots);
 <?php $component = $__componentOriginal4cc377eda9b63b796b6668ee7832d023; ?>
 <?php unset($__componentOriginal4cc377eda9b63b796b6668ee7832d023); ?>
 <?php endif; ?>
-                                    <!--[if BLOCK]><![endif]--><?php if(!$loop->last): ?>
-                                    <br>
+                                                    <!--[if BLOCK]><![endif]--><?php if(!$loop->last): ?>
+                                                        <br>
                                                     <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
                                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><!--[if ENDBLOCK]><![endif]-->
                                             <?php else: ?>
-                                    <span class="text-gray-500 text-xs">Chưa có cơ sở</span>
-                                    <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
-                                </div>
-                            </div>
-                            <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                                                <span class="text-gray-500 text-xs">Chưa có cơ sở</span>
+                                            <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                                        </div>
+                                    </div>
+                                <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
 
-                            
-                            <div class="pt-3 border-t border-gray-200">
-                                <div class="grid grid-cols-2 gap-2">
-                                    <button wire:click="editStudent(<?php echo e($student->id); ?>)"
+                                
+                                <div class="pt-3 border-t border-gray-200">
+                                    <div class="grid grid-cols-2 gap-2">
+                                        <button wire:click="editStudent(<?php echo e($student->id); ?>)"
                                             class="bg-blue-600 text-white px-3 py-2 rounded-md text-sm font-medium hover:bg-blue-700 transition-colors flex items-center justify-center space-x-1">
                                             <svg class="w-4 h-4" fill="none" stroke="currentColor"
                                                 viewBox="0 0 24 24">
@@ -520,7 +526,7 @@ if (isset($__slots)) unset($__slots);
                                             <span>Sửa</span>
                                         </button>
 
-                                    <button wire:click="printStudentRegistration('<?php echo e($student->token); ?>')"
+                                        <button wire:click="printStudentRegistration('<?php echo e($student->token); ?>')"
                                             class="bg-gray-600 text-white px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors flex items-center justify-center space-x-1">
                                             <svg class="w-4 h-4" fill="none" stroke="currentColor"
                                                 viewBox="0 0 24 24">
@@ -531,7 +537,7 @@ if (isset($__slots)) unset($__slots);
                                             <span>In đơn</span>
                                         </button>
 
-                                    <button wire:click="paymentStudent(<?php echo e($student->id); ?>)"
+                                        <button wire:click="paymentStudent(<?php echo e($student->id); ?>)"
                                             class="bg-green-600 text-white px-3 py-2 rounded-md text-sm font-medium hover:bg-green-700 transition-colors flex items-center justify-center space-x-1">
                                             <svg class="w-4 h-4" fill="none" stroke="currentColor"
                                                 viewBox="0 0 24 24">
@@ -542,7 +548,7 @@ if (isset($__slots)) unset($__slots);
                                             <span>Thanh toán</span>
                                         </button>
 
-                                    <button wire:click="deleteStudent(<?php echo e($student->id); ?>)"
+                                        <button wire:click="deleteStudent(<?php echo e($student->id); ?>)"
                                             class="bg-red-600 text-white px-3 py-2 rounded-md text-sm font-medium hover:bg-red-700 transition-colors flex items-center justify-center space-x-1">
                                             <svg class="w-4 h-4" fill="none" stroke="currentColor"
                                                 viewBox="0 0 24 24">
@@ -552,15 +558,15 @@ if (isset($__slots)) unset($__slots);
                                             </svg>
                                             <span>Xóa</span>
                                         </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
-                <div class="bg-white rounded-lg border border-gray-200 p-8">
-                    <div class="empty-state flex flex-col items-center">
-                        <?php if (isset($component)) { $__componentOriginale0880cb6488d85d9ca54288aa080a834 = $component; } ?>
+                    <div class="bg-white rounded-lg border border-gray-200 p-8">
+                        <div class="empty-state flex flex-col items-center">
+                            <?php if (isset($component)) { $__componentOriginale0880cb6488d85d9ca54288aa080a834 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginale0880cb6488d85d9ca54288aa080a834 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::icon.academic-cap','data' => ['class' => 'w-12 h-12 mb-4 text-gray-400']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('flux::icon.academic-cap'); ?>
@@ -580,14 +586,14 @@ if (isset($__slots)) unset($__slots);
 <?php $component = $__componentOriginale0880cb6488d85d9ca54288aa080a834; ?>
 <?php unset($__componentOriginale0880cb6488d85d9ca54288aa080a834); ?>
 <?php endif; ?>
-                        <h3 class="text-lg font-medium mb-2 text-gray-500">
-                            Không có học viên nào
-                        </h3>
-                        <p class="text-gray-400">
-                            Hiện tại không có học viên nào trong các cơ sở của bạn
-                        </p>
+                            <h3 class="text-lg font-medium mb-2 text-gray-500">
+                                Không có học viên nào
+                            </h3>
+                            <p class="text-gray-400">
+                                Hiện tại không có học viên nào trong các cơ sở của bạn
+                            </p>
+                        </div>
                     </div>
-                </div>
                 <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
             </div>
             
@@ -597,13 +603,13 @@ if (isset($__slots)) unset($__slots);
 
     
     <!--[if BLOCK]><![endif]--><?php if($studentsWithoutLocation->count() > 0): ?>
-    
-    <div class="theme-header-pink mt-6">
-        <div class="flex items-center justify-between">
-            <div class="header-content">
-                <div class="flex items-center space-x-3 mb-2">
-                    <div class="header-icon">
-                        <?php if (isset($component)) { $__componentOriginal7f0e8d69add49581695c1337b3f85fff = $component; } ?>
+        
+        <div class="theme-header-pink mt-6">
+            <div class="flex items-center justify-between">
+                <div class="header-content">
+                    <div class="flex items-center space-x-3 mb-2">
+                        <div class="header-icon">
+                            <?php if (isset($component)) { $__componentOriginal7f0e8d69add49581695c1337b3f85fff = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal7f0e8d69add49581695c1337b3f85fff = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::icon.exclamation-triangle','data' => ['class' => 'size-12']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('flux::icon.exclamation-triangle'); ?>
@@ -623,70 +629,70 @@ if (isset($__slots)) unset($__slots);
 <?php $component = $__componentOriginal7f0e8d69add49581695c1337b3f85fff; ?>
 <?php unset($__componentOriginal7f0e8d69add49581695c1337b3f85fff); ?>
 <?php endif; ?>
-                    </div>
-                    <div>
-                        <h1 class="header-title">Học viên chưa được phân cơ sở</h1>
-                        <p class="header-subtitle">Danh sách học viên chưa được gán cơ sở</p>
+                        </div>
+                        <div>
+                            <h1 class="header-title">Học viên chưa được phân cơ sở</h1>
+                            <p class="header-subtitle">Danh sách học viên chưa được gán cơ sở</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="flex items-center space-x-3">
-                <div class="header-counter">
-                    <span><?php echo e($studentsWithoutLocation->count()); ?> học viên</span>
+                <div class="flex items-center space-x-3">
+                    <div class="header-counter">
+                        <span><?php echo e($studentsWithoutLocation->count()); ?> học viên</span>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    
-    <div class="mt-6">
-        <div class="theme-table-pink">
-            
-            <div class="hidden md:block overflow-x-auto">
-                <table>
-                    <thead>
-                        <tr>
-                            <th class="text-center w-16">STT</th>
-                            <th>Họ và tên</th>
-                            <th class="hidden md:table-cell">Số điện thoại</th>
-                            <!--[if BLOCK]><![endif]--><?php if(auth()->user()->locations()->count() > 1): ?>
-                            <th class="text-center">Cơ sở</th>
-                            <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
-                            <th class="text-center">Thao tác</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!--[if BLOCK]><![endif]--><?php $__empty_1 = true; $__currentLoopData = $studentsWithoutLocation; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $student): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
-                        <tr wire:key="student-no-location-desktop-<?php echo e($student->id); ?>">
-                            <td class="text-center font-medium">
-                                <?php echo e($loop->iteration); ?>
+        
+        <div class="mt-6">
+            <div class="theme-table-pink">
+                
+                <div class="hidden md:block overflow-x-auto">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class="text-center w-16">STT</th>
+                                <th>Họ và tên</th>
+                                <th class="hidden md:table-cell">Số điện thoại</th>
+                                <!--[if BLOCK]><![endif]--><?php if(auth()->user()->locations()->count() > 1): ?>
+                                    <th class="text-center">Cơ sở</th>
+                                <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                                <th class="text-center">Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!--[if BLOCK]><![endif]--><?php $__empty_1 = true; $__currentLoopData = $studentsWithoutLocation; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $student): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                                <tr wire:key="student-no-location-desktop-<?php echo e($student->id); ?>">
+                                    <td class="text-center font-medium">
+                                        <?php echo e($loop->iteration); ?>
 
-                            </td>
-                            <td>
-                                <div class="flex items-center gap-3">
-                                    <img class="h-8 w-8 rounded-full object-cover"
+                                    </td>
+                                    <td>
+                                        <div class="flex items-center gap-3">
+                                            <img class="h-8 w-8 rounded-full object-cover"
                                                 src="<?php echo e($student->detail?->avatar ?? asset('images/default-avatar.png')); ?>"
                                                 alt="<?php echo e($student->name); ?>">
-                                    <div>
-                                        <div class="font-medium"><?php echo e($student->name); ?></div>
-                                        <div class="text-xs text-gray-500 dark:text-gray-400">ID:
-                                            <?php echo e($student->account_code); ?></div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="hidden md:table-cell">
-                                <?php echo e($student->detail?->phone ?? 'Chưa cập nhật'); ?>
+                                            <div>
+                                                <div class="font-medium"><?php echo e($student->name); ?></div>
+                                                <div class="text-xs text-gray-500 dark:text-gray-400">ID:
+                                                    <?php echo e($student->account_code); ?></div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="hidden md:table-cell">
+                                        <?php echo e($student->detail?->phone ?? 'Chưa cập nhật'); ?>
 
-                            </td>
-                            <!--[if BLOCK]><![endif]--><?php if(auth()->user()->locations()->count() > 1): ?>
-                            <td class="text-center">
-                                <span class="text-red-500 dark:text-red-400 text-xs font-medium">
+                                    </td>
+                                    <!--[if BLOCK]><![endif]--><?php if(auth()->user()->locations()->count() > 1): ?>
+                                        <td class="text-center">
+                                            <span class="text-red-500 dark:text-red-400 text-xs font-medium">
                                                 Chưa có cơ sở
                                             </span>
-                            </td>
-                            <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
-                            <td class="text-center">
-                                <?php if (isset($component)) { $__componentOriginal2b4bb2cd4b8f1a3c08bae49ea918b888 = $component; } ?>
+                                        </td>
+                                    <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                                    <td class="text-center">
+                                        <?php if (isset($component)) { $__componentOriginal2b4bb2cd4b8f1a3c08bae49ea918b888 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal2b4bb2cd4b8f1a3c08bae49ea918b888 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::dropdown','data' => []] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('flux::dropdown'); ?>
@@ -696,7 +702,7 @@ if (isset($__slots)) unset($__slots);
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
 <?php $component->withAttributes([]); ?>
-                                    <?php if (isset($component)) { $__componentOriginalc04b147acd0e65cc1a77f86fb0e81580 = $component; } ?>
+                                            <?php if (isset($component)) { $__componentOriginalc04b147acd0e65cc1a77f86fb0e81580 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginalc04b147acd0e65cc1a77f86fb0e81580 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::button.index','data' => ['icon:trailing' => 'chevron-down']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('flux::button'); ?>
@@ -716,7 +722,7 @@ if (isset($__slots)) unset($__slots);
 <?php unset($__componentOriginalc04b147acd0e65cc1a77f86fb0e81580); ?>
 <?php endif; ?>
 
-                                    <?php if (isset($component)) { $__componentOriginalf7749b857446d2788d0b6ca0c63f9d3a = $component; } ?>
+                                            <?php if (isset($component)) { $__componentOriginalf7749b857446d2788d0b6ca0c63f9d3a = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginalf7749b857446d2788d0b6ca0c63f9d3a = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::menu.index','data' => []] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('flux::menu'); ?>
@@ -726,7 +732,7 @@ if (isset($__slots)) unset($__slots);
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
 <?php $component->withAttributes([]); ?>
-                                        <?php if (isset($component)) { $__componentOriginal5027d420cfeeb03dd925cfc08ae44851 = $component; } ?>
+                                                <?php if (isset($component)) { $__componentOriginal5027d420cfeeb03dd925cfc08ae44851 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal5027d420cfeeb03dd925cfc08ae44851 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::menu.item','data' => ['icon' => 'pencil','wire:click' => 'editStudent('.e($student->id).')']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('flux::menu.item'); ?>
@@ -736,8 +742,8 @@ if (isset($__slots)) unset($__slots);
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
 <?php $component->withAttributes(['icon' => 'pencil','wire:click' => 'editStudent('.e($student->id).')']); ?>Sửa
-                                            thông tin
-                                         <?php echo $__env->renderComponent(); ?>
+                                                    thông tin
+                                                 <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php if (isset($__attributesOriginal5027d420cfeeb03dd925cfc08ae44851)): ?>
 <?php $attributes = $__attributesOriginal5027d420cfeeb03dd925cfc08ae44851; ?>
@@ -748,7 +754,7 @@ if (isset($__slots)) unset($__slots);
 <?php unset($__componentOriginal5027d420cfeeb03dd925cfc08ae44851); ?>
 <?php endif; ?>
 
-                                        <?php if (isset($component)) { $__componentOriginal5027d420cfeeb03dd925cfc08ae44851 = $component; } ?>
+                                                <?php if (isset($component)) { $__componentOriginal5027d420cfeeb03dd925cfc08ae44851 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal5027d420cfeeb03dd925cfc08ae44851 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::menu.item','data' => ['icon' => 'printer','wire:click' => 'printStudentRegistration(\''.e($student->token).'\')']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('flux::menu.item'); ?>
@@ -758,8 +764,8 @@ if (isset($__slots)) unset($__slots);
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
 <?php $component->withAttributes(['icon' => 'printer','wire:click' => 'printStudentRegistration(\''.e($student->token).'\')']); ?>In
-                                            đơn
-                                            đăng ký <?php echo $__env->renderComponent(); ?>
+                                                    đơn
+                                                    đăng ký <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php if (isset($__attributesOriginal5027d420cfeeb03dd925cfc08ae44851)): ?>
 <?php $attributes = $__attributesOriginal5027d420cfeeb03dd925cfc08ae44851; ?>
@@ -770,7 +776,7 @@ if (isset($__slots)) unset($__slots);
 <?php unset($__componentOriginal5027d420cfeeb03dd925cfc08ae44851); ?>
 <?php endif; ?>
 
-                                        <?php if (isset($component)) { $__componentOriginald5e1eb3ae521062f8474178ba08933ca = $component; } ?>
+                                                <?php if (isset($component)) { $__componentOriginald5e1eb3ae521062f8474178ba08933ca = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginald5e1eb3ae521062f8474178ba08933ca = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::menu.separator','data' => []] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('flux::menu.separator'); ?>
@@ -791,7 +797,7 @@ if (isset($__slots)) unset($__slots);
 <?php unset($__componentOriginald5e1eb3ae521062f8474178ba08933ca); ?>
 <?php endif; ?>
 
-                                        <?php if (isset($component)) { $__componentOriginal5027d420cfeeb03dd925cfc08ae44851 = $component; } ?>
+                                                <?php if (isset($component)) { $__componentOriginal5027d420cfeeb03dd925cfc08ae44851 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal5027d420cfeeb03dd925cfc08ae44851 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::menu.item','data' => ['variant' => 'danger','icon' => 'trash','wire:click' => 'deleteStudent('.e($student->id).')']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('flux::menu.item'); ?>
@@ -801,7 +807,7 @@ if (isset($__slots)) unset($__slots);
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
 <?php $component->withAttributes(['variant' => 'danger','icon' => 'trash','wire:click' => 'deleteStudent('.e($student->id).')']); ?>Xóa
-                                         <?php echo $__env->renderComponent(); ?>
+                                                 <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php if (isset($__attributesOriginal5027d420cfeeb03dd925cfc08ae44851)): ?>
 <?php $attributes = $__attributesOriginal5027d420cfeeb03dd925cfc08ae44851; ?>
@@ -811,7 +817,7 @@ if (isset($__slots)) unset($__slots);
 <?php $component = $__componentOriginal5027d420cfeeb03dd925cfc08ae44851; ?>
 <?php unset($__componentOriginal5027d420cfeeb03dd925cfc08ae44851); ?>
 <?php endif; ?>
-                                     <?php echo $__env->renderComponent(); ?>
+                                             <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php if (isset($__attributesOriginalf7749b857446d2788d0b6ca0c63f9d3a)): ?>
 <?php $attributes = $__attributesOriginalf7749b857446d2788d0b6ca0c63f9d3a; ?>
@@ -821,7 +827,7 @@ if (isset($__slots)) unset($__slots);
 <?php $component = $__componentOriginalf7749b857446d2788d0b6ca0c63f9d3a; ?>
 <?php unset($__componentOriginalf7749b857446d2788d0b6ca0c63f9d3a); ?>
 <?php endif; ?>
-                                 <?php echo $__env->renderComponent(); ?>
+                                         <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php if (isset($__attributesOriginal2b4bb2cd4b8f1a3c08bae49ea918b888)): ?>
 <?php $attributes = $__attributesOriginal2b4bb2cd4b8f1a3c08bae49ea918b888; ?>
@@ -831,13 +837,13 @@ if (isset($__slots)) unset($__slots);
 <?php $component = $__componentOriginal2b4bb2cd4b8f1a3c08bae49ea918b888; ?>
 <?php unset($__componentOriginal2b4bb2cd4b8f1a3c08bae49ea918b888); ?>
 <?php endif; ?>
-                            </td>
-                        </tr>
-                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
-                        <tr>
-                            <td colspan="5" class="text-center py-12">
-                                <div class="empty-state flex flex-col items-center">
-                                    <?php if (isset($component)) { $__componentOriginale0880cb6488d85d9ca54288aa080a834 = $component; } ?>
+                                    </td>
+                                </tr>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+                                <tr>
+                                    <td colspan="5" class="text-center py-12">
+                                        <div class="empty-state flex flex-col items-center">
+                                            <?php if (isset($component)) { $__componentOriginale0880cb6488d85d9ca54288aa080a834 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginale0880cb6488d85d9ca54288aa080a834 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::icon.academic-cap','data' => ['class' => 'w-12 h-12 mb-4']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('flux::icon.academic-cap'); ?>
@@ -857,90 +863,90 @@ if (isset($__slots)) unset($__slots);
 <?php $component = $__componentOriginale0880cb6488d85d9ca54288aa080a834; ?>
 <?php unset($__componentOriginale0880cb6488d85d9ca54288aa080a834); ?>
 <?php endif; ?>
-                                    <h3 class="text-lg font-medium mb-2">
-                                        Không có học viên nào
-                                    </h3>
-                                    <p>
-                                        Hiện tại không có học viên nào chưa được phân cơ sở
-                                    </p>
-                                </div>
-                            </td>
-                        </tr>
-                        <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
-                    </tbody>
-                </table>
-            </div>
+                                            <h3 class="text-lg font-medium mb-2">
+                                                Không có học viên nào
+                                            </h3>
+                                            <p>
+                                                Hiện tại không có học viên nào chưa được phân cơ sở
+                                            </p>
+                                        </div>
+                                    </td>
+                                </tr>
+                            <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                        </tbody>
+                    </table>
+                </div>
 
-            
-            <div class="md:hidden space-y-3">
-                <!--[if BLOCK]><![endif]--><?php $__empty_1 = true; $__currentLoopData = $studentsWithoutLocation; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $student): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
-                <div class="bg-white rounded-lg border border-gray-200 shadow-sm" x-data="{ expanded: false }"
-                    wire:key="student-no-location-mobile-<?php echo e($student->id); ?>">
+                
+                <div class="md:hidden space-y-3">
+                    <!--[if BLOCK]><![endif]--><?php $__empty_1 = true; $__currentLoopData = $studentsWithoutLocation; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $index => $student): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                        <div class="bg-white rounded-lg border border-gray-200 shadow-sm" x-data="{ expanded: false }"
+                            wire:key="student-no-location-mobile-<?php echo e($student->id); ?>">
 
-                    
-                    <div class="p-4 flex items-center justify-between">
-                        <div class="flex items-center space-x-3">
-                            <img class="h-8 w-8 rounded-full object-cover"
+                            
+                            <div class="p-4 flex items-center justify-between">
+                                <div class="flex items-center space-x-3">
+                                    <img class="h-8 w-8 rounded-full object-cover"
                                         src="<?php echo e($student->detail?->avatar ?? asset('images/default-avatar.png')); ?>"
                                         alt="<?php echo e($student->name); ?>">
-                            <div>
-                                <div class="font-medium text-gray-900"><?php echo e($student->name); ?></div>
-                                <div class="text-sm text-gray-500">ID: <?php echo e($student->account_code); ?></div>
-                            </div>
-                        </div>
+                                    <div>
+                                        <div class="font-medium text-gray-900"><?php echo e($student->name); ?></div>
+                                        <div class="text-sm text-gray-500">ID: <?php echo e($student->account_code); ?></div>
+                                    </div>
+                                </div>
 
-                        <div class="flex items-center space-x-2">
-                            <span class="px-2 py-1 rounded-full text-xs font-medium bg-red-100 text-red-800">
+                                <div class="flex items-center space-x-2">
+                                    <span class="px-2 py-1 rounded-full text-xs font-medium bg-red-100 text-red-800">
                                         Chưa có cơ sở
                                     </span>
 
-                            <button @click="expanded = !expanded" class="p-2 rounded-full hover:bg-gray-100">
+                                    <button @click="expanded = !expanded" class="p-2 rounded-full hover:bg-gray-100">
                                         <svg class="w-5 h-5 text-gray-400" :class="{ 'rotate-180': expanded }"
                                             fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                 d="M19 9l-7 7-7-7"></path>
                                         </svg>
                                     </button>
-                        </div>
-                    </div>
-
-                    
-                    <div x-show="expanded" class="border-t border-gray-100 bg-gray-50">
-
-                        <div class="p-4 space-y-3">
-                            
-                            <div class="flex justify-between items-center">
-                                <span class="text-sm font-medium text-gray-600">Họ và tên:</span>
-                                <div class="flex items-center space-x-2">
-                                    <img class="h-6 w-6 rounded-full object-cover"
-                                                src="<?php echo e($student->detail?->avatar ?? asset('images/default-avatar.png')); ?>"
-                                                alt="<?php echo e($student->name); ?>">
-                                    <span class="text-sm text-gray-900"><?php echo e($student->name); ?></span>
                                 </div>
                             </div>
 
                             
-                            <div class="flex justify-between items-center">
-                                <span class="text-sm font-medium text-gray-600">Số điện thoại:</span>
-                                <span
-                                            class="text-sm text-gray-900"><?php echo e($student->detail?->phone ?? 'Chưa cập nhật'); ?></span>
-                            </div>
+                            <div x-show="expanded" class="border-t border-gray-100 bg-gray-50">
 
-                            
-                            <!--[if BLOCK]><![endif]--><?php if(auth()->user()->locations()->count() > 1): ?>
-                            <div class="flex justify-between items-center">
-                                <span class="text-sm font-medium text-gray-600">Cơ sở:</span>
-                                <span
+                                <div class="p-4 space-y-3">
+                                    
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-sm font-medium text-gray-600">Họ và tên:</span>
+                                        <div class="flex items-center space-x-2">
+                                            <img class="h-6 w-6 rounded-full object-cover"
+                                                src="<?php echo e($student->detail?->avatar ?? asset('images/default-avatar.png')); ?>"
+                                                alt="<?php echo e($student->name); ?>">
+                                            <span class="text-sm text-gray-900"><?php echo e($student->name); ?></span>
+                                        </div>
+                                    </div>
+
+                                    
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-sm font-medium text-gray-600">Số điện thoại:</span>
+                                        <span
+                                            class="text-sm text-gray-900"><?php echo e($student->detail?->phone ?? 'Chưa cập nhật'); ?></span>
+                                    </div>
+
+                                    
+                                    <!--[if BLOCK]><![endif]--><?php if(auth()->user()->locations()->count() > 1): ?>
+                                        <div class="flex justify-between items-center">
+                                            <span class="text-sm font-medium text-gray-600">Cơ sở:</span>
+                                            <span
                                                 class="px-2 py-1 rounded-full text-xs font-medium bg-red-100 text-red-800">
                                                 Chưa có cơ sở
                                             </span>
-                            </div>
-                            <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+                                        </div>
+                                    <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
 
-                            
-                            <div class="pt-3 border-t border-gray-200">
-                                <div class="grid grid-cols-2 gap-2">
-                                    <button wire:click="editStudent(<?php echo e($student->id); ?>)"
+                                    
+                                    <div class="pt-3 border-t border-gray-200">
+                                        <div class="grid grid-cols-2 gap-2">
+                                            <button wire:click="editStudent(<?php echo e($student->id); ?>)"
                                                 class="bg-blue-600 text-white px-3 py-2 rounded-md text-sm font-medium hover:bg-blue-700 transition-colors flex items-center justify-center space-x-1">
                                                 <svg class="w-4 h-4" fill="none" stroke="currentColor"
                                                     viewBox="0 0 24 24">
@@ -952,7 +958,7 @@ if (isset($__slots)) unset($__slots);
                                                 <span>Sửa</span>
                                             </button>
 
-                                    <button wire:click="printStudentRegistration('<?php echo e($student->token); ?>')"
+                                            <button wire:click="printStudentRegistration('<?php echo e($student->token); ?>')"
                                                 class="bg-gray-600 text-white px-3 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors flex items-center justify-center space-x-1">
                                                 <svg class="w-4 h-4" fill="none" stroke="currentColor"
                                                     viewBox="0 0 24 24">
@@ -964,7 +970,7 @@ if (isset($__slots)) unset($__slots);
                                                 <span>In đơn</span>
                                             </button>
 
-                                    <button wire:click="deleteStudent(<?php echo e($student->id); ?>)"
+                                            <button wire:click="deleteStudent(<?php echo e($student->id); ?>)"
                                                 class="bg-red-600 text-white px-3 py-2 rounded-md text-sm font-medium hover:bg-red-700 transition-colors flex items-center justify-center space-x-1 col-span-2">
                                                 <svg class="w-4 h-4" fill="none" stroke="currentColor"
                                                     viewBox="0 0 24 24">
@@ -975,15 +981,15 @@ if (isset($__slots)) unset($__slots);
                                                 </svg>
                                                 <span>Xóa</span>
                                             </button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
-                <div class="bg-white rounded-lg border border-gray-200 p-8">
-                    <div class="empty-state flex flex-col items-center">
-                        <?php if (isset($component)) { $__componentOriginale0880cb6488d85d9ca54288aa080a834 = $component; } ?>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+                        <div class="bg-white rounded-lg border border-gray-200 p-8">
+                            <div class="empty-state flex flex-col items-center">
+                                <?php if (isset($component)) { $__componentOriginale0880cb6488d85d9ca54288aa080a834 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginale0880cb6488d85d9ca54288aa080a834 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::icon.academic-cap','data' => ['class' => 'w-12 h-12 mb-4 text-gray-400']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('flux::icon.academic-cap'); ?>
@@ -1003,25 +1009,25 @@ if (isset($__slots)) unset($__slots);
 <?php $component = $__componentOriginale0880cb6488d85d9ca54288aa080a834; ?>
 <?php unset($__componentOriginale0880cb6488d85d9ca54288aa080a834); ?>
 <?php endif; ?>
-                        <h3 class="text-lg font-medium mb-2 text-gray-500">
-                            Không có học viên nào
-                        </h3>
-                        <p class="text-gray-400">
-                            Hiện tại không có học viên nào chưa được phân cơ sở
-                        </p>
-                    </div>
+                                <h3 class="text-lg font-medium mb-2 text-gray-500">
+                                    Không có học viên nào
+                                </h3>
+                                <p class="text-gray-400">
+                                    Hiện tại không có học viên nào chưa được phân cơ sở
+                                </p>
+                            </div>
+                        </div>
+                    <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
                 </div>
-                <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
             </div>
         </div>
-    </div>
     <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
 
 </div>
 
 <?php $__env->startPush('scripts'); ?>
-<script>
-    window.addEventListener('open-pdf', e => {
+    <script>
+        window.addEventListener('open-pdf', e => {
             console.log(e.detail[0].url);
             let url = e.detail[0].url;
 
@@ -1046,5 +1052,6 @@ if (isset($__slots)) unset($__slots);
                 }, 3000);
             }
         });
-</script>
-<?php $__env->stopPush(); ?><?php /**PATH /Users/smyth/Herd/ap.icy.edu.vn/resources/views/livewire/back/personnel/student/students.blade.php ENDPATH**/ ?>
+    </script>
+<?php $__env->stopPush(); ?>
+<?php /**PATH /Users/smyth/Herd/ap.icy.edu.vn/resources/views/livewire/back/personnel/student/students.blade.php ENDPATH**/ ?>

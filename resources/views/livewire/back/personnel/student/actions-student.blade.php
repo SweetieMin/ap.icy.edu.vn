@@ -137,6 +137,19 @@
                     </div>
                 </div>
 
+                <flux:separator class="my-4" />
+
+                <div class="mb-4 text-center">
+                    <flux:heading size="md" class="text-gray-800 dark:text-gray-200 font-semibold">
+                        Nguyện vọng học tập
+                    </flux:heading>
+                </div>
+
+                <div class="form-group">
+                    <flux:input wire:model='aspiration' label="Nguyện vọng" placeholder="Nhập nguyện vọng học tập của học viên (nếu có)"
+                        class="rounded-xl border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 transition-all duration-300" />
+                </div>
+
             </div>
 
 

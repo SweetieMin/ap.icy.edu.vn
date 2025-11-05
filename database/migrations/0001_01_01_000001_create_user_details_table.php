@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('address')->nullable();
             $table->string('phone')->nullable();
             $table->string('avatar')->nullable();
+            $table->string('aspiration')->nullable();
             $table->boolean('gender')->default(false);
             $table->string('guardian_name')->nullable();
             $table->string('guardian_phone')->nullable();

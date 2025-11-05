@@ -17,6 +17,7 @@
             @if ($isEditStaffMode)
                 <input type="hidden" wire:model='staffId' />
             @endif
+            
 
             {{-- Personal Information --}}
 
@@ -106,9 +107,8 @@
                             class="rounded-xl border-gray-300 focus:border-green-500 focus:ring-green-500 transition-all duration-300" />
                     </div>
                     <div class="form-group md:col-span-2">
-                        <flux:input type="date" wire:model='birthday' label="🎂 Ngày sinh"
-                            max="{{ now()->format('Y-m-d') }}"
-                            class="rounded-xl border-gray-300 focus:border-purple-500 focus:ring-purple-500 transition-all duration-300" />
+                        <flux:date-picker selectable-header wire:model="birthday" label="🎂 Ngày sinh" placeholder="dd/mm/yyyy"  max="{{ now()->format('Y-m-d') }}" locale="vi-VN"/>
+                            
                     </div>
 
                 </div>

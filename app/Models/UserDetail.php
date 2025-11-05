@@ -21,6 +21,7 @@ class UserDetail extends Model
         'address',
         'phone',
         'avatar',
+        'aspiration',
         'gender',
         'guardian_name',
         'guardian_phone',

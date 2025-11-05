@@ -63,6 +63,7 @@
             <!--[if BLOCK]><![endif]--><?php if($isEditStaffMode): ?>
                 <input type="hidden" wire:model='staffId' />
             <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
+            
 
             
 
@@ -343,26 +344,27 @@
 <?php endif; ?>
                     </div>
                     <div class="form-group md:col-span-2">
-                        <?php if (isset($component)) { $__componentOriginal26c546557cdc09040c8dd00b2090afd0 = $component; } ?>
-<?php if (isset($attributes)) { $__attributesOriginal26c546557cdc09040c8dd00b2090afd0 = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::input.index','data' => ['type' => 'date','wire:model' => 'birthday','label' => '🎂 Ngày sinh','max' => ''.e(now()->format('Y-m-d')).'','class' => 'rounded-xl border-gray-300 focus:border-purple-500 focus:ring-purple-500 transition-all duration-300']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
-<?php $component->withName('flux::input'); ?>
+                        <?php if (isset($component)) { $__componentOriginal9739cba0311dcc8ecd1672ffe6699a8a = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal9739cba0311dcc8ecd1672ffe6699a8a = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'e60dd9d2c3a62d619c9acb38f20d5aa5::date-picker.index','data' => ['selectableHeader' => true,'wire:model' => 'birthday','label' => '🎂 Ngày sinh','placeholder' => 'dd/mm/yyyy','max' => ''.e(now()->format('Y-m-d')).'','locale' => 'vi-VN']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('flux::date-picker'); ?>
 <?php if ($component->shouldRender()): ?>
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>
 <?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
-<?php $component->withAttributes(['type' => 'date','wire:model' => 'birthday','label' => '🎂 Ngày sinh','max' => ''.e(now()->format('Y-m-d')).'','class' => 'rounded-xl border-gray-300 focus:border-purple-500 focus:ring-purple-500 transition-all duration-300']); ?>
+<?php $component->withAttributes(['selectable-header' => true,'wire:model' => 'birthday','label' => '🎂 Ngày sinh','placeholder' => 'dd/mm/yyyy','max' => ''.e(now()->format('Y-m-d')).'','locale' => 'vi-VN']); ?>
 <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
-<?php if (isset($__attributesOriginal26c546557cdc09040c8dd00b2090afd0)): ?>
-<?php $attributes = $__attributesOriginal26c546557cdc09040c8dd00b2090afd0; ?>
-<?php unset($__attributesOriginal26c546557cdc09040c8dd00b2090afd0); ?>
+<?php if (isset($__attributesOriginal9739cba0311dcc8ecd1672ffe6699a8a)): ?>
+<?php $attributes = $__attributesOriginal9739cba0311dcc8ecd1672ffe6699a8a; ?>
+<?php unset($__attributesOriginal9739cba0311dcc8ecd1672ffe6699a8a); ?>
 <?php endif; ?>
-<?php if (isset($__componentOriginal26c546557cdc09040c8dd00b2090afd0)): ?>
-<?php $component = $__componentOriginal26c546557cdc09040c8dd00b2090afd0; ?>
-<?php unset($__componentOriginal26c546557cdc09040c8dd00b2090afd0); ?>
+<?php if (isset($__componentOriginal9739cba0311dcc8ecd1672ffe6699a8a)): ?>
+<?php $component = $__componentOriginal9739cba0311dcc8ecd1672ffe6699a8a; ?>
+<?php unset($__componentOriginal9739cba0311dcc8ecd1672ffe6699a8a); ?>
 <?php endif; ?>
+                            
                     </div>
 
                 </div>
