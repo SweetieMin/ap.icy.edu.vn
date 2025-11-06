@@ -23,6 +23,8 @@ class SubjectSeeder extends Seeder
         $highschool = Program::where('name', 'Luyện thi vào lớp 10')->first();
         $thptqg = Program::where('name', 'Luyện thi THPT Quốc Gia')->first();
 
+        $primary_school = Program::where('name', 'Tiểu học - Đi trưởng')->first();
+
         $subjects = [
             // Anh ngữ mẫu giáo (Kindergarten) - HS mẫu giáo
             [
@@ -193,6 +195,14 @@ class SubjectSeeder extends Seeder
                 'code' => 'IK15',
                 'curriculum_name' => 'Family and Friends 5',
                 'ordering' => 15,
+                'url_book' => 'https://online.flipbuilder.com/xtrvf/bcqw/',
+            ],
+            [
+                'program_id' => $kids->id,
+                'name' => 'ICY Kids 16',
+                'code' => 'IK16',
+                'curriculum_name' => 'Family and Friends 5',
+                'ordering' => 16,
                 'url_book' => 'https://online.flipbuilder.com/xtrvf/bcqw/',
             ],
 
@@ -373,7 +383,7 @@ class SubjectSeeder extends Seeder
                 'program_id' => $business->id,
                 'name' => 'ICY Business 4',
                 'code' => 'IB4',
-                'curriculum_name' => 'Market Leader 3 (Intermediate)',
+                'curriculum_name' => 'Big Step 1',
                 'ordering' => 4,
                 'url_book' => 'https://fliphtml5.com/lpkv/exgt/basic',
             ],
@@ -381,7 +391,7 @@ class SubjectSeeder extends Seeder
                 'program_id' => $business->id,
                 'name' => 'ICY Business 5',
                 'code' => 'IB5',
-                'curriculum_name' => 'Market Leader 3',
+                'curriculum_name' => 'Big Step 2',
                 'ordering' => 5,
                 'url_book' => 'https://fliphtml5.com/lpkv/exgt/basic',
             ],
@@ -389,7 +399,7 @@ class SubjectSeeder extends Seeder
                 'program_id' => $business->id,
                 'name' => 'ICY Business 6',
                 'code' => 'IB6',
-                'curriculum_name' => 'Market Leader 4 (Upper Intermediate)',
+                'curriculum_name' => '1000RC + 1000LC ETS 2024',
                 'ordering' => 6,
                 'url_book' => 'https://fliphtml5.com/vsnkg/dhte/Market Leader 3ed Upper Intermediate Course Book/1/',
             ],
@@ -397,25 +407,9 @@ class SubjectSeeder extends Seeder
                 'program_id' => $business->id,
                 'name' => 'ICY Business 7',
                 'code' => 'IB7',
-                'curriculum_name' => 'Market Leader 4',
+                'curriculum_name' => 'Study 4',
                 'ordering' => 7,
                 'url_book' => 'https://fliphtml5.com/vsnkg/dhte/Market Leader 3ed Upper Intermediate Course Book/1/',
-            ],
-            [
-                'program_id' => $business->id,
-                'name' => 'ICY Business 8',
-                'code' => 'IB8',
-                'curriculum_name' => 'Market Leader 5 (Advanced)',
-                'ordering' => 8,
-                'url_book' => 'https://fliphtml5.com/xjdvv/vzge/Market Leader Advanced/',
-            ],
-            [
-                'program_id' => $business->id,
-                'name' => 'ICY Business 9',
-                'code' => 'IB9',
-                'curriculum_name' => 'Market Leader 5',
-                'ordering' => 9,
-                'url_book' => 'https://fliphtml5.com/xjdvv/vzge/Market Leader Advanced/',
             ],
 
             // Chứng chỉ IELTS (IELTS Achievers) - Cơ bản đến nâng cao
@@ -571,6 +565,80 @@ class SubjectSeeder extends Seeder
                 'curriculum_name' => 'Đề thi thật từ 2017 + Mock Test minh hoạ Parem năm',
                 'ordering' => 6,
             ],
+
+            // Tiểu học - Đi trưởng (Primary School - Principal) - HS tiểu học
+            [
+                'program_id' => $primary_school->id,
+                'name' => 'ICY Primary School - Grade 1 First semester',
+                'code' => 'IP1.1',
+                'curriculum_name' => '',
+                'ordering' => 1,
+            ],
+            [
+                'program_id' => $primary_school->id,
+                'name' => 'ICY Primary School - Grade 1 Second semester',
+                'code' => 'IP1.2',
+                'curriculum_name' => '',
+                'ordering' => 2,
+            ],
+            [
+                'program_id' => $primary_school->id,
+                'name' => 'ICY Primary School - Grade 2 First semester',
+                'code' => 'IP2.1',
+                'curriculum_name' => '',
+                'ordering' => 3,
+            ],
+            [
+                'program_id' => $primary_school->id,
+                'name' => 'ICY Primary School - Grade 2 Second semester',
+                'code' => 'IP2.2',
+                'curriculum_name' => '',
+                'ordering' => 4,
+            ],
+
+            [
+                'program_id' => $primary_school->id,
+                'name' => 'ICY Primary School - Grade 3 First semester',
+                'code' => 'IP3.1',
+                'curriculum_name' => '',
+                'ordering' => 5,
+            ],
+            [
+                'program_id' => $primary_school->id,
+                'name' => 'ICY Primary School - Grade 3 Second semester',
+                'code' => 'IP3.2',
+                'curriculum_name' => '',
+                'ordering' => 6,
+            ],
+            [
+                'program_id' => $primary_school->id,
+                'name' => 'ICY Primary School - Grade 4 First semester',
+                'code' => 'IP4.1',
+                'curriculum_name' => '',
+                'ordering' => 7,
+            ],
+            [
+                'program_id' => $primary_school->id,
+                'name' => 'ICY Primary School - Grade 4 Second semester',
+                'code' => 'IP4.2',
+                'curriculum_name' => '',
+                'ordering' => 8,
+            ],
+            [
+                'program_id' => $primary_school->id,
+                'name' => 'ICY Primary School - Grade 5 First semester',
+                'code' => 'IP5.1',
+                'curriculum_name' => '',
+                'ordering' => 9,
+            ],
+            [
+                'program_id' => $primary_school->id,
+                'name' => 'ICY Primary School - Grade 5 Second semester',
+                'code' => 'IP5.2',
+                'curriculum_name' => '',
+                'ordering' => 10,
+            ],
+
         ];
 
         foreach ($subjects as $subject) {

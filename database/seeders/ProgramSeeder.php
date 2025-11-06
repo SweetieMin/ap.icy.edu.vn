@@ -61,6 +61,14 @@ class ProgramSeeder extends Seeder
                 'description' => 'Luyện thi tiếng Anh THPT Quốc gia với chiến lược làm bài và luyện đề sát thực tế.',
                 'price_book' => 110000,
             ]
+
+            ,
+            [
+                'name' => 'Tiểu học - Đi trưởng',
+                'english_name' => 'Primary School - Principal',
+                'description' => 'Chương trình tiếng Anh cho học sinh tiểu học và đi trưởng, giúp phát triển ngôn ngữ qua trò chơi và hình ảnh.',
+                'price_book' => 110000,
+            ]
         ];
 
 
