@@ -92,6 +92,12 @@ class Syllabi extends Component
         $this->dispatch('delete-syllabus', $id);
     }
 
+    public function importSyllabus()
+    {
+        $this->authorize('create', Syllabus::class);
+        $this->dispatch('import-syllabus');
+    }
+
 
     public function render()
     {

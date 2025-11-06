@@ -28,10 +28,10 @@
                 </div>
 
                 @can('create', \App\Models\Syllabus::class)
-                    <button wire:click="addSyllabus" class="header-button w-full sm:w-auto">
+                    <button wire:click="importSyllabus" class="header-button w-full sm:w-auto">
                         <flux:icon.plus-circle class="w-4 h-4 sm:w-5 sm:h-5" />
-                        <span class="hidden sm:inline">Thêm Syllabus</span>
-                        <span class="sm:hidden">Thêm</span>
+                        <span class="hidden sm:inline">Nhập Syllabus</span>
+                        <span class="sm:hidden">Nhập</span>
                     </button>
                 @endcan
 
@@ -117,12 +117,8 @@
                     <tr>
                         <th class="text-center  w-30">Bài học</th>
                         <th class="text-left">Nội dung</th>
+                        <th class="text-left">Assignment</th>
                         <th class="text-left">Mục tiêu (CLO)</th>
-                        @if (
-                            $syllabi->first() &&
-                                (auth()->user()->can('update', $syllabi->first()) || auth()->user()->can('delete', $syllabi->first())))
-                            <th class="text-center">Thao tác</th>
-                        @endif
                     </tr>
                 </thead>
                 <tbody id="sortable-syllabi">
@@ -135,6 +131,11 @@
                             <td class="table-cell">
                                 <div title="{{ $syllabus->content }}">
                                     {{ $syllabus->content }}
+                                </div>
+                            </td>
+                            <td class="table-cell">
+                                <div title="{{ $syllabus->assignment }}">
+                                    {{ $syllabus->assignment }}
                                 </div>
                             </td>
                             <td class="table-cell">
@@ -152,28 +153,6 @@
                                     </div>
                                 @endif
                             </td>
-                            @if (auth()->user()->can('update', $syllabus) || auth()->user()->can('delete', $syllabus))
-                                <td class="table-cell text-center">
-                                    <flux:dropdown>
-                                        <flux:button icon:trailing="chevron-down">Thao tác</flux:button>
-                                        <flux:menu>
-                                            @can('update', $syllabus)
-                                                <flux:menu.item icon="pencil"
-                                                    wire:click="editSyllabus({{ $syllabus->id }})">
-                                                    Sửa thông tin
-                                                </flux:menu.item>
-                                            @endcan
-                                            @can('delete', $syllabus)
-                                                <flux:menu.separator />
-                                                <flux:menu.item variant="danger" icon="trash"
-                                                    wire:click="deleteSyllabus({{ $syllabus->id }})">
-                                                    Xóa
-                                                </flux:menu.item>
-                                            @endcan
-                                        </flux:menu>
-                                    </flux:dropdown>
-                                </td>
-                            @endif
                         </tr>
                     @empty
                         <tr>
@@ -255,38 +234,6 @@
                                     class="text-sm text-gray-900">{{ $syllabus->created_at->format('d/m/Y H:i') }}</span>
                             </div>
 
-                            {{-- Actions --}}
-                            @if (auth()->user()->can('update', $syllabus) || auth()->user()->can('delete', $syllabus))
-                                <div class="pt-3 border-t border-gray-200">
-                                    <div class="flex space-x-2">
-                                        @can('update', $syllabus)
-                                            <button wire:click="editSyllabus({{ $syllabus->id }})"
-                                                class="flex-1 bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700 transition-colors flex items-center justify-center space-x-2">
-                                                <svg class="w-4 h-4" fill="none" stroke="currentColor"
-                                                    viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                        d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z">
-                                                    </path>
-                                                </svg>
-                                                <span>Sửa</span>
-                                            </button>
-                                        @endcan
-
-                                        @can('delete', $syllabus)
-                                            <button wire:click="deleteSyllabus({{ $syllabus->id }})"
-                                                class="flex-1 bg-red-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-red-700 transition-colors flex items-center justify-center space-x-2">
-                                                <svg class="w-4 h-4" fill="none" stroke="currentColor"
-                                                    viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                        d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16">
-                                                    </path>
-                                                </svg>
-                                                <span>Xóa</span>
-                                            </button>
-                                        @endcan
-                                    </div>
-                                </div>
-                            @endif
                         </div>
                     </div>
                 </div>

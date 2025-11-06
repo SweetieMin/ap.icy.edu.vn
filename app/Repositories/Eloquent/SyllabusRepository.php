@@ -108,4 +108,9 @@ class SyllabusRepository implements SyllabusRepositoryInterface
             ->orderBy('lesson_number')
             ->get();
     }
+
+    public function deleteWhere(int $id)
+    {
+        return Syllabus::where('subject_id', $id)->delete();
+    }
 }

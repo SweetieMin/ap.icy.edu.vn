@@ -12,4 +12,6 @@ interface SyllabusRepositoryInterface
     public function getBySubject(int $subjectId);
     public function search(string $search);
     public function updateOrdering(array $orderedIds);
+
+    public function deleteWhere(int $id);
 }

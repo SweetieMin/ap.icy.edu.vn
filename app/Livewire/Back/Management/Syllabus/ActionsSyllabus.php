@@ -3,9 +3,13 @@
 namespace App\Livewire\Back\Management\Syllabus;
 
 use Flux\Flux;
+use App\Models\Subject;
 use Livewire\Component;
 use App\Models\Syllabus;
 use Livewire\Attributes\On;
+use Livewire\WithFileUploads;
+use Livewire\Attributes\Validate;
+use Maatwebsite\Excel\Facades\Excel;
 use App\Support\Validation\SyllabusRules;
 use App\Repositories\Contracts\SubjectRepositoryInterface;
 use App\Repositories\Contracts\SyllabusRepositoryInterface;
@@ -13,7 +17,7 @@ use App\Repositories\Contracts\SyllabusRepositoryInterface;
 
 class ActionsSyllabus extends Component
 {
-
+    use WithFileUploads;
 
     public $syllabusId;
     public $subject_id;
@@ -24,8 +28,67 @@ class ActionsSyllabus extends Component
     public $assignment;
     public $CLO;
     public $is_url;
-
+    public $preview = [];
     public $isEditing = false;
+
+
+    #[Validate('required|mimes:xlsx|max:20480')]
+    public $excel_file;
+
+
+    public function updatedExcelFile()
+    {
+
+        // Lấy path tạm
+        $path = $this->excel_file->getRealPath();
+
+        // Đọc sheet đầu tiên
+        $data = Excel::toArray([], $path)[0];
+
+        // Bỏ row header (nếu bạn muốn)
+        unset($data[0]);
+        // Lưu preview để hiển thị
+        $this->preview = $data;
+    }
+
+    public function save()
+    {
+        $this->validate([
+            'subject_id' => 'required',
+            'preview'    => 'required|array|min:2', // ít nhất header + 1 dòng
+        ]);
+
+        $subject = app(SubjectRepositoryInterface::class)
+            ->getSubjectById($this->subject_id);
+
+        if (!$subject) {
+            $this->dispatch('notify', message: 'Subject không tồn tại!');
+            return;
+        }
+
+        // Bỏ dòng header
+        $rows = $this->preview;
+
+        $this->syllabusRepository->deleteWhere($this->subject_id);
+
+        foreach ($rows as $row) {
+
+            $this->syllabusRepository->create([
+                'subject_id'     => $this->subject_id,
+                'lesson_number'  => $row[0] ?? null,
+                'content'        => $row[1] ?? null,
+                'vocabulary'     => $row[2] ?? null,
+                'grammar'        => $row[3] ?? null,
+                'assignment'     => $row[4] ?? null,
+                'CLO'            => $row[5] ?? null,
+                'is_url'         => false,
+            ]);
+        }
+
+        session()->flash('success', 'Syllabus đã được tạo thành công!');
+        $this->redirectRoute('admin.management.syllabi', navigate: true);
+    }
+
 
     protected SyllabusRepositoryInterface $syllabusRepository;
 
@@ -34,15 +97,6 @@ class ActionsSyllabus extends Component
         $this->syllabusRepository = $syllabusRepository;
     }
 
-    protected function rules()
-    {
-        return SyllabusRules::rules($this->syllabusId);
-    }
-
-    protected function messages()
-    {
-        return SyllabusRules::messages();
-    }
 
     protected function attributes()
     {
@@ -67,7 +121,7 @@ class ActionsSyllabus extends Component
         } else {
             $this->is_url = false;
         }
-        
+
         $this->syllabusRepository->create([
             'subject_id' => $this->subject_id,
             'lesson_number' => $this->lesson_number,
@@ -97,14 +151,13 @@ class ActionsSyllabus extends Component
 
     public function updateSyllabus()
     {
-        $this->validate();
 
         if (filter_var($this->CLO, FILTER_VALIDATE_URL)) {
             $this->is_url = true;
         } else {
             $this->is_url = false;
         }
-        
+
         $this->syllabusRepository->update($this->syllabusId, [
             'subject_id' => $this->subject_id,
             'lesson_number' => $this->lesson_number,
@@ -150,12 +203,19 @@ class ActionsSyllabus extends Component
         $this->CLO = $syllabus->CLO;
     }
 
+    #[On('import-syllabus')]
+    public function importSyllabus()
+    {
+        $this->preview = [];
+        Flux::modal('import-syllabus')->show();
+    }
+
 
     public function render()
     {
         // Lấy subjects từ component cha (Syllabi) thông qua session hoặc parameter
         $subjects = app(SubjectRepositoryInterface::class)->getAll();
-        
+
         // Nếu có subject_id được chọn, lấy subjects của chương trình đó
         if ($this->subject_id) {
             $subject = app(SubjectRepositoryInterface::class)->getSubjectById($this->subject_id);
