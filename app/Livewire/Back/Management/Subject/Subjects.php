@@ -23,25 +23,15 @@ class Subjects extends Component
     public function mount()
     {
         $programId = request('program') ?? Program::first()?->id;
-        $this->selectedProgramId = $programId ? (int)$programId : null;
-    }
-
-    public function updatingSelectedProgramId()
-    {
-        $this->resetPage();
-    }
-
-    public function updatedSelectedProgramId()
-    {
-        $this->resetPage();
+        $this->selectedProgramId = $programId ;
     }
 
     public function selectProgram($programId)
     {
+
         $this->selectedProgramId = (int)$programId;
         $this->resetPage();
-        $this->dispatch('update-selected-program', $programId);
-        $this->dispatch('program-changed');
+        $this->redirectRoute('admin.management.subjects', navigate: true, parameters: ['program' => $this->selectedProgramId]);
         $this->loadPrograms();
     }
 

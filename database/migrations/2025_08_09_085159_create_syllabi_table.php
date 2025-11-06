@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('syllabi', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('subject_id')->constrained('subjects');
+            $table->foreignId('subject_id')->constrained('subjects')->onDelete('cascade');
             $table->unsignedInteger('lesson_number');
             $table->string('content')->nullable();
             $table->string('vocabulary')->nullable();

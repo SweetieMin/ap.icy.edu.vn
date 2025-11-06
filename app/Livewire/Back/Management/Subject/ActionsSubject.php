@@ -100,6 +100,7 @@ class ActionsSubject extends Component
             $this->redirectRoute('admin.management.subjects', navigate: true, parameters: ['program' => $programId]);
         } catch (Throwable $e) {
             session()->flash('error', 'Đã có lỗi xảy ra. Vui lòng thử lại sau.');
+            $this->redirectRoute('admin.management.subjects', navigate: true, parameters: ['program' => $programId]);
             return;
         }
         Flux::modal('modal-delete-subject')->close();
