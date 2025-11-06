@@ -39,17 +39,46 @@ class ActionsSyllabus extends Component
     public function updatedExcelFile()
     {
 
-        // Lấy path tạm
+        $this->validate([
+            'excel_file' => 'required|mimes:xlsx|max:20480'
+        ]);
+
         $path = $this->excel_file->getRealPath();
 
-        // Đọc sheet đầu tiên
         $data = Excel::toArray([], $path)[0];
 
-        // Bỏ row header (nếu bạn muốn)
+        // Lấy header row
+        $headers = array_map(function ($h) {
+            return strtolower(trim($h));
+        }, $data[0]);
+
+        // Danh sách cột bắt buộc
+        $requiredHeaders = [
+            'lesson',
+            'content',
+            'vocabulary',
+            'grammar',
+            'assignment',
+            'clo',
+        ];
+
+        // Kiểm tra thiếu cột
+        $missing = array_diff($requiredHeaders, $headers);
+
+        if (!empty($missing)) {
+            $this->preview = null;
+
+            session()->flash('error', 'File Excel không đúng format. Thiếu cột: ' . implode(', ', $missing));
+            $this->redirectRoute('admin.management.syllabi', navigate: true);
+            return;
+        }
+
+        // OK → bỏ header row
         unset($data[0]);
-        // Lưu preview để hiển thị
+
         $this->preview = $data;
     }
+
 
     public function save()
     {

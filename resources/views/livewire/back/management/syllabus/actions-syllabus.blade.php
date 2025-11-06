@@ -18,10 +18,11 @@
                     </flux:select>
                 </div>
                 <div class="form-group w-1/2">
-                    <flux:file-upload wire:model="excel_file" label="Upload files">
-                        <flux:file-upload.dropzone heading="Drop files or click to browse" text=" File Excel type .xlsx"
+                    <flux:file-upload wire:model="excel_file" label="Upload files" accept=".xlsx">
+                        <flux:file-upload.dropzone heading="Drop files or click to browse" text="File Excel type .xlsx"
                             with-progress inline />
                     </flux:file-upload>
+
                 </div>
             </div>
 
