@@ -119,6 +119,11 @@
                         <th class="text-left">Nội dung</th>
                         <th class="text-left">Assignment</th>
                         <th class="text-left">Mục tiêu (CLO)</th>
+                        @if (
+                            $syllabi->first() &&
+                                (auth()->user()->can('update', $syllabi->first()) || auth()->user()->can('delete', $syllabi->first())))
+                            <th class="text-center">Thao tác</th>
+                        @endif
                     </tr>
                 </thead>
                 <tbody id="sortable-syllabi">
@@ -140,7 +145,7 @@
                             </td>
                             <td class="table-cell">
                                 @if ($syllabus->is_url)
-                                    @if ($syllabus->CLO !== null && $syllabus->CLO !== "")
+                                    @if ($syllabus->CLO !== null && $syllabus->CLO !== '')
                                         <a href="{{ $syllabus->CLO }}" target="_blank" rel="noopener noreferrer">
                                             <flux:badge color="green">Link bài test</flux:badge>
                                         </a>
@@ -153,6 +158,29 @@
                                     </div>
                                 @endif
                             </td>
+
+                            @if (auth()->user()->can('update', $syllabus) || auth()->user()->can('delete', $syllabus))
+                                <td class="table-cell text-center">
+                                    <flux:dropdown>
+                                        <flux:button icon:trailing="chevron-down">Thao tác</flux:button>
+                                        <flux:menu>
+                                            @can('update', $syllabus)
+                                                <flux:menu.item icon="pencil"
+                                                    wire:click="editSyllabus({{ $syllabus->id }})">
+                                                    Sửa thông tin
+                                                </flux:menu.item>
+                                            @endcan
+                                            @can('delete', $syllabus)
+                                                <flux:menu.separator />
+                                                <flux:menu.item variant="danger" icon="trash"
+                                                    wire:click="deleteSyllabus({{ $syllabus->id }})">
+                                                    Xóa
+                                                </flux:menu.item>
+                                            @endcan
+                                        </flux:menu>
+                                    </flux:dropdown>
+                                </td>
+                            @endif
                         </tr>
                     @empty
                         <tr>

@@ -15,10 +15,12 @@ class Attendance extends Model
         'student_care_status',
         'note',
         'checked_by',
+        'attendance_type'
     ];
 
-    public function studentCareStatus(){
-        return match($this->student_care_status){
+    public function studentCareStatus()
+    {
+        return match ($this->student_care_status) {
             'success' => 'Đã liên hệ',
             'no_answer' => 'Không trả lời',
             'not_contact' => 'Chưa liên hệ',
@@ -26,8 +28,9 @@ class Attendance extends Model
         };
     }
 
-    public function studentCareStatusColor(){
-        return match($this->student_care_status){
+    public function studentCareStatusColor()
+    {
+        return match ($this->student_care_status) {
             'success' => 'bg-green-100 text-green-800',
             'no_answer' => 'bg-red-100 text-red-800',
             'not_contact' => 'bg-gray-100 text-gray-800',
@@ -35,7 +38,17 @@ class Attendance extends Model
         };
     }
 
-    public function getDateAttribute($value){
+    public function getAttendanceTypeLabelAttribute(): string
+    {
+        return match ($this->attendance_type) {
+            'official' => 'Chính thức',
+            'makeup'   => 'Điểm danh bù',
+            default    => 'Không xác định',
+        };
+    }
+
+    public function getDateAttribute($value)
+    {
         return Carbon::parse($value)->format('d/m/Y');
     }
 
@@ -43,7 +56,7 @@ class Attendance extends Model
     {
         return $this->belongsTo(ClassSchedule::class);
     }
-    
+
     public function student()
     {
         return $this->belongsTo(User::class);
@@ -58,5 +71,4 @@ class Attendance extends Model
     {
         return $this->belongsTo(User::class, 'checked_by');
     }
-
 }

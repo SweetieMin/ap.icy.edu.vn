@@ -25,7 +25,7 @@
             class="w-[320px] border-e border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900 h-full flex flex-col">
 
             {{-- Header cố định --}}
-            <div class="flex-shrink-0 p-4 border-b border-zinc-200 dark:border-zinc-700">
+            <div class="shrink-0 p-4 border-b border-zinc-200 dark:border-zinc-700">
 
                 <a href="{{ route('dashboard') }}" class="me-5 flex items-center space-x-2 rtl:space-x-reverse"
                     wire:navigate>
@@ -35,7 +35,7 @@
 
             {{-- Menu items có thể scroll --}}
             <div class="flex-1 overflow-y-auto">
-                <flux:navlist variant="outline" class="[&_[data-flux-icon]]:!size-5">
+                <flux:navlist variant="outline" class="**:data-flux-icon:size-5!">
                     <flux:navlist.group :heading="__('General')" class="grid">
 
                         <flux:navlist.item icon="home" :href="route('dashboard')"
@@ -187,6 +187,13 @@
                                     Xếp lịch học
                                 </flux:navlist.item>
                             @endif
+
+                            @if (auth()->user()->hasPermission('admin.arrangement.make-up-attendance'))
+                                <flux:navlist.item icon="clipboard-document-check" :href="route('admin.arrangement.make-up-attendance')"
+                                    :current="request()->routeIs('admin.arrangement.make-up-attendance')" wire:navigate>
+                                    QL Điểm danh
+                                </flux:navlist.item>
+                        @endif
                         </flux:navlist.group>
                     @endif
 

@@ -26,7 +26,11 @@ class ClassSchedule extends Model
         'end_time' => 'datetime:H:i',
     ];
 
-    
+    public function getFormattedDateAttribute()
+    {
+        return Carbon::parse($this->date)->format('d/m/Y');
+    }
+
     public function course()
     {
         return $this->belongsTo(Course::class);

@@ -43,6 +43,7 @@ use App\Http\Controllers\StudentRegistrationController;
 use App\Livewire\Back\General\Dashboard\LayoutDashboard;
 use App\Livewire\Back\Personnel\Service\StudentsCareLayout;
 use App\Livewire\Back\Finance\Price\ProgramPricesManagement;
+use App\Livewire\Back\Arrangement\Attendance\MakeUpAttendances;
 
 
 Route::get('/', function () {
@@ -112,6 +113,7 @@ Route::prefix('admin')->middleware(['auth', 'preventBackHistory'])->name('admin.
     Route::prefix('arrangement')->name('arrangement.')->group(function () {
         Route::get('time-table', TimeTable::class)->name('time-table')->middleware('checkPermission:admin.arrangement.time-table');
         Route::get('class-assignment', ClassAssignment::class)->name('class-assignment')->middleware('checkPermission:admin.arrangement.class-assignment');
+        Route::get('make-up-attendance', MakeUpAttendances::class)->name('make-up-attendance')->middleware('checkPermission:admin.arrangement.make-up-attendance');
     });
 
     Route::redirect('settings', 'settings/profile');
