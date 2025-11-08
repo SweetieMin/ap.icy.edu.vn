@@ -1,34 +1,36 @@
 <?php
 
-use App\Livewire\Settings\Passkey;
+
 
 
 // Settings
+use App\Livewire\TestEditor;
+use App\Livewire\Settings\Passkey;
 use App\Livewire\Settings\Profile;
 use App\Livewire\Settings\Password;
 use App\Livewire\Settings\Appearance;
+
+// Access
 use Illuminate\Support\Facades\Route;
 use App\Livewire\Settings\Notification;
 
-// Access
-use App\Livewire\Back\Access\Role\Roles;
-use App\Livewire\Back\Arrangement\TimeTable;
-
 // Finance
-use App\Livewire\Settings\AuthenticationLogs;
+use App\Livewire\Back\Access\Role\Roles;
 
 // Personnel
-use App\Livewire\Back\Personnel\Employee\Staff;
-use App\Livewire\Back\Finance\Bank\AccountsBank;
+use App\Livewire\Back\Arrangement\TimeTable;
+use App\Livewire\Settings\AuthenticationLogs;
 //use App\Livewire\Back\Personnel\Registration\StaffsRegistration;
 //use App\Livewire\Back\Personnel\Registration\StudentsRegistration;
 
 // Management
+use App\Livewire\Back\Personnel\Employee\Staff;
+use App\Livewire\Back\Finance\Bank\AccountsBank;
 use App\Livewire\Back\General\Library\Libraries;
 use App\Livewire\Back\Management\Course\Courses;
+
 use App\Livewire\Back\Management\Season\Seasons;
 use App\Livewire\Back\Personnel\Student\Students;
-
 use App\Livewire\Back\Arrangement\ClassAssignment;
 use App\Livewire\Back\General\Course\LayoutCourse;
 use App\Livewire\Back\Management\Program\Programs;
@@ -108,8 +110,9 @@ Route::prefix('admin')->middleware(['auth', 'preventBackHistory'])->name('admin.
         Route::get('tuitions-payment', TuitionsPayment::class)->name('tuitions-payment')->middleware('checkPermission:admin.finance.tuitions-payment');
 
         Route::get('program-prices', ProgramPricesManagement::class)->name('program-prices')->middleware('checkPermission:admin.finance.program-prices');
-
     });
+
+    Route::get('test-editor', TestEditor::class)->name('test-editor');
 
     Route::prefix('arrangement')->name('arrangement.')->group(function () {
         Route::get('time-table', TimeTable::class)->name('time-table')->middleware('checkPermission:admin.arrangement.time-table');
