@@ -4,7 +4,6 @@
 
 
 // Settings
-use App\Livewire\TestEditor;
 use App\Livewire\Settings\Passkey;
 use App\Livewire\Settings\Profile;
 use App\Livewire\Settings\Password;
@@ -112,7 +111,6 @@ Route::prefix('admin')->middleware(['auth', 'preventBackHistory'])->name('admin.
         Route::get('program-prices', ProgramPricesManagement::class)->name('program-prices')->middleware('checkPermission:admin.finance.program-prices');
     });
 
-    Route::get('test-editor', TestEditor::class)->name('test-editor');
 
     Route::prefix('arrangement')->name('arrangement.')->group(function () {
         Route::get('time-table', TimeTable::class)->name('time-table')->middleware('checkPermission:admin.arrangement.time-table');
