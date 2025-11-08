@@ -1,6 +1,6 @@
 <div>
     {{-- Modal điểm danh --}}
-    <flux:modal wire:model="showModal" class="w-full max-w-full md:w-[1200px] md:!max-w-[1200px]">
+    <flux:modal wire:model="showModal" class="w-full max-w-full md:w-[1200px] md:max-w-[1200px]!">
         <div class="p-4 md:p-6">
             <div class="mb-4">
                 <flux:heading class="font-bold text-lg md:text-xl">
@@ -20,20 +20,20 @@
                     <div class="bg-gray-50 dark:bg-gray-800 rounded-lg p-3 md:p-4 mb-4 md:mb-6">
                         <div class="grid grid-cols-1 gap-3 md:grid-cols-3 md:gap-4">
                             <div class="flex items-center space-x-2">
-                                <flux:icon.calendar class="w-4 h-4 text-gray-400 flex-shrink-0" />
+                                <flux:icon.calendar class="w-4 h-4 text-gray-400 shrink-0" />
                                 <span class="text-xs md:text-sm text-gray-600 dark:text-gray-400">
                                     Ngày: {{ \Carbon\Carbon::parse($classSchedule->date)->format('d/m/Y') }}
                                 </span>
                             </div>
                             <div class="flex items-center space-x-2">
-                                <flux:icon.clock class="w-4 h-4 text-gray-400 flex-shrink-0" />
+                                <flux:icon.clock class="w-4 h-4 text-gray-400 shrink-0" />
                                 <span class="text-xs md:text-sm text-gray-600 dark:text-gray-400">
                                     Giờ: {{ \Carbon\Carbon::parse($classSchedule->start_time)->format('H:i') }} -
                                     {{ \Carbon\Carbon::parse($classSchedule->end_time)->format('H:i') }}
                                 </span>
                             </div>
                             <div class="flex items-center space-x-2">
-                                <flux:icon.building-office class="w-4 h-4 text-gray-400 flex-shrink-0" />
+                                <flux:icon.building-office class="w-4 h-4 text-gray-400 shrink-0" />
                                 <span class="text-xs md:text-sm text-gray-600 dark:text-gray-400">
                                     Phòng: {{ $classSchedule->room_name }}
                                 </span>
@@ -54,7 +54,7 @@
                             {{-- Mobile Layout --}}
                             <div class="md:hidden space-y-3">
                                 <div class="flex items-center space-x-3">
-                                    <img class="h-10 w-10 rounded-full object-cover flex-shrink-0"
+                                    <img class="h-10 w-10 rounded-full object-cover shrink-0"
                                         src="{{ $student->detail?->avatar ?? asset('images/default-avatar.png') }}"
                                         alt="{{ $student->name }}">
                                     <div class="flex-1 min-w-0">
