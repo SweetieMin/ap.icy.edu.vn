@@ -16,6 +16,10 @@ return new class extends Migration
             $table->foreignId('class_schedule_id')->nullable()->constrained('class_schedules')->nullOnDelete();
             $table->foreignId('student_id')->nullable()->constrained('users')->nullOnDelete();
             $table->date('date');
+            $table->foreignId('checked_by')
+            ->nullable()
+            ->constrained('users')
+            ->nullOnDelete();
             $table->enum('status', ['absent', 'present']);
             $table->enum('student_care_status', ['no_answer', 'success', 'not_contact'])->nullable();
             $table->string('note')->nullable();

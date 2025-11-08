@@ -1,34 +1,35 @@
 <?php
 
-use App\Livewire\Settings\Profile;
+use App\Livewire\Settings\Passkey;
 
 
 // Settings
+use App\Livewire\Settings\Profile;
 use App\Livewire\Settings\Password;
 use App\Livewire\Settings\Appearance;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\Settings\Notification;
-use App\Livewire\Back\Access\Role\Roles;
 
 // Access
+use App\Livewire\Back\Access\Role\Roles;
 use App\Livewire\Back\Arrangement\TimeTable;
-use App\Livewire\Settings\AuthenticationLogs;
 
 // Finance
-use App\Livewire\Back\Personnel\Employee\Staff;
+use App\Livewire\Settings\AuthenticationLogs;
 
 // Personnel
+use App\Livewire\Back\Personnel\Employee\Staff;
 use App\Livewire\Back\Finance\Bank\AccountsBank;
-use App\Livewire\Back\General\Library\Libraries;
 //use App\Livewire\Back\Personnel\Registration\StaffsRegistration;
 //use App\Livewire\Back\Personnel\Registration\StudentsRegistration;
 
 // Management
+use App\Livewire\Back\General\Library\Libraries;
 use App\Livewire\Back\Management\Course\Courses;
 use App\Livewire\Back\Management\Season\Seasons;
 use App\Livewire\Back\Personnel\Student\Students;
-use App\Livewire\Back\Arrangement\ClassAssignment;
 
+use App\Livewire\Back\Arrangement\ClassAssignment;
 use App\Livewire\Back\General\Course\LayoutCourse;
 use App\Livewire\Back\Management\Program\Programs;
 use App\Livewire\Back\Management\Subject\Subjects;
@@ -119,6 +120,7 @@ Route::prefix('admin')->middleware(['auth', 'preventBackHistory'])->name('admin.
     Route::redirect('settings', 'settings/profile');
     Route::get('settings/profile', Profile::class)->name('settings.profile');
     Route::get('settings/password', Password::class)->name('settings.password');
+    Route::get('settings/passkey', Passkey::class)->name('settings.passkey');
     Route::get('settings/appearance', Appearance::class)->name('settings.appearance');
     Route::get('settings/notification', Notification::class)->name('settings.notification');
     Route::get('settings/authentication-logs', AuthenticationLogs::class)->name('settings.authentication-logs');
@@ -127,3 +129,5 @@ Route::prefix('admin')->middleware(['auth', 'preventBackHistory'])->name('admin.
 require __DIR__ . '/auth.php';
 
 Route::get('pdf/student-registration/{token}', [StudentRegistrationController::class, 'generate'])->name('pdf.student-registration')->middleware('auth', 'preventBackHistory');
+
+Route::passkeys();

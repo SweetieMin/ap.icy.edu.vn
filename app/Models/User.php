@@ -8,11 +8,13 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Notifications\VerifyEmailNotification;
 use App\Notifications\ResetPasswordNotification;
+use Spatie\LaravelPasskeys\Models\Concerns\HasPasskeys;
+use Spatie\LaravelPasskeys\Models\Concerns\InteractsWithPasskeys;
 
-class User extends Authenticatable 
+class User extends Authenticatable implements HasPasskeys
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable, SoftDeletes;
+    use HasFactory, Notifiable, SoftDeletes, InteractsWithPasskeys;
 
     /**
      * The attributes that are mass assignable.

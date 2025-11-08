@@ -144,4 +144,11 @@
       0 => 'SimpleSoftwareIO\\QrCode\\QrCodeServiceProvider',
     ),
   ),
+  'spatie/laravel-passkeys' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Spatie\\LaravelPasskeys\\LaravelPasskeysServiceProvider',
+    ),
+  ),
 );

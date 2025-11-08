@@ -189,11 +189,13 @@
                             @endif
 
                             @if (auth()->user()->hasPermission('admin.arrangement.make-up-attendance'))
-                                <flux:navlist.item icon="clipboard-document-check" :href="route('admin.arrangement.make-up-attendance')"
-                                    :current="request()->routeIs('admin.arrangement.make-up-attendance')" wire:navigate>
+                                <flux:navlist.item icon="clipboard-document-check"
+                                    :href="route('admin.arrangement.make-up-attendance')"
+                                    :current="request()->routeIs('admin.arrangement.make-up-attendance')"
+                                    wire:navigate>
                                     QL Điểm danh
                                 </flux:navlist.item>
-                        @endif
+                            @endif
                         </flux:navlist.group>
                     @endif
 
@@ -216,7 +218,9 @@
                         </flux:navlist.group>
                     @endif
 
-                    @if (auth()->user()->hasPermission('admin.personnel.staff') || auth()->user()->hasPermission('admin.personnel.students') || auth()->user()->hasPermission('admin.personnel.student-care'))
+                    @if (auth()->user()->hasPermission('admin.personnel.staff') ||
+                            auth()->user()->hasPermission('admin.personnel.students') ||
+                            auth()->user()->hasPermission('admin.personnel.student-care'))
 
                         <hr class="h-px my-2 bg-gray-200 border-0 dark:bg-gray-700">
                         <flux:navlist.group :heading="__('Human resources')" class="grid">
@@ -235,7 +239,8 @@
                             @endif
 
                             @if (auth()->user()->hasPermission('admin.personnel.student-care'))
-                                <flux:navlist.item icon="chat-bubble-left-right" :href="route('admin.personnel.student-care')"
+                                <flux:navlist.item icon="chat-bubble-left-right"
+                                    :href="route('admin.personnel.student-care')"
                                     :current="request()->routeIs('admin.personnel.student-care')" wire:navigate>
                                     Chăm sóc học viên
                                 </flux:navlist.item>
@@ -337,7 +342,7 @@
 
             {{-- Footer --}}
             @include('components.layouts.app.footer')
-            {{-- @include('components.layouts.app.dial') --}}
+    
         </div>
     </div>
     @stack('scripts')

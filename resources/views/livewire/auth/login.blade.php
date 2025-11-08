@@ -34,9 +34,13 @@
 
             <flux:checkbox wire:model="remember" :label="__('Ghi nhớ đăng nhập')" />
 
+
+
             <flux:button variant="primary" color="pink" type="submit" class="w-full">
                 {{ __('Đăng nhập') }}
             </flux:button>
         </form>
+
+        <x-authenticate-passkey />
 
 </div>
