@@ -7,9 +7,9 @@
             <div
                 class="2xl:col-span-2 bg-white dark:bg-gray-900 rounded-2xl shadow-xl border-0 overflow-hidden backdrop-blur-sm">
                 <!-- Header với gradient -->
-                <div class="h-20 bg-gradient-to-r from-pink-400 via-rose-400 to-pink-500 relative">
+                <div class="h-20 bg-linear-to-r from-pink-400 via-rose-400 to-pink-500 relative">
                     <div class="absolute inset-0 bg-black/10"></div>
-                    <div class="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-white dark:from-gray-900">
+                    <div class="absolute bottom-0 left-0 right-0 h-16 bg-linear-to-t from-white dark:from-gray-900">
                     </div>
                 </div>
 
@@ -48,9 +48,9 @@
                                 </div>
                             @elseif (auth()->user()->email)
                                 <div
-                                    class="bg-gradient-to-r from-amber-50 to-orange-50 dark:from-amber-900/20 dark:to-orange-900/20 border border-amber-200 dark:border-amber-700 rounded-xl p-6">
+                                    class="bg-linear-to-r from-amber-50 to-orange-50 dark:from-amber-900/20 dark:to-orange-900/20 border border-amber-200 dark:border-amber-700 rounded-xl p-6">
                                     <div class="flex items-start space-x-4">
-                                        <div class="flex-shrink-0">
+                                        <div class="shrink-0">
                                             <div
                                                 class="w-10 h-10 bg-amber-100 dark:bg-amber-900/50 rounded-full flex items-center justify-center">
                                                 <svg class="w-5 h-5 text-amber-600 dark:text-amber-400"
@@ -144,9 +144,9 @@
                             @else
                                 {{-- No email - Show Google linking option --}}
                                 <div
-                                    class="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 border border-blue-200 dark:border-blue-700 rounded-xl p-6">
+                                    class="bg-linear-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 border border-blue-200 dark:border-blue-700 rounded-xl p-6">
                                     <div class="flex items-start space-x-4">
-                                        <div class="flex-shrink-0">
+                                        <div class="shrink-0">
                                             <div
                                                 class="w-10 h-10 bg-blue-100 dark:bg-blue-900/50 rounded-full flex items-center justify-center">
                                                 <svg class="w-5 h-5 text-blue-600 dark:text-blue-400"
@@ -190,9 +190,9 @@
             <div
                 class="2xl:col-span-3 bg-white dark:bg-gray-900 rounded-2xl shadow-xl border-0 overflow-hidden backdrop-blur-sm">
                 <!-- Header với gradient -->
-                <div class="h-20 bg-gradient-to-r from-pink-400 via-rose-400 to-pink-500 relative">
+                <div class="h-20 bg-linear-to-r from-pink-400 via-rose-400 to-pink-500 relative">
                     <div class="absolute inset-0 bg-black/10"></div>
-                    <div class="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-white dark:from-gray-900">
+                    <div class="absolute bottom-0 left-0 right-0 h-16 bg-linear-to-t from-white dark:from-gray-900">
                     </div>
                 </div>
 
@@ -202,7 +202,7 @@
                         <h3 class="text-xl font-semibold text-pink-600 dark:text-pink-400 mb-2">
                             Thông tin cá nhân
                         </h3>
-                        <div class="w-16 h-1 bg-gradient-to-r from-pink-400 to-rose-500 rounded-full mx-auto"></div>
+                        <div class="w-16 h-1 bg-linear-to-r from-pink-400 to-rose-500 rounded-full mx-auto"></div>
                     </div>
 
                     <!-- Form Fields -->
@@ -255,7 +255,7 @@
                         <!-- Nút lưu thay đổi -->
                         <div class="flex items-center justify-between space-x-4">
                             <flux:button variant="primary" type="submit" icon="check"
-                                class=" !bg-gradient-to-r !from-pink-500 !to-rose-500 hover:!from-pink-600 hover:!to-rose-600 !border-0 !shadow-lg hover:!shadow-xl hover:!shadow-pink-500/25 !transition-all !duration-300 hover:!scale-105 !rounded-2xl mb-4">
+                                class=" bg-linear-to-r! from-pink-500! to-rose-500! hover:from-pink-600! hover:to-rose-600! border-0! shadow-lg! hover:shadow-xl! hover:shadow-pink-500/25! !transition-all! !duration-300! hover:!scale-105! !rounded-2xl! mb-4">
                                 Lưu thay đổi
                             </flux:button>
 
