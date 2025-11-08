@@ -111,7 +111,7 @@
     <div class="flex min-h-svh flex-col items-center justify-center p-4 sm:p-6 md:p-10">
         <div class="flex w-full max-w-sm sm:max-w-md flex-col gap-4 sm:gap-6">
             <header>
-                <a href="{{ route('dashboard') }}" class="flex flex-col items-center gap-2 font-medium" wire:navigate>
+                <a href="/" class="flex flex-col items-center gap-2 font-medium" wire:navigate>
                     <span class="flex h-20 w-20 sm:h-30 sm:w-30 items-center justify-center rounded-md text-pink-500">
                         <x-app-logo-icon class="w-90 h-90" alt="Logo ICY Education" />
                     </span>
