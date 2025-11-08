@@ -6,9 +6,7 @@
     </form>
 
     @if ($message = session()->get('authenticatePasskey::message'))
-        <div class="bg-red-100 text-red-700 p-4 border border-red-400 rounded">
-            {{ $message }}
-        </div>
+        <flux:callout variant="warning" icon="exclamation-circle" heading="{{ $message }}" />
     @endif
 
     @if ($slot->isEmpty())
