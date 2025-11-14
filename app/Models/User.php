@@ -10,11 +10,31 @@ use App\Notifications\VerifyEmailNotification;
 use App\Notifications\ResetPasswordNotification;
 use Spatie\LaravelPasskeys\Models\Concerns\HasPasskeys;
 use Spatie\LaravelPasskeys\Models\Concerns\InteractsWithPasskeys;
+use Spatie\Activitylog\Traits\LogsActivity;
+use Spatie\Activitylog\LogOptions;
+
 
 class User extends Authenticatable implements HasPasskeys
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable, SoftDeletes, InteractsWithPasskeys;
+    use HasFactory, Notifiable, SoftDeletes, InteractsWithPasskeys, LogsActivity;
+
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+            ->logOnlyDirty() // chỉ log khi có thay đổi thực sự
+            ->logOnly(['name', 'username', 'password', 'email' , 'detail.birthday', 'detail.id_card', 'detail.address', 'detail.phone', 'detail.avatar', 'detail.aspiration', 'detail.guardian_name', 'detail.guardian_phone'])
+            ->useLogName('user') // đặt tên nhóm log
+            ->setDescriptionForEvent(function (string $eventName) {
+                return match ($eventName) {
+                    'created' => 'Tạo mới người dùng',
+                    'updated' => 'Cập nhật thông tin người dùng',
+                    'deleted' => 'Xóa người dùng',
+                    default => "Sự kiện {$eventName} trên người dùng",
+                };
+            })
+            ->dontSubmitEmptyLogs();
+    }
 
     /**
      * The attributes that are mass assignable.
@@ -83,7 +103,7 @@ class User extends Authenticatable implements HasPasskeys
 
     /**
      * The attributes add role of user.
-     */ 
+     */
     public function roles()
     {
         return $this->belongsToMany(Role::class, 'role_user');

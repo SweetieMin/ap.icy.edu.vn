@@ -61,7 +61,7 @@ class UserRepository implements UserRepositoryInterface
     {
         $user = User::find($id);
         $user->update($data['user']);
-        $user->detail()->update($data['detail']);
+        $user->detail->update($data['detail']);
         $user->locations()->sync($data['locations']);
 
         return $user;

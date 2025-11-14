@@ -183,6 +183,7 @@ class ActionsStudent extends Component
                 'gender' => $this->gender,
                 'guardian_name' => $this->guardian_name,
                 'guardian_phone' => $this->guardian_phone,
+                'aspiration' => $this->aspiration,
             ],
             'locations' => [$this->location_id],
         ]);

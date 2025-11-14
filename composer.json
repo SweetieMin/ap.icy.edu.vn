@@ -20,6 +20,7 @@
         "maatwebsite/excel": "^3.1",
         "omnia-digital/livewire-calendar": "^3.2",
         "simplesoftwareio/simple-qrcode": "^4.2",
+        "spatie/laravel-activitylog": "^4.10",
         "spatie/laravel-passkeys": "^1.5"
     },
     "require-dev": {

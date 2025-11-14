@@ -40,9 +40,10 @@
     36 => 'Omnia\\LivewireCalendar\\LivewireCalendarServiceProvider',
     37 => 'Pest\\Laravel\\PestServiceProvider',
     38 => 'SimpleSoftwareIO\\QrCode\\QrCodeServiceProvider',
-    39 => 'Spatie\\LaravelPasskeys\\LaravelPasskeysServiceProvider',
-    40 => 'App\\Providers\\AppServiceProvider',
-    41 => 'App\\Providers\\AuthServiceProvider',
+    39 => 'Spatie\\Activitylog\\ActivitylogServiceProvider',
+    40 => 'Spatie\\LaravelPasskeys\\LaravelPasskeysServiceProvider',
+    41 => 'App\\Providers\\AppServiceProvider',
+    42 => 'App\\Providers\\AuthServiceProvider',
   ),
   'eager' => 
   array (
@@ -69,9 +70,10 @@
     20 => 'Omnia\\LivewireCalendar\\LivewireCalendarServiceProvider',
     21 => 'Pest\\Laravel\\PestServiceProvider',
     22 => 'SimpleSoftwareIO\\QrCode\\QrCodeServiceProvider',
-    23 => 'Spatie\\LaravelPasskeys\\LaravelPasskeysServiceProvider',
-    24 => 'App\\Providers\\AppServiceProvider',
-    25 => 'App\\Providers\\AuthServiceProvider',
+    23 => 'Spatie\\Activitylog\\ActivitylogServiceProvider',
+    24 => 'Spatie\\LaravelPasskeys\\LaravelPasskeysServiceProvider',
+    25 => 'App\\Providers\\AppServiceProvider',
+    26 => 'App\\Providers\\AuthServiceProvider',
   ),
   'deferred' => 
   array (

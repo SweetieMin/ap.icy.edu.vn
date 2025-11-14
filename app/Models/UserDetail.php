@@ -5,10 +5,43 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
+use Spatie\Activitylog\Traits\LogsActivity;
+use Spatie\Activitylog\LogOptions;
 
 class UserDetail extends Model
 {
-    use HasFactory;
+    use HasFactory, LogsActivity;
+
+    /**
+     * Chỉ ghi log khi update (không ghi create/delete)
+     */
+    protected static $recordEvents = ['updated'];
+
+    /**
+     * Cấu hình ghi log Spatie
+     */
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+            ->logOnlyDirty()
+            ->logOnly([
+                'birthday',
+                'id_card',
+                'address',
+                'phone',
+                'avatar',
+                'aspiration',
+                'gender',
+                'guardian_name',
+                'guardian_phone',
+            ])
+            ->useLogName('user_detail')
+            ->setDescriptionForEvent(
+                fn(string $eventName) =>
+                'Cập nhật thông tin chi tiết người dùng'
+            )
+            ->dontSubmitEmptyLogs();
+    }
 
     protected $primaryKey = 'user_id';
     public $incrementing = false;
