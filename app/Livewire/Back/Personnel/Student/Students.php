@@ -6,19 +6,27 @@ use Livewire\Component;
 use Livewire\Attributes\Title;
 use App\Repositories\Contracts\UserRepositoryInterface;
 use App\Repositories\Contracts\StudentRepositoryInterface;
-use Barryvdh\DomPDF\Facade\Pdf;
+
 
 #[Title('Học viên')]
 class Students extends Component
 {
+
     public $filterLocationId = null;
     public $search = '';
     public $students = [];
     public $studentsWithoutLocation = [];
 
+    public $avatarFile;
+
     public function addStudent()
     {
         $this->dispatch('add-student');
+    }
+
+    public function updatedAvatarFile()
+    {
+        
     }
 
     public function editStudent($studentId)
@@ -101,5 +109,14 @@ class Students extends Component
             'studentsWithoutLocation' => $this->studentsWithoutLocation,
             'locations' => $locations,
         ]);
+    }
+
+    public function exportDataStudent(){
+        $this->dispatch('exportDataStudent');
+    }
+
+    public function updateAvatar($id)
+    {
+        $this->dispatch('updateAvatar', $id);
     }
 }

@@ -112,88 +112,91 @@
     <div class="theme-table-pink">
         {{-- Desktop Table View --}}
         <div class="hidden md:block overflow-x-auto">
-            <table>
-                <thead>
-                    <tr>
-                        <th class="text-center  w-30">Bài học</th>
-                        <th class="text-left">Nội dung</th>
-                        <th class="text-left">Assignment</th>
-                        <th class="text-left">Mục tiêu (CLO)</th>
-                        @if (
-                            $syllabi->first() &&
-                                (auth()->user()->can('update', $syllabi->first()) || auth()->user()->can('delete', $syllabi->first())))
-                            <th class="text-center">Thao tác</th>
-                        @endif
-                    </tr>
-                </thead>
-                <tbody id="sortable-syllabi">
-                    @forelse($syllabi as $syllabus)
-                        <tr class="table-row sortable-row" data-id="{{ $syllabus->id }}">
-                            <td
-                                class="table-cell text-center font-medium {{ $syllabi->first() && (auth()->user()->can('update', $syllabi->first()) || auth()->user()->can('delete', $syllabi->first())) ? 'drag-handle cursor-move' : '' }}">
-                                {{ $syllabus->lesson_number }}
-                            </td>
-                            <td class="table-cell">
-                                <div title="{{ $syllabus->content }}">
-                                    {{ $syllabus->content }}
-                                </div>
-                            </td>
-                            <td class="table-cell">
-                                <div title="{{ $syllabus->assignment }}">
-                                    {{ $syllabus->assignment }}
-                                </div>
-                            </td>
-                            <td class="table-cell">
-                                @if ($syllabus->is_url)
-                                    @if ($syllabus->CLO !== null && $syllabus->CLO !== '')
-                                        <a href="{{ $syllabus->CLO }}" target="_blank" rel="noopener noreferrer">
-                                            <flux:badge color="green">Link bài test</flux:badge>
-                                        </a>
-                                    @else
-                                        <flux:badge color="red">Chưa có link bài test</flux:badge>
-                                    @endif
-                                @else
-                                    <div title="{{ $syllabus->CLO }}">
-                                        {{ $syllabus->CLO }}
-                                    </div>
-                                @endif
-                            </td>
+            <div class="max-h-[50vh] overflow-y-auto">
 
-                            @if (auth()->user()->can('update', $syllabus) || auth()->user()->can('delete', $syllabus))
-                                <td class="table-cell text-center">
-                                    <flux:dropdown>
-                                        <flux:button icon:trailing="chevron-down">Thao tác</flux:button>
-                                        <flux:menu>
-                                            @can('update', $syllabus)
-                                                <flux:menu.item icon="pencil"
-                                                    wire:click="editSyllabus({{ $syllabus->id }})">
-                                                    Sửa thông tin
-                                                </flux:menu.item>
-                                            @endcan
-                                            @can('delete', $syllabus)
-                                                <flux:menu.separator />
-                                                <flux:menu.item variant="danger" icon="trash"
-                                                    wire:click="deleteSyllabus({{ $syllabus->id }})">
-                                                    Xóa
-                                                </flux:menu.item>
-                                            @endcan
-                                        </flux:menu>
-                                    </flux:dropdown>
-                                </td>
+                <table class="w-full">
+                    <thead class="sticky top-0 z-20 bg-white dark:bg-zinc-900 shadow">
+                        <tr>
+                            <th class="text-center  w-30">Bài học</th>
+                            <th class="text-left">Nội dung</th>
+                            <th class="text-left">Assignment</th>
+                            <th class="text-left">Mục tiêu (CLO)</th>
+                            @if (
+                                $syllabi->first() &&
+                                    (auth()->user()->can('update', $syllabi->first()) || auth()->user()->can('delete', $syllabi->first())))
+                                <th class="text-center">Thao tác</th>
                             @endif
                         </tr>
-                    @empty
-                        <tr>
-                            <td colspan="4" class="table-cell">
-                                <div class="empty-state flex flex-col items-center">
-                                    <flux:icon.book-open class="w-8 h-8 mb-2" />
-                                    <div class="text-sm">Không có syllabus nào cho môn học này</div>
-                                </div>
-                            </td>
-                        </tr>
-                    @endforelse
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody id="sortable-syllabi">
+                        @forelse($syllabi as $syllabus)
+                            <tr class="table-row sortable-row" data-id="{{ $syllabus->id }}">
+                                <td
+                                    class="table-cell text-center font-medium {{ $syllabi->first() && (auth()->user()->can('update', $syllabi->first()) || auth()->user()->can('delete', $syllabi->first())) ? 'drag-handle cursor-move' : '' }}">
+                                    {{ $syllabus->lesson_number }}
+                                </td>
+                                <td class="table-cell">
+                                    <div title="{{ $syllabus->content }}">
+                                        {{ $syllabus->content }}
+                                    </div>
+                                </td>
+                                <td class="table-cell">
+                                    <div title="{{ $syllabus->assignment }}">
+                                        {{ $syllabus->assignment }}
+                                    </div>
+                                </td>
+                                <td class="table-cell">
+                                    @if ($syllabus->is_url)
+                                        @if ($syllabus->CLO !== null && $syllabus->CLO !== '')
+                                            <a href="{{ $syllabus->CLO }}" target="_blank" rel="noopener noreferrer">
+                                                <flux:badge color="green">Link bài test</flux:badge>
+                                            </a>
+                                        @else
+                                            <flux:badge color="red">Chưa có link bài test</flux:badge>
+                                        @endif
+                                    @else
+                                        <div title="{{ $syllabus->CLO }}">
+                                            {{ $syllabus->CLO }}
+                                        </div>
+                                    @endif
+                                </td>
+
+                                @if (auth()->user()->can('update', $syllabus) || auth()->user()->can('delete', $syllabus))
+                                    <td class="table-cell text-center">
+                                        <flux:dropdown>
+                                            <flux:button icon:trailing="chevron-down">Thao tác</flux:button>
+                                            <flux:menu>
+                                                @can('update', $syllabus)
+                                                    <flux:menu.item icon="pencil"
+                                                        wire:click="editSyllabus({{ $syllabus->id }})">
+                                                        Sửa thông tin
+                                                    </flux:menu.item>
+                                                @endcan
+                                                @can('delete', $syllabus)
+                                                    <flux:menu.separator />
+                                                    <flux:menu.item variant="danger" icon="trash"
+                                                        wire:click="deleteSyllabus({{ $syllabus->id }})">
+                                                        Xóa
+                                                    </flux:menu.item>
+                                                @endcan
+                                            </flux:menu>
+                                        </flux:dropdown>
+                                    </td>
+                                @endif
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="4" class="table-cell">
+                                    <div class="empty-state flex flex-col items-center">
+                                        <flux:icon.book-open class="w-8 h-8 mb-2" />
+                                        <div class="text-sm">Không có syllabus nào cho môn học này</div>
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforelse
+                    </tbody>
+                </table>
+            </div>
         </div>
 
         {{-- Mobile Card View --}}
@@ -274,11 +277,6 @@
                 </div>
             @endforelse
         </div>
-    </div>
-
-    <!-- Summary -->
-    <div class="mt-4 text-sm text-zinc-600 dark:text-zinc-400">
-        Tổng số {{ $syllabi->count() }} bài học
     </div>
 
     <script>

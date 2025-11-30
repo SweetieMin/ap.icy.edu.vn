@@ -368,3 +368,26 @@ select:focus[data-flux-control] {
 .theme-card-pink .card-action-delete {
     @apply p-2 text-red-600 hover:text-red-800 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-all duration-200 transform hover:scale-110;
 }
+
+/* Thanh cuộn tổng */
+::-webkit-scrollbar {
+    width: 6px;        /* độ rộng thanh cuộn dọc */
+    height: 6px;       /* độ cao thanh cuộn ngang */
+}
+
+/* Phần track (nền) */
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/* Thanh kéo (thumb) */
+::-webkit-scrollbar-thumb {
+    background-color: var(--color-accent);
+    border-radius: 15px;
+}
+
+/* Khi hover thanh kéo */
+::-webkit-scrollbar-thumb:hover {
+    background: var(--color-accent);
+}
+

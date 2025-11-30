@@ -2,12 +2,15 @@
 
 namespace App\Livewire\Back\Management\Syllabus;
 
+use App\Models\Course;
 use App\Models\Program;
 use App\Models\Subject;
 use Livewire\Component;
 use App\Models\Syllabus;
+use App\Models\User;
 use Livewire\Attributes\On;
 use Livewire\Attributes\Title;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\Repositories\Contracts\SubjectRepositoryInterface;
 
@@ -34,28 +37,44 @@ class Syllabi extends Component
 
     public function loadPrograms()
     {
-        $this->programs = Program::orderBy('ordering')->get();
+        $user = User::find(Auth::id());
+
+        if ($user->hasRole('BOD')) {
+            $this->programs = Program::orderBy('ordering')->get();
+        } else {
+            $this->programs = $user->courses()
+                ->with('subject.program')     // load sâu tới program
+                ->get()
+                ->pluck('subject.program')    // lấy object Program
+                ->filter()                     // loại null (nếu có)
+                ->unique('id')                 // tránh trùng
+                ->sortBy('ordering')           // sắp xếp
+                ->values();                    // reset key
+        }
     }
 
     public function loadSubjects()
     {
-        if ($this->selectedProgramId) {
-            $this->subjects = app(SubjectRepositoryInterface::class)->getByProgram($this->selectedProgramId);
-        } else {
+
+        //**if ($this->selectedProgramId) {
+        /*    $this->subjects = app(SubjectRepositoryInterface::class)->getByProgram($this->selectedProgramId);
+        /*} else {
             $this->subjects = collect();
+        } */
+
+        $user = User::find(Auth::id());
+
+        if ($user->hasRole('BOD')) {
+            $this->subjects = Subject::where('program_id', $this->selectedProgramId)->get();
+        } else {
+            $this->subjects = $user->courses()
+                ->with('subject')
+                ->get()
+                ->pluck('subject')
+                ->filter(fn($subject) => $subject && $subject->program_id == $this->selectedProgramId) // 🔥 lọc theo chương trình
+                ->unique('id')
+                ->values();
         }
-    }
-
-    public function selectProgram($programId)
-    {
-        $this->selectedProgramId = $programId;
-        $this->loadSubjects(); // Chọn môn học đầu tiên của chương trình mới
-        $this->selectedSubjectId = $this->subjects->first()?->id;
-    }
-
-    public function selectSubject($subjectId)
-    {
-        $this->selectedSubjectId = $subjectId;
     }
 
     public function updatedSelectedProgramId()
@@ -101,7 +120,9 @@ class Syllabi extends Component
 
     public function render()
     {
+
         $syllabi = Syllabus::with(['subject.program'])
+
             ->where('subject_id', $this->selectedSubjectId)
             ->when($this->search, function ($query) {
                 $query->where(function ($q) {
@@ -115,6 +136,8 @@ class Syllabi extends Component
             })
             ->orderBy('lesson_number')
             ->get();
+
+
 
         return view('livewire.back.management.syllabus.syllabi', [
             'syllabi' => $syllabi,

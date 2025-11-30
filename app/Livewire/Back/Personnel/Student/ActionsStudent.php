@@ -6,14 +6,22 @@ use Flux\Flux;
 use Livewire\Component;
 use Illuminate\Support\Str;
 use Livewire\Attributes\On;
+use Livewire\WithFileUploads;
 use App\Support\User\UserHelper;
 use Illuminate\Support\Facades\Hash;
+use Maatwebsite\Excel\Facades\Excel;
 use App\Support\Validation\UserRules;
+use Illuminate\Support\Facades\Storage;
+use App\Exports\Personnel\StudentExport;
 use App\Repositories\Contracts\UserRepositoryInterface;
 
 class ActionsStudent extends Component
 {
+
+    use WithFileUploads;
+
     public $studentId;
+    public $student;
     public $isEditStudentMode = false;
 
     // User fields
@@ -26,8 +34,12 @@ class ActionsStudent extends Component
     public $location_id;
     public $locationStudent;
 
-    // File upload
     public $avatarFile;
+    public $existAvatar;
+    public $path;
+
+    public $export_location_id;
+    public $exportColumns;
 
     public function rules()
     {
@@ -232,6 +244,97 @@ class ActionsStudent extends Component
             session()->flash('error', 'Xét duyệt học viên thất bại.');
         }
         $this->redirectRoute('admin.personnel.students', navigate: true);
+    }
+
+    #[On('exportDataStudent')]
+    public function exportDataStudent()
+    {
+        Flux::modal('export-student')->show();
+    }
+
+    public function exportDataConfirm()
+    {
+        $columns = collect($this->exportColumns)
+            ->mapWithKeys(fn($col) => [$col => true])
+            ->toArray();
+
+        return Excel::download(new StudentExport($this->export_location_id, $columns), 'students.xlsx');
+    }
+
+    #[On('updateAvatar')]
+    public function updateAvatar($id)
+    {
+        $this->studentId = $id;
+
+        $this->student = app(UserRepositoryInterface::class)->getUserById($this->studentId);
+        $this->existAvatar = $this->student->detail->getRawOriginal('avatar');
+
+        Flux::modal('update-avatar')->show();
+    }
+
+    public function updateAvatarConfirm()
+    {
+        $this->validate([
+            'avatarFile' => 'required|image|max:10240|mimes:jpg,jpeg,png,webp',
+        ], [
+            'avatarFile.required' => 'Ảnh đại diện là bắt buộc.',
+            'avatarFile.image' => 'Ảnh đại diện phải là hình ảnh.',
+            'avatarFile.max' => 'Ảnh đại diện không được vượt quá 10MB.',
+            'avatarFile.mimes' => 'Ảnh đại diện phải có định dạng: jpeg, png, jpg, gif.',
+        ]);
+
+        $student = app(UserRepositoryInterface::class)->getUserById($this->studentId);
+
+        $account_code = $student->account_code;
+
+        $avatarFile = $this->avatarFile;
+
+        $filename =  $account_code . '-' . uniqid() . '.' . $avatarFile->getClientOriginalExtension();
+
+        $this->path = $avatarFile->storeAs('images/avatars/', $filename, 'public');
+
+        $this->avatarFile->delete();
+        $this->avatarFile = null;
+
+        /**
+         * if($award->image && Storage::disk('public')->exists($this->path)) {
+         *  Storage::disk('public')->delete($award->image);
+         *} 
+         */
+
+        Storage::disk('public')->delete('images/avatars/'. $student->detail->getRawOriginal('avatar') ?? null);
+
+        $saved = $student->detail->update([
+            'avatar' => $filename,
+        ]);
+
+        if ($saved) {
+            
+            session()->flash('success', 'Ảnh đại diện đã được cập nhật thành công.');
+
+        } else {
+            session()->flash('error', 'Ảnh đại diện đã được cập nhật thất bại.');
+        }
+        Flux::modal('update-avatar')->close();
+        $this->redirectRoute('admin.personnel.students', navigate: true);
+    }
+
+    public function removeAvatarFile()
+    {
+        if ($this->avatarFile) {
+            $this->avatarFile->delete();
+            $this->avatarFile = null;
+        }
+    }
+
+    public function closeUpdateAvatarModal()
+    {
+        $this->removeAvatarFile();
+    }
+
+    public function updatingAvatarFile()
+    {
+        $this->removeAvatarFile();
     }
 
     public function updateUsername()

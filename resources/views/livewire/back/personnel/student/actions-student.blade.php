@@ -32,7 +32,7 @@
                     <div class="form-group">
                         <flux:select wire:model='location_id' label="🏢 Cơ sở" placeholder="Chọn cơ sở"
                             class="rounded-xl border-gray-300 focus:border-blue-500 focus:ring-blue-500 transition-all duration-300">
-                           
+
                             @foreach ($locationStudent as $location)
                                 <flux:select.option :value="$location->id" label="{{ $location->name }}" />
                             @endforeach
@@ -40,7 +40,7 @@
                     </div>
                 </div>
             @endif
-           
+
 
             <div class="space-y-2">
                 {{-- Name and Username --}}
@@ -50,15 +50,12 @@
                             <flux:input wire:model='name' label="👨‍🎓 Họ và tên 🚩" placeholder="Nhập họ và tên đầy đủ"
                                 wire:change='updateUsername'
                                 class="rounded-xl border-gray-300 focus:border-blue-500 focus:ring-blue-500 transition-all duration-300"
-                                autofocus 
-                                disabled
-                            />
+                                autofocus disabled />
                         @else
                             <flux:input wire:model='name' label="👨‍🎓 Họ và tên 🚩" placeholder="Nhập họ và tên đầy đủ"
                                 wire:change='updateUsername'
                                 class="rounded-xl border-gray-300 focus:border-blue-500 focus:ring-blue-500 transition-all duration-300"
-                                autofocus 
-                            />
+                                autofocus />
                         @endif
                     </div>
                     <div class="form-group md:col-span-2">
@@ -146,7 +143,8 @@
                 </div>
 
                 <div class="form-group">
-                    <flux:input wire:model='aspiration' label="Nguyện vọng" placeholder="Nhập nguyện vọng học tập của học viên (nếu có)"
+                    <flux:input wire:model='aspiration' label="Nguyện vọng"
+                        placeholder="Nhập nguyện vọng học tập của học viên (nếu có)"
                         class="rounded-xl border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 transition-all duration-300" />
                 </div>
 
@@ -172,9 +170,10 @@
             </div>
 
             <div class="flex items-center pt-6 border-t border-gray-200 dark:border-gray-700">
-                <span class="inline-flex items-center px-4 py-2 bg-yellow-50 dark:bg-yellow-900/20 text-yellow-800 dark:text-yellow-200 rounded-xl text-sm font-medium shadow-sm">
+                <span
+                    class="inline-flex items-center px-4 py-2 bg-yellow-50 dark:bg-yellow-900/20 text-yellow-800 dark:text-yellow-200 rounded-xl text-sm font-medium shadow-sm">
                     <svg class="w-5 h-5 mr-2 text-red-500" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M10 2a8 8 0 100 16 8 8 0 000-16zm1 11H9v-2h2v2zm0-4H9V7h2v2z"/>
+                        <path d="M10 2a8 8 0 100 16 8 8 0 000-16zm1 11H9v-2h2v2zm0-4H9V7h2v2z" />
                     </svg>
                     Các trường có dấu <span class="font-bold text-red-500 mx-1">🚩</span> là bắt buộc.
                 </span>
@@ -254,5 +253,149 @@
             </form>
         </div>
     </flux:modal>
-</div>
 
+    <flux:modal :dismissible="false" name="export-student" class="md:w-96">
+        <form wire:submit.prevent='exportDataConfirm()' class="space-y-6">
+            <div>
+                <flux:heading size="lg">Update profile</flux:heading>
+                <flux:text class="mt-2">Make changes to your personal details.</flux:text>
+            </div>
+
+            <flux:separator />
+
+            <flux:select wire:model='export_location_id' variant="listbox" placeholder="Chọn cơ sở">
+                <flux:select.option value="" selected>Chọn tất cả</flux:select.option>
+                @foreach ($locationStudent as $location)
+                    <flux:select.option :value="$location->id">{{ $location->name }}</flux:select.option>
+                @endforeach
+            </flux:select>
+            <flux:pillbox wire:model='exportColumns' multiple searchable placeholder="Chọn cột cần xuất">
+                <flux:pillbox.option value="account_code">Mã tài khoản</flux:pillbox.option>
+                <flux:pillbox.option value="address">Địa chỉ</flux:pillbox.option>
+                <flux:pillbox.option value="phone">Số điện thoại</flux:pillbox.option>
+                <flux:pillbox.option value="course">Lớp</flux:pillbox.option>
+                <flux:pillbox.option value="email">Email</flux:pillbox.option>
+                <flux:pillbox.option value="card_id">CCCD/CMND</flux:pillbox.option>
+                <flux:pillbox.option value="birthday">Ngày sinh</flux:pillbox.option>
+                <flux:pillbox.option value="guardian_name">Người giám hộ</flux:pillbox.option>
+                <flux:pillbox.option value="aspiration">Nguyện vọng</flux:pillbox.option>
+                <flux:pillbox.option value="avatar">Ảnh đại diện</flux:pillbox.option>
+
+            </flux:pillbox>
+            <div class="flex">
+                <flux:spacer />
+                <flux:button type="submit" variant="primary">Xuất dữ liệu</flux:button>
+            </div>
+
+        </form>
+    </flux:modal>
+
+    <flux:modal name="update-avatar" flyout variant="floating" class="md:w-lg" @close="closeUpdateAvatarModal">
+        <form wire:submit.prevent='updateAvatarConfirm' class="space-y-6">
+            <div class="space-y-6">
+                <flux:heading size="lg">Cập nhật ảnh đại diện</flux:heading>
+
+                <flux:subheading>Cập nhật ảnh đại diện của {{ $student->name ?? 'học viên' }}.</flux:subheading>
+
+                <flux:file-upload wire:model="avatarFile" accept="image/*" label="Upload files">
+                    <flux:file-upload.dropzone heading="Kéo thả ảnh đại diện vào đây hoặc nhấn để chọn"
+                        text="JPG, PNG, GIF up to 10MB" with-progress />
+                </flux:file-upload>
+
+                <div class="mt-4 flex flex-col gap-2">
+
+                    {{-- Preview khi có file mới --}}
+                    @if ($avatarFile)
+                        <div class="relative w-full max-w-[448px] mx-auto">
+                
+                            {{-- Ảnh preview --}}
+                            <flux:card class="overflow-hidden rounded-xl">
+                                <img src="{{ $avatarFile->temporaryUrl() }}"
+                                    class="w-full h-auto object-cover rounded-xl"
+                                    wire:loading.class="blur-sm opacity-60" 
+                                    wire:target="avatarFile" />
+                            </flux:card>
+                
+                            {{-- Overlay + Spinner TRUNG TÂM --}}
+                            <div wire:loading wire:target="avatarFile"
+                                class="absolute inset-0 flex items-center justify-center z-50">
+                
+                                {{-- lớp mờ --}}
+                                <div class="absolute inset-0 bg-black/30 backdrop-blur-sm rounded-xl"></div>
+                
+                                {{-- spinner --}}
+                                <svg class="animate-spin h-10 w-10 text-white relative z-50"
+                                    xmlns="http://www.w3.org/2000/svg" fill="none"
+                                    viewBox="0 0 24 24">
+                                    <circle class="opacity-25" cx="12" cy="12" r="10"
+                                        stroke="currentColor" stroke-width="4"></circle>
+                                    <path class="opacity-75" fill="currentColor"
+                                        d="M4 12a8 8 0 018-8v4l3-3-3-3v4a8 8 0 00-8 8h4z"></path>
+                                </svg>
+                            </div>
+                        </div>
+                    @endif
+                
+                
+                    {{-- Preview avatar cũ --}}
+                    @if ($existAvatar && !$avatarFile)
+                        <div class="relative w-full max-w-[448px] mx-auto">
+                
+                            <flux:card class="overflow-hidden rounded-xl">
+                                <img src="{{ asset('storage/images/avatars/' . $existAvatar) }}"
+                                    class="w-full h-auto object-cover rounded-xl"
+                                    wire:loading.class="blur-sm opacity-60" 
+                                    wire:target="avatarFile" />
+                            </flux:card>
+                
+                            {{-- Overlay + Spinner TRUNG TÂM --}}
+                            <div wire:loading wire:target="avatarFile"
+                                class="absolute inset-0 flex items-center justify-center z-50">
+                
+                                <div class="absolute inset-0 bg-black/30 backdrop-blur-sm rounded-xl"></div>
+                
+                                <svg class="animate-spin h-10 w-10 text-white relative z-50"
+                                    xmlns="http://www.w3.org/2000/svg" fill="none"
+                                    viewBox="0 0 24 24">
+                                    <circle class="opacity-25" cx="12" cy="12" r="10"
+                                        stroke="currentColor" stroke-width="4"></circle>
+                                    <path class="opacity-75" fill="currentColor"
+                                        d="M4 12a8 8 0 018-8v4l3-3-3-3v4a8 8 0 00-8 8h4z"></path>
+                                </svg>
+                            </div>
+                        </div>
+                    @endif
+                
+                </div>
+                
+
+
+
+                <flux:separator />
+
+                <div class="flex gap-2">
+                    <flux:spacer />
+                    <flux:modal.close>
+                        <flux:button variant="ghost">Huỷ</flux:button>
+                    </flux:modal.close>
+                    <flux:button type="submit" wire:loading.attr="disabled" wire:target="avatarFile">
+                        <span wire:loading.remove wire:target="avatarFile">
+                            Cập nhật
+                        </span>
+
+                        <span wire:loading wire:target="avatarFile" class="flex items-center gap-2">
+                            <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg"
+                                fill="none" viewBox="0 0 24 24">
+                                <circle class="opacity-25" cx="12" cy="12" r="10"
+                                    stroke="currentColor" stroke-width="4"></circle>
+                                <path class="opacity-75" fill="currentColor"
+                                    d="M4 12a8 8 0 018-8v4l3-3-3-3v4a8 8 0 00-8 8h4z"></path>
+                            </svg>
+                            Đang tải...
+                        </span>
+                    </flux:button>
+
+                </div>
+        </form>
+    </flux:modal>
+</div>
